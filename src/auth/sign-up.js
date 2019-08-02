@@ -11,19 +11,15 @@ import {
   $email,
   $password,
   asyncSignUp,
-  changeUserName,
-  changeEmail,
-  changePassword,
-} from './store';
+  onChangeUserName,
+  onChangeEmail,
+  onChangePassword,
+} from './model';
 
 const handleSubmit = (username, email, password) => (e) => {
   e.preventDefault();
   asyncSignUp({ username, email, password });
 };
-
-const handleUserNameChange = (e) => changeUserName(e.currentTarget.value);
-const handleChangeEmail = (e) => changeEmail(e.currentTarget.value);
-const handleChangePassword = (e) => changePassword(e.currentTarget.value);
 
 export const SignUp = () => {
   const username = useStore($username);
@@ -42,21 +38,21 @@ export const SignUp = () => {
           <InputFiled
             placeholder="Username"
             value={username}
-            onChange={handleUserNameChange}
+            onChange={onChangeUserName}
           />
 
           <InputFiled
             type="email"
             placeholder="Email"
             value={email}
-            onChange={handleChangeEmail}
+            onChange={onChangeEmail}
           />
 
           <InputFiled
             type="password"
             placeholder="Password"
             value={password}
-            onChange={handleChangePassword}
+            onChange={onChangePassword}
           />
 
           <SubmitBtn disabled={isLoading}>Sign in</SubmitBtn>
