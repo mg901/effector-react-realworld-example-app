@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { $errors } from '../app/model.store';
+import { $errors } from '../app/model';
 
 export const ListErrors = () => {
   const errors = useStore($errors);
