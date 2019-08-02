@@ -7,7 +7,9 @@ import { InputFiled } from '../components/input-field';
 import { SubmitBtn } from '../components/submit-btn';
 
 import {
-  $fields,
+  $username,
+  $email,
+  $password,
   asyncSignUp,
   changeUserName,
   changeEmail,
@@ -24,7 +26,9 @@ const handleChangeEmail = (e) => changeEmail(e.currentTarget.value);
 const handleChangePassword = (e) => changePassword(e.currentTarget.value);
 
 export const SignUp = () => {
-  const { username, email, password } = useStore($fields);
+  const username = useStore($username);
+  const email = useStore($email);
+  const password = useStore($password);
   const isLoading = useStore(asyncSignUp.pending);
 
   return (
@@ -33,7 +37,7 @@ export const SignUp = () => {
         <Link to="/register">Need an account?</Link>
       </p>
 
-      <form onSubmit={handleSubmit(username, email, password)}>
+      <form onSubmit={handleSubmit({ username, email, password })}>
         <fieldset>
           <InputFiled
             placeholder="Username"

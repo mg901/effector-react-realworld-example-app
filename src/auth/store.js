@@ -1,8 +1,10 @@
 import {
   createEvent,
   createEffect,
-  restore,
+  createStore,
   createStoreObject,
+  restore,
+  combine,
 } from 'effector';
 import { auth } from '../agent';
 import { $errors } from '../app/store';
@@ -16,7 +18,22 @@ export const asyncSignUp = createEffect();
 export const $username = restore(changeUserName, '');
 export const $email = restore(changeEmail, '');
 export const $password = restore(changePassword, '');
-export const $fields = createStoreObject({ $username, $email, $password });
+export const $currentUser = createStore({});
+export const $token = $currentUser.map((user) => user.token);
+
+$currentUser
+  .on(asyncSignIn.done, (_, { result }) => result.user)
+  .on(asyncSignUp.done, (_, payload) => {
+    // console.log('payload', payload);
+
+    return payload;
+  });
+
+asyncSignIn.use(({ email, password }) => auth.signIn(email, password));
+
+asyncSignUp.use(({ username, email, password }) =>
+  auth.signUp(username, email, password),
+);
 
 $errors
   .on(
@@ -27,9 +44,3 @@ $errors
     asyncSignUp.fail,
     (_, { error }) => JSON.parse(error.response.text).errors,
   );
-
-asyncSignIn.use((email, password) => auth.signIn(email, password));
-
-asyncSignUp.use((username, email, password) =>
-  auth.signUp(username, email, password),
-);

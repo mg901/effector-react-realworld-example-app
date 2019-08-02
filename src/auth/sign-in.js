@@ -6,18 +6,25 @@ import { AuthPage } from './auth-page';
 import { InputFiled } from '../components/input-field';
 import { SubmitBtn } from '../components/submit-btn';
 
-import { $fields, asyncSignIn, changeEmail, changePassword } from './store';
+import {
+  $email,
+  $password,
+  asyncSignIn,
+  changeEmail,
+  changePassword,
+} from './store';
 
 const handleSubmit = (email, password) => (e) => {
   e.preventDefault();
-  asyncSignIn(email, password);
+  asyncSignIn({ email, password });
 };
 
 const handleChangeEmail = (e) => changeEmail(e.currentTarget.value);
 const handleChangePassword = (e) => changePassword(e.currentTarget.value);
 
 export const SignIn = () => {
-  const { email, password } = useStore($fields);
+  const email = useStore($email);
+  const password = useStore($password);
   const isLoading = useStore(asyncSignIn.pending);
 
   return (
