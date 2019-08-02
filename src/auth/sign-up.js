@@ -18,7 +18,7 @@ import {
 
 const handleSubmit = (username, email, password) => (e) => {
   e.preventDefault();
-  asyncSignUp(username, email, password);
+  asyncSignUp({ username, email, password });
 };
 
 const handleUserNameChange = (e) => changeUserName(e.currentTarget.value);
@@ -34,10 +34,10 @@ export const SignUp = () => {
   return (
     <AuthPage title="Sign Up">
       <p className="text-xs-center">
-        <Link to="/register">Need an account?</Link>
+        <Link to="/login">Have an account?</Link>
       </p>
 
-      <form onSubmit={handleSubmit({ username, email, password })}>
+      <form onSubmit={handleSubmit(username, email, password)}>
         <fieldset>
           <InputFiled
             placeholder="Username"
