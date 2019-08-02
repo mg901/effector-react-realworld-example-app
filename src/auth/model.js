@@ -1,6 +1,5 @@
 import { restore, createEvent, createEffect, merge, combine } from 'effector';
 import { auth } from '../agent';
-import { $errors } from '../app/model.store';
 
 const eventValue = (e) => e.currentTarget.value;
 
@@ -25,5 +24,3 @@ asyncSignIn.use(({ email, password }) => auth.signIn(email, password));
 asyncSignUp.use(({ username, email, password }) =>
   auth.signUp(username, email, password),
 );
-
-$errors.on(noAuth, (_, { error }) => JSON.parse(error.response.text).errors);
