@@ -32,7 +32,7 @@ export const SignUp = () => {
   const isLoading = useStore(asyncSignUp.pending);
 
   return (
-    <AuthPage title="Sign In">
+    <AuthPage title="Sign Up">
       <p className="text-xs-center">
         <Link to="/register">Need an account?</Link>
       </p>
