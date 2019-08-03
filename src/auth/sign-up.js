@@ -14,7 +14,7 @@ import {
   onChangeUserName,
   onChangeEmail,
   onChangePassword,
-} from './model';
+} from './auth.model';
 
 const handleSubmit = (username, email, password) => (e) => {
   e.preventDefault();
