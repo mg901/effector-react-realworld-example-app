@@ -12,7 +12,7 @@ import {
   asyncSignIn,
   onChangeEmail,
   onChangePassword,
-} from './model';
+} from './auth.model';
 
 const handleSubmit = (email, password) => (e) => {
   e.preventDefault();
