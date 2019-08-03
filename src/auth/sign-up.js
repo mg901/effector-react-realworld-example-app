@@ -55,7 +55,7 @@ export const SignUp = () => {
             onChange={onChangePassword}
           />
 
-          <SubmitBtn disabled={isLoading}>Sign in</SubmitBtn>
+          <SubmitBtn disabled={isLoading}>Sign up</SubmitBtn>
         </fieldset>
       </form>
     </AuthPage>
