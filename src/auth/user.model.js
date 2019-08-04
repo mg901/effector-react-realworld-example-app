@@ -2,7 +2,6 @@ import { createEvent, createStore } from 'effector';
 import { authDone } from './auth.model';
 
 const TOKEN_NAME = 'jwt';
-
 export const logOut = createEvent();
 export const $currentUser = createStore(null);
 export const $token = $currentUser.map((user) => user && user.token);

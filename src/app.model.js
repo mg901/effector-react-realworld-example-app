@@ -1,5 +1,5 @@
 import { createStore } from 'effector';
-import { authFail } from '../auth/auth.model';
+import { authFail } from './auth/auth.model';
 
 export const $appName = createStore('Conduit');
 export const $viewChangeCounter = createStore(0);

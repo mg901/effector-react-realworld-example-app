@@ -1,5 +1,6 @@
 import { restore, createEvent, createEffect, merge, combine } from 'effector';
 import { auth } from '../agent';
+import { history } from '../router.model';
 
 const targetValue = (e) => e.currentTarget.value;
 
@@ -25,3 +26,7 @@ asyncSignIn.use(({ email, password }) => auth.signIn(email, password));
 asyncSignUp.use(({ username, email, password }) =>
   auth.signUp(username, email, password),
 );
+
+authDone.watch(() => {
+  history.push('/');
+});
