@@ -1,10 +1,9 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { $errors } from '../app/store';
+import { $errors } from '../app/model';
 
 export const ListErrors = () => {
   const errors = useStore($errors);
-
   const listErrors = Object.keys(errors);
 
   return (

@@ -11,6 +11,7 @@ import {
   LOGOUT,
 } from '../constants/actionTypes';
 import { asyncUpdateUserData } from './store';
+import { logOut } from '../auth/user.model';
 
 const mergeState = (state, payload) => ({ ...state, ...payload });
 
@@ -216,7 +217,7 @@ class Settings extends React.Component {
 
               <button
                 className="btn btn-outline-danger"
-                onClick={this.props.onClickLogout}>
+                onClick={() => logOut()}>
                 Or click here to logout.
               </button>
             </div>

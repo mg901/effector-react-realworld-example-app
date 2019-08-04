@@ -7,30 +7,30 @@ import { InputFiled } from '../components/input-field';
 import { SubmitBtn } from '../components/submit-btn';
 
 import {
-  $fields,
+  $username,
+  $email,
+  $password,
   asyncSignUp,
-  changeUserName,
-  changeEmail,
-  changePassword,
-} from './store';
+  onChangeUserName,
+  onChangeEmail,
+  onChangePassword,
+} from './auth.model';
 
 const handleSubmit = (username, email, password) => (e) => {
   e.preventDefault();
-  asyncSignUp(username, email, password);
+  asyncSignUp({ username, email, password });
 };
 
-const handleUserNameChange = (e) => changeUserName(e.currentTarget.value);
-const handleChangeEmail = (e) => changeEmail(e.currentTarget.value);
-const handleChangePassword = (e) => changePassword(e.currentTarget.value);
-
 export const SignUp = () => {
-  const { username, email, password } = useStore($fields);
+  const username = useStore($username);
+  const email = useStore($email);
+  const password = useStore($password);
   const isLoading = useStore(asyncSignUp.pending);
 
   return (
-    <AuthPage title="Sign In">
+    <AuthPage title="Sign Up">
       <p className="text-xs-center">
-        <Link to="/register">Need an account?</Link>
+        <Link to="/login">Have an account?</Link>
       </p>
 
       <form onSubmit={handleSubmit(username, email, password)}>
@@ -38,24 +38,24 @@ export const SignUp = () => {
           <InputFiled
             placeholder="Username"
             value={username}
-            onChange={handleUserNameChange}
+            onChange={onChangeUserName}
           />
 
           <InputFiled
             type="email"
             placeholder="Email"
             value={email}
-            onChange={handleChangeEmail}
+            onChange={onChangeEmail}
           />
 
           <InputFiled
             type="password"
             placeholder="Password"
             value={password}
-            onChange={handleChangePassword}
+            onChange={onChangePassword}
           />
 
-          <SubmitBtn disabled={isLoading}>Sign in</SubmitBtn>
+          <SubmitBtn disabled={isLoading}>Sign up</SubmitBtn>
         </fieldset>
       </form>
     </AuthPage>
