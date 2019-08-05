@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import { Router, Switch, Route } from 'react-router-dom';
 import React from 'react';
-import { history } from './router.model';
+import { history } from './models/router.model';
 import { App } from './app';
 
 ReactDOM.render(
