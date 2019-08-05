@@ -12,12 +12,7 @@ import {
   asyncSignIn,
   onChangeEmail,
   onChangePassword,
-} from './auth.model';
-
-const handleSubmit = (email, password) => (e) => {
-  e.preventDefault();
-  asyncSignIn({ email, password });
-};
+} from './model';
 
 export const SignIn = () => {
   const email = useStore($email);
@@ -30,7 +25,11 @@ export const SignIn = () => {
         <Link to="/register">Need an account?</Link>
       </p>
 
-      <form onSubmit={handleSubmit(email, password)}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          asyncSignIn({ email, password });
+        }}>
         <fieldset>
           <InputFiled
             type="email"

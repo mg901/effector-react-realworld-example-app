@@ -7,22 +7,17 @@ import { InputFiled } from '../components/input-field';
 import { SubmitBtn } from '../components/submit-btn';
 
 import {
-  $username,
+  $name,
   $email,
   $password,
   asyncSignUp,
-  onChangeUserName,
+  onChangeName,
   onChangeEmail,
   onChangePassword,
-} from './auth.model';
-
-const handleSubmit = (username, email, password) => (e) => {
-  e.preventDefault();
-  asyncSignUp({ username, email, password });
-};
+} from './model';
 
 export const SignUp = () => {
-  const username = useStore($username);
+  const name = useStore($name);
   const email = useStore($email);
   const password = useStore($password);
   const isLoading = useStore(asyncSignUp.pending);
@@ -33,12 +28,16 @@ export const SignUp = () => {
         <Link to="/login">Have an account?</Link>
       </p>
 
-      <form onSubmit={handleSubmit(username, email, password)}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          asyncSignUp({ name, email, password });
+        }}>
         <fieldset>
           <InputFiled
             placeholder="Username"
-            value={username}
-            onChange={onChangeUserName}
+            value={name}
+            onChange={onChangeName}
           />
 
           <InputFiled
