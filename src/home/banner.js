@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { $appName } from '../app.model';
+import { $appName } from '../models/app.model';
 
 export const Banner = () => {
   const appName = useStore($appName).toLowerCase();

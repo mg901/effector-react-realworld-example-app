@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListErrors } from '../components/list-errors';
+import { ListErrors } from '../list-errors';
 
 export const AuthPage = ({ title, children }) => (
   <div className="auth-page">

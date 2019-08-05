@@ -1,5 +1,5 @@
 import { createEffect, createStore } from 'effector';
-import * as agent from '../agent';
+import * as agent from '../api';
 
 export const getAsyncTags = createEffect();
 export const getAllArticles = createEffect();
