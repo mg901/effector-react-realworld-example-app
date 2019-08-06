@@ -1,19 +1,42 @@
 import React from 'react';
+import { useStore } from 'effector-react';
 import { InputFiled } from '../components/input-field';
 import { TextField } from '../components/text-field';
 import { Button } from '../components/button';
+import { onChangeText, $editor } from './model';
 
 export const Form = () => {
+  const { title, description, body, tagInput } = useStore($editor);
+
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}>
       <fieldset>
-        <InputFiled placeholder="Article Title" />
+        <InputFiled
+          value={title}
+          placeholder="Article Title"
+          onChange={onChangeText('title')}
+        />
 
-        <InputFiled placeholder="What's this article about?" />
+        <InputFiled
+          value={description}
+          placeholder="What's this article about?"
+          onChange={onChangeText('description')}
+        />
 
-        <TextField placeholder="Write your article (in markdown)" />
+        <TextField
+          value={body}
+          placeholder="Write your article (in markdown)"
+          onChange={onChangeText('body')}
+        />
 
-        <InputFiled placeholder="Enter tags" />
+        <InputFiled
+          value={tagInput}
+          placeholder="Enter tags"
+          onChange={onChangeText('tagInput')}
+        />
 
         <Button className="btn-lg pull-xs-right btn-primary">
           Publish Article
