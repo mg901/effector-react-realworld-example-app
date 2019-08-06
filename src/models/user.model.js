@@ -10,7 +10,7 @@ import { TOKEN_NAME } from '../constants';
 import { authDone } from '../auth/model';
 
 import * as api from '../api';
-import { targetValue } from '../helpers';
+import { targetValue, decompose } from '../helpers';
 import { history } from './router.model';
 
 export const logOut = createEvent();
@@ -30,11 +30,14 @@ export const onChangePassword = changePassword.prepend(targetValue);
 
 export const $currentUser = createStore({});
 export const $token = $currentUser.map(({ token }) => token || null);
-export const $image = $currentUser.map(({ image }) => image || '');
-export const $username = $currentUser.map(({ username }) => username);
-export const $bio = $currentUser.map(({ bio }) => bio || '');
-export const $email = $currentUser.map(({ email }) => email);
 export const $password = restore(changePassword, '');
+
+const { $image, $username, $bio, $email } = decompose($currentUser, {
+  $image: ({ image }) => image || '',
+  $username: ({ username }) => username,
+  $bio: ({ bio }) => bio || '',
+  $email: ({ email }) => email,
+});
 
 $currentUser.on(authDone, (_, { result }) => result.user).reset(logOut);
 
