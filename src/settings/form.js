@@ -1,7 +1,8 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { InputFiled } from '../components/input-field';
-import { SubmitBtn } from '../components/submit-btn';
+import { TextField } from '../components/text-field';
+import { Button } from '../components/button';
 
 import {
   $password,
@@ -38,15 +39,11 @@ export const Form = () => {
           onChange={onChangeName}
         />
 
-        <fieldset className="form-group">
-          <textarea
-            className="form-control form-control-lg"
-            rows="8"
-            placeholder="Short bio about you"
-            value={user.bio}
-            onChange={onChangeBio}
-          />
-        </fieldset>
+        <TextField
+          value={user.bio}
+          placeholder="Short bio about you"
+          onChange={onChangeBio}
+        />
 
         <InputFiled
           type="email"
@@ -62,7 +59,12 @@ export const Form = () => {
           onChange={onChangePassword}
         />
 
-        <SubmitBtn disabled={isLoading}>Update Settings</SubmitBtn>
+        <Button
+          type="submit"
+          className="btn-lg btn-primary pull-xs-right"
+          disabled={isLoading}>
+          Update Settings
+        </Button>
       </fieldset>
     </form>
   );

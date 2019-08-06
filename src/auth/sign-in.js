@@ -4,7 +4,7 @@ import { useStore } from 'effector-react';
 
 import { AuthPage } from './auth-page';
 import { InputFiled } from '../components/input-field';
-import { SubmitBtn } from '../components/submit-btn';
+import { Button } from '../components/button';
 
 import {
   $email,
@@ -45,7 +45,12 @@ export const SignIn = () => {
             onChange={onChangePassword}
           />
 
-          <SubmitBtn disabled={isLoading}>Sign in</SubmitBtn>
+          <Button
+            type="submit"
+            className="btn-lg btn-primary pull-xs-right"
+            disabled={isLoading}>
+            Sign in
+          </Button>
         </fieldset>
       </form>
     </AuthPage>
