@@ -8,7 +8,7 @@ import {
   $currentUser,
   asyncUpdateUserData,
   onChangeText,
-} from '../models/user.model';
+} from '../models/user';
 
 export const Form = () => {
   const user = useStore($currentUser);

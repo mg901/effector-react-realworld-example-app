@@ -1,6 +1,6 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
 import * as api from '../api';
-import { $currentUser } from '../models/user.model';
+import { $currentUser } from '../models/user';
 
 export const leavePage = createEvent();
 export const asyncGetProfile = createEffect();

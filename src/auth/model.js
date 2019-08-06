@@ -1,6 +1,6 @@
 import { restore, createEvent, createEffect, merge } from 'effector';
 import * as api from '../api';
-import { history } from '../models/router.model';
+import { history } from '../models/router';
 import { targetValue } from '../helpers';
 
 export const changeEmail = createEvent();

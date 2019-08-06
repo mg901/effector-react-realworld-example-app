@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { Link } from 'react-router-dom';
-import { $currentUser } from '../models/user.model';
+import { $currentUser } from '../models/user';
 
 export const LoggedIn = () => {
   const { username, image } = useStore($currentUser);

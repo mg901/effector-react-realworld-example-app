@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { Link } from 'react-router-dom';
-import { $token } from '../models/user.model';
-import { $appName } from '../models/app.model';
+import { $token } from '../models/user';
+import { $appName } from '../models/app';
 import { LoggedIn } from './logged-in';
 import { LoggedOut } from './logged-out';
 

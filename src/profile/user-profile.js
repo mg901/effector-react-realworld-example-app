@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { $currentUser } from '../models/user.model';
+import { $currentUser } from '../models/user';
 
 import { FollowUser } from './follow-user';
 import { $profile, $isCurrentUser } from './model';

@@ -2,7 +2,7 @@ import { createEvent, createEffect, createStore } from 'effector';
 import { TOKEN_NAME } from '../constants';
 import { authDone } from '../auth/model';
 import * as api from '../api';
-import { history } from './router.model';
+import { history } from './router';
 
 const changeText = createEvent();
 export const logOut = createEvent();
