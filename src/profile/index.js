@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
-import { $user } from '../models/user.model';
-import { EditSettings } from './edit-settings';
+import { UserProfile } from './user-profile';
+import { Tabs } from './tabs';
+import { asyncGetProfile, leavePage } from './model';
 
-export const Profile = () => {
-  const user = useStore($user);
+export const Profile = ({ match: { params } }) => {
+  const isLoading = useStore(asyncGetProfile.pending);
+
+  useEffect(() => {
+    asyncGetProfile(params.username);
+
+    return () => {
+      leavePage();
+    };
+  }, [params.username]);
 
   return (
     <div className="profile-page">
@@ -12,10 +21,7 @@ export const Profile = () => {
         <div className="container">
           <div className="row">
             <div className="col-xs-12 col-md-10 offset-md-1">
-              <img src={user.image} className="user-img" alt={user.username} />
-              <h4>{user.username}</h4>
-              <p>{user.bio}</p>
-              <EditSettings user={user} />
+              {isLoading ? <div>Loading ...</div> : <UserProfile />}
             </div>
           </div>
         </div>
@@ -24,7 +30,7 @@ export const Profile = () => {
       <div className="container">
         <div className="row">
           <div className="col-xs-12 col-md-10 offset-md-1">
-            <div className="articles-toggle" />
+            <Tabs />
           </div>
         </div>
       </div>
