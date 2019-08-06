@@ -1,30 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import marked from 'marked';
 import { ArticleMeta } from './ArticleMeta';
 import { CommentContainer } from './CommentContainer';
-import * as agent from '../../agent';
-import {
-  ARTICLE_PAGE_LOADED,
-  ARTICLE_PAGE_UNLOADED,
-} from '../../constants/actionTypes';
-
-const mapStateToProps = (state) => ({
-  ...state.article,
-  currentUser: state.common.currentUser,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onLoad: (payload) => dispatch({ type: ARTICLE_PAGE_LOADED, payload }),
-  onUnload: () => dispatch({ type: ARTICLE_PAGE_UNLOADED }),
-});
+import * as api from '../../api';
 
 class Article extends React.Component {
   componentWillMount() {
     this.props.onLoad(
       Promise.all([
-        agent.articles.get(this.props.match.params.id),
-        agent.comments.forArticle(this.props.match.params.id),
+        api.articles.get(this.props.match.params.id),
+        api.comments.forArticle(this.props.match.params.id),
       ]),
     );
   }
@@ -88,8 +73,3 @@ class Article extends React.Component {
     );
   }
 }
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Article);

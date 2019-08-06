@@ -1,12 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { connect } from 'react-redux';
-import * as agent from '../../agent';
-import { DELETE_ARTICLE } from '../../constants/actionTypes';
 
-const mapDispatchToProps = (dispatch) => ({
-  onClickDelete: (payload) => dispatch({ type: DELETE_ARTICLE, payload }),
-});
+import * as agent from '../../api';
 
 const ArticleActions = ({ article, onClickDelete, canModify }) => {
   const del = () => {
@@ -36,8 +31,3 @@ const ArticleActions = ({ article, onClickDelete, canModify }) => {
 
   return <span />;
 };
-
-export default connect(
-  () => ({}),
-  mapDispatchToProps,
-)(ArticleActions);

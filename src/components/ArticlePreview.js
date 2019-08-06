@@ -1,27 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as agent from '../agent';
-import {
-  ARTICLE_FAVORITED,
-  ARTICLE_UNFAVORITED,
-} from '../constants/actionTypes';
+import * as agent from '../api';
 
 const FAVORITED_CLASS = 'btn btn-sm btn-primary';
 const NOT_FAVORITED_CLASS = 'btn btn-sm btn-outline-primary';
-
-const mapDispatchToProps = (dispatch) => ({
-  favorite: (slug) =>
-    dispatch({
-      type: ARTICLE_FAVORITED,
-      payload: agent.articles.favorite(slug),
-    }),
-  unfavorite: (slug) =>
-    dispatch({
-      type: ARTICLE_UNFAVORITED,
-      payload: agent.articles.unfavorite(slug),
-    }),
-});
 
 const ArticlePreview = (props) => {
   const { article } = props;
@@ -78,8 +60,3 @@ const ArticlePreview = (props) => {
     </div>
   );
 };
-
-export default connect(
-  () => ({}),
-  mapDispatchToProps,
-)(ArticlePreview);

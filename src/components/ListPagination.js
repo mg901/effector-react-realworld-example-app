@@ -1,11 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import * as agent from '../agent';
-import { SET_PAGE } from '../constants/actionTypes';
-
-const mapDispatchToProps = (dispatch) => ({
-  onSetPage: (page, payload) => dispatch({ type: SET_PAGE, page, payload }),
-});
+import * as agent from '../api';
 
 const ListPagination = (props) => {
   if (props.articlesCount <= 10) {
@@ -50,8 +44,3 @@ const ListPagination = (props) => {
     </nav>
   );
 };
-
-export default connect(
-  () => ({}),
-  mapDispatchToProps,
-)(ListPagination);

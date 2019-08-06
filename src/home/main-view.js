@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { ArticleList } from '../components/ArticleList';
 import * as agent from '../api';
-import { CHANGE_TAB } from '../constants/actionTypes';
 
 const handleClick = (handler) => (e) => {
   e.preventDefault();
@@ -90,8 +88,3 @@ const MainView = (props) => (
     />
   </div>
 );
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(MainView);
