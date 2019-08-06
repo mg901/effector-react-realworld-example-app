@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { $user } from '../models/user.model';
-import { EditSettingsLink } from './edit-settings-link';
+import { EditSettings } from './edit-settings';
 
 export const Profile = () => {
   const user = useStore($user);
@@ -15,7 +15,7 @@ export const Profile = () => {
               <img src={user.image} className="user-img" alt={user.username} />
               <h4>{user.username}</h4>
               <p>{user.bio}</p>
-              <EditSettingsLink user={user} />
+              <EditSettings user={user} />
             </div>
           </div>
         </div>
