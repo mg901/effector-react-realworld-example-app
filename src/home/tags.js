@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import * as agent from '../agent';
+import * as agent from '../api';
 import { $tags, getAsyncTags } from './store';
 
 const Tag = ({ tag, onClick }) => {

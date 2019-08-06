@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { Banner } from './banner';
-import MainView from './main-view';
+// import MainView from './main-view';
 
 export const Home = () => {
   return (
