@@ -1,19 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { $user } from '../models/user.model';
-import { EditSettings } from './edit-settings';
+import { $currentUser } from '../models/user.model';
+
 import { FollowUser } from './follow-user';
 import { $profile, $isCurrentUser } from './model';
 
 const CurrentUserProfile = () => {
-  const { image, username, bio } = useStore($user);
+  const { image, username, bio } = useStore($currentUser);
 
   return (
     <>
       <img src={image} className="user-img" alt={username} />
       <h4>{username}</h4>
       <p>{bio}</p>
-      <EditSettings />
+      <Link
+        to="/settings"
+        className="btn btn-sm btn-outline-secondary action-btn">
+        <i className="ion-gear-a" /> Edit Profile Settings
+      </Link>
     </>
   );
 };
