@@ -1,32 +1,26 @@
-import { restore, createEvent, createEffect, merge } from 'effector';
+import { createEvent, createStore, createEffect, merge } from 'effector';
 import * as api from '../api';
 import { history } from '../models/router';
-import { targetValue } from '../helpers';
 
-export const changeEmail = createEvent();
-export const changeName = createEvent();
-export const changePassword = createEvent();
-
+const changeText = createEvent();
 export const asyncSignIn = createEffect();
 export const asyncSignUp = createEffect();
 export const asyncGetUser = createEffect();
-
+export const authFail = merge([asyncSignIn.fail, asyncSignUp.fail]);
 export const authDone = merge([
   asyncSignIn.done,
   asyncSignUp.done,
   asyncGetUser.done,
 ]);
-export const authFail = merge([asyncSignIn.fail, asyncSignUp.fail]);
 
-export const onChangeName = changeName.prepend(targetValue);
-export const onChangeEmail = changeEmail.prepend(targetValue);
-export const onChangePassword = changePassword.prepend(targetValue);
+export const onChangeText = (key) => (e) =>
+  changeText({ [key]: e.currentTarget.value });
 
-export const $name = restore(changeName, '');
-export const $email = restore(changeEmail, '');
-export const $password = restore(changePassword, '');
+export const $user = createStore({ name: '', email: '', password: '' });
 
-asyncGetUser.use(() => api.auth.current());
+$user.on(changeText, (state, payload) => ({ ...state, ...payload }));
+
+asyncGetUser.use(api.auth.current);
 
 asyncSignIn.use(({ email, password }) => api.auth.signIn(email, password));
 

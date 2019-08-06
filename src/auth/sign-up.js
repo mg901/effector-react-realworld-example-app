@@ -6,20 +6,10 @@ import { AuthPage } from './auth-page';
 import { InputFiled } from '../components/input-field';
 import { Button } from '../components/button';
 
-import {
-  $name,
-  $email,
-  $password,
-  asyncSignUp,
-  onChangeName,
-  onChangeEmail,
-  onChangePassword,
-} from './model';
+import { $user, asyncSignUp, onChangeText } from './model';
 
 export const SignUp = () => {
-  const name = useStore($name);
-  const email = useStore($email);
-  const password = useStore($password);
+  const { name, email, password } = useStore($user);
   const isLoading = useStore(asyncSignUp.pending);
 
   return (
@@ -37,21 +27,21 @@ export const SignUp = () => {
           <InputFiled
             placeholder="Username"
             value={name}
-            onChange={onChangeName}
+            onChange={onChangeText('name')}
           />
 
           <InputFiled
             type="email"
             placeholder="Email"
             value={email}
-            onChange={onChangeEmail}
+            onChange={onChangeText('email')}
           />
 
           <InputFiled
             type="password"
             placeholder="Password"
             value={password}
-            onChange={onChangePassword}
+            onChange={onChangeText('password')}
           />
 
           <Button

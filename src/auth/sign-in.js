@@ -6,17 +6,11 @@ import { AuthPage } from './auth-page';
 import { InputFiled } from '../components/input-field';
 import { Button } from '../components/button';
 
-import {
-  $email,
-  $password,
-  asyncSignIn,
-  onChangeEmail,
-  onChangePassword,
-} from './model';
+import { $user, asyncSignIn, onChangeText } from './model';
 
 export const SignIn = () => {
-  const email = useStore($email);
-  const password = useStore($password);
+  const { email, password } = useStore($user);
+
   const isLoading = useStore(asyncSignIn.pending);
 
   return (
@@ -35,14 +29,14 @@ export const SignIn = () => {
             type="email"
             placeholder="Email"
             value={email}
-            onChange={onChangeEmail}
+            onChange={onChangeText('email')}
           />
 
           <InputFiled
             type="password"
             placeholder="Password"
             value={password}
-            onChange={onChangePassword}
+            onChange={onChangeText('password')}
           />
 
           <Button
