@@ -5,19 +5,13 @@ import { TextField } from '../components/text-field';
 import { Button } from '../components/button';
 
 import {
-  $password,
-  $user,
+  $currentUser,
   asyncUpdateUserData,
-  onCahangeImageUrl,
-  onChangeName,
-  onChangeBio,
-  onChangeEmail,
-  onChangePassword,
+  onChangeText,
 } from '../models/user.model';
 
 export const Form = () => {
-  const user = useStore($user);
-  const password = useStore($password);
+  const user = useStore($currentUser);
   const isLoading = useStore(asyncUpdateUserData.pending);
 
   return (
@@ -30,33 +24,33 @@ export const Form = () => {
         <InputFiled
           placeholder="URL of profile picture"
           value={user.image}
-          onChange={onCahangeImageUrl}
+          onChange={onChangeText('image')}
         />
 
         <InputFiled
           placeholder="Username"
           value={user.username}
-          onChange={onChangeName}
+          onChange={onChangeText('username')}
         />
 
         <TextField
           value={user.bio}
           placeholder="Short bio about you"
-          onChange={onChangeBio}
+          onChange={onChangeText('bio')}
         />
 
         <InputFiled
           type="email"
           placeholder="Email"
           value={user.email}
-          onChange={onChangeEmail}
+          onChange={onChangeText('email')}
         />
 
         <InputFiled
           type="password"
           placeholder="New Password"
-          value={password}
-          onChange={onChangePassword}
+          value={user.password}
+          onChange={onChangeText('password')}
         />
 
         <Button

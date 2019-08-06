@@ -1,45 +1,30 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  forward,
-  restore,
-  combine,
-} from 'effector';
+import { createEvent, createEffect, createStore } from 'effector';
 import { TOKEN_NAME } from '../constants';
 import { authDone } from '../auth/model';
-
 import * as api from '../api';
-import { targetValue, decompose } from '../helpers';
 import { history } from './router.model';
 
+const changeText = createEvent();
 export const logOut = createEvent();
-const changeImageUrl = createEvent();
-const changeName = createEvent();
-const changeBio = createEvent();
-const changeEmail = createEvent();
-const changePassword = createEvent();
-
 export const asyncUpdateUserData = createEffect();
 
-export const onCahangeImageUrl = changeImageUrl.prepend(targetValue);
-export const onChangeName = changeName.prepend(targetValue);
-export const onChangeBio = changeBio.prepend(targetValue);
-export const onChangeEmail = changeEmail.prepend(targetValue);
-export const onChangePassword = changePassword.prepend(targetValue);
+export const onChangeText = (key) => (e) =>
+  changeText({ [key]: e.target.value });
 
-export const $currentUser = createStore({});
-export const $token = $currentUser.map(({ token }) => token || null);
-export const $password = restore(changePassword, '');
-
-const { $image, $username, $bio, $email } = decompose($currentUser, {
-  $image: ({ image }) => image || '',
-  $username: ({ username }) => username,
-  $bio: ({ bio }) => bio || '',
-  $email: ({ email }) => email,
+export const $currentUser = createStore({
+  image: '',
+  username: '',
+  bio: '',
+  email: '',
+  token: null,
 });
 
-$currentUser.on(authDone, (_, { result }) => result.user).reset(logOut);
+$currentUser
+  .on(changeText, (state, payload) => ({ ...state, ...payload }))
+  .on(authDone, (state, { result }) => ({ ...state, ...result.user }))
+  .reset(logOut);
+
+export const $token = $currentUser.map(({ token }) => token);
 
 $token.watch((token) => {
   if (token) {
@@ -52,39 +37,9 @@ logOut.watch(() => {
   history.push('/');
 });
 
-forward({
-  from: changeImageUrl,
-  to: $image,
-});
-
-forward({
-  from: changeName,
-  to: $username,
-});
-
-forward({
-  from: changeBio,
-  to: $bio,
-});
-
-forward({
-  from: changeEmail,
-  to: $email,
-});
-
-export const $user = combine(
-  $image,
-  $username,
-  $bio,
-  $email,
-  $password,
-  (image, username, bio, email, password) =>
-    password
-      ? { image, username, bio, email, password }
-      : { image, username, bio, email },
+asyncUpdateUserData.use(({ password, ...fields }) =>
+  api.auth.save(password ? { password, ...fields } : fields),
 );
-
-asyncUpdateUserData.use((user) => api.auth.save(user));
 
 asyncUpdateUserData.done.watch(() => {
   history.push('/');
