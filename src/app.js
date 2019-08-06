@@ -31,7 +31,7 @@ export const App = () => {
         <Route path="/editor" component={Editor} />
         <Route path="/settings" component={Settings} />
         <Route path="/@:username" component={Profile} />
-        {/* <Route path="/@:username" component={Profile} /> 
+        {/*
         <Route path="/editor/:slug" component={Editor} />
         <Route path="/article/:id" component={Article} />
         <Route path="/@:username/favorites" component={ProfileFavorites} /> */}
