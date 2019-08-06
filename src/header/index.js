@@ -1,10 +1,13 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { Link } from 'react-router-dom';
+import { $token } from '../models/user.model';
 import { $appName } from '../models/app.model';
-import { Nav } from './nav';
+import { LoggedIn } from './logged-in';
+import { LoggedOut } from './logged-out';
 
 export const Header = () => {
+  const token = useStore($token);
   const appName = useStore($appName).toLowerCase();
 
   return (
@@ -14,7 +17,7 @@ export const Header = () => {
           {appName}
         </Link>
 
-        <Nav />
+        {token ? <LoggedIn /> : <LoggedOut />}
       </div>
     </nav>
   );
