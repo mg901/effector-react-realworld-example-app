@@ -6,6 +6,7 @@ export const InputFiled = ({
   placeholder,
   name = '',
   onChange,
+  onKeyDown,
 }) => (
   <fieldset className="form-group">
     <input
@@ -15,6 +16,7 @@ export const InputFiled = ({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      onKeyDown={onKeyDown}
     />
   </fieldset>
 );
