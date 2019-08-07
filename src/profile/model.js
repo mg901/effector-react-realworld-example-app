@@ -3,15 +3,13 @@ import * as api from '../api';
 import { $currentUser } from '../models/user';
 
 export const leavePage = createEvent();
-export const asyncGetProfile = createEffect();
+export const asyncGetProfile = createEffect().use((user) =>
+  api.profile.get(user),
+);
 export const asyncFollow = createEffect();
 export const asyncUnfollow = createEffect();
 
-export const $profile = createStore({});
-
-asyncGetProfile.use((user) => api.profile.get(user));
-
-$profile
+export const $profile = createStore({})
   .on(asyncGetProfile.done, (state, { result }) => ({
     ...state,
     ...result.profile,

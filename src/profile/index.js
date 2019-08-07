@@ -10,9 +10,7 @@ export const Profile = ({ match: { params } }) => {
   useEffect(() => {
     asyncGetProfile(params.username);
 
-    return () => {
-      leavePage();
-    };
+    return () => leavePage();
   }, [params.username]);
 
   return (
