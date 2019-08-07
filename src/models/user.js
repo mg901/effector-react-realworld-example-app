@@ -6,7 +6,10 @@ import { history } from './router';
 
 const changeText = createEvent();
 export const logOut = createEvent();
-export const asyncUpdateUserData = createEffect();
+export const asyncUpdateUserData = createEffect().use(
+  ({ password, ...fields }) =>
+    api.auth.save(password ? { password, ...fields } : fields),
+);
 
 export const onChangeText = (key) => (e) =>
   changeText({ [key]: e.target.value });
@@ -17,9 +20,7 @@ export const $currentUser = createStore({
   bio: '',
   email: '',
   token: null,
-});
-
-$currentUser
+})
   .on(changeText, (state, payload) => ({ ...state, ...payload }))
   .on(authDone, (state, { result }) => ({ ...state, ...result.user }))
   .reset(logOut);
@@ -36,10 +37,6 @@ logOut.watch(() => {
   localStorage.removeItem(TOKEN_NAME);
   history.push('/');
 });
-
-asyncUpdateUserData.use(({ password, ...fields }) =>
-  api.auth.save(password ? { password, ...fields } : fields),
-);
 
 asyncUpdateUserData.done.watch(() => {
   history.push('/');
