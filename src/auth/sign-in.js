@@ -10,7 +10,6 @@ import { $user, asyncSignIn, onChangeText } from './model';
 
 export const SignIn = () => {
   const { email, password } = useStore($user);
-
   const isLoading = useStore(asyncSignIn.pending);
 
   return (

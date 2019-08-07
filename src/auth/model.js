@@ -3,10 +3,15 @@ import * as api from '../api';
 import { history } from '../models/router';
 
 const changeText = createEvent();
-export const asyncSignIn = createEffect();
-export const asyncSignUp = createEffect();
-export const asyncGetUser = createEffect();
-export const authFail = merge([asyncSignIn.fail, asyncSignUp.fail]);
+export const asyncSignIn = createEffect().use(({ email, password }) =>
+  api.auth.signIn(email, password),
+);
+
+export const asyncSignUp = createEffect().use(({ name, email, password }) =>
+  api.auth.signUp(name, email, password),
+);
+
+export const asyncGetUser = createEffect().use(api.auth.current);
 export const authDone = merge([
   asyncSignIn.done,
   asyncSignUp.done,
@@ -16,13 +21,10 @@ export const authDone = merge([
 export const onChangeText = (key) => (e) =>
   changeText({ [key]: e.currentTarget.value });
 
-export const $user = createStore({ name: '', email: '', password: '' });
-
-$user.on(changeText, (state, payload) => ({ ...state, ...payload }));
-
-asyncGetUser.use(api.auth.current);
-
-asyncSignIn.use(({ email, password }) => api.auth.signIn(email, password));
+export const $user = createStore({ name: '', email: '', password: '' }).on(
+  changeText,
+  (state, payload) => ({ ...state, ...payload }),
+);
 
 asyncSignUp.use(({ name, email, password }) =>
   api.auth.signUp(name, email, password),
