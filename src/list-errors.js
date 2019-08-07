@@ -9,13 +9,11 @@ export const ListErrors = () => {
   return (
     listErrors.length > 0 && (
       <ul className="error-messages">
-        {listErrors.map((key) => {
-          return (
-            <li key={key}>
-              {key} {errors[key]}
-            </li>
-          );
-        })}
+        {listErrors.map((key) => (
+          <li key={key}>
+            {key} {errors[key]}
+          </li>
+        ))}
       </ul>
     )
   );
