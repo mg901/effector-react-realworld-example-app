@@ -5,9 +5,7 @@ import { leavePage } from './model';
 
 export const Editor = () => {
   useEffect(() => {
-    return () => {
-      leavePage();
-    };
+    return () => leavePage();
   });
 
   return (

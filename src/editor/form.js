@@ -3,42 +3,54 @@ import { useStore } from 'effector-react';
 import { InputFiled } from '../components/input-field';
 import { TextField } from '../components/text-field';
 import { Button } from '../components/button';
-import { onChangeText, $editor } from './model';
+import { TagList } from './tag-list';
+import {
+  $editor,
+  $isLoading,
+  onChangeText,
+  onAddTag,
+  asyncCreatePost,
+} from './model';
 
 export const Form = () => {
-  const { title, description, body, tagInput } = useStore($editor);
+  const isLoading = useStore($isLoading);
+  const editor = useStore($editor);
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}>
+    <form>
       <fieldset>
         <InputFiled
-          value={title}
+          value={editor.title}
           placeholder="Article Title"
           onChange={onChangeText('title')}
         />
 
         <InputFiled
-          value={description}
+          value={editor.description}
           placeholder="What's this article about?"
           onChange={onChangeText('description')}
         />
 
         <TextField
-          value={body}
+          value={editor.body}
           placeholder="Write your article (in markdown)"
           onChange={onChangeText('body')}
         />
 
         <InputFiled
-          value={tagInput}
+          value={editor.tagInput}
           placeholder="Enter tags"
           onChange={onChangeText('tagInput')}
+          onKeyDown={onAddTag}
         />
+        <TagList />
 
-        <Button className="btn-lg pull-xs-right btn-primary">
+        <Button
+          className="btn-lg pull-xs-right btn-primary"
+          disabled={isLoading}
+          onClick={() => {
+            asyncCreatePost(editor);
+          }}>
           Publish Article
         </Button>
       </fieldset>
