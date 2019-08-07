@@ -2,7 +2,7 @@ import { createEvent, createStore, createEffect, combine } from 'effector';
 import * as api from '../api';
 
 const changeText = createEvent();
-const addTag = createEvent();
+export const addTag = createEvent();
 export const removeTag = createEvent();
 export const leavePage = createEvent();
 
@@ -20,12 +20,6 @@ export const asyncGetPost = createEffect().use((slug) =>
 
 export const onChangeText = (key) => (e) =>
   changeText({ [key]: e.currentTarget.value });
-
-export const onAddTag = (e) => {
-  if (e.key === 'Enter') {
-    addTag(e.currentTarget.value);
-  }
-};
 
 export const $editor = createStore({
   title: '',

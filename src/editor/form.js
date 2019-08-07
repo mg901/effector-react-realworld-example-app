@@ -8,7 +8,7 @@ import {
   $editor,
   $isLoading,
   onChangeText,
-  onAddTag,
+  addTag,
   asyncCreatePost,
 } from './model';
 
@@ -41,7 +41,11 @@ export const Form = () => {
           value={editor.tagInput}
           placeholder="Enter tags"
           onChange={onChangeText('tagInput')}
-          onKeyDown={onAddTag}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              addTag(e.currentTarget.value);
+            }
+          }}
         />
         <TagList />
 
