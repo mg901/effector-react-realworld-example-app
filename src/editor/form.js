@@ -4,13 +4,7 @@ import { InputFiled } from '../components/input-field';
 import { TextField } from '../components/text-field';
 import { Button } from '../components/button';
 import { TagList } from './tag-list';
-import {
-  $editor,
-  $isLoading,
-  onChangeText,
-  addTag,
-  asyncCreatePost,
-} from './model';
+import { $editor, $isLoading, onChangeText, addTag, createPost } from './model';
 
 export const Form = () => {
   const isLoading = useStore($isLoading);
@@ -53,7 +47,7 @@ export const Form = () => {
           className="btn-lg pull-xs-right btn-primary"
           disabled={isLoading}
           onClick={() => {
-            asyncCreatePost(editor);
+            createPost(editor);
           }}>
           Publish Article
         </Button>
