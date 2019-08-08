@@ -1,16 +1,16 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
-import * as api from '../api';
+import { get } from '../request';
 import { $currentUser } from '../models/user';
 
 export const leavePage = createEvent();
-export const asyncGetProfile = createEffect().use((user) =>
-  api.profile.get(user),
+export const getProfile = createEffect().use((username) =>
+  get(`/profiles/${username}`),
 );
-export const asyncFollow = createEffect();
-export const asyncUnfollow = createEffect();
+export const follow = createEffect();
+export const unfollow = createEffect();
 
 export const $profile = createStore({})
-  .on(asyncGetProfile.done, (state, { result }) => ({
+  .on(getProfile.done, (state, { result }) => ({
     ...state,
     ...result.profile,
   }))

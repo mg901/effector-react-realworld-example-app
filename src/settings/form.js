@@ -4,21 +4,17 @@ import { InputFiled } from '../components/input-field';
 import { TextField } from '../components/text-field';
 import { Button } from '../components/button';
 
-import {
-  $currentUser,
-  asyncUpdateUserData,
-  onChangeText,
-} from '../models/user';
+import { $currentUser, updateUserData, onChangeText } from '../models/user';
 
 export const Form = () => {
   const user = useStore($currentUser);
-  const isLoading = useStore(asyncUpdateUserData.pending);
+  const isLoading = useStore(updateUserData.pending);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        asyncUpdateUserData(user);
+        updateUserData(user);
       }}>
       <fieldset>
         <InputFiled

@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useStore } from 'effector-react';
 import { UserProfile } from './user-profile';
 import { Tabs } from './tabs';
-import { asyncGetProfile, leavePage } from './model';
+import { getProfile, leavePage } from './model';
 
 export const Profile = ({ match: { params } }) => {
-  const isLoading = useStore(asyncGetProfile.pending);
+  const isLoading = useStore(getProfile.pending);
 
   useEffect(() => {
-    asyncGetProfile(params.username);
+    getProfile(params.username);
 
     return () => leavePage();
   }, [params.username]);

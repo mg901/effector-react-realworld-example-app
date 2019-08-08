@@ -1,21 +1,21 @@
 import { createEvent, createStore, createEffect, combine } from 'effector';
-import * as api from '../api';
+import * as req from '../request';
 
 const changeText = createEvent();
 export const addTag = createEvent();
 export const removeTag = createEvent();
 export const leavePage = createEvent();
 
-export const asyncCreatePost = createEffect().use((article) =>
-  api.articles.create(article),
+export const createPost = createEffect().use((article) =>
+  req.post('/articles', { article }),
 );
 
-export const asyncUpdatePost = createEffect().use((article) =>
-  api.articles.update(article),
+export const updatePost = createEffect().use((article) =>
+  req.put(`/articles/${article.slug}`, article),
 );
 
-export const asyncGetPost = createEffect().use((slug) =>
-  api.articles.get(slug),
+export const getPost = createEffect().use((slug) =>
+  req.get(`/articles/${slug}`),
 );
 
 export const onChangeText = (key) => (e) =>
@@ -38,7 +38,7 @@ export const $editor = createStore({
     ...state,
     tagList: state.tagList.filter((tag) => payload !== tag),
   }))
-  .on(asyncGetPost.done, (state, { result }) => ({ ...state, ...result }))
+  .on(getPost.done, (state, { result }) => ({ ...state, ...result }))
   .reset(leavePage);
 
 export const $tags = $editor.map(({ tagList }) => tagList);
@@ -46,14 +46,14 @@ export const $tags = $editor.map(({ tagList }) => tagList);
 export const $post = createStore({
   article: {},
   comments: [],
-}).on(asyncCreatePost.done, (state, { result }) => ({
+}).on(createPost.done, (state, { result }) => ({
   ...state,
   ...result,
 }));
 
 export const $isLoading = combine(
-  asyncCreatePost.pending,
-  asyncUpdatePost.pending,
-  asyncGetPost.pending,
+  createPost.pending,
+  updatePost.pending,
+  getPost.pending,
   (create, update, get) => create || update || get,
 );

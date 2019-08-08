@@ -1,14 +1,13 @@
 import { createEvent, createEffect, createStore } from 'effector';
 import { TOKEN_NAME } from '../constants';
 import { authDone } from '../auth/model';
-import * as api from '../api';
+import { put } from '../request';
 import { history } from './router';
 
 const changeText = createEvent();
 export const logOut = createEvent();
-export const asyncUpdateUserData = createEffect().use(
-  ({ password, ...fields }) =>
-    api.auth.save(password ? { password, ...fields } : fields),
+export const updateUserData = createEffect().use(({ password, ...fields }) =>
+  put('/user', password ? { password, ...fields } : fields),
 );
 
 export const onChangeText = (key) => (e) =>
@@ -38,6 +37,6 @@ logOut.watch(() => {
   history.push('/');
 });
 
-asyncUpdateUserData.done.watch(() => {
+updateUserData.done.watch(() => {
   history.push('/');
 });

@@ -10,13 +10,13 @@ import { Editor } from './editor';
 import { Settings } from './settings';
 import { Profile } from './profile';
 
-import { asyncGetUser } from './auth/model';
+import { getUser } from './auth/model';
 
 export const App = () => {
-  const isLoading = useStore(asyncGetUser.pending);
+  const isLoading = useStore(getUser.pending);
 
   useEffect(() => {
-    asyncGetUser();
+    getUser();
   }, []);
 
   return isLoading ? (

@@ -6,11 +6,11 @@ import { AuthPage } from './auth-page';
 import { InputFiled } from '../components/input-field';
 import { Button } from '../components/button';
 
-import { $user, asyncSignUp, onChangeText } from './model';
+import { $user, signUp, onChangeText } from './model';
 
 export const SignUp = () => {
   const { name, email, password } = useStore($user);
-  const isLoading = useStore(asyncSignUp.pending);
+  const isLoading = useStore(signUp.pending);
 
   return (
     <AuthPage title="Sign Up">
@@ -21,7 +21,7 @@ export const SignUp = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          asyncSignUp({ name, email, password });
+          signUp({ name, email, password });
         }}>
         <fieldset>
           <InputFiled
