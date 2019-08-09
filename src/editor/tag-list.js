@@ -9,7 +9,7 @@ export const TagList = () => (
       <Button
         className="tag-default tag-pill"
         key={tag}
-        onClick={removeTag(tag)}>
+        onClick={() => removeTag(tag)}>
         <i className="ion-close-round" />
         {tag}
       </Button>
