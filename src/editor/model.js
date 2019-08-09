@@ -32,7 +32,7 @@ export const $editor = createStore({
   .on(addTag, (state, payload) => ({
     ...state,
     tagInput: '',
-    tagList: [...state.tagList, payload],
+    tagList: [...new Set(state.tagList.concat(payload))],
   }))
   .on(removeTag, (state, payload) => ({
     ...state,
