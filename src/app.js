@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router';
 import { useStore } from 'effector-react';
-
 import { Home } from './home';
 import { Header } from './header';
 import { SignIn } from './auth/sign-in';
@@ -14,10 +13,6 @@ import { getUser } from './auth/model';
 
 export const App = () => {
   const isLoading = useStore(getUser.pending);
-
-  useEffect(() => {
-    getUser();
-  }, []);
 
   return isLoading ? (
     <Header />
