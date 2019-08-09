@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ListErrors = ({ errors }) => {
+export const ListErrors = ({ errors = {} }) => {
   const listErrors = Object.keys(errors);
 
   return (
