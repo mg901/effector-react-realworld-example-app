@@ -1,6 +1,9 @@
 import React from 'react';
+
+import { useStore } from 'effector-react';
 import { Banner } from './banner';
-// import MainView from './main-view';
+import { Feed } from './feed';
+import { $articles } from '../articles/model';
 
 export const Home = () => {
   return (
@@ -8,12 +11,10 @@ export const Home = () => {
       <Banner />
       <div className="container page">
         <div className="row">
-          {/* <MainView /> */}
+          <Feed />
           <div className="col-md-3">
             <div className="sidebar">
               <p>Popular Tags</p>
-
-              {/* <Tags tags={tags} onClickTag={onClickTag} /> */}
             </div>
           </div>
         </div>
