@@ -4,7 +4,8 @@ import { InputFiled } from '../components/input-field';
 import { TextField } from '../components/text-field';
 import { Button } from '../components/button';
 import { TagList } from './tag-list';
-import { $editor, $isLoading, onChangeText, addTag, createPost } from './model';
+import { $editor, onChangeText, addTag } from './editor.model';
+import { $isLoading, createArticle } from './editable-article.model';
 
 export const Form = () => {
   const isLoading = useStore($isLoading);
@@ -47,7 +48,7 @@ export const Form = () => {
           className="btn-lg pull-xs-right btn-primary"
           disabled={isLoading}
           onClick={() => {
-            createPost(editor);
+            createArticle(editor);
           }}>
           Publish Article
         </Button>
