@@ -6,10 +6,10 @@ import { AuthPage } from './auth-page';
 import { InputFiled } from '../components/input-field';
 import { Button } from '../components/button';
 
-import { $user, signUp, onChangeText } from './model';
+import { $userProfile, signUp, onChangeText } from './model';
 
 export const SignUp = () => {
-  const { name, email, password } = useStore($user);
+  const { name, email, password } = useStore($userProfile);
   const isLoading = useStore(signUp.pending);
 
   return (
