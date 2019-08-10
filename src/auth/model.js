@@ -63,6 +63,11 @@ export const updateUserData = createEffect().use(({ password, ...fields }) =>
   put('/user', password ? { password, ...fields } : fields),
 );
 
+logOut.watch(() => {
+  history.push('/');
+  localStorage.removeItem(TOKEN_NAME);
+});
+
 updateUserData.done.watch(() => {
   history.push('/');
 });
