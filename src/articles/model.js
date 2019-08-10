@@ -1,6 +1,6 @@
 import { createEvent, createEffect, createStore, merge } from 'effector';
 import { del, post, get } from '../request';
-import { $token } from '../auth/model';
+import { getUser, $token } from '../auth/model';
 
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 
@@ -21,11 +21,17 @@ export const setUnfavoriteArticle = createEffect().use((slug) =>
   del(`/articles/${slug}/favorite`),
 );
 
-export const $articles = createStore({});
+getUser.done.watch(() => {
+  getFeed();
+});
 
-$articles.on(merge([getArticles.done, getFeed.done]), (store, { result }) => ({
-  ...store,
-  ...result,
-}));
+$token.watch((token) => {
+  if (!token) getArticles();
+});
 
-$token.watch((token) => (token ? getFeed() : getArticles()));
+export const $articles = createStore({}).on(
+  merge([getFeed.done, getArticles.done]),
+  (state, { result }) => ({ ...state, ...result }),
+);
+
+$articles.watch((item) => console.log('articles', item));
