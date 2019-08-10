@@ -1,6 +1,6 @@
 import { createEvent, createEffect, createStore, merge } from 'effector';
 import { del, post, get } from '../request';
-import { $token } from '../models/user';
+import { $token } from '../auth/model';
 
 const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
 
