@@ -1,10 +1,10 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { Link } from 'react-router-dom';
-import { $currentUser } from '../models/user';
+import { $authorizedUser } from '../auth/model';
 
 export const LoggedIn = () => {
-  const { username, image } = useStore($currentUser);
+  const { username, image } = useStore($authorizedUser);
 
   return (
     <ul className="nav navbar-nav pull-xs-right">
