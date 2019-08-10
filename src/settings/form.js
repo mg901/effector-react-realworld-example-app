@@ -4,10 +4,10 @@ import { InputFiled } from '../components/input-field';
 import { TextField } from '../components/text-field';
 import { Button } from '../components/button';
 
-import { $currentUser, updateUserData, onChangeText } from '../models/user';
+import { $authorizedUser, updateUserData, onChangeText } from '../auth/model';
 
 export const Form = () => {
-  const user = useStore($currentUser);
+  const user = useStore($authorizedUser);
   const isLoading = useStore(updateUserData.pending);
 
   return (

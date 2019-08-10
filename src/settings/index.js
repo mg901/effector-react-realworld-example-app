@@ -1,8 +1,8 @@
 import React from 'react';
-import { ListErrors } from '../list-errors';
+import { ListErrors } from '../components/list-errors';
 import { Button } from '../components/button';
 import { Form } from './form';
-import { logOut } from '../models/user';
+import { logOut } from '../auth/model';
 
 export const Settings = () => {
   return (
