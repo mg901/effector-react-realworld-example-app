@@ -1,0 +1,26 @@
+.app {
+  min-height: 100vh;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 975px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: [main] 9fr [sidebar] 3fr;
+}
+
+.sidebar {
+  grid-column: sidebar;
+  padding-left: 1.5rem;
+  padding-right: 1rem;
+}
+
+.main {
+  grid-column: main;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

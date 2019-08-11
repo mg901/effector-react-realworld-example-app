@@ -1,0 +1,67 @@
+:root {
+  --white: #fff;
+  --deep-grey: #262626;
+  --body-color: #fafafa;
+  --link-color-primary: #003569;
+  --border-color: #dbdbdb;
+  --border-light-color: #efefef;
+  --border-dark-color: #cfcfcf;
+  --header-color: var(--white);
+  --text-light-color: #999;
+  --user-pick-border-color: linear-gradient(#e72d97, #a32de7);
+  --user-pick-border-color-hover: linear-gradient(#ca177d, #8917ca);
+  --sm-radius: 0.3rem;
+}
+
+:root,
+body {
+  box-sizing: border-box;
+  background-color: var(--body-color);
+}
+
+*:focus {
+  outline: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+img {
+  margin-bottom: 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  box-shadow: none;
+  line-height: inherit;
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn-default {
+  border-radius: var(--sm-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--white);
+  padding: 0.5rem 3rem;
+}
+
+.link {
+  display: block;
+  color: var(--link-color-primary);
+  text-decoration: none;
+}
