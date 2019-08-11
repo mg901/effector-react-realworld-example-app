@@ -1,19 +1,21 @@
 import React from 'react';
-import { Banner } from './banner';
-import { Feed } from './feed';
+import { useStore } from 'effector-react';
+import { Banner } from '../components/banner';
+import { Tags } from '../tags/tags';
+import { $token } from '../auth/model';
 
-export const Home = () => (
-  <div className="home-page">
-    <Banner />
-    <div className="container page">
-      <div className="row">
-        <Feed />
-        <div className="col-md-3">
-          <div className="sidebar">
-            <p>Popular Tags</p>
-          </div>
-        </div>
-      </div>
+export const Home = () => {
+  const token = useStore($token);
+
+  return (
+    <div>
+      {!token && <Banner />}
+      <section className="container content">
+        <main className="main" />
+        <aside className="sidebar">
+          <Tags />
+        </aside>
+      </section>
     </div>
-  </div>
-);
+  );
+};
