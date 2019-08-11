@@ -1,7 +1,7 @@
 import React from 'react';
 import { useList } from 'effector-react';
 import { $tags } from './model';
-import { Button } from '../components';
+import { Button } from '../components/button';
 import { getPostsByTag } from '../posts/model';
 
 export const Tags = () => (

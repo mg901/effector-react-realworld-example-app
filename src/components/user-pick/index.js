@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '..';
+import { Button } from '../button';
 import './index.css';
 
 export const UserPick = ({ image, username, onClick }) => (

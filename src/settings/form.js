@@ -2,7 +2,7 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import { InputFiled } from '../components/input-field';
 import { TextField } from '../components/text-field';
-import { Button } from '../components';
+import { Button } from '../components/button';
 
 import { $authorizedUser, updateUserData, onChangeText } from '../auth/model';
 

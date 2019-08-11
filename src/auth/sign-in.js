@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import { AuthPage } from './auth-page';
 import { InputFiled } from '../components/input-field';
-import { Button } from '../components';
+import { Button } from '../components/button';
 
 import { $userProfile, signIn, onChangeText } from './model';
 
