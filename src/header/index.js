@@ -18,7 +18,7 @@ export const Header = () => {
         {() => (
           <header className="header">
             <div className="container header-inner">
-              {!token && (
+              {token && (
                 <Link to="/" className="link logo header-logo">
                   {APP_NAME.toLowerCase()}
                 </Link>
