@@ -1,6 +1,6 @@
 import React from 'react';
 import { useList } from 'effector-react';
-import { Button } from '../components/button';
+import { Button } from '../components';
 import { $tags, removeTag } from './editor.model';
 
 export const TagList = () => (

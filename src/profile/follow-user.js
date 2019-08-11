@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import cx from 'classnames';
-import { Button } from '../components/button';
+import { Button } from '../components';
 import { $profile, follow, unfollow } from './model';
 
 const classNames = (x) =>

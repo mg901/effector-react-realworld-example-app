@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import cx from 'classnames';
-import { Button } from '../button';
+import { Button } from '..';
 import './index.css';
 
 export const DownDownMenu = forwardRef(

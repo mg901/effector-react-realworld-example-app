@@ -3,7 +3,7 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import { AuthPage } from './auth-page';
 import { InputFiled } from '../components/input-field';
-import { Button } from '../components/button';
+import { Button } from '../components';
 
 import { $userProfile, signUp, onChangeText } from './model';
 
