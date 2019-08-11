@@ -2,8 +2,8 @@ import React from 'react';
 
 export const InputFiled = ({
   type = 'text',
-  value,
-  placeholder,
+  value = '',
+  placeholder = '',
   name = '',
   onChange,
   onKeyDown,
