@@ -2,13 +2,16 @@
   "name": "react-effector-realworld-example-app",
   "version": "0.1.0",
   "scripts": {
-    "start": "cross-env PORT=4100 react-scripts start",
-    "build": "react-scripts build",
+    "start": "cross-env PORT=4100 rescripts start",
+    "build": "rescripts build",
     "test": "cross-env PORT=4100 react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint:all": "cross-env eslint --fix .",
     "pretty": "cross-env prettier './**/**/**.{json,js,eslintrc}' --write"
   },
+  "rescripts": [
+    "env"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",
@@ -41,10 +44,13 @@
     "effector-react": "^20.2.1",
     "history": "^4.9.0",
     "marked": "^0.7.0",
+    "normalize.css": "^8.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",
+    "react-sticky": "^6.0.3",
     "superagent": "^5.1.0",
-    "superagent-promise": "^1.1.0"
+    "superagent-promise": "^1.1.0",
+    "use-onclickoutside": "^0.3.1"
   }
 }
