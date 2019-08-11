@@ -3,8 +3,8 @@ import React from 'react';
 export const TextField = ({
   value,
   rows = '8',
-  placeholder,
-  name,
+  placeholder = '',
+  name = '',
   onChange,
 }) => (
   <fieldset className="form-group">
