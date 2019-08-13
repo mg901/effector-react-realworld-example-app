@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AuthPage } from './auth-page';
-import { InputField } from '../components/input-field';
+import { InputField } from '../components';
 import { Submit } from '../submit';
 import { signIn, onChangeText } from './model.events';
 

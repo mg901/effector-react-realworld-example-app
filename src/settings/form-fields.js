@@ -1,7 +1,6 @@
 import React from 'react';
 import { useFormField } from '../hooks';
-import { InputField } from '../components/input-field';
-import { TextField } from '../components/text-field';
+import { InputField, TextField } from '../components';
 import { onChangeText } from '../auth/model.events';
 import { authUser as user } from '../auth/model.store';
 

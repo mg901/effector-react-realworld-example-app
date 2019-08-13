@@ -41,18 +41,6 @@ img {
   margin-bottom: 2rem;
 }
 
-.btn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border: 1px solid transparent;
-  box-shadow: none;
-  line-height: inherit;
-  text-decoration: none;
-  color: inherit;
-}
-
 .btn-default {
   border-radius: var(--sm-radius);
   border: 1px solid var(--border-color);

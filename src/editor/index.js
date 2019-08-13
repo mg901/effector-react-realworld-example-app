@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListErrors } from '../components/list-errors';
+import { ListErrors } from '../components';
 import { Form } from './form';
 
 export const Editor = () => (

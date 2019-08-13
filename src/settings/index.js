@@ -1,6 +1,5 @@
 import React from 'react';
-import { ListErrors } from '../components/list-errors';
-import { Button } from '../components/button';
+import { ListErrors, Button } from '../components';
 import { Form } from './form';
 import { logOut } from '../auth/model.events';
 

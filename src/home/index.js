@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { Banner } from '../components/banner';
+import { Banner } from '../components';
 import { Tags } from '../tags/tags';
 import { token as t } from '../auth/model';
 

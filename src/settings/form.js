@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Textarea } from './form-fields';
-import { InputField } from '../components/input-field';
+import { InputField } from '../components';
 import { Submit } from '../submit';
 
 import { submitForm, changePassword } from './model';

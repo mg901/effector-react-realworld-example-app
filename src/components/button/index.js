@@ -1,5 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
+import './index.css';
 
 export const Button = ({
   type = 'button',

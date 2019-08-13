@@ -1,7 +1,7 @@
 import React from 'react';
 import { combine } from 'effector';
 import { useStore } from 'effector-react';
-import { Button } from '../components/button';
+import { Button } from '../components';
 import { asyncSignIn, asyncSignUp } from '../auth/model.events';
 
 export const isLoading = combine(

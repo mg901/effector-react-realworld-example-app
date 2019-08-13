@@ -1,9 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { InputField } from '../components/input-field';
-import { TextField } from '../components/text-field';
+import { InputField, TextField, Button } from '../components';
 import { Input } from './form-fields';
-import { Button } from '../components/button';
 import { TagList } from './tag-list';
 import { onAddTag, isLoading, createArticle, onChangeText } from './model';
 
