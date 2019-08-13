@@ -29,7 +29,7 @@ export const $posts = createStore(initialState).on(
   (state, { result }) => ({ ...state, ...result }),
 );
 
-export const $userPosts = createStore(initialState).on(
+export const $formPosts = createStore(initialState).on(
   getUserPosts.done,
   (state, { result }) => ({ ...state, ...result }),
 );
