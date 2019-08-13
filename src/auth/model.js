@@ -47,9 +47,9 @@ authUser
 
 export const token = authUser.map((user) => user.token);
 
-token.watch((t) => {
-  if (t) {
-    localStorage.setItem(TOKEN_NAME, t);
+token.watch((x) => {
+  if (x) {
+    localStorage.setItem(TOKEN_NAME, x);
   }
 });
 
