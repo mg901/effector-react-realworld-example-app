@@ -5,10 +5,11 @@ export const changeText = createEvent();
 export const addTag = createEvent();
 export const removeTag = createEvent();
 
-export const onChangeText = (key) => (e) =>
-  changeText({ [key]: e.currentTarget.value });
+export const onChangeText = changeText.prepend((e) => ({
+  [e.currentTarget.name]: e.currentTarget.value,
+}));
 
-export const $editor = createStore({
+export const editor = createStore({
   title: '',
   description: '',
   body: '',
@@ -27,4 +28,4 @@ export const $editor = createStore({
   }))
   .on(getArticle.done, (state, { result }) => ({ ...state, ...result }));
 
-export const $tags = $editor.map(({ tagList }) => tagList);
+export const tags = editor.map(({ tagList }) => tagList);

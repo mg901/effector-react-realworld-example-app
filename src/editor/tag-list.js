@@ -1,11 +1,11 @@
 import React from 'react';
 import { useList } from 'effector-react';
 import { Button } from '../components/button';
-import { $tags, removeTag } from './editor.model';
+import { tags, removeTag } from './editor.model';
 
 export const TagList = () => (
   <div className="tag-list">
-    {useList($tags, (tag) => (
+    {useList(tags, (tag) => (
       <Button
         className="tag-default tag-pill"
         key={tag}
