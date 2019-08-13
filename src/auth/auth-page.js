@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { ListErrors } from '../components/list-errors';
+import { ListErrors } from '../components';
 import { errors } from './model.store';
 
 export const AuthPage = ({ title, children }) => {
