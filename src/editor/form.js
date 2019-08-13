@@ -3,8 +3,7 @@ import { useStore } from 'effector-react';
 import { Input, Textarea } from './form-fields';
 import { Button } from '../components/button';
 import { TagList } from './tag-list';
-import { addTag } from './editor.model';
-import { isLoading, createArticle } from './editable-article.model';
+import { addTag, isLoading, createArticle } from './model';
 
 export const Form = () => {
   const loading = useStore(isLoading);

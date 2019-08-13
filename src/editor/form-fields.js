@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormField } from '../hooks';
 import { InputField } from '../components/input-field';
 import { TextField } from '../components/text-field';
-import { editor, onChangeText } from './editor.model';
+import { editor, onChangeText } from './model';
 
 export const Input = ({ name, placeholder, onKeyDown }) => {
   const value = useFormField({ store: editor, name });
