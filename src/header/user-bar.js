@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import useOnClickOutside from 'use-onclickoutside';
 import { UserPick } from '../components/user-pick';
 import { DownDownMenu } from '../components/dropdown-menu';
-import { logOut } from '../auth/model';
+import { logOut } from '../auth/model.events';
 
 import './index.css';
 
