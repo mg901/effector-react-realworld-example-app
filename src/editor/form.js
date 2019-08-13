@@ -1,9 +1,11 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { Input, Textarea } from './form-fields';
+import { InputField } from '../components/input-field';
+import { TextField } from '../components/text-field';
+import { Input } from './form-fields';
 import { Button } from '../components/button';
 import { TagList } from './tag-list';
-import { addTag, isLoading, createArticle } from './model';
+import { onAddTag, isLoading, createArticle, onChangeText } from './model';
 
 export const Form = () => {
   const loading = useStore(isLoading);
@@ -11,21 +13,25 @@ export const Form = () => {
   return (
     <form>
       <fieldset>
-        <Input name="title" placeholder="Article Title" />
-
-        <Input name="description" placeholder="What's this article about?" />
-
-        <Textarea name="body" placeholder="Write your article (in markdown)" />
-
-        <Input
-          name="tagInput"
-          placeholder="Enter tags"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              addTag(e.currentTarget.value);
-            }
-          }}
+        <InputField
+          name="title"
+          placeholder="Article Title"
+          onChange={onChangeText}
         />
+
+        <InputField
+          name="description"
+          placeholder="What's this article about?"
+          onChange={onChangeText}
+        />
+
+        <TextField
+          name="body"
+          placeholder="Write your article (in markdown)"
+          onChange={onChangeText}
+        />
+
+        <Input name="tagInput" placeholder="Enter tags" onKeyDown={onAddTag} />
         <TagList />
 
         <Button
