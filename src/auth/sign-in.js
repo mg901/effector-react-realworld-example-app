@@ -1,50 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useStore } from 'effector-react';
 import { AuthPage } from './auth-page';
-import { InputFiled } from '../components/input-field';
-import { Button } from '../components/button';
+import { InputField } from '../components/input-field';
+import { Submit } from '../submit';
+import { signIn, onChangeText } from './model.events';
 
-import { $userProfile, signIn, onChangeText } from './model';
+export const SignIn = () => (
+  <AuthPage title="Sign In">
+    <p>
+      <Link to="/register">Need an account?</Link>
+    </p>
 
-export const SignIn = () => {
-  const { email, password } = useStore($userProfile);
-  const isLoading = useStore(signIn.pending);
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        signIn();
+      }}>
+      <fieldset>
+        <InputField
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={onChangeText}
+        />
 
-  return (
-    <AuthPage title="Sign In">
-      <p className="text-xs-center">
-        <Link to="/register">Need an account?</Link>
-      </p>
+        <InputField
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={onChangeText}
+        />
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          signIn({ email, password });
-        }}>
-        <fieldset>
-          <InputFiled
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={onChangeText('email')}
-          />
-
-          <InputFiled
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={onChangeText('password')}
-          />
-
-          <Button
-            type="submit"
-            className="btn-lg btn-primary pull-xs-right"
-            disabled={isLoading}>
-            Sign in
-          </Button>
-        </fieldset>
-      </form>
-    </AuthPage>
-  );
-};
+        <Submit value="Sign In" />
+      </fieldset>
+    </form>
+  </AuthPage>
+);

@@ -1,56 +1,44 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { useStore } from 'effector-react';
 import { AuthPage } from './auth-page';
-import { InputFiled } from '../components/input-field';
-import { Button } from '../components/button';
+import { InputField } from '../components/input-field';
+import { Submit } from '../submit';
+import { signUp, onChangeText } from './model.events';
 
-import { $userProfile, signUp, onChangeText } from './model';
+export const SignUp = () => (
+  <AuthPage title="Sign Up">
+    <p>
+      <Link to="/login">Have an account?</Link>
+    </p>
 
-export const SignUp = () => {
-  const { name, email, password } = useStore($userProfile);
-  const isLoading = useStore(signUp.pending);
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        signUp();
+      }}>
+      <fieldset>
+        <InputField
+          name="username"
+          placeholder="Username"
+          onChange={onChangeText}
+        />
 
-  return (
-    <AuthPage title="Sign Up">
-      <p className="text-xs-center">
-        <Link to="/login">Have an account?</Link>
-      </p>
+        <InputField
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={onChangeText}
+        />
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          signUp({ name, email, password });
-        }}>
-        <fieldset>
-          <InputFiled
-            placeholder="Username"
-            value={name}
-            onChange={onChangeText('name')}
-          />
+        <InputField
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={onChangeText}
+        />
 
-          <InputFiled
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={onChangeText('email')}
-          />
-
-          <InputFiled
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={onChangeText('password')}
-          />
-
-          <Button
-            type="submit"
-            className="btn-lg btn-primary pull-xs-right"
-            disabled={isLoading}>
-            Sign up
-          </Button>
-        </fieldset>
-      </form>
-    </AuthPage>
-  );
-};
+        <Submit value="Sign Up" />
+      </fieldset>
+    </form>
+  </AuthPage>
+);
