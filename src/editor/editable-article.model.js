@@ -1,4 +1,4 @@
-import { createStore, createEffect, combine } from 'effector';
+import { createEffect, createStore, combine } from 'effector';
 import * as req from '../request';
 
 export const createArticle = createEffect().use((article) =>
@@ -13,7 +13,7 @@ export const getArticle = createEffect().use((slug) =>
   req.get(`/articles/${slug}`),
 );
 
-export const $editableArticle = createStore({
+export const editableArticle = createStore({
   article: {},
   comments: [],
 }).on(createArticle.done, (state, { result }) => ({
@@ -21,7 +21,7 @@ export const $editableArticle = createStore({
   ...result,
 }));
 
-export const $isLoading = combine(
+export const isLoading = combine(
   createArticle.pending,
   updateArticle.pending,
   getArticle.pending,
