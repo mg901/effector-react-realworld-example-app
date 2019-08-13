@@ -1,16 +1,16 @@
 import React from 'react';
 
-export const InputFiled = ({
+export const InputField = ({
   type = 'text',
-  value = '',
-  placeholder = '',
-  name = '',
+  value,
+  placeholder,
+  name,
   onChange,
   onKeyDown,
 }) => (
   <fieldset className="form-group">
     <input
-      className="form-control form-control-lg"
+      className="form-control"
       type={type}
       name={name}
       placeholder={placeholder}
