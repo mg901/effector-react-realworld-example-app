@@ -2,7 +2,7 @@ import React from 'react';
 import { ListErrors } from '../components/list-errors';
 import { Button } from '../components/button';
 import { Form } from './form';
-import { logOut } from '../auth/model';
+import { logOut } from '../auth/model.events';
 
 export const Settings = () => {
   return (

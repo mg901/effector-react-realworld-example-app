@@ -1,61 +1,33 @@
 import React from 'react';
-import { useStore } from 'effector-react';
-import { InputFiled } from '../components/input-field';
-import { TextField } from '../components/text-field';
-import { Button } from '../components/button';
+import { Input, Textarea } from './form-fields';
+import { InputField } from '../components/input-field';
+import { Submit } from '../submit';
 
-import { $authorizedUser, updateUserData, onChangeText } from '../auth/model';
+import { submitForm, changePassword } from './model';
 
-export const Form = () => {
-  const user = useStore($authorizedUser);
-  const isLoading = useStore(updateUserData.pending);
+export const Form = () => (
+  <form
+    onSubmit={(e) => {
+      e.preventDefault();
+      submitForm();
+    }}>
+    <fieldset>
+      <Input name="image" placeholder="URL of profile picture" />
 
-  return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        updateUserData(user);
-      }}>
-      <fieldset>
-        <InputFiled
-          placeholder="URL of profile picture"
-          value={user.image}
-          onChange={onChangeText('image')}
-        />
+      <Input name="username" placeholder="Username" />
 
-        <InputFiled
-          placeholder="Username"
-          value={user.username}
-          onChange={onChangeText('username')}
-        />
+      <Textarea name="bio" placeholder="Short bio about you" />
 
-        <TextField
-          value={user.bio}
-          placeholder="Short bio about you"
-          onChange={onChangeText('bio')}
-        />
+      <Input type="email" name="email" placeholder="Email" />
 
-        <InputFiled
-          type="email"
-          placeholder="Email"
-          value={user.email}
-          onChange={onChangeText('email')}
-        />
+      <InputField
+        type="password"
+        name="password"
+        placeholder="New Password"
+        onChange={(e) => changePassword(e.currentTarget.value)}
+      />
 
-        <InputFiled
-          type="password"
-          placeholder="New Password"
-          value={user.password}
-          onChange={onChangeText('password')}
-        />
-
-        <Button
-          type="submit"
-          className="btn-lg btn-primary pull-xs-right"
-          disabled={isLoading}>
-          Update Settings
-        </Button>
-      </fieldset>
-    </form>
-  );
-};
+      <Submit value="Update Settings" />
+    </fieldset>
+  </form>
+);
