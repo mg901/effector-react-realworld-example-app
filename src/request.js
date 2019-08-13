@@ -1,10 +1,10 @@
 import agentPromise from 'superagent-promise';
-import agent from 'superagent';
+import superagent from 'superagent';
 import { TOKEN_NAME } from './constants';
 
 const API_ROOT = 'https://conduit.productionready.io/api';
 
-const superagent = agentPromise(agent, Promise);
+const agent = agentPromise(superagent, Promise);
 
 const tokenPlugin = (req) => {
   const token = localStorage.getItem(TOKEN_NAME);
@@ -15,22 +15,22 @@ const tokenPlugin = (req) => {
 };
 
 export const del = (url) =>
-  superagent
+  agent
     .del(`${API_ROOT}${url}`)
     .use(tokenPlugin)
     .then((res) => res.body);
 export const get = (url) =>
-  superagent
+  agent
     .get(`${API_ROOT}${url}`)
     .use(tokenPlugin)
     .then((res) => res.body);
 export const put = (url, body) =>
-  superagent
+  agent
     .put(`${API_ROOT}${url}`, body)
     .use(tokenPlugin)
     .then((res) => res.body);
 export const post = (url, body) =>
-  superagent
+  agent
     .post(`${API_ROOT}${url}`, body)
     .use(tokenPlugin)
     .then((res) => res.body);
