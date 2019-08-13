@@ -2,10 +2,10 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import { Banner } from '../components/banner';
 import { Tags } from '../tags/tags';
-import { $token } from '../auth/model';
+import { token as t } from '../auth/model';
 
 export const Home = () => {
-  const token = useStore($token);
+  const token = useStore(t);
 
   return (
     <div>
