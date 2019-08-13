@@ -1,6 +1,6 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
 import { get, post, del } from '../request';
-import { $authorizedUser } from '../auth/model';
+import { authUser } from '../auth/model.store';
 
 export const leavePage = createEvent();
 export const getProfile = createEffect().use((username) =>
@@ -21,7 +21,7 @@ export const $profile = createStore({})
   .reset(leavePage);
 
 export const $isCurrentUser = combine(
-  $authorizedUser,
+  authUser,
   $profile,
   (currentUser, profile) => currentUser.username === profile.username,
 );

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { $authorizedUser } from '../auth/model';
+import { authUser } from '../auth/model.store';
 
 import { FollowUser } from './follow-user';
 import { $profile, $isCurrentUser } from './model';
 import './index.css';
 
 const CurrentUser = () => {
-  const { image, username, bio } = useStore($authorizedUser);
+  const { image, username, bio } = useStore(authUser);
 
   return (
     <>
