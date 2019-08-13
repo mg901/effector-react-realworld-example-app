@@ -37,6 +37,12 @@ export const onChangeText = changeText.prepend((e) => ({
   [e.currentTarget.name]: e.currentTarget.value,
 }));
 
+export const onAddTag = (e) => {
+  if (e.key === 'Enter') {
+    addTag(e.currentTarget.value);
+  }
+};
+
 export const editor = createStore({
   title: '',
   description: '',
@@ -45,11 +51,14 @@ export const editor = createStore({
   tagList: [],
 })
   .on(changeText, (state, payload) => ({ ...state, ...payload }))
-  .on(addTag, (state, payload) => ({
-    ...state,
-    tagInput: '',
-    tagList: [...new Set(state.tagList.concat(payload))],
-  }))
+  .on(
+    addTag.filter({ fn: (string) => string.length > 0 }),
+    ({ tagList, ...state }, payload) => ({
+      ...state,
+      tagInput: '',
+      tagList: [...new Set(tagList.concat(payload))],
+    }),
+  )
   .on(removeTag, (state, payload) => ({
     ...state,
     tagList: state.tagList.filter((tag) => payload !== tag),
