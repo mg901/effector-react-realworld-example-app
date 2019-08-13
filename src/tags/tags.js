@@ -1,12 +1,12 @@
 import React from 'react';
 import { useList } from 'effector-react';
-import { $tags } from './model';
+import { tags } from './model';
 import { Button } from '../components/button';
 import { getPostsByTag } from '../posts/model';
 
 export const Tags = () => (
   <ul className="tag-list">
-    {useList($tags, (tag) => {
+    {useList(tags, (tag) => {
       return (
         <li>
           <Button
