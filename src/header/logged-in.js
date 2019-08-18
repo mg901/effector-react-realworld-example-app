@@ -2,10 +2,10 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import { NavLink } from 'react-router-dom';
 import { UserBar } from './user-bar';
-import { authUser } from '../auth/model.store';
+import { $authUser } from '../auth/model.store';
 
 export const LoggedIn = () => {
-  const { username, image } = useStore(authUser);
+  const { username, image } = useStore($authUser);
 
   return (
     <>

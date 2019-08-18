@@ -2,10 +2,10 @@ import React from 'react';
 import { useFormField } from '../hooks';
 import { InputField, TextField } from '../components';
 import { onChangeText } from '../auth/model.events';
-import { authUser as user } from '../auth/model.store';
+import { $authUser } from '../auth/model.store';
 
 export const Input = ({ name, placeholder }) => {
-  const value = useFormField({ store: user, name });
+  const value = useFormField({ store: $authUser, name });
 
   return (
     <InputField
@@ -18,7 +18,7 @@ export const Input = ({ name, placeholder }) => {
 };
 
 export const Textarea = ({ name, placeholder }) => {
-  const value = useFormField({ store: user, name });
+  const value = useFormField({ store: $authUser, name });
 
   return (
     <TextField

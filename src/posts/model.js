@@ -10,11 +10,11 @@ export const getPostsByAuthor = createEffect().use((author, page) =>
   get(`/articles?author=${encodeURIComponent(author)}&${limit(5, page)}`),
 );
 
-export const getPosts = createEffect().use((page) =>
+export const globalFeed = createEffect().use((page) =>
   get(`/articles?${limit(10, page)}`),
 );
 
-export const getUserPosts = createEffect().use(() =>
+export const userFeed = createEffect().use(() =>
   get('/articles/feed?limit=10&offset=0'),
 );
 
@@ -25,12 +25,12 @@ export const getPostsByTag = createEffect().use((tag, page) =>
 const initialState = { articles: [], articlesCount: null };
 
 export const $posts = createStore(initialState).on(
-  getPosts.done,
+  globalFeed.done,
   (state, { result }) => ({ ...state, ...result }),
 );
 
-export const $formPosts = createStore(initialState).on(
-  getUserPosts.done,
+export const $feed = createStore(initialState).on(
+  userFeed.done,
   (state, { result }) => ({ ...state, ...result }),
 );
 

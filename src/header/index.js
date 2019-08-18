@@ -3,14 +3,14 @@ import { useStore } from 'effector-react';
 import { Link } from 'react-router-dom';
 import { StickyContainer, Sticky } from 'react-sticky';
 
-import { token as t } from '../auth/model';
+import { $token } from '../auth/model';
 import { LoggedIn } from './logged-in';
 import { LoggedOut } from './logged-out';
 import { APP_NAME } from '../constants';
 import './index.css';
 
 export const Header = () => {
-  const token = useStore(t);
+  const token = useStore($token);
 
   return (
     <StickyContainer>
