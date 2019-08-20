@@ -11,6 +11,7 @@ import {
   signUp,
   authDone,
   logOut,
+  getUser,
 } from './model.events';
 import { $form, $errors, $authUser } from './model.store';
 
@@ -54,6 +55,12 @@ $token.watch((x) => {
     initAuthApp();
   }
 });
+
+if (localStorage.getItem(TOKEN_NAME)) {
+  getUser();
+} else {
+  intitNotAuthApp();
+}
 
 authDone.watch(() => {
   history.push('/');
