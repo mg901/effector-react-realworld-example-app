@@ -2,7 +2,7 @@ import React from 'react';
 import { useList } from 'effector-react';
 import { tags } from './model';
 import { Button } from '../components';
-import { getPostsByTag } from '../posts/model';
+import { getFeedByTag } from '../feed/model.events';
 
 export const Tags = () => (
   <ul className="tag-list">
@@ -11,7 +11,7 @@ export const Tags = () => (
         <li>
           <Button
             className="tag-default tag-pill"
-            onClick={() => getPostsByTag(tag)}>
+            onClick={() => getFeedByTag(tag)}>
             {tag}
           </Button>
         </li>
