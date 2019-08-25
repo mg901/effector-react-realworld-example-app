@@ -1,9 +1,8 @@
 import { merge, sample } from 'effector';
 import { history } from '../router';
-import { TOKEN_NAME, TOKEN } from '../constants';
+import { TOKEN_NAME, TOKEN_FROM_STORAGE } from '../constants';
+import { intitNotAuthApp } from '../app/model';
 import {
-  initAuthApp,
-  intitNotAuthApp,
   asyncSignIn,
   asyncSignUp,
   changeText,
@@ -11,7 +10,6 @@ import {
   signUp,
   authDone,
   logOut,
-  getUser,
 } from './model.events';
 import { $form, $errors, $authUser } from './model.store';
 
@@ -47,20 +45,13 @@ $authUser
   .on(authDone, (state, { result }) => ({ ...state, ...result.user }))
   .reset(logOut);
 
-export const $token = $authUser.map((user) => user.token || TOKEN);
+export const $token = $authUser.map((user) => user.token || TOKEN_FROM_STORAGE);
 
 $token.watch((x) => {
   if (x) {
     localStorage.setItem(TOKEN_NAME, x);
-    initAuthApp();
   }
 });
-
-if (TOKEN) {
-  getUser();
-} else {
-  intitNotAuthApp();
-}
 
 authDone.watch(() => {
   history.push('/');

@@ -1,13 +1,13 @@
 import agentPromise from 'superagent-promise';
 import superagent from 'superagent';
-import { TOKEN_NAME } from './constants';
+import { TOKEN_FROM_STORAGE } from './constants';
 
 const API_ROOT = 'https://conduit.productionready.io/api';
 
 const agent = agentPromise(superagent, Promise);
 
 const tokenPlugin = (req) => {
-  const token = localStorage.getItem(TOKEN_NAME);
+  const token = TOKEN_FROM_STORAGE;
 
   if (token) {
     req.set('authorization', `Token ${token}`);
