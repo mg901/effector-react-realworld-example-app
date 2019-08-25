@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
-import cx from 'classnames';
-import { Button } from '../button';
+import cx from 'clsx';
 import './index.css';
 
 export const DownDownMenu = forwardRef(
@@ -20,10 +19,12 @@ export const DownDownMenu = forwardRef(
         </Link>
       </li>
       <li className="dropdown-menu-item">
-        <Button className="link" onClick={onLogOutClick}>
+        <Link to="/" className="link" onClick={onLogOutClick}>
           logout
-        </Button>
+        </Link>
       </li>
     </ul>
   ),
 );
+
+DownDownMenu.displayName = 'DownDownMenu';
