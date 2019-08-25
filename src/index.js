@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
-import { Router, Switch, Route } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import React from 'react';
-import { history } from './models/router';
+import { history } from './router';
 import { App } from './app';
 import 'normalize.css';
 import './styles/global.css';
@@ -10,9 +10,7 @@ import './styles/typography.css';
 
 ReactDOM.render(
   <Router history={history}>
-    <Switch>
-      <Route path="/" component={App} />
-    </Switch>
+    <App />
   </Router>,
   document.getElementById('root'),
 );
