@@ -8,8 +8,15 @@
   --border-dark-color: #cfcfcf;
   --header-color: var(--white);
   --text-light-color: #999;
-  --user-pick-border-color: linear-gradient(#e72d97, #a32de7);
-  --user-pick-border-color-hover: linear-gradient(#ca177d, #8917ca);
+  --pink: #e72d97;
+  --dark-pink: #ca177d;
+  --purple: #a32de7;
+  --dark-purple: #8917ca;
+  --user-pick-border-color: linear-gradient(var(--pink), var(--purple));
+  --user-pick-border-color-hover: linear-gradient(
+    var(--dark-pink),
+    var(--dark-purple)
+  );
   --sm-radius: 0.3rem;
 }
 
