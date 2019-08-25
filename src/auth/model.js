@@ -1,6 +1,6 @@
 import { merge, sample } from 'effector';
-import { history } from '../models/router';
-import { TOKEN_NAME } from '../constants';
+import { history } from '../router';
+import { TOKEN_NAME, TOKEN } from '../constants';
 import {
   initAuthApp,
   intitNotAuthApp,
@@ -47,7 +47,7 @@ $authUser
   .on(authDone, (state, { result }) => ({ ...state, ...result.user }))
   .reset(logOut);
 
-export const $token = $authUser.map((user) => user.token);
+export const $token = $authUser.map((user) => user.token || TOKEN);
 
 $token.watch((x) => {
   if (x) {
@@ -56,7 +56,7 @@ $token.watch((x) => {
   }
 });
 
-if (localStorage.getItem(TOKEN_NAME)) {
+if (TOKEN) {
   getUser();
 } else {
   intitNotAuthApp();
