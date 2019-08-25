@@ -4,14 +4,14 @@ import { UserProfile } from './user-profile';
 import { Tabs } from './tabs';
 import { getProfile, leavePage } from './model';
 
-export const Profile = ({ match: { params } }) => {
+export const Profile = ({ match: { params: username } }) => {
   const isLoading = useStore(getProfile.pending);
 
   useEffect(() => {
-    getProfile(params.username);
+    getProfile(username);
 
     return () => leavePage();
-  }, [params.username]);
+  }, [username]);
 
   return (
     <section className="container profile-page">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import cx from 'classnames';
+import cx from 'clsx';
 import { Button } from '../components';
 import { $profile, follow, unfollow } from './model';
 
