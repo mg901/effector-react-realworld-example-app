@@ -2,6 +2,7 @@ import { createEvent, createEffect, merge } from 'effector';
 import { userFeed, globalFeed } from '../posts/model';
 import { getTags } from '../tags/model';
 import { get, post } from '../request';
+import { TOKEN_NAME } from '../constants';
 
 export const changeText = createEvent();
 export const signIn = createEvent();
@@ -35,3 +36,7 @@ export const authDone = merge([
   asyncSignUp.done,
   getUser.done,
 ]);
+
+logOut.watch(() => {
+  localStorage.removeItem(TOKEN_NAME);
+});
