@@ -8,6 +8,7 @@ export const InputField = ({
   name,
   onChange,
   onKeyDown,
+  autoComplete,
 }) => (
   <fieldset className="form-group">
     <input
@@ -18,6 +19,7 @@ export const InputField = ({
       value={value}
       onChange={onChange}
       onKeyDown={onKeyDown}
+      autoComplete={autoComplete}
     />
   </fieldset>
 );
