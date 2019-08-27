@@ -2,6 +2,8 @@ import { createEffect } from 'effector';
 import { get } from '../request';
 import { limit } from '../helpers';
 
+const TIMEOUT = 5000;
+
 export const getFavoritePostsByAuthor = createEffect().use((author, page) =>
   get(`/articles?favorited=${encodeURIComponent(author)}&${limit(5, page)}`),
 );
@@ -20,4 +22,8 @@ export const getUserFeed = createEffect().use(() =>
 
 export const getFeedByTag = createEffect().use((tag, page) =>
   get(`/articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`),
+);
+
+export const refreshTimeout = createEffect().use(
+  () => new Promise((effect) => setTimeout(effect, TIMEOUT)),
 );

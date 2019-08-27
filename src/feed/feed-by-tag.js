@@ -1,3 +1,11 @@
 import React from 'react';
+import { useList } from 'effector-react';
+import { $feedByTag } from './model';
 
-export const FeedByTag = () => <h1>Feed by tag</h1>;
+export const FeedByTag = () => (
+  <ul>
+    {useList($feedByTag, ({ title, slug }) => (
+      <li key={slug}>{title}</li>
+    ))}
+  </ul>
+);

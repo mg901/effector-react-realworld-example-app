@@ -1,7 +1,9 @@
 import React from 'react';
 import { Switch, Route, NavLink } from 'react-router-dom';
+
 import { PrivateRoute } from '../router/private-route';
 import { UserFeedLink } from './user-feed-link';
+import { FeedByTagsLink } from './feed-by-tag-link';
 import { UserFeed } from './user-feed';
 import { GlobalFeed } from './global-feed';
 import { FeedByTag } from './feed-by-tag';
@@ -15,9 +17,7 @@ export const Feed = ({ match: { url, path } }) => {
         <NavLink to={`${url}/global`} className="nav-link">
           global feed
         </NavLink>
-        <NavLink to={`${url}/tags/:tag`} className="nav-link">
-          tag
-        </NavLink>
+        <FeedByTagsLink url={url} />
       </nav>
 
       <Switch>

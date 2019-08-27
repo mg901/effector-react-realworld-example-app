@@ -21,6 +21,7 @@ export const SignIn = () => (
           type="email"
           name="email"
           placeholder="Email"
+          autoComplete="email"
           onChange={onChangeText}
         />
 
@@ -28,6 +29,7 @@ export const SignIn = () => (
           type="password"
           name="password"
           placeholder="Password"
+          autoComplete="current-password"
           onChange={onChangeText}
         />
 

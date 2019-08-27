@@ -19,14 +19,12 @@ sample({
   source: $form,
   clock: signUp,
   target: asyncSignUp,
-  fn: (user) => user,
 });
 
 sample({
   source: $form,
   target: asyncSignIn,
   clock: signIn,
-  fn: (user) => user,
 });
 
 $errors
