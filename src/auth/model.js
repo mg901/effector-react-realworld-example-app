@@ -1,7 +1,4 @@
-import { merge, sample } from 'effector';
-import { history } from '../router';
-import { TOKEN_NAME, TOKEN_FROM_STORAGE } from '../constants';
-import { intitNotAuthApp } from '../app/model';
+import { createStore, merge, sample } from 'effector';
 import {
   asyncSignIn,
   asyncSignUp,
@@ -10,10 +7,18 @@ import {
   signUp,
   authDone,
   logOut,
+  getToken,
+  setToken,
+  removeToken,
+  initAuthApp,
+  intitNotAuthApp,
 } from './model.events';
-import { $form, $errors, $authUser } from './model.store';
 
-$form.on(changeText, (state, payload) => ({ ...state, ...payload }));
+export const $form = createStore({
+  name: '',
+  email: '',
+  password: '',
+}).on(changeText, (state, payload) => ({ ...state, ...payload }));
 
 sample({
   source: $form,
@@ -27,36 +32,35 @@ sample({
   clock: signIn,
 });
 
-$errors
+export const $authUser = createStore({
+  image: '',
+  username: '',
+  bio: '',
+  email: '',
+  token: null,
+})
+  .on(changeText, (state, payload) => ({ ...state, ...payload }))
+  .on(authDone, (state, { result }) => ({ ...state, ...result.user }))
+  .reset(logOut);
+
+$authUser.watch(({ token }) => token && setToken(token));
+
+export const $token = createStore(null)
+  .on($authUser, (_, { token }) => token)
+  .on(getToken.done, (_, { result }) => result);
+
+logOut.watch(() => {
+  removeToken();
+  intitNotAuthApp();
+});
+
+export const $errors = createStore({})
   .on(
     merge([asyncSignIn.fail, asyncSignUp.fail]),
     (_, { error }) => JSON.parse(error.response.text).errors,
   )
   .reset(authDone);
 
-authDone.watch(() => {
-  history.push('/');
-});
-
-$authUser
-  .on(changeText, (state, payload) => ({ ...state, ...payload }))
-  .on(authDone, (state, { result }) => ({ ...state, ...result.user }))
-  .reset(logOut);
-
-export const $token = $authUser.map((user) => user.token || TOKEN_FROM_STORAGE);
-
-$token.watch((x) => {
-  if (x) {
-    localStorage.setItem(TOKEN_NAME, x);
-  }
-});
-
-authDone.watch(() => {
-  history.push('/');
-});
-
-logOut.watch(() => {
-  history.push('/');
-  localStorage.removeItem(TOKEN_NAME);
-  intitNotAuthApp();
-});
+getToken.done.watch(({ result }) =>
+  result ? initAuthApp() : intitNotAuthApp(),
+);
