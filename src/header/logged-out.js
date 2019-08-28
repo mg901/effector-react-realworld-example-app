@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const LoggedOut = () => (
   <>
-    <NavLink to="/" className="header-nav-link">
+    <NavLink to="/feed" className="header-nav-link">
       Home
     </NavLink>
 

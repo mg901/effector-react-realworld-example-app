@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { $authUser } from '../auth/model.store';
+import { $authUser } from '../auth/model';
 
 import { FollowUser } from './follow-user';
 import { $profile, $isCurrentUser } from './model';

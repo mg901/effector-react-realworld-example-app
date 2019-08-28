@@ -1,7 +1,7 @@
 import { createEvent, createEffect, restore, sample, combine } from 'effector';
 import { put } from '../request';
 import { history } from '../router';
-import { $authUser } from '../auth/model.store';
+import { $authUser } from '../auth/model';
 
 export const changePassword = createEvent();
 export const submitForm = createEvent();

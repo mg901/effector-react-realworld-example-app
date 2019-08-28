@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormField } from '../hooks';
 import { InputField, TextField } from '../components';
 import { onChangeText } from '../auth/model.events';
-import { $authUser } from '../auth/model.store';
+import { $authUser } from '../auth/model';
 
 export const Input = ({ name, placeholder }) => {
   const value = useFormField({ store: $authUser, name });

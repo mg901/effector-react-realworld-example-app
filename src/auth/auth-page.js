@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { ListErrors } from '../components';
-import { $errors } from './model.store';
+import { $errors } from './model';
 
 export const AuthPage = ({ title, children }) => {
   const errors = useStore($errors);
