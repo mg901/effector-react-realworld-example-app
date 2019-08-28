@@ -1,6 +1,6 @@
 import { createEvent, restore, combine } from 'effector';
 import { history } from './history';
-import { GLOBAL_FEED, USER_FEED, FEED_BY_TAGS } from './constants';
+import { GLOBAL_FEED, USER_FEED, FEED_BY_TAG } from './constants';
 import { authDone } from '../auth/model.events';
 import { $token } from '../auth/model';
 import { selectTag } from '../tags/model';
@@ -26,5 +26,5 @@ authDone.watch(() => {
 });
 
 selectTag.watch((tag) => {
-  history.push(`${FEED_BY_TAGS}${tag}`);
+  history.push(`${FEED_BY_TAG}${tag}`);
 });
