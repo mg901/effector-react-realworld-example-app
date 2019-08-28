@@ -4,15 +4,15 @@ import { limit } from '../helpers';
 
 const TIMEOUT = 5000;
 
-export const getFavoritePostsByAuthor = createEffect().use((author, page) =>
+export const getFavoritePostsByAuthor = createEffect().use(({ author, page }) =>
   get(`/articles?favorited=${encodeURIComponent(author)}&${limit(5, page)}`),
 );
 
-export const getPostsByAuthor = createEffect().use((author, page) =>
+export const getPostsByAuthor = createEffect().use(({ author, page }) =>
   get(`/articles?author=${encodeURIComponent(author)}&${limit(5, page)}`),
 );
 
-export const getGlobalFeed = createEffect().use((page) =>
+export const getGlobalFeed = createEffect().use(({ page }) =>
   get(`/articles?${limit(10, page)}`),
 );
 
