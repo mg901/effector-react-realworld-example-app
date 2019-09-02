@@ -5,7 +5,7 @@ import {
   getFeedByTag,
   refreshTimeout,
 } from './model.events';
-import { $selectedTag, selectTag } from '../tags/model';
+import { $selectedTag } from '../tags/model';
 
 const initialState = { articles: [], articlesCount: null };
 
@@ -31,7 +31,7 @@ $postsByTag.on(getFeedByTag.done, (state, { params, result }) => ({
 }));
 
 forward({
-  from: selectTag,
+  from: $selectedTag,
   to: getFeedByTag,
 });
 
@@ -43,11 +43,22 @@ forward({
   to: refreshTimeout,
 });
 
-sample({
-  source: $selectedTag,
-  clock: refreshTimeout.done,
-  target: getFeedByTag,
-});
+// sample({
+//   source: getFeedByTag,
+//   clock: getFeedByTag.done,
+//   target: refreshTimeout,
+// });
+
+// sample({
+//   source: $selectedTag,
+//   clock: refreshTimeout.done,
+//   target: getFeedByTag,
+// });
+
+// forward({
+//   from: getFeedByTag,
+//   to: refreshTimeout,
+// });
 
 export const $feedByTag = combine(
   $postsByTag,
