@@ -1,29 +1,26 @@
-import { createEffect } from 'effector';
+import { createEffect, createEvent } from 'effector';
 import { get } from '../request';
 import { limit } from '../helpers';
 
-const TIMEOUT = 5000;
+export const globalFeedMount = createEvent();
 
-export const getFavoritePostsByAuthor = createEffect().use(({ author, page }) =>
-  get(`/articles?favorited=${encodeURIComponent(author)}&${limit(5, page)}`),
+export const fetchFavoritePostsByAuthor = createEffect().use(
+  ({ author, page }) =>
+    get(`/articles?favorited=${encodeURIComponent(author)}&${limit(5, page)}`),
 );
 
-export const getPostsByAuthor = createEffect().use(({ author, page }) =>
+export const fetchPostsByAuthor = createEffect().use(({ author, page }) =>
   get(`/articles?author=${encodeURIComponent(author)}&${limit(5, page)}`),
 );
 
-export const getGlobalFeed = createEffect().use(({ page }) =>
+export const fetchGlobalFeed = createEffect().use((page) =>
   get(`/articles?${limit(10, page)}`),
 );
 
-export const getUserFeed = createEffect().use(() =>
+export const fetchUserFeed = createEffect().use(() =>
   get('/articles/feed?limit=10&offset=0'),
 );
 
-export const getFeedByTag = createEffect().use((tag, page) =>
+export const fetchFeedByTag = createEffect().use((tag, page) =>
   get(`/articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`),
-);
-
-export const refreshTimeout = createEffect().use(
-  () => new Promise((effect) => setTimeout(effect, TIMEOUT)),
 );

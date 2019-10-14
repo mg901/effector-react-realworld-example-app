@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListErrors, Button } from '../components';
 import { Form } from './form';
-import { logOut } from '../auth/model.events';
+import { onLogOut } from '../auth';
 
 export const Settings = () => {
   return (
@@ -11,7 +11,7 @@ export const Settings = () => {
       <Form />
       <hr />
 
-      <Button className="btn-outline-danger" onClick={() => logOut()}>
+      <Button className="btn-outline-danger" onClick={() => onLogOut()}>
         Or click here to logout.
       </Button>
     </div>

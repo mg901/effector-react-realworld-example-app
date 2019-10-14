@@ -1,7 +1,7 @@
 import { createEvent, restore, combine } from 'effector';
 import { history } from './history';
 import { GLOBAL_FEED, USER_FEED, FEED_BY_TAG } from './constants';
-import { authDone } from '../auth/model.events';
+import { authDone } from '../auth';
 import { $token } from '../auth/model';
 import { selectTag } from '../tags/model';
 

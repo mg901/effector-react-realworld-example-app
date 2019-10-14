@@ -2,11 +2,11 @@ import React from 'react';
 import { combine } from 'effector';
 import { useStore } from 'effector-react';
 import { Button } from '../components';
-import { asyncSignIn, asyncSignUp } from '../auth/model.events';
+import { signIn, signUp } from '../auth';
 
 export const isLoading = combine(
-  asyncSignIn.pending,
-  asyncSignUp.pending,
+  signIn.pending,
+  signUp.pending,
   (login, registration) => login || registration,
 );
 

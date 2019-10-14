@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import useOnClickOutside from 'use-onclickoutside';
 import { UserPick, DownDownMenu } from '../components';
-import { logOut } from '../auth/model.events';
+import { onLogOut } from '../auth';
 
 import './index.css';
 
@@ -26,7 +26,7 @@ export const UserBar = ({ image, username }) => {
         username={username}
         shown={state}
         onClick={onCloseMenu}
-        onLogOutClick={() => logOut()}
+        onLogOutClick={() => onLogOut()}
       />
     </>
   );

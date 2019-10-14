@@ -3,7 +3,7 @@ import React from 'react';
 import { AuthPage } from './auth-page';
 import { InputField } from '../components';
 import { Submit } from '../submit';
-import { signUp, onChangeText } from './model.events';
+import { onSignUp, onChangeText } from './model.events';
 
 export const SignUp = () => (
   <AuthPage title="Sign Up">
@@ -14,7 +14,7 @@ export const SignUp = () => (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        signUp();
+        onSignUp();
       }}>
       <fieldset>
         <InputField

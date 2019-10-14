@@ -2,7 +2,7 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import cx from 'clsx';
 import { Button } from '../components';
-import { $profile, follow, unfollow } from './model';
+import { $profile, followReq, unfollowReq } from './model';
 
 const classNames = (x) =>
   cx('btn-sm action-btn', {
@@ -11,15 +11,16 @@ const classNames = (x) =>
   });
 
 export const FollowUser = () => {
-  const { username, following } = useStore($profile);
+  const { username, followReqing } = useStore($profile);
 
   return (
     <Button
-      className={classNames(following)}
-      onClick={() => (following ? unfollow(username) : follow(username))}>
+      className={classNames(followReqing)}
+      onClick={() =>
+        followReqing ? unfollowReq(username) : followReq(username)}>
       <i className="ion-plus-round" />
       &nbsp;
-      {following ? 'Unfollow' : 'Follow'} {username}
+      {followReqing ? 'UnfollowReq' : 'Follow'} {username}
     </Button>
   );
 };

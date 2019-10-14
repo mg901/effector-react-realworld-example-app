@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthPage } from './auth-page';
 import { InputField } from '../components';
 import { Submit } from '../submit';
-import { signIn, onChangeText } from './model.events';
+import { onSignIn, onChangeText } from './model.events';
 
 export const SignIn = () => (
   <AuthPage title="Sign In">
@@ -14,7 +14,7 @@ export const SignIn = () => (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        signIn();
+        onSignIn();
       }}>
       <fieldset>
         <InputField

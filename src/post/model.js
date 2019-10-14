@@ -24,6 +24,6 @@ export const setUnfavoritePost = createEffect().use((slug) =>
   del(`/articles/${slug}/favorite`),
 );
 
-export const getPostsByAuthor = createEffect().use((author, page) =>
+export const fetchPostsByAuthor = createEffect().use((author, page) =>
   get(`/articles?author=${encodeURIComponent(author)}&${limit(5, page)}`),
 );

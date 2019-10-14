@@ -1,29 +1,26 @@
-import { sample, createStore, combine, forward } from 'effector';
-import {
-  getGlobalFeed,
-  getUserFeed,
-  getFeedByTag,
-  refreshTimeout,
-} from './model.events';
+import { createStore, combine, forward } from 'effector';
+import { fetchGlobalFeed, fetchUserFeed, fetchFeedByTag } from './model.events';
 import { $selectedTag } from '../tags/model';
 
 const initialState = { articles: [], articlesCount: null };
 
-export const $getGlobalFeed = createStore(initialState);
-export const $getUserFeed = createStore(initialState);
+export const $globalFeed = createStore(initialState);
+export const $userFeed = createStore(initialState);
 export const $postsByTag = createStore({});
 
-$getGlobalFeed.on(getGlobalFeed.done, (state, { result }) => ({
+$globalFeed.on(fetchGlobalFeed.done, (state, { result }) => ({
   ...state,
   ...result,
 }));
 
-$getUserFeed.on(getUserFeed.done, (state, { result }) => ({
+$globalFeed.watch((x) => console.log('global', x));
+
+$userFeed.on(fetchUserFeed.done, (state, { result }) => ({
   ...state,
   ...result,
 }));
 
-$postsByTag.on(getFeedByTag.done, (state, { params, result }) => ({
+$postsByTag.on(fetchFeedByTag.done, (state, { params, result }) => ({
   ...state,
   [params]: {
     ...result,
@@ -32,33 +29,8 @@ $postsByTag.on(getFeedByTag.done, (state, { params, result }) => ({
 
 forward({
   from: $selectedTag,
-  to: getFeedByTag,
+  to: fetchFeedByTag,
 });
-
-/**
-  ON refreshTimeout.done call refreshTimeout again
-*/
-forward({
-  from: refreshTimeout.done,
-  to: refreshTimeout,
-});
-
-// sample({
-//   source: getFeedByTag,
-//   clock: getFeedByTag.done,
-//   target: refreshTimeout,
-// });
-
-// sample({
-//   source: $selectedTag,
-//   clock: refreshTimeout.done,
-//   target: getFeedByTag,
-// });
-
-// forward({
-//   from: getFeedByTag,
-//   to: refreshTimeout,
-// });
 
 export const $feedByTag = combine(
   $postsByTag,

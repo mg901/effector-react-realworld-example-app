@@ -1,18 +1,15 @@
 import { createStore, merge, sample } from 'effector';
+import { changeText, onSignIn, onSignUp, onLogOut } from './model.events';
 import {
-  asyncSignIn,
-  asyncSignUp,
-  changeText,
   signIn,
   signUp,
-  authDone,
-  logOut,
   getToken,
   setToken,
   removeToken,
   initAuthApp,
   intitNotAuthApp,
-} from './model.events';
+  authDone,
+} from './mode.effects';
 
 export const $form = createStore({
   name: '',
@@ -22,14 +19,14 @@ export const $form = createStore({
 
 sample({
   source: $form,
-  clock: signUp,
-  target: asyncSignUp,
+  clock: onSignUp,
+  target: signUp,
 });
 
 sample({
   source: $form,
-  target: asyncSignIn,
-  clock: signIn,
+  target: signIn,
+  clock: onSignIn,
 });
 
 export const $authUser = createStore({
@@ -41,7 +38,7 @@ export const $authUser = createStore({
 })
   .on(changeText, (state, payload) => ({ ...state, ...payload }))
   .on(authDone, (state, { result }) => ({ ...state, ...result.user }))
-  .reset(logOut);
+  .reset(onLogOut);
 
 $authUser.watch(({ token }) => token && setToken(token));
 
@@ -49,14 +46,14 @@ export const $token = createStore(null)
   .on($authUser, (_, { token }) => token)
   .on(getToken.done, (_, { result }) => result);
 
-logOut.watch(() => {
+onLogOut.watch(() => {
   removeToken();
   intitNotAuthApp();
 });
 
 export const $errors = createStore({})
   .on(
-    merge([asyncSignIn.fail, asyncSignUp.fail]),
+    merge([signIn.fail, signUp.fail]),
     (_, { error }) => JSON.parse(error.response.text).errors,
   )
   .reset(authDone);

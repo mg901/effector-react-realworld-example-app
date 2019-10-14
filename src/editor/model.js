@@ -1,6 +1,6 @@
 import { createEvent, createStore, createEffect, combine } from 'effector';
-
 import { post, put, get } from '../request';
+import { uniq } from '../helpers';
 
 export const createArticle = createEffect().use((article) =>
   post('/articles', { article }),
@@ -56,7 +56,7 @@ export const editor = createStore({
     ({ tagList, ...state }, payload) => ({
       ...state,
       tagInput: '',
-      tagList: [...new Set(tagList.concat(payload))],
+      tagList: uniq([...tagList, payload]),
     }),
   )
   .on(removeTag, (state, payload) => ({
