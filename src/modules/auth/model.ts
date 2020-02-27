@@ -1,12 +1,6 @@
-import {
-  createStore, sample, merge, forward, combine,
-} from 'effector';
-import {
-  Form, User, Token, Errors,
-} from './types';
-import {
-  textChanged, signIn, signUp, loggedOut,
-} from './events';
+import { createStore, sample, merge, forward, combine } from 'effector';
+import { Form, User, Token, Errors } from './types';
+import { textChanged, signIn, signUp, loggedOut } from './events';
 import {
   fxSignUp,
   fxSignIn,

@@ -10,9 +10,7 @@ type Props = {
 };
 
 export const DownDownMenu = forwardRef<HTMLUListElement, Props>(
-  ({
-    shown, username, onClick, onLogOutClick,
-  }, ref) => (
+  ({ shown, username, onClick, onLogOutClick }, ref) => (
     <ul ref={ref} className="dropdown-menu" data-active={shown}>
       <li className="dropdown-menu-item">
         <Link to={`/@${username}`} className="link" onClick={onClick}>

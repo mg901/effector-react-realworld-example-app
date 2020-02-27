@@ -35,13 +35,15 @@ export const fxIntitNotAuthApp = createEffect({
 });
 
 export const fxSignIn = createEffect<Form, UserResponse, Error>({
-  handler: ({ email, password }) => post<UserResponse>('/users/login', {
-    user: { email, password },
-  }),
+  handler: ({ email, password }) =>
+    post<UserResponse>('/users/login', {
+      user: { email, password },
+    }),
 });
 
 export const fxSignUp = createEffect<Form, UserResponse, Error>({
-  handler: ({ username, email, password }) => post('/users', { user: { email, password, username } }),
+  handler: ({ username, email, password }) =>
+    post('/users', { user: { email, password, username } }),
 });
 
 export const fxLogout = createEffect({

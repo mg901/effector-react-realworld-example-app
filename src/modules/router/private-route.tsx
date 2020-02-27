@@ -25,21 +25,23 @@ export const PrivateRoute: React.FC<Props> = ({
       exact={exact}
       location={location}
       computedMatch={computedMatch}
-      render={(props) => (token ? (
-        <Component
-          history={props.history}
-          location={props.location}
-          match={props.match}
-          staticContext={props.staticContext}
+      render={(props) =>
+        token ? (
+          <Component
+            history={props.history}
+            location={props.location}
+            match={props.match}
+            staticContext={props.staticContext}
           />
-      ) : (
-        <Redirect
-          to={{
-            pathname: GLOBAL_FEED,
-            state: { from: location },
-          }}
+        ) : (
+          <Redirect
+            to={{
+              pathname: GLOBAL_FEED,
+              state: { from: location },
+            }}
           />
-      ))}
+        )
+      }
     />
   );
 };
