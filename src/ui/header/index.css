@@ -1,0 +1,30 @@
+.header {
+  position: relative;
+  display: flex;
+  height: 5rem;
+  background-color: var(--header-color);
+  border: 1px solid var(--border-color);
+
+  &-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .&__logo {
+    font-size: var(--h5);
+  }
+
+  .&__nav {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+  }
+
+  .&__nav-link {
+    display: inline-flex;
+    padding: 1rem;
+    color: var(--link-color-primary);
+    text-decoration: none;
+  }
+}

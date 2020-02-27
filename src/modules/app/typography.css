@@ -1,0 +1,70 @@
+:root {
+  @root;
+  --h1: 6step;
+  --h2: 5step;
+  --h3: 4step;
+  --h4: 3step;
+  --h5: 2step;
+  --h6: 1step;
+  --font-bold: 600;
+  --font-family-base: 'Source Sans Pro', sans-serif;
+  --font-family-decorative: 'Titillium Web', sans-serif;
+}
+
+body {
+  @base;
+  font-family: var(--font-family-base);
+  color: var(--deep-grey);
+}
+
+.logo {
+  font-family: var(--font-family-decorative);
+  font-weight: bold;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-weight: var(----font-bold);
+}
+
+.h1 {
+  @h1;
+}
+
+.h2 {
+  @h2;
+}
+
+.h3 {
+  @h3;
+}
+
+.h4 {
+  @h4;
+}
+
+.h5 {
+  @h5;
+}
+
+.h6 {
+  @h6;
+  font-style: italic;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.sm-font-size {
+  font-size: -1step;
+}
+
+.xs-font-size {
+  font-size: -2step;
+}
