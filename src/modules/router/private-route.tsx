@@ -40,8 +40,7 @@ export const PrivateRoute: React.FC<Props> = ({
               state: { from: location },
             }}
           />
-        )
-      }
+        )}
     />
   );
 };

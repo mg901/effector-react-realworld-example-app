@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Event } from 'effector';
 import useClickOutside from 'use-onclickoutside';
 import { UserPick } from '../user-pick';
 import { DownDownMenu } from '../dropdown-menu';
@@ -6,7 +7,7 @@ import { DownDownMenu } from '../dropdown-menu';
 type Props = {
   image: string;
   username: string;
-  onLogOutClick: () => void;
+  onLogOutClick: Event<void>;
 };
 
 export const UserBar: React.FC<Props> = ({

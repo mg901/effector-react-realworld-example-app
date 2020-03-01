@@ -25,10 +25,10 @@ export type UserResponse = Readonly<{
 
 export type Token = User['token'];
 
-export type Error = Readonly<{
+export type AuthError = Readonly<{
   errors: {
     [key: string]: string[];
   };
 }>;
 
-export type Errors = Error['errors'];
+export type AuthErrors = AuthError['errors'];

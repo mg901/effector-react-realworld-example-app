@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { Event } from 'effector';
 import { Link } from 'react-router-dom';
 import './index.css';
 
@@ -6,7 +7,7 @@ type Props = {
   shown: boolean;
   username: string;
   onClick: () => void;
-  onLogOutClick: () => void;
+  onLogOutClick: Event<void>;
 };
 
 export const DownDownMenu = forwardRef<HTMLUListElement, Props>(
@@ -23,7 +24,7 @@ export const DownDownMenu = forwardRef<HTMLUListElement, Props>(
         </Link>
       </li>
       <li className="dropdown-menu-item">
-        <Link to="/" className="link" onClick={onLogOutClick}>
+        <Link to="/" className="link" onClick={(): void => onLogOutClick()}>
           logout
         </Link>
       </li>

@@ -1,14 +1,17 @@
 import { createStore, sample, merge, forward, combine } from 'effector';
-import { Form, User, Token, Errors } from './types';
+import { Form, User, Token, AuthErrors } from './types';
 import { textChanged, signIn, signUp, loggedOut } from './events';
 import {
   fxSignUp,
   fxSignIn,
   fxFetchUser,
   fxGetTokenFromLoSt,
+  fxRemveTokenFromLoSt,
+  fxIntitNotAuthApp,
   fxAuthDone,
   fxSetTokenToLoST,
 } from './effects';
+import { history } from '../router';
 
 export const $form = createStore<Form>({
   email: '',
@@ -44,7 +47,7 @@ sample({
 });
 
 forward({
-  from: merge([fxSignIn.doneData, fxSignUp.doneData]),
+  from: [fxSignIn.doneData, fxSignUp.doneData],
   to: fxSetTokenToLoST,
 });
 
@@ -64,6 +67,11 @@ export const $loading = combine(
   (login, registration) => login || registration,
 );
 
-export const $errors = createStore<Errors>({})
+export const $errors = createStore<AuthErrors>({})
   .on(merge([fxSignIn.fail, fxSignUp.fail]), (_, { error }) => error.errors)
   .reset(fxAuthDone);
+
+loggedOut.watch(() => {
+  fxRemveTokenFromLoSt();
+  fxIntitNotAuthApp();
+});

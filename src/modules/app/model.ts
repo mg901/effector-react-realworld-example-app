@@ -5,7 +5,7 @@ import { fxGetTokenFromLoSt, fxInitAuthApp, fxIntitNotAuthApp } from '../auth';
 // check mount / unmount
 export const AppGate = createGate();
 
-// запрашиваем id поиска при загрузке страницы
+// request id at page start
 forward({
   from: AppGate.open,
   to: fxGetTokenFromLoSt,
