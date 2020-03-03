@@ -8,10 +8,13 @@ coverage
 
 # production
 build
+public
 
 # misc
 .DS_Store
 .env
+.cache
+public
 npm-debug.log
 .idea
 *.log

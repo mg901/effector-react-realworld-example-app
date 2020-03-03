@@ -1,0 +1,34 @@
+.dropdown-menu {
+  line-height: 1.7rem;
+  display: none;
+  position: absolute;
+  min-width: 15rem;
+  top: 4.5rem;
+  right: 0;
+  padding: 1rem 0;
+  background-color: white;
+  border-radius: var(--sm-radius);
+  border: 1px solid var(--border-color);
+  font-size: var(--sm-font-size);
+
+  &[data-active='true'] {
+    display: block;
+  }
+
+  .link {
+    width: 100%;
+    display: block;
+    padding: 0.3rem 1rem;
+    color: var(--deep-grey);
+    text-align: left;
+  }
+
+  .link:hover {
+    color: var(--link-color-primary);
+  }
+}
+
+.username {
+  color: var(--link-color-primary);
+  font-weight: var(--font-bold);
+}
