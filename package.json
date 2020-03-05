@@ -14,7 +14,8 @@
     "ts-check": "cross-env tsc",
     "ts-check:watch": "yarn ts-check -- --watch",
     "test": "cross-env jest",
-    "test:watch": "cross-env jest --watch"
+    "test:watch": "cross-env jest --watch",
+    "release": "npx release-it"
   },
   "browserslist": {
     "production": [
@@ -73,6 +74,7 @@
     "postcss-preset-env": "^6.7.0",
     "prettier": "^1.19.1",
     "react-test-renderer": "^16.13.0",
+    "release-it": "^12.6.3",
     "rimraf": "^3.0.2",
     "typescript": "^3.8.2"
   }
