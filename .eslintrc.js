@@ -20,11 +20,13 @@ module.exports = {
     jest: true,
   },
   settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.tsx', '.ts'],
-      },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
     },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true 
+      },
   },
   rules: {
     'import/no-default-export': 2,
@@ -38,14 +40,6 @@ module.exports = {
     'react/jsx-one-expression-per-line': 0,
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
   },
   overrides: [
     {

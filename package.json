@@ -31,6 +31,7 @@
   "dependencies": {
     "effector": "^20.12.1",
     "effector-react": "^20.6.1",
+    "eslint-import-resolver-typescript": "^2.0.0",
     "normalize.css": "^8.0.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
