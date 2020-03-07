@@ -3,15 +3,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from 'react-dom';
 import { App } from './modules/app';
 
-const renderApp = (): void => {
-  render(
+render(
+  <React.StrictMode>
     <Router>
       <App />
-    </Router>,
-    document.getElementById('root'),
-  );
-};
-
-renderApp();
-
-(module as any).hot.accept();
+    </Router>
+  </React.StrictMode>,
+  document.getElementById('root'),
+);
