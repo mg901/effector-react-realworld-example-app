@@ -5,8 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run clean && cross-env parcel src/index.html --out-dir public",
-    "build": "npm run clean && cross-env parcel build src/index.html --out-dir public --no-minify --public-url /",
+    "build": "npm run clean && cross-env cross-env parcel build src/index.html --out-dir public --public-url /",
     "clean": "cross-env rimraf public .cache",
+    "commit": "cross-env git-cz",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint:all": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix.",
     "pretty": "cross-env fixme=fixme prettier --write '**/*.{j,t}{s,sx}'",
@@ -14,7 +15,8 @@
     "ts-check": "cross-env tsc",
     "ts-check:watch": "yarn ts-check -- --watch",
     "test": "cross-env jest",
-    "test:watch": "cross-env jest --watch"
+    "test:watch": "cross-env jest --watch",
+    "demo": "cross-env static public"
   },
   "browserslist": {
     "production": [
@@ -39,32 +41,39 @@
     "use-onclickoutside": "^0.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
     "@babel/preset-react": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^9.4.1",
+    "@testing-library/react": "^9.5.0",
     "@testing-library/react-hooks": "^3.2.1",
     "@types/history": "^4.7.5",
-    "@types/jest": "^25.1.3",
-    "@types/node": "^13.7.6",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
     "@types/react-router-dom": "^5.1.3",
-    "@typescript-eslint/eslint-plugin": "^2.21.0",
-    "@typescript-eslint/parser": "^2.21.0",
+    "@typescript-eslint/eslint-plugin": "^2.22.0",
+    "@typescript-eslint/parser": "^2.22.0",
     "@typographist/postcss": "^6.1.1",
-    "cross-env": "^7.0.0",
+    "commitizen": "^4.0.3",
+    "cross-env": "^7.0.2",
+    "cz-conventional-changelog": "^3.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "husky": "^4.2.3",
     "jest": "^25.1.0",
+    "lint-staged": "^10.0.8",
+    "node-static": "^0.7.11",
     "onchange": "^6.1.0",
     "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
@@ -74,6 +83,6 @@
     "prettier": "^1.19.1",
     "react-test-renderer": "^16.13.0",
     "rimraf": "^3.0.2",
-    "typescript": "^3.8.2"
+    "typescript": "^3.8.3"
   }
 }

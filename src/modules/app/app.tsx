@@ -8,8 +8,6 @@ import './global.css';
 import './layout.css';
 import './typography.css';
 
-// const enhance = hot(module);
-
 export const App: React.FC = () => (
   <>
     <AppGate />
