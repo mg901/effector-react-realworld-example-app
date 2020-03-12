@@ -31,7 +31,7 @@ export const fxInitAuthApp = createEffect({
   handler: () =>
     Promise.all([
       fxFetchUser(),
-      // fxFetchUserFeed(),
+      // fxFetchUserFeed(), git push --set-upstream origin 5-feature/global-feed
       fxFetchTags(),
     ]),
 });
