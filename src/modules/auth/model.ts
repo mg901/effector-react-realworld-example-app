@@ -1,5 +1,5 @@
 import { createStore, sample, merge, forward, combine } from 'effector';
-import { Form, User, Token, AuthErrors } from './types';
+
 import { textChanged, signIn, signUp, loggedOut } from './events';
 import {
   fxSignUp,
@@ -11,7 +11,7 @@ import {
   fxAuthDone,
   fxSetTokenToLoST,
 } from './effects';
-import { history } from '../router';
+import { Form, User, Token, AuthErrors } from './types';
 
 export const $form = createStore<Form>({
   email: '',

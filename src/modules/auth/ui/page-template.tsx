@@ -3,10 +3,10 @@ import { useStore } from 'effector-react';
 import { ErrorList } from '../../../ui';
 import { $errors } from '../model';
 
-type Props = {
+type Props = Readonly<{
   title: string;
   children: React.ReactNode;
-};
+}>;
 
 export const PageTemplate: React.FC<Props> = ({ title, children }) => {
   const errors = useStore($errors);

@@ -1,8 +1,8 @@
 import { createEffect, merge } from 'effector';
-import { Form, UserResponse, AuthError } from './types';
 import { TOKEN_NAME, post, get } from '../../api';
 import { fxFetchUserFeed, fxFetchGlobalFeed } from '../feed';
 import { fxFetchTags } from '../tags';
+import { Form, UserResponse, AuthError } from './types';
 
 export const fxSetTokenToLoST = createEffect<UserResponse, void, AuthError>({
   handler: ({ user: { token } }) => {

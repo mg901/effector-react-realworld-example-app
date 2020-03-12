@@ -27,7 +27,7 @@ export type Token = User['token'];
 
 export type AuthError = Readonly<{
   errors: {
-    [key: string]: string[];
+    [key: string]: readonly string[];
   };
 }>;
 
