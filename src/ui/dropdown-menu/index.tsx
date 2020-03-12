@@ -3,12 +3,12 @@ import { Event } from 'effector';
 import { Link } from 'react-router-dom';
 import './index.css';
 
-type Props = {
+type Props = Readonly<{
   shown: boolean;
   username: string;
   onClick: () => void;
   onLogOutClick: Event<void>;
-};
+}>;
 
 export const DownDownMenu = forwardRef<HTMLUListElement, Props>(
   ({ shown, username, onClick, onLogOutClick }, ref) => (

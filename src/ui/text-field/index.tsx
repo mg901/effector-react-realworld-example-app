@@ -1,13 +1,13 @@
 import React from 'react';
 import './index.css';
 
-type Props = {
+type Props = Readonly<{
   value?: string;
   rows?: number;
   placeholder?: string;
   name: string;
   onChange: () => void;
-};
+}>;
 
 export const TextField: React.FC<Props> = ({
   value,

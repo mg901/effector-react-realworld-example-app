@@ -1,10 +1,10 @@
 import React from 'react';
 import { Event } from 'effector';
 
-type Props = {
+type Props = Readonly<{
   onSubmit: Event<void>;
   children: React.ReactNode;
-};
+}>;
 
 export const Form: React.FC<Props> = ({ children, onSubmit }) => (
   <form

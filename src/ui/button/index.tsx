@@ -2,13 +2,13 @@
 import React from 'react';
 import './index.css';
 
-type Props = {
+type Props = Readonly<{
   className?: string;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
   onClick: () => void;
   children: React.ReactNode;
-};
+}>;
 
 export const Button: React.FC<Props> = ({
   type = 'button',

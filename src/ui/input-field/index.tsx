@@ -1,14 +1,14 @@
 import React from 'react';
 import { Event } from 'effector';
 
-type Props = {
+type Props = Readonly<{
   type?: string;
   value?: string;
   placeholder?: string;
   name?: string;
   onKeyDown?: () => void;
   onChange: Event<React.ChangeEvent<HTMLInputElement>>;
-};
+}>;
 
 export const InputField: React.FC<Props> = ({
   type = 'text',

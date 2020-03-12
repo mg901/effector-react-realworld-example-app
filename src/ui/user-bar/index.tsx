@@ -4,11 +4,11 @@ import useClickOutside from 'use-onclickoutside';
 import { UserPick } from '../user-pick';
 import { DownDownMenu } from '../dropdown-menu';
 
-type Props = {
+type Props = Readonly<{
   image: string;
   username: string;
   onLogOutClick: Event<void>;
-};
+}>;
 
 export const UserBar: React.FC<Props> = ({
   image,
