@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { $token, Tags } from '../modules';
-import { Banner } from '../ui';
+import { $token, Tags } from '../../modules';
+import { Banner } from '../../ui';
 
 type Props = Readonly<{
   children: React.ReactNode;
