@@ -1,13 +1,13 @@
 import React from 'react';
 import './index.css';
 
-type ErrorList = {
-  [key: string]: string[];
-};
+type ErrorList = Readonly<{
+  [key: string]: readonly string[];
+}>;
 
-type Props = {
+type Props = Readonly<{
   errors?: ErrorList;
-};
+}>;
 
 export const ErrorList: React.FC<Props> = ({ errors = {} }) => {
   const listErrors = Object.keys(errors);
