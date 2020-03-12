@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PageTemplate } from './page-template';
-import { InputField, Form } from '../../../ui';
+import { InputField, Form } from '../ui';
 // import { Submit } from '../submit';
-import { signIn, handleTextChanged } from '../events';
+import { PageTemplate, signIn, handleTextChanged } from '../modules';
 
 export const SignIn: React.FC = () => (
   <PageTemplate title="Sign In">

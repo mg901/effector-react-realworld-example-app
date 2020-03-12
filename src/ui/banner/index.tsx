@@ -2,9 +2,10 @@ import React from 'react';
 import { APP_NAME } from '../../constants';
 import './index.css';
 
-type Props = {
+type Props = Readonly<{
   token: string | null;
-};
+}>;
+
 export const Banner: React.FC<Props> = ({ token }) =>
   !token ? (
     <div className="container banner">
