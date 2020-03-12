@@ -4,11 +4,11 @@ import { Route, Redirect } from 'react-router-dom';
 import { $token } from '../auth/model';
 import { GLOBAL_FEED } from './constants';
 
-type Props = {
+type Props = Readonly<{
   component: React.ComponentType<any>;
   path: string;
   exact?: boolean;
-};
+}>;
 
 export const PrivateRoute: React.FC<Props> = ({
   component: Component,
@@ -40,7 +40,8 @@ export const PrivateRoute: React.FC<Props> = ({
               state: { from: location },
             }}
           />
-        )}
+        )
+      }
     />
   );
 };
