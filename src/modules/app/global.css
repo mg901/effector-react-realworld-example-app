@@ -29,6 +29,7 @@ body {
   --dark-pink: #ca177d;
   --purple: #a32de7;
   --dark-purple: #8917ca;
+  --blue: #3896ef;
   --user-pick-border-color: linear-gradient(var(--pink), var(--purple));
   --user-pick-border-color-hover: linear-gradient(
     var(--dark-pink),
