@@ -1,6 +1,7 @@
 import { createEffect, merge } from 'effector';
 import { TOKEN_NAME, post, get } from '../../api';
-import { fxFetchUserFeed, fxFetchGlobalFeed } from '../feed';
+import { fxFetchGlobalFeed } from '../global-feed';
+// import { fxFetchUserFeed } from '../feed';
 import { fxFetchTags } from '../tags';
 import { Form, UserResponse, AuthError } from './types';
 
@@ -27,7 +28,12 @@ export const fxFetchUser = createEffect({
 });
 
 export const fxInitAuthApp = createEffect({
-  handler: () => Promise.all([fxFetchUser(), fxFetchUserFeed(), fxFetchTags()]),
+  handler: () =>
+    Promise.all([
+      fxFetchUser(),
+      // fxFetchUserFeed(), git push --set-upstream origin 5-feature/global-feed
+      fxFetchTags(),
+    ]),
 });
 
 export const fxIntitNotAuthApp = createEffect({
