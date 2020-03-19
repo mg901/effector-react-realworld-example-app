@@ -5,5 +5,4 @@ export { ErrorList } from './error-list';
 export { InputField } from './input-field';
 export { TextField } from './text-field';
 export { UserBar } from './user-bar';
-export { UserPick } from './user-pick';
 export { Form } from './form';

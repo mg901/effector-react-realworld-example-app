@@ -1,13 +1,15 @@
 import React from 'react';
 import { Event } from 'effector';
+import { ChangeEvent } from '../../types';
+import './index.css';
 
 type Props = Readonly<{
   type?: string;
   value?: string;
   placeholder?: string;
   name?: string;
-  onKeyDown?: () => void;
-  onChange: Event<React.ChangeEvent<HTMLInputElement>>;
+  onKeyDown?: Event<React.KeyboardEvent<HTMLInputElement>>;
+  onChange: Event<ChangeEvent>;
 }>;
 
 export const InputField: React.FC<Props> = ({
@@ -18,7 +20,7 @@ export const InputField: React.FC<Props> = ({
   onKeyDown,
   onChange,
 }) => (
-  <fieldset className="form-group">
+  <fieldset className="form-control__wrap">
     <input
       className="form-control"
       type={type}

@@ -1,4 +1,6 @@
 import React from 'react';
+import { Event } from 'effector';
+import { ChangeEvent } from '../../types';
 import './index.css';
 
 type Props = Readonly<{
@@ -6,7 +8,7 @@ type Props = Readonly<{
   rows?: number;
   placeholder?: string;
   name: string;
-  onChange: () => void;
+  onChange: Event<ChangeEvent>;
 }>;
 
 export const TextField: React.FC<Props> = ({
