@@ -1,9 +1,12 @@
 {
-  "name": "react-ts-parcel",
+  "homepage": "http://mg901.github.io/effector-react-realworld-example-app",
+  "name": "effector-react-realworld-example-app",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "cross-env gh-pages -d build",
     "start": "npm run clean && cross-env parcel src/index.html --out-dir public",
     "build": "npm run clean && cross-env cross-env parcel build src/index.html --out-dir public --public-url /",
     "clean": "cross-env rimraf public .cache",
@@ -70,6 +73,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "gh-pages": "^2.2.0",
     "husky": "^4.2.3",
     "jest": "^25.1.0",
     "lint-staged": "^10.0.8",
