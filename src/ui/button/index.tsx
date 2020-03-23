@@ -1,18 +1,16 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
-import { Event } from 'effector';
 import './index.css';
 
 type Callback = () => void;
 
 type Props = Readonly<{
+  children: React.ReactNode;
   form?: string;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
   disabled?: boolean;
-  children: React.ReactNode;
-  // TODO: разобраться с типами для onClick. По возможности заменить any
-  onClick: Callback | Event<any>;
+  onClick: Function;
 }>;
 
 export const Button: React.FC<Props> = ({
@@ -27,7 +25,9 @@ export const Button: React.FC<Props> = ({
     form={form}
     type={type}
     className={`btn ${className}`}
-    onClick={onClick}
+    onClick={(): void => {
+      onClick();
+    }}
     disabled={disabled}>
     {children}
   </button>

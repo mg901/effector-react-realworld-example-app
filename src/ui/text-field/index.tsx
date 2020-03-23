@@ -4,10 +4,10 @@ import { ChangeEvent } from '../../types';
 import './index.css';
 
 type Props = Readonly<{
+  name: string;
   value?: string;
   rows?: number;
   placeholder?: string;
-  name: string;
   onChange: Event<ChangeEvent>;
 }>;
 

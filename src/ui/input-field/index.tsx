@@ -8,8 +8,8 @@ type Props = Readonly<{
   value?: string;
   placeholder?: string;
   name?: string;
-  onKeyDown?: Event<React.KeyboardEvent<HTMLInputElement>>;
   onChange: Event<ChangeEvent>;
+  onKeyDown?: Event<React.KeyboardEvent<HTMLInputElement>>;
 }>;
 
 export const InputField: React.FC<Props> = ({
