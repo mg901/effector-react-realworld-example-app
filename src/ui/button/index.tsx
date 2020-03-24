@@ -2,8 +2,6 @@
 import React from 'react';
 import './index.css';
 
-type Callback = () => void;
-
 type Props = Readonly<{
   children: React.ReactNode;
   form?: string;

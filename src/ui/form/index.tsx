@@ -1,13 +1,10 @@
 import React from 'react';
-import { Event } from 'effector';
 import './index.css';
-
-type Callback = () => void;
 
 type Props = Readonly<{
   children: React.ReactNode;
   id?: string;
-  onSubmit?: Callback | Event<void>;
+  onSubmit?: Function;
 }>;
 
 export const Form: React.FC<Props> = ({ children, id, onSubmit }) => (
