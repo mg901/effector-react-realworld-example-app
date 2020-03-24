@@ -1,5 +1,5 @@
 {
-  "name": "react-ts-parcel",
+  "name": "effector-react-realworld-example-app",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -7,6 +7,9 @@
     "start": "npm run clean && cross-env parcel src/index.html --out-dir public",
     "build": "npm run clean && cross-env cross-env parcel build src/index.html --out-dir public --public-url /",
     "clean": "cross-env rimraf public .cache",
+    "predeploy": "npm run build",
+    "deploy": "cross-env gh-pages -d build",
+    "demo": "cross-env static public",
     "commit": "cross-env git-cz",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint:all": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix.",
@@ -15,8 +18,7 @@
     "ts-check": "cross-env tsc",
     "ts-check:watch": "yarn ts-check -- --watch",
     "test": "cross-env jest",
-    "test:watch": "cross-env jest --watch",
-    "demo": "cross-env static public"
+    "test:watch": "cross-env jest --watch"
   },
   "browserslist": {
     "production": [
