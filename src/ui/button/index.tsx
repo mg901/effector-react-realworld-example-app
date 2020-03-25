@@ -3,24 +3,29 @@ import React from 'react';
 import './index.css';
 
 type Props = Readonly<{
-  className?: string;
-  type?: 'button' | 'submit' | 'reset';
-  disabled?: boolean;
-  onClick: () => void;
   children: React.ReactNode;
+  form?: string;
+  type?: 'button' | 'submit' | 'reset';
+  className?: string;
+  disabled?: boolean;
+  onClick: Function;
 }>;
 
 export const Button: React.FC<Props> = ({
+  form,
   type = 'button',
   className = '',
-  onClick,
   disabled = false,
   children,
+  onClick,
 }) => (
   <button
+    form={form}
     type={type}
     className={`btn ${className}`}
-    onClick={onClick}
+    onClick={(): void => {
+      onClick();
+    }}
     disabled={disabled}>
     {children}
   </button>

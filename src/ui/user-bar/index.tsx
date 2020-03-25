@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { Event } from 'effector';
 import useClickOutside from 'use-onclickoutside';
-import { UserPick } from '../user-pick';
+import { Button } from '../button';
 import { DownDownMenu } from '../dropdown-menu';
+import './index.css';
 
 type Props = Readonly<{
   image: string;
@@ -21,11 +22,13 @@ export const UserBar: React.FC<Props> = ({
 
   return (
     <>
-      <UserPick
-        image={image}
-        username={username}
-        onClick={(): void => setState(true)}
-      />
+      <Button
+        className="user-pick-wrap"
+        onClick={(): void => {
+          setState(true);
+        }}>
+        <img src={image} className="user-pick" alt={username} />
+      </Button>
       <DownDownMenu
         ref={ref}
         username={username}

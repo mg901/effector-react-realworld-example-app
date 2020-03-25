@@ -4,10 +4,8 @@ import { render } from 'react-dom';
 import { App } from './modules';
 
 render(
-  <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
-  </React.StrictMode>,
+  <Router>
+    <App />
+  </Router>,
   document.getElementById('root'),
 );

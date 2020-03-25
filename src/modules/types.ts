@@ -18,6 +18,8 @@ export type Article = Readonly<{
   favoritesCount: number;
 }>;
 
+export type Slug = Article['slug'];
+
 export type Feed = Readonly<{
   articles: readonly Article[];
   articlesCount: number;
