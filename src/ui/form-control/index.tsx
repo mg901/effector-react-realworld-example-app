@@ -1,54 +1,57 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { Event } from 'effector';
-import { ChangeEvent } from '../../types';
+import { Box, PolymorphicComponentProps } from 'react-polymorphic-box';
+import './index.css';
 
-type Props = Readonly<{
-  as?: React.ElementType;
-  type?: string;
-  value?: string;
+export type OwnProps<E> = Readonly<{
+  as?: 'input' | 'textarea';
+  name: string;
+  labelText: string;
   placeholder?: string;
-  name?: string;
   rows?: number;
-  onChange: Event<ChangeEvent>;
-  onKeyDown?: Event<React.KeyboardEvent<HTMLInputElement>>;
+  className?: string;
+  onChange: E;
 }>;
 
-export const FormControl: React.FC<Props> = ({
-  as: Component = 'input',
-  type = 'text',
-  value,
-  rows = 8,
-  placeholder,
+export type Props<T, U extends React.ElementType> = PolymorphicComponentProps<
+  U,
+  OwnProps<T>
+>;
+
+export const FormControl = <
+  T extends Event<any>,
+  U extends React.ElementType = 'input'
+>({
+  as: componentName,
   name,
+  labelText,
+  placeholder,
+  rows,
+  className = '',
   onChange,
-  onKeyDown,
-}) => {
-  const input = (
-    <Component
-      className="form-control"
-      type={type}
-      name={name}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-    />
-  );
-
-  const textarea = (
-    <Component
-      className="form-control"
-      rows={rows}
-      name={name}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-    />
-  );
-
-  return (
-    <div className="form-control__wrap">
-      {Component === 'textarea' ? textarea : input}
-    </div>
-  );
-};
+}: Props<T, U>): JSX.Element => (
+  <div className="form-group">
+    <label htmlFor={name}>
+      <div>{labelText}</div>
+      {componentName === 'textarea' ? (
+        <Box
+          name={name}
+          as="textarea"
+          rows={rows}
+          className={`form-control ${className}`}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
+      ) : (
+        <Box
+          name={name}
+          as="input"
+          className={`form-control ${className}`}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
+      )}
+    </label>
+  </div>
+);
