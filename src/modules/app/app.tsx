@@ -4,9 +4,9 @@ import { Header } from './ui';
 import { Routes } from '../router';
 
 import 'normalize.css';
-import './global.css';
-import './layout.css';
-import './typography.css';
+import '../../ui/styles/global.css';
+import '../../ui/styles/layout.css';
+import '../../ui/styles/typography.css';
 
 export const App: React.FC = () => (
   <>
