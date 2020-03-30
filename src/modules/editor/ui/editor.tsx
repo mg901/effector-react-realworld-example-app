@@ -1,7 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { Input } from './input';
-import { Textarea } from './textarea';
+import { FormField } from './form-field';
 import { Form, Button } from '../../../ui';
 import { AddTag } from './add-tag';
 import { articleCreated } from '../events';
@@ -13,14 +12,19 @@ export const Editor: React.FC = () => {
   return (
     <>
       <Form id="editor">
-        <fieldset>
-          <Input name="title" placeholder="Article Title" />
-          <Input name="description" placeholder="What's this article about?" />
-          <Textarea
-            name="body"
-            placeholder="Write your article (in markdown)"
-          />
-        </fieldset>
+        <FormField name="title" labelText="Title" placeholder="Article Title" />
+        <FormField
+          name="description"
+          labelText="Description"
+          placeholder="What's this article about?"
+        />
+        <FormField
+          as="textarea"
+          name="body"
+          rows={8}
+          labelText="Text"
+          placeholder="Write your article (in markdown)"
+        />
       </Form>
       <AddTag />
       <Button disabled={loading} form="editor" onClick={articleCreated}>

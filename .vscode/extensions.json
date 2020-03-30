@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-close-tag",
+    "mariusschulz.yarn-lock-syntax",
+    "coenraads.bracket-pair-colorizer",
+    "naumovs.color-highlight",
+    "alexdima.copy-relative-path",
+    "eamodio.gitlens"
+  ]
+}
