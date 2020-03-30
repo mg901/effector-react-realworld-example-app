@@ -1,16 +1,17 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { FormField } from './form-field';
-import { Form, Button } from '../../../ui';
+import { Form, ErrorList } from '../../../ui';
 import { AddTag } from './add-tag';
-import { articleCreated } from '../events';
-import { fxCreateArticle } from '../effects';
+import { Submit } from './submit';
+import { $errors } from '../model';
 
 export const Editor: React.FC = () => {
-  const loading = useStore(fxCreateArticle.pending);
+  const errors = useStore($errors);
 
   return (
     <>
+      <ErrorList errors={errors} />
       <Form id="editor">
         <FormField name="title" labelText="Title" placeholder="Article Title" />
         <FormField
@@ -27,9 +28,7 @@ export const Editor: React.FC = () => {
         />
       </Form>
       <AddTag />
-      <Button disabled={loading} form="editor" onClick={articleCreated}>
-        Publish Article
-      </Button>
+      <Submit />
     </>
   );
 };
