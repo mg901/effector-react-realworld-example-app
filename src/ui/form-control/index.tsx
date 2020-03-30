@@ -3,10 +3,10 @@ import { Event } from 'effector';
 import './index.css';
 
 export type Props<T> = Readonly<{
-  as?: 'input' | 'textarea';
-  value?: string;
   name: string;
   labelText: string;
+  as?: 'input' | 'textarea';
+  value?: string;
   placeholder?: string;
   rows?: number;
   className?: string;

@@ -11,7 +11,7 @@ import {
   fxAuthDone,
   fxSetTokenToLoST,
 } from './effects';
-import { Form, User, Token } from './types';
+import { Form, AuthorizedUser, Token } from './types';
 import { ErrorList } from '../types';
 
 export const $form = createStore<Form>({
@@ -22,7 +22,7 @@ export const $form = createStore<Form>({
 
 export const $token = createStore<Token>(null);
 
-export const $authUser = createStore<User>({
+export const $authorizedUser = createStore<AuthorizedUser>({
   bio: '',
   createdAt: '',
   email: '',
@@ -54,7 +54,7 @@ forward({
 
 $token.on(fxGetTokenFromLoSt.done, (_, { result }) => result);
 
-$authUser
+$authorizedUser
   .on(textChanged, (state, payload) => ({ ...state, ...payload }))
   .on(fxFetchUser.done, (state, { result: { user } }) => ({
     ...state,

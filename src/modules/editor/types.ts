@@ -1,8 +1,8 @@
 import { Article } from '../types';
 
-export type ChangeEvent =
-  | React.ChangeEvent<HTMLInputElement>
-  | React.ChangeEvent<HTMLTextAreaElement>;
+export type ChangeEvent = React.ChangeEvent<
+  HTMLInputElement | HTMLTextAreaElement
+>;
 
 export type FormField = Readonly<{
   [key: string]: string;

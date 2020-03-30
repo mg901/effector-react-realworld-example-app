@@ -1,3 +1,22 @@
+export type ChangeEvent = React.ChangeEvent<
+  HTMLInputElement | HTMLTextAreaElement
+>;
+
+export type FormField = Readonly<{
+  [key: string]: string;
+}>;
+
+export type AuthorizedUser = Readonly<{
+  image: string;
+  username: string;
+  bio: string;
+  email: string;
+  token: string | null;
+  id: number | null;
+  createdAt: string;
+  updatedAt: string;
+}>;
+
 export type Author = Readonly<{
   username: string;
   bio: string | null;
@@ -25,10 +44,10 @@ export type Feed = Readonly<{
   articlesCount: number;
 }>;
 
-export type BackendError = Readonly<{
+export type APIError = Readonly<{
   errors: {
     [key: string]: readonly string[];
   };
 }>;
 
-export type ErrorList = BackendError['errors'];
+export type ErrorList = APIError['errors'];

@@ -1,9 +1,8 @@
 import React from 'react';
-import { useStoreMap } from 'effector-react';
 import { handleFieldChanged } from '../events';
-import { $form } from '../model';
-import { Form } from '../types';
+import { $user } from '../model';
 import { FormControl } from '../../../ui';
+import { useFormField } from '../../../lib';
 
 type Props = Readonly<{
   labelText: string;
@@ -20,10 +19,9 @@ export const FormField: React.FC<Props> = ({
   rows,
   placeholder,
 }) => {
-  const value = useStoreMap({
-    store: $form,
-    keys: [name],
-    fn: (s, [key]) => s[key as keyof Form],
+  const value = useFormField({
+    store: $user,
+    name,
   });
 
   return (

@@ -1,7 +1,7 @@
 export { App } from './app';
 export {
   $token,
-  $authUser,
+  $authorizedUser,
   loggedOut,
   signIn,
   signUp,
