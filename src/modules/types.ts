@@ -24,3 +24,11 @@ export type Feed = Readonly<{
   articles: readonly Article[];
   articlesCount: number;
 }>;
+
+export type BackendError = Readonly<{
+  errors: {
+    [key: string]: readonly string[];
+  };
+}>;
+
+export type ErrorList = BackendError['errors'];

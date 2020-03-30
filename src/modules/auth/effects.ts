@@ -3,9 +3,10 @@ import { TOKEN_NAME, post, get } from '../../api';
 import { fxFetchGlobalFeed } from '../global-feed';
 import { fxFetchPersonalFeed } from '../personal-feed';
 import { fxFetchTags } from '../tags';
-import { Form, UserResponse, AuthError } from './types';
+import { Form, UserResponse } from './types';
+import { BackendError } from '../types';
 
-export const fxSetTokenToLoST = createEffect<UserResponse, void, AuthError>({
+export const fxSetTokenToLoST = createEffect<UserResponse, void, BackendError>({
   handler: ({ user: { token } }) => {
     if (token) {
       localStorage.setItem(TOKEN_NAME, token);
@@ -36,14 +37,14 @@ export const fxIntitNotAuthApp = createEffect({
   handler: () => Promise.all([fxFetchGlobalFeed(), fxFetchTags()]),
 });
 
-export const fxSignIn = createEffect<Form, UserResponse, AuthError>({
+export const fxSignIn = createEffect<Form, UserResponse, BackendError>({
   handler: ({ email, password }) =>
     post<UserResponse>('/users/login', {
       user: { email, password },
     }),
 });
 
-export const fxSignUp = createEffect<Form, UserResponse, AuthError>({
+export const fxSignUp = createEffect<Form, UserResponse, BackendError>({
   handler: ({ username, email, password }) =>
     post('/users', { user: { email, password, username } }),
 });

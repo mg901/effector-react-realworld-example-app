@@ -11,7 +11,8 @@ import {
   fxAuthDone,
   fxSetTokenToLoST,
 } from './effects';
-import { Form, User, Token, AuthErrors } from './types';
+import { Form, User, Token } from './types';
+import { ErrorList } from '../types';
 
 export const $form = createStore<Form>({
   email: '',
@@ -67,7 +68,7 @@ export const $loading = combine(
   (login, registration) => login || registration,
 );
 
-export const $errors = createStore<AuthErrors>({})
+export const $errors = createStore<ErrorList>({})
   .on(merge([fxSignIn.fail, fxSignUp.fail]), (_, { error }) => error.errors)
   .reset(fxAuthDone);
 

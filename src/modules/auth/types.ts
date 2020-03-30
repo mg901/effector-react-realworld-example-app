@@ -24,11 +24,3 @@ export type UserResponse = Readonly<{
 }>;
 
 export type Token = User['token'];
-
-export type AuthError = Readonly<{
-  errors: {
-    [key: string]: readonly string[];
-  };
-}>;
-
-export type AuthErrors = AuthError['errors'];

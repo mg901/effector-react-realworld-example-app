@@ -10,6 +10,7 @@ import {
 import { fxCreateArticle } from './effects';
 import { uniq } from '../../lib';
 import { Form, Tags } from './types';
+import { ErrorList } from '../types';
 
 export const $form = createStore<Form>({
   title: '',
@@ -19,6 +20,7 @@ export const $form = createStore<Form>({
 
 export const $currentTag = restore<string>(textChanged, '').reset(tagAdded);
 export const $tags = createStore<Tags>([]);
+export const $errors = createStore<ErrorList>({});
 
 $form.on(fieldChanged, (state, payload) => ({
   ...state,
@@ -38,6 +40,8 @@ sample({
   fn: ({ form, tagList }) => ({ ...form, tagList }),
   target: fxCreateArticle,
 });
+
+$errors.on(fxCreateArticle.fail, (_, { error: { errors } }) => errors);
 
 // export const $form = createStore<Editor>({
 //   articleSlug: '',
