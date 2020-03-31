@@ -8,7 +8,7 @@ export type FormField = Readonly<{
   [key: string]: string;
 }>;
 
-export type User = Readonly<{
+export type AuthorizedUser = Readonly<{
   image: string;
   username: string;
   bio: string;
@@ -20,7 +20,7 @@ export type User = Readonly<{
 }>;
 
 export type UserResponse = Readonly<{
-  user: User;
+  user: AuthorizedUser;
 }>;
 
-export type Token = User['token'];
+export type Token = AuthorizedUser['token'];

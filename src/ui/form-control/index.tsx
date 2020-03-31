@@ -3,10 +3,11 @@ import { Event } from 'effector';
 import './index.css';
 
 export type Props<T> = Readonly<{
-  as?: 'input' | 'textarea';
-  value?: string;
   name: string;
   labelText: string;
+  as?: 'input' | 'textarea';
+  value?: string;
+  type?: string;
   placeholder?: string;
   rows?: number;
   className?: string;
@@ -14,10 +15,11 @@ export type Props<T> = Readonly<{
 }>;
 
 export const FormControl = <T extends Event<any>>({
-  as = 'input',
-  value,
   name,
   labelText,
+  as = 'input',
+  value,
+  type,
   placeholder,
   rows,
   className = '',
@@ -25,6 +27,7 @@ export const FormControl = <T extends Event<any>>({
 }: Props<T>): JSX.Element => {
   const input = (
     <input
+      type={type}
       value={value}
       name={name}
       className={`form-control ${className}`}

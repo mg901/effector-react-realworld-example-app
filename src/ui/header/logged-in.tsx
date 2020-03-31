@@ -2,10 +2,10 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import { NavLink } from 'react-router-dom';
 import { UserBar } from '../user-bar';
-import { $authUser, loggedOut } from '../../modules';
+import { $authorizedUser, loggedOut } from '../../modules';
 
 export const LoggedIn: React.FC = () => {
-  const { username, image } = useStore($authUser);
+  const { username, image } = useStore($authorizedUser);
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { PageTemplate, signUp, handleTextChanged } from '../modules';
-import { InputField, Form } from '../ui';
+import { FormControl, Form } from '../ui';
 // import { Submit } from '../submit';
 
 export const SignUp: React.FC = () => (
@@ -12,20 +12,23 @@ export const SignUp: React.FC = () => (
 
     <Form onSubmit={signUp}>
       <fieldset>
-        <InputField
+        <FormControl
+          labelText="Username"
           name="username"
           placeholder="Username"
           onChange={handleTextChanged}
         />
 
-        <InputField
+        <FormControl
+          labelText="Email"
           type="email"
           name="email"
           placeholder="Email"
           onChange={handleTextChanged}
         />
 
-        <InputField
+        <FormControl
+          labelText="Password"
           type="password"
           name="password"
           placeholder="Password"

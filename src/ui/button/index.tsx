@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import './index.css';
