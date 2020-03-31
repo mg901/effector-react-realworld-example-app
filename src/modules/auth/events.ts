@@ -1,6 +1,6 @@
 import { createEvent } from 'effector';
 import { FormField } from './types';
-import { ChangeEvent } from '../../types';
+import { ChangeEvent } from '../types';
 
 export const textChanged = createEvent<FormField>();
 export const signIn = createEvent();

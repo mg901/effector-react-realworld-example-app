@@ -1,12 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-// import { Home } from '../home';
-import { Editor } from '../editor';
-import { Settings } from '../settings';
-import { Main, SignIn, SignUp } from '../../pages';
-// import { Editor } from '../editor';
-// import { Settings } from '../settings';
-// import { Profile } from '../profile';
+import { Main, SignIn, SignUp, Editor, Settings } from '../../pages';
 
 export const Routes: React.FC = () => (
   <Switch>

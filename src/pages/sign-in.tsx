@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { InputField, Form } from '../ui';
+import { FormControl, Form } from '../ui';
 // import { Submit } from '../submit';
 import { PageTemplate, signIn, handleTextChanged } from '../modules';
 
@@ -12,14 +12,16 @@ export const SignIn: React.FC = () => (
 
     <Form onSubmit={signIn}>
       <fieldset>
-        <InputField
+        <FormControl
+          labelText="Email"
           type="email"
           name="email"
           placeholder="Email"
           onChange={handleTextChanged}
         />
 
-        <InputField
+        <FormControl
+          labelText="Password"
           type="password"
           name="password"
           placeholder="Password"
