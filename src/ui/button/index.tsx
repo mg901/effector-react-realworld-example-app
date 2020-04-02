@@ -9,7 +9,7 @@ type Props = Readonly<{
   type?: 'button' | 'submit' | 'reset';
   className?: string;
   disabled?: boolean;
-  onClick: Function;
+  onClick?: Function;
 }>;
 
 export const Button: React.FC<Props> = ({
