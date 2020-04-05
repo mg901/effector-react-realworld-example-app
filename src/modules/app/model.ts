@@ -11,17 +11,19 @@ forward({
   to: fxGetTokenFromLoSt,
 });
 
-const { hasToken, isEmptyToken } = split(fxGetTokenFromLoSt.done, {
-  hasToken: ({ result }) => Boolean(result) === true,
-  isEmptyToken: ({ result }) => Boolean(result) === false,
+const { isAuth, isNotAuth } = split(fxGetTokenFromLoSt.doneData, {
+  isAuth: (x) => Boolean(x) === true,
+  isNotAuth: (x) => Boolean(x) === false,
 });
 
 forward({
-  from: hasToken,
+  from: isAuth,
   to: fxInitAuthApp,
 });
 
 forward({
-  from: isEmptyToken,
+  from: isNotAuth,
   to: fxIntitNotAuthApp,
 });
+
+fxIntitNotAuthApp.finally.watch((x) => console.log(x, 'fxIntitNotAuthApp'));
