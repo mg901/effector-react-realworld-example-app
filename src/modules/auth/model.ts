@@ -21,7 +21,6 @@ export const $form = createStore<Form>({
 });
 
 export const $token = createStore<Token>(null);
-
 export const $authorizedUser = createStore<AuthorizedUser>({
   bio: '',
   createdAt: '',
