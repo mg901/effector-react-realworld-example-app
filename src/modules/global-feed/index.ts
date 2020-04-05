@@ -1,2 +1,7 @@
-export { fxFetchGlobalFeed } from './effects';
-export { $globalFeed } from './model';
+export {
+  fxFetchGlobalFeed,
+  $globalFeed,
+  $currentPage,
+  $articles,
+} from './model';
+export { GlobalFeed } from './global-feed';

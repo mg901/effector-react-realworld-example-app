@@ -4,12 +4,10 @@ import { Main, SignIn, SignUp, Editor, Settings } from '../../pages';
 
 export const Routes: React.FC = () => (
   <Switch>
-    <Route exact path="/" component={Settings} />
+    <Route exact path="/" component={Main} />
     <Route path="/login" component={SignIn} />
     <Route path="/register" component={SignUp} />
-    {/* <PrivateRoute path="/editor" component={Editor} />
-    <PrivateRoute path="/settings" component={Settings} />
-    <PrivateRoute path="/@:username" component={Profile} />
-    <Route path="/editor/:slug" component={Editor} /> */}
+    <Route path="/editor" component={Editor} />
+    <Route path="/settings" component={Settings} />
   </Switch>
 );

@@ -4,11 +4,7 @@ import { Article, APIError } from '../types';
 import { Slug, NewArticle } from './types';
 
 export const fxCreateArticle = createEffect<NewArticle, void, APIError>({
-  handler: (article) => {
-    console.log('----------', article);
-
-    return post<void>('/articles', { article });
-  },
+  handler: (article) => post<void>('/articles', { article }),
 });
 
 // export const updateArticle = createEffect<Article, void, Error>({
