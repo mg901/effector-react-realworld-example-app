@@ -12,17 +12,17 @@ type Pagination = readonly (string | number)[];
 type Props = Readonly<{
   currentPage: number;
   total: number;
-  limit: number;
-  pageNeighbours: number;
+  limit?: number;
+  pageNeighbours?: number;
   onChange: (x: number) => number;
 }>;
 
 export const Pagination: React.FC<Props> = ({
   currentPage,
   total,
-  limit,
-  pageNeighbours: neighbours,
-  onChange,
+  limit = 10,
+  pageNeighbours: neighbours = 2,
+  onChange = (x): number => x,
 }) => {
   const pageNeighbours = Math.max(0, Math.min(neighbours, 2));
   const totalPages = Math.ceil(total / limit);
