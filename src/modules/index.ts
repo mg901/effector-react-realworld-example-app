@@ -9,3 +9,4 @@ export {
   PageTemplate,
 } from './auth';
 export { Tags } from './tags';
+export { GlobalFeed } from './global-feed';
