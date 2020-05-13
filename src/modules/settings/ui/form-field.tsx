@@ -2,7 +2,7 @@ import React from 'react';
 import { handleFieldChanged } from '../events';
 import { $user } from '../model';
 import { FormControl } from '../../../ui';
-import { useFormField } from '../../../lib';
+import { useFormField } from '../../../library';
 
 type Props = Readonly<{
   labelText: string;

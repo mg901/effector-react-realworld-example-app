@@ -8,7 +8,7 @@ import {
   tagRemoved,
 } from './events';
 import { fxCreateArticle } from './effects';
-import { uniq } from '../../lib';
+import { uniq } from '../../library';
 import { Form, Tags } from './types';
 import { ErrorList } from '../types';
 
