@@ -6,7 +6,7 @@ import {
   sample,
 } from 'effector';
 import { get } from '../../api';
-import { limit } from '../../lib';
+import { limit } from '../../library';
 import { Feed } from '../types';
 
 export const currentPageSetted = createEvent<number>();

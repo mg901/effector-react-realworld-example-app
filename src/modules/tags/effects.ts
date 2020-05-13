@@ -1,6 +1,6 @@
 import { createEffect } from 'effector';
 import { get } from '../../api';
-import { limit } from '../../lib';
+import { limit } from '../../library';
 import { Tags } from './types';
 import { Feed } from '../types';
 
