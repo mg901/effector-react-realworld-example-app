@@ -1,4 +1,4 @@
-import { createStore, sample, merge, forward, combine } from 'effector';
+import { createStore, sample, forward, combine } from 'effector';
 
 import { textChanged, signIn, signUp, loggedOut } from './events';
 import {
@@ -68,7 +68,7 @@ export const $loading = combine(
 );
 
 export const $errors = createStore<ErrorList>({})
-  .on(merge([fxSignIn.fail, fxSignUp.fail]), (_, { error }) => error.errors)
+  .on([fxSignIn.fail, fxSignUp.fail], (_, { error }) => error.errors)
   .reset(fxAuthDone);
 
 loggedOut.watch(() => {
