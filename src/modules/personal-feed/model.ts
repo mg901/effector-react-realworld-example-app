@@ -1,10 +1,8 @@
-import { createStore } from 'effector';
+import { restore } from 'effector';
 import { Feed } from '../types';
 import { fxFetchPersonalFeed } from './effects';
 
-export const $personalFeed = createStore<Feed>({
+export const $personalFeed = restore<Feed>(fxFetchPersonalFeed.doneData, {
   articles: [],
   articlesCount: 0,
 });
-
-$personalFeed.on(fxFetchPersonalFeed.done, (_, { result }) => result);

@@ -41,7 +41,7 @@ sample({
   target: fxCreateArticle,
 });
 
-$errors.on(fxCreateArticle.fail, (_, { error: { errors } }) => errors);
+$errors.on(fxCreateArticle.failData, (_, { errors }) => errors);
 
 // export const $form = createStore<Editor>({
 //   articleSlug: '',

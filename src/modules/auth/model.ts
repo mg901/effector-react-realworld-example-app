@@ -1,5 +1,4 @@
-import { createStore, sample, forward, combine } from 'effector';
-
+import { createStore, sample, forward, combine, restore } from 'effector';
 import { textChanged, signIn, signUp, loggedOut } from './events';
 import {
   fxSignUp,
@@ -20,7 +19,7 @@ export const $form = createStore<Form>({
   username: '',
 });
 
-export const $token = createStore<Token>(null);
+export const $token = restore<Token>(fxGetTokenFromLoSt.doneData, null);
 export const $authorizedUser = createStore<AuthorizedUser>({
   bio: '',
   createdAt: '',
@@ -51,11 +50,9 @@ forward({
   to: fxSetTokenToLoST,
 });
 
-$token.on(fxGetTokenFromLoSt.done, (_, { result }) => result);
-
 $authorizedUser
   .on(textChanged, (state, payload) => ({ ...state, ...payload }))
-  .on(fxFetchUser.done, (state, { result: { user } }) => ({
+  .on(fxFetchUser.doneData, (state, { user }) => ({
     ...state,
     ...user,
   }))
@@ -68,7 +65,7 @@ export const $loading = combine(
 );
 
 export const $errors = createStore<ErrorList>({})
-  .on([fxSignIn.fail, fxSignUp.fail], (_, { error }) => error.errors)
+  .on([fxSignIn.failData, fxSignUp.failData], (_, error) => error.errors)
   .reset(fxAuthDone);
 
 loggedOut.watch(() => {
