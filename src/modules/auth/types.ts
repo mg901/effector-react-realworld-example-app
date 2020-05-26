@@ -8,27 +8,25 @@ export type FormField = Readonly<{
   [key: string]: string;
 }>;
 
-export type User = Readonly<{
-  image: string;
-  username: string;
-  bio: string;
-  email: string;
-  token: string | null;
-  id: number | null;
-  createdAt: string;
-  updatedAt: string;
-}>;
-
-export type UserResponse = Readonly<{
-  user: User;
-}>;
-
-export type Token = User['token'];
-
-export type AuthError = Readonly<{
-  errors: {
-    [key: string]: readonly string[];
+export type AuthorizedUserResponse = Readonly<{
+  user: {
+    image: string;
+    username: string;
+    bio: string;
+    email: string;
+    token: string | null;
+    id: number | null;
+    createdAt: string;
+    updatedAt: string;
   };
 }>;
 
-export type AuthErrors = AuthError['errors'];
+export type AuthorizedUser = AuthorizedUserResponse['user'];
+
+export type Token = null | string;
+
+export type ResponseFail = Readonly<{
+  errors: readonly string[];
+}>;
+
+export type Errors = ResponseFail['errors'];
