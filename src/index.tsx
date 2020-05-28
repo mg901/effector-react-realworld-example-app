@@ -1,13 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { render } from 'react-dom';
-import { App } from './modules';
+import { App } from './app';
 
-render(
-  <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
-  </React.StrictMode>,
-  document.getElementById('root'),
-);
+import 'normalize.css';
+import './ui/init/global.css';
+import './ui/init/layout.css';
+import './ui/init/typography.css';
+
+import './router/init';
+import './auth/init';
+
+render(<App />, document.getElementById('root'));
