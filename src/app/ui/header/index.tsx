@@ -1,15 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { APP_NAME } from '../../../constants';
+import { Logo } from '../../../ui';
 import { Nav } from '../nav';
 import './index.css';
 
 export const Header: React.FC = () => (
   <header className="header">
     <div className="container header__inner">
-      <Link to="/" className="link logo header__logo">
-        {APP_NAME.toLowerCase()}
-      </Link>
+      <Logo title={APP_NAME} />
       <Nav />
     </div>
   </header>
