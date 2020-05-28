@@ -10,8 +10,4 @@
     display: flex;
     align-items: center;
   }
-
-  &__logo {
-    font-size: var(--h5);
-  }
 }

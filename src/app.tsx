@@ -1,13 +1,10 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { history, Routes } from '../router';
-import { Header } from './ui';
+import { history } from './router';
+import { Main } from './main/ui';
 
 export const App: React.FC = () => (
   <Router history={history}>
-    <div className="wrap">
-      <Header />
-      <Routes />
-    </div>
+    <Main />
   </Router>
 );
