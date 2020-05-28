@@ -2,7 +2,9 @@ import { createStore } from 'effector';
 import { Token, AuthorizedUser, ResponseFail } from './types';
 
 export const $token = createStore<Token>(null);
-export const $$isAuthorized = $token.map(Boolean);
+export const $$isAuthenticated = $token.map(Boolean);
+
+$$isAuthenticated.watch((x) => console.log('is auth', x));
 
 export const $authorizedUser = createStore<AuthorizedUser>({
   bio: '',
