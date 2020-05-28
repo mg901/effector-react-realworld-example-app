@@ -17,11 +17,6 @@ body {
   color: var(--deep-grey);
 }
 
-.logo {
-  font-family: var(--font-family-decorative);
-  font-weight: bold;
-}
-
 .h1,
 .h2,
 .h3,
