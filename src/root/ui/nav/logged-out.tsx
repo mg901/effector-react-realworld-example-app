@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export const LoggedOut: React.FC = () => (
   <>
-    <NavLink to="/feed" className="nav-link">
+    <NavLink to="/" className="nav-link">
       Home
     </NavLink>
 

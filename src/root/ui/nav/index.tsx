@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { $$isAuthenticated } from '../../../../auth';
+import { $$isAuthenticated } from '../../../auth';
 import { LoggedIn } from './logged-in';
 import { LoggedOut } from './logged-out';
 import './index.css';

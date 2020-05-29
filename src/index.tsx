@@ -9,5 +9,6 @@ import './ui/init/typography.css';
 
 import './router/init';
 import './auth/init';
+import './root/init';
 
 render(<App />, document.getElementById('root'));
