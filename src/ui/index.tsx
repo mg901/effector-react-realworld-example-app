@@ -1,5 +1,6 @@
 export * from './banner';
 export * from './button';
+export * from './container';
 export * from './dropdown-menu';
 export * from './error-list';
 export * from './header';

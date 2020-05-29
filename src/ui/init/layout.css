@@ -2,12 +2,6 @@
   min-height: 100vh;
 }
 
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 975px;
-}
-
 .content {
   display: grid;
   grid-template-columns: [main] 9fr [sidebar] 3fr;

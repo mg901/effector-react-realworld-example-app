@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { ErrorList } from '../../ui';
+import { Container, ErrorList } from '../../ui';
 import { $responseFail } from '../state';
 
 type Props = Readonly<{
@@ -12,10 +12,10 @@ export const PageTemplate: React.FC<Props> = ({ title, children }) => {
   const errors = useStore($responseFail);
 
   return (
-    <div className="container auth-page">
-      <h1 className="text-xs-center">{title}</h1>
+    <Container>
+      <h1>{title}</h1>
       <ErrorList errors={errors} />
       {children}
-    </div>
+    </Container>
   );
 };
