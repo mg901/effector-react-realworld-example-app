@@ -8,7 +8,7 @@ import { Switch, Route } from 'react-router-dom';
 export const Routes: React.FC = () => (
   <Switch>
     {/* <Route path="/login" component={SignIn} /> */}
-    {/* <Route path="/register" component={SignUp} /> */}
+    {/* <Route path="/registration" component={SignUp} /> */}
     {/* <PrivateRoute path="/editor" component={Editor} /> */}
     {/* <PrivateRoute path="/settings" component={Settings} /> */}
     {/* <PrivateRoute path="/@:username" component={Profile} /> */}
