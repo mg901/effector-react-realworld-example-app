@@ -11,7 +11,7 @@ export const LoggedOut: React.FC = () => (
       Sign in
     </NavLink>
 
-    <NavLink to="/register" className="nav-link">
+    <NavLink to="/registration" className="nav-link">
       Sign up
     </NavLink>
   </>

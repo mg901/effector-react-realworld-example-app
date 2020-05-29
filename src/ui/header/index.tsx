@@ -3,10 +3,9 @@ import './index.css';
 
 type Props = {
   children: React.ReactNode;
+  className?: string;
 };
 
-export const Header: React.FC<Props> = ({ children }) => (
-  <header className="header">
-    <div className="container header__inner">{children}</div>
-  </header>
+export const Header: React.FC<Props> = ({ children, className = '' }) => (
+  <header className={`header ${className}`}>{children}</header>
 );
