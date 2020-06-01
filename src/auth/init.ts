@@ -1,6 +1,6 @@
-import { createStore, sample, forward } from 'effector';
+import { forward } from 'effector';
 import { $token, $authorizedUser, $responseFail } from './state';
-import { signIn, signUp, loggedOut } from './events';
+import { loggedOut } from './events';
 import {
   fxSignUp,
   fxSignIn,
@@ -9,33 +9,12 @@ import {
   fxRemveTokenFromLoSt,
   fxSetTokenToLoST,
 } from './effects';
-import { Form } from './types';
-
-fxGetTokenFromLoSt();
-
-export const $form = createStore<Form>({
-  email: '',
-  password: '',
-  username: '',
-});
 
 $token.on(fxGetTokenFromLoSt.doneData, (_, payload) => payload);
 $authorizedUser.on(
   [fxSignIn.doneData, fxSignUp.doneData, fxFetchAuthUser.doneData],
   (_, { user }) => user,
 );
-
-sample({
-  source: $form,
-  clock: signIn,
-  target: fxSignIn,
-});
-
-sample({
-  source: $form,
-  clock: signUp,
-  target: fxSignUp,
-});
 
 forward({
   from: [fxSignIn.doneData, fxSignUp.doneData],

@@ -1,4 +1,4 @@
 export { GlobalFeed } from './global-feed';
-export { Login } from './login';
+export { Login } from './login/login';
 export { Registration } from './registration';
 export { YourFeed } from './your-feed';

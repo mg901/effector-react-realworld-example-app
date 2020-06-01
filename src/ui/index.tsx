@@ -5,7 +5,7 @@ export * from './dropdown-menu';
 export * from './error-list';
 export * from './header';
 export * from './logo';
-export * from './input-field';
+export * from './form-control';
 export * from './text-field';
 export * from './user-bar';
 export * from './user-pick';

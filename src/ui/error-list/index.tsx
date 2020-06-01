@@ -6,15 +6,15 @@ type Props = Readonly<{
 }>;
 
 export const ErrorList: React.FC<Props> = ({ errors = {} }) => {
-  const listErrors = Object.keys(errors);
+  const errorList = Object.keys(errors);
 
   return (
     <>
-      {listErrors.length > 0 && (
+      {errorList.length > 0 && (
         <ul className="error-messages">
-          {listErrors.map((key) => (
+          {Object.entries(errors.errors).map(([key, val]) => (
             <li key={key}>
-              {key} {errors[key]}
+              {key} {val}
             </li>
           ))}
         </ul>

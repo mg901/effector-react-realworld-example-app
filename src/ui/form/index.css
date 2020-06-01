@@ -1,0 +1,19 @@
+/* form fieldset {
+  border: none;
+}
+
+.form {
+  margin-bottom: 2rem;
+
+  fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+
+  &-control {
+    width: 100%;
+    border-radius: var(--sm-radius);
+    border: 1px solid var(--border-color);
+  }
+} */

@@ -1,7 +1,7 @@
 export type Form = Readonly<{
-  username: string;
   email: string;
   password: string;
+  username?: string;
 }>;
 
 export type FormField = Readonly<Record<string, string>>;

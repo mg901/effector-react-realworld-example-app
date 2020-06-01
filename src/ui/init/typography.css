@@ -6,7 +6,7 @@
   --h4: 3step;
   --h5: 2step;
   --h6: 1step;
-  --font-bold: 600;
+  --font-bold: 700;
   --font-family-base: 'Source Sans Pro', sans-serif;
   --font-family-decorative: 'Titillium Web', sans-serif;
 }
@@ -23,7 +23,7 @@ body {
 .h4,
 .h5,
 .h6 {
-  font-weight: var(----font-bold);
+  font-weight: var(--font-bold);
 }
 
 .h1 {
