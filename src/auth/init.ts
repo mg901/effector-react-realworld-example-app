@@ -1,4 +1,5 @@
 import { forward } from 'effector';
+import { history } from '../router';
 import { $token, $authorizedUser, $responseFail } from './state';
 import { loggedOut } from './events';
 import {
@@ -27,4 +28,5 @@ $responseFail
 
 loggedOut.watch(() => {
   fxRemveTokenFromLoSt();
+  history.push('/');
 });
