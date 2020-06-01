@@ -3,7 +3,7 @@ import { useStore } from 'effector-react';
 import { Link } from 'react-router-dom';
 import { Container, ErrorList, Form, FormControl, Button } from '../../ui';
 import { $responseFail } from '../../auth';
-import { submitForm } from './model/events';
+import { submitForm } from './model';
 import './model/init';
 
 export const Login: React.FC = () => {
