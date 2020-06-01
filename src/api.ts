@@ -18,12 +18,13 @@ const request: Request = async (method, url, data) => {
 
   if (data) options.body = JSON.stringify(data);
 
-  const res = await fetch(`${API_ROOT}${url}`, options);
+  const response = await fetch(`${API_ROOT}${url}`, options);
 
-  if (res.ok) {
-    return res.json();
+  if (!response.ok) {
+    throw await response.json();
   }
-  throw await res.json();
+
+  return response.json();
 };
 
 export const get = <T>(url: string): Promise<T> => request<T>('get', url);

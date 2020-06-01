@@ -1,13 +1,15 @@
-import { createEvent } from 'effector';
-import { Location, History, Action } from 'history';
-import { history } from './history';
+import { createEvent, restore } from 'effector';
+import { Location, History, Action, createBrowserHistory } from 'history';
 
 type HistoryUpdate = Readonly<{
   location: Location<History.PoorMansUnknown>;
   action: Action;
 }>;
 
-const historyUpdate = createEvent<HistoryUpdate>();
+export const history = createBrowserHistory();
+
+const historyUpdate = createEvent<any>();
+export const $location = restore<any>(historyUpdate, history.location);
 
 history.listen((location, action) => {
   historyUpdate({ location, action });

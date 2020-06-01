@@ -1,10 +1,4 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  restore,
-  sample,
-} from 'effector';
+import { createEvent, createEffect, restore, sample } from 'effector';
 import { get } from '../../api';
 import { limit } from '../../library';
 import { Feed } from '../types';
@@ -16,15 +10,13 @@ export const fxFetchGlobalFeed = createEffect({
 });
 
 export const $currentPage = restore(currentPageSetted, 1);
-export const $globalFeed = createStore<Feed>({
+export const $globalFeed = restore<Feed>(fxFetchGlobalFeed.doneData, {
   articles: [],
   articlesCount: 0,
 });
 
 export const $articles = $globalFeed.map(({ articles }) => articles);
 export const $total = $globalFeed.map(({ articlesCount }) => articlesCount);
-
-$globalFeed.on(fxFetchGlobalFeed.done, (_, { result }) => result);
 
 sample({
   source: $currentPage,
