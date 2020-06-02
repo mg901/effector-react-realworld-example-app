@@ -1,5 +1,4 @@
 import { forward } from 'effector';
-import { history } from '../router';
 import { $token, $authorizedUser, $responseFail } from './state';
 import { loggedOut } from './events';
 import {
@@ -7,7 +6,6 @@ import {
   fxSignIn,
   fxFetchAuthUser,
   fxGetTokenFromLoSt,
-  fxRemveTokenFromLoSt,
   fxSetTokenToLoST,
 } from './effects';
 
@@ -25,8 +23,3 @@ forward({
 $responseFail
   .on([fxSignIn.failData, fxSignUp.failData], (_, payload) => payload)
   .reset(fxSignIn.done, fxSignUp.done);
-
-loggedOut.watch(() => {
-  fxRemveTokenFromLoSt();
-  history.push('/');
-});

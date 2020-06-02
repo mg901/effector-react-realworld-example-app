@@ -1,1 +1,0 @@
-export { RootGate } from './gates';

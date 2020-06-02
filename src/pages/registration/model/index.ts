@@ -1,1 +1,0 @@
-export { submitForm } from './events';
