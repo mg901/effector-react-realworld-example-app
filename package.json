@@ -36,6 +36,7 @@
   "dependencies": {
     "effector": "^20.15.8",
     "effector-react": "^20.7.2",
+    "effector-storage": "^2.0.0",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

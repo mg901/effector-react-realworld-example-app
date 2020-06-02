@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { submitForm } from './model';
+import { formSubmitted } from './model';
 import './model/init';
 
 export const Login: React.FC = () => {
@@ -18,7 +18,7 @@ export const Login: React.FC = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          submitForm({ email, password });
+          formSubmitted({ email, password });
         }}>
         <div>
           <input

@@ -4,19 +4,17 @@ const API_ROOT = 'https://conduit.productionready.io/api';
 type Request = <T>(method: string, url: string, data?: unknown) => Promise<T>;
 
 const request: Request = async (method, url, data) => {
-  const h = new Headers();
-  const token = localStorage.getItem(TOKEN_NAME);
+  const token = JSON.parse(String(localStorage.getItem(TOKEN_NAME)));
 
-  h.append('Content-Type', 'application/json');
-
-  if (token) h.append('Authorization', `Token ${token}`);
-
-  const options: RequestInit = {
-    headers: h,
-    method: method.toUpperCase(),
+  const headers = {
+    'Content-Type': 'application/json',
   };
 
-  if (data) options.body = JSON.stringify(data);
+  const options: RequestInit = {
+    headers: token ? { ...headers, Authorization: `Token ${token}` } : headers,
+    method: method.toUpperCase(),
+    body: data ? JSON.stringify(data) : null,
+  };
 
   const response = await fetch(`${API_ROOT}${url}`, options);
 

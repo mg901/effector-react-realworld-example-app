@@ -1,1 +1,1 @@
-export { submitForm } from './events';
+export { formSubmitted } from './model';

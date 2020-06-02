@@ -41,6 +41,12 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'no-console': [
+      1,
+      {
+        allow: ['error'],
+      },
+    ],
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
     'react/jsx-closing-bracket-location': 0,

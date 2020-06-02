@@ -22,6 +22,6 @@ export type AuthorizedUser = AuthUserResponse['user'];
 
 export type Token = null | string;
 
-export type ResponseFail = Readonly<{
+export type AuthFail = Readonly<{
   errors: readonly string[];
 }>;
