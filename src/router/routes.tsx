@@ -7,7 +7,7 @@ import { LoginPage } from '../pages/login';
 import { RegistrationPage } from '../pages/registration';
 import { YourFeedPage } from '../pages/your-feed';
 import { GlobalFeedPage } from '../pages/global-feed';
-import { NotFoundPage } from '../pages/not-found';
+import { NotMatchPage } from '../pages/not-match';
 
 export const filterRoutes = (isAuth: boolean) => (
   route: RouteConfig,
@@ -54,7 +54,8 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       component: GlobalFeedPage,
     },
     {
-      component: NotFoundPage,
+      path: '*',
+      component: NotMatchPage,
     },
   ].filter(filterRoutes(isAuth));
 
