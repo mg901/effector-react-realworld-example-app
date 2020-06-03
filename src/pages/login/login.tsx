@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { formSubmitted } from './model';
 import './model/init';
 
-export const Login: React.FC = () => {
+export const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

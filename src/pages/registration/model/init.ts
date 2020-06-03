@@ -1,7 +1,7 @@
 import { forward } from 'effector';
 import { history } from '../../../router';
 import { $authorizedUser } from '../../../auth';
-import { formSubmitted, fxSignUp } from './model';
+import { formSubmitted, fxSignUp } from '.';
 
 forward({
   from: formSubmitted,

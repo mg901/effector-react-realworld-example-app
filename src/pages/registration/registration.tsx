@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { formSubmitted } from './model';
+import './model/init';
 
-export const Registration: React.FC = () => {
+export const RegistrationPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,13 +13,13 @@ export const Registration: React.FC = () => {
       <h1 className="h1">Sign Up</h1>
 
       <p>
-        <Link to="/registration">Need an account?</Link>
+        <Link to="/login">Have an account?</Link>
       </p>
 
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          formSubmitted({ email, password });
+          formSubmitted({ username, email, password });
         }}>
         <div>
           <input
