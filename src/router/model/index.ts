@@ -1,0 +1,1 @@
+export { history } from './model';

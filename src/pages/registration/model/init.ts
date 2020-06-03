@@ -1,15 +1,15 @@
 import { forward } from 'effector';
 import { history } from '../../../router';
 import { $authorizedUser } from '../../../auth';
-import { formSubmitted, fxSignIn } from './model';
+import { formSubmitted, fxSignUp } from './model';
 
 forward({
   from: formSubmitted,
-  to: fxSignIn,
+  to: fxSignUp,
 });
 
-$authorizedUser.on(fxSignIn.doneData, (_, { user }) => user);
+$authorizedUser.on(fxSignUp.doneData, (_, { user }) => user);
 
-fxSignIn.done.watch(() => {
+fxSignUp.done.watch(() => {
   history.push('/');
 });
