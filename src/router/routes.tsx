@@ -34,11 +34,25 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
     {
       path: '/login',
       exact: true,
+      forAuth: true,
+      component: () => <Redirect to="your-feed" />,
+    },
+    {
+      path: '/registration',
+      exact: true,
+      forAuth: true,
+      component: () => <Redirect to="your-feed" />,
+    },
+    {
+      path: '/login',
+      exact: true,
+      forAuth: false,
       component: LoginPage,
     },
     {
       path: '/registration',
       exact: true,
+      forAuth: false,
       component: RegistrationPage,
     },
     {
@@ -50,7 +64,6 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
     {
       path: '/global-feed',
       exact: true,
-      forAuth: false,
       component: GlobalFeedPage,
     },
     {
