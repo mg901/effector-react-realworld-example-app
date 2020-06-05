@@ -1,2 +1,2 @@
 export { history } from './model';
-export { Routes } from './routes';
+export { Routes } from './ui/routes';

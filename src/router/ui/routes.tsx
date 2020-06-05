@@ -2,12 +2,12 @@ import React, { useMemo } from 'react';
 import { useStore } from 'effector-react';
 import { Redirect } from 'react-router-dom';
 import { renderRoutes, RouteConfig } from 'react-router-config';
-import { $$isAuth } from '../auth';
-import { LoginPage } from '../pages/login';
-import { RegistrationPage } from '../pages/registration';
-import { YourFeedPage } from '../pages/your-feed';
-import { GlobalFeedPage } from '../pages/global-feed';
-import { NotMatchPage } from '../pages/not-match';
+import { $$isAuth } from '../../auth';
+import { LoginPage } from '../../pages/login';
+import { RegistrationPage } from '../../pages/registration';
+import { YourFeedPage } from '../../pages/your-feed';
+import { GlobalFeedPage } from '../../pages/global-feed';
+import { NotMatchPage } from '../../pages/not-match';
 
 export const filterRoutes = (isAuth: boolean) => (
   route: RouteConfig,
