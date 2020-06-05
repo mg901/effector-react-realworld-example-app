@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { formSubmitted } from './model';
-import './model/init';
+import { formSubmitted } from '../model';
+import '../init';
 
 export const RegistrationPage: React.FC = () => {
   const [username, setUsername] = useState('');
