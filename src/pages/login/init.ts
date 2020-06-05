@@ -1,6 +1,6 @@
 import { forward } from 'effector';
-import { $authorizedUser } from '../../../auth';
-import { formSubmitted, fxSignIn } from '.';
+import { $authorizedUser } from '../../auth';
+import { formSubmitted, fxSignIn } from './model';
 
 forward({
   from: formSubmitted,

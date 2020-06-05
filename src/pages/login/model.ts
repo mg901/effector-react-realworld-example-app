@@ -1,6 +1,6 @@
 import { createEvent, createEffect } from 'effector';
-import { post } from '../../../api';
-import { AuthUserResponse, AuthFail } from '../../../auth';
+import { post } from '../../api';
+import { AuthUserResponse, AuthFail } from '../../auth';
 import { Form } from './types';
 
 export const formSubmitted = createEvent<Form>();
