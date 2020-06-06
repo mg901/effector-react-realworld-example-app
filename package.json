@@ -40,7 +40,6 @@
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-hot-loader": "^4.12.21",
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0",
     "use-onclickoutside": "^0.3.1"
@@ -82,7 +81,6 @@
     "lint-staged": "^10.2.9",
     "node-static": "^0.7.11",
     "onchange": "^7.0.2",
-    "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
     "postcss-nested": "^4.2.1",
     "postcss-normalize": "^9.0.0",
