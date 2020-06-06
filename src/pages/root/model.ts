@@ -1,6 +1,7 @@
 import { createEffect } from 'effector';
 import { get } from '../../api';
 import { AuthUserResponse } from '../../auth';
+import { fxFetchYourFeed } from '../your-feed';
 
 export const fxFetchUser = createEffect({
   handler: () => get<AuthUserResponse>('/user'),
@@ -10,7 +11,7 @@ export const fxInitAuthApp = createEffect({
   handler: () =>
     Promise.all([
       fxFetchUser(),
-      // fxFetchPersonalFeed(),
+      fxFetchYourFeed(),
       // fxFetchTags()
     ]),
 });
