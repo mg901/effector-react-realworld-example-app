@@ -1,14 +1,3 @@
-export type AuthorizedUser = Readonly<{
-  image: string;
-  username: string;
-  bio: string;
-  email: string;
-  token: string | null;
-  id: number | null;
-  createdAt: string;
-  updatedAt: string;
-}>;
-
 export type Author = Readonly<{
   username: string;
   bio: string;
