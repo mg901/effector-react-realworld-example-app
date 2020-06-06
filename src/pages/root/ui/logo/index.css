@@ -1,0 +1,5 @@
+.logo {
+  font-size: var(--h5);
+  font-family: var(--font-family-decorative);
+  font-weight: bold;
+}
