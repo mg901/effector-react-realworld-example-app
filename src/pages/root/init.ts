@@ -1,20 +1,21 @@
-import { split, forward } from 'effector';
+import { split, sample, forward, merge } from 'effector';
 import { $$isAuth } from '../../auth';
-import { fxInitAuthApp, fxIntitNotAuthApp } from './model';
+import { RootGate, fxInitAuthApp, fxIntitNotAuthApp } from './model';
 
-const { isAuthorized, isNotAutorized } = split($$isAuth, {
-  isAuthorized: (x) => x === true,
-  isNotAutorized: (x) => x === false,
-});
+const { authenticated, notAuthenticated } = split(
+  merge([sample($$isAuth, RootGate.open), $$isAuth.updates]),
+  {
+    authenticated: (is) => is === true,
+    notAuthenticated: (is) => is === false,
+  },
+);
 
 forward({
-  from: isAuthorized,
+  from: authenticated,
   to: fxInitAuthApp,
 });
 
 forward({
-  from: isNotAutorized,
+  from: notAuthenticated,
   to: fxIntitNotAuthApp,
 });
-
-console.log('--------------------');

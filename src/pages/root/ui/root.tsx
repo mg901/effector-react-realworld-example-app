@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
+import { RootGate } from '../model';
 import '../init';
 
 export const RootPage: React.FC = ({ route }) => (
   <>
+    <RootGate />
     <header>
       <Link to="/">Home</Link>
 
