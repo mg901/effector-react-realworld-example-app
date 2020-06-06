@@ -4,6 +4,7 @@ import { Routes } from '../../../router';
 import { Header } from './header';
 import { Logo } from './logo';
 import { Nav } from './nav';
+import { NavLink } from '../../../ui';
 import { RootGate } from '../model';
 import '../init';
 
@@ -13,8 +14,12 @@ export const RootPage: React.FC = () => (
     <Header>
       <Logo title="conduit" />
       <Nav>
-        <Link to="/login">Sign In</Link>
-        <Link to="/registration">Sign Up</Link>
+        <NavLink as={Link} to="/login">
+          Sign In
+        </NavLink>
+        <NavLink as={Link} to="/registration">
+          Sign Up
+        </NavLink>
       </Nav>
     </Header>
     <Routes />
