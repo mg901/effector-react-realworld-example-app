@@ -1,1 +1,2 @@
-export { GlobalFeedPage } from './global-feed';
+export { GlobalFeedPage } from './ui/global-feed';
+export { fxFetchGlobalFeed } from './model';
