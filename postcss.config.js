@@ -1,6 +1,5 @@
 /* eslint-disable import/no-unresolved */
 const autoprefixer = require('autoprefixer');
-const postcssNormalize = require('postcss-normalize');
 const postcssPresetEnv = require('postcss-preset-env');
 const { typographist } = require('@typographist/postcss');
 
@@ -10,7 +9,6 @@ module.exports = {
     autoprefixer({
       grid: true,
     }),
-    postcssNormalize(),
     typographist({
       base: ['16px'],
       lineHeight: 1.5,

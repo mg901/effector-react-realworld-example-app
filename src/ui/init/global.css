@@ -1,3 +1,4 @@
+@import 'normalize.css';
 :root,
 body {
   box-sizing: border-box;
@@ -58,8 +59,10 @@ img {
   margin-bottom: 2rem;
 }
 
-.link {
-  display: block;
-  color: var(--link-color-primary);
-  text-decoration: none;
+:global {
+  .link {
+    display: block;
+    color: var(--link-color-primary);
+    text-decoration: none;
+  }
 }

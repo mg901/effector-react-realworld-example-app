@@ -17,49 +17,48 @@ body {
   color: var(--deep-grey);
 }
 
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
+@custom-selector :--heading h1, h2, h3, h4, h5, h6;
+
+:global :--heading {
   font-weight: var(--font-bold);
 }
 
-.h1 {
-  @h1;
-}
+:global {
+  .h1 {
+    @h1;
+  }
 
-.h2 {
-  @h2;
-}
+  .h2 {
+    @h2;
+  }
 
-.h3 {
-  @h3;
-}
+  .h3 {
+    @h3;
+  }
 
-.h4 {
-  @h4;
-}
+  .h4 {
+    @h4;
+  }
 
-.h5 {
-  @h5;
-}
+  .h5 {
+    @h5;
+  }
 
-.h6 {
-  @h6;
-  font-style: italic;
-}
+  .h6 {
+    @h6;
+    font-style: italic;
+  }
 
-p {
-  margin-top: 0;
-  margin-bottom: 2rem;
-}
+  p {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
 
-.sm-font-size {
-  font-size: -1step;
-}
+  .sm-font-size {
+    font-size: -1step;
+  }
 
-.xs-font-size {
-  font-size: -2step;
+  .xs-font-size {
+    font-size: -2step;
+  }
 }

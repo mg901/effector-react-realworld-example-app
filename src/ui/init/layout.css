@@ -1,17 +1,19 @@
-.app {
-  min-height: 100vh;
-}
+:global {
+  .app {
+    min-height: 100vh;
+  }
 
-.content {
-  display: grid;
-  grid-template-columns: [main] 9fr [sidebar] 3fr;
-}
+  .content {
+    display: grid;
+    grid-template-columns: [main] 9fr [sidebar] 3fr;
+  }
 
-.sidebar {
-  grid-column: sidebar;
-}
+  .sidebar {
+    grid-column: sidebar;
+  }
 
-.main {
-  grid-column: main;
-  margin-right: 2rem;
+  .main {
+    grid-column: main;
+    margin-right: 2rem;
+  }
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { App } from './app';
+import './ui/init/global.css';
+import './ui/init/typography.css';
+import './ui/init/layout.css';
 
-import 'normalize.css';
+import { App } from './app';
 import './auth/init';
 
 render(<App />, document.getElementById('root'));

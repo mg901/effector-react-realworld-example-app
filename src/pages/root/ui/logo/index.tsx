@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const Logo: React.FC<Props> = ({ title }) => (
-  <Link to="/" className={css.logo}>
+  <Link to="/" className={`link ${css.logo}`}>
     {title.toLowerCase()}
   </Link>
 );
