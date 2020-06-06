@@ -1,5 +1,6 @@
 .link {
-  display: block;
+  display: inline-flex;
+  padding: 1rem;
   color: var(--link-color-primary);
   text-decoration: none;
 }

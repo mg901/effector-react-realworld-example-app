@@ -58,11 +58,3 @@ ol {
 img {
   margin-bottom: 2rem;
 }
-
-:global {
-  .link {
-    display: block;
-    color: var(--link-color-primary);
-    text-decoration: none;
-  }
-}

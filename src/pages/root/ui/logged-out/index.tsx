@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Link } from '../../../../ui';
+import { NavLink as Link } from '../../../../ui';
 
 export const LoggedOut: React.FC = () => (
   <>

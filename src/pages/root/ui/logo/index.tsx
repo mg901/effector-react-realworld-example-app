@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link } from '../../../../ui';
 import * as css from './index.css';
 
 type Props = {
@@ -7,7 +8,7 @@ type Props = {
 };
 
 export const Logo: React.FC<Props> = ({ title }) => (
-  <Link to="/" className={`link ${css.logo}`}>
+  <Link as={RouterLink} to="/" className={css.logo}>
     {title.toLowerCase()}
   </Link>
 );

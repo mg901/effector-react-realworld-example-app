@@ -1,20 +1,19 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { LinkProps } from 'react-router-dom';
+import { NavLinkProps } from 'react-router-dom';
 import * as css from './index.css';
 
-type Props = LinkProps & {
-  as: React.ComponentType<LinkProps>;
+type Props = NavLinkProps & {
+  as: React.ComponentType<NavLinkProps>;
   children: React.ReactNode;
 };
 
-export const Link: React.FC<Props> = ({
+export const NavLink: React.FC<Props> = ({
   as: Component,
   children,
-  className,
   ...props
 }) => (
-  <Component className={`${css.link} ${className}`} {...props}>
+  <Component className={css.link} {...props}>
     {children}
   </Component>
 );
