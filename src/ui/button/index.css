@@ -15,12 +15,12 @@
   padding: var(--btn-padding, 0 0.5rem);
 }
 
-.btn_default {
+.btnDefault {
   border-radius: var(--sm-radius);
   --btn-border-color: red;
   --btn-color: red;
 }
 
-.btn_lg {
+.btnLg {
   --btn-padding: 0.5rem 3rem;
 }
