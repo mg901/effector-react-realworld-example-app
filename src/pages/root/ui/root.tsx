@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Routes } from '../../../router';
+import { Routes, AuthBranch } from '../../../router';
 import { Header } from './header';
 import { Logo } from './logo';
 import { Nav } from './nav';
@@ -14,12 +14,14 @@ export const RootPage: React.FC = () => (
     <Header>
       <Logo title="conduit" />
       <Nav>
-        <Link as={RouterLink} to="/login">
-          Sign In
-        </Link>
-        <Link as={RouterLink} to="/registration">
-          Sign Up
-        </Link>
+        <AuthBranch check="anon">
+          <Link as={RouterLink} to="/login">
+            Sign In
+          </Link>
+          <Link as={RouterLink} to="/registration">
+            Sign Up
+          </Link>
+        </AuthBranch>
       </Nav>
     </Header>
     <Routes />
