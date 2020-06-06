@@ -1,0 +1,26 @@
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  box-shadow: none;
+  line-height: inherit;
+  text-decoration: none;
+  background-color: var(--btn-bg, var(--white));
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--btn-border-color, var(--border-color));
+  color: var(--btn-color, inherit);
+  padding: var(--btn-padding, 0 0.5rem);
+}
+
+.btn_default {
+  border-radius: var(--sm-radius);
+  --btn-border-color: red;
+  --btn-color: red;
+}
+
+.btn_lg {
+  --btn-padding: 0.5rem 3rem;
+}
