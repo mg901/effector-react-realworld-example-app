@@ -1,7 +1,8 @@
 import React from 'react';
+import { Container } from '../ui';
 
 export const Home: React.FC = () => (
-  <div>
+  <Container>
     <h1>Home</h1>
-  </div>
+  </Container>
 );

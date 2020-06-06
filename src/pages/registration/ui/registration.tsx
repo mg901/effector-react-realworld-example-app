@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Container } from '../../../ui';
 import { formSubmitted } from '../model';
 import '../init';
 
@@ -9,7 +10,7 @@ export const RegistrationPage: React.FC = () => {
   const [password, setPassword] = useState('');
 
   return (
-    <div>
+    <Container>
       <h1 className="h1">Sign Up</h1>
 
       <p>
@@ -44,6 +45,6 @@ export const RegistrationPage: React.FC = () => {
         />
         <button type="submit">Sign Up</button>
       </form>
-    </div>
+    </Container>
   );
 };
