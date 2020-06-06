@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '../../../../ui/container';
+import { Container } from '../container';
 import * as css from './index.css';
 
 type Props = {
