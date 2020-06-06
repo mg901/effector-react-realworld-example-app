@@ -20,6 +20,4 @@ export const $authorizedUser = createStore<AuthorizedUser>({
   username: '',
 });
 
-$authorizedUser.watch((x) => console.log('user', x));
-
 export const $authFail = createStore<AuthFail>({ errors: [] });
