@@ -1,1 +1,1 @@
-export { Root } from './ui/root';
+export { RootPage } from './ui/root';

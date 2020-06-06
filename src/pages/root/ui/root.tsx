@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import '../init';
 
-export const Root: React.FC = ({ route }) => (
+export const RootPage: React.FC = ({ route }) => (
   <>
     <header>
       <Link to="/">Home</Link>
