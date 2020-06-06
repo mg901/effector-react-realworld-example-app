@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import { Routes } from '../../../router';
 import { Header } from './header';
 import { Logo } from './logo';
 import { Nav } from './nav';
-import { NavLink } from '../../../ui';
+import { Link } from '../../../ui';
 import { RootGate } from '../model';
 import '../init';
 
@@ -14,12 +14,12 @@ export const RootPage: React.FC = () => (
     <Header>
       <Logo title="conduit" />
       <Nav>
-        <NavLink as={Link} to="/login">
+        <Link as={RouterLink} to="/login">
           Sign In
-        </NavLink>
-        <NavLink as={Link} to="/registration">
+        </Link>
+        <Link as={RouterLink} to="/registration">
           Sign Up
-        </NavLink>
+        </Link>
       </Nav>
     </Header>
     <Routes />
