@@ -4,6 +4,7 @@ import { history } from './router';
 import { RootPage } from './pages';
 
 import './ui/init/global.css';
+import './ui/init/typography.css';
 import './ui/init/layout.css';
 
 export const App: React.FC = () => (
