@@ -6,3 +6,4 @@ export const h5: string;
 export const h6: string;
 export const smFontSize: string;
 export const xsFontSize: string;
+export const textSemibold: string;

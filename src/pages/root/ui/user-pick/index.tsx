@@ -10,6 +10,6 @@ type Props = Readonly<{
 
 export const UserPick: React.FC<Props> = ({ image, username, onClick }) => (
   <Button className={css.userPickWrap} onClick={onClick}>
-    <img src={image} className={css.userPickWrap} alt={username} />
+    <img src={image} className={css.userPick} alt={username} />
   </Button>
 );

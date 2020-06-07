@@ -6,7 +6,8 @@
   --h4: 3step;
   --h5: 2step;
   --h6: 1step;
-  --font-bold: 700;
+  --font-bold: 600;
+  --font-semibold: 600;
   --font-family-base: 'Source Sans Pro', sans-serif;
   --font-family-decorative: 'Titillium Web', sans-serif;
 }
@@ -60,5 +61,9 @@ body {
 
   .xs-font-size {
     font-size: -2step;
+  }
+
+  .text-semibold {
+    font-weight: var(--font-semibold);
   }
 }

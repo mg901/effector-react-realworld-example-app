@@ -11,7 +11,7 @@ type Props = LinkProps & {
 export const Link: React.FC<Props> = ({
   as: Component,
   children,
-  className,
+  className = '',
   ...props
 }) => (
   <Component className={`${css.link} ${className}`} {...props}>

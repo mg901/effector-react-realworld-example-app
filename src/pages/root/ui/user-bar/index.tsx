@@ -1,7 +1,10 @@
 import React, { useState, useRef } from 'react';
 import useClickOutside from 'use-onclickoutside';
+import { Link as RouterLink } from 'react-router-dom';
+import { Link } from '../../../../ui';
 import { UserPick } from '../user-pick';
 import { DownDownMenu } from '../dropdown-menu';
+import * as css from './index.css';
 
 type Props = Readonly<{
   image: string;
@@ -20,6 +23,8 @@ export const UserBar: React.FC<Props> = ({
   const ref = useRef(null);
   useClickOutside(ref, () => setState(false));
 
+  const handleClick = (): void => setState(false);
+
   return (
     <>
       <UserPick
@@ -27,13 +32,35 @@ export const UserBar: React.FC<Props> = ({
         username={username}
         onClick={(): void => setState(true)}
       />
-      <DownDownMenu
-        ref={ref}
-        username={username}
-        show={state}
-        onLinkClick={(): void => setState(false)}
-        onLogOutClick={onLogOutClick}
-      />
+      <DownDownMenu ref={ref} show={state}>
+        <li>
+          <Link
+            as={RouterLink}
+            to={`/@${username}`}
+            className={css.link}
+            onClick={handleClick}>
+            Signed in as <span className={css.textStong}>{username}</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            as={RouterLink}
+            to="/settings"
+            className={css.link}
+            onClick={handleClick}>
+            Settings
+          </Link>
+        </li>
+        <li>
+          <Link
+            as={RouterLink}
+            to="/"
+            className={css.link}
+            onClick={onLogOutClick}>
+            logout
+          </Link>
+        </li>
+      </DownDownMenu>
     </>
   );
 };
