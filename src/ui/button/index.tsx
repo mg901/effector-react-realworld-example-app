@@ -1,30 +1,39 @@
 /* eslint-disable react/button-has-type */
-import React from 'react';
+import React, { forwardRef } from 'react';
 import * as css from './index.css';
 
-type Props = Readonly<{
-  children: React.ReactNode;
-  form?: string;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  className?: string;
-  disabled?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-}>;
+type Props = {
+  variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
+};
 
-export const Button: React.FC<Props> = ({
-  form,
-  type = 'button',
-  className = '',
-  disabled = false,
-  children,
-  onClick,
-}) => (
-  <button
-    form={form}
-    type={type}
-    className={`${css.btn} ${css.btnDefault} ${className}`}
-    onClick={onClick}
-    disabled={disabled}>
-    {children}
-  </button>
+export const Button = forwardRef<
+  HTMLButtonElement,
+  Props & React.ButtonHTMLAttributes<HTMLButtonElement>
+>(
+  (
+    {
+      variant,
+      size,
+      form,
+      type = 'button',
+      disabled,
+      className = '',
+      children,
+      onClick,
+    },
+    ref,
+  ) => (
+    <button
+      ref={ref}
+      data-variant={variant}
+      data-size={size}
+      form={form}
+      type={type}
+      className={`${css.btn} ${css.btnDefault} ${className}`}
+      onClick={onClick}
+      disabled={disabled}>
+      {children}
+    </button>
+  ),
 );
