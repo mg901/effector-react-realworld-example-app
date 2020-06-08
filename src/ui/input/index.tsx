@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import { FormGroup } from '../form-group';
 import * as css from './index.css';
 
 type Props = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -7,7 +8,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export const Input = forwardRef<HTMLInputElement, Props>(
   ({ label, id, className = '', ...props }, ref) => (
-    <div>
+    <FormGroup>
       {label && <label htmlFor={id}>{label}</label>}
       <input
         ref={ref}
@@ -16,6 +17,6 @@ export const Input = forwardRef<HTMLInputElement, Props>(
         className={`${css.input} ${className}`}
         {...props}
       />
-    </div>
+    </FormGroup>
   ),
 );
