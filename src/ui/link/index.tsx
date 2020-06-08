@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { LinkProps } from 'react-router-dom';
 import * as css from './index.css';

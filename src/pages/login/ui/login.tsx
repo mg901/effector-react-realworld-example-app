@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Container } from '../../../ui';
+import { Container, Form } from '../../../ui';
 import { formSubmitted } from '../model';
 import '../init';
 
@@ -16,7 +16,7 @@ export const LoginPage: React.FC = () => {
         <Link to="/registration">Need an account?</Link>
       </p>
 
-      <form
+      <Form
         onSubmit={(e) => {
           e.preventDefault();
           formSubmitted({ email, password });
@@ -36,7 +36,7 @@ export const LoginPage: React.FC = () => {
           onChange={(e) => setPassword(e.currentTarget.value)}
         />
         <button type="submit">Sign In</button>
-      </form>
+      </Form>
     </Container>
   );
 };

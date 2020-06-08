@@ -2,37 +2,23 @@
 import React, { forwardRef } from 'react';
 import * as css from './index.css';
 
-type Props = {
+type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   size?: 'sm' | 'md' | 'lg';
 };
 
-export const Button = forwardRef<
-  HTMLButtonElement,
-  Props & React.ButtonHTMLAttributes<HTMLButtonElement>
->(
+export const Button = forwardRef<HTMLButtonElement, Props>(
   (
-    {
-      variant,
-      size,
-      form,
-      type = 'button',
-      disabled,
-      className = '',
-      children,
-      onClick,
-    },
+    { variant, size, type = 'button', className = '', children, ...props },
     ref,
   ) => (
     <button
       ref={ref}
       data-variant={variant}
       data-size={size}
-      form={form}
       type={type}
       className={`${css.btn} ${css.btnDefault} ${className}`}
-      onClick={onClick}
-      disabled={disabled}>
+      {...props}>
       {children}
     </button>
   ),

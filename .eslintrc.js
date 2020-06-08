@@ -57,6 +57,12 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['./src/ui/**/*.tsx'],
+      rules: {
+        'react/jsx-props-no-spreading': 0,
+      },
+    },
+    {
       files: ['*.config.js'],
       rules: {
         '@typescript-eslint/no-var-requires': 0,
