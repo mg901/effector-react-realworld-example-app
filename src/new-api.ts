@@ -4,9 +4,10 @@ import { $token } from './auth';
 
 export const $backendUrl = createStore<string>(API_ROOT);
 
-type RequestType = RequestInit & {
+type RequestType = Omit<RequestInit, 'headers'> & {
   path: string;
   method: 'get' | 'post' | 'put' | 'delete';
+  headers?: Record<string, string>;
 };
 
 export const InitialRequestFx = createEffect<RequestType, any, any>({
