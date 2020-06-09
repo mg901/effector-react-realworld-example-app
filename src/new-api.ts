@@ -4,19 +4,12 @@ import { $token } from './auth';
 
 export const $backendUrl = createStore<string>(API_ROOT);
 
-// type RequestType = {
-//   path: string;
-//   method: string;
-//   body?: object;
-//   headers?: Record<string, string>;
-// };
-
 type RequestType = RequestInit & {
   path: string;
   method: 'get' | 'post' | 'put' | 'delete';
 };
 
-export const fxRequestInternal = createEffect<RequestType, any, any>({
+export const InitialRequestFx = createEffect<RequestType, any, any>({
   handler: async ({ path, method, body, headers }) => {
     const response = await fetch(path, {
       method: method.toUpperCase(),
@@ -35,18 +28,18 @@ export const fxRequestInternal = createEffect<RequestType, any, any>({
   },
 });
 
-export const fxRequest = attach({
+export const AnonimusRequestFx = attach({
   source: $backendUrl,
-  effect: fxRequestInternal,
+  effect: InitialRequestFx,
   mapParams: ({ path, ...rest }: RequestType, backendUrl) => ({
     ...rest,
     path: `${backendUrl}${path}`,
   }),
 });
 
-export const fxRequestAuthorized = attach({
+export const AuthorizedRequestFx = attach({
   source: $token,
-  effect: fxRequest,
+  effect: AnonimusRequestFx,
   mapParams: ({ headers, ...params }: RequestType, token) => {
     if (!token) {
       throw new Error('authorization token required');
@@ -59,26 +52,23 @@ export const fxRequestAuthorized = attach({
   },
 });
 
-type Foo = RequestType & {
+type CreateRequestOpts = RequestType & {
   authorized: boolean;
 };
 
-const createRequest = <Payload extends RequestType, Done, Fail>({
+const createRequest = <Payload, Done, Fail>({
   method,
   path,
   authorized,
-}: Foo): Effect<Payload, Done, Fail> =>
+}: CreateRequestOpts) =>
   attach({
-    effect: authorized ? fxRequestAuthorized : fxRequest,
-    mapParams: (body) => ({
-      method,
-      path,
-      body,
-    }),
-  });
+    effect: authorized ? AuthorizedRequestFx : AnonimusRequestFx,
+    mapParams: (params) => ({ method, path, ...params }),
+  }) as Effect<Payload, Done, Fail>;
 
-export const createUser = createRequest<Foo, null, Error>({
+export const createUserFx = createRequest<RequestType, null, Error>({
+  authorized: true,
   method: 'post',
   path: '/users',
-  authorized: true,
+  body: JSON.stringify({ foo: 1 }),
 });
