@@ -5,6 +5,5 @@ import './ui/init/typography.css';
 import './ui/init/layout.css';
 
 import { App } from './app';
-import './auth/init';
 
 render(<App />, document.getElementById('root'));
