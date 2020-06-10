@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from '../../../ui';
 
-export const YourFeedPage: React.FC = () => (
+export const PersonalFeedPage: React.FC = () => (
   <Container>
     <h1>Your feed</h1>
   </Container>

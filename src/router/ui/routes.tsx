@@ -7,7 +7,7 @@ import {
   LoginPage,
   RegistrationPage,
   GlobalFeedPage,
-  YourFeedPage,
+  PersonalFeedPage,
   NotMatchPage,
 } from '../../pages';
 
@@ -25,7 +25,7 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       path: '/',
       exact: true,
       forAuth: true,
-      component: () => <Redirect to="your-feed" />,
+      component: () => <Redirect to="personal-feed" />,
     },
     {
       path: '/',
@@ -37,13 +37,13 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       path: '/login',
       exact: true,
       forAuth: true,
-      component: () => <Redirect to="your-feed" />,
+      component: () => <Redirect to="personal-feed" />,
     },
     {
       path: '/registration',
       exact: true,
       forAuth: true,
-      component: () => <Redirect to="your-feed" />,
+      component: () => <Redirect to="personal-feed" />,
     },
     {
       path: '/login',
@@ -58,10 +58,10 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       component: RegistrationPage,
     },
     {
-      path: '/your-feed',
+      path: '/personal-feed',
       exact: true,
       forAuth: true,
-      component: YourFeedPage,
+      component: PersonalFeedPage,
     },
     {
       path: '/global-feed',
