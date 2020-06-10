@@ -1,5 +1,5 @@
 import { split, sample, forward, merge } from 'effector';
-import { $$isAuth, $authorizedUser } from '../../auth';
+import { $$isAuthorized, $authorizedUser } from '../../auth';
 import {
   RootGate,
   fxInitAuthApp,
@@ -8,7 +8,7 @@ import {
 } from './model';
 
 const { authenticated, notAuthenticated } = split(
-  merge([sample($$isAuth, RootGate.open), $$isAuth.updates]),
+  merge([sample($$isAuthorized, RootGate.open), $$isAuthorized.updates]),
   {
     authenticated: (is) => is === true,
     notAuthenticated: (is) => is === false,

@@ -7,7 +7,7 @@ export const loggedOutClicked = createEvent();
 
 const createStorageStore = withStorage(createStore);
 export const $token = createStorageStore<Token>(null, { key: TOKEN_NAME });
-export const $$isAuth = $token.map(Boolean);
+export const $$isAuthorized = $token.map(Boolean);
 
 export const $authorizedUser = createStore<AuthorizedUser>({
   bio: '',

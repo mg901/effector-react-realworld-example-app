@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useStore } from 'effector-react';
 import { Redirect } from 'react-router-dom';
 import { renderRoutes, RouteConfig } from 'react-router-config';
-import { $$isAuth } from '../../auth';
+import { $$isAuthorized } from '../../auth';
 import {
   LoginPage,
   RegistrationPage,
@@ -75,7 +75,7 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
   ].filter(filterRoutes(isAuth));
 
 export const Routes = (): JSX.Element => {
-  const isAuth = useStore($$isAuth);
+  const isAuth = useStore($$isAuthorized);
 
   return useMemo(() => renderRoutes(makeRoutes(isAuth)), [isAuth]);
 };
