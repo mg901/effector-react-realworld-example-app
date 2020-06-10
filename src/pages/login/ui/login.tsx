@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Form } from '../../../ui';
+import { LINKS } from '../../../router';
 import { formSubmitted } from '../model';
 import '../init';
 
@@ -13,7 +14,7 @@ export const LoginPage: React.FC = () => {
       <h1 className="h1">Sign In</h1>
 
       <p>
-        <Link to="/registration">Need an account?</Link>
+        <Link to={LINKS.REGISTRATION}>Need an account?</Link>
       </p>
 
       <Form

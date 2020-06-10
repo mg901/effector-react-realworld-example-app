@@ -1,4 +1,5 @@
 import React from 'react';
+import { APP_NAME } from '../../../../config';
 import { Routes, AuthBranch } from '../../../../router';
 import { Header, Container } from '../../../../ui';
 import { Logo } from '../logo';
@@ -6,6 +7,7 @@ import { Nav } from '../nav';
 import { LoggedOut } from '../logged-out';
 import { LoggedIn } from '../logged-in';
 import { Banner } from '../banner';
+import { Tabs } from '../tabs';
 import { RootGate } from '../../model';
 import '../../init';
 
@@ -15,7 +17,7 @@ export const RootPage: React.FC = () => (
   <div className={css.app}>
     <RootGate />
     <Header>
-      <Logo title="conduit" />
+      <Logo title={APP_NAME} />
       <Nav>
         <AuthBranch check="anon">
           <LoggedOut />
@@ -28,6 +30,7 @@ export const RootPage: React.FC = () => (
     <Banner />
     <Container className={css.grid}>
       <main className={css.feed}>
+        <Tabs />
         <Routes />
       </main>
       <aside className={css.sidebar} />
