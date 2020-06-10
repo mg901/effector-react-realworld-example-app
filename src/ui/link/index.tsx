@@ -4,7 +4,6 @@ import * as css from './index.css';
 
 type Props = LinkProps & {
   as: React.ComponentType<LinkProps>;
-  children: React.ReactNode;
 };
 
 export const Link: React.FC<Props> = ({

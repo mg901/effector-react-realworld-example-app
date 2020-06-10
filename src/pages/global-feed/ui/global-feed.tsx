@@ -1,10 +1,10 @@
 import React from 'react';
 import { useGate } from 'effector-react';
-import { GlobalFeedGate } from '../model';
+import { PageGate } from '../model';
 import '../init';
 
 export const GlobalFeedPage: React.FC = () => {
-  useGate(GlobalFeedGate);
+  useGate(PageGate);
 
   return <h1>Global Feed</h1>;
 };

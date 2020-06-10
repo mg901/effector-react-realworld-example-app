@@ -1,4 +1,2 @@
-type LimitFn = (count: number, p?: number) => string;
-
-export const limit: LimitFn = (count, p = 0) =>
+export const limit = (count: number, p = 0): string =>
   `limit=${count}&offset=${p * count}`;

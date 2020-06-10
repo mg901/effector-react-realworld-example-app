@@ -4,7 +4,7 @@ import { get } from '../../api';
 import { limit } from '../../library';
 import { Feed } from '../types';
 
-export const GlobalFeedGate = createGate();
+export const PageGate = createGate();
 export const currentPageSetted = createEvent<number>();
 
 export const getGlobalFeedFx = createEffect({

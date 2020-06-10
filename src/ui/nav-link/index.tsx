@@ -5,7 +5,6 @@ import * as css from './index.css';
 
 type Props = NavLinkProps & {
   as: React.ComponentType<NavLinkProps>;
-  children: React.ReactNode;
 };
 
 export const NavLink: React.FC<Props> = ({
