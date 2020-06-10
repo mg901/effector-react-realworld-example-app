@@ -1,2 +1,2 @@
 export { GlobalFeedPage } from './ui/global-feed';
-export { fxFetchGlobalFeed } from './model';
+export { getGlobalFeedFx } from './model';

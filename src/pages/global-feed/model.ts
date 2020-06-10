@@ -1,19 +1,21 @@
-import { createEvent, createEffect, restore } from 'effector';
+import { createEvent, createEffect, createStore } from 'effector';
+import { createGate } from 'effector-react';
 import { get } from '../../api';
 import { limit } from '../../library';
 import { Feed } from '../types';
 
+export const GlobalFeedGate = createGate();
 export const currentPageSetted = createEvent<number>();
 
-export const fxFetchGlobalFeed = createEffect({
+export const getGlobalFeedFx = createEffect({
   handler: (page?: number) => get<Feed>(`/articles?${limit(10, page)}`),
 });
 
-export const $currentPage = restore(currentPageSetted, 1);
-export const $globalFeed = restore<Feed>(fxFetchGlobalFeed.doneData, {
+export const $currentPage = createStore<number>(1);
+export const $globalFeed = createStore<Feed>({
   articles: [],
   articlesCount: 0,
 });
 
-export const $articles = $globalFeed.map(({ articles }) => articles);
-export const $total = $globalFeed.map(({ articlesCount }) => articlesCount);
+export const $$articles = $globalFeed.map((x) => x.articles);
+export const $$total = $globalFeed.map((x) => x.articlesCount);
