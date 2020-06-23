@@ -5,4 +5,5 @@ export { Container } from './container';
 export { Form } from './form';
 export { Link } from './link';
 export { NavLink } from './nav-link';
+export { Pagination } from './pagination';
 export { Textarea } from './textarea';

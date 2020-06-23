@@ -1,7 +1,4 @@
-.pagination {
-}
-
-.pagination__list {
+.list {
   display: flex;
   list-style: none;
   justify-content: center;
@@ -9,7 +6,7 @@
   margin: 0;
 }
 
-.pagination__btn {
+.btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,15 +21,15 @@
   cursor: pointer;
 }
 
-.pagination__btn:hover,
-.pagination__btn:focus {
+.btn:hover,
+.btn:focus {
   border: 1px solid rgba(0, 0, 0, 0.6);
   color: black;
   font-weight: bold;
   outline: none;
 }
 
-.pagination__btn[data-active='true'] {
+.btn[data-active='true'] {
   color: black;
   font-weight: bold;
   background-color: black;

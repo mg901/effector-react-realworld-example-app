@@ -11,7 +11,7 @@ export const getGlobalFeedFx = createEffect({
   handler: (page?: number) => get<Feed>(`/articles?${limit(10, page)}`),
 });
 
-export const $currentPage = createStore<number>(1);
+export const $currentPage = createStore<number>(0);
 export const $globalFeed = createStore<Feed>({
   articles: [],
   articlesCount: 0,

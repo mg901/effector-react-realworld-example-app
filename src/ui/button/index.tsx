@@ -5,15 +5,25 @@ import * as css from './index.css';
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
   size?: 'sm' | 'md' | 'lg';
+  active?: boolean;
 };
 
 export const Button = forwardRef<HTMLButtonElement, Props>(
   (
-    { variant, size, type = 'button', className = '', children, ...props },
+    {
+      variant,
+      size,
+      active,
+      type = 'button',
+      className = '',
+      children,
+      ...props
+    },
     ref,
   ) => (
     <button
       ref={ref}
+      data-active={active}
       data-variant={variant}
       data-size={size}
       type={type}
