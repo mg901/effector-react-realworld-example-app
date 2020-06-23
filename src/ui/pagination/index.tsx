@@ -2,15 +2,15 @@
 import React from 'react';
 import { Button } from '..';
 import * as css from './index.css';
-import { usePagination } from './use-pagination';
+import { usePages } from './use-pages';
 import { Options } from './types';
 
 const LEFT_PAGE = 'LEFT';
 const RIGHT_PAGE = 'RIGHT';
 
 export const Pagination: React.FC<Options> = (props) => {
-  const { total, limit } = props;
-  const { pages, goToPage, toRight, toLeft } = usePagination(props);
+  const { total, limit, currentPage } = props;
+  const { pages, goToPage, toRight, toLeft } = usePages(props);
 
   return total <= 0 || total < limit ? null : (
     <nav className="pagination">
@@ -19,11 +19,8 @@ export const Pagination: React.FC<Options> = (props) => {
           switch (page) {
             case LEFT_PAGE:
               return (
-                <li>
-                  <Button
-                    key={idx}
-                    className={css.btn}
-                    onClick={() => goToPage(toLeft)}>
+                <li key={idx}>
+                  <Button className={css.btn} onClick={() => goToPage(toLeft)}>
                     <span>&laquo;</span>
                   </Button>
                 </li>
@@ -31,21 +28,17 @@ export const Pagination: React.FC<Options> = (props) => {
 
             case RIGHT_PAGE:
               return (
-                <li>
-                  <Button
-                    key={idx}
-                    className={css.btn}
-                    onClick={() => goToPage(toRight)}>
+                <li key={idx}>
+                  <Button className={css.btn} onClick={() => goToPage(toRight)}>
                     <span>&raquo;</span>
                   </Button>
                 </li>
               );
             default:
               return (
-                <li>
+                <li key={idx}>
                   <Button
-                    key={idx}
-                    active={page === props.currentPage}
+                    active={page === currentPage}
                     className={css.btn}
                     onClick={() => goToPage(page as number)}>
                     {page}

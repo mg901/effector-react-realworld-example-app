@@ -1,4 +1,4 @@
-import { sample } from 'effector';
+import { sample, merge } from 'effector';
 import {
   PageGate,
   getGlobalFeedFx,
@@ -12,6 +12,6 @@ $globalFeed.on(getGlobalFeedFx.doneData, (_, payload) => payload);
 
 sample({
   source: $currentPage,
-  clock: PageGate.open,
+  clock: merge([PageGate.open, currentPageSetted]),
   target: getGlobalFeedFx,
 });

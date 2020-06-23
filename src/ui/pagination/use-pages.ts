@@ -15,7 +15,7 @@ export const range: RangeFn = ({ from: i, to, step = 1 }) => {
   return list;
 };
 
-export const usePagination: UsePagination = ({
+export const usePages: UsePagination = ({
   currentPage,
   total,
   limit,
