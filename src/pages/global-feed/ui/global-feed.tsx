@@ -27,7 +27,7 @@ export const GlobalFeedPage: React.FC = () => {
         ))}
       </ul>
       <Pagination
-        currentPage={currentPage}
+        currentPage={currentPage as number}
         total={total}
         onChange={currentPageSetted}
         limit={10}

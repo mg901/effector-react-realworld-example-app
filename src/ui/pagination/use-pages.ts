@@ -80,6 +80,8 @@ export const usePages: UsePagination = ({
       }
     }
 
+    console.log('totalPages', totalPages);
+
     return range({ from: 1, to: totalPages });
   };
 
