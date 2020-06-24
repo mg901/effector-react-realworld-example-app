@@ -15,8 +15,6 @@ export const getYourFeedFx = createEffect({
     get<Feed>(`/articles/feed?${limit(10, (page as number) - 1)}`),
 });
 
-getYourFeedFx.finally.watch((x) => console.log('your feed', x));
-
 export const $currentPage = createStorageStore<CurrentPage>(1, {
   key: 'your-feed/current-page',
 });

@@ -1,23 +1,34 @@
 import { createEvent, createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
-import withStorage from 'effector-storage';
+import { Location, History } from 'history';
+import { history } from '../../router';
+
 import { get } from '../../api';
 import { limit } from '../../library';
 import { Feed } from '../types';
-import { CurrentPage } from './types';
 
-const createStorageStore = withStorage(createStore);
 export const PageGate = createGate();
 export const currentPageSetted = createEvent<number>();
 
 export const getGlobalFeedFx = createEffect({
-  handler: (page: CurrentPage) =>
-    get<Feed>(`/articles?${limit(10, (page as number) - 1)}`),
+  handler: (page: number) => get<Feed>(`/articles?${limit(10, page - 1)}`),
 });
 
-export const $currentPage = createStorageStore<CurrentPage>(1, {
-  key: 'global-feed/current-page',
+export const setQueryParamFx = createEffect({
+  handler: (page: number) => {
+    history.push(page > 1 ? `/global-feed?page=${page}` : '/global-feed');
+  },
 });
+
+export const getPageFromQueryParamsFx = createEffect({
+  handler: ({ search }: Location<History.PoorMansUnknown>) => {
+    const page = new URLSearchParams(search).get('page') ?? 1;
+
+    return page ? Number(page) : 1;
+  },
+});
+
+export const $currentPage = createStore<number>(1);
 
 export const $globalFeed = createStore<Feed>({
   articles: [],
