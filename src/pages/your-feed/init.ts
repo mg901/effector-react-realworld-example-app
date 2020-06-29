@@ -1,17 +1,40 @@
-import { sample } from 'effector';
+import { sample, merge, forward } from 'effector';
+import { $location } from '../../router';
 import {
   PageGate,
   getYourFeedFx,
+  getPageFromQueryParamsFx,
+  setQueryParamFx,
   $currentPage,
   currentPageSetted,
-  $personalFeed,
+  $yourFeed,
 } from './model';
-
-$currentPage.on(currentPageSetted, (_, payload) => payload);
-$personalFeed.on(getYourFeedFx.doneData, (_, payload) => payload);
 
 sample({
   source: $currentPage,
-  clock: PageGate.open,
+  clock: merge([PageGate.open, currentPageSetted]),
   target: getYourFeedFx,
+});
+
+sample({
+  source: $location,
+  clock: PageGate.open,
+  target: getPageFromQueryParamsFx,
+});
+
+forward({
+  from: $location,
+  to: getPageFromQueryParamsFx,
+});
+
+$yourFeed.on(getYourFeedFx.doneData, (_, payload) => payload);
+
+$currentPage.on(
+  [currentPageSetted, getPageFromQueryParamsFx.doneData],
+  (_, payload) => payload,
+);
+
+forward({
+  from: currentPageSetted,
+  to: setQueryParamFx,
 });

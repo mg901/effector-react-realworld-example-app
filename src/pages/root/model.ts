@@ -3,7 +3,7 @@ import { createGate } from 'effector-react';
 import { get } from '../../api';
 import { AuthUserResponse } from '../../auth';
 import { getYourFeedFx } from '../your-feed';
-import { fxFetchGlobalFeed } from '../global-feed';
+import { getGlobalFeedFx } from '../global-feed';
 
 export const RootGate = createGate();
 
@@ -21,5 +21,5 @@ export const fxInitAuthApp = createEffect({
 });
 
 export const fxIntitNotAuthApp = createEffect({
-  handler: () => Promise.all([fxFetchGlobalFeed()]),
+  handler: () => Promise.all([getGlobalFeedFx()]),
 });

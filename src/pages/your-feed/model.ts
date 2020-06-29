@@ -1,27 +1,38 @@
 import { createEvent, createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
-import withStorage from 'effector-storage';
+import { Location, History } from 'history';
 import { get } from '../../api';
+import { history } from '../../router';
 import { Feed } from '../types';
-import { CurrentPage } from './types';
 import { limit } from '../../library';
 
-const createStorageStore = withStorage(createStore);
 export const PageGate = createGate();
 export const currentPageSetted = createEvent<number>();
 
 export const getYourFeedFx = createEffect({
-  handler: (page: CurrentPage) =>
+  handler: (page = 1) =>
     get<Feed>(`/articles/feed?${limit(10, (page as number) - 1)}`),
 });
 
-export const $currentPage = createStorageStore<CurrentPage>(1, {
-  key: 'your-feed/current-page',
+export const setQueryParamFx = createEffect({
+  handler: (page: number) => {
+    history.push(page > 1 ? `/your-feed?page=${page}` : '/your-feed');
+  },
 });
-export const $personalFeed = createStore<Feed>({
+
+export const getPageFromQueryParamsFx = createEffect({
+  handler: ({ search }: Location<History.PoorMansUnknown>) => {
+    const page = new URLSearchParams(search).get('page') ?? 1;
+
+    return page ? Number(page) : 1;
+  },
+});
+
+export const $currentPage = createStore<number>(1);
+export const $yourFeed = createStore<Feed>({
   articles: [],
   articlesCount: 0,
 });
 
-export const $$articles = $personalFeed.map((x) => x.articles);
-export const $$total = $personalFeed.map((x) => x.articlesCount);
+export const $$articles = $yourFeed.map((x) => x.articles);
+export const $$total = $yourFeed.map((x) => x.articlesCount);

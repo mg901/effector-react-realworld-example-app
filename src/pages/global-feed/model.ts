@@ -11,7 +11,7 @@ export const PageGate = createGate();
 export const currentPageSetted = createEvent<number>();
 
 export const getGlobalFeedFx = createEffect({
-  handler: (page: number) => get<Feed>(`/articles?${limit(10, page - 1)}`),
+  handler: (page = 1) => get<Feed>(`/articles?${limit(10, page - 1)}`),
 });
 
 export const setQueryParamFx = createEffect({
