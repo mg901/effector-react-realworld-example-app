@@ -2,15 +2,16 @@ import React, { useMemo } from 'react';
 import { useStore } from 'effector-react';
 import { Redirect } from 'react-router-dom';
 import { renderRoutes, RouteConfig } from 'react-router-config';
-import { $$isAuthorized } from '../../auth';
+import { $$isAuthorized } from '../auth';
 import {
   LoginPage,
   RegistrationPage,
   GlobalFeedPage,
   YourFeedPage,
   NotMatchPage,
-} from '../../pages';
-import { LINKS } from '../constants';
+  FeedByTagPage,
+} from '../pages';
+import { LINKS } from './constants';
 
 export const filterRoutes = (isAuth: boolean) => (
   route: RouteConfig,
@@ -68,6 +69,11 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       path: '/global-feed',
       exact: true,
       component: GlobalFeedPage,
+    },
+    {
+      path: '/feed-by-tag',
+      exact: true,
+      component: FeedByTagPage,
     },
     {
       path: '*',

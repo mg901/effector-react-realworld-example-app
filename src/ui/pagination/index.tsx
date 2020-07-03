@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '..';
 import * as css from './index.css';
-import { usePages } from './use-pages';
+import { usePagination } from './use-pagination';
 import { Options } from './types';
 
 const LEFT_PAGE = 'LEFT';
@@ -10,7 +10,7 @@ const RIGHT_PAGE = 'RIGHT';
 
 export const Pagination: React.FC<Options> = (props) => {
   const { total, limit, currentPage } = props;
-  const { pages, goToPage, toRight, toLeft } = usePages(props);
+  const { pages, goToPage, toRight, toLeft } = usePagination(props);
 
   return total <= 0 || total < limit ? null : (
     <nav className="pagination">

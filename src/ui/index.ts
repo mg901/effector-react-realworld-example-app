@@ -6,4 +6,5 @@ export { Form } from './form';
 export { Link } from './link';
 export { NavLink } from './nav-link';
 export { Pagination } from './pagination';
+export { Tag } from './tag';
 export { Textarea } from './textarea';

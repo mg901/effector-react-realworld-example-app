@@ -8,6 +8,7 @@ import { LoggedOut } from '../logged-out';
 import { LoggedIn } from '../logged-in';
 import { Banner } from '../banner';
 import { Tabs } from '../tabs';
+import { TagList } from '../tag-list';
 import { RootGate } from '../../model';
 import '../../init';
 
@@ -33,7 +34,9 @@ export const RootPage: React.FC = () => (
         <Tabs />
         <Routes />
       </main>
-      <aside className={css.sidebar} />
+      <aside className={css.sidebar}>
+        <TagList />
+      </aside>
     </Container>
   </div>
 );
