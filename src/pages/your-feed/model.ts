@@ -5,6 +5,7 @@ import { get } from '../../api';
 import { history } from '../../router';
 import { Feed } from '../types';
 import { limit } from '../../library';
+import { SetPageToQueryParamPayload } from './types';
 
 export const PageGate = createGate();
 export const currentPageSetted = createEvent<number>();
@@ -14,9 +15,17 @@ export const getYourFeedFx = createEffect({
     get<Feed>(`/articles/feed?${limit(10, (page as number) - 1)}`),
 });
 
-export const setQueryParamFx = createEffect({
-  handler: (page: number) => {
-    history.push(page > 1 ? `/your-feed?page=${page}` : '/your-feed');
+export const setPageToQueryParamsFx = createEffect({
+  handler: ({ pathname, search, page }: SetPageToQueryParamPayload) => {
+    const params = new URLSearchParams(search);
+
+    if (page > 1) {
+      params.set('page', String(page));
+    } else {
+      params.delete('page');
+    }
+
+    history.replace(`${pathname}?${params}`);
   },
 });
 

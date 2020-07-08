@@ -1,14 +1,20 @@
 import React from 'react';
 import { useGate, useList, useStore } from 'effector-react';
 import { Link } from 'react-router-dom';
-import { PageGate, $$articles } from '../model';
+import { Pagination } from '../../../ui';
+import {
+  PageGate,
+  $currentPage,
+  $$articles,
+  $$total,
+  currentPageSetted,
+} from '../model';
 import '../init';
 
 export const FeedByTagPage: React.FC = () => {
   useGate(PageGate);
-
-  // const currentPage = useStore($currentPage);
-  // const total = useStore($$total);
+  const currentPage = useStore($currentPage);
+  const total = useStore($$total);
 
   return (
     <div>
@@ -20,6 +26,12 @@ export const FeedByTagPage: React.FC = () => {
           </li>
         ))}
       </ul>
+      <Pagination
+        currentPage={currentPage}
+        total={total}
+        onChange={currentPageSetted}
+        limit={10}
+      />
     </div>
   );
 };

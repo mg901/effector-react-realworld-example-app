@@ -7,7 +7,7 @@ import { Tag } from '../../../../ui';
 export const TagList: React.FC = () => (
   <ul>
     {useList($tags, (tag) => (
-      <Tag as={Link} to={`/feed-by-tag/?name=${tag}`}>
+      <Tag as={Link} to={`/feed-by-tag?name=${tag}`}>
         {tag}
       </Tag>
     ))}

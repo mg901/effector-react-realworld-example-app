@@ -2,7 +2,7 @@ import { sample, merge, forward } from 'effector';
 import { $location } from '../../router';
 import {
   getPageFromQueryParamsFx,
-  setQueryParamFx,
+  setPageToQueryParamsFx,
   PageGate,
   getGlobalFeedFx,
   $currentPage,
@@ -34,7 +34,9 @@ $currentPage.on(
   (_, payload) => payload,
 );
 
-forward({
-  from: currentPageSetted,
-  to: setQueryParamFx,
+sample({
+  source: $location,
+  clock: currentPageSetted,
+  fn: ({ pathname, search }, page) => ({ pathname, search, page }),
+  target: setPageToQueryParamsFx,
 });
