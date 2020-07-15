@@ -1,4 +1,4 @@
-import { sample, merge, guard } from 'effector';
+import { sample, merge } from 'effector';
 import { $location } from '../../router';
 import {
   PageGate,
@@ -8,6 +8,7 @@ import {
   getFeedByTagFx,
   currentPageSetted,
   setPageToQueryParamFx,
+  getPageFromQueryParamsFx,
 } from './model';
 
 sample({
@@ -16,8 +17,17 @@ sample({
   target: getFeedByTagFx,
 });
 
+sample({
+  source: $location,
+  clock: PageGate.open,
+  target: getPageFromQueryParamsFx,
+});
+
 $currentPage
-  .on(currentPageSetted, (_, payload) => payload)
+  .on(
+    [currentPageSetted, getPageFromQueryParamsFx.doneData],
+    (_, payload) => payload,
+  )
   .reset($$currentTag.updates);
 
 $feed.on(getFeedByTagFx.done, (state, { params, result }) => ({
