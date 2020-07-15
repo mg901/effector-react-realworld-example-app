@@ -23,10 +23,10 @@ export const getTagsFx = createEffect({
   handler: () => get<Tags>('/tags'),
 });
 
-export const fxInitAuthApp = createEffect({
+export const initAuthAppFx = createEffect({
   handler: () => Promise.all([fetchUserFx(), getYourFeedFx(), getTagsFx()]),
 });
 
-export const fxIntitNotAuthApp = createEffect({
+export const intitNotAuthAppFx = createEffect({
   handler: () => Promise.all([getGlobalFeedFx(), getTagsFx()]),
 });

@@ -3,8 +3,8 @@ import { $$isAuthorized, $authorizedUser } from '../../auth';
 import {
   getTagsFx,
   RootGate,
-  fxInitAuthApp,
-  fxIntitNotAuthApp,
+  initAuthAppFx,
+  intitNotAuthAppFx,
   fetchUserFx,
   $tags,
 } from './model';
@@ -19,12 +19,12 @@ const { authenticated, notAuthenticated } = split(
 
 forward({
   from: authenticated,
-  to: fxInitAuthApp,
+  to: initAuthAppFx,
 });
 
 forward({
   from: notAuthenticated,
-  to: fxIntitNotAuthApp,
+  to: intitNotAuthAppFx,
 });
 
 $authorizedUser.on(fetchUserFx.doneData, (_, { user }) => user);
