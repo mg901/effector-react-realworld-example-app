@@ -6,12 +6,13 @@ import { $$isAuthorized } from '../auth';
 import {
   LoginPage,
   RegistrationPage,
+  HomePage,
   GlobalFeedPage,
   YourFeedPage,
-  NotMatchPage,
   FeedByTagPage,
+  NotMatchPage,
 } from '../pages';
-import { LINKS } from './constants';
+import { Links } from './constants';
 
 export const filterRoutes = (isAuth: boolean) => (
   route: RouteConfig,
@@ -27,25 +28,25 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       path: '/',
       exact: true,
       forAuth: true,
-      component: () => <Redirect to={LINKS.YOUR_FEED} />,
+      component: () => <Redirect to={Links.YOUR_FEED} />,
     },
     {
       path: '/',
       exact: true,
       forAuth: false,
-      component: () => <Redirect to={LINKS.GLOBAL_FEED} />,
+      component: () => <Redirect to={Links.GLOBAL_FEED} />,
     },
     {
       path: '/login',
       exact: true,
       forAuth: true,
-      component: () => <Redirect to={LINKS.YOUR_FEED} />,
+      component: () => <Redirect to={Links.YOUR_FEED} />,
     },
     {
       path: '/registration',
       exact: true,
       forAuth: true,
-      component: () => <Redirect to={LINKS.YOUR_FEED} />,
+      component: () => <Redirect to={Links.YOUR_FEED} />,
     },
     {
       path: '/login',
