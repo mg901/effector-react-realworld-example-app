@@ -1,4 +1,4 @@
 export { history, $location } from './model';
-export { Routes } from './routes';
+export { RootRoutes, HomeRoutes } from './routes';
 export { AuthBranch } from './ui/auth-branch';
-export { Links } from './constants';
+export { Paths } from './constants';

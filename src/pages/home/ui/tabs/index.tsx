@@ -1,10 +1,10 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { NavLink } from 'react-router-dom';
-import { Links } from '../../../../router';
+import { Paths } from '../../../../router';
 import { NavLink as Link } from '../../../../ui';
 import { $$isAuthorized } from '../../../../auth';
-import { $$currentTag } from '../../model';
+import { $$currentTag } from '../../../feed-by-tag/model';
 
 export const Tabs: React.FC = () => {
   const isAuth = useStore($$isAuthorized);
@@ -13,11 +13,11 @@ export const Tabs: React.FC = () => {
   return (
     <nav>
       {isAuth && (
-        <Link as={NavLink} to={Links.YOUR_FEED}>
+        <Link as={NavLink} to={Paths.YOUR_FEED}>
           your feed
         </Link>
       )}
-      <Link as={NavLink} to={Links.GLOBAL_FEED}>
+      <Link as={NavLink} to={Paths.GLOBAL_FEED}>
         global feed
       </Link>
       {currentTag && `#${currentTag}`}

@@ -3,7 +3,7 @@ import { useStore } from 'effector-react';
 import { NavLink } from 'react-router-dom';
 import { $authorizedUser, loggedOutClicked } from '../../../auth';
 import { NavLink as Link } from '../../../ui';
-import { Links } from '../../../router';
+import { Paths } from '../../../router';
 import { UserBar } from './user-bar';
 
 export const LoggedIn: React.FC = () => {
@@ -11,11 +11,11 @@ export const LoggedIn: React.FC = () => {
 
   return (
     <>
-      <Link as={NavLink} to={Links.ROOT}>
+      <Link as={NavLink} to={Paths.ROOT}>
         Home
       </Link>
 
-      <Link as={NavLink} to={Links.EDITOR}>
+      <Link as={NavLink} to={Paths.EDITOR}>
         New Post
       </Link>
 

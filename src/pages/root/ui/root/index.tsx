@@ -1,6 +1,6 @@
 import React from 'react';
 import { APP_NAME } from '../../../../config';
-import { Routes, AuthBranch } from '../../../../router';
+import { RootRoutes, AuthBranch } from '../../../../router';
 import { Header, Container } from '../../../../ui';
 import { Logo } from '../logo';
 import { Nav } from '../nav';
@@ -25,10 +25,9 @@ export const RootPage: React.FC = () => (
         </AuthBranch>
       </Nav>
     </Header>
-
     <Container className={css.grid}>
       <main className={css.feed}>
-        <Routes />
+        <RootRoutes />
       </main>
     </Container>
   </div>

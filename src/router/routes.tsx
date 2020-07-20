@@ -10,9 +10,11 @@ import {
   GlobalFeedPage,
   YourFeedPage,
   FeedByTagPage,
+  EditorPage,
+  SettingsPage,
   NotMatchPage,
 } from '../pages';
-import { Links } from './constants';
+import { Paths } from './constants';
 
 export const filterRoutes = (isAuth: boolean) => (
   route: RouteConfig,
@@ -22,59 +24,66 @@ export const filterRoutes = (isAuth: boolean) => (
   return route.forAuth === isAuth;
 };
 
-export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
+export const makeRootRoutes = (isAuth: boolean): RouteConfig[] =>
   [
     {
-      path: '/',
+      path: Paths.ROOT,
       exact: true,
       forAuth: true,
-      component: () => <Redirect to={Links.YOUR_FEED} />,
+      component: () => <Redirect to={Paths.YOUR_FEED} />,
     },
     {
-      path: '/',
+      path: Paths.ROOT,
       exact: true,
       forAuth: false,
-      component: () => <Redirect to={Links.GLOBAL_FEED} />,
+      component: () => <Redirect to={Paths.GLOBAL_FEED} />,
     },
     {
-      path: '/login',
+      path: Paths.HOME,
       exact: true,
       forAuth: true,
-      component: () => <Redirect to={Links.YOUR_FEED} />,
+      component: () => <Redirect to={Paths.YOUR_FEED} />,
     },
     {
-      path: '/registration',
-      exact: true,
-      forAuth: true,
-      component: () => <Redirect to={Links.YOUR_FEED} />,
-    },
-    {
-      path: '/login',
+      path: Paths.HOME,
       exact: true,
       forAuth: false,
+      component: () => <Redirect to={Paths.GLOBAL_FEED} />,
+    },
+    {
+      path: Paths.LOGIN,
+      exact: true,
+      forAuth: true,
+      component: () => <Redirect to={Paths.YOUR_FEED} />,
+    },
+    {
+      path: Paths.REGISTRATION,
+      exact: true,
+      forAuth: true,
+      component: () => <Redirect to={Paths.YOUR_FEED} />,
+    },
+    {
+      path: Paths.LOGIN,
+      exact: true,
       component: LoginPage,
     },
     {
-      path: '/registration',
+      path: Paths.REGISTRATION,
       exact: true,
       forAuth: false,
       component: RegistrationPage,
     },
     {
-      path: '/your-feed',
-      exact: true,
-      forAuth: true,
-      component: YourFeedPage,
+      path: Paths.HOME,
+      component: HomePage,
     },
     {
-      path: '/global-feed',
-      exact: true,
-      component: GlobalFeedPage,
+      path: Paths.EDITOR,
+      component: EditorPage,
     },
     {
-      path: '/feed-by-tag',
-      exact: true,
-      component: FeedByTagPage,
+      path: Paths.SETTINGS,
+      component: SettingsPage,
     },
     {
       path: '*',
@@ -82,8 +91,38 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
     },
   ].filter(filterRoutes(isAuth));
 
-export const Routes = (): JSX.Element => {
+const makeHomeRoutes = (isAuth: boolean): RouteConfig[] =>
+  [
+    {
+      path: Paths.YOUR_FEED,
+      exact: true,
+      forAuth: true,
+      component: YourFeedPage,
+    },
+    {
+      path: Paths.GLOBAL_FEED,
+      exact: true,
+      component: GlobalFeedPage,
+    },
+    {
+      path: Paths.FEED_BY_TAG,
+      exact: true,
+      component: FeedByTagPage,
+    },
+    {
+      path: '*',
+      component: () => <Redirect to={Paths.ROOT} />,
+    },
+  ].filter(filterRoutes(isAuth));
+
+export const RootRoutes = (): JSX.Element => {
   const isAuth = useStore($$isAuthorized);
 
-  return useMemo(() => renderRoutes(makeRoutes(isAuth)), [isAuth]);
+  return useMemo(() => renderRoutes(makeRootRoutes(isAuth)), [isAuth]);
+};
+
+export const HomeRoutes = (): JSX.Element => {
+  const isAuth = useStore($$isAuthorized);
+
+  return useMemo(() => renderRoutes(makeHomeRoutes(isAuth)), [isAuth]);
 };

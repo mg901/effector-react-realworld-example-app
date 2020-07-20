@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import useClickOutside from 'use-onclickoutside';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '../../../../ui';
-import { Links } from '../../../../router';
+import { Paths } from '../../../../router';
 import { UserPick } from '../user-pick';
 import { DownDownMenu } from '../dropdown-menu';
 import * as css from './index.css';
@@ -46,7 +46,7 @@ export const UserBar: React.FC<Props> = ({
         <li>
           <Link
             as={RouterLink}
-            to={Links.SETTINGS}
+            to={Paths.SETTINGS}
             className={css.link}
             onClick={handleClick}>
             Settings
@@ -55,7 +55,7 @@ export const UserBar: React.FC<Props> = ({
         <li>
           <Link
             as={RouterLink}
-            to={Links.ROOT}
+            to={Paths.ROOT}
             className={css.link}
             onClick={onLogOutClick}>
             logout

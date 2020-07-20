@@ -1,22 +1,21 @@
 import React from 'react';
+import { RouteConfigComponentProps } from 'react-router-config';
+import { HomeRoutes } from '../../../router';
 import { Container } from '../../../ui';
 import { Banner } from './banner';
 import { Tabs } from './tabs';
 import { TagList } from './tag-list';
 import * as css from './index.css';
 
-type Props = {
-  children: React.ReactNode;
-};
-
-export const HomePage: React.FC<Props> = ({ children }) => (
+export const HomePage: React.FC<RouteConfigComponentProps> = ({ route }) => (
   <>
     <Banner />
     <Container className={css.grid}>
       <main className={css.feed}>
         <Tabs />
-        {children}
+        <HomeRoutes />
       </main>
+
       <aside className={css.sidebar}>
         <TagList />
       </aside>

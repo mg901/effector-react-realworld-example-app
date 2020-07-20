@@ -1,14 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { NavLink as Link } from '../../../ui';
-import { Links } from '../../../router';
+import { Paths } from '../../../router';
 
 export const LoggedOut: React.FC = () => (
   <>
-    <Link as={NavLink} to={Links.LOGIN}>
+    <Link as={NavLink} to={Paths.ROOT}>
+      Home
+    </Link>
+    <Link as={NavLink} to={Paths.LOGIN}>
       Sign In
     </Link>
-    <Link as={NavLink} to={Links.REGISTRATION}>
+    <Link as={NavLink} to={Paths.REGISTRATION}>
       Sign Up
     </Link>
   </>
