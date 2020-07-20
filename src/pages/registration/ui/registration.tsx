@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Container } from '../../../ui';
+import { Container, Input, Button } from '../../../ui';
 import { Paths } from '../../../router';
 import { formSubmitted } from '../model';
 import '../init';
@@ -23,28 +23,27 @@ export const RegistrationPage: React.FC = () => {
           e.preventDefault();
           formSubmitted({ username, email, password });
         }}>
-        <div>
-          <input
-            type="text"
-            name="username"
-            onChange={(e) => setUsername(e.currentTarget.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            name="email"
-            onChange={(e) => setEmail(e.currentTarget.value)}
-          />
-        </div>
+        <Input
+          name="username"
+          label="Username"
+          onChange={(e) => setUsername(e.currentTarget.value)}
+        />
 
-        <input
+        <Input
+          type="email"
+          label="Email"
+          name="email"
+          onChange={(e) => setEmail(e.currentTarget.value)}
+        />
+
+        <Input
           type="password"
+          label="Password"
           name="password"
           autoComplete="current-password"
           onChange={(e) => setPassword(e.currentTarget.value)}
         />
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </Container>
   );

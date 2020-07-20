@@ -8,12 +8,12 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export const Input = forwardRef<HTMLInputElement, Props>(
-  ({ label, id, className = '', ...props }, ref) => (
+  ({ label, type = 'text', id, className = '', ...props }, ref) => (
     <FormGroup>
       {label && <Label htmlFor={id}>{label}</Label>}
       <input
         ref={ref}
-        type="text"
+        type={type}
         id={id}
         className={`${css.input} ${className}`}
         {...props}
