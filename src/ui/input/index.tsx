@@ -3,11 +3,11 @@ import { FormGroup } from '../form-group';
 import { Label } from '../label';
 import * as css from './index.css';
 
-type Props = React.InputHTMLAttributes<HTMLInputElement> & {
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
 };
 
-export const Input = forwardRef<HTMLInputElement, Props>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, type = 'text', id, className = '', ...props }, ref) => (
     <FormGroup>
       {label && <Label htmlFor={id}>{label}</Label>}

@@ -1,8 +1,7 @@
-import React, { useMemo } from 'react';
-import { useStore } from 'effector-react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { renderRoutes, RouteConfig } from 'react-router-config';
-import { $$isAuthorized } from '../auth';
+import { RouteConfig } from 'react-router-config';
+
 import {
   LoginPage,
   RegistrationPage,
@@ -14,7 +13,18 @@ import {
   SettingsPage,
   NotMatchPage,
 } from '../pages';
-import { Paths } from './constants';
+
+export enum Paths {
+  ROOT = '/',
+  HOME = '/home',
+  YOUR_FEED = '/home/your-feed',
+  GLOBAL_FEED = '/home/global-feed',
+  FEED_BY_TAG = '/home/feed-by-tag',
+  LOGIN = '/login',
+  REGISTRATION = '/registration',
+  SETTINGS = '/settings',
+  EDITOR = '/editor',
+}
 
 export const filterRoutes = (isAuth: boolean) => (
   route: RouteConfig,
@@ -91,7 +101,7 @@ export const makeRootRoutes = (isAuth: boolean): RouteConfig[] =>
     },
   ].filter(filterRoutes(isAuth));
 
-const makeHomeRoutes = (isAuth: boolean): RouteConfig[] =>
+export const makeHomeRoutes = (isAuth: boolean): RouteConfig[] =>
   [
     {
       path: Paths.YOUR_FEED,
@@ -114,15 +124,3 @@ const makeHomeRoutes = (isAuth: boolean): RouteConfig[] =>
       component: () => <Redirect to={Paths.ROOT} />,
     },
   ].filter(filterRoutes(isAuth));
-
-export const RootRoutes = (): JSX.Element => {
-  const isAuth = useStore($$isAuthorized);
-
-  return useMemo(() => renderRoutes(makeRootRoutes(isAuth)), [isAuth]);
-};
-
-export const HomeRoutes = (): JSX.Element => {
-  const isAuth = useStore($$isAuthorized);
-
-  return useMemo(() => renderRoutes(makeHomeRoutes(isAuth)), [isAuth]);
-};

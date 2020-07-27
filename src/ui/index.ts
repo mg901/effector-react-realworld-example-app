@@ -1,10 +1,10 @@
 export { Button } from './button';
 export { Header } from './header';
-export { Input } from './input';
+export { Input, InputProps } from './input';
 export { Container } from './container';
 export { Form } from './form';
 export { Link } from './link';
 export { NavLink } from './nav-link';
 export { Pagination } from './pagination';
 export { Tag } from './tag';
-export { Textarea } from './textarea';
+export { Textarea, TextareaProps } from './textarea';

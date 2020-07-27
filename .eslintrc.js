@@ -47,6 +47,7 @@ module.exports = {
         allow: ['error'],
       },
     ],
+    'react/jsx-props-no-spreading': 0,
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
     'react/jsx-closing-bracket-location': 0,
@@ -56,12 +57,6 @@ module.exports = {
     '@typescript-eslint/ban-types': 0,
   },
   overrides: [
-    {
-      files: ['./src/ui/**/*.tsx'],
-      rules: {
-        'react/jsx-props-no-spreading': 0,
-      },
-    },
     {
       files: ['*.config.js'],
       rules: {

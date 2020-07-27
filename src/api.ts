@@ -28,6 +28,6 @@ export const get = <T>(url: string): Promise<T> => request<T>('get', url);
 export const post = <T>(url: string, body: unknown): Promise<T> =>
   request<T>('post', url, body);
 
-export const put = <T>(url: string, body: unknown): Promise<T> =>
-  request<T>('put', url, body);
-export const del = <T>(url: string): Promise<T> => request<T>('del', url);
+export const put = (url: string, body: unknown): Promise<void> =>
+  request<void>('put', url, body);
+export const del = (url: string): Promise<void> => request<void>('del', url);
