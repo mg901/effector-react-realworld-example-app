@@ -26,14 +26,14 @@ export const RegistrationPage: React.FC = () => {
         <Input
           name="username"
           label="Username"
-          onChange={(e) => setUsername(e.currentTarget.value)}
+          onChange={(e) => setUsername(e.target.value)}
         />
 
         <Input
           type="email"
           label="Email"
           name="email"
-          onChange={(e) => setEmail(e.currentTarget.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <Input
@@ -41,7 +41,7 @@ export const RegistrationPage: React.FC = () => {
           label="Password"
           name="password"
           autoComplete="current-password"
-          onChange={(e) => setPassword(e.currentTarget.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <Button type="submit">Sign Up</Button>
       </form>

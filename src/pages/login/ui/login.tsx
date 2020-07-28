@@ -26,7 +26,7 @@ export const LoginPage: React.FC = () => {
           type="email"
           label="Email"
           name="email"
-          onChange={(e) => setEmail(e.currentTarget.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <Input
@@ -34,7 +34,7 @@ export const LoginPage: React.FC = () => {
           type="password"
           name="password"
           autoComplete="current-password"
-          onChange={(e) => setPassword(e.currentTarget.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <Button type="submit">Sign In</Button>
       </Form>
