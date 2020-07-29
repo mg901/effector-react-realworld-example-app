@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Form, Button } from '../../../ui';
-import { InputField } from '../../editor/ui/input-field';
+import { InputField } from './input-field';
 import { TextField } from './text-field';
 import { handleFieldChanged, formSubmitted } from '../model';
 import '../init';
