@@ -13,6 +13,7 @@ export const AddTagForm: React.FC = () => {
         e.preventDefault();
       }}>
       <Input
+        autoComplete="off"
         value={tag}
         name="tagList"
         placeholder="Enter tags"
