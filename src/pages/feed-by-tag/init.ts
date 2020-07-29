@@ -1,4 +1,4 @@
-import { sample, merge } from 'effector';
+import { sample } from 'effector';
 import { $location } from '../../router';
 import {
   PageGate,
@@ -13,7 +13,7 @@ import {
 
 sample({
   source: { tag: $$currentTag, page: $currentPage },
-  clock: merge([$$currentTag, PageGate.open, currentPageSetted]),
+  clock: [$$currentTag, PageGate.open, currentPageSetted],
   target: getFeedByTagFx,
 });
 
