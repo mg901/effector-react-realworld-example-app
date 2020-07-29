@@ -25,7 +25,7 @@ const request: Request = async (method, url, data) => {
 };
 
 export const get = <T>(url: string): Promise<T> => request<T>('get', url);
-export const post = <T = void>(url: string, body: unknown): Promise<T> =>
+export const post = <T = void>(url: string, body?: unknown): Promise<T> =>
   request<T>('post', url, body);
 
 export const put = <T = void>(url: string, body: unknown): Promise<T> =>
