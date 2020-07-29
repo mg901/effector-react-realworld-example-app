@@ -12,6 +12,7 @@ import {
   EditorPage,
   SettingsPage,
   NotMatchPage,
+  ProfilePage,
 } from '../pages';
 
 export enum Paths {
@@ -24,6 +25,7 @@ export enum Paths {
   REGISTRATION = '/registration',
   SETTINGS = '/settings',
   EDITOR = '/editor',
+  PROFILE = '/@:username',
 }
 
 export const filterRoutes = (isAuth: boolean) => (
@@ -94,6 +96,10 @@ export const makeRootRoutes = (isAuth: boolean): RouteConfig[] =>
     {
       path: Paths.SETTINGS,
       component: SettingsPage,
+    },
+    {
+      path: Paths.PROFILE,
+      component: ProfilePage,
     },
     {
       path: '*',

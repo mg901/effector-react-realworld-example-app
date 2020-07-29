@@ -8,3 +8,4 @@ export { YourFeedPage } from './your-feed';
 export { NotMatchPage } from './not-match';
 export { EditorPage } from './editor';
 export { SettingsPage } from './settings';
+export { ProfilePage } from './profile';
