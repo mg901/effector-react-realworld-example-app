@@ -1,4 +1,4 @@
-import { createEvent, createEffect, createStore } from 'effector';
+import { createEvent, createEffect, createStore, restore } from 'effector';
 import { createField } from '../../library';
 import { post } from '../../api';
 import { Form } from './types';
@@ -16,7 +16,7 @@ export const fxCreateArticle = createEffect({
   handler: (article: Form) => post('/articles', { article }),
 });
 
-export const $currentTag = createStore<string>('');
+export const $currentTag = restore(textChanged, '').reset(tagAdded);
 
 export const $form = createStore<Form>({
   articleSlug: '',

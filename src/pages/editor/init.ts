@@ -1,14 +1,5 @@
 import { uniq } from '../../library';
-import {
-  $currentTag,
-  $form,
-  textChanged,
-  fieldChanged,
-  tagAdded,
-  tagDeleted,
-} from './model';
-
-$currentTag.on(textChanged, (_, payload) => payload).reset(tagAdded);
+import { $form, fieldChanged, tagAdded, tagDeleted } from './model';
 
 $form
   .on(fieldChanged, (state, payload) => ({
