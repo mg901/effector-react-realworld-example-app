@@ -4,7 +4,6 @@ import { history } from './router';
 import { RootPage } from './pages';
 
 import './auth/init';
-import './router/init';
 
 export const App: React.FC = () => (
   <Router history={history}>
