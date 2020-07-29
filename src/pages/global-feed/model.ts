@@ -1,4 +1,4 @@
-import { createEvent, createEffect, createStore } from 'effector';
+import { createEvent, createEffect, restore, merge } from 'effector';
 import { createGate } from 'effector-react';
 import { Location, History } from 'history';
 import { history } from '../../router';
@@ -37,9 +37,12 @@ export const getPageFromQueryParamsFx = createEffect({
   },
 });
 
-export const $currentPage = createStore<number>(1);
+export const $currentPage = restore(
+  merge([currentPageSetted, getPageFromQueryParamsFx.doneData]),
+  1,
+);
 
-export const $globalFeed = createStore<Feed>({
+export const $globalFeed = restore(getGlobalFeedFx.doneData, {
   articles: [],
   articlesCount: 0,
 });

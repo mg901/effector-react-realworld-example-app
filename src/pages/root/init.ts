@@ -1,12 +1,10 @@
 import { split, sample, forward, merge } from 'effector';
 import { $$isAuthorized, $authorizedUser } from '../../auth';
 import {
-  getTagsFx,
   RootGate,
   initAuthAppFx,
   intitNotAuthAppFx,
   fetchUserFx,
-  $tags,
 } from './model';
 
 const { authenticated, notAuthenticated } = split(
@@ -28,4 +26,3 @@ forward({
 });
 
 $authorizedUser.on(fetchUserFx.doneData, (_, { user }) => user);
-$tags.on(getTagsFx.doneData, (_, { tags }) => tags);

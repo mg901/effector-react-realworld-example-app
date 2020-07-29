@@ -1,4 +1,4 @@
-import { createEffect, createStore } from 'effector';
+import { createEffect, restore } from 'effector';
 import { createGate } from 'effector-react';
 import { get } from '../../api';
 import { $location } from '../../router';
@@ -8,8 +8,6 @@ import { getGlobalFeedFx } from '../global-feed';
 import { Tags } from './types';
 
 export const RootGate = createGate();
-
-export const $tags = createStore<string[]>([]);
 
 export const $$currentTag = $location.map((x) =>
   new URLSearchParams(x.search).get('name'),
@@ -30,3 +28,8 @@ export const initAuthAppFx = createEffect({
 export const intitNotAuthAppFx = createEffect({
   handler: () => Promise.all([getGlobalFeedFx(), getTagsFx()]),
 });
+
+export const $tags = restore(
+  getTagsFx.doneData.map((x) => x.tags),
+  [],
+);

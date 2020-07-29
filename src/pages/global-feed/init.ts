@@ -7,7 +7,6 @@ import {
   getGlobalFeedFx,
   $currentPage,
   currentPageSetted,
-  $globalFeed,
 } from './model';
 
 sample({
@@ -26,13 +25,6 @@ forward({
   from: $location,
   to: getPageFromQueryParamsFx,
 });
-
-$globalFeed.on(getGlobalFeedFx.doneData, (_, payload) => payload);
-
-$currentPage.on(
-  [currentPageSetted, getPageFromQueryParamsFx.doneData],
-  (_, payload) => payload,
-);
 
 sample({
   source: $location,

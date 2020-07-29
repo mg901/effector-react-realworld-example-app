@@ -23,13 +23,6 @@ sample({
   target: getPageFromQueryParamsFx,
 });
 
-$currentPage
-  .on(
-    [currentPageSetted, getPageFromQueryParamsFx.doneData],
-    (_, payload) => payload,
-  )
-  .reset($$currentTag.updates);
-
 $feed.on(getFeedByTagFx.done, (state, { params, result }) => ({
   ...state,
   [params.tag]: result,

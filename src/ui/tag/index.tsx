@@ -4,11 +4,8 @@ import * as css from './index.css';
 
 export const Tag = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, ...props }, ref) => (
-    <span className={css.tag}>
-      <span className="text">{children}</span>
-      <Button ref={ref} {...props}>
-        x
-      </Button>
-    </span>
+    <Button ref={ref} className={css.tag} {...props}>
+      {children}
+    </Button>
   ),
 );

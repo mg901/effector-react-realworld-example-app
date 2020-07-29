@@ -7,7 +7,6 @@ import {
   setPageToQueryParamsFx,
   $currentPage,
   currentPageSetted,
-  $yourFeed,
 } from './model';
 
 sample({
@@ -26,8 +25,6 @@ forward({
   from: $location,
   to: getPageFromQueryParamsFx,
 });
-
-$yourFeed.on(getYourFeedFx.doneData, (_, payload) => payload);
 
 $currentPage.on(
   [currentPageSetted, getPageFromQueryParamsFx.doneData],

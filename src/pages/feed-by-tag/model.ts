@@ -1,4 +1,11 @@
-import { createEvent, createEffect, createStore, combine } from 'effector';
+import {
+  createEvent,
+  createEffect,
+  createStore,
+  combine,
+  restore,
+  merge,
+} from 'effector';
 import { createGate } from 'effector-react';
 import { Location, History } from 'history';
 import { $location, history } from '../../router';
@@ -39,11 +46,14 @@ export const getPageFromQueryParamsFx = createEffect({
   },
 });
 
-export const $currentPage = createStore<number>(1);
-
 export const $$currentTag = $location.map(
   (x) => new URLSearchParams(x.search).get('name') as string,
 );
+
+export const $currentPage = restore(
+  merge([currentPageSetted, getPageFromQueryParamsFx.doneData]),
+  1,
+).reset($$currentTag.updates);
 
 export const $feed = createStore<Record<string, Feed>>({});
 export const $$feedByTag = combine(
