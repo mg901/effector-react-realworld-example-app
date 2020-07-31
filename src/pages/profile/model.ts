@@ -2,6 +2,7 @@ import { createEffect } from 'effector';
 import { createGate } from 'effector-react';
 import { get, post, del } from '../../api';
 import { limit } from '../../library';
+import { $location } from '../../router';
 
 export const getArticlesByAuthorFx = createEffect({
   handler: ({ author, page }: any) =>
@@ -36,3 +37,4 @@ export const unfollowUserFx = createEffect({
 });
 
 export const PageGate = createGate();
+export const $$author = $location.map((x) => x.pathname.replace(/\/@/, ''));
