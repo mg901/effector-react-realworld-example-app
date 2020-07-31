@@ -55,7 +55,14 @@ export const $currentPage = restore(
   1,
 ).reset($$currentTag.updates);
 
-export const $feed = createStore<Record<string, Feed>>({});
+export const $feed = createStore<Record<string, Feed>>({}).on(
+  getFeedByTagFx.done,
+  (state, { params, result }) => ({
+    ...state,
+    [params.tag]: result,
+  }),
+);
+
 export const $$feedByTag = combine(
   $feed,
   $$currentTag,

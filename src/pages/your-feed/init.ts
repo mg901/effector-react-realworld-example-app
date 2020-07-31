@@ -26,11 +26,6 @@ forward({
   to: getPageFromQueryParamsFx,
 });
 
-$currentPage.on(
-  [currentPageSetted, getPageFromQueryParamsFx.doneData],
-  (_, payload) => payload,
-);
-
 sample({
   source: $location,
   clock: currentPageSetted,

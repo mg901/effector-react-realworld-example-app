@@ -4,7 +4,6 @@ import {
   PageGate,
   $currentPage,
   $$currentTag,
-  $feed,
   getFeedByTagFx,
   currentPageSetted,
   setPageToQueryParamFx,
@@ -22,11 +21,6 @@ sample({
   clock: PageGate.open,
   target: getPageFromQueryParamsFx,
 });
-
-$feed.on(getFeedByTagFx.done, (state, { params, result }) => ({
-  ...state,
-  [params.tag]: result,
-}));
 
 sample({
   source: $location,

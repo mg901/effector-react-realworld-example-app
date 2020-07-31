@@ -1,4 +1,4 @@
-import { createEvent, createEffect, restore, merge } from 'effector';
+import { createEvent, createEffect, createStore, restore } from 'effector';
 import { createGate } from 'effector-react';
 import { Location, History } from 'history';
 import { get } from '../../api';
@@ -37,10 +37,11 @@ export const getPageFromQueryParamsFx = createEffect({
   },
 });
 
-export const $currentPage = restore(
-  merge([currentPageSetted, getPageFromQueryParamsFx.doneData]),
-  1,
+export const $currentPage = createStore<number>(1).on(
+  [currentPageSetted, getPageFromQueryParamsFx.doneData],
+  (_, payload) => payload,
 );
+
 export const $yourFeed = restore<Feed>(getYourFeedFx.doneData, {
   articles: [],
   articlesCount: 0,
