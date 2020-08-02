@@ -11,7 +11,7 @@ import {
 } from '../model';
 import '../init';
 
-export const FeedByTagPage: React.FC = () => {
+export const FeedByTag: React.FC = () => {
   useGate(PageGate);
   const currentPage = useStore($currentPage);
   const total = useStore($$total);

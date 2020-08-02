@@ -5,7 +5,7 @@ import { Paths } from '../../../router';
 import { formSubmitted } from '../model';
 import '../init';
 
-export const RegistrationPage: React.FC = () => {
+export const Registration: React.FC = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

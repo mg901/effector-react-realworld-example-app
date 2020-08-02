@@ -5,7 +5,7 @@ import { Paths } from '../../../router';
 import { formSubmitted } from '../model';
 import '../init';
 
-export const LoginPage: React.FC = () => {
+export const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

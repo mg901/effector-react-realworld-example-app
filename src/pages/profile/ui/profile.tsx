@@ -5,7 +5,7 @@ import { Container, Button, NavLink } from '../../../ui';
 import { PageGate, $profile } from '../model';
 import '../init';
 
-export const ProfilePage: React.FC = () => {
+export const Profile: React.FC = () => {
   useGate(PageGate);
   const { image, username } = useStore($profile);
 

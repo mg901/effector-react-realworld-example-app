@@ -1,19 +1,7 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Redirect } from 'react-router-dom';
 import { RouteConfig } from 'react-router-config';
-
-import {
-  LoginPage,
-  RegistrationPage,
-  HomePage,
-  GlobalFeedPage,
-  YourFeedPage,
-  FeedByTagPage,
-  EditorPage,
-  SettingsPage,
-  NotMatchPage,
-  ProfilePage,
-} from '../pages';
+import { Home } from '../pages/home';
 
 export enum Paths {
   ROOT = '/',
@@ -77,33 +65,47 @@ export const makeRootRoutes = (isAuth: boolean): RouteConfig[] =>
     {
       path: Paths.LOGIN,
       exact: true,
-      component: LoginPage,
+      component: lazy(() =>
+        import('../pages/login').then((x) => ({ default: x.Login })),
+      ),
     },
     {
       path: Paths.REGISTRATION,
       exact: true,
       forAuth: false,
-      component: RegistrationPage,
+      component: lazy(() =>
+        import('../pages/registration').then((x) => ({
+          default: x.Registration,
+        })),
+      ),
     },
     {
       path: Paths.HOME,
-      component: HomePage,
+      component: Home,
     },
     {
       path: Paths.EDITOR,
-      component: EditorPage,
+      component: lazy(() =>
+        import('../pages/editor').then((x) => ({ default: x.Editor })),
+      ),
     },
     {
       path: Paths.SETTINGS,
-      component: SettingsPage,
+      component: lazy(() =>
+        import('../pages/settings').then((x) => ({ default: x.Settings })),
+      ),
     },
     {
       path: Paths.PROFILE,
-      component: ProfilePage,
+      component: lazy(() =>
+        import('../pages/profile').then((x) => ({ default: x.Profile })),
+      ),
     },
     {
       path: '*',
-      component: NotMatchPage,
+      component: lazy(() =>
+        import('../pages/not-match').then((x) => ({ default: x.NotMatch })),
+      ),
     },
   ].filter(filterRoutes(isAuth));
 
@@ -113,17 +115,27 @@ export const makeHomeRoutes = (isAuth: boolean): RouteConfig[] =>
       path: Paths.YOUR_FEED,
       exact: true,
       forAuth: true,
-      component: YourFeedPage,
+      component: lazy(() =>
+        import('../pages/your-feed').then((x) => ({ default: x.YourFeed })),
+      ),
     },
     {
       path: Paths.GLOBAL_FEED,
       exact: true,
-      component: GlobalFeedPage,
+      component: lazy(() =>
+        import('../pages/global-feed').then((x) => ({
+          default: x.GlobalFeed,
+        })),
+      ),
     },
     {
       path: Paths.FEED_BY_TAG,
       exact: true,
-      component: FeedByTagPage,
+      component: lazy(() =>
+        import('../pages/feed-by-tag').then((x) => ({
+          default: x.FeedByTag,
+        })),
+      ),
     },
     {
       path: '*',

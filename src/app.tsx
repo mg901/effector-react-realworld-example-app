@@ -1,10 +1,10 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 import { history } from './router';
-import { RootPage } from './pages';
+import { Root } from './pages/root';
 
 export const App: React.FC = () => (
   <Router history={history}>
-    <RootPage />
+    <Root />
   </Router>
 );

@@ -6,7 +6,7 @@ import { AddTagForm } from './add-tag-form';
 import { TagList } from './tag-list';
 import { handleFieldChanged } from '../model';
 
-export const EditorPage: React.FC = () => (
+export const Editor: React.FC = () => (
   <>
     <Form
       id="editor"

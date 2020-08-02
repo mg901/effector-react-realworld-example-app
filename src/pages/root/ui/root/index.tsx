@@ -11,7 +11,7 @@ import '../../init';
 
 import * as css from './index.css';
 
-export const RootPage: React.FC = () => (
+export const Root: React.FC = () => (
   <div className={css.app}>
     <RootGate />
     <Header>

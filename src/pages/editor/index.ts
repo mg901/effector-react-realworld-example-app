@@ -1,1 +1,1 @@
-export { EditorPage } from './ui/editor';
+export { Editor } from './ui/editor';

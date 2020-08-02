@@ -11,7 +11,7 @@ import {
 } from '../model';
 import '../init';
 
-export const GlobalFeedPage: React.FC = () => {
+export const GlobalFeed: React.FC = () => {
   useGate(PageGate);
   const currentPage = useStore($currentPage);
   const total = useStore($$total);
