@@ -1,4 +1,4 @@
-export { FeedByTagPage } from './feed-by-tag/ui/feed-by-tag';
+export { FeedByTagPage } from './feed-by-tag';
 export { RootPage } from './root';
 export { LoginPage } from './login';
 export { HomePage } from './home/ui/home';

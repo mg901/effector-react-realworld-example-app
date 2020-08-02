@@ -1,8 +1,9 @@
-import { createEffect } from 'effector';
+import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
 import { get, post, del } from '../../api';
 import { limit } from '../../library';
 import { $location } from '../../router';
+import { ProfileResponse, Profile } from './types';
 
 export const getArticlesByAuthorFx = createEffect({
   handler: ({ author, page }: any) =>
@@ -25,7 +26,7 @@ export const setUnfavoriteArticleFx = createEffect({
 });
 
 export const getProfileFx = createEffect({
-  handler: (username: string) => get(`/profiles/${username}`),
+  handler: (username: string) => get<ProfileResponse>(`/profiles/${username}`),
 });
 
 export const followUserFx = createEffect({
@@ -38,3 +39,9 @@ export const unfollowUserFx = createEffect({
 
 export const PageGate = createGate();
 export const $$author = $location.map((x) => x.pathname.replace(/\/@/, ''));
+export const $profile = createStore<Profile>({
+  bio: '',
+  following: false,
+  image: '',
+  username: '',
+}).on(getProfileFx.doneData, (_, { profile }) => profile);

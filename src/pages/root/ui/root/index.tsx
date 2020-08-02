@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { APP_NAME } from '../../../../config';
 import { RootRoutes, AuthBranch } from '../../../../router';
-import { Header, Container } from '../../../../ui';
+import { Header } from '../../../../ui';
 import { Logo } from '../logo';
 import { Nav } from '../nav';
 import { LoggedOut } from '../logged-out';
@@ -25,10 +25,8 @@ export const RootPage: React.FC = () => (
         </AuthBranch>
       </Nav>
     </Header>
-    <Container className={css.grid}>
-      <main className={css.feed}>
-        <RootRoutes />
-      </main>
-    </Container>
+    <Suspense fallback={<div>Загрузка...</div>}>
+      <RootRoutes />
+    </Suspense>
   </div>
 );
