@@ -8,8 +8,8 @@ import {
   $currentPage,
   $$total,
   currentPageSetted,
-} from '../model';
-import '../init';
+} from './model';
+import './init';
 
 export const YourFeed: React.FC = () => {
   useGate(PageGate);

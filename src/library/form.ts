@@ -17,3 +17,11 @@ export const useFormField = ({
     keys: [name],
     fn: (value, [key]) => value[key as keyof StoreValue<typeof store>] ?? '',
   });
+
+type CreateField = (
+  e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+) => Record<string, string>;
+
+export const createField: CreateField = (e) => ({
+  [e.target.name]: e.target.value,
+});

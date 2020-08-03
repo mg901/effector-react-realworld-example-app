@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { Pagination } from '../../../ui';
 import {
   PageGate,
-  $currentPage,
   $$articles,
+  $currentPage,
   $$total,
   currentPageSetted,
-} from '../model';
-import '../init';
+} from './model';
+import './init';
 
-export const FeedByTag: React.FC = () => {
+export const GlobalFeed: React.FC = () => {
   useGate(PageGate);
   const currentPage = useStore($currentPage);
   const total = useStore($$total);

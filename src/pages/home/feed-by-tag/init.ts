@@ -1,13 +1,15 @@
 import { sample } from 'effector';
-import { $location } from '../../router';
+import { $location } from '../../../router';
+import {
+  setPageToQueryParamsFx,
+  getPageFromQueryParamsFx,
+} from '../../../library';
 import {
   PageGate,
   $currentPage,
   $$currentTag,
   getFeedByTagFx,
   currentPageSetted,
-  setPageToQueryParamFx,
-  getPageFromQueryParamsFx,
 } from './model';
 
 sample({
@@ -30,5 +32,5 @@ sample({
     search,
     page,
   }),
-  target: setPageToQueryParamFx,
+  target: setPageToQueryParamsFx,
 });

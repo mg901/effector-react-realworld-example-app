@@ -1,42 +1,19 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
-import { Location, History } from 'history';
-import { $location, history } from '../../router';
-import { get } from '../../api';
-import { limit } from '../../library';
+import { $location } from '../../../router';
+import { get } from '../../../api';
+import { limit, getPageFromQueryParamsFx } from '../../../library';
 import { Feed } from '../types';
-import { GetFeedByTagPayload, SetPageToQueryParamPayload } from './types';
+import { GetFeedByTagArgs } from './types';
 
 export const PageGate = createGate();
 export const currentPageSetted = createEvent<number>();
 
 export const getFeedByTagFx = createEffect({
-  handler: ({ tag, page }: GetFeedByTagPayload) =>
+  handler: ({ tag, page }: GetFeedByTagArgs) =>
     get<Feed>(
       `/articles?tag=${encodeURIComponent(tag)}&${limit(10, page - 1)}`,
     ),
-});
-
-export const setPageToQueryParamFx = createEffect({
-  handler: ({ pathname, search, page }: SetPageToQueryParamPayload) => {
-    const params = new URLSearchParams(search);
-
-    if (page > 1) {
-      params.set('page', String(page));
-    } else {
-      params.delete('page');
-    }
-
-    history.replace(`${pathname}?${params}`);
-  },
-});
-
-export const getPageFromQueryParamsFx = createEffect({
-  handler: ({ search }: Location<History.PoorMansUnknown>) => {
-    const page = new URLSearchParams(search).get('page') ?? 1;
-
-    return page ? Number(page) : 1;
-  },
 });
 
 export const $$currentTag = $location.map(
