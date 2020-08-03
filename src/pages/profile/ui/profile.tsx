@@ -19,7 +19,7 @@ export const Profile: React.FC = () => {
         My Articles
       </NavLink>
       <NavLink as={Link} to={`/@${username}/favorites`}>
-        My Articles
+        Favorited Articles
       </NavLink>
     </Container>
   );

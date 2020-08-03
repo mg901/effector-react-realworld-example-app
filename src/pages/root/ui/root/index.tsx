@@ -1,11 +1,12 @@
 import React, { Suspense } from 'react';
 import { APP_NAME } from '../../../../config';
-import { RootRoutes, AuthBranch } from '../../../../router';
+import { AuthBranch } from '../../../../router';
 import { Header } from '../../../../ui';
 import { Logo } from '../logo';
 import { Nav } from '../nav';
 import { LoggedOut } from '../logged-out';
 import { LoggedIn } from '../logged-in';
+import { Routes } from '../routes';
 import { RootGate } from '../../model';
 import '../../init';
 
@@ -26,7 +27,7 @@ export const Root: React.FC = () => (
       </Nav>
     </Header>
     <Suspense fallback={<div>Загрузка...</div>}>
-      <RootRoutes />
+      <Routes />
     </Suspense>
   </div>
 );

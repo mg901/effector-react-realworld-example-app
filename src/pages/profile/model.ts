@@ -3,15 +3,20 @@ import { createGate } from 'effector-react';
 import { get, post, del } from '../../api';
 import { limit } from '../../library';
 import { $location } from '../../router';
-import { ProfileResponse, Profile } from './types';
+import { ProfileResponse, Profile, GetArticles } from './types';
 
 export const getArticlesByAuthorFx = createEffect({
-  handler: ({ author, page }: any) =>
-    get(`/articles?author=${encodeURIComponent(author)}&${limit(5, page)}`),
+  handler: ({ author, page }: GetArticles) =>
+    get(
+      `/articles?author=${encodeURIComponent(author)}&${limit(
+        5,
+        Number(page),
+      )}`,
+    ),
 });
 
 export const getFavoriteArticlesByAuthorFx = createEffect({
-  handler: ({ author, page }: any) =>
+  handler: ({ author, page }: GetArticles) =>
     get(`/articles?favorited=${encodeURIComponent(author)}&${limit(5, page)}`),
 });
 

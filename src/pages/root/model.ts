@@ -13,7 +13,7 @@ export const $$currentTag = $location.map((x) =>
   new URLSearchParams(x.search).get('name'),
 );
 
-export const fetchUserFx = createEffect({
+export const getUserFx = createEffect({
   handler: () => get<AuthUserResponse>('/user'),
 });
 
@@ -22,7 +22,7 @@ export const getTagsFx = createEffect({
 });
 
 export const initAuthAppFx = createEffect({
-  handler: () => Promise.all([fetchUserFx(), getYourFeedFx(), getTagsFx()]),
+  handler: () => Promise.all([getUserFx(), getYourFeedFx(), getTagsFx()]),
 });
 
 export const intitNotAuthAppFx = createEffect({

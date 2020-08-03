@@ -1,8 +1,8 @@
 import React from 'react';
-import { HomeRoutes } from '../../../router';
-import { Container } from '../../../ui';
 import { Banner } from './banner';
+import { Container } from '../../../ui';
 import { Tabs } from './tabs';
+import { Routes } from './routes';
 import { TagList } from './tag-list';
 import * as css from './index.css';
 
@@ -12,9 +12,8 @@ export const Home: React.FC = () => (
     <Container className={css.grid}>
       <main className={css.feed}>
         <Tabs />
-        <HomeRoutes />
+        <Routes />
       </main>
-
       <aside className={css.sidebar}>
         <TagList />
       </aside>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { $$isAuthorized } from '../../auth';
+import { RouteConfig } from 'react-router-config';
+import { $$isAuthorized } from '../auth';
 
 type Props = {
   check: 'anon' | 'auth';
@@ -17,4 +18,12 @@ export const AuthBranch: React.FC<Props> = ({ check, children }) => {
   }
 
   return null;
+};
+
+export const filterRoutes = (isAuth: boolean) => (
+  route: RouteConfig,
+): boolean => {
+  if (typeof route.forAuth === 'undefined') return true;
+
+  return route.forAuth === isAuth;
 };

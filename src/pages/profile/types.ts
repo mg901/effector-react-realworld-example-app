@@ -8,3 +8,8 @@ export type Profile = {
 export type ProfileResponse = {
   profile: Profile;
 };
+
+export type GetArticles = {
+  author: string;
+  page?: number;
+};
