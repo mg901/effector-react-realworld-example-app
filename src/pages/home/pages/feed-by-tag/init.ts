@@ -1,9 +1,9 @@
 import { sample } from 'effector';
-import { $location } from '../../../router';
+import { $location } from '../../../../router';
 import {
   setPageToQueryParamsFx,
   getPageFromQueryParamsFx,
-} from '../../../library';
+} from '../../../../library';
 import {
   PageGate,
   $currentPage,

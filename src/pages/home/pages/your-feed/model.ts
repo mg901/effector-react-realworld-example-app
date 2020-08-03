@@ -1,8 +1,8 @@
 import { createEvent, createEffect, createStore, restore } from 'effector';
 import { createGate } from 'effector-react';
-import { get } from '../../../api';
-import { Feed } from '../types';
-import { limit, getPageFromQueryParamsFx } from '../../../library';
+import { get } from '../../../../api';
+import { Feed } from '../../types';
+import { limit, getPageFromQueryParamsFx } from '../../../../library';
 
 export const PageGate = createGate();
 export const currentPageSetted = createEvent<number>();

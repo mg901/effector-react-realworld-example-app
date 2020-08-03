@@ -1,9 +1,9 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
-import { $location } from '../../../router';
-import { get } from '../../../api';
-import { limit, getPageFromQueryParamsFx } from '../../../library';
-import { Feed } from '../types';
+import { $location } from '../../../../router';
+import { get } from '../../../../api';
+import { limit, getPageFromQueryParamsFx } from '../../../../library';
+import { Feed } from '../../types';
 import { GetFeedByTagArgs } from './types';
 
 export const PageGate = createGate();

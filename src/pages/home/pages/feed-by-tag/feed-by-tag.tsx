@@ -1,17 +1,17 @@
 import React from 'react';
 import { useGate, useList, useStore } from 'effector-react';
 import { Link } from 'react-router-dom';
-import { Pagination } from '../../../ui';
+import { Pagination } from '../../../../ui';
 import {
   PageGate,
-  $$articles,
   $currentPage,
+  $$articles,
   $$total,
   currentPageSetted,
 } from './model';
 import './init';
 
-export const GlobalFeed: React.FC = () => {
+export const FeedByTag: React.FC = () => {
   useGate(PageGate);
   const currentPage = useStore($currentPage);
   const total = useStore($$total);

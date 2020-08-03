@@ -1,12 +1,12 @@
 import { sample, forward } from 'effector';
-import { $location } from '../../../router';
+import { $location } from '../../../../router';
 import {
   getPageFromQueryParamsFx,
   setPageToQueryParamsFx,
-} from '../../../library';
+} from '../../../../library';
 import {
   PageGate,
-  getYourFeedFx,
+  getGlobalFeedFx,
   $currentPage,
   currentPageSetted,
 } from './model';
@@ -14,7 +14,7 @@ import {
 sample({
   source: $currentPage,
   clock: [PageGate.open, currentPageSetted],
-  target: getYourFeedFx,
+  target: getGlobalFeedFx,
 });
 
 sample({

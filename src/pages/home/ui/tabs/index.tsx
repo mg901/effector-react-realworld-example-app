@@ -1,10 +1,10 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { NavLink } from 'react-router-dom';
-import { Paths } from '../../../../../router';
-import { NavLink as Link } from '../../../../../ui';
-import { $$isAuthorized } from '../../../../../auth';
-import { $$currentTag } from '../../../feed-by-tag/model';
+import { Paths } from '../../../../router';
+import { NavLink as Link } from '../../../../ui';
+import { $$isAuthorized } from '../../../../auth';
+import { $$currentTag } from '../../pages/feed-by-tag/model';
 
 export const Tabs: React.FC = () => {
   const isAuth = useStore($$isAuthorized);
