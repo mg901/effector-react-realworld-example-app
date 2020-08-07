@@ -12,6 +12,7 @@ export enum Paths {
   SETTINGS = '/settings',
   EDITOR = '/editor',
   PROFILE = '/@:username',
+  PROFILE_FAVORITES = '/@:username/favorites',
 }
 
 export const history = createBrowserHistory();

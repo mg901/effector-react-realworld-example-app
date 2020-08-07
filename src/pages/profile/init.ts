@@ -1,6 +1,6 @@
 import { sample } from 'effector';
 import {
-  PageGate,
+  ProfileGate,
   $$author,
   getArticlesByAuthorFx,
   getProfileFx,
@@ -8,13 +8,13 @@ import {
 
 sample({
   source: $$author,
-  clock: PageGate.open,
+  clock: ProfileGate.open,
   fn: (author) => ({ author }),
   target: getArticlesByAuthorFx,
 });
 
 sample({
   source: $$author,
-  clock: PageGate.open,
+  clock: ProfileGate.open,
   target: getProfileFx,
 });

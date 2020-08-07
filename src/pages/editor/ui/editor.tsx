@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button } from '../../../ui';
+import { Container, Form, Button } from '../../../ui';
 import { InputField } from './input-field';
 import { TextField } from './text-field';
 import { AddTagForm } from './add-tag-form';
@@ -7,7 +7,7 @@ import { TagList } from './tag-list';
 import { handleFieldChanged } from '../model';
 
 export const Editor: React.FC = () => (
-  <>
+  <Container>
     <Form
       id="editor"
       onSubmit={(e) => {
@@ -36,5 +36,5 @@ export const Editor: React.FC = () => (
     <Button type="submit" form="editor">
       Publish article
     </Button>
-  </>
+  </Container>
 );

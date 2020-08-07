@@ -42,8 +42,11 @@ export const unfollowUserFx = createEffect({
   handler: (username: string) => del(`/profiles/${username}/follow`),
 });
 
-export const PageGate = createGate();
+export const ProfileGate = createGate();
+export const FavoritedArticlesGate = createGate();
+
 export const $$author = $location.map((x) => x.pathname.replace(/\/@/, ''));
+$$author.watch(console.log);
 export const $profile = createStore<Profile>({
   bio: '',
   following: false,
