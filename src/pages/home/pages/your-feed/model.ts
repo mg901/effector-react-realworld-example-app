@@ -23,4 +23,4 @@ export const $yourFeed = restore<Feed>(getYourFeedFx.doneData, {
 });
 
 export const $$articles = $yourFeed.map((x) => x.articles);
-export const $$total = $yourFeed.map((x) => x.articlesCount);
+export const $$totalPages = $yourFeed.map((x) => x.articlesCount);

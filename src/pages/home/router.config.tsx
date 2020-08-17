@@ -1,5 +1,5 @@
-import React, { lazy } from 'react';
-import { Redirect } from 'react-router-dom';
+import { lazy } from 'react';
+
 import { Paths, filterRoutes, RouteConfig } from '../../router';
 
 export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
@@ -32,6 +32,8 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
     },
     {
       path: '*',
-      component: () => <Redirect to={Paths.ROOT} />,
+      component: lazy(() =>
+        import('../not-match').then((x) => ({ default: x.NotMatch })),
+      ),
     },
   ].filter(filterRoutes(isAuth));

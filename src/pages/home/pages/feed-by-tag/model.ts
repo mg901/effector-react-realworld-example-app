@@ -46,4 +46,4 @@ export const $$feedByTag = combine(
 );
 
 export const $$articles = $$feedByTag.map((x) => x.articles);
-export const $$total = $$feedByTag.map((x) => x.articlesCount);
+export const $$totalPages = $$feedByTag.map((x) => x.articlesCount);

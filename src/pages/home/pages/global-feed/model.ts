@@ -22,4 +22,4 @@ export const $globalFeed = restore(getGlobalFeedFx.doneData, {
 });
 
 export const $$articles = $globalFeed.map((x) => x.articles);
-export const $$total = $globalFeed.map((x) => x.articlesCount);
+export const $$totalPages = $globalFeed.map((x) => x.articlesCount);

@@ -1,37 +1,12 @@
 import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
 import { get, post, del } from '../../api';
-import { limit } from '../../library';
 import { $location } from '../../router';
-import { ProfileResponse, Profile, GetArticles } from './types';
-
-export const getArticlesByAuthorFx = createEffect({
-  handler: ({ author, page }: GetArticles) =>
-    get(
-      `/articles?author=${encodeURIComponent(author)}&${limit(
-        5,
-        Number(page),
-      )}`,
-    ),
-});
-
-export const getFavoriteArticlesByAuthorFx = createEffect({
-  handler: ({ author, page }: GetArticles) =>
-    get(`/articles?favorited=${encodeURIComponent(author)}&${limit(5, page)}`),
-});
-
-export const setFavoriteArticleFx = createEffect({
-  handler: (slug: string) => post(`/articles/${slug}/favorite`),
-});
-
-export const setUnfavoriteArticleFx = createEffect({
-  handler: (slug: string) => {
-    del(`/articles/${slug}/favorite`);
-  },
-});
+import * as T from './types';
 
 export const getProfileFx = createEffect({
-  handler: (username: string) => get<ProfileResponse>(`/profiles/${username}`),
+  handler: (username: string) =>
+    get<T.ProfileResponse>(`/profiles/${username}`),
 });
 
 export const followUserFx = createEffect({
@@ -42,12 +17,12 @@ export const unfollowUserFx = createEffect({
   handler: (username: string) => del(`/profiles/${username}/follow`),
 });
 
-export const ProfileGate = createGate();
+export const ProfileGate = createGate<T.ProfileGateProps>();
 export const FavoritedArticlesGate = createGate();
 
-export const $$author = $location.map((x) => x.pathname.replace(/\/@/, ''));
-$$author.watch(console.log);
-export const $profile = createStore<Profile>({
+export const $$author = $location.map((x) => x.pathname);
+
+export const $profile = createStore<T.Profile>({
   bio: '',
   following: false,
   image: '',

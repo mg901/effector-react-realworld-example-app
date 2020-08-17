@@ -6,7 +6,7 @@ import {
   PageGate,
   $$articles,
   $currentPage,
-  $$total,
+  $$totalPages,
   currentPageSetted,
 } from './model';
 import './init';
@@ -14,7 +14,7 @@ import './init';
 export const YourFeed: React.FC = () => {
   useGate(PageGate);
   const currentPage = useStore($currentPage);
-  const total = useStore($$total);
+  const total = useStore($$totalPages);
 
   return (
     <div>

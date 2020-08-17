@@ -1,15 +1,17 @@
 import React from 'react';
-import { useGate, useStore } from 'effector-react';
+import { useStore, useGate } from 'effector-react';
 import { NavLink as Link } from 'react-router-dom';
+import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
 import { Container, Button, NavLink } from '../../../ui';
-import { renderRoutes } from '../../../router';
 import { ProfileGate, $profile } from '../model';
 import { routes } from '../router.config';
 import '../init';
 
-export const Profile: React.FC = () => {
-  useGate(ProfileGate);
-  const { image, username } = useStore($profile);
+type Props = RouteConfigComponentProps<{ url: string }>;
+
+export const Profile: React.FC<Props> = ({ match: { url } }) => {
+  useGate(ProfileGate, { url });
+  const { image } = useStore($profile);
 
   return (
     <Container>
@@ -17,10 +19,10 @@ export const Profile: React.FC = () => {
         <img src={image} alt="user-img" />
         <Button>follow</Button>
       </div>
-      <NavLink as={Link} to={`/@${username}`}>
+      <NavLink as={Link} to={`${url}`}>
         My Articles
       </NavLink>
-      <NavLink as={Link} to={`/@${username}/favorites`}>
+      <NavLink as={Link} to={`${url}/favorites`}>
         Favorited Articles
       </NavLink>
       <div>{renderRoutes(routes)}</div>
