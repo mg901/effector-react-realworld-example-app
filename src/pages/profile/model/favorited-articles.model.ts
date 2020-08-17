@@ -1,16 +1,13 @@
 import { createEffect, restore } from 'effector';
-import { get } from '../../../../api';
-import { limit } from '../../../../library';
-import { Feed } from '../../../types';
-import { GetFeedArgs } from '../../types';
+import { get } from '../../../api';
+import { Feed } from '../../types';
+import { limit } from '../../../library';
+import * as T from './types';
 
 export const getFeedFx = createEffect({
-  handler: ({ author, page }: GetFeedArgs) =>
+  handler: ({ author, page }: T.GetFeedArgs) =>
     get<Feed>(
-      `/articles?author=${encodeURIComponent(author)}&${limit(
-        5,
-        Number(page),
-      )}`,
+      `/articles?favorited=${encodeURIComponent(author)}&${limit(5, page)}`,
     ),
 });
 

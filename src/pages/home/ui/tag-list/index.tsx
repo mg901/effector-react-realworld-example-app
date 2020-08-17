@@ -8,9 +8,9 @@ import { Tag } from '../../../../ui';
 export const TagList: React.FC = () => (
   <ul>
     {useList($tags, (tag) => (
-      <Tag as={Link} to={`${Paths.FEED_BY_TAG}?name=${tag}`}>
-        {tag}
-      </Tag>
+      <Link to={`${Paths.FEED_BY_TAG}?name=${tag}`}>
+        <Tag>{tag}</Tag>
+      </Link>
     ))}
   </ul>
 );

@@ -1,7 +1,6 @@
 import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
-import { get, post, del } from '../../api';
-import { $location } from '../../router';
+import { get, post, del } from '../../../api';
 import * as T from './types';
 
 export const getProfileFx = createEffect({
@@ -19,8 +18,6 @@ export const unfollowUserFx = createEffect({
 
 export const ProfileGate = createGate<T.ProfileGateProps>();
 export const FavoritedArticlesGate = createGate();
-
-export const $$author = $location.map((x) => x.pathname);
 
 export const $profile = createStore<T.Profile>({
   bio: '',
