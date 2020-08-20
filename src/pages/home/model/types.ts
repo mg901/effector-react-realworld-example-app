@@ -1,5 +1,5 @@
 import { Location, History } from 'history';
-import { Author } from '../types';
+import { Author } from '../../types';
 
 export type Article = Readonly<{
   title: string;
@@ -22,5 +22,10 @@ export type Feed = Readonly<{
 export type SetPageToQueryParamArgs = {
   pathname: Location<History.PoorMansUnknown>['pathname'];
   search: Location<History.PoorMansUnknown>['search'];
+  page: number;
+};
+
+export type GetFeedByTagArgs = {
+  tag: string;
   page: number;
 };

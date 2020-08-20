@@ -4,11 +4,11 @@ import { NavLink } from 'react-router-dom';
 import { Paths } from '../../../../router';
 import { NavLink as Link } from '../../../../ui';
 import { $$isAuthorized } from '../../../../auth';
-import { $$currentTag } from '../../pages/feed-by-tag/model';
+import { $currentTag } from '../../model/feed-by-tag.model';
 
 export const Tabs: React.FC = () => {
   const isAuth = useStore($$isAuthorized);
-  const currentTag = useStore($$currentTag);
+  const currentTag = useStore($currentTag);
 
   return (
     <nav>

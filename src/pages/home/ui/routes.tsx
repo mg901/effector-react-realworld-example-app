@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useStore } from 'effector-react';
 import { renderRoutes } from '../../../router';
 import { $$isAuthorized } from '../../../auth';

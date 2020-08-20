@@ -3,8 +3,8 @@ import { createGate } from 'effector-react';
 import { get } from '../../api';
 import { $location } from '../../router';
 import { AuthUserResponse } from '../../auth';
-import { getYourFeedFx } from '../home/pages/your-feed';
-import { getGlobalFeedFx } from '../home/pages/global-feed';
+import { getYourFeedFx } from '../home/model/your-feed.model';
+import { getGlobalFeedFx } from '../home/model/global-feed.model';
 import { Tags } from './types';
 
 export const RootGate = createGate();
