@@ -1,6 +1,6 @@
 import { createEffect } from 'effector';
 import { Location, History } from 'history';
-import { history } from '../core/router';
+import { routerModel } from '../core/router';
 
 export type SetPageToQueryParamArgs = {
   pathname: Location<History.PoorMansUnknown>['pathname'];
@@ -18,7 +18,7 @@ export const setPageToQueryParamsFx = createEffect({
       params.delete('page');
     }
 
-    history.replace(`${pathname}?${params}`);
+    routerModel.history.replace(`${pathname}?${params}`);
   },
 });
 

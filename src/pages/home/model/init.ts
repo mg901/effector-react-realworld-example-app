@@ -1,5 +1,5 @@
 import { sample, forward } from 'effector';
-import { $location } from '../../../core/router';
+import { routerModel } from '../../../core/router';
 import {
   getPageFromQueryParamsFx,
   setPageToQueryParamsFx,
@@ -17,18 +17,18 @@ sample({
 });
 
 sample({
-  source: $location,
+  source: routerModel.$location,
   clock: yourFeed.PageGate.open,
   target: getPageFromQueryParamsFx,
 });
 
 forward({
-  from: $location,
+  from: routerModel.$location,
   to: getPageFromQueryParamsFx,
 });
 
 sample({
-  source: $location,
+  source: routerModel.$location,
   clock: yourFeed.currentPageSetted,
   fn: ({ pathname, search }, page) => ({ pathname, search, page }),
   target: setPageToQueryParamsFx,
@@ -43,18 +43,18 @@ sample({
 });
 
 sample({
-  source: $location,
+  source: routerModel.$location,
   clock: globalFeed.PageGate.open,
   target: getPageFromQueryParamsFx,
 });
 
 forward({
-  from: $location,
+  from: routerModel.$location,
   to: getPageFromQueryParamsFx,
 });
 
 sample({
-  source: $location,
+  source: routerModel.$location,
   clock: globalFeed.currentPageSetted,
   fn: ({ pathname, search }, page) => ({ pathname, search, page }),
   target: setPageToQueryParamsFx,
@@ -73,13 +73,13 @@ sample({
 });
 
 sample({
-  source: $location,
+  source: routerModel.$location,
   clock: feedByTag.PageGate.open,
   target: getPageFromQueryParamsFx,
 });
 
 sample({
-  source: $location,
+  source: routerModel.$location,
   clock: feedByTag.currentPageSetted,
   fn: ({ pathname, search }, page) => ({
     pathname,

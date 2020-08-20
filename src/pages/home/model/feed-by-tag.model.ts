@@ -1,6 +1,6 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
-import { $location } from '../../../core/router';
+import { routerModel } from '../../../core/router';
 import { get } from '../../../api';
 import { limit, getPageFromQueryParamsFx } from '../../../library';
 import * as T from './types';
@@ -15,7 +15,7 @@ export const getFeedByTagFx = createEffect({
     ),
 });
 
-export const $currentTag = $location.map(
+export const $currentTag = routerModel.$location.map(
   (x) => new URLSearchParams(x.search).get('name') as string,
 );
 

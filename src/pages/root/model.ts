@@ -1,7 +1,7 @@
 import { createEffect, restore } from 'effector';
 import { createGate } from 'effector-react';
 import { get } from '../../api';
-import { $location } from '../../core/router';
+import { routerModel } from '../../core/router';
 import { authTypes } from '../../core/auth';
 import { getYourFeedFx } from '../home/model/your-feed.model';
 import { getGlobalFeedFx } from '../home/model/global-feed.model';
@@ -9,7 +9,7 @@ import { Tags } from './types';
 
 export const RootGate = createGate();
 
-export const $$currentTag = $location.map((x) =>
+export const $$currentTag = routerModel.$location.map((x) =>
   new URLSearchParams(x.search).get('name'),
 );
 
