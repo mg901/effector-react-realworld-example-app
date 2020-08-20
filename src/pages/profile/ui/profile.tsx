@@ -3,15 +3,15 @@ import { useStore, useGate } from 'effector-react';
 import { NavLink as Link } from 'react-router-dom';
 import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
 import { Container, Button, NavLink } from '../../../ui';
-import { ProfileGate, $profile } from '../model/profile.model';
 import { routes } from '../router.config';
-import '../model/init';
+import { profileModel } from '../profile-model';
+import '../profile-model/init';
 
 type Props = RouteConfigComponentProps<{ url: string }>;
 
 export const Profile: React.FC<Props> = ({ match: { url } }) => {
-  useGate(ProfileGate, { url });
-  const { image } = useStore($profile);
+  useGate(profileModel.ProfileGate, { url });
+  const { image } = useStore(profileModel.$profile);
 
   return (
     <Container>

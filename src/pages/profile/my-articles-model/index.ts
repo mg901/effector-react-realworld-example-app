@@ -1,12 +1,12 @@
 import { createEffect, restore } from 'effector';
-import { get } from '../../../api';
+import * as api from '../../../api';
 import { limit } from '../../../library';
 import { Feed } from '../../types';
-import * as T from './types';
+import * as types from '../types';
 
 export const getFeedFx = createEffect({
-  handler: ({ author, page }: T.GetFeedArgs) =>
-    get<Feed>(
+  handler: ({ author, page }: types.GetFeedArgs) =>
+    api.get<Feed>(
       `/articles?author=${encodeURIComponent(author)}&${limit(
         5,
         Number(page),

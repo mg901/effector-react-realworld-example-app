@@ -1,25 +1,25 @@
 import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
-import { get, post, del } from '../../../api';
-import * as T from './types';
+import * as api from '../../../api';
+import * as types from './types';
 
 export const getProfileFx = createEffect({
   handler: (username: string) =>
-    get<T.ProfileResponse>(`/profiles/${username}`),
+    api.get<types.ProfileResponse>(`/profiles/${username}`),
 });
 
 export const followUserFx = createEffect({
-  handler: (username: string) => post(`/profiles/${username}/follow`),
+  handler: (username: string) => api.post(`/profiles/${username}/follow`),
 });
 
 export const unfollowUserFx = createEffect({
-  handler: (username: string) => del(`/profiles/${username}/follow`),
+  handler: (username: string) => api.del(`/profiles/${username}/follow`),
 });
 
-export const ProfileGate = createGate<T.ProfileGateProps>();
+export const ProfileGate = createGate<types.ProfileGateProps>();
 export const FavoritedArticlesGate = createGate();
 
-export const $profile = createStore<T.Profile>({
+export const $profile = createStore<types.Profile>({
   bio: '',
   following: false,
   image: '',

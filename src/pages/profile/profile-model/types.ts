@@ -12,8 +12,3 @@ export type Profile = Readonly<{
 export type ProfileResponse = Readonly<{
   profile: Profile;
 }>;
-
-export type GetFeedArgs = Readonly<{
-  author: string;
-  page?: number;
-}>;

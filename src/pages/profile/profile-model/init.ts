@@ -1,5 +1,5 @@
 import { sample, guard } from 'effector';
-import * as profile from './profile.model';
+import * as profile from './model';
 
 sample({
   source: profile.ProfileGate.state,
