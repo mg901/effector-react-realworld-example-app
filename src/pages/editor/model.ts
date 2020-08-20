@@ -1,7 +1,7 @@
 import { createEvent, createEffect, createStore, restore } from 'effector';
 import { createField, uniq } from '../../library';
-import { post } from '../../api';
-import { Form } from './types';
+import * as api from '../../api';
+import * as types from './types';
 
 export const textChanged = createEvent<string>();
 export const fieldChanged = createEvent<Record<string, string>>();
@@ -15,12 +15,12 @@ export const tagAdded = createEvent<string>();
 export const tagDeleted = createEvent<string>();
 
 export const createArticleFx = createEffect({
-  handler: (article: Form) => post('/articles', { article }),
+  handler: (article: types.Form) => api.post('/articles', { article }),
 });
 
 export const $currentTag = restore(textChanged, '').reset(tagAdded);
 
-export const $form = createStore<Form>({
+export const $form = createStore<types.Form>({
   articleSlug: '',
   title: '',
   description: '',
