@@ -1,3 +1,3 @@
-export type Tags = {
-  tags: string[];
-};
+export type Tags = Readonly<{
+  tags: readonly string[];
+}>;

@@ -1,10 +1,10 @@
 import { split, sample, forward, merge } from 'effector';
 import { authModel } from '../../core/auth';
-import { RootGate, initAuthAppFx, intitNotAuthAppFx, getUserFx } from './model';
+import * as model from './model';
 
 const { authenticated, notAuthenticated } = split(
   merge([
-    sample(authModel.$isAuthorized, RootGate.open),
+    sample(authModel.$isAuthorized, model.RootGate.open),
     authModel.$isAuthorized.updates,
   ]),
   {
@@ -15,12 +15,12 @@ const { authenticated, notAuthenticated } = split(
 
 forward({
   from: authenticated,
-  to: initAuthAppFx,
+  to: model.initAuthAppFx,
 });
 
 forward({
   from: notAuthenticated,
-  to: intitNotAuthAppFx,
+  to: model.intitNotAuthAppFx,
 });
 
-authModel.$authorizedUser.on(getUserFx.doneData, (_, { user }) => user);
+authModel.$authorizedUser.on(model.getUserFx.doneData, (_, { user }) => user);

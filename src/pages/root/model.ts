@@ -5,7 +5,7 @@ import { routerModel } from '../../core/router';
 import { authTypes } from '../../core/auth';
 import { getYourFeedFx } from '../home/model/your-feed.model';
 import { getGlobalFeedFx } from '../home/model/global-feed.model';
-import { Tags } from './types';
+import * as types from './types';
 
 export const RootGate = createGate();
 
@@ -18,7 +18,7 @@ export const getUserFx = createEffect({
 });
 
 export const getTagsFx = createEffect({
-  handler: () => get<Tags>('/tags'),
+  handler: () => get<types.Tags>('/tags'),
 });
 
 export const initAuthAppFx = createEffect({
