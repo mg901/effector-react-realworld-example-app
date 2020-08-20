@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import useClickOutside from 'use-onclickoutside';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from '../../../../ui';
-import { Paths } from '../../../../router';
+import { Paths } from '../../../../core/router';
 import { UserPick } from '../user-pick';
 import { DownDownMenu } from '../dropdown-menu';
 import * as css from './index.css';

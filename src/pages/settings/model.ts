@@ -1,14 +1,14 @@
 import { createEvent, createEffect } from 'effector';
 import { put } from '../../api';
 import { createField } from '../../library';
-import { AuthorizedUser } from '../../auth';
+import { authTypes } from '../../core/auth';
 
 export const fieldChanged = createEvent<Record<string, string>>();
 export const formSubmitted = createEvent();
 export const handleFieldChanged = fieldChanged.prepend(createField);
 
 export const changeAuthUserFx = createEffect({
-  handler: (user: AuthorizedUser) => put('/user', { user }),
+  handler: (user: authTypes.AuthorizedUser) => put('/user', { user }),
 });
 
 changeAuthUserFx.done.watch(() => {

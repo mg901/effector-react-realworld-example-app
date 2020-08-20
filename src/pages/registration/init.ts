@@ -1,10 +1,10 @@
 import { forward } from 'effector';
-import { $authorizedUser } from '../../auth';
-import { formSubmitted, fxSignUp } from './model';
+import { authModel } from '../../core/auth';
+import * as model from './model';
 
 forward({
-  from: formSubmitted,
-  to: fxSignUp,
+  from: model.formSubmitted,
+  to: model.fxSignUp,
 });
 
-$authorizedUser.on(fxSignUp.doneData, (_, { user }) => user);
+authModel.$authorizedUser.on(model.fxSignUp.doneData, (_, { user }) => user);

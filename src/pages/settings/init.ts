@@ -1,14 +1,14 @@
 import { sample } from 'effector';
-import { $authorizedUser } from '../../auth';
-import { fieldChanged, formSubmitted, changeAuthUserFx } from './model';
+import { authModel } from '../../core/auth';
+import * as model from './model';
 
-$authorizedUser.on(fieldChanged, (state, payload) => ({
+authModel.$authorizedUser.on(model.fieldChanged, (state, payload) => ({
   ...state,
   ...payload,
 }));
 
 sample({
-  source: $authorizedUser,
-  clock: formSubmitted,
-  target: changeAuthUserFx,
+  source: authModel.$authorizedUser,
+  clock: model.formSubmitted,
+  target: model.changeAuthUserFx,
 });

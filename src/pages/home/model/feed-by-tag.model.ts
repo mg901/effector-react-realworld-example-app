@@ -1,6 +1,6 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
-import { $location } from '../../../router';
+import { $location } from '../../../core/router';
 import { get } from '../../../api';
 import { limit, getPageFromQueryParamsFx } from '../../../library';
 import * as T from './types';

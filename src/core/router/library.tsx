@@ -1,14 +1,14 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { RouteConfig } from 'react-router-config';
-import { $$isAuthorized } from '../auth';
+import { authModel } from '../auth';
 
 type Props = {
   check: 'anon' | 'auth';
 };
 
 export const AuthBranch: React.FC<Props> = ({ check, children }) => {
-  const isAuth = useStore($$isAuthorized);
+  const isAuth = useStore(authModel.$isAuthorized);
 
   if (isAuth === true && check === 'auth') {
     return <>{children}</>;

@@ -1,8 +1,8 @@
 import { createEffect, restore } from 'effector';
 import { createGate } from 'effector-react';
 import { get } from '../../api';
-import { $location } from '../../router';
-import { AuthUserResponse } from '../../auth';
+import { $location } from '../../core/router';
+import { authTypes } from '../../core/auth';
 import { getYourFeedFx } from '../home/model/your-feed.model';
 import { getGlobalFeedFx } from '../home/model/global-feed.model';
 import { Tags } from './types';
@@ -14,7 +14,7 @@ export const $$currentTag = $location.map((x) =>
 );
 
 export const getUserFx = createEffect({
-  handler: () => get<AuthUserResponse>('/user'),
+  handler: () => get<authTypes.AuthUserResponse>('/user'),
 });
 
 export const getTagsFx = createEffect({

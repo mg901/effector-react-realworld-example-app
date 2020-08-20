@@ -1,5 +1,5 @@
 import { sample, forward } from 'effector';
-import { $location } from '../../../router';
+import { $location } from '../../../core/router';
 import {
   getPageFromQueryParamsFx,
   setPageToQueryParamsFx,

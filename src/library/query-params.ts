@@ -1,6 +1,6 @@
 import { createEffect } from 'effector';
 import { Location, History } from 'history';
-import { history } from '../router';
+import { history } from '../core/router';
 
 export type SetPageToQueryParamArgs = {
   pathname: Location<History.PoorMansUnknown>['pathname'];
