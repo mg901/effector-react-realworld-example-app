@@ -1,15 +1,12 @@
-import { createEvent, restore } from 'effector';
-import { createBrowserHistory, Location, History } from 'history';
+import { createEvent, createStore } from 'effector';
+import { createBrowserHistory, Location } from 'history';
 
 export const history = createBrowserHistory();
 
-export const historyUpdated = createEvent<any>();
+export const locationUpdated = createEvent<Location>();
 
 history.listen((location) => {
-  historyUpdated(location);
+  locationUpdated(location);
 });
 
-export const $location = restore<Location<History.PoorMansUnknown>>(
-  historyUpdated,
-  history.location,
-);
+export const $location = createStore<Location>(history.location);
