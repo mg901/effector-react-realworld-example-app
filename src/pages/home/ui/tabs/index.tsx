@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Paths } from '../../../../core/router';
 import { NavLink as Link } from '../../../../ui';
 import { authModel } from '../../../../core/auth';
-import { $currentTag } from '../../model/feed-by-tag.model';
+import { $currentTag } from '../../pages/feed-by-tag';
 
 export const Tabs: React.FC = () => {
   const isAuth = useStore(authModel.$isAuthorized);

@@ -17,8 +17,3 @@ export type Feed = Readonly<{
   articles: readonly Article[];
   articlesCount: number;
 }>;
-
-export type GetFeedByTagArgs = {
-  tag: string;
-  page: number;
-};

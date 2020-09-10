@@ -27,7 +27,7 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       path: Paths.FEED_BY_TAG,
       exact: true,
       component: lazy(() =>
-        import('./ui/feed-by-tag').then((x) => ({
+        import('./pages/feed-by-tag/ui/feed-by-tag').then((x) => ({
           default: x.FeedByTag,
         })),
       ),
