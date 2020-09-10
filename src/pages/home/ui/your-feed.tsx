@@ -1,19 +1,16 @@
 import React from 'react';
 import { useGate, useStore, useList } from 'effector-react';
 import { Link } from 'react-router-dom';
+import { RouteConfigComponentProps } from 'react-router-config';
 import { Pagination } from '../../../ui';
-import {
-  PageGate,
-  $articles,
-  $currentPage,
-  $totalPages,
-  currentPageSetted,
-} from '../model/your-feed.model';
+import { itemRender } from '../../../library';
+import { PageGate, $articles, $totalPages } from '../model/your-feed.model';
 import '../model/init';
 
-export const YourFeed: React.FC = () => {
+type Props = Readonly<RouteConfigComponentProps>;
+
+export const YourFeed: React.FC<Props> = ({ match: { path } }) => {
   useGate(PageGate);
-  const currentPage = useStore($currentPage);
   const total = useStore($totalPages);
 
   return (
@@ -26,12 +23,7 @@ export const YourFeed: React.FC = () => {
           </li>
         ))}
       </ul>
-      <Pagination
-        currentPage={currentPage as number}
-        total={total}
-        onChange={currentPageSetted}
-        limit={10}
-      />
+      <Pagination itemRender={itemRender(path)} total={total} />
     </div>
   );
 };

@@ -13,6 +13,7 @@ module.exports = {
     'prettier',
     'prettier/react',
     'prettier/@typescript-eslint',
+    'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
   ],
   plugins: ['@typescript-eslint'],
@@ -21,6 +22,9 @@ module.exports = {
     jest: true,
   },
   settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
     'import/resolver': {
       node: {
         extensions: ['.ts', '.tsx'],
@@ -55,6 +59,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
     '@typescript-eslint/ban-types': 0,
+    '@typescript-eslint/ban-ts-comment': 0,
   },
   overrides: [
     {
