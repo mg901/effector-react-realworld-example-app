@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 type ItemRender = (path: string) => PaginationProps['itemRender'];
 
-export const itemRender: ItemRender = (path) => (current, type, element) =>
+export const feedItemRender: ItemRender = (path) => (current, type, element) =>
   type !== 'page' ? (
     element
   ) : (

@@ -4,7 +4,6 @@ import {
   createStore,
   attach,
   combine,
-  Effect,
 } from 'effector';
 import { createGate } from 'effector-react';
 import * as router from '../../../../core/router';
