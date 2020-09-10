@@ -1,32 +1,25 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
-import { routerModel } from '../../../core/router';
+import * as router from '../../../core/router';
 import { get } from '../../../api';
-import { limit, getPageFromQueryParamsFx } from '../../../library';
-import * as T from './types';
+import { limit } from '../../../library';
+import * as types from './types';
 
 export const PageGate = createGate();
 export const currentPageSetted = createEvent<number>();
 
-export const getFeedByTagFx = createEffect({
-  handler: ({ tag, page }: T.GetFeedByTagArgs) =>
-    get<T.Feed>(
+export const getFeedByTagFx = createEffect(
+  ({ tag, page }: types.GetFeedByTagArgs) =>
+    get<types.Feed>(
       `/articles?tag=${encodeURIComponent(tag)}&${limit(10, page - 1)}`,
     ),
-});
+);
 
-export const $currentTag = routerModel.$location.map(
+export const $currentTag = router.model.$location.map(
   (x) => new URLSearchParams(x.search).get('name') as string,
 );
 
-export const $currentPage = createStore(1)
-  .on(
-    [currentPageSetted, getPageFromQueryParamsFx.doneData],
-    (_, payload) => payload,
-  )
-  .reset($currentTag.updates);
-
-export const $feed = createStore<Record<string, T.Feed>>({}).on(
+export const $feed = createStore<Record<string, types.Feed>>({}).on(
   getFeedByTagFx.done,
   (state, { params, result }) => ({
     ...state,

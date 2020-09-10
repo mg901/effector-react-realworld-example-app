@@ -7,9 +7,9 @@ export const fieldChanged = createEvent<Record<string, string>>();
 export const formSubmitted = createEvent();
 export const handleFieldChanged = fieldChanged.prepend(createField);
 
-export const changeAuthUserFx = createEffect({
-  handler: (user: authTypes.AuthorizedUser) => put('/user', { user }),
-});
+export const changeAuthUserFx = createEffect((user: authTypes.AuthorizedUser) =>
+  put('/user', { user }),
+);
 
 changeAuthUserFx.done.watch(() => {
   window.location.reload(true);

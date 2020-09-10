@@ -1,5 +1,5 @@
-import * as routerModel from './model';
+import * as model from './model';
 import { Paths } from './constants';
 import { AuthBranch, filterRoutes } from './library';
 
-export { routerModel, Paths, AuthBranch, filterRoutes };
+export { model, Paths, AuthBranch, filterRoutes };

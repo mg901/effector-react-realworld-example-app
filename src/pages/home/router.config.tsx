@@ -9,14 +9,16 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       exact: true,
       forAuth: true,
       component: lazy(() =>
-        import('./ui/your-feed').then((x) => ({ default: x.YourFeed })),
+        import('./pages/your-feed').then((x) => ({
+          default: x.YourFeed,
+        })),
       ),
     },
     {
       path: Paths.GLOBAL_FEED,
       exact: true,
       component: lazy(() =>
-        import('./ui/global-feed').then((x) => ({
+        import('./pages/global-feed').then((x) => ({
           default: x.GlobalFeed,
         })),
       ),

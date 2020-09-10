@@ -5,7 +5,7 @@ import { RouteConfigComponentProps } from 'react-router-config';
 import { Pagination } from '../../../ui';
 import { itemRender } from '../../../library';
 import { PageGate, $articles, $totalPages } from '../model/feed-by-tag.model';
-import '../model/init';
+// import '../model/init';
 
 type Props = Readonly<RouteConfigComponentProps>;
 

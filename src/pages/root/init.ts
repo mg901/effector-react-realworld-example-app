@@ -20,7 +20,7 @@ forward({
 
 forward({
   from: notAuthenticated,
-  to: model.intitNotAuthAppFx,
+  to: model.getTagsFx,
 });
 
 authModel.$authorizedUser.on(model.getUserFx.doneData, (_, { user }) => user);

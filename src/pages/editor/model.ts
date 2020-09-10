@@ -14,9 +14,9 @@ export const handleTextChanged = textChanged.prepend(
 export const tagAdded = createEvent<string>();
 export const tagDeleted = createEvent<string>();
 
-export const createArticleFx = createEffect({
-  handler: (article: types.Form) => api.post('/articles', { article }),
-});
+export const createArticleFx = createEffect((article: types.Form) =>
+  api.post('/articles', { article }),
+);
 
 export const $currentTag = restore(textChanged, '').reset(tagAdded);
 

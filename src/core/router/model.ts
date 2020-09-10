@@ -10,3 +10,4 @@ history.listen((location) => {
 });
 
 export const $location = createStore<Location>(history.location);
+export const $search = $location.map((x) => x.search);
