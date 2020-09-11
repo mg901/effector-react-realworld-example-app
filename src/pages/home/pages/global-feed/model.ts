@@ -1,8 +1,8 @@
 import { createEvent, createEffect, createStore, attach } from 'effector';
 import { createGate } from 'effector-react';
-import { get } from '../../../../api';
-import * as router from '../../../../core/router';
-import { limit } from '../../../../library';
+import * as router from '@core/router';
+import { limit } from '@library';
+import { get } from '@api';
 import * as types from '../../model/types';
 
 export const PageGate = createGate();

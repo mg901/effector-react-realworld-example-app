@@ -1,5 +1,4 @@
 import { forward } from 'effector';
-
 import { PageGate, $yourFeed, getYourFeedFx, $currentPage } from './model';
 
 forward({

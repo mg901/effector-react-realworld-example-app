@@ -1,6 +1,6 @@
 import React from 'react';
-import { useStore } from 'effector-react';
 import { RouteConfig } from 'react-router-config';
+import { useStore } from 'effector-react';
 import { authModel } from '../auth';
 
 type Props = {

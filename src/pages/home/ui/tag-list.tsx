@@ -1,9 +1,9 @@
 import React from 'react';
-import { useList } from 'effector-react';
 import { Link } from 'react-router-dom';
-import { Paths } from '../../../core/router';
+import { useList } from 'effector-react';
+import { Paths } from '@core/router';
+import { Tag } from '@ui';
 import { $tags } from '../../root/model';
-import { Tag } from '../../../ui';
 
 export const TagList: React.FC = () => (
   <ul>

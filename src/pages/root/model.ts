@@ -1,8 +1,8 @@
 import { createEffect, restore } from 'effector';
 import { createGate } from 'effector-react';
-import { get } from '../../api';
-import * as router from '../../core/router';
-import { authTypes } from '../../core/auth';
+import { authTypes } from '@core/auth';
+import * as router from '@core/router';
+import { get } from '@api';
 import * as types from './types';
 
 export const RootGate = createGate();

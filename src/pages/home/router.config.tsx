@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { RouteConfig } from 'react-router-config';
-import { Paths, filterRoutes } from '../../core/router';
+import { Paths, filterRoutes } from '@core/router';
 
 export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
   [

@@ -1,6 +1,6 @@
 import { createEvent, createEffect, createStore, restore } from 'effector';
-import { createField, uniq } from '../../library';
-import * as api from '../../api';
+import { createField, uniq } from '@library';
+import * as api from '@api';
 import * as types from './types';
 
 export const textChanged = createEvent<string>();

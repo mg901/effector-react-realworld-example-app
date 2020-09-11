@@ -1,10 +1,10 @@
 import React from 'react';
-import { useStore, useGate } from 'effector-react';
-import { NavLink as Link } from 'react-router-dom';
 import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
-import { Container, Button, NavLink } from '../../../ui';
-import { routes } from '../router.config';
+import { NavLink as Link } from 'react-router-dom';
+import { useStore, useGate } from 'effector-react';
+import { Container, Button, NavLink } from '@ui';
 import { profileModel } from '../profile-model';
+import { routes } from '../router.config';
 import '../profile-model/init';
 
 type Props = RouteConfigComponentProps<{ url: string }>;

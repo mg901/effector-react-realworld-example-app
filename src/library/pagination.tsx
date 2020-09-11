@@ -1,6 +1,6 @@
 import React from 'react';
-import { PaginationProps } from 'rc-pagination';
 import { Link } from 'react-router-dom';
+import { PaginationProps } from 'rc-pagination';
 
 type ItemRender = (path: string) => PaginationProps['itemRender'];
 

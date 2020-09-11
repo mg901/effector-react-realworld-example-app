@@ -1,9 +1,9 @@
 import React from 'react';
-import { useGate, useList } from 'effector-react';
-import { Link } from 'react-router-dom';
 import { RouteConfigComponentProps } from 'react-router-config';
-import { Pagination } from './pagination';
+import { Link } from 'react-router-dom';
+import { useGate, useList } from 'effector-react';
 import { PageGate, $articles } from '../model';
+import { Pagination } from './pagination';
 
 type Props = Readonly<RouteConfigComponentProps>;
 

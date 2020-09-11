@@ -1,7 +1,7 @@
 import { createEffect, restore } from 'effector';
-import { get } from '../../../api';
+import { limit } from '@library';
+import { get } from '@api';
 import { Feed } from '../../types';
-import { limit } from '../../../library';
 import * as types from '../types';
 
 export const getFeedFx = createEffect(({ author, page }: types.GetFeedArgs) =>

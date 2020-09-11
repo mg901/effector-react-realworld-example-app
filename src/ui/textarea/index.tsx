@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
-import * as css from './index.css';
 import { FormGroup } from '../form-group';
 import { Label } from '../label';
+import * as css from './index.css';
 
 export type TextareaProps = React.TextareaHTMLAttributes<
   HTMLTextAreaElement
