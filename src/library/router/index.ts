@@ -1,5 +1,13 @@
-import { Paths } from './constants';
-import { AuthBranch, filterRoutes } from './library';
-import * as model from './model';
+import { RouteConfig } from 'react-router-config';
 
-export { model, Paths, AuthBranch, filterRoutes };
+export const filterRoutes = (isAuth: boolean) => (
+  route: RouteConfig,
+): boolean => {
+  if (typeof route.forAuth === 'undefined') return true;
+
+  return route.forAuth === isAuth;
+};
+
+export { AuthBranch } from './ui/auth-branch';
+export { Paths } from './constants';
+export * as model from './model';
