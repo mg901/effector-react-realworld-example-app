@@ -8,7 +8,7 @@ import { $tags } from '../../root/model';
 export const TagList: React.FC = () => (
   <ul>
     {useList($tags, (tag) => (
-      <Link to={`${Paths.FEED_BY_TAG}?name=${tag}`}>
+      <Link to={`${Paths.FEED_BY_TAG}?tag=${tag}`}>
         <Tag>{tag}</Tag>
       </Link>
     ))}

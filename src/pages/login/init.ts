@@ -1,5 +1,5 @@
 import { forward } from 'effector';
-import * as auth from '../../auth';
+import * as auth from '../../features/auth';
 import { formSubmitted, fxSignIn } from './model';
 
 forward({

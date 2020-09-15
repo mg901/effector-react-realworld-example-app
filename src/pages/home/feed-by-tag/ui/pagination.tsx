@@ -23,7 +23,7 @@ export const itemRender: ItemRender = ({ path, tagName }) => (
   type !== 'page' ? (
     element
   ) : (
-    <Link className="link" to={`${path}?tag=${tagName}`}>
+    <Link className="link" to={`${path}?tag=${tagName}&page=${current}`}>
       {current}
     </Link>
   );
