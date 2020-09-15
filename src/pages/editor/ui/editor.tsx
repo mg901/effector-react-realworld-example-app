@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Form, Button } from '../../../ui';
-import { handleFieldChanged } from '../model';
+import { model } from '../model';
 import { AddTagForm } from './add-tag-form';
 import { InputField } from './input-field';
 import { TagList } from './tag-list';
@@ -17,17 +17,17 @@ export const Editor: React.FC = () => (
       <InputField
         name="title"
         placeholder="Article Title"
-        onChange={handleFieldChanged}
+        onChange={model.handleFieldChanged}
       />
       <InputField
         name="description"
         placeholder="What's this article about?"
-        onChange={handleFieldChanged}
+        onChange={model.handleFieldChanged}
       />
       <TextField
         name="body"
         placeholder="Write your article (in markdown)"
-        onChange={handleFieldChanged}
+        onChange={model.handleFieldChanged}
       />
     </Form>
     <AddTagForm />

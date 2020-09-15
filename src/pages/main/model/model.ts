@@ -1,8 +1,8 @@
 import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
-import { get } from '../../api';
-import * as auth from '../../features/auth';
-import * as router from '../../library/router';
+import { get } from '../../../api';
+import * as auth from '../../../features/auth';
+import * as router from '../../../library/router';
 import * as types from './types';
 
 export const RootGate = createGate();

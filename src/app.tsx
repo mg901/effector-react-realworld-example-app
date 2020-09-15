@@ -2,7 +2,7 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 import { model } from './library/router';
 import { Main } from './pages/main';
-import './library/router/init';
+import './library/router/model/init';
 
 export const App: React.FC = () => (
   <Router history={model.history}>

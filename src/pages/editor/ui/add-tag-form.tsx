@@ -1,10 +1,10 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { Form, Input } from '../../../ui';
-import { $currentTag, tagAdded, handleTextChanged } from '../model';
+import { model } from '../model';
 
 export const AddTagForm: React.FC = () => {
-  const tag = useStore($currentTag);
+  const tag = useStore(model.$currentTag);
 
   return (
     <Form
@@ -17,11 +17,11 @@ export const AddTagForm: React.FC = () => {
         name="tagList"
         placeholder="Enter tags"
         onKeyDown={(e) => {
-          if (e.key === 'Enter' && e.which === 13) {
-            tagAdded(tag);
+          if (e.key === 'Enter') {
+            model.tagAdded(tag);
           }
         }}
-        onChange={handleTextChanged}
+        onChange={model.handleTextChanged}
       />
     </Form>
   );

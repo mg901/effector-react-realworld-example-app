@@ -1,6 +1,6 @@
-import { createEvent, createEffect, createStore, restore } from 'effector';
-import * as api from '../../api';
-import { createField, uniq } from '../../library';
+import { createEvent, createEffect, createStore } from 'effector';
+import * as api from '../../../api';
+import { createField } from '../../../library';
 import * as types from './types';
 
 export const textChanged = createEvent<string>();
@@ -18,7 +18,7 @@ export const createArticleFx = createEffect((article: types.Form) =>
   api.post('/articles', { article }),
 );
 
-export const $currentTag = restore(textChanged, '').reset(tagAdded);
+export const $currentTag = createStore<string>('');
 
 export const $form = createStore<types.Form>({
   articleSlug: '',
@@ -26,18 +26,6 @@ export const $form = createStore<types.Form>({
   description: '',
   body: '',
   tagList: [],
-})
-  .on(fieldChanged, (state, payload) => ({
-    ...state,
-    ...payload,
-  }))
-  .on(tagAdded.filter({ fn: (x) => Boolean(x.length) }), (state, payload) => ({
-    ...state,
-    tagList: uniq<string>([...state.tagList, payload]),
-  }))
-  .on(tagDeleted, (state, payload) => ({
-    ...state,
-    tagList: state.tagList.filter((tag) => tag !== payload),
-  }));
+});
 
-export const $$tags = $form.map((x) => x.tagList);
+export const $tags = $form.map((x) => x.tagList);

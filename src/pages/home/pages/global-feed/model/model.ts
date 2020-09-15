@@ -1,8 +1,8 @@
 import { createEffect, attach } from 'effector';
 import { createGate } from 'effector-react';
-import { get } from '../../../../api';
-import * as feed from '../../../../features/feed';
-import { limit } from '../../../../library';
+import { get } from '../../../../../api';
+import * as feed from '../../../../../features/feed';
+import { limit } from '../../../../../library';
 
 export const PageGate = createGate();
 export const {

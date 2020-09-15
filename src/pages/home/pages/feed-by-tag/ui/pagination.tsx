@@ -3,12 +3,7 @@ import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import { PaginationProps } from 'rc-pagination';
 import { Pagination as PaginationUI } from '../../../../../ui';
-import {
-  $totalPages,
-  currentPageSetted,
-  $currentTag,
-  $currentPage,
-} from '../model';
+import { model } from '../model';
 
 type ItemRender = (x: {
   path: string;
@@ -33,16 +28,16 @@ type Props = Readonly<{
 }>;
 
 export const Pagination: React.FC<Props> = ({ path }) => {
-  const total = useStore($totalPages);
-  const tagName = useStore($currentTag);
-  const current = useStore($currentPage);
+  const total = useStore(model.$totalPages);
+  const tagName = useStore(model.$currentTag);
+  const current = useStore(model.$currentPage);
 
   return (
     <PaginationUI
       itemRender={itemRender({ path, tagName })}
       total={total}
       current={current}
-      onChange={currentPageSetted}
+      onChange={model.currentPageSetted}
     />
   );
 };
