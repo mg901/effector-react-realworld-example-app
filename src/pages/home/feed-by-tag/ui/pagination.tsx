@@ -3,11 +3,16 @@ import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import { PaginationProps } from 'rc-pagination';
 import { Pagination as PaginationUI } from '../../../../ui';
-import { $totalPages, currentPageSetted, $currentPage } from '../model';
+import {
+  $totalPages,
+  currentPageSetted,
+  $currentTag,
+  $currentPage,
+} from '../model';
 
 type ItemRender = (x: {
   path: string;
-  tagName?: string;
+  tagName: string;
 }) => PaginationProps['itemRender'];
 
 export const itemRender: ItemRender = ({ path, tagName }) => (
@@ -18,7 +23,7 @@ export const itemRender: ItemRender = ({ path, tagName }) => (
   type !== 'page' ? (
     element
   ) : (
-    <Link className="link" to={`${path}?tag=${tagName}&page=${current}`}>
+    <Link className="link" to={`${path}?tag=${tagName}`}>
       {current}
     </Link>
   );
@@ -27,14 +32,14 @@ type Props = Readonly<{
   path: string;
 }>;
 
-export const Pagination: React.FC<Props> = (props) => {
+export const Pagination: React.FC<Props> = ({ path }) => {
   const total = useStore($totalPages);
+  const tagName = useStore($currentTag);
   const current = useStore($currentPage);
-  const { path } = props;
 
   return (
     <PaginationUI
-      itemRender={itemRender({ path })}
+      itemRender={itemRender({ path, tagName })}
       total={total}
       current={current}
       onChange={currentPageSetted}

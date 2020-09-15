@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useGate, useList } from 'effector-react';
 import { PageGate, $articles } from '../model';
 import { Pagination } from './pagination';
+import '../init';
 
 type Props = Readonly<RouteConfigComponentProps>;
 

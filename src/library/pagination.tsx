@@ -4,7 +4,7 @@ import { PaginationProps } from 'rc-pagination';
 
 type ItemRender = (path: string) => PaginationProps['itemRender'];
 
-export const feedItemRender: ItemRender = (path) => (current, type, element) =>
+export const itemRender: ItemRender = (path) => (current, type, element) =>
   type !== 'page' ? (
     element
   ) : (

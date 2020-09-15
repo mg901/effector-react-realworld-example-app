@@ -24,3 +24,4 @@ forward({
 });
 
 auth.model.$authorizedUser.on(model.getUserFx.doneData, (_, { user }) => user);
+model.$tags.on(model.getTagsFx.doneData, (_, { tags }) => tags);

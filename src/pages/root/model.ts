@@ -1,4 +1,4 @@
-import { createEffect, restore } from 'effector';
+import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
 import { get } from '../../api';
 import * as auth from '../../auth';
@@ -21,7 +21,4 @@ export const initAuthAppFx = createEffect(() =>
   Promise.all([getUserFx(), getTagsFx()]),
 );
 
-export const $tags = restore(
-  getTagsFx.doneData.map((x) => x.tags),
-  [],
-);
+export const $tags = createStore<types.TagList>([]);
