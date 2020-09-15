@@ -1,1 +1,1 @@
-export { Main as Root } from './ui/main';
+export { Main } from './ui/main';

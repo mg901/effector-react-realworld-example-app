@@ -14,7 +14,7 @@ export const {
 } = feed.createFeedModel();
 
 const getFeedFx = createEffect((page: number) =>
-  get<feed.types.Feed>(`/articles?${limit(10, page - 1)}`),
+  get<feed.types.Feed>(`/articles?${limit(10, page)}`),
 );
 
 export const getGlobalFeedFx = attach({
