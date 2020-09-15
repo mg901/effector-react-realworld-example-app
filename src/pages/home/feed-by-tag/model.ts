@@ -14,7 +14,7 @@ export const {
 
 export const getFeedFx = createEffect(({ tag, page }: GetFeedByTagArgs) =>
   get<feed.types.Feed>(
-    `/articles?tag=${encodeURIComponent(tag)}&${limit(10, page - 1)}`,
+    `/articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`,
   ),
 );
 
