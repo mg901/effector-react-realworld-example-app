@@ -1,5 +1,5 @@
 import { createStore, createEffect, attach, Effect } from 'effector';
-import { authModel } from './auth';
+import * as auth from './auth';
 import { API_ROOT } from './config';
 
 export const $backendUrl = createStore<string>(API_ROOT);
@@ -39,7 +39,7 @@ export const AnonimusRequestFx = attach({
 });
 
 export const AuthorizedRequestFx = attach({
-  source: authModel.$token,
+  source: auth.model.$token,
   effect: AnonimusRequestFx,
   mapParams: ({ headers, ...params }: RequestType, token) => {
     if (!token) {
