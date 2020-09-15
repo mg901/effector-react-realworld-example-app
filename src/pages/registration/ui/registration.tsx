@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Paths } from '../../../library/router';
 import { Container, Input, Button } from '../../../ui';
-import { formSubmitted } from '../model';
-import '../init';
+import { model } from '../model';
+import '../model/init';
 
 export const Registration: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -21,7 +21,7 @@ export const Registration: React.FC = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          formSubmitted({ username, email, password });
+          model.formSubmitted({ username, email, password });
         }}>
         <Input
           name="username"

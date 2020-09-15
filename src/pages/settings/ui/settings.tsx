@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, Form, Button } from '../../../ui';
-import { handleFieldChanged, formSubmitted } from '../model';
+import { model } from '../model';
 import { InputField } from './input-field';
 import { TextField } from './text-field';
-import '../init';
+import '../model/init';
 
 export const Settings: React.FC = () => (
   <Container>
@@ -11,21 +11,29 @@ export const Settings: React.FC = () => (
     <Form
       onSubmit={(e) => {
         e.preventDefault();
-        formSubmitted();
+        model.formSubmitted();
       }}>
-      <InputField label="Image" name="image" onChange={handleFieldChanged} />
+      <InputField
+        label="Image"
+        name="image"
+        onChange={model.handleFieldChanged}
+      />
       <InputField
         label="Username"
         name="username"
-        onChange={handleFieldChanged}
+        onChange={model.handleFieldChanged}
       />
-      <TextField label="Bio" name="bio" onChange={handleFieldChanged} />
+      <TextField label="Bio" name="bio" onChange={model.handleFieldChanged} />
 
-      <InputField label="Email" name="email" onChange={handleFieldChanged} />
+      <InputField
+        label="Email"
+        name="email"
+        onChange={model.handleFieldChanged}
+      />
       <InputField
         label="New Password"
         name="password"
-        onChange={handleFieldChanged}
+        onChange={model.handleFieldChanged}
       />
 
       <Button type="submit">Update Settigs</Button>

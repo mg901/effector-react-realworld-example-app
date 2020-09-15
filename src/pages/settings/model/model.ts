@@ -1,7 +1,7 @@
 import { createEvent, createEffect } from 'effector';
-import { put } from '../../api';
-import * as auth from '../../features/auth';
-import { createField } from '../../library';
+import { put } from '../../../api';
+import * as auth from '../../../features/auth';
+import { createField } from '../../../library';
 
 export const fieldChanged = createEvent<Record<string, string>>();
 export const formSubmitted = createEvent();

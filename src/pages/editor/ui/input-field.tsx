@@ -1,13 +1,13 @@
 import React from 'react';
 import { useFormField } from '../../../library';
 import { Input, InputProps } from '../../../ui';
-import { $form } from '../model';
+import { model } from '../model';
 
 type Props = InputProps & { name: string };
 
 export const InputField: React.FC<Props> = ({ name, ...props }) => {
   const value = useFormField({
-    store: $form,
+    store: model.$form,
     name,
   });
 
