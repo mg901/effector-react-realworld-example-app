@@ -4,15 +4,11 @@ import { limit } from '../../../library';
 import { Feed } from '../../types';
 import * as types from '../types';
 
-export const getFeedFx = createEffect({
-  handler: ({ author, page }: types.GetFeedArgs) =>
-    api.get<Feed>(
-      `/articles?author=${encodeURIComponent(author)}&${limit(
-        5,
-        Number(page),
-      )}`,
-    ),
-});
+export const getFeedFx = createEffect(({ author, page }: types.GetFeedArgs) =>
+  api.get<Feed>(
+    `/articles?author=${encodeURIComponent(author)}&${limit(5, Number(page))}`,
+  ),
+);
 
 export const $feed = restore(getFeedFx.doneData, {
   articles: [],

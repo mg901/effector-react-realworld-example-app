@@ -1,11 +1,11 @@
 import { split, sample, forward, merge } from 'effector';
-import { authModel } from '../../core/auth';
+import * as auth from '../../auth';
 import * as model from './model';
 
 const { authenticated, notAuthenticated } = split(
   merge([
-    sample(authModel.$isAuthorized, model.RootGate.open),
-    authModel.$isAuthorized.updates,
+    sample(auth.model.$isAuthorized, model.RootGate.open),
+    auth.model.$isAuthorized.updates,
   ]),
   {
     authenticated: (is) => is === true,
@@ -20,7 +20,7 @@ forward({
 
 forward({
   from: notAuthenticated,
-  to: model.intitNotAuthAppFx,
+  to: model.getTagsFx,
 });
 
-authModel.$authorizedUser.on(model.getUserFx.doneData, (_, { user }) => user);
+auth.model.$authorizedUser.on(model.getUserFx.doneData, (_, { user }) => user);

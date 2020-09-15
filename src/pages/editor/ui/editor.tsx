@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Form, Button } from '../../../ui';
-import { InputField } from './input-field';
-import { TextField } from './text-field';
-import { AddTagForm } from './add-tag-form';
-import { TagList } from './tag-list';
 import { handleFieldChanged } from '../model';
+import { AddTagForm } from './add-tag-form';
+import { InputField } from './input-field';
+import { TagList } from './tag-list';
+import { TextField } from './text-field';
 
 export const Editor: React.FC = () => (
   <Container>

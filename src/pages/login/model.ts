@@ -1,17 +1,17 @@
 import { createEvent, createEffect } from 'effector';
 import { post } from '../../api';
-import { authTypes } from '../../core/auth';
+import * as auth from '../../auth';
 import * as types from './types';
 
 export const formSubmitted = createEvent<types.Form>();
 
 export const fxSignIn = createEffect<
   types.Form,
-  authTypes.AuthUserResponse,
-  authTypes.AuthFail
+  auth.types.AuthUserResponse,
+  auth.types.AuthFail
 >({
   handler: ({ email, password }: types.Form) =>
-    post<authTypes.AuthUserResponse>('/users/login', {
+    post<auth.types.AuthUserResponse>('/users/login', {
       user: { email, password },
     }),
 });

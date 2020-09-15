@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
-import useClickOutside from 'use-onclickoutside';
 import { Link as RouterLink } from 'react-router-dom';
+import useClickOutside from 'use-onclickoutside';
+import { Paths } from '../../../../library/router';
 import { Link } from '../../../../ui';
-import { Paths } from '../../../../core/router';
-import { UserPick } from '../user-pick';
 import { DownDownMenu } from '../dropdown-menu';
+import { UserPick } from '../user-pick';
 import * as css from './index.css';
 
 type Props = Readonly<{

@@ -4,7 +4,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module',
   },
   extends: [
@@ -16,7 +16,7 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
   ],
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'import-helpers'],
   env: {
     browser: true,
     jest: true,
@@ -27,8 +27,9 @@ module.exports = {
     },
     'import/resolver': {
       node: {
-        extensions: ['.ts', '.tsx'],
+        paths: ['./src'],
       },
+      'babel-module': {},
     },
   },
   rules: {
@@ -60,6 +61,23 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     '@typescript-eslint/ban-types': 0,
     '@typescript-eslint/ban-ts-comment': 0,
+    'import-helpers/order-imports': [
+      2,
+      {
+        groups: [
+          '/^react/',
+          '/^effector/',
+          'module',
+          '/^@core/',
+          '/^@library/',
+          '/^@ui/',
+          '/^@api/',
+          '/^@config/',
+          ['parent', 'sibling', 'index'],
+        ],
+        alphabetize: { order: 'asc', ignoreCase: true },
+      },
+    ],
   },
   overrides: [
     {

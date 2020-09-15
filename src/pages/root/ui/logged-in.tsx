@@ -1,13 +1,13 @@
 import React from 'react';
-import { useStore } from 'effector-react';
 import { NavLink } from 'react-router-dom';
-import { authModel } from '../../../core/auth';
+import { useStore } from 'effector-react';
+import * as auth from '../../../auth';
+import { Paths } from '../../../library/router';
 import { NavLink as Link } from '../../../ui';
-import { Paths } from '../../../core/router';
 import { UserBar } from './user-bar';
 
 export const LoggedIn: React.FC = () => {
-  const { username, image } = useStore(authModel.$authorizedUser);
+  const { username, image } = useStore(auth.model.$authorizedUser);
 
   return (
     <>
@@ -22,7 +22,7 @@ export const LoggedIn: React.FC = () => {
       <UserBar
         image={image}
         username={username}
-        onLogOutClick={() => authModel.loggedOutClicked()}
+        onLogOutClick={() => auth.model.loggedOutClicked()}
       />
     </>
   );

@@ -1,5 +1,5 @@
 import { forward } from 'effector';
-import { authModel } from '../../core/auth';
+import * as auth from '../../auth';
 import { formSubmitted, fxSignIn } from './model';
 
 forward({
@@ -7,4 +7,4 @@ forward({
   to: fxSignIn,
 });
 
-authModel.$authorizedUser.on(fxSignIn.doneData, (_, { user }) => user);
+auth.model.$authorizedUser.on(fxSignIn.doneData, (_, { user }) => user);

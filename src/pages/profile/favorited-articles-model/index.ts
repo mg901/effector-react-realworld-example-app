@@ -1,15 +1,14 @@
 import { createEffect, restore } from 'effector';
 import { get } from '../../../api';
-import { Feed } from '../../types';
 import { limit } from '../../../library';
+import { Feed } from '../../types';
 import * as types from '../types';
 
-export const getFeedFx = createEffect({
-  handler: ({ author, page }: types.GetFeedArgs) =>
-    get<Feed>(
-      `/articles?favorited=${encodeURIComponent(author)}&${limit(5, page)}`,
-    ),
-});
+export const getFeedFx = createEffect(({ author, page }: types.GetFeedArgs) =>
+  get<Feed>(
+    `/articles?favorited=${encodeURIComponent(author)}&${limit(5, page)}`,
+  ),
+);
 
 export const $feed = restore(getFeedFx.doneData, {
   articles: [],

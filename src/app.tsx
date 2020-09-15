@@ -1,12 +1,11 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
-import { routerModel } from './core/router';
+import { model } from './library/router';
 import { Root } from './pages/root';
-
-import './core/router/init';
+import './library/router/init';
 
 export const App: React.FC = () => (
-  <Router history={routerModel.history}>
+  <Router history={model.history}>
     <Root />
   </Router>
 );

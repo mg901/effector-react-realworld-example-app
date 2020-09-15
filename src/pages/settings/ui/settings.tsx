@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container, Form, Button } from '../../../ui';
+import { handleFieldChanged, formSubmitted } from '../model';
 import { InputField } from './input-field';
 import { TextField } from './text-field';
-import { handleFieldChanged, formSubmitted } from '../model';
 import '../init';
 
 export const Settings: React.FC = () => (

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Banner } from '../banner';
 import { Container } from '../../../../ui';
-import { Tabs } from '../tabs';
+import { Banner } from '../banner';
 import { Routes } from '../routes';
+import { Tabs } from '../tabs';
 import { TagList } from '../tag-list';
 import * as css from './index.css';
 

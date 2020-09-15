@@ -1,18 +1,14 @@
 import React from 'react';
-import { useGate, useList, useStore } from 'effector-react';
-import { Link } from 'react-router-dom';
 import { RouteConfigComponentProps } from 'react-router-config';
-import { Pagination } from '../../../ui';
-import { itemRender } from '../../../library';
-import { PageGate, $articles, $totalPages } from '../model/feed-by-tag.model';
-import '../model/init';
+import { Link } from 'react-router-dom';
+import { useGate, useList } from 'effector-react';
+import { PageGate, $articles } from '../model';
+import { Pagination } from './pagination';
 
 type Props = Readonly<RouteConfigComponentProps>;
 
 export const FeedByTag: React.FC<Props> = ({ match: { path } }) => {
   useGate(PageGate);
-
-  const total = useStore($totalPages);
 
   return (
     <div>
@@ -24,7 +20,7 @@ export const FeedByTag: React.FC<Props> = ({ match: { path } }) => {
           </li>
         ))}
       </ul>
-      <Pagination itemRender={itemRender(path)} total={total} />
+      <Pagination path={path} />
     </div>
   );
 };

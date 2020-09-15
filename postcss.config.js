@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
+const { typographist } = require('@typographist/postcss');
 const autoprefixer = require('autoprefixer');
 const postcssPresetEnv = require('postcss-preset-env');
-const { typographist } = require('@typographist/postcss');
 
 module.exports = {
   modules: true,
