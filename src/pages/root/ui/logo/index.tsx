@@ -4,9 +4,9 @@ import { Paths } from '../../../../library/router';
 import { Link } from '../../../../ui';
 import * as css from './index.css';
 
-type Props = {
+type Props = Readonly<{
   title: string;
-};
+}>;
 
 export const Logo: React.FC<Props> = ({ title }) => (
   <Link as={RouterLink} to={Paths.ROOT} className={css.logo}>

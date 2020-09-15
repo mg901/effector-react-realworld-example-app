@@ -2,10 +2,10 @@ import React from 'react';
 import { Container } from '../container';
 import * as css from './index.css';
 
-type Props = {
+type Props = Readonly<{
   children: React.ReactNode;
   className?: string;
-};
+}>;
 
 export const Header: React.FC<Props> = ({ className = '', children }) => (
   <header className={`${css.header} ${className}`}>

@@ -1,5 +1,5 @@
 import { split, sample, forward, merge } from 'effector';
-import * as auth from '../../auth';
+import * as auth from '../../features/auth';
 import * as model from './model';
 
 const { authenticated, notAuthenticated } = split(
@@ -24,3 +24,4 @@ forward({
 });
 
 auth.model.$authorizedUser.on(model.getUserFx.doneData, (_, { user }) => user);
+model.$tags.on(model.getTagsFx.doneData, (_, { tags }) => tags);

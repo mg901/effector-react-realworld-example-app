@@ -1,3 +1,5 @@
+export type TagList = readonly string[];
+
 export type Tags = Readonly<{
-  tags: readonly string[];
+  tags: TagList;
 }>;

@@ -1,11 +1,11 @@
 import { createEffect, restore } from 'effector';
 import { get } from '../../../api';
+import * as feed from '../../../features/feed';
 import { limit } from '../../../library';
-import { Feed } from '../../types';
 import * as types from '../types';
 
 export const getFeedFx = createEffect(({ author, page }: types.GetFeedArgs) =>
-  get<Feed>(
+  get<feed.types.Feed>(
     `/articles?favorited=${encodeURIComponent(author)}&${limit(5, page)}`,
   ),
 );

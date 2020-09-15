@@ -1,4 +1,4 @@
-import * as types from '../model/types';
+import { types } from '../../../features/feed';
 
 export type FeedByTag = Readonly<Record<string, types.Feed>>;
 

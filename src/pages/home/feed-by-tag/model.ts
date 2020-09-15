@@ -1,44 +1,30 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  attach,
-  combine,
-} from 'effector';
+import { createEffect, createStore, attach, combine } from 'effector';
 import { createGate } from 'effector-react';
 import { get } from '../../../api';
+import * as feed from '../../../features/feed';
 import { limit } from '../../../library';
-import * as router from '../../../library/router';
-import * as types from '../model/types';
 import { GetFeedByTagArgs, FeedByTag } from './types';
 
 export const PageGate = createGate();
-export const currentPageSetted = createEvent<number>();
+export const {
+  currentPageSetted,
+  $currentTag,
+  $currentPage,
+} = feed.createFeedModel();
 
 export const getFeedFx = createEffect(({ tag, page }: GetFeedByTagArgs) =>
-  get<types.Feed>(
+  get<feed.types.Feed>(
     `/articles?tag=${encodeURIComponent(tag)}&${limit(10, page - 1)}`,
   ),
 );
 
-export const $currentTag = router.model.$search.map(
-  (x) => new URLSearchParams(x).get('name') as string,
-);
-
-export const $currentPage = router.model.$search.map((x) => {
-  const page = new URLSearchParams(x).get('page') ?? 1;
-
-  return Number(page);
-});
-
-const getFeedByTagFx = attach({
-  source: $currentTag,
+export const getFeedByTagFx = attach({
+  source: { tag: $currentTag, page: $currentPage },
   effect: getFeedFx,
-  mapParams: (params: GetFeedByTagArgs, tag) => ({ ...params, tag }),
 });
 
 export const $feed = createStore<FeedByTag>({}).on(
-  getFeedByTagFx.done,
+  getFeedFx.done,
   (state, { params, result }) => ({
     ...state,
     [params.tag]: result,
@@ -48,8 +34,8 @@ export const $feed = createStore<FeedByTag>({}).on(
 export const $feedByTag = combine(
   $feed,
   $currentTag,
-  (feed, tag) =>
-    feed[tag] ?? {
+  (feedStore, tag) =>
+    feedStore[tag] ?? {
       articles: [],
       articlesCount: 0,
     },

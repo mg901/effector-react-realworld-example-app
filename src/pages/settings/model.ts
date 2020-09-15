@@ -1,6 +1,6 @@
 import { createEvent, createEffect } from 'effector';
 import { put } from '../../api';
-import * as auth from '../../auth';
+import * as auth from '../../features/auth';
 import { createField } from '../../library';
 
 export const fieldChanged = createEvent<Record<string, string>>();
