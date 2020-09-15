@@ -15,12 +15,12 @@ export const unfollowUserFx = createEffect((username: string) =>
   api.del(`/profiles/${username}/follow`),
 );
 
-export const ProfileGate = createGate<types.ProfileGateProps>();
-export const FavoritedArticlesGate = createGate();
+export const PageGate = createGate<types.PageGateType>();
 
+export const $username = createStore<string>('');
 export const $profile = createStore<types.Profile>({
   bio: '',
   following: false,
   image: '',
   username: '',
-}).on(getProfileFx.doneData, (_, { profile }) => profile);
+});

@@ -14,7 +14,7 @@ import '../../init';
 
 import * as css from './index.css';
 
-export const Root: React.FC = () => {
+export const Main: React.FC = () => {
   useGate(model.RootGate);
 
   return (

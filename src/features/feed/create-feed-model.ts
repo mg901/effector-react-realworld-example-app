@@ -1,8 +1,6 @@
 import { createEvent, createStore } from 'effector';
-import * as router from '../router';
+import * as router from '../../library/router';
 import * as types from './types';
-
-router.model.$search.watch((x) => console.log('search', x));
 
 type Options = Readonly<{
   currentPage: number;
@@ -29,7 +27,7 @@ export const createFeedModel = (
     }),
 
     $currentTag: router.model.$search.map(
-      (x) => new URLSearchParams(x).get('name') ?? '',
+      (x) => new URLSearchParams(x).get('tag') ?? '',
     ),
     $feed,
     $articles: $feed.map((x) => x.articles),

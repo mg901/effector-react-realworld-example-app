@@ -1,4 +1,4 @@
-export type ProfileGateProps = Readonly<{
+export type PageGateType = Readonly<{
   url: string;
 }>;
 
@@ -11,4 +11,9 @@ export type Profile = Readonly<{
 
 export type ProfileResponse = Readonly<{
   profile: Profile;
+}>;
+
+export type GetFeedFxArgs = Readonly<{
+  username: string;
+  page: number;
 }>;

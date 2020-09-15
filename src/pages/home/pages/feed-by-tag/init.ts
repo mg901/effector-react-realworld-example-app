@@ -1,14 +1,9 @@
 import { forward } from 'effector';
-import {
-  $feed,
-  getFeedFx,
-  PageGate,
-  getFeedByTagFx,
-  $currentTag,
-} from './model';
+import * as router from '../../../../library/router';
+import { $feed, getFeedFx, PageGate, getFeedByTagFx } from './model';
 
 forward({
-  from: [PageGate.open, $currentTag.updates],
+  from: [PageGate.open, router.model.$search.updates],
   to: getFeedByTagFx,
 });
 
