@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { authModel } from '@core/auth';
-import { Paths } from '@core/router';
-import { NavLink as Link } from '@ui';
+import { authModel } from '../../../../core/auth';
+import { Paths } from '../../../../core/router';
+import { NavLink as Link } from '../../../../ui';
 import { $currentTag } from '../../pages/feed-by-tag';
 
 export const Tabs: React.FC = () => {

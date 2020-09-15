@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
 import { NavLink as Link } from 'react-router-dom';
 import { useStore, useGate } from 'effector-react';
-import { Container, Button, NavLink } from '@ui';
+import { Container, Button, NavLink } from '../../../ui';
 import { profileModel } from '../profile-model';
 import { routes } from '../router.config';
 import '../profile-model/init';

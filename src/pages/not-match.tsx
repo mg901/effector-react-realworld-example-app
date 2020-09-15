@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '@ui';
+import { Container } from '../ui';
 
 export const NotMatch: React.FC = () => (
   <Container>

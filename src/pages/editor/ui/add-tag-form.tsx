@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { Form, Input } from '@ui';
+import { Form, Input } from '../../../ui';
 import { $currentTag, tagAdded, handleTextChanged } from '../model';
 
 export const AddTagForm: React.FC = () => {

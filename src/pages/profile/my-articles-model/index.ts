@@ -1,6 +1,6 @@
 import { createEffect, restore } from 'effector';
-import { limit } from '@library';
-import * as api from '@api';
+import * as api from '../../../api';
+import { limit } from '../../../library';
 import { Feed } from '../../types';
 import * as types from '../types';
 

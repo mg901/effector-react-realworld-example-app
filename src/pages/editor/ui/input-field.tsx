@@ -1,6 +1,6 @@
 import React from 'react';
-import { useFormField } from '@library';
-import { Input, InputProps } from '@ui';
+import { useFormField } from '../../../library';
+import { Input, InputProps } from '../../../ui';
 import { $form } from '../model';
 
 type Props = InputProps & { name: string };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '@ui';
+import { Container } from '../../../../ui';
 import { Banner } from '../banner';
 import { Routes } from '../routes';
 import { Tabs } from '../tabs';

@@ -6,9 +6,9 @@ import {
   combine,
 } from 'effector';
 import { createGate } from 'effector-react';
-import * as router from '@core/router';
-import { limit } from '@library';
-import { get } from '@api';
+import { get } from '../../../../api';
+import * as router from '../../../../core/router';
+import { limit } from '../../../../library';
 import * as types from '../../model/types';
 import { GetFeedByTagArgs, FeedByTag } from './types';
 

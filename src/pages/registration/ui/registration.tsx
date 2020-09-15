@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Paths } from '@core/router';
-import { Container, Input, Button } from '@ui';
+import { Paths } from '../../../core/router';
+import { Container, Input, Button } from '../../../ui';
 import { formSubmitted } from '../model';
 import '../init';
 

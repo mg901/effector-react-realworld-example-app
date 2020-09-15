@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import useClickOutside from 'use-onclickoutside';
-import { Paths } from '@core/router';
-import { Link } from '@ui';
+import { Paths } from '../../../../core/router';
+import { Link } from '../../../../ui';
 import { DownDownMenu } from '../dropdown-menu';
 import { UserPick } from '../user-pick';
 import * as css from './index.css';

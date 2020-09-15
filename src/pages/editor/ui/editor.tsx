@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Form, Button } from '@ui';
+import { Container, Form, Button } from '../../../ui';
 import { handleFieldChanged } from '../model';
 import { AddTagForm } from './add-tag-form';
 import { InputField } from './input-field';

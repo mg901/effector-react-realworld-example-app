@@ -1,5 +1,5 @@
 import { sample } from 'effector';
-import { authModel } from '@core/auth';
+import { authModel } from '../../core/auth';
 import * as model from './model';
 
 authModel.$authorizedUser.on(model.fieldChanged, (state, payload) => ({
