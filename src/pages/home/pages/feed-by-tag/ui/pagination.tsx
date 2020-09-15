@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import { PaginationProps } from 'rc-pagination';
-import { Pagination as PaginationUI } from '../../../../ui';
+import { Pagination as PaginationUI } from '../../../../../ui';
 import {
   $totalPages,
   currentPageSetted,

@@ -1,5 +1,5 @@
 import { forward } from 'effector';
-import * as router from '../../../library/router';
+import * as router from '../../../../library/router';
 import { $feed, getFeedFx, PageGate, getFeedByTagFx } from './model';
 
 forward({
