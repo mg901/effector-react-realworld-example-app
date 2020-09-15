@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { authModel } from '../../../../core/auth';
-import { Paths } from '../../../../core/router';
+import { authModel } from '../../../../auth';
+import { Paths } from '../../../../library/router';
 import { NavLink as Link } from '../../../../ui';
 import { $currentTag } from '../../pages/feed-by-tag';
 

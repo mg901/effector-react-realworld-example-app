@@ -1,6 +1,6 @@
 import { createStore, createEffect, attach, Effect } from 'effector';
+import { authModel } from './auth';
 import { API_ROOT } from './config';
-import { authModel } from './core/auth';
 
 export const $backendUrl = createStore<string>(API_ROOT);
 

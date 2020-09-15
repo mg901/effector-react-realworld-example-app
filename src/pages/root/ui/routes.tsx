@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { renderRoutes } from 'react-router-config';
 import { useStore } from 'effector-react';
-import { authModel } from '../../../core/auth';
+import { authModel } from '../../../auth';
 import { makeRoutes } from '../router.config';
 
 export const Routes = (): JSX.Element => {

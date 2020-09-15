@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfig } from 'react-router-config';
 import { useStore } from 'effector-react';
-import { authModel } from '../auth';
+import { authModel } from '../../auth';
 
 type Props = {
   check: 'anon' | 'auth';

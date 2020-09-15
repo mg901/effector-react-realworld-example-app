@@ -1,7 +1,7 @@
 import React from 'react';
 import { StoreValue } from 'effector';
 import { useStoreMap } from 'effector-react';
-import { authModel } from '../../../core/auth';
+import { authModel } from '../../../auth';
 import { Input, InputProps } from '../../../ui';
 
 export const InputField: React.FC<InputProps> = ({ name, ...props }) => {

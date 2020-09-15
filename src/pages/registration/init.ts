@@ -1,5 +1,5 @@
 import { forward } from 'effector';
-import { authModel } from '../../core/auth';
+import { authModel } from '../../auth';
 import * as model from './model';
 
 forward({

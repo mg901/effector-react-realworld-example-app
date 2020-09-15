@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useList } from 'effector-react';
-import { Paths } from '../../../core/router';
+import { Paths } from '../../../library/router';
 import { Tag } from '../../../ui';
 import { $tags } from '../../root/model';
 

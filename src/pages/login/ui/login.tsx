@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Paths } from '../../../core/router';
+import { Paths } from '../../../library/router';
 import { Container, Form, Input, Button } from '../../../ui';
 import { formSubmitted } from '../model';
 import '../init';
