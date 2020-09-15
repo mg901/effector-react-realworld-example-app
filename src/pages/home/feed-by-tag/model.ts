@@ -6,10 +6,10 @@ import {
   combine,
 } from 'effector';
 import { createGate } from 'effector-react';
-import { get } from '../../../../api';
-import { limit } from '../../../../library';
-import * as router from '../../../../library/router';
-import * as types from '../../model/types';
+import { get } from '../../../api';
+import { limit } from '../../../library';
+import * as router from '../../../library/router';
+import * as types from '../model/types';
 import { GetFeedByTagArgs, FeedByTag } from './types';
 
 export const PageGate = createGate();
