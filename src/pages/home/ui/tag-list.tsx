@@ -7,9 +7,9 @@ import { model } from '../../main/model';
 
 export const TagList: React.FC = () => (
   <ul>
-    {useList(model.$tags, (tag) => (
+    {useList(model.$validTags, (tag) => (
       <Link to={`${Paths.FEED_BY_TAG}?tag=${tag}`}>
-        <Tag>{tag}</Tag>
+        <Tag>{tag.toLowerCase()}</Tag>
       </Link>
     ))}
   </ul>

@@ -2,6 +2,7 @@ import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
 import { get } from '../../../api';
 import * as auth from '../../../features/auth';
+import { removeNotASCII } from '../../../library';
 import * as router from '../../../library/router';
 import * as types from './types';
 
@@ -22,3 +23,5 @@ export const initAuthAppFx = createEffect(() =>
 );
 
 export const $tags = createStore<types.TagList>([]);
+
+export const $validTags = $tags.map((tags) => tags.filter(removeNotASCII));

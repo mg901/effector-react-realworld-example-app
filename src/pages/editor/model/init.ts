@@ -1,4 +1,4 @@
-import { uniq } from '../../../library';
+import { uniq, isASCII } from '../../../library';
 import * as model from './model';
 
 model.$currentTag
@@ -12,7 +12,7 @@ model.$form
   }))
   .on(
     model.tagAdded.filter({
-      fn: (x) => Boolean(x.length),
+      fn: (x) => Boolean(x.length) && isASCII(x),
     }),
     (state, payload) => ({
       ...state,

@@ -5,6 +5,7 @@ import { AddTagForm } from './add-tag-form';
 import { InputField } from './input-field';
 import { TagList } from './tag-list';
 import { TextField } from './text-field';
+import '../model/init';
 
 export const Editor: React.FC = () => (
   <Container>

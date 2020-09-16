@@ -6,7 +6,7 @@ export const TagList: React.FC = () => (
   <ul>
     {useList(model.$tags, (tag) => (
       <span>
-        <span>{tag}</span>
+        <span>{tag.toLowerCase()}</span>
         <button type="button" onClick={() => model.tagDeleted(tag)}>
           x
         </button>
