@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { Link } from 'react-router-dom';
 import { useGate, useList } from 'effector-react';
+import { ArticlesPreview } from '../../../../../ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 import '../model/init';
@@ -10,9 +11,11 @@ type Props = Readonly<RouteConfigComponentProps>;
 
 export const FeedByTag: React.FC<Props> = ({ match: { path } }) => {
   useGate(model.PageGate);
+  const isEmpty = useState(model.$isEmptyArticles);
 
   return (
     <div>
+      {isEmpty && <ArticlesPreview />}
       <ul>
         {useList(model.$articles, ({ author }) => (
           <li>

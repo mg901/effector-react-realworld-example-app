@@ -42,4 +42,5 @@ export const $feedByTag = combine(
 );
 
 export const $articles = $feedByTag.map((x) => x.articles);
+export const $isEmptyArticles = $articles.map((x) => x.length === 0);
 export const $totalPages = $feedByTag.map((x) => x.articlesCount);

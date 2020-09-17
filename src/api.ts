@@ -32,4 +32,4 @@ export const put = <T = void>(url: string, body: unknown): Promise<T> =>
   request<T>('put', url, body);
 
 export const del = <T = void>(url: string): Promise<T> =>
-  request<T>('del', url);
+  request<T>('delete', url);

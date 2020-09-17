@@ -11,14 +11,16 @@ type Props = Readonly<RouteConfigComponentProps<{ url: string }>>;
 
 export const Profile: React.FC<Props> = ({ match: { url } }) => {
   useGate(model.PageGate, { url });
-
   const { image } = useStore(model.$profile);
+  const following = useStore(model.$following);
 
   return (
     <Container>
       <div>
         <img src={image} alt="user-img" />
-        <Button>follow</Button>
+        <Button onClick={() => model.toggleFollowing()}>
+          {following ? 'unfollow' : 'follow'}
+        </Button>
       </div>
       <NavLink as={Link} to={`${url}`}>
         My Articles

@@ -1,13 +1,21 @@
-import { forward, attach } from 'effector';
-import { $profile, $username, PageGate, getProfileFx } from './model';
+import { forward, attach, guard } from 'effector';
+import {
+  $profile,
+  $username,
+  PageGate,
+  getProfileFx,
+  toggleFollowing,
+  $follow,
+  $unfollow,
+  followUserFx,
+  unfollowUserFx,
+} from './model';
 
-$profile.on(getProfileFx.doneData, (_, { profile }) => profile);
-$username.on(
-  PageGate.open.filter({
-    fn: (x) => Boolean(x),
-  }),
-  (_, { url }) => url.replace(/\/@/, ''),
+$profile.on(
+  [getProfileFx.doneData, followUserFx.doneData, unfollowUserFx.doneData],
+  (_, { profile }) => profile,
 );
+$username.on(PageGate.open, (_, { url }) => url.replace(/\/@/, ''));
 
 forward({
   from: PageGate.open,
@@ -15,4 +23,14 @@ forward({
     source: $username,
     effect: getProfileFx,
   }),
+});
+
+forward({
+  from: guard(toggleFollowing, { filter: $follow }),
+  to: attach({ source: $username, effect: unfollowUserFx }),
+});
+
+forward({
+  from: guard(toggleFollowing, { filter: $unfollow }),
+  to: attach({ source: $username, effect: followUserFx }),
 });
