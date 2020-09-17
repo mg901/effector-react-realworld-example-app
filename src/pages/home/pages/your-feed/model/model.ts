@@ -14,6 +14,8 @@ export const {
   $totalPages,
 } = feed.createFeedModel();
 
+export const $isEmptyArticles = $articles.map((x) => x.length === 0);
+
 const getFeedFx = createEffect((page: number) =>
   get<feed.types.Feed>(`/articles/feed?${limit(10, page)}`),
 );
