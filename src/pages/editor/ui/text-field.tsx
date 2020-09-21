@@ -1,6 +1,6 @@
 import React from 'react';
-import { useFormField } from '../../../library';
-import { Textarea, TextareaProps } from '../../../ui';
+import { useFormField } from 'library/form';
+import { Textarea, TextareaProps } from 'ui';
 import { model } from '../model';
 
 type Props = TextareaProps & { name: string };

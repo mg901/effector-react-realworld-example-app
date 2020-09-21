@@ -1,4 +1,5 @@
-import { uniq, isASCII } from '../../../library';
+import { isASCII } from 'library/ascii';
+import { uniq } from 'library/uniq';
 import * as model from './model';
 
 model.$currentTag

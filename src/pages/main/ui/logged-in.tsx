@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import * as auth from '../../../features/auth';
-import { Paths } from '../../../library/router';
-import { NavLink as Link } from '../../../ui';
+import * as auth from 'features/auth';
+import { Paths } from 'library/router';
+import { NavLink as Link } from 'ui';
 import { UserBar } from './user-bar';
 
 export const LoggedIn: React.FC = () => {

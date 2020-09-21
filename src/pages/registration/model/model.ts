@@ -1,6 +1,6 @@
 import { createEvent, createEffect } from 'effector';
-import { post } from '../../../api';
-import * as auth from '../../../features/auth';
+import * as api from 'api';
+import * as auth from 'features/auth';
 import { Form } from './types';
 
 export const formSubmitted = createEvent<Form>();
@@ -11,5 +11,5 @@ export const fxSignUp = createEffect<
   auth.types.AuthFail
 >({
   handler: ({ username, email, password }) =>
-    post('/users', { user: { email, password, username } }),
+    api.post('/users', { user: { email, password, username } }),
 });

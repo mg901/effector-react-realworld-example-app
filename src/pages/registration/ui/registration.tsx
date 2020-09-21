@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Paths } from '../../../library/router';
-import { Container, Input, Button } from '../../../ui';
+import { Paths } from 'library/router';
+import { Container, Input, Button } from 'ui';
 import { model } from '../model';
 import '../model/init';
 

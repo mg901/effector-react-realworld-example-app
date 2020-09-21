@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import { RouteConfig } from 'react-router-config';
 import { Redirect } from 'react-router-dom';
-import { filterRoutes, Paths } from '../../library/router';
+import { Paths, filterRoutes } from 'library/router';
 import { HomePage } from '../home';
 
 export const makeRoutes = (isAuth: boolean): RouteConfig[] =>

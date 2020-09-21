@@ -1,14 +1,14 @@
 import { createEvent, createStore, createEffect, guard } from 'effector';
-import { post, del } from '../../api';
-import * as router from '../../library/router';
+import * as api from 'api';
+import * as router from 'library/router';
 import * as types from './types';
 
 export const setFavoriteArticleFx = createEffect((slug: string) =>
-  post<types.FavoriteArticle>(`/articles/${slug}/favorite`),
+  api.post<types.FavoriteArticle>(`/articles/${slug}/favorite`),
 );
 
 export const setUnfavoriteArticleFx = createEffect((slug: string) =>
-  del<types.UnfavoritedArticle>(`/articles/${slug}/favorite`),
+  api.del<types.UnfavoritedArticle>(`/articles/${slug}/favorite`),
 );
 
 const defaultOptions = {
