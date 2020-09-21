@@ -1,1 +1,1 @@
-export { FeedByTag } from './ui/feed-by-tag';
+export { FeedByTagPage } from './ui/feed-by-tag';

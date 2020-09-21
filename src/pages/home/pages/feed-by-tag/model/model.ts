@@ -8,8 +8,11 @@ import { GetFeedByTagArgs, FeedByTag } from './types';
 export const PageGate = createGate();
 export const {
   currentPageSetted,
+  favoriteToggled,
   $currentTag,
   $currentPage,
+  setFavoriteArticleFx,
+  setUnfavoriteArticleFx,
 } = feed.createFeedModel();
 
 export const getFeedFx = createEffect(({ tag, page }: GetFeedByTagArgs) =>
@@ -23,13 +26,7 @@ export const getFeedByTagFx = attach({
   effect: getFeedFx,
 });
 
-export const $feed = createStore<FeedByTag>({}).on(
-  getFeedFx.done,
-  (state, { params, result }) => ({
-    ...state,
-    [params.tag]: result,
-  }),
-);
+export const $feed = createStore<FeedByTag>({});
 
 export const $feedByTag = combine(
   $feed,

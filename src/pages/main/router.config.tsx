@@ -2,7 +2,7 @@ import React, { lazy } from 'react';
 import { RouteConfig } from 'react-router-config';
 import { Redirect } from 'react-router-dom';
 import { filterRoutes, Paths } from '../../library/router';
-import { Home } from '../home';
+import { HomePage } from '../home';
 
 export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
   [
@@ -46,7 +46,7 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       path: Paths.LOGIN,
       exact: true,
       component: lazy(() =>
-        import('../login').then((x) => ({ default: x.Login })),
+        import('../login').then((x) => ({ default: x.LoginPage })),
       ),
     },
     {
@@ -55,36 +55,36 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       forAuth: false,
       component: lazy(() =>
         import('../registration').then((x) => ({
-          default: x.Registration,
+          default: x.RegistrationPage,
         })),
       ),
     },
     {
       path: Paths.HOME,
-      component: Home,
+      component: HomePage,
     },
     {
       path: Paths.EDITOR,
       component: lazy(() =>
-        import('../editor').then((x) => ({ default: x.Editor })),
+        import('../editor').then((x) => ({ default: x.EditorPage })),
       ),
     },
     {
       path: Paths.SETTINGS,
       component: lazy(() =>
-        import('../settings').then((x) => ({ default: x.Settings })),
+        import('../settings').then((x) => ({ default: x.SettingsPage })),
       ),
     },
     {
       path: Paths.PROFILE,
       component: lazy(() =>
-        import('../profile').then((x) => ({ default: x.Profile })),
+        import('../profile').then((x) => ({ default: x.ProfilePage })),
       ),
     },
     {
       path: '*',
       component: lazy(() =>
-        import('../not-match').then((x) => ({ default: x.NotMatch })),
+        import('../not-match').then((x) => ({ default: x.NotMatchPage })),
       ),
     },
   ].filter(filterRoutes(isAuth));
