@@ -23,7 +23,7 @@ export const routes = [
   {
     path: '*',
     component: lazy(() =>
-      import('../not-match').then((x) => ({ default: x.NotMatch })),
+      import('../not-match').then((x) => ({ default: x.NotMatchPage })),
     ),
   },
 ];

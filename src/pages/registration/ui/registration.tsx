@@ -5,7 +5,7 @@ import { Container, Input, Button } from '../../../ui';
 import { model } from '../model';
 import '../model/init';
 
-export const Registration: React.FC = () => {
+export const RegistrationPage: React.FC = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

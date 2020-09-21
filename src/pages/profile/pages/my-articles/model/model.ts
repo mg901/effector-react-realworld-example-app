@@ -16,14 +16,15 @@ export const getFeedFx = createEffect(
 export const PageGate = createGate();
 
 export const {
-  $currentPage,
   currentPageSetted,
+  favoriteToggled,
+  $currentPage,
   $articles,
+  $isEmptyArticles,
   $totalPages,
   $feed: $myArticles,
 } = feed.createFeedModel();
 
-export const $isEmptyArticles = $articles.map((x) => x.length === 0);
 export const getMyArticlesFx = attach({
   source: { username: profile.model.$username, page: $currentPage },
   effect: getFeedFx,

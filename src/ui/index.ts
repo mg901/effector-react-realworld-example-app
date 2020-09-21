@@ -1,4 +1,4 @@
-export { ArticlesPreview } from './articles-preview';
+export { EmptyArticles } from './empty-articles';
 export { Button } from './button';
 export { Header } from './header';
 export { Input, InputProps } from './input';

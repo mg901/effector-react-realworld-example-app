@@ -6,7 +6,7 @@ import { Tabs } from '../tabs';
 import { TagList } from '../tag-list';
 import * as css from './index.css';
 
-export const Home: React.FC = () => (
+export const HomePage: React.FC = () => (
   <>
     <Banner />
     <Container className={css.grid}>

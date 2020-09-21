@@ -5,7 +5,7 @@ import { InputField } from './input-field';
 import { TextField } from './text-field';
 import '../model/init';
 
-export const Settings: React.FC = () => (
+export const SettingsPage: React.FC = () => (
   <Container>
     <h1>Your Settings</h1>
     <Form

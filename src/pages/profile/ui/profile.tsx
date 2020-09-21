@@ -9,7 +9,7 @@ import '../model/init';
 
 type Props = Readonly<RouteConfigComponentProps<{ url: string }>>;
 
-export const Profile: React.FC<Props> = ({ match: { url } }) => {
+export const ProfilePage: React.FC<Props> = ({ match: { url } }) => {
   useGate(model.PageGate, { url });
   const { image } = useStore(model.$profile);
   const following = useStore(model.$following);

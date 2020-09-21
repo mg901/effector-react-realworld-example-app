@@ -1,8 +1,8 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
-import { Link } from 'react-router-dom';
 import { useGate, useList, useStore } from 'effector-react';
-import { ArticlesPreview } from '../../../../../ui';
+import { ArticlePreview } from '../../../../../features/article-preview';
+import { EmptyArticles } from '../../../../../ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 import '../model/init';
@@ -15,12 +15,14 @@ export const FavoritedArticles: React.FC<Props> = ({ match: { url } }) => {
 
   return (
     <div>
-      {isEmpty && <ArticlesPreview />}
+      {isEmpty && <EmptyArticles />}
       <ul>
-        {useList(model.$articles, ({ author }) => (
+        {useList(model.$articles, (article) => (
           <li>
-            <img alt={author.username} />
-            <Link to={`/@${author.username}`}>{author.username}</Link>
+            <ArticlePreview
+              {...article}
+              onClick={() => model.favoriteToggled(article)}
+            />
           </li>
         ))}
       </ul>

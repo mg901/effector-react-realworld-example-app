@@ -1,26 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
-import { Link } from 'react-router-dom';
-import { useGate, useList } from 'effector-react';
-import { ArticlesPreview } from '../../../../../ui';
+import { useGate, useList, useStore } from 'effector-react';
+import { ArticlePreview } from '../../../../../features/article-preview';
+import { EmptyArticles } from '../../../../../ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 import '../model/init';
 
 type Props = Readonly<RouteConfigComponentProps>;
 
-export const FeedByTag: React.FC<Props> = ({ match: { path } }) => {
+export const FeedByTagPage: React.FC<Props> = ({ match: { path } }) => {
   useGate(model.PageGate);
-  const isEmpty = useState(model.$isEmptyArticles);
+  const isEmpty = useStore(model.$isEmptyArticles);
 
   return (
     <div>
-      {isEmpty && <ArticlesPreview />}
+      {isEmpty && <EmptyArticles />}
       <ul>
-        {useList(model.$articles, ({ author }) => (
+        {useList(model.$articles, (article) => (
           <li>
-            <img alt={author.username} />
-            <Link to={`/@${author.username}`}>{author.username}</Link>
+            <ArticlePreview
+              {...article}
+              onClick={() => model.favoriteToggled(article)}
+            />
           </li>
         ))}
       </ul>

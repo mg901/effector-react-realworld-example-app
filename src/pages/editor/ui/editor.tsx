@@ -7,7 +7,7 @@ import { TagList } from './tag-list';
 import { TextField } from './text-field';
 import '../model/init';
 
-export const Editor: React.FC = () => (
+export const EditorPage: React.FC = () => (
   <Container>
     <Form
       id="editor"
