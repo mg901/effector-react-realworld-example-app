@@ -1,10 +1,10 @@
 import { createEffect } from 'effector';
-import { post, del } from '../../api';
+import * as api from 'api';
 
 export const setFavoriteArticleFx = createEffect((slug: string) =>
-  post(`/articles/${slug}/favorite`),
+  api.post(`/articles/${slug}/favorite`),
 );
 
 export const setUnfavoriteArticleFx = createEffect((slug: string) => {
-  del(`/articles/${slug}/favorite`);
+  api.del(`/articles/${slug}/favorite`);
 });

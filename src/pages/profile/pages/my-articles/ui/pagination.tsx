@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { itemRender } from '../../../../../library';
-import { Pagination as PaginationUI } from '../../../../../ui';
+import { itemRender } from 'library/item-render';
+import { Pagination as PaginationUI } from 'ui';
 import { model } from '../model';
 
 type Props = Readonly<{

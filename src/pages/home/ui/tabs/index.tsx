@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import * as auth from '../../../../features/auth';
-import { createFeedModel } from '../../../../features/feed';
-import { Paths } from '../../../../library/router';
-import { NavLink as Link } from '../../../../ui';
+import * as auth from 'features/auth';
+import { createFeedModel } from 'features/feed';
+import { Paths } from 'library/router';
+import { NavLink as Link } from 'ui';
 
 const feedModel = createFeedModel();
 

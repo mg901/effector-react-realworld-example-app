@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { useGate } from 'effector-react';
-import { APP_NAME } from '../../../../config';
-import { AuthBranch } from '../../../../library/router';
-import { Header } from '../../../../ui';
+import { APP_NAME } from 'config';
+import { AuthBranch } from 'library/router';
+import { Header } from 'ui';
 import { model } from '../../model';
 import { LoggedIn } from '../logged-in';
 import { LoggedOut } from '../logged-out';

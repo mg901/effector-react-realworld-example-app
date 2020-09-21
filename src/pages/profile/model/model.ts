@@ -1,6 +1,6 @@
 import { createEvent, createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
-import * as api from '../../../api';
+import * as api from 'api';
 import * as types from './types';
 
 export const toggleFollowing = createEvent();

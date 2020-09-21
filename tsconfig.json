@@ -15,7 +15,14 @@
     "noEmit": true,
     "jsx": "react",
     "baseUrl": ".",
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "api": ["./src/api"],
+      "library/*": ["./src/library/*"],
+      "features/*": ["./src/features/*"],
+      "ui": ["./src/ui"],
+      "config": ["./src/config"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["./node_modules/*"]

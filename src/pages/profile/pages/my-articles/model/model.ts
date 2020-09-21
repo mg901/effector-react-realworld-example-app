@@ -1,8 +1,8 @@
 import { createEffect, attach } from 'effector';
 import { createGate } from 'effector-react';
-import * as api from '../../../../../api';
-import * as feed from '../../../../../features/feed';
-import { limit } from '../../../../../library';
+import * as api from 'api';
+import * as feed from 'features/feed';
+import { limit } from 'library/limit';
 import * as profile from '../../../model';
 import { types } from '../../../model';
 
