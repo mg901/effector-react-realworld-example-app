@@ -1,7 +1,7 @@
 import React from 'react';
 import { StoreValue } from 'effector';
 import { useStoreMap } from 'effector-react';
-import * as auth from 'features/auth';
+import * as auth from 'features/user';
 import { Textarea, TextareaProps } from 'ui';
 
 export const TextField: React.FC<TextareaProps> = ({ name, ...props }) => {

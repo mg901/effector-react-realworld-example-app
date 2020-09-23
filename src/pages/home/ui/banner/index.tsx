@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { APP_NAME } from 'config';
-import * as auth from 'features/auth';
+import * as auth from 'features/user';
 import { Container } from 'ui';
 import * as css from './index.css';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import * as auth from 'features/auth';
 import { createFeedModel } from 'features/feed';
+import * as auth from 'features/user';
 import { Paths } from 'library/router';
 import { NavLink as Link } from 'ui';
 

@@ -1,7 +1,7 @@
 import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
 import * as api from 'api';
-import * as auth from 'features/auth';
+import * as auth from 'features/user';
 import { removeNotASCII } from 'library/ascii';
 import * as router from 'library/router';
 import * as types from './types';

@@ -1,5 +1,5 @@
 import { forward } from 'effector';
-import * as auth from 'features/auth';
+import * as auth from 'features/user';
 import * as model from './model';
 
 forward({
