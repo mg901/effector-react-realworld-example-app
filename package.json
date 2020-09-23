@@ -7,7 +7,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "cross-env gh-pages -d build",
-    "start": "npm run clean && cross-env parcel src/index.html --out-dir public",
+    "start": "npm run clean && cross-env parcel src/index.html  --port 4100 --out-dir public",
     "build": "npm run clean && cross-env cross-env parcel build src/index.html --out-dir public --public-url /",
     "clean": "cross-env rimraf public .cache",
     "commit": "cross-env git-cz",
