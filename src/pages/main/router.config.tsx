@@ -82,6 +82,13 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       ),
     },
     {
+      path: Paths.ARTICLE,
+      exact: true,
+      component: lazy(() =>
+        import('../article').then((x) => ({ default: x.ArticlePage })),
+      ),
+    },
+    {
       path: '*',
       component: lazy(() =>
         import('../not-match').then((x) => ({ default: x.NotMatchPage })),

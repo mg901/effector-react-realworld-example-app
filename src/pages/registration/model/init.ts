@@ -7,4 +7,4 @@ forward({
   to: model.fxSignUp,
 });
 
-auth.model.$authorizedUser.on(model.fxSignUp.doneData, (_, { user }) => user);
+auth.model.$authorizedUser.on(model.fxSignUp.doneData, (_, payload) => payload);

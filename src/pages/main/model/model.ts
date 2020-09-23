@@ -6,17 +6,21 @@ import { removeNotASCII } from 'library/ascii';
 import * as router from 'library/router';
 import * as types from './types';
 
-export const RootGate = createGate();
+export const PageGate = createGate();
 
 export const $$currentTag = router.model.$location.map((x) =>
   new URLSearchParams(x.search).get('name'),
 );
 
 export const getUserFx = createEffect(() =>
-  api.get<auth.types.AuthUserResponse>('/user'),
+  api
+    .get<auth.types.AuthUserResponse>('/user')
+    .then((response) => response.user),
 );
 
-export const getTagsFx = createEffect(() => api.get<types.Tags>('/tags'));
+export const getTagsFx = createEffect(() =>
+  api.get<types.getTagsFxDone>('/tags').then((response) => response.tags),
+);
 
 export const initAuthAppFx = createEffect(() =>
   Promise.all([getUserFx(), getTagsFx()]),

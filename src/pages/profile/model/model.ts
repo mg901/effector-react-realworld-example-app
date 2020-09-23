@@ -6,15 +6,21 @@ import * as types from './types';
 export const toggleFollowing = createEvent();
 
 export const getProfileFx = createEffect((username: string) =>
-  api.get<types.ProfileResponse>(`/profiles/${username}`),
+  api
+    .get<types.ProfileResponse>(`/profiles/${username}`)
+    .then<types.Profile>((response) => response.profile),
 );
 
 export const followUserFx = createEffect((username: string) =>
-  api.post<types.ProfileResponse>(`/profiles/${username}/follow`),
+  api
+    .post<types.ProfileResponse>(`/profiles/${username}/follow`)
+    .then<types.Profile>((response) => response.profile),
 );
 
 export const unfollowUserFx = createEffect((username: string) =>
-  api.del<types.ProfileResponse>(`/profiles/${username}/follow`),
+  api
+    .del<types.ProfileResponse>(`/profiles/${username}/follow`)
+    .then<types.Profile>((response) => response.profile),
 );
 
 export const PageGate = createGate<types.PageGateType>();

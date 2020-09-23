@@ -1,4 +1,5 @@
 import { forward, attach, guard } from 'effector';
+
 import {
   $profile,
   $username,
@@ -13,7 +14,7 @@ import {
 
 $profile.on(
   [getProfileFx.doneData, followUserFx.doneData, unfollowUserFx.doneData],
-  (_, { profile }) => profile,
+  (_, payload) => payload,
 );
 $username.on(PageGate.open, (_, { url }) => url.replace(/\/@/, ''));
 
