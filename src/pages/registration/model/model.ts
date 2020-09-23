@@ -7,9 +7,13 @@ export const formSubmitted = createEvent<Form>();
 
 export const fxSignUp = createEffect<
   Form,
-  auth.types.AuthUserResponse,
+  auth.types.AuthorizedUser,
   auth.types.AuthFail
 >({
   handler: ({ username, email, password }) =>
-    api.post('/users', { user: { email, password, username } }),
+    api
+      .post<auth.types.AuthUserResponse>('/users', {
+        user: { email, password, username },
+      })
+      .then((response) => response.user),
 });

@@ -38,6 +38,7 @@ module.exports = {
     'import/no-named-as-default': 2,
     'arrow-body-style': 2,
     'newline-before-return': 2,
+
     'import/extensions': [
       2,
       'ignorePackages',
@@ -52,6 +53,8 @@ module.exports = {
         allow: ['error'],
       },
     ],
+    'no-shadow': 0,
+    'no-use-before-define': 0,
     'react/jsx-props-no-spreading': 0,
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
@@ -59,6 +62,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 0,
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
+    '@typescript-eslint/no-shadow': 2,
     '@typescript-eslint/ban-types': 0,
     '@typescript-eslint/ban-ts-comment': 0,
     'import-helpers/order-imports': [

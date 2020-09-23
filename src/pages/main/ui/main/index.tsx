@@ -15,7 +15,7 @@ import '../../model/init';
 import * as css from './index.css';
 
 export const Main: React.FC = () => {
-  useGate(model.RootGate);
+  useGate(model.PageGate);
 
   return (
     <div className={css.app}>

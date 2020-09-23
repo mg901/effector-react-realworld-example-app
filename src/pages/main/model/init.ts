@@ -4,7 +4,7 @@ import * as model from './model';
 
 const { authenticated, notAuthenticated } = split(
   merge([
-    sample(auth.model.$isAuthorized, model.RootGate.open),
+    sample(auth.model.$isAuthorized, model.PageGate.open),
     auth.model.$isAuthorized.updates,
   ]),
   {
@@ -23,5 +23,8 @@ forward({
   to: model.getTagsFx,
 });
 
-auth.model.$authorizedUser.on(model.getUserFx.doneData, (_, { user }) => user);
-model.$tags.on(model.getTagsFx.doneData, (_, { tags }) => tags);
+auth.model.$authorizedUser.on(
+  model.getUserFx.doneData,
+  (_, payload) => payload,
+);
+model.$tags.on(model.getTagsFx.doneData, (_, payload) => payload);

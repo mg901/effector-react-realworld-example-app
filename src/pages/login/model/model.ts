@@ -5,13 +5,15 @@ import * as types from './types';
 
 export const formSubmitted = createEvent<types.Form>();
 
-export const fxSignIn = createEffect<
+export const signInFx = createEffect<
   types.Form,
-  auth.types.AuthUserResponse,
+  auth.types.AuthorizedUser,
   auth.types.AuthFail
 >({
   handler: ({ email, password }: types.Form) =>
-    api.post<auth.types.AuthUserResponse>('/users/login', {
-      user: { email, password },
-    }),
+    api
+      .post<auth.types.AuthUserResponse>('/users/login', {
+        user: { email, password },
+      })
+      .then((response) => response.user),
 });

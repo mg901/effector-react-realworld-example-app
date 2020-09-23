@@ -1,10 +1,10 @@
 import { forward } from 'effector';
 import * as auth from 'features/auth';
-import { formSubmitted, fxSignIn } from './model';
+import { formSubmitted, signInFx } from './model';
 
 forward({
   from: formSubmitted,
-  to: fxSignIn,
+  to: signInFx,
 });
 
-auth.model.$authorizedUser.on(fxSignIn.doneData, (_, { user }) => user);
+auth.model.$authorizedUser.on(signInFx.doneData, (_, payload) => payload);

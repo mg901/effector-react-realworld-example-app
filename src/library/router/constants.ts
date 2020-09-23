@@ -10,4 +10,5 @@ export enum Paths {
   EDITOR = '/editor',
   PROFILE = '/@:username',
   PROFILE_FAVORITES = '/@:username/favorites',
+  ARTICLE = '/article/:id',
 }

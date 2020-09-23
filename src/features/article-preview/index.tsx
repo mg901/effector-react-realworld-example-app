@@ -30,7 +30,7 @@ export const ArticlePreview: React.FC<Props> = ({
       </div>
       <Button onClick={onClick}>like {favoritesCount}</Button>
     </header>
-    <Link to={slug}>
+    <Link to={`/article/${slug}`}>
       <h1>{title}</h1>
       <p>{description}</p>
       <span>Read more...</span>
