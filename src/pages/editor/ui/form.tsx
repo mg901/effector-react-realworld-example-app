@@ -15,7 +15,7 @@ export const Form: React.FC = () => (
       name="title"
       placeholder="Article Title"
       onChange={model.handleFieldChanged}
-      className="form-control form-control-lg"
+      className="form-control-lg"
     />
 
     <InputField
