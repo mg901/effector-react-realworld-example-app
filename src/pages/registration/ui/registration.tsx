@@ -1,50 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Paths } from 'library/router';
-import { Input, Button } from 'ui';
-import { model } from '../model';
+import { Page } from 'ui';
+import { Form } from './form';
 import '../model/init';
 
-export const RegistrationPage: React.FC = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export const RegistrationPage: React.FC = () => (
+  <Page>
+    <div className="row">
+      <div className="col-md-6 offset-md-3 col-xs-12">
+        <h1 className="text-xs-center">Sign Up</h1>
 
-  return (
-    <div className="container">
-      <h1 className="h1">Sign Up</h1>
-
-      <p>
-        <Link to={Paths.LOGIN}>Have an account?</Link>
-      </p>
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          model.formSubmitted({ username, email, password });
-        }}>
-        <Input
-          name="username"
-          label="Username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-
-        <Input
-          type="email"
-          label="Email"
-          name="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <Input
-          type="password"
-          label="Password"
-          name="password"
-          autoComplete="current-password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button type="submit">Sign Up</Button>
-      </form>
+        <p className="text-xs-center">
+          <Link to={Paths.LOGIN}>Have an account?</Link>
+        </p>
+        <Form />
+      </div>
     </div>
-  );
-};
+  </Page>
+);

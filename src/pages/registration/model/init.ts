@@ -1,10 +1,15 @@
-import { forward } from 'effector';
+import { sample } from 'effector';
 import * as auth from 'features/user';
-import * as model from './model';
+import { $form, formSubmitted, fieldChanged, fxSignUp } from './model';
 
-forward({
-  from: model.formSubmitted,
-  to: model.fxSignUp,
+formSubmitted.watch((e) => e.preventDefault());
+
+$form.on(fieldChanged, (state, payload) => ({ ...state, ...payload }));
+
+sample({
+  source: $form,
+  clock: formSubmitted,
+  target: fxSignUp,
 });
 
-auth.model.$authorizedUser.on(model.fxSignUp.doneData, (_, payload) => payload);
+auth.model.$authorizedUser.on(fxSignUp.doneData, (_, payload) => payload);

@@ -10,27 +10,27 @@ export const LoggedIn: React.FC = () => {
   return (
     <>
       <li className="nav-item">
-        <NavLink to={Paths.ROOT} className="nav-link">
+        <NavLink exact to={Paths.ROOT} className="nav-link">
           Home
         </NavLink>
       </li>
 
       <li className="nav-item">
-        <NavLink to={Paths.EDITOR} className="nav-link">
+        <NavLink exact to={Paths.EDITOR} className="nav-link">
           <i className="ion-compose" />
           &nbsp;New Post
         </NavLink>
       </li>
 
       <li className="nav-item">
-        <NavLink to={Paths.SETTINGS} className="nav-link">
+        <NavLink exact to={Paths.SETTINGS} className="nav-link">
           <i className="ion-gear-a" />
           &nbsp;Settings
         </NavLink>
       </li>
 
       <li className="nav-item">
-        <NavLink to={`/@${username}`} className="nav-link">
+        <NavLink exact to={`/@${username}`} className="nav-link">
           <img src={image} className="user-pic" alt={username} />
           {username}
         </NavLink>
