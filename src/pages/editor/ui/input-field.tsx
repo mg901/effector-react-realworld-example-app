@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormField } from 'library/form';
-import { Input, InputProps } from 'ui';
+import { FormGroup, Input, InputProps } from 'ui';
 import { model } from '../model';
 
 type Props = InputProps & { name: string };
@@ -11,5 +11,9 @@ export const InputField: React.FC<Props> = ({ name, ...props }) => {
     name,
   });
 
-  return <Input value={value} name={name} {...props} />;
+  return (
+    <FormGroup>
+      <Input value={value} name={name} {...props} />
+    </FormGroup>
+  );
 };

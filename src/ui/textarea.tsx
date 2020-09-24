@@ -4,6 +4,7 @@ export type TextareaProps = Readonly<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>
 >;
 
-export const Textarea: React.FC<TextareaProps> = (props) => (
-  <textarea className="form-control" {...props} />
-);
+export const Textarea: React.FC<TextareaProps> = ({
+  className = '',
+  ...props
+}) => <textarea className={`form-control ${className}`} {...props} />;

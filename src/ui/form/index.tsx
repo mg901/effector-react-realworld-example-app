@@ -5,6 +5,6 @@ type Props = React.FormHTMLAttributes<HTMLFormElement>;
 
 export const Form: React.FC<Props> = ({ children, ...props }) => (
   <form {...props} className="my-form">
-    {children}
+    <fieldset>{children}</fieldset>
   </form>
 );
