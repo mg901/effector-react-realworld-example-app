@@ -3,6 +3,7 @@ export { Button, ButtonProps } from './button';
 export { Container } from './container';
 export { Header } from './header';
 export { Input, InputProps } from './input';
+export { Loader } from './loader';
 export { NavItem } from './nav-item';
 export { NavLink } from './nav-link';
 export { Form } from './form';
