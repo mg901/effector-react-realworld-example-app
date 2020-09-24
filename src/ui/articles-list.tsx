@@ -1,9 +1,5 @@
 import React from 'react';
 
-type Props = Readonly<{
-  children: React.ReactNode;
-}>;
-
-export const ArticlesList: React.FC<Props> = ({ children }) => (
+export const ArticlesList: React.FC = ({ children }) => (
   <ul className="list-unstyled">{children}</ul>
 );
