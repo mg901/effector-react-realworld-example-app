@@ -1,10 +1,9 @@
 import React from 'react';
 
 type Props = Readonly<{
-  children: React.ReactNode;
   className?: string;
 }>;
 
-export const Nav: React.FC<Props> = ({ children, className }) => (
+export const Nav: React.FC<Props> = ({ className, children }) => (
   <nav className={className}>{children}</nav>
 );

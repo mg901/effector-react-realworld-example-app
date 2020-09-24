@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Button } from 'ui';
+import { Page, Row, Button } from 'ui';
 import { AddTagForm } from './add-tag-form';
 import { Form } from './form';
 import { TagList } from './tag-list';
@@ -8,7 +8,7 @@ import '../model/init';
 
 export const EditorPage: React.FC = () => (
   <Page>
-    <div className="row">
+    <Row>
       <div className="col-md-10 offset-md-1 col-xs-12">
         <Form />
         <AddTagForm />
@@ -21,6 +21,6 @@ export const EditorPage: React.FC = () => (
           Publish article
         </Button>
       </div>
-    </div>
+    </Row>
   </Page>
 );

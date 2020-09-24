@@ -1,5 +1,6 @@
 import React from 'react';
+import { Container } from './container';
 
 export const Page: React.FC = ({ children }) => (
-  <div className="container page">{children}</div>
+  <Container className="container page">{children}</Container>
 );

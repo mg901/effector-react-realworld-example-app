@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page } from 'ui';
+import { Page, Row } from 'ui';
 import { Banner } from './banner';
 import { Routes } from './routes';
 import { Tabs } from './tabs';
@@ -9,7 +9,7 @@ export const HomePage: React.FC = () => (
   <div className="home-page">
     <Banner />
     <Page>
-      <div className="row">
+      <Row>
         <main className="col-md-9">
           <Tabs />
           <Routes />
@@ -21,7 +21,7 @@ export const HomePage: React.FC = () => (
             <TagList />
           </aside>
         </div>
-      </div>
+      </Row>
     </Page>
   </div>
 );

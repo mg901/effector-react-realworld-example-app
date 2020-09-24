@@ -1,13 +1,12 @@
 import React from 'react';
 import { model } from 'features/user';
-import { Page, Button } from 'ui';
+import { Page, Row, Button } from 'ui';
 import { Form } from './form';
-
 import '../model/init';
 
 export const SettingsPage: React.FC = () => (
   <Page>
-    <div className="row">
+    <Row>
       <div className="col-md-6 offset-md-3 col-xs-12">
         <h1 className="text-xs-center">Your Settings</h1>
         <Form />
@@ -19,6 +18,6 @@ export const SettingsPage: React.FC = () => (
           Or click here to logout.
         </Button>
       </div>
-    </div>
+    </Row>
   </Page>
 );

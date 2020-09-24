@@ -3,7 +3,6 @@ import * as css from './index.css';
 
 type Props = Readonly<{
   show: boolean;
-  children: React.ReactNode;
 }>;
 
 export const DownDownMenu = forwardRef<HTMLUListElement, Props>(

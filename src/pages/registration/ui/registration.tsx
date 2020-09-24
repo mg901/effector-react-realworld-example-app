@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Paths } from 'library/router';
-import { Page } from 'ui';
+import { Page, Row } from 'ui';
 import { Form } from './form';
 import '../model/init';
 
 export const RegistrationPage: React.FC = () => (
   <Page>
-    <div className="row">
+    <Row>
       <div className="col-md-6 offset-md-3 col-xs-12">
         <h1 className="text-xs-center">Sign Up</h1>
 
@@ -16,6 +16,6 @@ export const RegistrationPage: React.FC = () => (
         </p>
         <Form />
       </div>
-    </div>
+    </Row>
   </Page>
 );

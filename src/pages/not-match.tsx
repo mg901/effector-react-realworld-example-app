@@ -1,7 +1,8 @@
 import React from 'react';
+import { Container } from 'ui';
 
 export const NotMatchPage: React.FC = () => (
-  <div className="container">
+  <Container>
     <h1>404 Page Not Found</h1>
-  </div>
+  </Container>
 );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import { Button } from 'ui';
+import { Button, ArticleMeta, TagList, Tag } from 'ui';
 import { types } from '../features/feed';
 
 type Props = types.Article &
@@ -27,34 +27,22 @@ export const ArticlePreview: React.FC<Props> = ({
 
   return (
     <article className="article-preview">
-      <header className="article-meta">
-        <Link to={`/@${author.username}`}>
-          <img src={author.image} alt={author.username} />
-        </Link>
-
-        <div className="info">
-          <Link to={`/@${author.username}`} className="author">
-            {author.username}
-          </Link>
-          <span className="date">{new Date(createdAt).toDateString()}</span>
-        </div>
+      <ArticleMeta author={author} createdAt={createdAt}>
         <div className="pull-xs-right">
           <Button onClick={onClick} className={`btn-sm ${classNames}`}>
             <i className="ion-heart" /> {favoritesCount}
           </Button>
         </div>
-      </header>
+      </ArticleMeta>
       <Link to={`/article/${slug}`} className="preview-link">
         <h1>{title}</h1>
         <p>{description}</p>
         <span>Read more...</span>
-        <ul className="tag-list">
+        <TagList>
           {tagList.map((tag) => (
-            <li key={tag} className="tag-default tag-pill tag-outline">
-              {tag}
-            </li>
+            <Tag key={tag}>{tag}</Tag>
           ))}
-        </ul>
+        </TagList>
       </Link>
     </article>
   );

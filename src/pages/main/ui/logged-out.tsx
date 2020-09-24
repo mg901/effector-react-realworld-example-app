@@ -1,23 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { Paths } from 'library/router';
+import { NavItem, NavLink } from 'ui';
 
 export const LoggedOut: React.FC = () => (
   <>
-    <li className="nav-item">
-      <NavLink exact to={Paths.ROOT} className="nav-link">
-        Home
-      </NavLink>
-    </li>
-    <li className="nav-item">
-      <NavLink exact to={Paths.LOGIN} className="nav-link">
-        Sign In
-      </NavLink>
-    </li>
-    <li className="nav-item">
-      <NavLink exact to={Paths.REGISTRATION} className="nav-link">
-        Sign Up
-      </NavLink>
-    </li>
+    <NavItem>
+      <NavLink to={Paths.ROOT}>Home</NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink to={Paths.LOGIN}>Sign In</NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink to={Paths.REGISTRATION}>Sign Up</NavLink>
+    </NavItem>
   </>
 );
