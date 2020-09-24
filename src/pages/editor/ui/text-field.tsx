@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormField } from 'library/form';
-import { Textarea, TextareaProps } from 'ui';
+import { FormGroup, Textarea, TextareaProps } from 'ui';
 import { model } from '../model';
 
 type Props = TextareaProps & { name: string };
@@ -11,5 +11,9 @@ export const TextField: React.FC<Props> = ({ name, ...props }) => {
     name,
   });
 
-  return <Textarea value={value} name={name} {...props} />;
+  return (
+    <FormGroup>
+      <Textarea value={value} name={name} {...props} />
+    </FormGroup>
+  );
 };

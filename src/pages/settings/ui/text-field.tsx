@@ -2,7 +2,7 @@ import React from 'react';
 import { StoreValue } from 'effector';
 import { useStoreMap } from 'effector-react';
 import * as auth from 'features/user';
-import { Textarea, TextareaProps } from 'ui';
+import { FormGroup, Textarea, TextareaProps } from 'ui';
 
 export const TextField: React.FC<TextareaProps> = ({ name, ...props }) => {
   const value = useStoreMap({
@@ -12,5 +12,9 @@ export const TextField: React.FC<TextareaProps> = ({ name, ...props }) => {
       user[key as keyof StoreValue<typeof auth.model.$authorizedUser>] ?? '',
   });
 
-  return <Textarea value={value} name={name} {...props} />;
+  return (
+    <FormGroup>
+      <Textarea value={value} name={name} {...props} />
+    </FormGroup>
+  );
 };

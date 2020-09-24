@@ -1,10 +1,9 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import { createFeedModel } from 'features/feed';
 import * as auth from 'features/user';
 import { Paths } from 'library/router';
-import { NavLink as Link } from 'ui';
+import { NavItem, NavLink } from 'ui';
 
 const feedModel = createFeedModel();
 
@@ -13,16 +12,18 @@ export const Tabs: React.FC = () => {
   const currentTag = useStore(feedModel.$currentTag);
 
   return (
-    <nav>
-      {isAuth && (
-        <Link as={NavLink} to={Paths.YOUR_FEED}>
-          your feed
-        </Link>
-      )}
-      <Link as={NavLink} to={Paths.GLOBAL_FEED}>
-        global feed
-      </Link>
-      {currentTag && `#${currentTag}`}
-    </nav>
+    <div className="feed-toggle">
+      <ul className="nav nav-pills outline-active">
+        {isAuth && (
+          <NavItem>
+            <NavLink to={Paths.YOUR_FEED}>Your Feed</NavLink>
+          </NavItem>
+        )}
+        <NavItem>
+          <NavLink to={Paths.GLOBAL_FEED}>Global Feed</NavLink>
+        </NavItem>
+        {currentTag && `#${currentTag}`}
+      </ul>
+    </div>
   );
 };

@@ -1,29 +1,38 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import * as auth from 'features/user';
 import { Paths } from 'library/router';
-import { NavLink as Link } from 'ui';
-import { UserBar } from './user-bar';
+import { NavItem, NavLink } from 'ui';
 
 export const LoggedIn: React.FC = () => {
   const { username, image } = useStore(auth.model.$authorizedUser);
 
   return (
     <>
-      <Link as={NavLink} to={Paths.ROOT}>
-        Home
-      </Link>
+      <NavItem>
+        <NavLink to={Paths.ROOT}>Home</NavLink>
+      </NavItem>
 
-      <Link as={NavLink} to={Paths.EDITOR}>
-        New Post
-      </Link>
+      <NavItem>
+        <NavLink to={Paths.EDITOR}>
+          <i className="ion-compose" />
+          &nbsp;New Post
+        </NavLink>
+      </NavItem>
 
-      <UserBar
-        image={image}
-        username={username}
-        onLogOutClick={() => auth.model.loggedOutClicked()}
-      />
+      <NavItem>
+        <NavLink to={Paths.SETTINGS}>
+          <i className="ion-gear-a" />
+          &nbsp;Settings
+        </NavLink>
+      </NavItem>
+
+      <NavItem>
+        <NavLink to={`/@${username}`}>
+          <img src={image} className="user-pic" alt={username} />
+          {username}
+        </NavLink>
+      </NavItem>
     </>
   );
 };

@@ -1,43 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Paths } from 'library/router';
-import { Container, Form, Input, Button } from 'ui';
-import { model } from '../model';
+import { Page, Row } from 'ui';
+import { Form } from './form';
 import '../model/init';
 
-export const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export const LoginPage: React.FC = () => (
+  <Page>
+    <Row>
+      <div className="col-md-6 offset-md-3 col-xs-12">
+        <h1 className="text-xs-center">Sign In</h1>
 
-  return (
-    <Container>
-      <h1 className="h1">Sign In</h1>
+        <p className="text-xs-center">
+          <Link to={Paths.REGISTRATION}>Need an account?</Link>
+        </p>
 
-      <p>
-        <Link to={Paths.REGISTRATION}>Need an account?</Link>
-      </p>
-
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-          model.formSubmitted({ email, password });
-        }}>
-        <Input
-          type="email"
-          label="Email"
-          name="email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <Input
-          label="Password"
-          type="password"
-          name="password"
-          autoComplete="current-password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button type="submit">Sign In</Button>
-      </Form>
-    </Container>
-  );
-};
+        <Form />
+      </div>
+    </Row>
+  </Page>
+);

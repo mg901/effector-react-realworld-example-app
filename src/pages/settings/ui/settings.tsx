@@ -1,42 +1,23 @@
 import React from 'react';
-import { Container, Form, Button } from 'ui';
-import { model } from '../model';
-import { InputField } from './input-field';
-import { TextField } from './text-field';
+import { model } from 'features/user';
+import { Page, Row, Button } from 'ui';
+import { Form } from './form';
 import '../model/init';
 
 export const SettingsPage: React.FC = () => (
-  <Container>
-    <h1>Your Settings</h1>
-    <Form
-      onSubmit={(e) => {
-        e.preventDefault();
-        model.formSubmitted();
-      }}>
-      <InputField
-        label="Image"
-        name="image"
-        onChange={model.handleFieldChanged}
-      />
-      <InputField
-        label="Username"
-        name="username"
-        onChange={model.handleFieldChanged}
-      />
-      <TextField label="Bio" name="bio" onChange={model.handleFieldChanged} />
+  <Page>
+    <Row>
+      <div className="col-md-6 offset-md-3 col-xs-12">
+        <h1 className="text-xs-center">Your Settings</h1>
+        <Form />
+        <hr />
 
-      <InputField
-        label="Email"
-        name="email"
-        onChange={model.handleFieldChanged}
-      />
-      <InputField
-        label="New Password"
-        name="password"
-        onChange={model.handleFieldChanged}
-      />
-
-      <Button type="submit">Update Settigs</Button>
-    </Form>
-  </Container>
+        <Button
+          className="btn-outline-danger"
+          onClick={() => model.loggedOutClicked()}>
+          Or click here to logout.
+        </Button>
+      </div>
+    </Row>
+  </Page>
 );

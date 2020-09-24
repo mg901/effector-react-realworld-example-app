@@ -1,6 +1,10 @@
 import { types } from 'features/feed';
 
-export type Article = null | types.Article;
+export type Article = types.Article;
+
+export type ArticleResponse = Readonly<{
+  article: types.Article;
+}>;
 
 export type PageGateType = Readonly<{
   params: any;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useList } from 'effector-react';
-import { ArticlePreview } from 'features/article-preview';
+import { ArticlePreview, ArticlesList } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 import '../model/init';
@@ -13,7 +13,7 @@ export const MyArticles: React.FC<Props> = ({ match: { url } }) => {
 
   return (
     <>
-      <ul>
+      <ArticlesList>
         {useList(model.$articles, (article) => (
           <li>
             <ArticlePreview
@@ -22,7 +22,7 @@ export const MyArticles: React.FC<Props> = ({ match: { url } }) => {
             />
           </li>
         ))}
-      </ul>
+      </ArticlesList>
       <Pagination path={url} />
     </>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { StoreValue } from 'effector';
 import { useStoreMap } from 'effector-react';
 import * as auth from 'features/user';
-import { Input, InputProps } from 'ui';
+import { FormGroup, Input, InputProps } from 'ui';
 
 export const InputField: React.FC<InputProps> = ({ name, ...props }) => {
   const value = useStoreMap({
@@ -12,5 +12,9 @@ export const InputField: React.FC<InputProps> = ({ name, ...props }) => {
       user[key as keyof StoreValue<typeof auth.model.$authorizedUser>] ?? '',
   });
 
-  return <Input value={value} name={name} {...props} />;
+  return (
+    <FormGroup>
+      <Input value={value} name={name} {...props} />
+    </FormGroup>
+  );
 };

@@ -1,41 +1,26 @@
 import React from 'react';
-import { Container, Form, Button } from 'ui';
-import { model } from '../model';
+import { Page, Row, Button } from 'ui';
 import { AddTagForm } from './add-tag-form';
-import { InputField } from './input-field';
+import { Form } from './form';
 import { TagList } from './tag-list';
-import { TextField } from './text-field';
+
 import '../model/init';
 
 export const EditorPage: React.FC = () => (
-  <Container>
-    <Form
-      id="editor"
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}>
-      <h1>Editor</h1>
-      <InputField
-        name="title"
-        placeholder="Article Title"
-        onChange={model.handleFieldChanged}
-      />
-      <InputField
-        name="description"
-        placeholder="What's this article about?"
-        onChange={model.handleFieldChanged}
-      />
-      <TextField
-        name="body"
-        placeholder="Write your article (in markdown)"
-        onChange={model.handleFieldChanged}
-      />
-    </Form>
-    <AddTagForm />
-    <TagList />
+  <Page>
+    <Row>
+      <div className="col-md-10 offset-md-1 col-xs-12">
+        <Form />
+        <AddTagForm />
+        <TagList />
 
-    <Button type="submit" form="editor">
-      Publish article
-    </Button>
-  </Container>
+        <Button
+          type="submit"
+          form="editor"
+          className="btn-lg pull-xs-right btn-primary">
+          Publish article
+        </Button>
+      </div>
+    </Row>
+  </Page>
 );

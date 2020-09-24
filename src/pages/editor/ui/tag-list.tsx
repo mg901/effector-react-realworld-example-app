@@ -1,16 +1,13 @@
 import React from 'react';
 import { useList } from 'effector-react';
+import { TagList as List } from 'ui';
 import { model } from '../model';
+import { Tag } from './tag';
 
 export const TagList: React.FC = () => (
-  <ul>
+  <List>
     {useList(model.$tags, (tag) => (
-      <span>
-        <span>{tag.toLowerCase()}</span>
-        <button type="button" onClick={() => model.tagDeleted(tag)}>
-          x
-        </button>
-      </span>
+      <Tag text={tag} onClick={() => model.tagDeleted(tag)} />
     ))}
-  </ul>
+  </List>
 );

@@ -1,10 +1,15 @@
-import { forward } from 'effector';
-import * as auth from 'features/user';
-import { formSubmitted, signInFx } from './model';
+import { sample } from 'effector';
+import * as user from 'features/user';
+import { formSubmitted, $form, fieldChanged, signInFx } from './model';
 
-forward({
-  from: formSubmitted,
-  to: signInFx,
+formSubmitted.watch((e) => e.preventDefault());
+
+$form.on(fieldChanged, (state, payload) => ({ ...state, ...payload }));
+
+sample({
+  source: $form,
+  clock: formSubmitted,
+  target: signInFx,
 });
 
-auth.model.$authorizedUser.on(signInFx.doneData, (_, payload) => payload);
+user.model.$authorizedUser.on(signInFx.doneData, (_, payload) => payload);
