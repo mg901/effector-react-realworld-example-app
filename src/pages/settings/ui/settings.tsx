@@ -1,12 +1,12 @@
 import React from 'react';
-import { Container, Form, Button } from 'ui';
+import { Form, Button } from 'ui';
 import { model } from '../model';
 import { InputField } from './input-field';
 import { TextField } from './text-field';
 import '../model/init';
 
 export const SettingsPage: React.FC = () => (
-  <Container>
+  <div className="container">
     <h1>Your Settings</h1>
     <Form
       onSubmit={(e) => {
@@ -38,5 +38,5 @@ export const SettingsPage: React.FC = () => (
 
       <Button type="submit">Update Settigs</Button>
     </Form>
-  </Container>
+  </div>
 );

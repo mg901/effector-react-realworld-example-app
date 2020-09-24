@@ -1,8 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useList, useStore } from 'effector-react';
-import { ArticlePreview } from 'features/article-preview';
-import { EmptyArticles } from 'ui';
+import { ArticlePreview, EmptyArticles, ArticlesList } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 import '../model/init';
@@ -16,7 +15,7 @@ export const FeedByTagPage: React.FC<Props> = ({ match: { path } }) => {
   return (
     <div>
       {isEmpty && <EmptyArticles />}
-      <ul>
+      <ArticlesList>
         {useList(model.$articles, (article) => (
           <li>
             <ArticlePreview
@@ -25,7 +24,7 @@ export const FeedByTagPage: React.FC<Props> = ({ match: { path } }) => {
             />
           </li>
         ))}
-      </ul>
+      </ArticlesList>
       <Pagination path={path} />
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useList } from 'effector-react';
-import { ArticlePreview } from 'features/article-preview';
+import { ArticlePreview } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 import '../model/init';

@@ -1,8 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useList, useStore } from 'effector-react';
-import { ArticlePreview } from 'features/article-preview';
-import { EmptyArticles } from 'ui';
+import { ArticlePreview, EmptyArticles } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 import '../model/init';

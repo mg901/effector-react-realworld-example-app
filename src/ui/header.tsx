@@ -1,6 +1,4 @@
 import React from 'react';
-import { Container } from '../container';
-import * as css from './index.css';
 
 type Props = Readonly<{
   children: React.ReactNode;
@@ -8,7 +6,7 @@ type Props = Readonly<{
 }>;
 
 export const Header: React.FC<Props> = ({ className = '', children }) => (
-  <header className={`${css.header} ${className}`}>
-    <Container className={css.headerInner}>{children}</Container>
+  <header className={`navbar navbar-light ${className}`}>
+    <div className="container">{children}</div>
   </header>
 );

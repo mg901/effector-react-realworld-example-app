@@ -13,16 +13,22 @@ export const Tabs: React.FC = () => {
   const currentTag = useStore(feedModel.$currentTag);
 
   return (
-    <nav>
-      {isAuth && (
-        <Link as={NavLink} to={Paths.YOUR_FEED}>
-          your feed
-        </Link>
-      )}
-      <Link as={NavLink} to={Paths.GLOBAL_FEED}>
-        global feed
-      </Link>
-      {currentTag && `#${currentTag}`}
-    </nav>
+    <div className="feed-toggle">
+      <ul className="nav nav-pills outline-active">
+        {isAuth && (
+          <li className="nav-item">
+            <Link as={NavLink} to={Paths.YOUR_FEED} className="nav-link">
+              Your Feed
+            </Link>
+          </li>
+        )}
+        <li className="nav-item">
+          <Link as={NavLink} to={Paths.GLOBAL_FEED} className="nav-link">
+            Global Feed
+          </Link>
+        </li>
+        {currentTag && `#${currentTag}`}
+      </ul>
+    </div>
   );
 };

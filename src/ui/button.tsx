@@ -1,6 +1,5 @@
 /* eslint-disable react/button-has-type */
 import React, { forwardRef } from 'react';
-import * as css from './index.css';
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   as?: React.ComponentType<any>;
@@ -30,7 +29,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           data-active={active}
           data-variant={variant}
           data-size={size}
-          className={`${css.btn} ${css.btnDefault} ${className}`}
+          className={`btn  ${className}`}
           {...props}>
           {children}
         </Component>
@@ -44,7 +43,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         data-variant={variant}
         data-size={size}
         type={type}
-        className={`${css.btn} ${css.btnDefault} ${className}`}
+        className={`btn ${className}`}
         {...props}>
         {children}
       </Component>

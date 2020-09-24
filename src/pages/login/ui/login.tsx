@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Paths } from 'library/router';
-import { Container, Form, Input, Button } from 'ui';
+import { Form, Input, Button } from 'ui';
 import { model } from '../model';
 import '../model/init';
 
@@ -10,7 +10,7 @@ export const LoginPage: React.FC = () => {
   const [password, setPassword] = useState('');
 
   return (
-    <Container>
+    <div className="container">
       <h1 className="h1">Sign In</h1>
 
       <p>
@@ -38,6 +38,6 @@ export const LoginPage: React.FC = () => {
         />
         <Button type="submit">Sign In</Button>
       </Form>
-    </Container>
+    </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Paths } from 'library/router';
-import { Container, Input, Button } from 'ui';
+import { Input, Button } from 'ui';
 import { model } from '../model';
 import '../model/init';
 
@@ -11,7 +11,7 @@ export const RegistrationPage: React.FC = () => {
   const [password, setPassword] = useState('');
 
   return (
-    <Container>
+    <div className="container">
       <h1 className="h1">Sign Up</h1>
 
       <p>
@@ -45,6 +45,6 @@ export const RegistrationPage: React.FC = () => {
         />
         <Button type="submit">Sign Up</Button>
       </form>
-    </Container>
+    </div>
   );
 };

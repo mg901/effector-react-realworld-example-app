@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
 import { NavLink as Link } from 'react-router-dom';
 import { useStore, useGate } from 'effector-react';
-import { Container, Button, NavLink } from 'ui';
+import { Button, NavLink } from 'ui';
 import { routes } from '../library';
 import { model } from '../model';
 import '../model/init';
@@ -15,7 +15,7 @@ export const ProfilePage: React.FC<Props> = ({ match: { url } }) => {
   const following = useStore(model.$following);
 
   return (
-    <Container>
+    <div className="container">
       <div>
         <img src={image} alt="user-img" />
         <Button onClick={() => model.toggleFollowing()}>
@@ -29,6 +29,6 @@ export const ProfilePage: React.FC<Props> = ({ match: { url } }) => {
         Favorited Articles
       </NavLink>
       <div>{renderRoutes(routes)}</div>
-    </Container>
+    </div>
   );
 };
