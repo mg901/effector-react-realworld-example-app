@@ -3,8 +3,6 @@ export { Button, ButtonProps } from './button';
 export { Header } from './header';
 export { Input, InputProps } from './input';
 export { Form } from './form';
-export { Link } from './link';
-export { NavLink } from './nav-link';
 export { Pagination } from './pagination';
 export { Textarea, TextareaProps } from './textarea';
 export { ArticlesList } from './articles-list';

@@ -1,6 +1,5 @@
 import React from 'react';
 import { ButtonProps } from 'ui';
-import './index.css';
 
 type Props = Readonly<{
   text: string;
