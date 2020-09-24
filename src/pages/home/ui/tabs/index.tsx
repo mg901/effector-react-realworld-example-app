@@ -4,7 +4,6 @@ import { useStore } from 'effector-react';
 import { createFeedModel } from 'features/feed';
 import * as auth from 'features/user';
 import { Paths } from 'library/router';
-import { NavLink as Link } from 'ui';
 
 const feedModel = createFeedModel();
 
@@ -17,15 +16,15 @@ export const Tabs: React.FC = () => {
       <ul className="nav nav-pills outline-active">
         {isAuth && (
           <li className="nav-item">
-            <Link as={NavLink} to={Paths.YOUR_FEED} className="nav-link">
+            <NavLink exact to={Paths.YOUR_FEED} className="nav-link">
               Your Feed
-            </Link>
+            </NavLink>
           </li>
         )}
         <li className="nav-item">
-          <Link as={NavLink} to={Paths.GLOBAL_FEED} className="nav-link">
+          <NavLink exact to={Paths.GLOBAL_FEED} className="nav-link">
             Global Feed
-          </Link>
+          </NavLink>
         </li>
         {currentTag && `#${currentTag}`}
       </ul>
