@@ -4,8 +4,6 @@ import { formSubmitted, $form, fieldChanged, signInFx } from './model';
 
 formSubmitted.watch((e) => e.preventDefault());
 
-fieldChanged.watch((x) => console.log('field changed', x));
-
 $form.on(fieldChanged, (state, payload) => ({ ...state, ...payload }));
 
 sample({
