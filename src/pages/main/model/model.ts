@@ -13,13 +13,11 @@ export const $$currentTag = router.model.$location.map((x) =>
 );
 
 export const getUserFx = createEffect(() =>
-  api
-    .get<auth.types.AuthUserResponse>('/user')
-    .then((response) => response.user),
+  api.get<auth.types.SignUpFxDone>('/user').then((x) => x.user),
 );
 
 export const getTagsFx = createEffect(() =>
-  api.get<types.getTagsFxDone>('/tags').then((response) => response.tags),
+  api.get<types.getTagsFxDone>('/tags').then((x) => x.tags),
 );
 
 export const initAuthAppFx = createEffect(() =>

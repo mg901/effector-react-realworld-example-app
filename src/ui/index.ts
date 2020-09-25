@@ -9,7 +9,7 @@ export { NavLink } from './nav-link';
 export { Form } from './form';
 export { Pagination } from './pagination';
 export { Textarea, TextareaProps } from './textarea';
-export { ArticlesList } from './articles-list';
+export { List } from './list';
 export { ArticleMeta } from './articlle-meta';
 export { ArticlePreview } from './article-preview';
 export { Page } from './page';

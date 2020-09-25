@@ -1,5 +1,5 @@
 import React from 'react';
 
-export const ArticlesList: React.FC = ({ children }) => (
+export const List: React.FC = ({ children }) => (
   <ul className="list-unstyled">{children}</ul>
 );

@@ -9,7 +9,7 @@ export type Profile = Readonly<{
   username: string;
 }>;
 
-export type ProfileResponse = Readonly<{
+export type GetProfileFxDone = Readonly<{
   profile: Profile;
 }>;
 

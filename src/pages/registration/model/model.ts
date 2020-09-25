@@ -14,15 +14,15 @@ export const $form = createStore<types.Form>({
   password: '',
 });
 
-export const fxSignUp = createEffect<
+export const signUpFx = createEffect<
   types.Form,
   auth.types.AuthorizedUser,
   auth.types.AuthFail
 >({
   handler: ({ username, email, password }) =>
     api
-      .post<auth.types.AuthUserResponse>('/users', {
+      .post<auth.types.SignUpFxDone>('/users', {
         user: { email, password, username },
       })
-      .then((response) => response.user),
+      .then((x) => x.user),
 });

@@ -17,8 +17,8 @@ export const signInFx = createEffect<
 >({
   handler: ({ email, password }: types.Form) =>
     api
-      .post<auth.types.AuthUserResponse>('/users/login', {
+      .post<auth.types.SignUpFxDone>('/users/login', {
         user: { email, password },
       })
-      .then((response) => response.user),
+      .then((x) => x.user),
 });
