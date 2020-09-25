@@ -1,10 +1,10 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { useGate, useStore } from 'effector-react';
-import { Form } from 'features/comments/ui/form';
+import { Comments } from 'features/comments';
 import 'features/comments/model/init';
 import marked from 'marked';
-import { Container, Row, Page, ArticleMeta, TagList, Tag } from 'ui';
+import { Container, Row, Page, ArticleMeta, TagList, Tag, Banner } from 'ui';
 import { model } from '../model';
 import '../model/init';
 
@@ -18,12 +18,12 @@ export const ArticlePage: React.FC = () => {
 
   return (
     <div className="article-page">
-      <div className="banner">
+      <Banner>
         <Container>
           <h1>{title}</h1>
           <ArticleMeta author={author} createdAt={createdAt} />
         </Container>
-      </div>
+      </Banner>
       <Page>
         <Row className="article-content">
           <div className="col-xs-12">
@@ -36,10 +36,9 @@ export const ArticlePage: React.FC = () => {
           </div>
         </Row>
         <hr />
+        <div className="article-actions" />
         <Row>
-          <div className="col-xs-12 col-md-8 offset-md-2">
-            <Form />
-          </div>
+          <Comments />
         </Row>
       </Page>
     </div>

@@ -1,4 +1,4 @@
-import { $authorizedUser, loggedOutClicked, $token } from './model';
+import { $user, loggedOutClicked, $token } from './model';
 
-$authorizedUser.reset(loggedOutClicked);
-$token.catch(console.error).on($authorizedUser, (_, { token }) => token);
+$user.reset(loggedOutClicked);
+$token.catch(console.error).on($user, (_, { token }) => token);

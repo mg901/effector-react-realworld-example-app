@@ -12,4 +12,4 @@ sample({
   target: signUpFx,
 });
 
-auth.model.$authorizedUser.on(signUpFx.doneData, (_, payload) => payload);
+auth.model.$user.on(signUpFx.doneData, (_, payload) => payload);

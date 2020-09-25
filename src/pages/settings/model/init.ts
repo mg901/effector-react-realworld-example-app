@@ -5,13 +5,13 @@ import { formSubmitted, fieldChanged, changeAuthUserFx } from './model';
 
 formSubmitted.watch((e) => e.preventDefault());
 
-auth.model.$authorizedUser.on(fieldChanged, (state, payload) => ({
+auth.model.$user.on(fieldChanged, (state, payload) => ({
   ...state,
   ...payload,
 }));
 
 sample({
-  source: auth.model.$authorizedUser,
+  source: auth.model.$user,
   clock: formSubmitted,
   target: changeAuthUserFx,
 });

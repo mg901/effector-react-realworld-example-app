@@ -32,7 +32,7 @@ sample({
 
 $comments
   .on(getCommentsFx.doneData, (_, payload) => payload)
-  .on(addCommentFx.doneData, (state, payload) => [...state, payload])
-  .on(commentDeleted, (state, payload) =>
-    state.filter(({ id }) => id !== payload),
+  .on(addCommentFx.doneData, (state, payload) => [payload, ...state])
+  .on(deleteCommentFx.done, (state, { params }) =>
+    state.filter(({ id }) => id !== params.id),
   );
