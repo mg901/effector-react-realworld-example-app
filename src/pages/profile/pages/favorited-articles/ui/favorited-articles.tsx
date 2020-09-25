@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useList, useStore } from 'effector-react';
-import { ArticlePreview, EmptyArticles, ArticlesList } from 'ui';
+import { ArticlePreview, EmptyArticles, List } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 import '../model/init';
@@ -15,7 +15,7 @@ export const FavoritedArticles: React.FC<Props> = ({ match: { url } }) => {
   return (
     <div>
       {isEmpty && <EmptyArticles />}
-      <ArticlesList>
+      <List>
         {useList(model.$articles, (article) => (
           <li>
             <ArticlePreview
@@ -24,7 +24,7 @@ export const FavoritedArticles: React.FC<Props> = ({ match: { url } }) => {
             />
           </li>
         ))}
-      </ArticlesList>
+      </List>
       <Pagination path={url} />
     </div>
   );

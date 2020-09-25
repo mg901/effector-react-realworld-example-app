@@ -7,7 +7,7 @@ export const loggedOutClicked = createEvent();
 
 const createStorageStore = withStorage(createStore);
 
-export const $authorizedUser = createStore<AuthorizedUser>({
+export const $user = createStore<AuthorizedUser>({
   bio: '',
   createdAt: '',
   email: '',

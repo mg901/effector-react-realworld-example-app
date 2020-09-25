@@ -1,9 +1,4 @@
-import { model } from 'library/router';
-import { $authorizedUser, loggedOutClicked, $token } from './model';
+import { $user, loggedOutClicked, $token } from './model';
 
-$authorizedUser.reset(loggedOutClicked);
-$token.catch(console.error).on($authorizedUser, (_, { token }) => token);
-
-loggedOutClicked.watch(() => {
-  model.history.push('/');
-});
+$user.reset(loggedOutClicked);
+$token.catch(console.error).on($user, (_, { token }) => token);

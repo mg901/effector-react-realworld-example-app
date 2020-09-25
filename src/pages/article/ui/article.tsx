@@ -1,30 +1,29 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
-import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useStore } from 'effector-react';
+import { Comments } from 'features/comments';
+import 'features/comments/model/init';
 import marked from 'marked';
-import { Container, Row, Page, ArticleMeta, TagList, Tag } from 'ui';
+import { Container, Row, Page, ArticleMeta, TagList, Tag, Banner } from 'ui';
 import { model } from '../model';
 import '../model/init';
 
-type Props = Readonly<RouteConfigComponentProps>;
-
-export const ArticlePage: React.FC<Props> = ({ match: { params } }) => {
-  useGate(model.PageGate, { params });
+export const ArticlePage: React.FC = () => {
+  useGate(model.PageGate);
   const { title, author, createdAt, body, tagList } = useStore(model.$article);
 
   const markup = {
-    __html: marked(body, { sanitize: true }),
+    __html: marked(body),
   };
 
   return (
     <div className="article-page">
-      <div className="banner">
+      <Banner>
         <Container>
           <h1>{title}</h1>
           <ArticleMeta author={author} createdAt={createdAt} />
         </Container>
-      </div>
+      </Banner>
       <Page>
         <Row className="article-content">
           <div className="col-xs-12">
@@ -37,6 +36,10 @@ export const ArticlePage: React.FC<Props> = ({ match: { params } }) => {
           </div>
         </Row>
         <hr />
+        <div className="article-actions" />
+        <Row>
+          <Comments />
+        </Row>
       </Page>
     </div>
   );

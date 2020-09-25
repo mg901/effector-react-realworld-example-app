@@ -6,10 +6,10 @@ import { FormGroup, Textarea, TextareaProps } from 'ui';
 
 export const TextField: React.FC<TextareaProps> = ({ name, ...props }) => {
   const value = useStoreMap({
-    store: auth.model.$authorizedUser,
+    store: auth.model.$user,
     keys: [name],
     fn: (user, [key]) =>
-      user[key as keyof StoreValue<typeof auth.model.$authorizedUser>] ?? '',
+      user[key as keyof StoreValue<typeof auth.model.$user>] ?? '',
   });
 
   return (

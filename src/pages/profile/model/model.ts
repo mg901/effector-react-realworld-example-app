@@ -7,20 +7,20 @@ export const toggleFollowing = createEvent();
 
 export const getProfileFx = createEffect((username: string) =>
   api
-    .get<types.ProfileResponse>(`/profiles/${username}`)
-    .then<types.Profile>((response) => response.profile),
+    .get<types.GetProfileFxDone>(`/profiles/${username}`)
+    .then<types.Profile>((x) => x.profile),
 );
 
 export const followUserFx = createEffect((username: string) =>
   api
-    .post<types.ProfileResponse>(`/profiles/${username}/follow`)
-    .then<types.Profile>((response) => response.profile),
+    .post<types.GetProfileFxDone>(`/profiles/${username}/follow`)
+    .then<types.Profile>((x) => x.profile),
 );
 
 export const unfollowUserFx = createEffect((username: string) =>
   api
-    .del<types.ProfileResponse>(`/profiles/${username}/follow`)
-    .then<types.Profile>((response) => response.profile),
+    .del<types.GetProfileFxDone>(`/profiles/${username}/follow`)
+    .then<types.Profile>((x) => x.profile),
 );
 
 export const PageGate = createGate<types.PageGateType>();

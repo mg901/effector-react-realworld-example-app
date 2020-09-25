@@ -12,4 +12,4 @@ sample({
   target: signInFx,
 });
 
-user.model.$authorizedUser.on(signInFx.doneData, (_, payload) => payload);
+user.model.$user.on(signInFx.doneData, (_, payload) => payload);

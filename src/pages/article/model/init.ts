@@ -1,19 +1,15 @@
-import { sample } from 'effector';
+import { forward, attach } from 'effector';
 import {
   PageGate,
   getPageDataFx,
+  $slug,
   $article,
   getArticleFx,
-  $comments,
-  getCommentFx,
 } from './model';
 
-sample({
-  source: PageGate.open,
-  clock: PageGate.open,
-  fn: ({ params }) => params,
-  target: getPageDataFx,
+forward({
+  from: PageGate.open,
+  to: attach({ source: $slug, effect: getPageDataFx }),
 });
 
 $article.on(getArticleFx.doneData, (_, payload) => payload);
-$comments.on(getCommentFx.doneData, (_, payload) => payload);

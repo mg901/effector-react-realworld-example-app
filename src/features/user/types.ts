@@ -17,7 +17,7 @@ export type AuthorizedUser = Readonly<{
   updatedAt: string;
 }>;
 
-export type AuthUserResponse = Readonly<{
+export type SignUpFxDone = Readonly<{
   user: AuthorizedUser;
 }>;
 
