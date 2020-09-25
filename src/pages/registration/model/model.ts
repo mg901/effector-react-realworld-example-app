@@ -8,16 +8,10 @@ export const formSubmitted = createEvent<React.FormEvent>();
 export const fieldChanged = createEvent<Record<string, string>>();
 export const handleFieldChanged = fieldChanged.prepend(createField);
 
-export const $form = createStore<types.Form>({
-  username: '',
-  email: '',
-  password: '',
-});
-
 export const signUpFx = createEffect<
   types.Form,
   auth.types.User,
-  auth.types.AuthFail
+  types.ErrorType
 >({
   handler: ({ username, email, password }) =>
     api
@@ -26,3 +20,11 @@ export const signUpFx = createEffect<
       })
       .then((x) => x.user),
 });
+
+export const $form = createStore<types.Form>({
+  username: '',
+  email: '',
+  password: '',
+});
+
+export const $errors = createStore<types.ErrorType>({ errors: [] });

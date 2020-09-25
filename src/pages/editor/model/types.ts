@@ -5,3 +5,7 @@ export type Form = Readonly<{
   body: string;
   tagList: string[];
 }>;
+
+export type ErrorType = Readonly<{
+  errors: readonly string[];
+}>;

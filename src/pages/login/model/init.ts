@@ -14,4 +14,4 @@ sample({
 
 user.model.$user.on(signInFx.doneData, (_, payload) => payload);
 
-$errors.on(signInFx.failData, (_, payload) => payload).reset(signInFx.doneData);
+$errors.on(signInFx.failData, (_, payload) => payload).reset(signInFx.done);

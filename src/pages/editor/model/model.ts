@@ -14,9 +14,11 @@ export const handleTextChanged = textChanged.prepend(
 export const tagAdded = createEvent<string>();
 export const tagDeleted = createEvent<string>();
 
-export const createArticleFx = createEffect((article: types.Form) =>
-  api.post('/articles', { article }),
-);
+export const createArticleFx = createEffect({
+  handler: (article: types.Form) => api.post('/articles', { article }),
+});
+
+createArticleFx.finally.watch((x) => console.log('create article', x));
 
 export const $currentTag = createStore<string>('');
 
@@ -29,3 +31,4 @@ export const $form = createStore<types.Form>({
 });
 
 export const $tags = $form.map((x) => x.tagList);
+export const $errors = createStore<types.ErrorType>({ errors: [] });
