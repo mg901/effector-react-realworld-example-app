@@ -8,6 +8,6 @@ export const formSubmitted = createEvent<React.FormEvent>();
 
 export const handleFieldChanged = fieldChanged.prepend(createField);
 
-export const changeAuthUserFx = createEffect(
-  (user: auth.types.AuthorizedUser) => api.put('/user', { user }),
+export const changeAuthUserFx = createEffect((user: auth.types.User) =>
+  api.put('/user', { user }),
 );

@@ -16,7 +16,7 @@ export const $form = createStore<types.Form>({
 
 export const signUpFx = createEffect<
   types.Form,
-  auth.types.AuthorizedUser,
+  auth.types.User,
   auth.types.AuthFail
 >({
   handler: ({ username, email, password }) =>

@@ -1,6 +1,6 @@
 import { sample } from 'effector';
 import * as user from 'features/user';
-import { formSubmitted, $form, fieldChanged, signInFx } from './model';
+import { $form, $errors, formSubmitted, fieldChanged, signInFx } from './model';
 
 formSubmitted.watch((e) => e.preventDefault());
 
@@ -13,3 +13,5 @@ sample({
 });
 
 user.model.$user.on(signInFx.doneData, (_, payload) => payload);
+
+$errors.on(signInFx.failData, (_, payload) => payload).reset(signInFx.doneData);
