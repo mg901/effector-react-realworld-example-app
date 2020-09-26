@@ -13,7 +13,7 @@ export const signInFx = createEffect<
   auth.types.User,
   types.ErrorType
 >({
-  handler: ({ email, password }: types.Form) =>
+  handler: ({ email, password }) =>
     api
       .post<auth.types.SignUpFxDone>('/users/login', {
         user: { email, password },

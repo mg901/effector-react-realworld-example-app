@@ -14,4 +14,4 @@ sample({
 
 auth.model.$user.on(signUpFx.doneData, (_, payload) => payload);
 
-$errors.on(signUpFx.failData, (_, payload) => payload).reset(signUpFx.done);
+$errors.on(signUpFx.failData, (_, payload) => payload).reset(fieldChanged);

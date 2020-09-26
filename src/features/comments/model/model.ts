@@ -17,12 +17,16 @@ export const getCommentsFx = createEffect((slug: string) =>
     .then((x) => x.comments),
 );
 
-export const addCommentFx = createEffect(
-  ({ slug, body }: types.AddCommentFxArgs) =>
+export const addCommentFx = createEffect<
+  types.AddCommentFxArgs,
+  types.Comment,
+  types.ErrorType
+>({
+  handler: ({ slug, body }) =>
     api
       .post<types.AddCommentDone>(`/articles/${slug}/comments`, { body })
       .then((x) => x.comment),
-);
+});
 
 export const deleteCommentFx = createEffect(
   ({ slug, id }: types.DeleteCommentFxArgs) =>
@@ -31,6 +35,7 @@ export const deleteCommentFx = createEffect(
 
 export const $commentText = createStore<string>('');
 export const $comments = createStore<readonly types.Comment[]>([]);
+export const $errors = createStore<types.ErrorType>({ errors: [] });
 export const $slug = router.model.$pathname.map((x) =>
   x.replace(/^\/article\//, ''),
 );
