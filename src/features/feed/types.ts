@@ -29,13 +29,13 @@ export type FavoriteArticle = Readonly<{
   article: Article;
 }>;
 
-export type UnfavoritedArticle = FavoriteArticle;
+export type UnfavoriteArticle = FavoriteArticle;
 
 export type CreateFeedModel = Readonly<{
   currentPageSettled: Event<number>;
   favoriteToggled: Event<Article>;
   setFavoriteArticleFx: Effect<string, FavoriteArticle, Error>;
-  setUnfavoriteArticleFx: Effect<string, UnfavoritedArticle, Error>;
+  setUnfavoriteArticleFx: Effect<string, UnfavoriteArticle, Error>;
   $currentPage: Store<number>;
   $currentTag: Store<string>;
   $feed: Store<Feed>;

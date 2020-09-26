@@ -8,7 +8,7 @@ export const setFavoriteArticleFx = createEffect((slug: string) =>
 );
 
 export const setUnfavoriteArticleFx = createEffect((slug: string) =>
-  api.del<types.UnfavoritedArticle>(`/articles/${slug}/favorite`),
+  api.del<types.UnfavoriteArticle>(`/articles/${slug}/favorite`),
 );
 
 const defaultOptions = {
