@@ -1,11 +1,14 @@
-import { createEvent, createEffect, createStore } from 'effector';
+import { createEffect, createStore } from 'effector';
 import * as api from 'api';
 import * as auth from 'features/user';
 import { createFormEvents } from 'library/form';
 import * as types from './types';
 
-export const { fieldChanged, handleFieldChanged } = createFormEvents();
-export const formSubmitted = createEvent<React.FormEvent>();
+export const {
+  fieldChanged,
+  handleFieldChanged,
+  formSubmitted,
+} = createFormEvents();
 
 export const changeUserDataFx = createEffect<
   auth.types.User,
@@ -15,4 +18,6 @@ export const changeUserDataFx = createEffect<
   handler: (user) => api.put('/user', { user }),
 });
 
-export const $errors = createStore<types.ErrorType>({ errors: [] });
+export const $errors = createStore<types.ErrorType>({
+  errors: [],
+});

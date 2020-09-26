@@ -2,10 +2,10 @@
 import React from 'react';
 import { useGate, useStore } from 'effector-react';
 import { Comments } from 'features/comments';
-import 'features/comments/model/init';
 import marked from 'marked';
 import { Container, Row, Page, ArticleMeta, TagList, Tag, Banner } from 'ui';
 import { model } from '../model';
+
 import '../model/init';
 
 export const ArticlePage: React.FC = () => {

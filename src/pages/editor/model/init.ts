@@ -1,6 +1,6 @@
 // import { history } from 'library/router';
 import { uniq } from 'library/uniq';
-import { model } from '../add-tag-form';
+import { model } from '../add-tag';
 import {
   $form,
   $errors,

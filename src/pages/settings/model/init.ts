@@ -8,8 +8,6 @@ import {
   changeUserDataFx,
 } from './model';
 
-formSubmitted.watch((e) => e.preventDefault());
-
 auth.model.$user.on(fieldChanged, (state, payload) => ({
   ...state,
   ...payload,

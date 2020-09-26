@@ -6,6 +6,7 @@ import { routes } from '../library';
 import { model } from '../model';
 import { Tabs } from './tabs';
 import { UserInfo } from './user-info';
+
 import '../model/init';
 
 type Props = Readonly<RouteConfigComponentProps<{ url: string }>>;

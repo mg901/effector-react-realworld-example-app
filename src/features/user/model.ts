@@ -3,7 +3,9 @@ import withStorage from 'effector-storage';
 import { TOKEN_NAME } from 'config';
 import { Token, User } from './types';
 
-export const loggedOutClicked = createEvent();
+export const loggedOutClicked = createEvent<
+  React.MouseEvent<HTMLButtonElement, MouseEvent>
+>();
 
 const createStorageStore = withStorage(createStore);
 
