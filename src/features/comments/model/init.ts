@@ -2,6 +2,7 @@ import { forward, attach, sample } from 'effector';
 import {
   $commentText,
   $comments,
+  $errors,
   $slug,
   formSubmitted,
   textChanged,
@@ -36,3 +37,5 @@ $comments
   .on(deleteCommentFx.done, (state, { params }) =>
     state.filter(({ id }) => id !== params.id),
   );
+
+$errors.on(addCommentFx.failData, (_, payload) => payload).reset(textChanged);

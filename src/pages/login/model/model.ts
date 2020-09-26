@@ -8,17 +8,18 @@ export const formSubmitted = createEvent<React.FormEvent>();
 export const fieldChanged = createEvent<Record<string, string>>();
 export const handleFieldChanged = fieldChanged.prepend(createField);
 
-export const $form = createStore<types.Form>({ email: '', password: '' });
-
 export const signInFx = createEffect<
   types.Form,
-  auth.types.AuthorizedUser,
-  auth.types.AuthFail
+  auth.types.User,
+  types.ErrorType
 >({
-  handler: ({ email, password }: types.Form) =>
+  handler: ({ email, password }) =>
     api
       .post<auth.types.SignUpFxDone>('/users/login', {
         user: { email, password },
       })
       .then((x) => x.user),
 });
+
+export const $form = createStore<types.Form>({ email: '', password: '' });
+export const $errors = createStore<types.ErrorType>({ errors: [] });

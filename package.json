@@ -8,8 +8,8 @@
     "predeploy": "npm run build",
     "deploy": "cross-env gh-pages -d build",
     "start": "npm run clean && cross-env parcel src/index.html  --port 4100 --out-dir public",
-    "build": "npm run clean && cross-env cross-env parcel build src/index.html --out-dir public --public-url /",
-    "clean": "cross-env rimraf public .cache",
+    "build": "npm run clean && cross-env cross-env parcel build src/index.html --out-dir dist --public-url /",
+    "clean": "cross-env rimraf dist public .cache",
     "commit": "cross-env git-cz",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint:all": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix.",
@@ -19,7 +19,7 @@
     "ts-check:watch": "yarn ts-check -- --watch",
     "test": "cross-env jest",
     "test:watch": "cross-env jest --watch",
-    "demo": "cross-env static public"
+    "demo": "cross-env static dist"
   },
   "browserslist": {
     "production": [

@@ -6,7 +6,7 @@ export type Form = Readonly<{
 
 export type FormField = Readonly<Record<string, string>>;
 
-export type AuthorizedUser = Readonly<{
+export type User = Readonly<{
   image: string;
   username: string;
   bio: string;
@@ -18,11 +18,7 @@ export type AuthorizedUser = Readonly<{
 }>;
 
 export type SignUpFxDone = Readonly<{
-  user: AuthorizedUser;
+  user: User;
 }>;
 
 export type Token = null | string;
-
-export type AuthFail = Readonly<{
-  errors: readonly string[];
-}>;

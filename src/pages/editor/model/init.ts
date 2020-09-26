@@ -1,18 +1,23 @@
 import { isASCII } from 'library/ascii';
 import { uniq } from 'library/uniq';
-import * as model from './model';
+import {
+  $currentTag,
+  $form,
+  textChanged,
+  fieldChanged,
+  tagAdded,
+  tagDeleted,
+} from './model';
 
-model.$currentTag
-  .on(model.textChanged, (_, payload) => payload)
-  .reset(model.tagAdded);
+$currentTag.on(textChanged, (_, payload) => payload).reset(tagAdded);
 
-model.$form
-  .on(model.fieldChanged, (state, payload) => ({
+$form
+  .on(fieldChanged, (state, payload) => ({
     ...state,
     ...payload,
   }))
   .on(
-    model.tagAdded.filter({
+    tagAdded.filter({
       fn: (x) => Boolean(x.length) && isASCII(x),
     }),
     (state, payload) => ({
@@ -20,7 +25,9 @@ model.$form
       tagList: uniq<string>([...state.tagList, payload]),
     }),
   )
-  .on(model.tagDeleted, (state, payload) => ({
+  .on(tagDeleted, (state, payload) => ({
     ...state,
     tagList: state.tagList.filter((tag) => tag !== payload),
   }));
+
+// $errors.on(createArticleFx.failData, (_, payload) => payload);

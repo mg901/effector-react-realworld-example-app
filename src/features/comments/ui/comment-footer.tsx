@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as user from 'features/user';
+import { AuthBranch } from 'library/router';
 import { model, types } from '../model';
 import { ButtonDelete } from './button-delete';
 
@@ -20,8 +20,8 @@ export const CommentFooter: React.FC<Props> = ({ author, createdAt, id }) => (
       {author.username}
     </Link>
     <span className="date-posted">{new Date(createdAt).toDateString()}</span>
-    {user.model.$isAuthorized && (
+    <AuthBranch check="auth">
       <ButtonDelete onClick={() => model.commentDeleted(id)} />
-    )}
+    </AuthBranch>
   </div>
 );

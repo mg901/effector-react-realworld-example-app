@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Paths } from 'library/router';
 import { Page, Row } from 'ui';
+import { Errors } from './errors';
 import { Form } from './form';
 import '../model/init';
 
@@ -15,6 +16,7 @@ export const LoginPage: React.FC = () => (
           <Link to={Paths.REGISTRATION}>Need an account?</Link>
         </p>
 
+        <Errors />
         <Form />
       </div>
     </Row>
