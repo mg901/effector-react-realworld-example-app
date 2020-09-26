@@ -1,16 +1,14 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { Form, Input } from 'ui';
-import { model } from '../model';
+import { $currentTag, tagAdded, handleTextChanged } from '../model';
+import '../model/init';
 
 export const AddTagForm: React.FC = () => {
-  const tag = useStore(model.$currentTag);
+  const tag = useStore($currentTag);
 
   return (
-    <Form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}>
+    <Form onSubmit={(e) => e.preventDefault()}>
       <Input
         autoComplete="off"
         value={tag}
@@ -18,10 +16,10 @@ export const AddTagForm: React.FC = () => {
         placeholder="Enter tags"
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-            model.tagAdded(tag);
+            tagAdded(tag);
           }
         }}
-        onChange={model.handleTextChanged}
+        onChange={handleTextChanged}
       />
     </Form>
   );

@@ -1,33 +1,32 @@
-import { isASCII } from 'library/ascii';
+// import { history } from 'library/router';
 import { uniq } from 'library/uniq';
+import { model } from '../add-tag-form';
 import {
-  $currentTag,
   $form,
-  textChanged,
+  $errors,
   fieldChanged,
-  tagAdded,
   tagDeleted,
+  createArticleFx,
 } from './model';
-
-$currentTag.on(textChanged, (_, payload) => payload).reset(tagAdded);
 
 $form
   .on(fieldChanged, (state, payload) => ({
     ...state,
     ...payload,
   }))
-  .on(
-    tagAdded.filter({
-      fn: (x) => Boolean(x.length) && isASCII(x),
-    }),
-    (state, payload) => ({
-      ...state,
-      tagList: uniq<string>([...state.tagList, payload]),
-    }),
-  )
+  .on(model.validTagAdded, (state, payload) => ({
+    ...state,
+    tagList: uniq<string>([...state.tagList, payload]),
+  }))
   .on(tagDeleted, (state, payload) => ({
     ...state,
     tagList: state.tagList.filter((tag) => tag !== payload),
   }));
 
-// $errors.on(createArticleFx.failData, (_, payload) => payload);
+// createArticleFx.done.watch(({ params }) => {
+//   history.replace(`/article/${params.slug}`)
+// });
+
+$errors
+  .on(createArticleFx.failData, (_, payload) => payload)
+  .reset(fieldChanged);

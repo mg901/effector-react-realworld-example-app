@@ -48,7 +48,7 @@ module.exports = {
       },
     ],
     'no-console': [
-      1,
+      2,
       {
         allow: ['error'],
       },
@@ -64,6 +64,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     '@typescript-eslint/no-shadow': 2,
     '@typescript-eslint/no-unused-vars': 2,
+    '@typescript-eslint/explicit-module-boundary-types': 2,
     '@typescript-eslint/ban-types': 0,
     '@typescript-eslint/ban-ts-comment': 0,
     'import-helpers/order-imports': [

@@ -50,7 +50,7 @@ export const createFeedModel = (
   }).watch(({ slug }) => setFavoriteArticleFx(slug));
 
   return {
-    currentPageSetted: createEvent<number>(),
+    currentPageSettled: createEvent<number>(),
     favoriteToggled,
     setFavoriteArticleFx,
     setUnfavoriteArticleFx,

@@ -1,27 +1,48 @@
-import { Store, StoreValue } from 'effector';
+import { createEvent, StoreValue, Store, Event } from 'effector';
 import { useStoreMap } from 'effector-react';
 
-type Output =
+export type ChangeEvent = React.ChangeEvent<
+  HTMLInputElement | HTMLTextAreaElement
+>;
+
+export type Field = Readonly<Record<string, string>>;
+
+export type UseFormField = (x: {
+  store: Store<any>;
+  name: string;
+}) =>
   | React.InputHTMLAttributes<HTMLInputElement>['value']
   | React.InputHTMLAttributes<HTMLTextAreaElement>['value'];
 
-export const useFormField = ({
-  store,
-  name,
-}: {
-  store: Store<any>;
-  name: string;
-}): Output =>
+export const useFormField: UseFormField = ({ store, name }) =>
   useStoreMap({
     store,
     keys: [name],
     fn: (value, [key]) => value[key as keyof StoreValue<typeof store>] ?? '',
   });
 
-type CreateField = (
-  e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-) => Record<string, string>;
+export type CreateFormEvents = () => Readonly<{
+  textChanged: Event<string>;
+  handleTextChanged: Event<ChangeEvent>;
+  fieldChanged: Event<Field>;
+  handleFieldChanged: Event<ChangeEvent>;
+}>;
 
-export const createField: CreateField = (e) => ({
-  [e.target.name]: e.target.value,
-});
+export const createFormEvents: CreateFormEvents = () => {
+  const textChanged = createEvent<string>();
+  const handleTextChanged = textChanged.prepend(
+    (e: ChangeEvent) => e.target.value,
+  );
+
+  const fieldChanged = createEvent<Field>();
+  const handleFieldChanged = fieldChanged.prepend((e: ChangeEvent) => ({
+    [e.target.name]: e.target.value,
+  }));
+
+  return {
+    textChanged,
+    handleTextChanged,
+    fieldChanged,
+    handleFieldChanged,
+  };
+};

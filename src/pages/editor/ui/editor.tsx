@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page, Row, Button } from 'ui';
-import { AddTagForm } from './add-tag-form';
+import { AddTagForm } from '../add-tag-form';
 import { Form } from './form';
 import { TagList } from './tag-list';
 

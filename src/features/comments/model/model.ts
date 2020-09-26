@@ -1,15 +1,12 @@
 import { createEvent, createEffect, createStore } from 'effector';
 import * as api from 'api';
+import { createFormEvents } from 'library/form';
 import * as router from 'library/router';
 import * as types from './types';
 
+export const { textChanged, handleTextChanged } = createFormEvents();
 export const formSubmitted = createEvent<React.FormEvent>();
-export const textChanged = createEvent<string>();
 export const commentDeleted = createEvent<string>();
-
-export const handleTextChanged = textChanged.prepend(
-  (e: React.ChangeEvent<HTMLTextAreaElement>) => e.target.value,
-);
 
 export const getCommentsFx = createEffect((slug: string) =>
   api

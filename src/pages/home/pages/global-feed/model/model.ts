@@ -6,7 +6,7 @@ import { limit } from 'library/limit';
 
 export const PageGate = createGate();
 export const {
-  currentPageSetted,
+  currentPageSettled,
   favoriteToggled,
   $currentPage,
   $articles,

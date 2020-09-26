@@ -7,7 +7,7 @@ import { GetFeedByTagArgs, FeedByTag } from './types';
 
 export const PageGate = createGate();
 export const {
-  currentPageSetted,
+  currentPageSettled,
   favoriteToggled,
   $currentTag,
   $currentPage,

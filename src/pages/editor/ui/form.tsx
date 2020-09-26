@@ -6,11 +6,7 @@ import { TextField } from './text-field';
 import '../model/init';
 
 export const Form: React.FC = () => (
-  <UIForm
-    id="editor"
-    onSubmit={(e) => {
-      e.preventDefault();
-    }}>
+  <UIForm id="editor" onSubmit={(e) => e.preventDefault()}>
     <InputField
       name="title"
       placeholder="Article Title"

@@ -13,7 +13,7 @@ const getFeedFx = createEffect((page: number) =>
 );
 
 export const {
-  currentPageSetted,
+  currentPageSettled,
   favoriteToggled,
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,

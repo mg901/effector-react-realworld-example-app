@@ -32,7 +32,7 @@ export type FavoriteArticle = Readonly<{
 export type UnfavoritedArticle = FavoriteArticle;
 
 export type CreateFeedModel = Readonly<{
-  currentPageSetted: Event<number>;
+  currentPageSettled: Event<number>;
   favoriteToggled: Event<Article>;
   setFavoriteArticleFx: Effect<string, FavoriteArticle, Error>;
   setUnfavoriteArticleFx: Effect<string, UnfavoritedArticle, Error>;
