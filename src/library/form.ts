@@ -21,24 +21,30 @@ export const useFormField: UseFormField = ({ store, name }) =>
     fn: (value, [key]) => value[key as keyof StoreValue<typeof store>] ?? '',
   });
 
+// TODO move from this file
+const getValue = (e: ChangeEvent): string => e.target.value;
+
+const getField = (e: ChangeEvent): Field => ({
+  [e.target.name]: e.target.value,
+});
+
+function createPrependedEvent<T, R>(
+  transformer: (_: R) => T,
+): [Event<T>, Event<R>] {
+  const e = createEvent<T>();
+
+  return [e, e.prepend(transformer)];
+}
+// TODO move from this file
+                                                        
 export type CreateFormEvents = () => Readonly<{
-  textChanged: Event<string>;
-  handleTextChanged: Event<ChangeEvent>;
-  fieldChanged: Event<Field>;
-  handleFieldChanged: Event<ChangeEvent>;
   formSubmitted: Event<React.FormEvent>;
 }>;
 
 export const createFormEvents: CreateFormEvents = () => {
-  const textChanged = createEvent<string>();
-  const handleTextChanged = textChanged.prepend(
-    (e: ChangeEvent) => e.target.value,
-  );
+  const [textChanged, handleTextChanged] = createPrependedEvent(getValue);
 
-  const fieldChanged = createEvent<Field>();
-  const handleFieldChanged = fieldChanged.prepend((e: ChangeEvent) => ({
-    [e.target.name]: e.target.value,
-  }));
+  const [fieldChanged, handleFieldChanged] = createPrependedEvent(getField);
 
   const formSubmitted = createEvent<React.FormEvent>();
   formSubmitted.watch((e) => e.preventDefault());
