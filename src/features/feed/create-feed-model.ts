@@ -65,7 +65,6 @@ export const createFeedModel = (
     ),
     $feed,
     $articles: $feed.map((x) => x.articles),
-    $isEmptyArticles: $feed.map((x) => x.articles.length === 0),
     $totalPages: $feed.map((x) => x.articlesCount),
   };
 };

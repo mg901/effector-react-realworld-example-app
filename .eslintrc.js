@@ -73,6 +73,7 @@ module.exports = {
         groups: [
           '/^react/',
           '/^effector/',
+          '/^patronum/',
           'module',
           '/^@core/',
           '/^@library/',

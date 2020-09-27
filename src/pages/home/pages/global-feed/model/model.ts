@@ -10,7 +10,6 @@ export const {
   favoriteToggled,
   $currentPage,
   $articles,
-  $isEmptyArticles,
   $totalPages,
   $feed,
 } = feed.createFeedModel();

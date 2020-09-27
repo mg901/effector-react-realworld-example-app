@@ -40,7 +40,6 @@ export type CreateFeedModel = Readonly<{
   $currentTag: Store<string>;
   $feed: Store<Feed>;
   $articles: Store<Feed['articles']>;
-  $isEmptyArticles: Store<boolean>;
   $totalPages: Store<Feed['articlesCount']>;
 }>;
 
