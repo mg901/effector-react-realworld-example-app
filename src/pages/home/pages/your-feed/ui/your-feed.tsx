@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useList, useStore } from 'effector-react';
-import { ArticlePreview, EmptyArticles, List } from 'ui';
+import { ArticlePreview, List, Loader, EmptyArticles } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 
@@ -11,10 +11,11 @@ type Props = Readonly<RouteConfigComponentProps>;
 
 export const YourFeedPage: React.FC<Props> = ({ match: { path } }) => {
   useGate(model.PageGate);
+  const loading = useStore(model.getFeedFx.pending);
   const isEmpty = useStore(model.$isEmptyArticles);
 
   return (
-    <div>
+    <>
       {isEmpty && <EmptyArticles />}
       <List>
         {useList(model.$articles, (article) => (
@@ -27,6 +28,7 @@ export const YourFeedPage: React.FC<Props> = ({ match: { path } }) => {
         ))}
       </List>
       <Pagination path={path} />
-    </div>
+      <Loader loading={loading} />
+    </>
   );
 };

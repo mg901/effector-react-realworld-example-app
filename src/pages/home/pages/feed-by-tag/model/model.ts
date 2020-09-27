@@ -1,4 +1,4 @@
-import { createEffect, createStore, attach, combine } from 'effector';
+import { createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as feed from 'features/feed';
@@ -20,11 +20,6 @@ export const getFeedFx = createEffect(({ tag, page }: GetFeedByTagArgs) =>
     `/articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`,
   ),
 );
-
-export const getFeedByTagFx = attach({
-  source: { tag: $currentTag, page: $currentPage },
-  effect: getFeedFx,
-});
 
 export const $feed = createStore<FeedByTag>({});
 

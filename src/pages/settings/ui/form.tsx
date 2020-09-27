@@ -1,8 +1,8 @@
 import React from 'react';
-import { Form as UIForm, Button } from 'ui';
-
+import { Form as UIForm } from 'ui';
 import { model } from '../model';
 import { InputField } from './input-field';
+import { SubmitButton } from './submit-button';
 import { TextField } from './text-field';
 
 export const Form: React.FC = () => (
@@ -30,8 +30,6 @@ export const Form: React.FC = () => (
       onChange={model.handleFieldChanged}
     />
 
-    <Button type="submit" className="btn-lg btn-primary pull-xs-right">
-      Update Settigs
-    </Button>
+    <SubmitButton />
   </UIForm>
 );

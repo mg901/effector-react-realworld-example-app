@@ -1,9 +1,9 @@
-import { createEffect, attach } from 'effector';
+import { createEffect, combine } from 'effector';
 import { createGate } from 'effector-react';
+import { status } from 'patronum/status';
 import * as api from 'api';
 import * as feed from 'features/feed';
 import { limit } from 'library/limit';
-import * as profile from '../../../model';
 import { types } from '../../../model';
 
 export const getFeedFx = createEffect(
@@ -20,12 +20,13 @@ export const {
   favoriteToggled,
   $currentPage,
   $articles,
-  $isEmptyArticles,
   $totalPages,
-  $feed: $myArticles,
+  $feed,
 } = feed.createFeedModel();
 
-export const getMyArticlesFx = attach({
-  source: { username: profile.model.$username, page: $currentPage },
-  effect: getFeedFx,
-});
+export const $status = status({ effect: getFeedFx });
+export const $isEmptyArticles = combine(
+  $status,
+  $articles,
+  (is, articles) => is === 'done' && articles.length === 0,
+);

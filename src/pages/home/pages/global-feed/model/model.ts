@@ -1,4 +1,4 @@
-import { createEffect, attach } from 'effector';
+import { createEffect } from 'effector';
 import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as feed from 'features/feed';
@@ -10,16 +10,10 @@ export const {
   favoriteToggled,
   $currentPage,
   $articles,
-  $isEmptyArticles,
   $totalPages,
-  $feed: $globalFeed,
+  $feed,
 } = feed.createFeedModel();
 
-const getFeedFx = createEffect((page: number) =>
+export const getFeedFx = createEffect((page: number) =>
   api.get<feed.types.Feed>(`/articles?${limit(10, page)}`),
 );
-
-export const getGlobalFeedFx = attach({
-  source: $currentPage,
-  effect: getFeedFx,
-});

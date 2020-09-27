@@ -1,9 +1,12 @@
-import { forward } from 'effector';
-import { $globalFeed, getGlobalFeedFx, PageGate, $currentPage } from './model';
+import { forward, attach } from 'effector';
+import { PageGate, $feed, $currentPage, getFeedFx } from './model';
 
-$globalFeed.on(getGlobalFeedFx.doneData, (_, payload) => payload);
+$feed.on(getFeedFx.doneData, (_, payload) => payload);
 
 forward({
   from: [PageGate.open, $currentPage],
-  to: getGlobalFeedFx,
+  to: attach({
+    source: $currentPage,
+    effect: getFeedFx,
+  }),
 });
