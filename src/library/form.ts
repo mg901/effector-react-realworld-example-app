@@ -22,6 +22,10 @@ export const useFormField: UseFormField = ({ store, name }) =>
   });
 
 export type CreateFormEvents = () => Readonly<{
+  textChanged: Event<string>;
+  handleTextChanged: Event<ChangeEvent>;
+  fieldChanged: Event<Field>;
+  handleFieldChanged: Event<ChangeEvent>;
   formSubmitted: Event<React.FormEvent>;
 }>;
 
