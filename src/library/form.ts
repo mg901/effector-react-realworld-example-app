@@ -35,11 +35,11 @@ function createPrependedEvent<T, R>(
 
   return [e, e.prepend(transformer)];
 }
-
+// TODO move from this file
+                                                        
 export type CreateFormEvents = () => Readonly<{
   formSubmitted: Event<React.FormEvent>;
 }>;
-// TODO move from this file
 
 export const createFormEvents: CreateFormEvents = () => {
   const [textChanged, handleTextChanged] = createPrependedEvent(getValue);
