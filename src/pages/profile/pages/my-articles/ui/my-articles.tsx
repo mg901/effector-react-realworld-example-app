@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
-import { useGate, useList } from 'effector-react';
-import { ArticlePreview, List } from 'ui';
+import { useGate, useList, useStore } from 'effector-react';
+import { ArticlePreview, List, Loader } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 
@@ -11,6 +11,7 @@ type Props = Readonly<RouteConfigComponentProps>;
 
 export const MyArticles: React.FC<Props> = ({ match: { url } }) => {
   useGate(model.PageGate);
+  const loading = useStore(model.getFeedFx.pending);
 
   return (
     <>
@@ -25,6 +26,7 @@ export const MyArticles: React.FC<Props> = ({ match: { url } }) => {
         ))}
       </List>
       <Pagination path={url} />
+      <Loader loading={loading} />
     </>
   );
 };

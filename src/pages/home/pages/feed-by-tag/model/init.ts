@@ -1,18 +1,22 @@
-import { forward } from 'effector';
+import { forward, attach } from 'effector';
 import * as router from 'library/router';
 import {
   $feed,
   $feedByTag,
+  $currentTag,
+  $currentPage,
   getFeedFx,
   PageGate,
-  getFeedByTagFx,
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,
 } from './model';
 
 forward({
   from: [PageGate.open, router.model.$search],
-  to: getFeedByTagFx,
+  to: attach({
+    source: { tag: $currentTag, page: $currentPage },
+    effect: getFeedFx,
+  }),
 });
 
 $feed.on(getFeedFx.done, (state, { params, result }) => ({

@@ -1,9 +1,13 @@
-import { forward } from 'effector';
-import { $favoritedArticles, getFavoritedArticlesFx, PageGate } from './model';
+import { forward, attach } from 'effector';
+import * as profile from '../../../model';
+import { $feed, $currentPage, getFeedFx, PageGate } from './model';
 
-$favoritedArticles.on(getFavoritedArticlesFx.doneData, (_, payload) => payload);
+$feed.on(getFeedFx.doneData, (_, payload) => payload);
 
 forward({
   from: PageGate.open,
-  to: getFavoritedArticlesFx,
+  to: attach({
+    source: { username: profile.model.$username, page: $currentPage },
+    effect: getFeedFx,
+  }),
 });

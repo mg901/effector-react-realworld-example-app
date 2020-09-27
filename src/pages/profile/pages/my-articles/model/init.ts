@@ -1,9 +1,13 @@
-import { forward } from 'effector';
-import { PageGate, getMyArticlesFx, $myArticles } from './model';
+import { forward, attach } from 'effector';
+import * as profile from '../../../model';
+import { PageGate, $feed, $currentPage, getFeedFx } from './model';
 
-$myArticles.on(getMyArticlesFx.doneData, (_, payload) => payload);
+$feed.on(getFeedFx.doneData, (_, payload) => payload);
 
 forward({
   from: PageGate.open,
-  to: getMyArticlesFx,
+  to: attach({
+    source: { username: profile.model.$username, page: $currentPage },
+    effect: getFeedFx,
+  }),
 });

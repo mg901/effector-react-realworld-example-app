@@ -1,3 +1,7 @@
 import React from 'react';
 
-export const Loader: React.FC = () => <div>Loading...</div>;
+type Props = Readonly<{
+  loading: boolean;
+}>;
+export const Loader: React.FC<Props> = ({ loading }) =>
+  !loading ? null : <div>Loading...</div>;

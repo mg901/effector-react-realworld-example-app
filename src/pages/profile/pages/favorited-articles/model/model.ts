@@ -1,9 +1,8 @@
-import { createEffect, attach } from 'effector';
+import { createEffect } from 'effector';
 import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as feed from 'features/feed';
 import { limit } from 'library/limit';
-import * as profile from '../../../model';
 import { types } from '../../../model';
 
 export const getFeedFx = createEffect(
@@ -21,10 +20,5 @@ export const {
   $articles,
   $isEmptyArticles,
   $totalPages,
-  $feed: $favoritedArticles,
+  $feed,
 } = feed.createFeedModel();
-
-export const getFavoritedArticlesFx = attach({
-  source: { username: profile.model.$username, page: $currentPage },
-  effect: getFeedFx,
-});
