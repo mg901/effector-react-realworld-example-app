@@ -11,7 +11,7 @@ import {
 } from './model';
 
 forward({
-  from: [PageGate.open, router.model.$search.updates],
+  from: [PageGate.open, router.model.$search],
   to: getFeedByTagFx,
 });
 

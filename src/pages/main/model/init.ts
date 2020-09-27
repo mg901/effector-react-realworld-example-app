@@ -4,8 +4,11 @@ import * as model from './model';
 
 const { authenticated, notAuthenticated } = split(
   merge([
-    sample(authUser.model.$isAuthorized, model.PageGate.open),
-    authUser.model.$isAuthorized.updates,
+    sample({
+      source: authUser.model.$isAuthorized,
+      clock: model.PageGate.open,
+    }),
+    authUser.model.$isAuthorized,
   ]),
   {
     authenticated: (is) => is === true,

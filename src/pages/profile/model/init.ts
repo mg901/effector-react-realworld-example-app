@@ -16,10 +16,10 @@ $profile.on(
   [getProfileFx.doneData, followUserFx.doneData, unfollowUserFx.doneData],
   (_, payload) => payload,
 );
-$username.on(PageGate.open, (_, { url }) => url.replace(/\/@/, ''));
+$username.on(PageGate.state, (_, { url }) => url?.replace(/\/@/, ''));
 
 forward({
-  from: PageGate.open,
+  from: $username,
   to: attach({
     source: $username,
     effect: getProfileFx,
