@@ -1,6 +1,6 @@
 import { createEffect, createStore } from 'effector';
 import * as api from 'api';
-import * as currentUser from 'features/current-user';
+import * as authUser from 'features/user';
 import { createFormEvents } from 'library/form';
 import * as types from './types';
 
@@ -11,7 +11,7 @@ export const {
 } = createFormEvents();
 
 export const changeUserDataFx = createEffect<
-  currentUser.types.User,
+  authUser.types.User,
   void,
   types.ErrorType
 >({

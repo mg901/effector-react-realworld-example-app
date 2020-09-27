@@ -2,7 +2,7 @@ import { createEvent, createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as comments from 'features/comments';
-import * as currentUser from 'features/current-user';
+import * as authUser from 'features/user';
 import * as router from 'library/router';
 import * as types from './types';
 
@@ -50,6 +50,6 @@ export const $article = createStore<types.Article>({
 
 export const $canModify = combine(
   $article,
-  currentUser.model.$user,
+  authUser.model.$user,
   ({ author }, user) => author.username === user.username,
 );
