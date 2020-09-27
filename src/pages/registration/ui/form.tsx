@@ -7,23 +7,23 @@ import { SubmitButton } from './submit-button';
 export const Form: React.FC = () => (
   <UIForm onSubmit={model.formSubmitted}>
     <InputField
+      className="form-control-lg"
       name="username"
-      className="form-control-lg"
       onChange={model.handleFieldChanged}
     />
 
     <InputField
-      type="email"
+      className="form-control-lg"
       name="email"
-      className="form-control-lg"
+      type="email"
       onChange={model.handleFieldChanged}
     />
 
     <InputField
-      type="password"
-      name="password"
       autoComplete="current-password"
       className="form-control-lg"
+      name="password"
+      type="password"
       onChange={model.handleFieldChanged}
     />
     <SubmitButton />

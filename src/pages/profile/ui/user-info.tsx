@@ -13,7 +13,7 @@ export const UserInfo: React.FC = () => {
       <Container>
         <Row>
           <div className="col-xs-12 col-md-10 offset-md-1">
-            <img src={image} alt={username} className="user-img" />
+            <img alt={username} className="user-img" src={image} />
             <h4>{username}</h4>
             {bio && <p>{bio}</p>}
 

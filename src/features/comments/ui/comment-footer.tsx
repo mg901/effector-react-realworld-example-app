@@ -8,15 +8,15 @@ type Props = types.Comment;
 
 export const CommentFooter: React.FC<Props> = ({ author, createdAt, id }) => (
   <div className="card-footer">
-    <Link to={`/@${author.username}`} className="comment-author">
+    <Link className="comment-author" to={`/@${author.username}`}>
       <img
-        src={author.image}
-        className="comment-author-img"
         alt={author.username}
+        className="comment-author-img"
+        src={author.image}
       />
     </Link>
     &nbsp;
-    <Link to={`/@${author.username}`} className="comment-author">
+    <Link className="comment-author" to={`/@${author.username}`}>
       {author.username}
     </Link>
     <span className="date-posted">{new Date(createdAt).toDateString()}</span>

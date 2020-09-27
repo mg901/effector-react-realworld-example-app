@@ -29,12 +29,12 @@ export const ArticlePreview: React.FC<Props> = ({
     <article className="article-preview">
       <ArticleMeta author={author} createdAt={createdAt}>
         <div className="pull-xs-right">
-          <Button onClick={onClick} className={`btn-sm ${classNames}`}>
+          <Button className={`btn-sm ${classNames}`} onClick={onClick}>
             <i className="ion-heart" /> {favoritesCount}
           </Button>
         </div>
       </ArticleMeta>
-      <Link to={`/article/${slug}`} className="preview-link">
+      <Link className="preview-link" to={`/article/${slug}`}>
         <h1>{title}</h1>
         <p>{description}</p>
         <span>Read more...</span>

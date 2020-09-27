@@ -14,11 +14,11 @@ export const ArticleMeta: React.FC<Props> = ({
 }) => (
   <div className="article-meta">
     <Link to={`/@${author.username}`}>
-      <img src={author.image} alt={author.username} />
+      <img alt={author.username} src={author.image} />
     </Link>
 
     <div className="info">
-      <Link to={`/@${author.username}`} className="author">
+      <Link className="author" to={`/@${author.username}`}>
         {author.username}
       </Link>
       <span className="date">{new Date(createdAt).toDateString()}</span>

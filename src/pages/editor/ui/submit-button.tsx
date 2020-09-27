@@ -8,10 +8,10 @@ export const SubmitButton: React.FC = () => {
 
   return (
     <Button
-      type="submit"
-      form="editor"
       className="btn-lg pull-xs-right btn-primary"
       disabled={disabled}
+      form="editor"
+      type="submit"
       onClick={model.formSubmitted}>
       Publish article
     </Button>

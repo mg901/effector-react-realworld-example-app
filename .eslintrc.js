@@ -65,8 +65,13 @@ module.exports = {
     '@typescript-eslint/no-shadow': 2,
     '@typescript-eslint/no-unused-vars': 2,
     '@typescript-eslint/explicit-module-boundary-types': 2,
-    '@typescript-eslint/ban-types': 0,
-    '@typescript-eslint/ban-ts-comment': 0,
+    'react/jsx-sort-props': [
+      2,
+      {
+        callbacksLast: true,
+        shorthandFirst: true,
+      },
+    ],
     'import-helpers/order-imports': [
       2,
       {
@@ -85,6 +90,8 @@ module.exports = {
         alphabetize: { order: 'asc', ignoreCase: true },
       },
     ],
+    '@typescript-eslint/ban-types': 0,
+    '@typescript-eslint/ban-ts-comment': 0,
   },
   overrides: [
     {

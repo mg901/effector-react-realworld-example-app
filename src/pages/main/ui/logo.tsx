@@ -7,7 +7,7 @@ type Props = Readonly<{
 }>;
 
 export const Logo: React.FC<Props> = ({ title }) => (
-  <Link to={Paths.ROOT} className="navbar-brand">
+  <Link className="navbar-brand" to={Paths.ROOT}>
     {title.toLowerCase()}
   </Link>
 );

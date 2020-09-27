@@ -13,7 +13,7 @@ export const TextField: React.FC<Props> = ({ name, ...props }) => {
 
   return (
     <FormGroup>
-      <Textarea value={value} name={name} {...props} />
+      <Textarea name={name} value={value} {...props} />
     </FormGroup>
   );
 };

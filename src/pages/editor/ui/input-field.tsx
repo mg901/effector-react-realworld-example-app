@@ -13,7 +13,7 @@ export const InputField: React.FC<Props> = ({ name, ...props }) => {
 
   return (
     <FormGroup>
-      <Input value={value} name={name} {...props} />
+      <Input name={name} value={value} {...props} />
     </FormGroup>
   );
 };

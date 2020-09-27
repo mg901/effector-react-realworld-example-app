@@ -12,11 +12,11 @@ export const AddTag: React.FC = () => {
     <Form onSubmit={(e) => e.preventDefault()}>
       <Input
         autoComplete="off"
-        value={tag}
         name="tagList"
         placeholder="Enter tags"
-        onKeyDown={model.keyPressed}
+        value={tag}
         onChange={model.handleTextChanged}
+        onKeyDown={model.keyPressed}
       />
     </Form>
   );
