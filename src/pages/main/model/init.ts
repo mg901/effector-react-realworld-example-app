@@ -1,11 +1,11 @@
 import { split, sample, forward, merge } from 'effector';
-import * as currentUser from 'features/current-user';
+import * as authUser from 'features/user';
 import * as model from './model';
 
 const { authenticated, notAuthenticated } = split(
   merge([
-    sample(currentUser.model.$isAuthorized, model.PageGate.open),
-    currentUser.model.$isAuthorized.updates,
+    sample(authUser.model.$isAuthorized, model.PageGate.open),
+    authUser.model.$isAuthorized.updates,
   ]),
   {
     authenticated: (is) => is === true,
@@ -23,5 +23,5 @@ forward({
   to: model.getTagsFx,
 });
 
-currentUser.model.$user.on(model.getUserFx.doneData, (_, payload) => payload);
+authUser.model.$user.on(model.getUserFx.doneData, (_, payload) => payload);
 model.$tags.on(model.getTagsFx.doneData, (_, payload) => payload);

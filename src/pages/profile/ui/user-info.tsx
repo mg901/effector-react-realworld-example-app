@@ -1,11 +1,12 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { Container, Row, Button } from 'ui';
+import { Container, Row } from 'ui';
 import { model } from '../model';
+import { EditMode } from './edit-mode';
+import { FollowUser } from './follow-user';
 
 export const UserInfo: React.FC = () => {
   const { image, username, bio } = useStore(model.$profile);
-  const following = useStore(model.$following);
 
   return (
     <div className="user-info">
@@ -15,12 +16,9 @@ export const UserInfo: React.FC = () => {
             <img src={image} alt={username} className="user-img" />
             <h4>{username}</h4>
             {bio && <p>{bio}</p>}
-            <Button
-              className="btn-sm action-btn btn-secondary"
-              onClick={model.toggleFollowing}>
-              <i className="ion-plus-round" />
-              &nbsp;{following ? 'Unfollow' : 'Follow'} {username}
-            </Button>
+
+            <EditMode />
+            <FollowUser username={username} />
           </div>
         </Row>
       </Container>

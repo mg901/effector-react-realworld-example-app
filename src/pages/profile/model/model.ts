@@ -1,6 +1,7 @@
-import { createEvent, createEffect, createStore } from 'effector';
+import { createEvent, createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
 import * as api from 'api';
+import * as authUser from 'features/user';
 import * as types from './types';
 
 export const toggleFollowing = createEvent<React.MouseEvent>();
@@ -36,3 +37,11 @@ export const $profile = createStore<types.Profile>({
 export const $following = $profile.map((x) => x.following);
 export const $follow = $profile.map((x) => x.following === true);
 export const $unfollow = $profile.map((x) => x.following === false);
+
+export const $isCurrentUser = combine(
+  $profile,
+  authUser.model.$user,
+  (profile, user) => profile.username === user.username,
+);
+
+export const $isAnotherUser = $isCurrentUser.map((x) => !x);

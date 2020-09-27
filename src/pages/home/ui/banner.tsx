@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { APP_NAME } from 'config';
-import { model } from 'features/current-user';
+import { model } from 'features/user';
 import { Banner as UIBanner, Container } from 'ui';
 
 export const Banner: React.FC = () => {
