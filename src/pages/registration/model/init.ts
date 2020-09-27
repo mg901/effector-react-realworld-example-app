@@ -1,5 +1,5 @@
 import { sample } from 'effector';
-import * as auth from 'features/user';
+import { model } from 'features/current-user';
 import { $form, $errors, formSubmitted, fieldChanged, signUpFx } from './model';
 
 formSubmitted.watch((e) => e.preventDefault());
@@ -12,6 +12,6 @@ sample({
   target: signUpFx,
 });
 
-auth.model.$user.on(signUpFx.doneData, (_, payload) => payload);
+model.$user.on(signUpFx.doneData, (_, payload) => payload);
 
 $errors.on(signUpFx.failData, (_, payload) => payload).reset(fieldChanged);

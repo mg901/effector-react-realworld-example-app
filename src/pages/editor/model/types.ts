@@ -1,3 +1,5 @@
+import { types } from 'features/feed';
+
 export type Form = Readonly<{
   articleSlug: string;
   title: string;
@@ -8,4 +10,8 @@ export type Form = Readonly<{
 
 export type ErrorType = Readonly<{
   errors: readonly string[];
+}>;
+
+export type CreateArticleFxDone = Readonly<{
+  article: types.Article;
 }>;

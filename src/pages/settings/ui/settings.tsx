@@ -1,8 +1,9 @@
 import React from 'react';
-import { model } from 'features/user';
+import { model } from 'features/current-user';
 import { Page, Row, Button } from 'ui';
 import { Errors } from './errors';
 import { Form } from './form';
+
 import '../model/init';
 
 export const SettingsPage: React.FC = () => (
@@ -14,9 +15,7 @@ export const SettingsPage: React.FC = () => (
         <Form />
         <hr />
 
-        <Button
-          className="btn-outline-danger"
-          onClick={() => model.loggedOutClicked()}>
+        <Button className="btn-outline-danger" onClick={model.loggedOutClicked}>
           Or click here to logout.
         </Button>
       </div>

@@ -17,7 +17,7 @@ export const UserInfo: React.FC = () => {
             {bio && <p>{bio}</p>}
             <Button
               className="btn-sm action-btn btn-secondary"
-              onClick={() => model.toggleFollowing()}>
+              onClick={model.toggleFollowing}>
               <i className="ion-plus-round" />
               &nbsp;{following ? 'Unfollow' : 'Follow'} {username}
             </Button>

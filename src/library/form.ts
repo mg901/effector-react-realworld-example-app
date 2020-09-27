@@ -26,6 +26,7 @@ export type CreateFormEvents = () => Readonly<{
   handleTextChanged: Event<ChangeEvent>;
   fieldChanged: Event<Field>;
   handleFieldChanged: Event<ChangeEvent>;
+  formSubmitted: Event<React.FormEvent>;
 }>;
 
 export const createFormEvents: CreateFormEvents = () => {
@@ -39,10 +40,14 @@ export const createFormEvents: CreateFormEvents = () => {
     [e.target.name]: e.target.value,
   }));
 
+  const formSubmitted = createEvent<React.FormEvent>();
+  formSubmitted.watch((e) => e.preventDefault());
+
   return {
     textChanged,
     handleTextChanged,
     fieldChanged,
     handleFieldChanged,
+    formSubmitted,
   };
 };

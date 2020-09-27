@@ -4,8 +4,11 @@ import { createFormEvents } from 'library/form';
 import * as router from 'library/router';
 import * as types from './types';
 
-export const { textChanged, handleTextChanged } = createFormEvents();
-export const formSubmitted = createEvent<React.FormEvent>();
+export const {
+  textChanged,
+  handleTextChanged,
+  formSubmitted,
+} = createFormEvents();
 export const commentDeleted = createEvent<string>();
 
 export const getCommentsFx = createEffect((slug: string) =>
@@ -32,7 +35,9 @@ export const deleteCommentFx = createEffect(
 
 export const $commentText = createStore<string>('');
 export const $comments = createStore<readonly types.Comment[]>([]);
-export const $errors = createStore<types.ErrorType>({ errors: [] });
+export const $errors = createStore<types.ErrorType>({
+  errors: [],
+});
 export const $slug = router.model.$pathname.map((x) =>
   x.replace(/^\/article\//, ''),
 );

@@ -1,5 +1,5 @@
 import { sample } from 'effector';
-import * as auth from 'features/user';
+import { model } from 'features/current-user';
 import * as router from 'library/router';
 import {
   $errors,
@@ -8,15 +8,13 @@ import {
   changeUserDataFx,
 } from './model';
 
-formSubmitted.watch((e) => e.preventDefault());
-
-auth.model.$user.on(fieldChanged, (state, payload) => ({
+model.$user.on(fieldChanged, (state, payload) => ({
   ...state,
   ...payload,
 }));
 
 sample({
-  source: auth.model.$user,
+  source: model.$user,
   clock: formSubmitted,
   target: changeUserDataFx,
 });
@@ -25,7 +23,7 @@ changeUserDataFx.done.watch(() => {
   window.location.reload();
 });
 
-auth.model.loggedOutClicked.watch(() => {
+model.loggedOutClicked.watch(() => {
   router.model.history.push('/');
 });
 

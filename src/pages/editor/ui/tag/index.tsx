@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProps } from 'ui';
+import { Button, ButtonProps } from 'ui';
 import './index.css';
 
 type Props = Readonly<{
@@ -9,8 +9,8 @@ type Props = Readonly<{
 export const Tag: React.FC<Props> = ({ children, onClick }) => (
   <span className="tag-default tag-pill">
     {children}
-    <button type="button" className="btn btn-sm editor-tag" onClick={onClick}>
+    <Button className="btn-sm editor-tag" onClick={onClick}>
       <i className="ion-close-round" />
-    </button>
+    </Button>
   </span>
 );

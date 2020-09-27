@@ -1,14 +1,14 @@
 import React from 'react';
 import { useStore } from 'effector-react';
+import { model } from 'features/current-user';
 import { createFeedModel } from 'features/feed';
-import * as auth from 'features/user';
 import { Paths } from 'library/router';
 import { NavItem, NavLink } from 'ui';
 
 const feedModel = createFeedModel();
 
 export const Tabs: React.FC = () => {
-  const isAuth = useStore(auth.model.$isAuthorized);
+  const isAuth = useStore(model.$isAuthorized);
   const currentTag = useStore(feedModel.$currentTag);
 
   return (

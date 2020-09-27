@@ -4,6 +4,7 @@ import { useGate, useList } from 'effector-react';
 import { ArticlePreview, List } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
+
 import '../model/init';
 
 type Props = Readonly<RouteConfigComponentProps>;
