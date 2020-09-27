@@ -1,5 +1,5 @@
 import React from 'react';
-import { model } from 'features/user';
+import { model } from 'features/current-user';
 import { Page, Row, Button } from 'ui';
 import { Errors } from './errors';
 import { Form } from './form';

@@ -4,7 +4,7 @@ import { model } from './library/router';
 import { Main } from './pages/main';
 
 import './library/router/model/init';
-import './features/user/init';
+import './features/current-user/init';
 
 export const App: React.FC = () => (
   <Router history={model.history}>

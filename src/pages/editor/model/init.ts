@@ -1,4 +1,5 @@
-// import { history } from 'library/router';
+import { sample } from 'effector';
+import * as router from 'library/router';
 import { uniq } from 'library/uniq';
 import { model } from '../add-tag';
 import {
@@ -6,6 +7,7 @@ import {
   $errors,
   fieldChanged,
   tagDeleted,
+  formSubmitted,
   createArticleFx,
 } from './model';
 
@@ -23,9 +25,15 @@ $form
     tagList: state.tagList.filter((tag) => tag !== payload),
   }));
 
-// createArticleFx.done.watch(({ params }) => {
-//   history.replace(`/article/${params.slug}`)
-// });
+sample({
+  source: $form,
+  clock: formSubmitted,
+  target: createArticleFx,
+});
+
+createArticleFx.doneData.watch(({ slug }) => {
+  router.model.history.replace(`/article/${slug}`);
+});
 
 $errors
   .on(createArticleFx.failData, (_, payload) => payload)

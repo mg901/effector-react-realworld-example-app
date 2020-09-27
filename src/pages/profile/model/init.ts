@@ -28,10 +28,16 @@ forward({
 
 forward({
   from: guard(toggleFollowing, { filter: $follow }),
-  to: attach({ source: $username, effect: unfollowUserFx }),
+  to: attach({
+    source: $username,
+    effect: unfollowUserFx,
+  }),
 });
 
 forward({
   from: guard(toggleFollowing, { filter: $unfollow }),
-  to: attach({ source: $username, effect: followUserFx }),
+  to: attach({
+    source: $username,
+    effect: followUserFx,
+  }),
 });

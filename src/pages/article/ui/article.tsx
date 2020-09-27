@@ -5,6 +5,7 @@ import { Comments } from 'features/comments';
 import marked from 'marked';
 import { Container, Row, Page, ArticleMeta, TagList, Tag, Banner } from 'ui';
 import { model } from '../model';
+import { EditMode } from './edit-mode';
 
 import '../model/init';
 
@@ -21,7 +22,9 @@ export const ArticlePage: React.FC = () => {
       <Banner>
         <Container>
           <h1>{title}</h1>
-          <ArticleMeta author={author} createdAt={createdAt} />
+          <ArticleMeta author={author} createdAt={createdAt}>
+            <EditMode />
+          </ArticleMeta>
         </Container>
       </Banner>
       <Page>

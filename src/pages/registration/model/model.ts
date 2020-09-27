@@ -1,6 +1,6 @@
 import { createStore, createEffect } from 'effector';
 import * as api from 'api';
-import * as auth from 'features/user';
+import * as currentUser from 'features/current-user';
 import { createFormEvents } from 'library/form';
 import * as types from './types';
 
@@ -12,12 +12,12 @@ export const {
 
 export const signUpFx = createEffect<
   types.Form,
-  auth.types.User,
+  currentUser.types.User,
   types.ErrorType
 >({
   handler: ({ username, email, password }) =>
     api
-      .post<auth.types.SignUpFxDone>('/users', {
+      .post<currentUser.types.SignUpFxDone>('/users', {
         user: { email, password, username },
       })
       .then((x) => x.user),

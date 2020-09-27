@@ -3,9 +3,7 @@ import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as types from './types';
 
-export const toggleFollowing = createEvent<
-  React.MouseEvent<HTMLButtonElement, MouseEvent>
->();
+export const toggleFollowing = createEvent<React.MouseEvent>();
 
 export const getProfileFx = createEffect((username: string) =>
   api
