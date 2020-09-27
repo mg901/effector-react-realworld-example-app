@@ -8,9 +8,9 @@ export const SubmitButton: React.FC = () => {
 
   return (
     <Button
-      type="submit"
       className="btn btn-lg btn-primary pull-xs-right"
-      disabled={disabled}>
+      disabled={disabled}
+      type="submit">
       Sign In
     </Button>
   );

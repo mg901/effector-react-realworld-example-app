@@ -29,7 +29,7 @@ export const LoggedIn: React.FC = () => {
 
       <NavItem>
         <NavLink to={`/@${username}`}>
-          <img src={image} className="user-pic" alt={username} />
+          <img alt={username} className="user-pic" src={image} />
           {username}
         </NavLink>
       </NavItem>

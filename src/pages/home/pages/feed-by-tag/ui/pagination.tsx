@@ -34,9 +34,9 @@ export const Pagination: React.FC<Props> = ({ path }) => {
 
   return (
     <PaginationUI
+      current={current}
       itemRender={itemRender({ path, tagName })}
       total={total}
-      current={current}
       onChange={model.currentPageSettled}
     />
   );

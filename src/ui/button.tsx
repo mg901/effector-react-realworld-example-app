@@ -7,7 +7,7 @@ export type ButtonProps = Readonly<
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ type = 'button', className = '', children, ...props }, ref) => (
-    <button ref={ref} type={type} className={`btn  ${className}`} {...props}>
+    <button className={`btn  ${className}`} ref={ref} type={type} {...props}>
       {children}
     </button>
   ),

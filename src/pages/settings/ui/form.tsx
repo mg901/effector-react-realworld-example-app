@@ -9,24 +9,24 @@ export const Form: React.FC = () => (
   <UIForm onSubmit={model.formSubmitted}>
     <InputField name="image" onChange={model.handleFieldChanged} />
     <InputField
-      name="username"
       className="form-control-lg"
+      name="username"
       onChange={model.handleFieldChanged}
     />
     <TextField
-      name="bio"
       className="form-control-lg"
+      name="bio"
       onChange={model.handleFieldChanged}
     />
 
     <InputField
-      name="email"
       className="form-control-lg"
+      name="email"
       onChange={model.handleFieldChanged}
     />
     <InputField
-      name="password"
       className="form-control-lg"
+      name="password"
       onChange={model.handleFieldChanged}
     />
 

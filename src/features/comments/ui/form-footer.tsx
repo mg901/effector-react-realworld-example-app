@@ -8,8 +8,8 @@ export const FormFooter: React.FC = () => {
 
   return (
     <div className="card-footer">
-      <img src={image} className="comment-author-img" alt={username} />
-      <Button type="submit" className="btn-sm btn-primary">
+      <img alt={username} className="comment-author-img" src={image} />
+      <Button className="btn-sm btn-primary" type="submit">
         Post Comment
       </Button>
     </div>

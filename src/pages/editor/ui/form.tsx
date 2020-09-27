@@ -9,10 +9,10 @@ import '../model/init';
 export const Form: React.FC = () => (
   <UIForm id="editor" onSubmit={(e) => e.preventDefault()}>
     <InputField
+      className="form-control-lg"
       name="title"
       placeholder="Article Title"
       onChange={model.handleFieldChanged}
-      className="form-control-lg"
     />
 
     <InputField
@@ -23,8 +23,8 @@ export const Form: React.FC = () => (
 
     <TextField
       name="body"
-      rows={8}
       placeholder="Write your article (in markdown)"
+      rows={8}
       onChange={model.handleFieldChanged}
     />
   </UIForm>

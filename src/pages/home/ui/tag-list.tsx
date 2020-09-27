@@ -9,8 +9,8 @@ export const TagList: React.FC = () => (
   <List>
     {useList(model.$validTags, (tag) => (
       <Link
-        to={`${Paths.FEED_BY_TAG}?tag=${tag}`}
-        className="tag-default tag-pill">
+        className="tag-default tag-pill"
+        to={`${Paths.FEED_BY_TAG}?tag=${tag}`}>
         {tag}
       </Link>
     ))}

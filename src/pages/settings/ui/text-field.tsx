@@ -14,7 +14,7 @@ export const TextField: React.FC<TextareaProps> = ({ name, ...props }) => {
 
   return (
     <FormGroup>
-      <Textarea value={value} name={name} {...props} />
+      <Textarea name={name} value={value} {...props} />
     </FormGroup>
   );
 };
