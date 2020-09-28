@@ -14,6 +14,7 @@ export type GetProfileFxDone = Readonly<{
 }>;
 
 export type GetFeedFxArgs = Readonly<{
+  pageSize: number;
   username: string;
   page: number;
 }>;

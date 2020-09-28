@@ -11,7 +11,7 @@ type Props = Readonly<RouteConfigComponentProps>;
 
 export const GlobalFeedPage: React.FC<Props> = ({ match: { path } }) => {
   useGate(model.PageGate);
-  const loading = useStore(model.getFeedFx.pending);
+  const loading = useStore(model.$isFirstBoot);
 
   return (
     <>

@@ -7,10 +7,10 @@ import { model } from '../model';
 
 type ItemRender = (x: {
   path: string;
-  tagName: string;
+  tag: string;
 }) => PaginationProps['itemRender'];
 
-export const itemRender: ItemRender = ({ path, tagName }) => (
+export const itemRender: ItemRender = ({ path, tag }) => (
   current,
   type,
   element,
@@ -18,7 +18,7 @@ export const itemRender: ItemRender = ({ path, tagName }) => (
   type !== 'page' ? (
     element
   ) : (
-    <Link className="link" to={`${path}?tag=${tagName}&page=${current}`}>
+    <Link className="link" to={`${path}?tag=${tag}&page=${current}`}>
       {current}
     </Link>
   );
@@ -29,13 +29,15 @@ type Props = Readonly<{
 
 export const Pagination: React.FC<Props> = ({ path }) => {
   const total = useStore(model.$totalPages);
-  const tagName = useStore(model.$currentTag);
+  const tag = useStore(model.$currentTag);
   const current = useStore(model.$currentPage);
+  const pageSize = useStore(model.$pageSize);
 
   return (
     <PaginationUI
       current={current}
-      itemRender={itemRender({ path, tagName })}
+      itemRender={itemRender({ path, tag })}
+      pageSize={pageSize}
       total={total}
       onChange={model.currentPageSettled}
     />

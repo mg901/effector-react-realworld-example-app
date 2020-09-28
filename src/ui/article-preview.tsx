@@ -40,7 +40,7 @@ export const ArticlePreview: React.FC<Props> = ({
         <span>Read more...</span>
         <TagList>
           {tagList.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
+            <Tag key={tag}>{tag.toLowerCase()}</Tag>
           ))}
         </TagList>
       </Link>

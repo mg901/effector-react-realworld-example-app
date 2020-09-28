@@ -11,7 +11,7 @@ type Props = Readonly<RouteConfigComponentProps>;
 
 export const FavoritedArticles: React.FC<Props> = ({ match: { url } }) => {
   useGate(model.PageGate);
-  const loading = useStore(model.getFeedFx.pending);
+  const loading = useStore(model.$isFirstBoot);
   const isEmpty = useStore(model.$isEmptyArticles);
 
   return (

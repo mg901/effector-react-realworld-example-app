@@ -33,7 +33,7 @@ export const ArticlePage: React.FC = () => {
             <div dangerouslySetInnerHTML={markup} />
             <TagList>
               {tagList.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
+                <Tag key={tag}>{tag.toLowerCase()}</Tag>
               ))}
             </TagList>
           </div>
