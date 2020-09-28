@@ -11,11 +11,13 @@ type Props = Readonly<{
 export const Pagination: React.FC<Props> = ({ path }) => {
   const total = useStore(model.$totalPages);
   const current = useStore(model.$currentPage);
+  const pageSize = useStore(model.$pageSize);
 
   return (
     <PaginationUI
       current={current}
       itemRender={itemRender(path)}
+      pageSize={pageSize}
       total={total}
       onChange={model.currentPageSettled}
     />

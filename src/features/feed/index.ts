@@ -1,2 +1,2 @@
 export * as types from './types';
-export { createFeedModel } from './create-feed-model';
+export { createFeedModel, changeUrlFx } from './create-feed-model';

@@ -31,18 +31,25 @@ export type FavoriteArticle = Readonly<{
 
 export type UnfavoriteArticle = FavoriteArticle;
 
+export type ChangeUrlFxArgs = Readonly<{
+  path: string;
+  page: number;
+}>;
+
+export type Options = Readonly<{
+  currentPage?: number;
+  pageSize?: number;
+}>;
+
 export type CreateFeedModel = Readonly<{
   currentPageSettled: Event<number>;
   favoriteToggled: Event<Article>;
   setFavoriteArticleFx: Effect<string, FavoriteArticle, Error>;
   setUnfavoriteArticleFx: Effect<string, UnfavoriteArticle, Error>;
+  $pageSize: Store<number>;
   $currentPage: Store<number>;
   $currentTag: Store<string>;
   $feed: Store<Feed>;
   $articles: Store<Feed['articles']>;
   $totalPages: Store<Feed['articlesCount']>;
-}>;
-
-export type Options = Readonly<{
-  currentPage: number;
 }>;

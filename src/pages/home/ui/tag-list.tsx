@@ -11,7 +11,7 @@ export const TagList: React.FC = () => (
       <Link
         className="tag-default tag-pill"
         to={`${Paths.FEED_BY_TAG}?tag=${tag}`}>
-        {tag}
+        {tag.toLowerCase()}
       </Link>
     ))}
   </List>

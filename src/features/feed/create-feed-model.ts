@@ -11,13 +11,22 @@ export const setUnfavoriteArticleFx = createEffect((slug: string) =>
   api.del<types.UnfavoriteArticle>(`/articles/${slug}/favorite`),
 );
 
+export const changeUrlFx = createEffect(
+  ({ path, page }: types.ChangeUrlFxArgs) => {
+    router.model.history.replace(`${path}?page=${page}`);
+  },
+);
+
 const defaultOptions = {
   currentPage: 1,
+  pageSize: 10,
 };
 
 export const createFeedModel = (
   options: types.Options = defaultOptions,
 ): types.CreateFeedModel => {
+  const settings = { ...defaultOptions, ...options };
+  const currentPageSettled = createEvent<number>();
   const favoriteToggled = createEvent<types.Article>();
 
   const $feed = createStore<types.Feed>({
@@ -50,12 +59,13 @@ export const createFeedModel = (
   }).watch(({ slug }) => setFavoriteArticleFx(slug));
 
   return {
-    currentPageSettled: createEvent<number>(),
+    currentPageSettled,
     favoriteToggled,
     setFavoriteArticleFx,
     setUnfavoriteArticleFx,
+    $pageSize: createStore<number>(settings.pageSize ?? 10),
     $currentPage: router.model.$search.map((x) => {
-      const page = new URLSearchParams(x).get('page') ?? options.currentPage;
+      const page = new URLSearchParams(x).get('page') ?? settings.currentPage;
 
       return Number(page);
     }),

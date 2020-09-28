@@ -8,7 +8,5 @@ export const itemRender: ItemRender = (path) => (current, type, element) =>
   type !== 'page' ? (
     element
   ) : (
-    <Link className="link" to={`${path}?page=${current}`}>
-      {current}
-    </Link>
+    <Link to={`${path}?page=${current}`}>{current}</Link>
   );

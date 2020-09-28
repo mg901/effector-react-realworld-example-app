@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useList, useStore } from 'effector-react';
-import { ArticlePreview, EmptyArticles, List, Loader } from 'ui';
+import { ArticlePreview, List, Loader, EmptyArticles } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 
@@ -11,8 +11,8 @@ type Props = Readonly<RouteConfigComponentProps>;
 
 export const FeedByTagPage: React.FC<Props> = ({ match: { path } }) => {
   useGate(model.PageGate);
+  const noCurrentTag = useStore(model.$noCurrentTag);
   const isEmpty = useStore(model.$isEmptyArticles);
-  const loading = useStore(model.getFeedFx.pending);
 
   return (
     <>
@@ -28,7 +28,7 @@ export const FeedByTagPage: React.FC<Props> = ({ match: { path } }) => {
         ))}
       </List>
       <Pagination path={path} />
-      <Loader loading={loading} />
+      <Loader loading={noCurrentTag} />
     </>
   );
 };

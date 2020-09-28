@@ -1,7 +1,8 @@
 export { Form } from './form';
+export { Loader } from './loader';
 export { Pagination } from './pagination';
 export { ArticlePreview } from './article-preview';
-export { ArticleMeta } from './articlle-meta';
+export { ArticleMeta } from './article-meta';
 export { Banner } from './banner';
 export { Button, ButtonProps } from './button';
 export { Container } from './container';
@@ -11,7 +12,6 @@ export { FormGroup } from './form-group';
 export { Header } from './header';
 export { Input, InputProps } from './input';
 export { List } from './list';
-export { Loader } from './loader';
 export { NavItem } from './nav-item';
 export { NavLink } from './nav-link';
 export { Page } from './page';

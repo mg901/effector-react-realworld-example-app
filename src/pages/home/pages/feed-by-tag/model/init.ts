@@ -1,20 +1,27 @@
-import { forward, attach } from 'effector';
+import { forward, attach, sample } from 'effector';
 import * as router from 'library/router';
 import {
+  PageGate,
   $feed,
   $feedByTag,
   $currentTag,
   $currentPage,
+  $pageSize,
   getFeedFx,
-  PageGate,
+  currentPageSettled,
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,
+  changeUrlFx,
 } from './model';
 
 forward({
   from: [PageGate.open, router.model.$search],
   to: attach({
-    source: { tag: $currentTag, page: $currentPage },
+    source: {
+      tag: $currentTag,
+      page: $currentPage,
+      pageSize: $pageSize,
+    },
     effect: getFeedFx,
   }),
 });
@@ -39,3 +46,13 @@ $feedByTag.on(
     ),
   }),
 );
+
+sample({
+  source: {
+    path: router.model.$pathname,
+    tag: $currentTag,
+  },
+  clock: currentPageSettled,
+  fn: ({ path, tag }, page) => ({ path, tag, page }),
+  target: changeUrlFx,
+});
