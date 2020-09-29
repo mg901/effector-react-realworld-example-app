@@ -8,7 +8,7 @@
     "predeploy": "npm run build",
     "deploy": "cross-env gh-pages -d build",
     "start": "npm run clean && cross-env parcel src/index.html  --port 4100 --out-dir public",
-    "build": "npm run clean && cross-env cross-env parcel build src/index.html --out-dir dist --public-url /",
+    "build": "npm run clean && cross-env cross-env parcel build src/index.html --out-dir dist --public-url /effector-react-realworld-example-app",
     "clean": "cross-env rimraf dist public .cache",
     "commit": "cross-env git-cz",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
