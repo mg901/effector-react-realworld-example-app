@@ -240,4 +240,4 @@ module.exports=function(e){return new Promise(function(n,o){var r=document.creat
 },{}],0:[function(require,module,exports) {
 var b=require("TUK3");b.register("js",require("Yi9z"));b.register("css",require("dZuk"));
 },{}]},{},[0,"zo2T"], null)
-//# sourceMappingURL=/src.1163adcb.js.map
+//# sourceMappingURL=/effector-react-realworld-example-app/src.1163adcb.js.map
