@@ -33,4 +33,4 @@ parcelRequire=function(e,r,t,n){var i,o="function"==typeof parcelRequire&&parcel
 },{"react":"n8MK","ui":"npgd","../add-tag":"jlkM","./form":"Vkqa","./submit-button":"LXit","./tag-list":"Ox0u","../model/init":"ch6P"}],"jkHw":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"EditorPage",{enumerable:!0,get:function(){return e.EditorPage}});var e=require("./ui/editor");
 },{"./ui/editor":"LiCs"}]},{},[], null)
-//# sourceMappingURL=/editor.e0ae4cdf.js.map
+//# sourceMappingURL=/effector-react-realworld-example-app/editor.e0ae4cdf.js.map
