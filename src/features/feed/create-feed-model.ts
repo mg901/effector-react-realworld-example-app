@@ -3,14 +3,6 @@ import * as api from 'api';
 import * as router from 'library/router';
 import * as types from './types';
 
-export const setFavoriteArticleFx = createEffect((slug: string) =>
-  api.post<types.FavoriteArticle>(`/articles/${slug}/favorite`),
-);
-
-export const setUnfavoriteArticleFx = createEffect((slug: string) =>
-  api.del<types.UnfavoriteArticle>(`/articles/${slug}/favorite`),
-);
-
 export const changeUrlFx = createEffect(
   ({ path, page }: types.ChangeUrlFxArgs) => {
     router.model.history.replace(`${path}?page=${page}`);
@@ -26,9 +18,21 @@ export const createFeedModel = (
   options: types.Options = defaultOptions,
 ): types.CreateFeedModel => {
   const settings = { ...defaultOptions, ...options };
+
+  // events
   const currentPageSettled = createEvent<number>();
   const favoriteToggled = createEvent<types.Article>();
 
+  // effects
+  const setFavoriteArticleFx = createEffect((slug: string) =>
+    api.post<types.FavoriteArticle>(`/articles/${slug}/favorite`),
+  );
+
+  const setUnfavoriteArticleFx = createEffect((slug: string) =>
+    api.del<types.UnfavoriteArticle>(`/articles/${slug}/favorite`),
+  );
+
+  // stores
   const $feed = createStore<types.Feed>({
     articles: [],
     articlesCount: 0,
@@ -63,7 +67,7 @@ export const createFeedModel = (
     favoriteToggled,
     setFavoriteArticleFx,
     setUnfavoriteArticleFx,
-    $pageSize: createStore<number>(settings.pageSize ?? 10),
+    $pageSize: createStore<number>(settings.pageSize),
     $currentPage: router.model.$search.map((x) => {
       const page = new URLSearchParams(x).get('page') ?? settings.currentPage;
 
