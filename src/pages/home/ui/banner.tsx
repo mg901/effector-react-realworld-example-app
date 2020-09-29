@@ -11,7 +11,7 @@ export const Banner: React.FC = () => {
     <UIBanner>
       <Container>
         <h1 className="logo-font">{APP_NAME.toLowerCase()}</h1>
-        <p>A place to share your knowledge.</p>
+        <p>A place to share your Effector knowledge.</p>
       </Container>
     </UIBanner>
   );
