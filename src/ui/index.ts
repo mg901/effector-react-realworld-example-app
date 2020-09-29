@@ -1,5 +1,5 @@
 export { Form } from './form';
-export { Loader } from './loader';
+export { Spinner } from './spinner';
 export { Pagination } from './pagination';
 export { ArticlePreview } from './article-preview';
 export { ArticleMeta } from './article-meta';

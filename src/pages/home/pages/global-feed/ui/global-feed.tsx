@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useList, useStore } from 'effector-react';
-import { ArticlePreview, List, Loader } from 'ui';
+import { ArticlePreview, List, Spinner } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 
@@ -26,7 +26,7 @@ export const GlobalFeedPage: React.FC<Props> = ({ match: { path } }) => {
         ))}
       </List>
       <Pagination path={path} />
-      <Loader loading={loading} />
+      <Spinner loading={loading} />
     </>
   );
 };

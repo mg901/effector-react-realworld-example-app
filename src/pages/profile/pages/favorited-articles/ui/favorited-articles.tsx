@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useList, useStore } from 'effector-react';
-import { ArticlePreview, List, Loader, EmptyArticles } from 'ui';
+import { ArticlePreview, List, Spinner, EmptyArticles } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 
@@ -28,7 +28,7 @@ export const FavoritedArticles: React.FC<Props> = ({ match: { url } }) => {
         ))}
       </List>
       <Pagination path={url} />
-      <Loader loading={loading} />
+      <Spinner loading={loading} />
     </>
   );
 };

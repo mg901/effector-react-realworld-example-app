@@ -1,0 +1,23 @@
+@keyframes spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-border {
+  top: 10rem;
+  --size: 2.25rem;
+  --delay: 0.75s;
+  position: absolute;
+  left: 50%;
+  margin-left: var(--size) / 2;
+  display: inline-block;
+  width: var(--size);
+  height: var(--size);
+  vertical-align: text-bottom;
+  border: 0.25rem solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border var(--delay) linear infinite;
+  animation: spinner-border var(--delay) linear infinite;
+}

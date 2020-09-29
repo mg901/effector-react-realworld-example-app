@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { useGate } from 'effector-react';
 import { APP_NAME } from 'config';
 import { AuthBranch } from 'library/router';
-import { Header } from 'ui';
+import { Header, Spinner } from 'ui';
 import { model } from '../model';
 import { LoggedIn } from './logged-in';
 import { LoggedOut } from './logged-out';
@@ -26,7 +26,7 @@ export const Main: React.FC = () => {
           </AuthBranch>
         </ul>
       </Header>
-      <Suspense fallback={<div>Загрузка...</div>}>
+      <Suspense fallback={<Spinner loading />}>
         <Routes />
       </Suspense>
     </div>
