@@ -5,8 +5,8 @@ import {
   articleDeleted,
   $slug,
   $article,
-  getPageDataFx,
-  getArticleFx,
+  fetchPageDataFx,
+  fetchArticleFx,
   deleteArticleFx,
 } from './model';
 
@@ -14,11 +14,11 @@ forward({
   from: PageGate.open,
   to: attach({
     source: $slug,
-    effect: getPageDataFx,
+    effect: fetchPageDataFx,
   }),
 });
 
-$article.on(getArticleFx.doneData, (_, payload) => payload);
+$article.on(fetchArticleFx.doneData, (_, payload) => payload);
 
 forward({
   from: articleDeleted,

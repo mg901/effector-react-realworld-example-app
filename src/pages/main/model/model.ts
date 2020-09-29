@@ -12,7 +12,7 @@ export const $$currentTag = router.model.$location.map((x) =>
   new URLSearchParams(x.search).get('name'),
 );
 
-export const getUserFx = createEffect(() =>
+export const fetchUserFx = createEffect(() =>
   api.get<authUser.types.SignUpFxDone>('/user').then((x) => x.user),
 );
 
@@ -21,7 +21,7 @@ export const getTagsFx = createEffect(() =>
 );
 
 export const initAuthAppFx = createEffect(() =>
-  Promise.all([getUserFx(), getTagsFx()]),
+  Promise.all([fetchUserFx(), getTagsFx()]),
 );
 
 export const $tags = createStore<types.TagList>([]);

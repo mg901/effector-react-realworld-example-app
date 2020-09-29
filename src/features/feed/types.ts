@@ -31,11 +31,6 @@ export type FavoriteArticle = Readonly<{
 
 export type UnfavoriteArticle = FavoriteArticle;
 
-export type ChangeUrlFxArgs = Readonly<{
-  path: string;
-  page: number;
-}>;
-
 export type Options = Readonly<{
   currentPage?: number;
   pageSize?: number;

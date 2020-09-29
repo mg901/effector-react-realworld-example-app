@@ -1,5 +1,4 @@
-import { forward, attach, sample } from 'effector';
-import * as router from 'library/router';
+import { forward, attach } from 'effector';
 import * as profile from '../../../model';
 import {
   PageGate,
@@ -7,14 +6,12 @@ import {
   $isFirstBoot,
   $currentPage,
   $pageSize,
-  currentPageSettled,
-  getFeedFx,
-  changeUrlFx,
+  fetchFeedFx,
 } from './model';
 
-$isFirstBoot.on(getFeedFx.done, () => false);
+$isFirstBoot.on(fetchFeedFx.done, () => false);
 
-$feed.on(getFeedFx.doneData, (_, payload) => payload);
+$feed.on(fetchFeedFx.doneData, (_, payload) => payload);
 
 forward({
   from: [PageGate.open, $currentPage],
@@ -24,13 +21,6 @@ forward({
       username: profile.model.$username,
       page: $currentPage,
     },
-    effect: getFeedFx,
+    effect: fetchFeedFx,
   }),
-});
-
-sample({
-  source: router.model.$pathname,
-  clock: currentPageSettled,
-  fn: (path, page) => ({ path, page }),
-  target: changeUrlFx,
 });

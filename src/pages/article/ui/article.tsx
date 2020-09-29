@@ -12,7 +12,7 @@ import '../model/init';
 export const ArticlePage: React.FC = () => {
   useGate(model.PageGate);
   const { title, author, createdAt, body, tagList } = useStore(model.$article);
-  const loading = useStore(model.getArticleFx.pending);
+  const loading = useStore(model.fetchArticleFx.pending);
 
   const markup = {
     __html: marked(body),

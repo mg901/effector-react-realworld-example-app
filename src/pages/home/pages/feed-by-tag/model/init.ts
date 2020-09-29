@@ -7,11 +7,10 @@ import {
   $currentTag,
   $currentPage,
   $pageSize,
-  getFeedFx,
+  fetchFeedFx,
   currentPageSettled,
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,
-  changeUrlFx,
 } from './model';
 
 forward({
@@ -22,11 +21,11 @@ forward({
       page: $currentPage,
       pageSize: $pageSize,
     },
-    effect: getFeedFx,
+    effect: fetchFeedFx,
   }),
 });
 
-$feed.on(getFeedFx.done, (state, { params, result }) => ({
+$feed.on(fetchFeedFx.done, (state, { params, result }) => ({
   ...state,
   [params.tag]: result,
 }));
@@ -50,9 +49,10 @@ $feedByTag.on(
 sample({
   source: {
     path: router.model.$pathname,
+    page: $currentPage,
     tag: $currentTag,
   },
   clock: currentPageSettled,
-  fn: ({ path, tag }, page) => ({ path, tag, page }),
-  target: changeUrlFx,
+}).watch(({ path, page, tag }) => {
+  router.model.history.replace(`${path}?tag=${tag}&page=${page}`);
 });

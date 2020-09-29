@@ -6,9 +6,7 @@ import * as feed from 'features/feed';
 import { limit } from 'library/limit';
 import { types } from '../../../model';
 
-export { changeUrlFx } from 'features/feed';
-
-export const getFeedFx = createEffect(
+export const fetchFeedFx = createEffect(
   ({ username, page, pageSize }: types.GetFeedFxArgs) =>
     api.get<feed.types.Feed>(
       `/articles?favorited=${encodeURIComponent(username)}&${limit(
@@ -32,7 +30,7 @@ export const {
   pageSize: 5,
 });
 
-export const $status = status({ effect: getFeedFx });
+export const $status = status({ effect: fetchFeedFx });
 export const $isFirstBoot = createStore<boolean>(true);
 export const $isEmptyArticles = combine(
   $status,

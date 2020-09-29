@@ -7,7 +7,7 @@ import * as router from 'library/router';
 import * as types from './types';
 
 export const articleDeleted = createEvent<React.MouseEvent>();
-export const getArticleFx = createEffect((slug: string) =>
+export const fetchArticleFx = createEffect((slug: string) =>
   api
     .get<types.GetArticleFxDone>(`/articles/${slug}`)
     .then((x) => x.article)
@@ -21,8 +21,8 @@ export const deleteArticleFx = createEffect((slug: string) =>
   api.del(`/articles/${slug}`),
 );
 
-export const getPageDataFx = createEffect((slug: string) =>
-  Promise.all([getArticleFx(slug), comments.model.getCommentsFx(slug)]),
+export const fetchPageDataFx = createEffect((slug: string) =>
+  Promise.all([fetchArticleFx(slug), comments.model.fetchCommentsFx(slug)]),
 );
 
 export const PageGate = createGate();

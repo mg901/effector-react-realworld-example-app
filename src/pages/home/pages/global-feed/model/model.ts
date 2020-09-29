@@ -5,8 +5,6 @@ import * as feed from 'features/feed';
 import { limit } from 'library/limit';
 import * as types from './types';
 
-export { changeUrlFx } from 'features/feed';
-
 export const PageGate = createGate();
 export const {
   currentPageSettled,
@@ -18,8 +16,8 @@ export const {
   $pageSize,
 } = feed.createFeedModel();
 
-export const getFeedFx = createEffect(
-  ({ pageSize, page }: types.getFeedFxArgs) =>
+export const fetchFeedFx = createEffect(
+  ({ pageSize, page }: types.fetchFeedFxArgs) =>
     api.get<feed.types.Feed>(`/articles?${limit(pageSize, page)}`),
 );
 

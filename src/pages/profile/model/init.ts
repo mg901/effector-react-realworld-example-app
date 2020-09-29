@@ -1,19 +1,19 @@
 import { forward, attach, guard } from 'effector';
-
+import * as router from 'library/router';
 import {
   $profile,
   $username,
   PageGate,
-  getProfileFx,
+  fetchProfileFx,
   toggleFollowing,
-  $follow,
-  $unfollow,
-  followUserFx,
-  unfollowUserFx,
+  $thenSubscribed,
+  $thenUnsubscribed,
+  subscribeFx,
+  unsubscribeFx,
 } from './model';
 
 $profile.on(
-  [getProfileFx.doneData, followUserFx.doneData, unfollowUserFx.doneData],
+  [fetchProfileFx.doneData, subscribeFx.doneData, unsubscribeFx.doneData],
   (_, payload) => payload,
 );
 $username.on(PageGate.state, (_, { url }) => url?.replace(/\/@/, ''));
@@ -22,22 +22,30 @@ forward({
   from: $username,
   to: attach({
     source: $username,
-    effect: getProfileFx,
+    effect: fetchProfileFx,
   }),
 });
 
-forward({
-  from: guard(toggleFollowing, { filter: $follow }),
-  to: attach({
+guard({
+  source: toggleFollowing,
+  filter: $thenSubscribed,
+  target: attach({
     source: $username,
-    effect: unfollowUserFx,
+    effect: unsubscribeFx,
   }),
 });
 
-forward({
-  from: guard(toggleFollowing, { filter: $unfollow }),
-  to: attach({
+guard({
+  source: toggleFollowing,
+  filter: $thenUnsubscribed,
+  target: attach({
     source: $username,
-    effect: followUserFx,
+    effect: subscribeFx,
   }),
+});
+
+subscribeFx.failData.watch(({ status }) => {
+  if (status === 401) {
+    router.model.history.push(router.Paths.LOGIN);
+  }
 });
