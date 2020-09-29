@@ -45,4 +45,4 @@ var e,t=arguments[3];function n(e){return(n="function"==typeof Symbol&&"symbol"=
 },{"react":"n8MK","effector-react":"wuaz","features/comments":"aCgk","marked":"F7mU","ui":"npgd","../model":"QbiA","./edit-mode":"ZaTi","../model/init":"hqRz"}],"mbNX":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),Object.defineProperty(exports,"ArticlePage",{enumerable:!0,get:function(){return e.ArticlePage}});var e=require("./ui/article");
 },{"./ui/article":"OmDx"}]},{},[], null)
-//# sourceMappingURL=/effector-react-realworld-example-app/article.2e209b83.js.map
+//# sourceMappingURL=/article.2e209b83.js.map
