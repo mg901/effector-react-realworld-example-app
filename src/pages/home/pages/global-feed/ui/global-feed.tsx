@@ -9,7 +9,7 @@ import '../model/init';
 
 export const GlobalFeedPage: React.FC = () => {
   useGate(model.PageGate);
-  const loading = useStore(model.$isFirstBoot);
+  const loading = useStore(model.fetchFeedFx.pending);
 
   return (
     <>

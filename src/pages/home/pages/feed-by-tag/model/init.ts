@@ -1,4 +1,4 @@
-import { forward, attach, sample } from 'effector';
+import { forward, attach, sample, guard } from 'effector';
 import * as router from 'library/router';
 import {
   PageGate,
@@ -7,14 +7,18 @@ import {
   $currentTag,
   $currentPage,
   $pageSize,
-  fetchFeedFx,
   currentPageWasSet,
+  fetchFeedFx,
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,
 } from './model';
 
 forward({
-  from: [PageGate.open, router.model.$search],
+  from: [
+    PageGate.open,
+    currentPageWasSet,
+    guard($currentTag, { filter: Boolean }),
+  ],
   to: attach({
     source: {
       tag: $currentTag,

@@ -3,18 +3,16 @@ import * as profile from '../../../model';
 import {
   PageGate,
   $feed,
-  $isFirstBoot,
   $currentPage,
   $pageSize,
+  currentPageWasSet,
   fetchFeedFx,
 } from './model';
-
-$isFirstBoot.on(fetchFeedFx.done, () => false);
 
 $feed.on(fetchFeedFx.doneData, (_, payload) => payload);
 
 forward({
-  from: [PageGate.open, $currentPage],
+  from: [PageGate.open, currentPageWasSet],
   to: attach({
     source: {
       pageSize: $pageSize,
