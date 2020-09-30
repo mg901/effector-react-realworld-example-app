@@ -1,33 +1,14 @@
 import { Event, Effect, Store } from 'effector';
 import { Gate } from 'effector-react';
-
-export type Author = Readonly<{
-  username: string;
-  bio: null | string;
-  image: string;
-  following: boolean;
-}>;
-
-export type Article = Readonly<{
-  title: string;
-  slug: string;
-  body: string;
-  createdAt: string;
-  updatedAt: string;
-  tagList: readonly string[];
-  description: string;
-  author: Author;
-  favorited: boolean;
-  favoritesCount: number;
-}>;
+import * as types from '../../types';
 
 export type Feed = Readonly<{
-  articles: readonly Article[];
+  articles: readonly types.Article[];
   articlesCount: number;
 }>;
 
 export type FavoriteArticle = Readonly<{
-  article: Article;
+  article: types.Article;
 }>;
 
 export type UnfavoriteArticle = FavoriteArticle;
@@ -40,7 +21,7 @@ export type Options = Readonly<{
 export type CreateFeedModel = Readonly<{
   PageGate: Gate<unknown>;
   currentPageWasSet: Event<number>;
-  favoriteToggled: Event<Article>;
+  favoriteToggled: Event<types.Article>;
   setFavoriteArticleFx: Effect<string, FavoriteArticle, Error>;
   setUnfavoriteArticleFx: Effect<string, UnfavoriteArticle, Error>;
   $pageSize: Store<number>;

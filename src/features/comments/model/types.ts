@@ -1,4 +1,4 @@
-import { types } from 'features/feed';
+import * as types from '../../types';
 
 export type Comment = Readonly<{
   author: types.Author;

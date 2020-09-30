@@ -1,7 +1,7 @@
 import { createEvent, createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
 import * as api from 'api';
-import * as feed from 'features/feed';
+import { Article } from 'features/types';
 import { createFormEvents } from 'library/form';
 import * as router from 'library/router';
 import * as types from './types';
@@ -15,28 +15,26 @@ export const tagDeleted = createEvent<string>();
 
 export const createArticleFx = createEffect<
   types.Form,
-  feed.types.Article,
+  Article,
   types.ErrorType
 >({
   handler: (article) =>
     api
-      .post<{ article: feed.types.Article }>('/articles', { article })
+      .post<{ article: Article }>('/articles', { article })
       .then((x) => x.article),
 });
 
 export const fetchArticleFx = createEffect((slug: string) =>
-  api
-    .get<{ article: feed.types.Article }>(`/articles/${slug}`)
-    .then(({ article: a }) => ({
-      slug: a.slug,
-      title: a.title,
-      description: a.description,
-      body: a.body,
-      tagList: a.tagList,
-    })),
+  api.get<{ article: Article }>(`/articles/${slug}`).then(({ article: a }) => ({
+    slug: a.slug,
+    title: a.title,
+    description: a.description,
+    body: a.body,
+    tagList: a.tagList,
+  })),
 );
 
-export const PageGate = createGate<types.GateType>();
+export const PageGate = createGate();
 
 export const $slug = router.model.$pathname.map((x) =>
   x?.replace(/\/editor(\/)?/, ''),

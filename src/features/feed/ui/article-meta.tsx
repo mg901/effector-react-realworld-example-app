@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as types from '../model/types';
+import * as types from '../../types';
 
-type Props = Readonly<{
-  author: types.Article['author'];
-  createdAt: types.Article['createdAt'];
-}>;
+type Props = Readonly<Pick<types.Article, 'author' | 'createdAt'>>;
 
 export const ArticleMeta: React.FC<Props> = ({
   author,
