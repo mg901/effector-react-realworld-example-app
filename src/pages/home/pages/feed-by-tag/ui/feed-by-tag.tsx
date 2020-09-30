@@ -1,34 +1,35 @@
 import React from 'react';
-import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useList, useStore } from 'effector-react';
-import { ArticlePreview, List, Loader, EmptyArticles } from 'ui';
+import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'features/feed';
+import { Spinner } from 'ui';
+
 import { model } from '../model';
 import { Pagination } from './pagination';
 
 import '../model/init';
 
-type Props = Readonly<RouteConfigComponentProps>;
-
-export const FeedByTagPage: React.FC<Props> = ({ match: { path } }) => {
+export const FeedByTagPage: React.FC = () => {
   useGate(model.PageGate);
-  const noCurrentTag = useStore(model.$noCurrentTag);
+  const loading = useStore(model.$loading);
   const isEmpty = useStore(model.$isEmptyArticles);
 
   return (
     <>
-      {isEmpty && <EmptyArticles />}
-      <List>
+      <EmptyArticles show={isEmpty} />
+      <ArticlesWrapper>
         {useList(model.$articles, (article) => (
           <li>
             <ArticlePreview
-              {...article}
-              onClick={() => model.favoriteToggled(article)}
+              data={article}
+              onClick={() => {
+                model.favoriteToggled(article);
+              }}
             />
           </li>
         ))}
-      </List>
-      <Pagination path={path} />
-      <Loader loading={noCurrentTag} />
+      </ArticlesWrapper>
+      <Pagination />
+      <Spinner loading={loading} />
     </>
   );
 };

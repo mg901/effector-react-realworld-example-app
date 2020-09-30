@@ -1,13 +1,14 @@
-import { createEvent, createStore, createEffect, guard } from 'effector';
+import {
+  createEvent,
+  createStore,
+  createEffect,
+  guard,
+  sample,
+} from 'effector';
+import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as router from 'library/router';
 import * as types from './types';
-
-export const changeUrlFx = createEffect(
-  ({ path, page }: types.ChangeUrlFxArgs) => {
-    router.model.history.replace(`${path}?page=${page}`);
-  },
-);
 
 const defaultOptions = {
   currentPage: 1,
@@ -20,7 +21,7 @@ export const createFeedModel = (
   const settings = { ...defaultOptions, ...options };
 
   // events
-  const currentPageSettled = createEvent<number>();
+  const currentPageWasSet = createEvent<number>();
   const favoriteToggled = createEvent<types.Article>();
 
   // effects
@@ -38,6 +39,13 @@ export const createFeedModel = (
     articlesCount: 0,
   });
 
+  const $currentPage = router.model.$search.map((x) => {
+    const page = new URLSearchParams(x).get('page') ?? settings.currentPage;
+
+    return Number(page);
+  });
+
+  // reducer
   $feed.on(
     [setFavoriteArticleFx.done, setUnfavoriteArticleFx.done],
     (state, { params, result }) => ({
@@ -54,6 +62,15 @@ export const createFeedModel = (
     }),
   );
 
+  sample({
+    source: router.model.$pathname,
+    clock: currentPageWasSet,
+    fn: (path, page) => ({ path, page }),
+  }).watch(({ path, page }) => {
+    router.model.history.replace(`${path}?page=${page}`);
+  });
+
+  // set favorite / unfavorite article
   guard(favoriteToggled, {
     filter: (x) => x.favorited === true,
   }).watch(({ slug }) => setUnfavoriteArticleFx(slug));
@@ -62,18 +79,21 @@ export const createFeedModel = (
     filter: (x) => x.favorited === false,
   }).watch(({ slug }) => setFavoriteArticleFx(slug));
 
+  // if the user is not logged in
+  setFavoriteArticleFx.failData.watch((error) => {
+    if (error.status === 401) {
+      router.model.history.push(router.Paths.LOGIN);
+    }
+  });
+
   return {
-    currentPageSettled,
+    PageGate: createGate(),
+    currentPageWasSet,
     favoriteToggled,
     setFavoriteArticleFx,
     setUnfavoriteArticleFx,
     $pageSize: createStore<number>(settings.pageSize),
-    $currentPage: router.model.$search.map((x) => {
-      const page = new URLSearchParams(x).get('page') ?? settings.currentPage;
-
-      return Number(page);
-    }),
-
+    $currentPage,
     $currentTag: router.model.$search.map(
       (x) => new URLSearchParams(x).get('tag') ?? '',
     ),

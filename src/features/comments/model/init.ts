@@ -7,20 +7,20 @@ import {
   formSubmitted,
   textChanged,
   commentDeleted,
-  getCommentsFx,
-  addCommentFx,
+  fetchCommentsFx,
+  fetchCommentFx,
   deleteCommentFx,
 } from './model';
 
 formSubmitted.watch((e) => e.preventDefault());
 
-$commentText.on(textChanged, (_, payload) => payload).reset(addCommentFx);
+$commentText.on(textChanged, (_, payload) => payload).reset(fetchCommentFx);
 
 forward({
   from: formSubmitted,
   to: attach({
     source: { slug: $slug, body: $commentText },
-    effect: addCommentFx,
+    effect: fetchCommentFx,
   }),
 });
 
@@ -32,10 +32,10 @@ sample({
 });
 
 $comments
-  .on(getCommentsFx.doneData, (_, payload) => payload)
-  .on(addCommentFx.doneData, (state, payload) => [payload, ...state])
+  .on(fetchCommentsFx.doneData, (_, payload) => payload)
+  .on(fetchCommentFx.doneData, (state, payload) => [payload, ...state])
   .on(deleteCommentFx.done, (state, { params }) =>
     state.filter(({ id }) => id !== params.id),
   );
 
-$errors.on(addCommentFx.failData, (_, payload) => payload).reset(textChanged);
+$errors.on(fetchCommentFx.failData, (_, payload) => payload).reset(textChanged);

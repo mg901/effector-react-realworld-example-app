@@ -1,34 +1,32 @@
 import React from 'react';
-import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useList, useStore } from 'effector-react';
-import { ArticlePreview, List, Loader, EmptyArticles } from 'ui';
+import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'features/feed';
+import { Spinner } from 'ui';
 import { model } from '../model';
 import { Pagination } from './pagination';
 
 import '../model/init';
 
-type Props = Readonly<RouteConfigComponentProps>;
-
-export const MyArticles: React.FC<Props> = ({ match: { url } }) => {
+export const MyArticles: React.FC = () => {
   useGate(model.PageGate);
   const loading = useStore(model.$isFirstBoot);
   const isEmpty = useStore(model.$isEmptyArticles);
 
   return (
     <>
-      {isEmpty && <EmptyArticles />}
-      <List>
+      <EmptyArticles show={isEmpty} />
+      <ArticlesWrapper>
         {useList(model.$articles, (article) => (
           <li>
             <ArticlePreview
-              {...article}
+              data={article}
               onClick={() => model.favoriteToggled(article)}
             />
           </li>
         ))}
-      </List>
-      <Pagination path={url} />
-      <Loader loading={loading} />
+      </ArticlesWrapper>
+      <Pagination />
+      <Spinner loading={loading} />
     </>
   );
 };

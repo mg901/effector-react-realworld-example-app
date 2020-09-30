@@ -23,7 +23,8 @@ $form
   .on(tagDeleted, (state, payload) => ({
     ...state,
     tagList: state.tagList.filter((tag) => tag !== payload),
-  }));
+  }))
+  .reset(createArticleFx.done);
 
 sample({
   source: $form,

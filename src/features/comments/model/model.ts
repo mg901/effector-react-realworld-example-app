@@ -11,13 +11,13 @@ export const {
 } = createFormEvents();
 export const commentDeleted = createEvent<string>();
 
-export const getCommentsFx = createEffect((slug: string) =>
+export const fetchCommentsFx = createEffect((slug: string) =>
   api
     .get<types.GetCommentsFxDone>(`/articles/${slug}/comments`)
     .then((x) => x.comments),
 );
 
-export const addCommentFx = createEffect<
+export const fetchCommentFx = createEffect<
   types.AddCommentFxArgs,
   types.Comment,
   types.ErrorType

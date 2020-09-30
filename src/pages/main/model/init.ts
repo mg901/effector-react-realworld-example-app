@@ -26,5 +26,5 @@ forward({
   to: model.getTagsFx,
 });
 
-authUser.model.$user.on(model.getUserFx.doneData, (_, payload) => payload);
+authUser.model.$user.on(model.fetchUserFx.doneData, (_, payload) => payload);
 model.$tags.on(model.getTagsFx.doneData, (_, payload) => payload);

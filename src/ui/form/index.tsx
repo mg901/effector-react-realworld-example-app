@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 
-type Props = React.FormHTMLAttributes<HTMLFormElement>;
+type Props = Readonly<React.FormHTMLAttributes<HTMLFormElement>>;
 
 export const Form: React.FC<Props> = ({
   className = '',

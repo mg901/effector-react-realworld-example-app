@@ -21,7 +21,7 @@ const request: Request = async (method, url, data) => {
   if (response.ok) {
     return response.json();
   }
-  throw await response.json();
+  throw await response;
 };
 
 export const get = <T>(url: string): Promise<T> => request<T>('get', url);

@@ -1,4 +1,5 @@
 import { Event, Effect, Store } from 'effector';
+import { Gate } from 'effector-react';
 
 export type Author = Readonly<{
   username: string;
@@ -31,18 +32,14 @@ export type FavoriteArticle = Readonly<{
 
 export type UnfavoriteArticle = FavoriteArticle;
 
-export type ChangeUrlFxArgs = Readonly<{
-  path: string;
-  page: number;
-}>;
-
 export type Options = Readonly<{
   currentPage?: number;
   pageSize?: number;
 }>;
 
 export type CreateFeedModel = Readonly<{
-  currentPageSettled: Event<number>;
+  PageGate: Gate<unknown>;
+  currentPageWasSet: Event<number>;
   favoriteToggled: Event<Article>;
   setFavoriteArticleFx: Effect<string, FavoriteArticle, Error>;
   setUnfavoriteArticleFx: Effect<string, UnfavoriteArticle, Error>;

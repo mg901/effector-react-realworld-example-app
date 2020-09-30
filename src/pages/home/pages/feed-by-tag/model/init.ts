@@ -1,4 +1,4 @@
-import { forward, attach, sample } from 'effector';
+import { forward, attach, sample, guard } from 'effector';
 import * as router from 'library/router';
 import {
   PageGate,
@@ -7,26 +7,29 @@ import {
   $currentTag,
   $currentPage,
   $pageSize,
-  getFeedFx,
-  currentPageSettled,
+  currentPageWasSet,
+  fetchFeedFx,
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,
-  changeUrlFx,
 } from './model';
 
 forward({
-  from: [PageGate.open, router.model.$search],
+  from: [
+    PageGate.open,
+    currentPageWasSet,
+    guard($currentTag, { filter: Boolean }),
+  ],
   to: attach({
     source: {
       tag: $currentTag,
       page: $currentPage,
       pageSize: $pageSize,
     },
-    effect: getFeedFx,
+    effect: fetchFeedFx,
   }),
 });
 
-$feed.on(getFeedFx.done, (state, { params, result }) => ({
+$feed.on(fetchFeedFx.done, (state, { params, result }) => ({
   ...state,
   [params.tag]: result,
 }));
@@ -52,7 +55,8 @@ sample({
     path: router.model.$pathname,
     tag: $currentTag,
   },
-  clock: currentPageSettled,
-  fn: ({ path, tag }, page) => ({ path, tag, page }),
-  target: changeUrlFx,
+  clock: currentPageWasSet,
+  fn: ({ path, tag }, page) => ({ path, page, tag }),
+}).watch(({ path, page, tag }) => {
+  router.model.history.replace(`${path}?tag=${tag}&page=${page}`);
 });
