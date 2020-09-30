@@ -8,7 +8,3 @@ export type Form = Pick<
 export type ErrorType = Readonly<{
   errors: readonly string[];
 }>;
-
-export type GateType = Readonly<{
-  path: string;
-}>;

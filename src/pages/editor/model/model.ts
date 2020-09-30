@@ -3,6 +3,7 @@ import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as feed from 'features/feed';
 import { createFormEvents } from 'library/form';
+import * as router from 'library/router';
 import * as types from './types';
 
 export const {
@@ -37,8 +38,8 @@ export const fetchArticleFx = createEffect((slug: string) =>
 
 export const PageGate = createGate<types.GateType>();
 
-export const $slug = PageGate.state.map((x) =>
-  x.path?.replace(/\/editor(\/)?/, ''),
+export const $slug = router.model.$pathname.map((x) =>
+  x?.replace(/\/editor(\/)?/, ''),
 );
 
 export const $hasSlug = $slug.map(Boolean);
