@@ -18,6 +18,7 @@ export const changeUserDataFx = createEffect<
   handler: (user) => api.put('/user', { user }),
 });
 
+export const $user = authUser.model.$user.map((x) => x);
 export const $errors = createStore<types.ErrorType>({
   errors: [],
 });

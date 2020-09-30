@@ -2,19 +2,20 @@ import { sample } from 'effector';
 import { model } from 'features/user';
 import * as router from 'library/router';
 import {
+  $user,
   $errors,
   formSubmitted,
   fieldChanged,
   changeUserDataFx,
 } from './model';
 
-model.$user.on(fieldChanged, (state, payload) => ({
+$user.on(fieldChanged, (state, payload) => ({
   ...state,
   ...payload,
 }));
 
 sample({
-  source: model.$user,
+  source: $user,
   clock: formSubmitted,
   target: changeUserDataFx,
 });
