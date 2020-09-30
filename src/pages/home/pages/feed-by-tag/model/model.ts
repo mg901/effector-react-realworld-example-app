@@ -1,13 +1,12 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
-import { createGate } from 'effector-react';
 import { status } from 'patronum/status';
 import * as api from 'api';
 import * as feed from 'features/feed';
 import { limit } from 'library/limit';
 import * as types from './types';
 
-export const PageGate = createGate();
 export const {
+  PageGate,
   favoriteToggled,
   $currentPage,
   $currentTag,

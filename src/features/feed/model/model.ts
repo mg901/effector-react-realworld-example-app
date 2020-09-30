@@ -5,6 +5,7 @@ import {
   guard,
   sample,
 } from 'effector';
+import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as router from 'library/router';
 import * as types from './types';
@@ -86,6 +87,7 @@ export const createFeedModel = (
   });
 
   return {
+    PageGate: createGate(),
     currentPageWasSet,
     favoriteToggled,
     setFavoriteArticleFx,

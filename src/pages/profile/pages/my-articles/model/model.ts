@@ -1,5 +1,4 @@
 import { createEffect, createStore, combine } from 'effector';
-import { createGate } from 'effector-react';
 import { status } from 'patronum/status';
 import * as api from 'api';
 import * as feed from 'features/feed';
@@ -16,9 +15,8 @@ export const fetchFeedFx = createEffect(
     ),
 );
 
-export const PageGate = createGate();
-
 export const {
+  PageGate,
   currentPageWasSet,
   favoriteToggled,
   $currentPage,
