@@ -1,4 +1,4 @@
-import { createEffect, createStore, combine } from 'effector';
+import { createEffect, combine } from 'effector';
 import { status } from 'patronum/status';
 import * as api from 'api';
 import * as feed from 'features/feed';
@@ -29,7 +29,6 @@ export const {
 });
 
 export const $status = status({ effect: fetchFeedFx });
-export const $isFirstBoot = createStore<boolean>(true);
 export const $isEmptyArticles = combine(
   $status,
   $articles,

@@ -1,7 +1,9 @@
 import { createEvent, createEffect, createStore } from 'effector';
+import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as feed from 'features/feed';
 import { createFormEvents } from 'library/form';
+import * as router from 'library/router';
 import * as types from './types';
 
 export const {
@@ -18,12 +20,32 @@ export const createArticleFx = createEffect<
 >({
   handler: (article) =>
     api
-      .post<types.CreateArticleFxDone>('/articles', { article })
+      .post<{ article: feed.types.Article }>('/articles', { article })
       .then((x) => x.article),
 });
 
+export const fetchArticleFx = createEffect((slug: string) =>
+  api
+    .get<{ article: feed.types.Article }>(`/articles/${slug}`)
+    .then(({ article: a }) => ({
+      slug: a.slug,
+      title: a.title,
+      description: a.description,
+      body: a.body,
+      tagList: a.tagList,
+    })),
+);
+
+export const PageGate = createGate<types.GateType>();
+
+export const $slug = router.model.$pathname.map((x) =>
+  x?.replace(/\/editor(\/)?/, ''),
+);
+
+export const $hasSlug = $slug.map(Boolean);
+export const $isEmptySlug = $hasSlug.map((x) => !x);
 export const $form = createStore<types.Form>({
-  articleSlug: '',
+  slug: '',
   title: '',
   description: '',
   body: '',
