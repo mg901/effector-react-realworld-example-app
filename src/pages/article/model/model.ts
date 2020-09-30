@@ -2,14 +2,14 @@ import { createEvent, createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as comments from 'features/comments';
+import { Article } from 'features/types';
 import * as authUser from 'features/user';
 import * as router from 'library/router';
-import * as types from './types';
 
 export const articleDeleted = createEvent<React.MouseEvent>();
 export const fetchArticleFx = createEffect((slug: string) =>
   api
-    .get<types.GetArticleFxDone>(`/articles/${slug}`)
+    .get<{ article: Article }>(`/articles/${slug}`)
     .then((x) => x.article)
     .then(({ createdAt, ...article }) => ({
       ...article,
@@ -30,7 +30,7 @@ export const $slug = router.model.$pathname.map((x) =>
   x.replace(/^\/article\//, ''),
 );
 
-export const $article = createStore<types.Article>({
+export const $article = createStore<Article>({
   title: '',
   slug: '',
   body: '',

@@ -8,6 +8,7 @@ import {
 import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as router from 'library/router';
+import { Article } from '../../types';
 import * as types from './types';
 
 const defaultOptions = {
@@ -22,7 +23,7 @@ export const createFeedModel = (
 
   // events
   const currentPageWasSet = createEvent<number>();
-  const favoriteToggled = createEvent<types.Article>();
+  const favoriteToggled = createEvent<Article>();
 
   // effects
   const setFavoriteArticleFx = createEffect((slug: string) =>

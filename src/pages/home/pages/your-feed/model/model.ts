@@ -2,10 +2,11 @@ import { createEvent, createEffect, combine } from 'effector';
 import { status } from 'patronum/status';
 import * as api from 'api';
 import * as feed from 'features/feed';
+import { Article } from 'features/types';
 import { limit } from 'library/limit';
 import * as types from './types';
 
-export const toggleFavorite = createEvent<feed.types.Article>();
+export const toggleFavorite = createEvent<Article>();
 
 export const fetchFeedFx = createEffect(
   ({ pageSize, page }: types.fetchFeedFxArgs) =>
