@@ -6,6 +6,8 @@ import { Main } from './pages/main';
 import './library/router/model/init';
 import './features/user/init';
 
+import './styles.css';
+
 export const App: React.FC = () => (
   <Router history={model.history}>
     <Main />

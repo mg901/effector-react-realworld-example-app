@@ -8,7 +8,7 @@ import {
   $currentPage,
   $pageSize,
   fetchFeedFx,
-  currentPageSettled,
+  currentPageWasSet,
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,
 } from './model';
@@ -49,10 +49,10 @@ $feedByTag.on(
 sample({
   source: {
     path: router.model.$pathname,
-    page: $currentPage,
     tag: $currentTag,
   },
-  clock: currentPageSettled,
+  clock: currentPageWasSet,
+  fn: ({ path, tag }, page) => ({ path, page, tag }),
 }).watch(({ path, page, tag }) => {
   router.model.history.replace(`${path}?tag=${tag}&page=${page}`);
 });

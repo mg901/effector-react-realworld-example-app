@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { types } from 'features/feed';
+import * as types from '../model/types';
 
 type Props = Readonly<{
   author: types.Article['author'];

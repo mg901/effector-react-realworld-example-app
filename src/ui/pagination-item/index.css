@@ -1,0 +1,13 @@
+.pagination-item {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.pagination-item[data-active='true'] .page-link {
+  z-index: 2;
+  color: var(--color-white);
+  cursor: default;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}

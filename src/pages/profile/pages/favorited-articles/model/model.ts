@@ -18,7 +18,7 @@ export const fetchFeedFx = createEffect(
 
 export const PageGate = createGate();
 export const {
-  currentPageSettled,
+  currentPageWasSet,
   favoriteToggled,
   $currentPage,
   $articles,

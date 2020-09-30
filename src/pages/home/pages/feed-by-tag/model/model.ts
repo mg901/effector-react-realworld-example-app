@@ -16,7 +16,7 @@ export const {
   setUnfavoriteArticleFx,
 } = feed.createFeedModel();
 
-export const currentPageSettled = createEvent<number>();
+export const currentPageWasSet = createEvent<number>();
 
 export const fetchFeedFx = createEffect(
   ({ tag, page }: types.GetFeedByTagArgs) =>
@@ -37,10 +37,11 @@ export const $feedByTag = combine(
     },
 );
 
-export const $noCurrentTag = combine(
+export const $loading = combine(
   $currentTag,
   $feed,
-  (tag, feedStore) => !feedStore[tag],
+  fetchFeedFx.pending,
+  (tag, feedStore, fetch) => !feedStore[tag] || fetch,
 );
 
 export const $articles = $feedByTag.map((x) => x.articles);

@@ -7,7 +7,7 @@ import * as types from './types';
 
 export const PageGate = createGate();
 export const {
-  currentPageSettled,
+  currentPageWasSet,
   favoriteToggled,
   $currentPage,
   $articles,

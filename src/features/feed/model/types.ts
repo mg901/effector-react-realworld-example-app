@@ -37,7 +37,7 @@ export type Options = Readonly<{
 }>;
 
 export type CreateFeedModel = Readonly<{
-  currentPageSettled: Event<number>;
+  currentPageWasSet: Event<number>;
   favoriteToggled: Event<Article>;
   setFavoriteArticleFx: Effect<string, FavoriteArticle, Error>;
   setUnfavoriteArticleFx: Effect<string, UnfavoriteArticle, Error>;

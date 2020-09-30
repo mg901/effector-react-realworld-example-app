@@ -15,7 +15,7 @@ export const fetchFeedFx = createEffect(
 );
 
 export const {
-  currentPageSettled,
+  currentPageWasSet,
   favoriteToggled,
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,

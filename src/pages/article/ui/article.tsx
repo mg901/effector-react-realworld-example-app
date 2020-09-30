@@ -2,8 +2,9 @@
 import React from 'react';
 import { useGate, useStore } from 'effector-react';
 import { Comments } from 'features/comments';
-import marked from 'marked';
-import { Container, Row, Page, ArticleMeta, TagList, Tag, Banner } from 'ui';
+import { ArticleMeta } from 'features/feed';
+import Markdown from 'markdown-to-jsx';
+import { Container, Row, Page, TagList, Tag, Banner } from 'ui';
 import { model } from '../model';
 import { EditMode } from './edit-mode';
 
@@ -13,10 +14,6 @@ export const ArticlePage: React.FC = () => {
   useGate(model.PageGate);
   const { title, author, createdAt, body, tagList } = useStore(model.$article);
   const loading = useStore(model.fetchArticleFx.pending);
-
-  const markup = {
-    __html: marked(body),
-  };
 
   return (
     <>
@@ -33,7 +30,7 @@ export const ArticlePage: React.FC = () => {
           <Page>
             <Row className="article-content">
               <div className="col-xs-12">
-                <div dangerouslySetInnerHTML={markup} />
+                <Markdown>{body}</Markdown>
                 <TagList>
                   {tagList.map((tag) => (
                     <Tag key={tag}>{tag.toLowerCase()}</Tag>

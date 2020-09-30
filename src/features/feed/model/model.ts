@@ -20,7 +20,7 @@ export const createFeedModel = (
   const settings = { ...defaultOptions, ...options };
 
   // events
-  const currentPageSettled = createEvent<number>();
+  const currentPageWasSet = createEvent<number>();
   const favoriteToggled = createEvent<types.Article>();
 
   // effects
@@ -62,11 +62,9 @@ export const createFeedModel = (
   );
 
   sample({
-    source: {
-      path: router.model.$pathname,
-      page: $currentPage,
-    },
-    clock: currentPageSettled,
+    source: router.model.$pathname,
+    clock: currentPageWasSet,
+    fn: (path, page) => ({ path, page }),
   }).watch(({ path, page }) => {
     router.model.history.replace(`${path}?page=${page}`);
   });
@@ -88,7 +86,7 @@ export const createFeedModel = (
   });
 
   return {
-    currentPageSettled,
+    currentPageWasSet,
     favoriteToggled,
     setFavoriteArticleFx,
     setUnfavoriteArticleFx,
