@@ -9,7 +9,7 @@ import '../model/init';
 
 export const FavoritedArticles: React.FC = () => {
   useGate(model.PageGate);
-  const loading = useStore(model.$isFirstBoot);
+  const loading = useStore(model.fetchFeedFx.pending);
   const isEmpty = useStore(model.$isEmptyArticles);
 
   return (
