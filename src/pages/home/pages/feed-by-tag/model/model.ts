@@ -13,7 +13,6 @@ export const {
   $pageSize,
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,
-  useModel,
 } = feed.createFeedModel();
 
 export const currentPageWasSet = createEvent<number>();
@@ -26,7 +25,7 @@ export const fetchFeedFx = createEffect(
 );
 
 export const $status = status({ effect: fetchFeedFx });
-export const $feed = createStore<types.FeedByTag>({});
+export const $feed = createStore<types.Feed>({});
 export const $feedByTag = combine(
   $feed,
   $currentTag,
@@ -52,3 +51,12 @@ export const $isEmptyFeed = combine(
   $articles,
   (is, articles) => is === 'done' && articles.length === 0,
 );
+
+export const $feedModel = combine({
+  total: $totalPages,
+  loading: fetchFeedFx.pending,
+  isEmptyFeed: $isEmptyFeed,
+  currentPage: $currentPage,
+  pageSize: $pageSize,
+  totalPages: $totalPages,
+});

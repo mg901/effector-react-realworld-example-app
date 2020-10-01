@@ -7,13 +7,21 @@ import './model/init';
 
 export const FeedByTagPage: React.FC = () => {
   useGate(model.PageGate);
-  const { totalPages, currentPage, pageSize } = model.useModel();
-  const loading = useStore(model.$loading);
-  const isEmpty = useStore(model.$isEmptyFeed);
+
+  // prettier-ignore
+  const { 
+    isEmptyFeed, 
+    currentPage, 
+    pageSize, 
+    totalPages, 
+    loading 
+  } = useStore(
+    model.$feedModel,
+  );
 
   return (
     <>
-      <EmptyArticles show={isEmpty} />
+      <EmptyArticles show={isEmptyFeed} />
       <ArticlesWrapper>
         {useList(model.$articles, (article) => (
           <li>
