@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form as UIForm } from 'ui';
+import { Form as UIForm, InputField } from 'ui';
 import { model } from '../model';
-import { InputField } from './input-field';
+
 import { SubmitButton } from './submit-button';
 
 export const Form: React.FC = () => (
@@ -9,6 +9,7 @@ export const Form: React.FC = () => (
     <InputField
       className="form-control-lg"
       name="email"
+      store={model.$form}
       type="email"
       onChange={model.handleFieldChanged}
     />
@@ -16,6 +17,7 @@ export const Form: React.FC = () => (
       autoComplete="current-password"
       className="form-control-lg"
       name="password"
+      store={model.$form}
       type="password"
       onChange={model.handleFieldChanged}
     />
