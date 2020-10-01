@@ -1,5 +1,6 @@
 import React from 'react';
-import { Form as UIForm, InputField, TextField } from 'ui';
+import { InputField, TextField } from 'library/form';
+import { Form as UIForm } from 'ui';
 import { model } from '../model';
 
 import '../model/init';

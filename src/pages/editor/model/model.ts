@@ -14,9 +14,9 @@ export const {
 export const tagDeleted = createEvent<string>();
 
 export const createArticleFx = createEffect({
-  handler: (article: Article) =>
+  handler: (form: types.Form) =>
     api
-      .post<{ article: Article }>('/articles', { article })
+      .post<{ article: Article }>('/articles', { article: form })
       .then((x) => x.article),
 });
 

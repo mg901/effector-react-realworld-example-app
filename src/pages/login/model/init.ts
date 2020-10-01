@@ -2,8 +2,6 @@ import { sample } from 'effector';
 import * as user from 'features/user';
 import { $form, $errors, formSubmitted, fieldChanged, signInFx } from './model';
 
-formSubmitted.watch((e) => e.preventDefault());
-
 $form.on(fieldChanged, (state, payload) => ({ ...state, ...payload }));
 
 sample({

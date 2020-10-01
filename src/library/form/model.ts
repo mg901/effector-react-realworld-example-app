@@ -10,12 +10,12 @@ export const useFormField: types.UseFormField = ({ store, name }) =>
   });
 
 export const createFormEvents: types.CreateFormEvents = () => {
-  const textChanged = createEvent<string>();
+  const textChanged = createEvent<any>();
   const handleTextChanged = textChanged.prepend(
     (e: types.ChangeEvent) => e.target.value,
   );
 
-  const fieldChanged = createEvent<types.Field>();
+  const fieldChanged = createEvent<any>();
   const handleFieldChanged = fieldChanged.prepend((e: types.ChangeEvent) => ({
     [e.target.name]: e.target.value,
   }));

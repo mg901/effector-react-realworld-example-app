@@ -1,13 +1,13 @@
 import React from 'react';
+import { Store } from 'effector';
 import { useFormField } from 'library/form';
 import { FormGroup, Input, InputProps } from 'ui';
-import { model } from '../model';
 
-type Props = InputProps & Readonly<{ name: string }>;
+type Props = InputProps & Readonly<{ name: string; store: Store<any> }>;
 
-export const InputField: React.FC<Props> = ({ name, ...props }) => {
+export const InputField: React.FC<Props> = ({ store, name, ...props }) => {
   const value = useFormField({
-    store: model.$form,
+    store,
     name,
   });
 
