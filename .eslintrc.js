@@ -62,6 +62,7 @@ module.exports = {
     'react/jsx-one-expression-per-line': 0,
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
+    '@typescript-eslint/no-use-before-define': 2,
     '@typescript-eslint/no-shadow': 2,
     '@typescript-eslint/no-unused-vars': 2,
     '@typescript-eslint/explicit-module-boundary-types': 2,

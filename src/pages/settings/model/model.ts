@@ -15,5 +15,5 @@ export const changeUserDataFx = createEffect<authUser.types.User, void, Error>({
 
 export const $user = authUser.model.$user.map((x) => x);
 export const $errors = createStore<Errors>({
-  errors: [],
+  errors: [] as Error['errors'],
 });

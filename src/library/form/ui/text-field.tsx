@@ -1,8 +1,7 @@
 import React from 'react';
 import { Store } from 'effector';
 import { useFormField } from 'library/form';
-import { FormGroup } from './form-group';
-import { Textarea, TextareaProps } from './textarea';
+import { FormGroup, Textarea, TextareaProps } from 'ui';
 
 type Props = TextareaProps & Readonly<{ store: Store<any>; name: string }>;
 

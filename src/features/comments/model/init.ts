@@ -12,8 +12,6 @@ import {
   deleteCommentFx,
 } from './model';
 
-formSubmitted.watch((e) => e.preventDefault());
-
 $commentText.on(textChanged, (_, payload) => payload).reset(fetchCommentFx);
 
 forward({

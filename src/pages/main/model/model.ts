@@ -1,7 +1,7 @@
 import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
 import * as api from 'api';
-import * as authUser from 'features/user';
+import * as user from 'features/user';
 import { removeNotASCII } from 'library/ascii';
 import * as router from 'library/router';
 import * as types from './types';
@@ -13,7 +13,7 @@ export const $$currentTag = router.model.$location.map((x) =>
 );
 
 export const fetchUserFx = createEffect(() =>
-  api.get<authUser.types.SignUpFxDone>('/user').then((x) => x.user),
+  api.get<{ user: user.types.User }>('/user').then((x) => x.user),
 );
 
 export const getTagsFx = createEffect(() =>

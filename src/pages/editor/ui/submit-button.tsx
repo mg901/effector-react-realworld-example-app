@@ -8,7 +8,7 @@ export const SubmitButton: React.FC = () => {
 
   return (
     <Button
-      className="btn-lg pull-xs-right btn-primary"
+      className="btn-lg btn-primary pull-xs-right"
       disabled={disabled}
       form="editor"
       type="submit"
