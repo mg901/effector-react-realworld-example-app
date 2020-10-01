@@ -17,8 +17,4 @@ export type User = Readonly<{
   updatedAt: string;
 }>;
 
-export type SignUpFxDone = Readonly<{
-  user: User;
-}>;
-
 export type Token = null | string;

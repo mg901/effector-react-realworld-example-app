@@ -13,12 +13,8 @@ export const {
 } = createFormEvents();
 export const tagDeleted = createEvent<string>();
 
-export const createArticleFx = createEffect<
-  types.Form,
-  Article,
-  types.ErrorType
->({
-  handler: (article) =>
+export const createArticleFx = createEffect({
+  handler: (article: Article) =>
     api
       .post<{ article: Article }>('/articles', { article })
       .then((x) => x.article),
@@ -51,6 +47,6 @@ export const $form = createStore<types.Form>({
 });
 
 export const $tags = $form.map((x) => x.tagList);
-export const $errors = createStore<types.ErrorType>({
+export const $errors = createStore<Errors>({
   errors: [],
 });
