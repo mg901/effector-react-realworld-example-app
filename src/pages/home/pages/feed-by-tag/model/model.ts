@@ -13,6 +13,7 @@ export const {
   $pageSize,
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,
+  useModel,
 } = feed.createFeedModel();
 
 export const currentPageWasSet = createEvent<number>();
@@ -46,7 +47,7 @@ export const $loading = combine(
 export const $articles = $feedByTag.map((x) => x.articles);
 export const $totalPages = $feedByTag.map((x) => x.articlesCount);
 
-export const $isEmptyArticles = combine(
+export const $isEmptyFeed = combine(
   $status,
   $articles,
   (is, articles) => is === 'done' && articles.length === 0,

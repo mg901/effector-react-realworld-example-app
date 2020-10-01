@@ -2,7 +2,6 @@ import React from 'react';
 import { useStore } from 'effector-react';
 import { Form, Input } from 'ui';
 import * as model from './model';
-
 import './init';
 
 export const AddTag: React.FC = () => {

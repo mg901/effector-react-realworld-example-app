@@ -13,6 +13,7 @@ export const {
   $totalPages,
   $feed,
   $pageSize,
+  useModel,
 } = feed.createFeedModel();
 
 export const fetchFeedFx = createEffect(

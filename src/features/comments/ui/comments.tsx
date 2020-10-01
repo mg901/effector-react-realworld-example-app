@@ -4,7 +4,6 @@ import { AuthBranch } from 'library/router';
 import { CommentsList } from './comment-list';
 import { Errors } from './errors';
 import { Form } from './form';
-
 import '../model/init';
 
 export const Comments: React.FC = () => (

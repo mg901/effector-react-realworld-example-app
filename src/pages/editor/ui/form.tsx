@@ -2,7 +2,6 @@ import React from 'react';
 import { InputField, TextField } from 'library/form';
 import { Form as UIForm } from 'ui';
 import { model } from '../model';
-
 import '../model/init';
 
 export const Form: React.FC = () => (

@@ -4,8 +4,10 @@ import {
   createEffect,
   guard,
   sample,
+  combine,
 } from 'effector';
-import { createGate } from 'effector-react';
+import { createGate, useStore } from 'effector-react';
+import { EffectState } from 'patronum/status';
 import * as api from 'api';
 import * as router from 'library/router';
 import { Article } from '../../types';
@@ -14,12 +16,16 @@ import * as types from './types';
 const defaultOptions = {
   currentPage: 1,
   pageSize: 10,
+  status: createStore<EffectState>('initial'),
 };
 
 export const createFeedModel = (
   options: types.Options = defaultOptions,
 ): types.CreateFeedModel => {
-  const settings = { ...defaultOptions, ...options };
+  const opts = {
+    ...defaultOptions,
+    ...options,
+  };
 
   // events
   const currentPageWasSet = createEvent<number>();
@@ -35,19 +41,22 @@ export const createFeedModel = (
   );
 
   // stores
-  const $feed = createStore<types.Feed>({
-    articles: [],
-    articlesCount: 0,
-  });
+  const $pageSize = createStore<number>(opts.pageSize);
+  const $currentTag = router.model.$search.map(
+    (x) => new URLSearchParams(x).get('tag') ?? '',
+  );
 
   const $currentPage = router.model.$search.map((x) => {
-    const page = new URLSearchParams(x).get('page') ?? settings.currentPage;
+    const page = new URLSearchParams(x).get('page') ?? opts.currentPage;
 
     return Number(page);
   });
 
   // reducer
-  $feed.on(
+  const $feed = createStore<types.Feed>({
+    articles: [],
+    articlesCount: 0,
+  }).on(
     [setFavoriteArticleFx.done, setUnfavoriteArticleFx.done],
     (state, { params, result }) => ({
       ...state,
@@ -61,6 +70,16 @@ export const createFeedModel = (
             },
       ),
     }),
+  );
+
+  const $articles = $feed.map((x) => x.articles);
+  const $totalPages = $feed.map((x) => x.articlesCount);
+  const $status = opts.status;
+
+  const $isEmptyFeed = combine(
+    $status,
+    $articles,
+    (is, articles) => is === 'done' && articles.length === 0,
   );
 
   sample({
@@ -93,13 +112,22 @@ export const createFeedModel = (
     favoriteToggled,
     setFavoriteArticleFx,
     setUnfavoriteArticleFx,
-    $pageSize: createStore<number>(settings.pageSize),
-    $currentPage,
-    $currentTag: router.model.$search.map(
-      (x) => new URLSearchParams(x).get('tag') ?? '',
-    ),
     $feed,
-    $articles: $feed.map((x) => x.articles),
-    $totalPages: $feed.map((x) => x.articlesCount),
+    $articles,
+    $pageSize,
+    $currentPage,
+    $currentTag,
+    $totalPages,
+    $isEmptyFeed,
+    useModel: () =>
+      useStore(
+        combine({
+          pageSize: $pageSize,
+          currentPage: $currentPage,
+          currentTag: $currentTag,
+          totalPages: $totalPages,
+          isEmptyFeed: $isEmptyFeed,
+        }),
+      ),
   };
 };

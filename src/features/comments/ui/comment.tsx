@@ -1,7 +1,6 @@
 import React from 'react';
 import { types } from '../model';
 import { CommentFooter } from './comment-footer';
-
 import '../model/init';
 
 type Props = Readonly<{

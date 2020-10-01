@@ -7,7 +7,6 @@ import Markdown from 'markdown-to-jsx';
 import { Container, Row, Page, TagList, Tag, Banner } from 'ui';
 import { model } from '../model';
 import { EditMode } from './edit-mode';
-
 import '../model/init';
 
 export const ArticlePage: React.FC = () => {
