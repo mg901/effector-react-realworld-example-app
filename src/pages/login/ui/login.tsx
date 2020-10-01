@@ -4,7 +4,6 @@ import { Paths } from 'library/router';
 import { Page, Row } from 'ui';
 import { Errors } from './errors';
 import { Form } from './form';
-
 import '../model/init';
 
 export const LoginPage: React.FC = () => (

@@ -1,12 +1,9 @@
-import { createEvent, createEffect, combine } from 'effector';
+import { createEffect } from 'effector';
 import { status } from 'patronum/status';
 import * as api from 'api';
 import * as feed from 'features/feed';
-import { Article } from 'features/types';
 import { limit } from 'library/limit';
 import * as types from './types';
-
-export const toggleFavorite = createEvent<Article>();
 
 export const fetchFeedFx = createEffect(
   ({ pageSize, page }: types.fetchFeedFxArgs) =>
@@ -17,18 +14,11 @@ export const {
   PageGate,
   currentPageWasSet,
   favoriteToggled,
-  setFavoriteArticleFx,
-  setUnfavoriteArticleFx,
   $currentPage,
   $feed,
   $articles,
-  $totalPages,
   $pageSize,
-} = feed.createFeedModel();
-
-export const $status = status({ effect: fetchFeedFx });
-export const $isEmptyArticles = combine(
-  $status,
-  $articles,
-  (is, articles) => is === 'done' && articles.length === 0,
-);
+  useModel,
+} = feed.createFeedModel({
+  status: status({ effect: fetchFeedFx }),
+});

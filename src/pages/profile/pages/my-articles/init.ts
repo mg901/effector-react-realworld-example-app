@@ -1,19 +1,18 @@
 import { forward, attach } from 'effector';
-import * as profile from '../../../model';
+import * as profile from '../../model';
 import {
   PageGate,
   $feed,
   $currentPage,
   $pageSize,
-  fetchFeedFx,
   currentPageWasSet,
-  setUnfavoriteArticleFx,
+  fetchFeedFx,
 } from './model';
 
 $feed.on(fetchFeedFx.doneData, (_, payload) => payload);
 
 forward({
-  from: [PageGate.open, currentPageWasSet, setUnfavoriteArticleFx.done],
+  from: [PageGate.open, currentPageWasSet],
   to: attach({
     source: {
       pageSize: $pageSize,

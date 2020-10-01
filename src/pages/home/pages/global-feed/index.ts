@@ -1,1 +1,1 @@
-export { GlobalFeedPage } from './ui/global-feed';
+export { GlobalFeedPage } from './global-feed';

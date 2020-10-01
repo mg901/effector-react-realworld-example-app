@@ -6,7 +6,6 @@ import { model } from '../model';
 import { Form } from './form';
 import { SubmitButton } from './submit-button';
 import { TagList } from './tag-list';
-
 import '../model/init';
 
 export const EditorPage: React.FC = () => {

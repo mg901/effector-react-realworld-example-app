@@ -1,20 +1,18 @@
 import React from 'react';
 import { useGate, useList, useStore } from 'effector-react';
 import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'features/feed';
-import { Spinner } from 'ui';
-import { model } from '../model';
-import { Pagination } from './pagination';
+import { Pagination, Spinner } from 'ui';
+import * as model from './model';
+import './init';
 
-import '../model/init';
-
-export const YourFeedPage: React.FC = () => {
+export const MyArticles: React.FC = () => {
   useGate(model.PageGate);
   const loading = useStore(model.fetchFeedFx.pending);
-  const isEmpty = useStore(model.$isEmptyArticles);
+  const { totalPages, currentPage, pageSize, isEmptyFeed } = model.useModel();
 
   return (
     <>
-      <EmptyArticles show={isEmpty} />
+      <EmptyArticles show={isEmptyFeed} />
       <ArticlesWrapper>
         {useList(model.$articles, (article) => (
           <li>
@@ -25,7 +23,12 @@ export const YourFeedPage: React.FC = () => {
           </li>
         ))}
       </ArticlesWrapper>
-      <Pagination />
+      <Pagination
+        current={currentPage}
+        pageSize={pageSize}
+        total={totalPages}
+        onItemClick={model.currentPageWasSet}
+      />
       <Spinner loading={loading} />
     </>
   );
