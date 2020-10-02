@@ -32,7 +32,7 @@ export const deleteCommentFx = createEffect(
 export const $commentText = createStore<string>('');
 export const $comments = createStore<readonly types.Comment[]>([]);
 export const $errors = createStore<Errors>({
-  errors: [],
+  errors: '',
 });
 
 export const $slug = router.model.$pathname.map((x) =>

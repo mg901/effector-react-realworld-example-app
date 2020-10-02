@@ -1,3 +1,4 @@
+/* eslint-disable no-throw-literal */
 export const TOKEN_NAME = 'jwt';
 const API_ROOT = 'https://conduit.productionready.io/api';
 
@@ -22,7 +23,14 @@ const request: Request = async (method, url, data) => {
     return response.json();
   }
 
-  throw await response.json();
+  if (response.status === 401) {
+    throw { status: response.status };
+  }
+
+  if (response.status === 422 && response.json) {
+    throw await response.json();
+  }
+  throw response.status;
 };
 
 export const get = <T>(url: string): Promise<T> => request<T>('get', url);

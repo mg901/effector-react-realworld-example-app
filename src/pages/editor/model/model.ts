@@ -48,5 +48,5 @@ export const $form = createStore<types.Form>({
 
 export const $tags = $form.map((x) => x.tagList);
 export const $errors = createStore<Errors>({
-  errors: [],
+  errors: '',
 });
