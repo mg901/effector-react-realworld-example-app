@@ -1,7 +1,7 @@
 declare global {
   interface Error {
     status?: number;
-    errors: readonly string[];
+    errors: any;
   }
 
   type Errors = Pick<Error, 'errors'>;

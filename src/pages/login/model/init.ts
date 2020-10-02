@@ -1,6 +1,13 @@
 import { sample } from 'effector';
 import * as user from 'features/user';
-import { $form, $errors, formSubmitted, fieldChanged, signInFx } from './model';
+import {
+  $form,
+  $errors,
+  PageGate,
+  formSubmitted,
+  fieldChanged,
+  signInFx,
+} from './model';
 
 $form.on(fieldChanged, (state, payload) => ({ ...state, ...payload }));
 
@@ -12,4 +19,6 @@ sample({
 
 user.model.$user.on(signInFx.doneData, (_, payload) => payload);
 
-$errors.on(signInFx.failData, (_, payload) => payload).reset(fieldChanged);
+$errors
+  .on(signInFx.failData, (_, payload) => payload)
+  .reset(fieldChanged, PageGate.close);

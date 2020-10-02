@@ -1,4 +1,5 @@
 import { createStore, createEffect } from 'effector';
+import { createGate } from 'effector-react';
 import * as api from 'api';
 import * as user from 'features/user';
 import { createFormEvents } from 'library/form';
@@ -18,10 +19,11 @@ export const signInFx = createEffect(({ email, password }: types.Form) =>
     .then((x) => x.user),
 );
 
+export const PageGate = createGate();
 export const $form = createStore<types.Form>({
   email: '',
   password: '',
 });
 export const $errors = createStore<Errors>({
-  errors: [],
+  errors: '',
 });

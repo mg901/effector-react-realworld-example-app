@@ -53,4 +53,4 @@ createArticleFx.doneData.watch(({ slug }) => {
 
 $errors
   .on(createArticleFx.failData, (_, payload) => payload)
-  .reset(fieldChanged);
+  .reset(fieldChanged, PageGate.close);

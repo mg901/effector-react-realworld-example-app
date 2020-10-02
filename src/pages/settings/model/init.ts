@@ -2,6 +2,7 @@ import { sample } from 'effector';
 import { model } from 'features/user';
 import * as router from 'library/router';
 import {
+  PageGate,
   $user,
   $errors,
   formSubmitted,
@@ -30,4 +31,4 @@ model.loggedOutClicked.watch(() => {
 
 $errors
   .on(changeUserDataFx.failData, (_, payload) => payload)
-  .reset(fieldChanged);
+  .reset(fieldChanged, PageGate.close);
