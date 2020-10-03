@@ -98,7 +98,6 @@
     "history": "4.10.1",
     "markdown-to-jsx": "^7.0.0",
     "patronum": "^0.108.0",
-    "preact": "^10.5.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-config": "^5.1.1",
