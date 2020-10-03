@@ -1,23 +1,18 @@
 import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
-import * as api from 'api';
+import { request } from 'api';
 import * as user from 'features/user';
 import { removeNotASCII } from 'library/ascii';
-import * as router from 'library/router';
 import * as types from './types';
 
 export const PageGate = createGate();
 
-export const $$currentTag = router.model.$location.map((x) =>
-  new URLSearchParams(x.search).get('name'),
-);
-
 export const fetchUserFx = createEffect(() =>
-  api.get<{ user: user.types.User }>('/user').then((x) => x.user),
+  request.get<{ user: user.types.User }>('user').then((x) => x.data.user),
 );
 
 export const getTagsFx = createEffect(() =>
-  api.get<types.getTagsFxDone>('/tags').then((x) => x.tags),
+  request.get<types.getTagsFxDone>('tags').then((x) => x.data.tags),
 );
 
 export const initAuthAppFx = createEffect(() =>

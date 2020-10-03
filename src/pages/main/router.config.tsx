@@ -51,8 +51,6 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
     },
     {
       path: Paths.REGISTRATION,
-      exact: true,
-      forAuth: false,
       component: lazy(() =>
         import('../registration').then((x) => ({
           default: x.RegistrationPage,
@@ -71,6 +69,7 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
     },
     {
       path: Paths.SETTINGS,
+      forAuth: true,
       component: lazy(() =>
         import('../settings').then((x) => ({ default: x.SettingsPage })),
       ),

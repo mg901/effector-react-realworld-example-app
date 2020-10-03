@@ -1,18 +1,20 @@
 import { createEffect } from 'effector';
 import { status } from 'patronum/status';
-import * as api from 'api';
+import { request } from 'api';
 import * as feed from 'features/feed';
 import { limit } from 'library/limit';
 import { types } from '../../model';
 
 export const fetchFeedFx = createEffect(
   ({ username, page, pageSize }: types.GetFeedFxArgs) =>
-    api.get<feed.types.Feed>(
-      `/articles?favorited=${encodeURIComponent(username)}&${limit(
-        pageSize,
-        page,
-      )}`,
-    ),
+    request
+      .get<feed.types.Feed>(
+        `articles?favorited=${encodeURIComponent(username)}&${limit(
+          pageSize,
+          page,
+        )}`,
+      )
+      .then((x) => x.data),
 );
 
 export const {

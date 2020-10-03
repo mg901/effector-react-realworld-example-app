@@ -1,27 +1,27 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
-import * as api from 'api';
+import { AxiosError } from 'axios';
+import { request } from 'api';
 import * as authUser from 'features/user';
 import * as types from './types';
 
 export const toggleFollowing = createEvent<React.MouseEvent>();
 
 export const fetchProfileFx = createEffect((username: string) =>
-  api
-    .get<types.GetProfileFxDone>(`/profiles/${username}`)
-    .then<types.Profile>((x) => x.profile),
+  request
+    .get<types.GetProfileFxDone>(`profiles/${username}`)
+    .then((x) => x.data.profile),
 );
 
-export const subscribeFx = createEffect((username: string) =>
-  api
-    .post<types.GetProfileFxDone>(`/profiles/${username}/follow`)
-    .then<types.Profile>((x) => x.profile),
-);
+export const subscribeFx = createEffect<string, types.Profile, AxiosError>({
+  handler: (username: string) =>
+    request.post(`profiles/${username}/follow`).then((x) => x.data.profile),
+});
 
 export const unsubscribeFx = createEffect((username: string) =>
-  api
-    .del<types.GetProfileFxDone>(`/profiles/${username}/follow`)
-    .then<types.Profile>((x) => x.profile),
+  request
+    .delete<types.GetProfileFxDone>(`profiles/${username}/follow`)
+    .then((x) => x.data.profile),
 );
 
 export const PageGate = createGate<types.PageGateType>();

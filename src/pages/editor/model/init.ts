@@ -52,5 +52,5 @@ createArticleFx.doneData.watch(({ slug }) => {
 });
 
 $errors
-  .on(createArticleFx.failData, (_, payload) => payload)
+  .on(createArticleFx.failData, (_, error) => error.response?.data)
   .reset(fieldChanged, PageGate.close);

@@ -1,6 +1,7 @@
 import { createStore, createEffect } from 'effector';
 import { createGate } from 'effector-react';
-import * as api from 'api';
+import { AxiosError } from 'axios';
+import { request } from 'api';
 import * as user from 'features/user';
 import { createFormEvents } from 'library/form';
 import * as types from './types';
@@ -11,14 +12,14 @@ export const {
   formSubmitted,
 } = createFormEvents();
 
-export const signUpFx = createEffect(
-  ({ username, email, password }: types.Form) =>
-    api
-      .post<{ user: user.types.User }>('/users', {
+export const signUpFx = createEffect<types.Form, user.types.User, AxiosError>({
+  handler: ({ username, email, password }) =>
+    request
+      .post<{ user: user.types.User }>('users', {
         user: { email, password, username },
       })
-      .then((x) => x.user),
-);
+      .then((x) => x.data.user),
+});
 
 export const PageGate = createGate();
 export const $form = createStore<types.Form>({
@@ -27,6 +28,6 @@ export const $form = createStore<types.Form>({
   password: '',
 });
 
-export const $errors = createStore<Errors>({
-  errors: '',
+export const $errors = createStore<types.Errors>({
+  errors: {},
 });

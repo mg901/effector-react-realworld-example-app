@@ -1,8 +1,10 @@
 import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
-import * as api from 'api';
-import * as authUser from 'features/user';
+import { AxiosResponse, AxiosError } from 'axios';
+import { request } from 'api';
+import * as user from 'features/user';
 import { createFormEvents } from 'library/form';
+import * as types from './types';
 
 export const {
   fieldChanged,
@@ -10,12 +12,16 @@ export const {
   formSubmitted,
 } = createFormEvents();
 
-export const changeUserDataFx = createEffect<authUser.types.User, void, Error>({
-  handler: (user) => api.put('/user', { user }),
+export const changeUserDataFx = createEffect<
+  user.types.User,
+  AxiosResponse<void>,
+  AxiosError
+>({
+  handler: (x: user.types.User) => request.put<void>('user', { user: x }),
 });
 
 export const PageGate = createGate();
-export const $user = authUser.model.$user.map((x) => x);
-export const $errors = createStore<Errors>({
-  errors: '',
+export const $user = user.model.$user.map((x) => x);
+export const $errors = createStore<types.Errors>({
+  errors: {},
 });

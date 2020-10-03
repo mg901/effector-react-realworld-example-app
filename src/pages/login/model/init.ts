@@ -9,7 +9,9 @@ import {
   signInFx,
 } from './model';
 
-$form.on(fieldChanged, (state, payload) => ({ ...state, ...payload }));
+$form
+  .on(fieldChanged, (state, payload) => ({ ...state, ...payload }))
+  .reset(PageGate.close);
 
 sample({
   source: $form,
@@ -19,6 +21,8 @@ sample({
 
 user.model.$user.on(signInFx.doneData, (_, payload) => payload);
 
+signInFx.failData.watch((x) => x.config.data);
+
 $errors
-  .on(signInFx.failData, (_, payload) => payload)
+  .on(signInFx.failData, (_, error) => error.response?.data)
   .reset(fieldChanged, PageGate.close);
