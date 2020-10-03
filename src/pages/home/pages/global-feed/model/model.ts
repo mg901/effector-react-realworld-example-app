@@ -1,5 +1,5 @@
 import { createEffect } from 'effector';
-import * as api from 'api';
+import { request } from 'api';
 import * as feed from 'features/feed';
 import { limit } from 'library/limit';
 import * as types from './types';
@@ -18,5 +18,7 @@ export const {
 
 export const fetchFeedFx = createEffect(
   ({ pageSize, page }: types.fetchFeedFxArgs) =>
-    api.get<feed.types.Feed>(`/articles?${limit(pageSize, page)}`),
+    request
+      .get<feed.types.Feed>(`articles?${limit(pageSize, page)}`)
+      .then((x) => x.data),
 );

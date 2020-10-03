@@ -17,11 +17,11 @@ export type AddCommentFxArgs = Readonly<{
   body: string;
 }>;
 
-export type AddCommentDone = Readonly<{
-  comment: Comment;
-}>;
-
 export type DeleteCommentFxArgs = Readonly<{
   slug: string;
   id: string;
+}>;
+
+export type Errors = Readonly<{
+  errors: Readonly<Record<string, string>>;
 }>;

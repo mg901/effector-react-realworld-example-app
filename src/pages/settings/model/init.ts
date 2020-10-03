@@ -30,5 +30,5 @@ model.loggedOutClicked.watch(() => {
 });
 
 $errors
-  .on(changeUserDataFx.failData, (_, payload) => payload)
+  .on(changeUserDataFx.failData, (_, error) => error.response?.data)
   .reset(fieldChanged, PageGate.close);

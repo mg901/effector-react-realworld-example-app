@@ -36,4 +36,6 @@ $comments
     state.filter(({ id }) => id !== params.id),
   );
 
-$errors.on(fetchCommentFx.failData, (_, payload) => payload).reset(textChanged);
+$errors
+  .on(fetchCommentFx.failData, (_, error) => error.response?.data)
+  .reset(textChanged);

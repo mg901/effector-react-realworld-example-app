@@ -44,8 +44,8 @@ guard({
   }),
 });
 
-subscribeFx.failData.watch(({ status }) => {
-  if (status === 401) {
+subscribeFx.failData.watch((error) => {
+  if (error.response?.status === 401) {
     router.model.history.push(router.Paths.LOGIN);
   }
 });

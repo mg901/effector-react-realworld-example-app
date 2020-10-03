@@ -1,5 +1,6 @@
 import { Event, Effect, Store, StoreValue } from 'effector';
 import { Gate } from 'effector-react';
+import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
 import * as types from '../../types';
 
@@ -24,7 +25,7 @@ export type Model = Readonly<{
   PageGate: Gate<unknown>;
   currentPageWasSet: Event<number>;
   favoriteToggled: Event<types.Article>;
-  setFavoriteArticleFx: Effect<string, FavoriteArticle, Error>;
+  setFavoriteArticleFx: Effect<string, FavoriteArticle, AxiosError>;
   setUnfavoriteArticleFx: Effect<string, UnfavoriteArticle, Error>;
   $feed: Store<Feed>;
   $articles: Store<Feed['articles']>;

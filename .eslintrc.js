@@ -29,7 +29,6 @@ module.exports = {
       node: {
         paths: ['./src'],
       },
-      'babel-module': {},
     },
   },
   rules: {
@@ -38,7 +37,6 @@ module.exports = {
     'import/no-named-as-default': 2,
     'arrow-body-style': 2,
     'newline-before-return': 2,
-
     'import/extensions': [
       2,
       'ignorePackages',
@@ -79,6 +77,7 @@ module.exports = {
         groups: [
           '/^react/',
           '/^effector/',
+          '/^axios/',
           '/^patronum/',
           'module',
           '/^@core/',

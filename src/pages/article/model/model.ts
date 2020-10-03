@@ -1,6 +1,6 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
-import * as api from 'api';
+import { request } from 'api';
 import * as comments from 'features/comments';
 import { Article } from 'features/types';
 import * as authUser from 'features/user';
@@ -8,9 +8,9 @@ import * as router from 'library/router';
 
 export const articleDeleted = createEvent<React.MouseEvent>();
 export const fetchArticleFx = createEffect((slug: string) =>
-  api
-    .get<{ article: Article }>(`/articles/${slug}`)
-    .then((x) => x.article)
+  request
+    .get<{ article: Article }>(`articles/${slug}`)
+    .then((x) => x.data.article)
     .then(({ createdAt, ...article }) => ({
       ...article,
       createdAt: new Date(createdAt).toDateString(),
@@ -18,7 +18,7 @@ export const fetchArticleFx = createEffect((slug: string) =>
 );
 
 export const deleteArticleFx = createEffect((slug: string) =>
-  api.del(`/articles/${slug}`),
+  request.delete<void>(`articles/${slug}`),
 );
 
 export const fetchPageDataFx = createEffect((slug: string) =>
@@ -27,7 +27,7 @@ export const fetchPageDataFx = createEffect((slug: string) =>
 
 export const PageGate = createGate();
 export const $slug = router.model.$pathname.map((x) =>
-  x.replace(/^\/article\//, ''),
+  x.replace(/^\/article(\/)?/, ''),
 );
 
 export const $article = createStore<Article>({

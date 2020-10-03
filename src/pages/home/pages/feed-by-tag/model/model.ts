@@ -1,6 +1,6 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
 import { status } from 'patronum/status';
-import * as api from 'api';
+import { request } from 'api';
 import * as feed from 'features/feed';
 import { limit } from 'library/limit';
 import * as types from './types';
@@ -19,9 +19,11 @@ export const currentPageWasSet = createEvent<number>();
 
 export const fetchFeedFx = createEffect(
   ({ tag, page }: types.GetFeedByTagArgs) =>
-    api.get<feed.types.Feed>(
-      `/articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`,
-    ),
+    request
+      .get<feed.types.Feed>(
+        `articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`,
+      )
+      .then((x) => x.data),
 );
 
 export const $status = status({ effect: fetchFeedFx });
