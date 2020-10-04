@@ -11,7 +11,7 @@ export const AddTag: React.FC = () => {
     <Form onSubmit={(e) => e.preventDefault()}>
       <Input
         autoComplete="off"
-        name="tagList"
+        name="tag-list"
         placeholder="Enter tags"
         value={fields.currentTag.value}
         onChange={(e) => fields.currentTag.onChange(e.target.value)}

@@ -13,6 +13,7 @@ export const form = createForm({
   fields: {
     currentTag: {
       init: '' as string,
+      filter: (x: string) => Boolean(x.length) && isASCII(x),
     },
   },
 });
