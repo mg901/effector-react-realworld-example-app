@@ -15,7 +15,7 @@ formSubmitted.watch((e) => e.preventDefault());
 // set data form user store
 sample({
   source: $user,
-  clock: $user.updates,
+  clock: FormGate.open,
   target: form.set,
 });
 
