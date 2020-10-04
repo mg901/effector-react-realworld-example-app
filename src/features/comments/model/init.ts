@@ -1,25 +1,31 @@
 import { forward, attach, sample } from 'effector';
 import {
-  $commentText,
+  form,
   $comments,
   $errors,
   $slug,
-  formSubmitted,
-  textChanged,
   commentDeleted,
   fetchCommentsFx,
   fetchCommentFx,
   deleteCommentFx,
 } from './model';
 
-$commentText.on(textChanged, (_, payload) => payload).reset(fetchCommentFx);
-
+// submit form
 forward({
-  from: formSubmitted,
+  from: form.submit,
   to: attach({
-    source: { slug: $slug, body: $commentText },
+    source: {
+      slug: $slug,
+      body: form.fields.comment.$value,
+    },
     effect: fetchCommentFx,
   }),
+});
+
+// reset form
+forward({
+  from: fetchCommentFx,
+  to: form.reset,
 });
 
 sample({
@@ -38,4 +44,4 @@ $comments
 
 $errors
   .on(fetchCommentFx.failData, (_, error) => error.response?.data)
-  .reset(textChanged);
+  .reset(form.$touched);

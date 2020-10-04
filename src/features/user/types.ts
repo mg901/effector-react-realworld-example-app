@@ -1,9 +1,3 @@
-export type Form = Readonly<{
-  email: string;
-  password: string;
-  username?: string;
-}>;
-
 export type FormField = Readonly<Record<string, string>>;
 
 export type User = Readonly<{

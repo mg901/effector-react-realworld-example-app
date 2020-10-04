@@ -1,10 +1,16 @@
 import React from 'react';
+import { useForm } from 'effector-forms';
 import { useStore } from 'effector-react';
 import { Button } from 'ui';
 import { model } from '../model';
 
 export const SubmitButton: React.FC = () => {
+  const { submit } = useForm(model.form);
   const disabled = useStore(model.createArticleFx.pending);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    submit();
+  };
 
   return (
     <Button
@@ -12,7 +18,7 @@ export const SubmitButton: React.FC = () => {
       disabled={disabled}
       form="editor"
       type="submit"
-      onClick={model.formSubmitted}>
+      onClick={handleSubmit}>
       Publish article
     </Button>
   );

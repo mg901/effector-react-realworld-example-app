@@ -1,15 +1,28 @@
 import React from 'react';
-
-import { Form as UIForm } from 'ui';
+import { useForm } from 'effector-forms';
+import { Form as UIForm, Textarea } from 'ui';
 import { model } from '../model';
-import { AddComment } from './add-comment';
 import { FormFooter } from './form-footer';
 
-export const Form: React.FC = () => (
-  <UIForm className="card comment-form" onSubmit={model.formSubmitted}>
-    <div className="card-block">
-      <AddComment />
-    </div>
-    <FormFooter />
-  </UIForm>
-);
+export const Form: React.FC = () => {
+  const { submit, fields } = useForm(model.form);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    submit();
+  };
+
+  return (
+    <UIForm className="card comment-form" onSubmit={handleSubmit}>
+      <div className="card-block">
+        <Textarea
+          placeholder="Write a comment..."
+          rows={3}
+          value={fields.comment.value}
+          onChange={(e) => fields.comment.onChange(e.target.value)}
+        />
+      </div>
+      <FormFooter />
+    </UIForm>
+  );
+};

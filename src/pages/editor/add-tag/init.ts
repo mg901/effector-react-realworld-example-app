@@ -1,10 +1,13 @@
-import { sample, guard } from 'effector';
-import { $currentTag, keyPressed, tagAdded, textChanged } from './model';
-
-$currentTag.on(textChanged, (_, payload) => payload).reset(tagAdded);
+import { sample, guard, forward } from 'effector';
+import { form, keyPressed, tagAdded } from './model';
 
 sample({
-  source: $currentTag,
+  source: form.fields.currentTag.$value,
   clock: guard(keyPressed, { filter: (e) => e.key === 'Enter' }),
   target: tagAdded,
+});
+
+forward({
+  from: tagAdded,
+  to: form.reset,
 });

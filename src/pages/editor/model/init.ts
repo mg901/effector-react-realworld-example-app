@@ -1,17 +1,15 @@
-import { sample, guard, attach } from 'effector';
+import { sample, guard, attach, forward } from 'effector';
 import * as router from 'library/router';
 import { uniq } from 'library/uniq';
-import { model } from '../add-tag';
+import * as addTag from '../add-tag';
 import {
+  form,
   PageGate,
-  $form,
   $errors,
   $slug,
   $hasSlug,
   $isEmptySlug,
-  fieldChanged,
   tagDeleted,
-  formSubmitted,
   createArticleFx,
   fetchArticleFx,
 } from './model';
@@ -25,25 +23,44 @@ guard({
   }),
 });
 
-$form
-  .on(fetchArticleFx.doneData, (_, payload) => payload)
-  .on(fieldChanged, (state, payload) => ({
-    ...state,
-    ...payload,
-  }))
-  .on(model.validTagAdded, (state, payload) => ({
-    ...state,
-    tagList: uniq<string>([...state.tagList, payload]),
-  }))
-  .on(tagDeleted, (state, payload) => ({
-    ...state,
-    tagList: state.tagList.filter((tag) => tag !== payload),
-  }))
-  .reset(createArticleFx.done, $isEmptySlug);
+// set form data
+forward({
+  from: fetchArticleFx.doneData,
+  to: form.set,
+});
 
+// add tag
 sample({
-  source: $form,
-  clock: formSubmitted,
+  source: form.$values,
+  clock: addTag.model.validTagAdded,
+  fn: ({ tagList, ...state }, tag) => ({
+    ...state,
+    tagList: uniq<string>([...tagList, tag]),
+  }),
+  target: form.set,
+});
+
+// delete tag
+sample({
+  source: form.$values,
+  clock: tagDeleted,
+  fn: ({ tagList, ...state }, tag) => ({
+    ...state,
+    tagList: tagList.filter((item) => item !== tag),
+  }),
+  target: form.set,
+});
+
+// reset form
+forward({
+  from: [createArticleFx.done, $isEmptySlug],
+  to: form.reset,
+});
+
+// submit form
+sample({
+  source: form.$values,
+  clock: form.submit,
   target: createArticleFx,
 });
 
@@ -53,4 +70,4 @@ createArticleFx.doneData.watch(({ slug }) => {
 
 $errors
   .on(createArticleFx.failData, (_, error) => error.response?.data)
-  .reset(fieldChanged, PageGate.close);
+  .reset(form.$values, PageGate.close);

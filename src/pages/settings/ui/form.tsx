@@ -1,43 +1,25 @@
 import React from 'react';
-import { InputField, TextField } from 'library/form';
+import { useGate } from 'effector-react';
 import { Form as UIForm } from 'ui';
 import { model } from '../model';
+import { BioField } from './bio-field';
+import { EmailField } from './email-field';
+import { ImageField } from './image-field';
+import { PasswordField } from './password-field';
 import { SubmitButton } from './submit-button';
+import { UsernameField } from './username-field';
 
-export const Form: React.FC = () => (
-  <UIForm onSubmit={model.formSubmitted}>
-    <InputField
-      name="image"
-      store={model.$user}
-      onChange={model.handleFieldChanged}
-    />
+export const Form: React.FC = () => {
+  useGate(model.FormGate);
 
-    <InputField
-      className="form-control-lg"
-      name="username"
-      store={model.$user}
-      onChange={model.handleFieldChanged}
-    />
-    <TextField
-      className="form-control-lg"
-      name="bio"
-      store={model.$user}
-      onChange={model.handleFieldChanged}
-    />
-
-    <InputField
-      className="form-control-lg"
-      name="email"
-      store={model.$user}
-      onChange={model.handleFieldChanged}
-    />
-    <InputField
-      className="form-control-lg"
-      name="password"
-      store={model.$user}
-      onChange={model.handleFieldChanged}
-    />
-
-    <SubmitButton />
-  </UIForm>
-);
+  return (
+    <UIForm onSubmit={model.formSubmitted}>
+      <ImageField />
+      <UsernameField />
+      <BioField />
+      <EmailField />
+      <PasswordField />
+      <SubmitButton />
+    </UIForm>
+  );
+};

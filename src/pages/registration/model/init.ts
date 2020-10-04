@@ -1,26 +1,24 @@
-import { sample } from 'effector';
+import { sample, forward } from 'effector';
 import { model } from 'features/user';
-import {
-  $form,
-  $errors,
-  PageGate,
-  formSubmitted,
-  fieldChanged,
-  signUpFx,
-} from './model';
+import { form, formSubmitted, $errors, PageGate, signUpFx } from './model';
 
-$form
-  .on(fieldChanged, (state, payload) => ({ ...state, ...payload }))
-  .reset(PageGate.close);
+formSubmitted.watch((e) => e.preventDefault());
 
+// submit form
 sample({
-  source: $form,
+  source: form.$values,
   clock: formSubmitted,
   target: signUpFx,
+});
+
+// reset form
+forward({
+  from: PageGate.close,
+  to: form.reset,
 });
 
 model.$user.on(signUpFx.doneData, (_, payload) => payload);
 
 $errors
   .on(signUpFx.failData, (_, error) => error.response?.data)
-  .reset(fieldChanged, PageGate.close);
+  .reset(form.$values, PageGate.close);
