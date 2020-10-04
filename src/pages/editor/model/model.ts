@@ -8,6 +8,7 @@ import { Article } from 'features/types';
 import * as router from 'library/router';
 import * as types from './types';
 
+export const formSubmitted = createEvent<React.FormEvent>();
 export const tagDeleted = createEvent<string>();
 export const createArticleFx = createEffect<types.Form, Article, AxiosError>({
   handler: (form) =>
@@ -28,7 +29,7 @@ export const fetchArticleFx = createEffect((slug: string) =>
     })),
 );
 
-export const PageGate = createGate();
+export const FormGate = createGate();
 
 export const $slug = router.model.$pathname.map((x) =>
   x?.replace(/\/editor(\/)?/, ''),

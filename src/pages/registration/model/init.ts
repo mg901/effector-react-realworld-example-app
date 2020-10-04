@@ -1,6 +1,6 @@
 import { sample, forward } from 'effector';
 import { model } from 'features/user';
-import { form, formSubmitted, $errors, PageGate, signUpFx } from './model';
+import { FormGate, form, formSubmitted, $errors, signUpFx } from './model';
 
 formSubmitted.watch((e) => e.preventDefault());
 
@@ -13,7 +13,7 @@ sample({
 
 // reset form
 forward({
-  from: PageGate.close,
+  from: FormGate.close,
   to: form.reset,
 });
 
@@ -21,4 +21,4 @@ model.$user.on(signUpFx.doneData, (_, payload) => payload);
 
 $errors
   .on(signUpFx.failData, (_, error) => error.response?.data)
-  .reset(form.$values, PageGate.close);
+  .reset(form.$values, FormGate.close);

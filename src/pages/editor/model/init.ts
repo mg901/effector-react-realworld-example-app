@@ -4,18 +4,21 @@ import { uniq } from 'library/uniq';
 import * as addTag from '../add-tag';
 import {
   form,
-  PageGate,
+  FormGate,
   $errors,
   $slug,
   $hasSlug,
   $isEmptySlug,
+  formSubmitted,
   tagDeleted,
   createArticleFx,
   fetchArticleFx,
 } from './model';
 
+formSubmitted.watch((e) => e.preventDefault());
+
 guard({
-  source: PageGate.open,
+  source: FormGate.open,
   filter: $hasSlug,
   target: attach({
     source: $slug,
@@ -70,4 +73,4 @@ createArticleFx.doneData.watch(({ slug }) => {
 
 $errors
   .on(createArticleFx.failData, (_, error) => error.response?.data)
-  .reset(form.$values, PageGate.close);
+  .reset(form.$values, FormGate.close);
