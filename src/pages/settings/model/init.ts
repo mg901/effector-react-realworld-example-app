@@ -2,21 +2,26 @@ import { sample } from 'effector';
 import { model } from 'features/user';
 import * as router from 'library/router';
 import {
-  PageGate,
+  FormGate,
+  form,
   $user,
   $errors,
   formSubmitted,
-  fieldChanged,
   changeUserDataFx,
 } from './model';
 
-$user.on(fieldChanged, (state, payload) => ({
-  ...state,
-  ...payload,
-}));
+formSubmitted.watch((e) => e.preventDefault());
 
+// set data form user store
 sample({
   source: $user,
+  clock: $user.updates,
+  target: form.set,
+});
+
+// submit form
+sample({
+  source: form.$values,
   clock: formSubmitted,
   target: changeUserDataFx,
 });
@@ -31,4 +36,4 @@ model.loggedOutClicked.watch(() => {
 
 $errors
   .on(changeUserDataFx.failData, (_, error) => error.response?.data)
-  .reset(fieldChanged, PageGate.close);
+  .reset(form.$values, FormGate.close);

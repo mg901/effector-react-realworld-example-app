@@ -21,4 +21,4 @@ model.$user.on(signUpFx.doneData, (_, payload) => payload);
 
 $errors
   .on(signUpFx.failData, (_, error) => error.response?.data)
-  .reset(form.$touched, PageGate.close);
+  .reset(form.$values, PageGate.close);

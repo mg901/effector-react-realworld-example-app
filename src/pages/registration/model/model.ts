@@ -22,13 +22,13 @@ export const PageGate = createGate();
 export const form = createForm({
   fields: {
     username: {
-      init: '' as string,
+      init: '' as types.Form['username'],
     },
     email: {
-      init: '' as string,
+      init: '' as types.Form['email'],
     },
     password: {
-      init: '' as string,
+      init: '' as types.Form['password'],
     },
   },
 });

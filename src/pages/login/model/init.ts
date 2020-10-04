@@ -21,4 +21,4 @@ user.model.$user.on(signInFx.doneData, (_, payload) => payload);
 
 $errors
   .on(signInFx.failData, (_, error) => error.response?.data)
-  .reset(form.$touched, PageGate.close);
+  .reset(form.$values, PageGate.close);

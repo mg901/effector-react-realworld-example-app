@@ -16,6 +16,7 @@ export const Form: React.FC = () => {
     <UIForm className="card comment-form" onSubmit={handleSubmit}>
       <div className="card-block">
         <Textarea
+          placeholder="Write a comment..."
           rows={3}
           value={fields.comment.value}
           onChange={(e) => fields.comment.onChange(e.target.value)}

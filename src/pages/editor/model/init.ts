@@ -9,7 +9,6 @@ import {
   $slug,
   $hasSlug,
   $isEmptySlug,
-  fieldChanged,
   tagDeleted,
   createArticleFx,
   fetchArticleFx,
@@ -71,4 +70,4 @@ createArticleFx.doneData.watch(({ slug }) => {
 
 $errors
   .on(createArticleFx.failData, (_, error) => error.response?.data)
-  .reset(fieldChanged, PageGate.close);
+  .reset(form.$values, PageGate.close);

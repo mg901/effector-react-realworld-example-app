@@ -1,17 +1,18 @@
 import React from 'react';
 import { useField } from 'effector-forms';
-import { InputField } from 'ui';
+import { TextField } from 'ui';
 import { model } from '../model';
 
-export const EmailField: React.FC = () => {
-  const { name, onChange } = useField(model.form.fields.email);
+export const BioField: React.FC = () => {
+  const { value, name, onChange } = useField(model.form.fields.bio);
 
   return (
-    <InputField
+    <TextField
       className="form-control-lg"
       name={name}
-      placeholder="Email"
-      type="email"
+      placeholder="Short bio about you"
+      rows={8}
+      value={value}
       onChange={(e) => onChange(e.target.value)}
     />
   );

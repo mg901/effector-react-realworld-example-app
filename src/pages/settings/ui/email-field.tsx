@@ -4,7 +4,7 @@ import { InputField } from 'ui';
 import { model } from '../model';
 
 export const EmailField: React.FC = () => {
-  const { name, onChange } = useField(model.form.fields.email);
+  const { value, name, onChange } = useField(model.form.fields.email);
 
   return (
     <InputField
@@ -12,6 +12,7 @@ export const EmailField: React.FC = () => {
       name={name}
       placeholder="Email"
       type="email"
+      value={value}
       onChange={(e) => onChange(e.target.value)}
     />
   );

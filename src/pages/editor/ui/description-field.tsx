@@ -4,7 +4,7 @@ import { InputField } from 'ui';
 import { model } from '../model';
 
 export const DescriptionField: React.FC = () => {
-  const { value, name, onChange } = useField(model.form.fields.title);
+  const { value, name, onChange } = useField(model.form.fields.description);
 
   return (
     <InputField
