@@ -1,0 +1,17 @@
+import React from 'react';
+import { useField } from 'effector-forms';
+import { TextField } from 'ui';
+import { model } from '../model';
+
+export const BodyField: React.FC = () => {
+  const { value, name, onChange } = useField(model.form.fields.title);
+
+  return (
+    <TextField
+      name={name}
+      placeholder="Write your article (in markdown)"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    />
+  );
+};

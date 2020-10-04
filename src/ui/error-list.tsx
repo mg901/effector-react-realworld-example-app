@@ -1,7 +1,9 @@
 import React from 'react';
 
-type Props = Readonly<{
-  errors: Record<string, string>;
+export type Props = Readonly<{
+  errors: Readonly<{
+    errors: Readonly<Record<string, string>>;
+  }>;
 }>;
 
 export const ErrorList: React.FC<Props> = ({ errors }) => {

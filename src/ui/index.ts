@@ -6,6 +6,8 @@ export { Container } from './container';
 export { ErrorList } from './error-list';
 export { FormGroup } from './form-group';
 export { Header } from './header';
+export { InputField } from './input-field';
+export { TextField } from './text-field';
 export { Input, InputProps } from './input';
 export { List } from './list';
 export { NavItem } from './nav-item';
