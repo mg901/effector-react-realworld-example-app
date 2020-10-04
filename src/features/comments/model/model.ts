@@ -1,15 +1,10 @@
 import { createEvent, createEffect, createStore } from 'effector';
+import { createForm } from 'effector-forms';
 import { AxiosError } from 'axios';
 import { request } from 'api';
-import { createFormEvents } from 'library/form';
 import * as router from 'library/router';
 import * as types from './types';
 
-export const {
-  textChanged,
-  handleTextChanged,
-  formSubmitted,
-} = createFormEvents();
 export const commentDeleted = createEvent<string>();
 
 export const fetchCommentsFx = createEffect((slug: string) =>
@@ -34,7 +29,6 @@ export const deleteCommentFx = createEffect(
     request.delete<void>(`articles/${slug}/comments/${id}`),
 );
 
-export const $commentText = createStore<string>('');
 export const $comments = createStore<readonly types.Comment[]>([]);
 export const $errors = createStore<types.Errors>({
   errors: {},
@@ -43,3 +37,11 @@ export const $errors = createStore<types.Errors>({
 export const $slug = router.model.$pathname.map((x) =>
   x.replace(/^\/article(\/)?/, ''),
 );
+
+export const form = createForm({
+  fields: {
+    comment: {
+      init: '' as string,
+    },
+  },
+});
