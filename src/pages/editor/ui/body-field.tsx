@@ -10,6 +10,7 @@ export const BodyField: React.FC = () => {
     <TextField
       name={name}
       placeholder="Write your article (in markdown)"
+      rows={8}
       value={value}
       onChange={(e) => onChange(e.target.value)}
     />

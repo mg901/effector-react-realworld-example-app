@@ -1,16 +1,12 @@
-import { createStore, createEffect } from 'effector';
+import { createEvent, createEffect, createStore } from 'effector';
+import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { request } from 'api';
 import * as user from 'features/user';
-import { createFormEvents } from 'library/form';
 import * as types from './types';
 
-export const {
-  fieldChanged,
-  handleFieldChanged,
-  formSubmitted,
-} = createFormEvents();
+export const formSubmitted = createEvent<React.FormEvent>();
 
 export const signInFx = createEffect<types.Form, user.types.User, AxiosError>({
   handler: ({ email, password }) =>
@@ -22,10 +18,18 @@ export const signInFx = createEffect<types.Form, user.types.User, AxiosError>({
 });
 
 export const PageGate = createGate();
-export const $form = createStore<types.Form>({
-  email: '',
-  password: '',
+
+export const form = createForm({
+  fields: {
+    email: {
+      init: '' as string,
+    },
+    password: {
+      init: '' as string,
+    },
+  },
 });
+
 export const $errors = createStore<types.Errors>({
   errors: {},
 });

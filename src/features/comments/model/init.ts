@@ -10,6 +10,7 @@ import {
   deleteCommentFx,
 } from './model';
 
+// submit form
 forward({
   from: form.submit,
   to: attach({
@@ -21,6 +22,7 @@ forward({
   }),
 });
 
+// reset form
 forward({
   from: fetchCommentFx,
   to: form.reset,
@@ -42,4 +44,4 @@ $comments
 
 $errors
   .on(fetchCommentFx.failData, (_, error) => error.response?.data)
-  .reset(form.fields.comment.onChange);
+  .reset(form.$touched);
