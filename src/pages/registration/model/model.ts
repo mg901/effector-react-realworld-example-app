@@ -17,7 +17,7 @@ export const signUpFx = createEffect<types.Form, user.types.User, AxiosError>({
       .then((x) => x.data.user),
 });
 
-export const PageGate = createGate();
+export const FormGate = createGate();
 
 export const form = createForm({
   fields: {
