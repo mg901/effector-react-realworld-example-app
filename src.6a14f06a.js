@@ -177,7 +177,7 @@ var e=require("process"),t=require("./utils"),r=require("./helpers/normalizeHead
 },{"./utils":"S1cf","./helpers/bind":"EDTP","./core/Axios":"OvAf","./core/mergeConfig":"OHvn","./defaults":"BXyq","./cancel/Cancel":"mIKj","./cancel/CancelToken":"tsWd","./cancel/isCancel":"V30M","./helpers/spread":"X8jb"}],"dZBD":[function(require,module,exports) {
 module.exports=require("./lib/axios");
 },{"./lib/axios":"nUiQ"}],"in7L":[function(require,module,exports) {
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.request=void 0;var e=r(require("axios")),t=require("./features/user");function r(e){return e&&e.__esModule?e:{default:e}}var o=e.default.create({baseURL:"https://conduit.productionready.io/api/"});exports.request=o,t.model.$token.updates.watch(function(e){o.defaults.headers.common.Authorization="Token "+(null!=e?e:"")});
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.request=void 0;var e=r(require("axios")),t=require("./features/user");function r(e){return e&&e.__esModule?e:{default:e}}var o=e.default.create({baseURL:"https://conduit.productionready.io/api/"});exports.request=o,t.model.$token.watch(function(e){e&&(o.defaults.headers.common.Authorization="Token "+e)});
 },{"axios":"dZBD","./features/user":"TQk2"}],"Jule":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.isASCII=exports.removeNotASCII=void 0;var e=function(e){return e.replace(/[^x00-\x7F]/g,"")};exports.removeNotASCII=e;var r=function(e){return/^[x00-\x7F]*$/.test(e)};exports.isASCII=r;
 },{}],"IvuM":[function(require,module,exports) {
