@@ -15,14 +15,7 @@
     "noEmit": true,
     "jsx": "react",
     "baseUrl": ".",
-    "types": ["node", "jest"],
-    "paths": {
-      "api": ["./src/api"],
-      "library/*": ["./src/library/*"],
-      "features/*": ["./src/features/*"],
-      "ui": ["./src/ui"],
-      "config": ["./src/config"]
-    }
+    "types": ["node", "jest"]
   },
   "include": ["src/**/*"],
   "exclude": ["./node_modules/*"]

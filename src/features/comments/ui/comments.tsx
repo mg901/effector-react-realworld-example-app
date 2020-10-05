@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AuthBranch } from 'library/router';
+import { AuthBranch } from '../../../library/router';
 import { CommentsList } from './comment-list';
 import { Errors } from './errors';
 import { Form } from './form';

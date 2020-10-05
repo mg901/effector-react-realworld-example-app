@@ -1,5 +1,5 @@
 import { forward, attach, guard } from 'effector';
-import * as router from 'library/router';
+import * as router from '../../../library/router';
 import {
   $profile,
   $username,

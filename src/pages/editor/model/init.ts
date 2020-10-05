@@ -1,6 +1,6 @@
 import { sample, guard, attach, forward } from 'effector';
-import * as router from 'library/router';
-import { uniq } from 'library/uniq';
+import * as router from '../../../library/router';
+import { uniq } from '../../../library/uniq';
 import * as addTag from '../add-tag';
 import {
   form,
