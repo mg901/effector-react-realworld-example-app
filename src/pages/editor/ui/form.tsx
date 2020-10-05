@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGate } from 'effector-react';
-import { Form as UIForm } from 'ui';
+import { Form as UIForm } from '../../../ui';
 import { model } from '../model';
 import { BodyField } from './body-field';
 import { DescriptionField } from './description-field';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TagList, Tag, ButtonProps } from 'ui';
+import { TagList, Tag, ButtonProps } from '../../../ui';
 import * as types from '../../types';
 import { ArticleMeta } from './article-meta';
 import { ButtonFavorite } from './button-favorite';

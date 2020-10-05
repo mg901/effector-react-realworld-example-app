@@ -1,10 +1,10 @@
 import { createEvent, createEffect, createStore, combine } from 'effector';
 import { createGate } from 'effector-react';
-import { request } from 'api';
-import * as comments from 'features/comments';
-import { Article } from 'features/types';
-import * as authUser from 'features/user';
-import * as router from 'library/router';
+import { request } from '../../../api';
+import * as comments from '../../../features/comments';
+import { Article } from '../../../features/types';
+import * as authUser from '../../../features/user';
+import * as router from '../../../library/router';
 
 export const articleDeleted = createEvent<React.MouseEvent>();
 export const fetchArticleFx = createEffect((slug: string) =>

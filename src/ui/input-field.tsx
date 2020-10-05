@@ -1,5 +1,6 @@
 import React from 'react';
-import { FormGroup, Input, InputProps } from 'ui';
+import { FormGroup } from './form-group';
+import { Input, InputProps } from './input';
 
 export const InputField: React.FC<InputProps> = (props) => (
   <FormGroup>

@@ -9,8 +9,8 @@ import {
 import { createGate, useStore } from 'effector-react';
 import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
-import { request } from 'api';
-import * as router from 'library/router';
+import { request } from '../../../api';
+import * as router from '../../../library/router';
 import { Article } from '../../types';
 import * as types from './types';
 

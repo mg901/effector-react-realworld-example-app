@@ -2,10 +2,9 @@ import { createEvent, createEffect, createStore } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
-import { request } from 'api';
-import { Article } from 'features/types';
-
-import * as router from 'library/router';
+import { request } from '../../../api';
+import { Article } from '../../../features/types';
+import * as router from '../../../library/router';
 import * as types from './types';
 
 export const formSubmitted = createEvent<React.FormEvent>();

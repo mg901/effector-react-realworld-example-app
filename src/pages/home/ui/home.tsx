@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Row } from 'ui';
+import { Page, Row } from '../../../ui';
 import { Banner } from './banner';
 import { Routes } from './routes';
 import { Tabs } from './tabs';

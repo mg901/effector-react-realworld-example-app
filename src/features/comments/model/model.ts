@@ -1,8 +1,8 @@
 import { createEvent, createEffect, createStore } from 'effector';
 import { createForm } from 'effector-forms';
 import { AxiosError } from 'axios';
-import { request } from 'api';
-import * as router from 'library/router';
+import { request } from '../../../api';
+import * as router from '../../../library/router';
 import * as types from './types';
 
 export const commentDeleted = createEvent<string>();

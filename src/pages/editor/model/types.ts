@@ -1,4 +1,4 @@
-import * as types from 'features/types';
+import * as types from '../../../features/types';
 
 export type Form = Pick<
   types.Article,

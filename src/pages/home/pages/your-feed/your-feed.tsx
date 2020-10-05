@@ -1,7 +1,11 @@
 import React from 'react';
 import { useGate, useList, useStore } from 'effector-react';
-import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'features/feed';
-import { Pagination, Spinner } from 'ui';
+import {
+  EmptyArticles,
+  ArticlesWrapper,
+  ArticlePreview,
+} from '../../../../features/feed';
+import { Pagination, Spinner } from '../../../../ui';
 import { model } from './model';
 import './model/init';
 

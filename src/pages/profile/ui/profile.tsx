@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
 import { useGate } from 'effector-react';
-import { Container, Row } from 'ui';
+import { Container, Row } from '../../../ui';
 import { model } from '../model';
 import { routes } from '../router.config';
 import { Tabs } from './tabs';

@@ -1,10 +1,10 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { useGate, useStore } from 'effector-react';
-import { Comments } from 'features/comments';
-import { ArticleMeta } from 'features/feed';
 import Markdown from 'markdown-to-jsx';
-import { Container, Row, Page, TagList, Tag, Banner } from 'ui';
+import { Comments } from '../../../features/comments';
+import { ArticleMeta } from '../../../features/feed';
+import { Container, Row, Page, TagList, Tag, Banner } from '../../../ui';
 import { model } from '../model';
 import { EditMode } from './edit-mode';
 import '../model/init';
