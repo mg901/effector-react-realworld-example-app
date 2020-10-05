@@ -1,6 +1,6 @@
 import { createEvent } from 'effector';
 import { createForm } from 'effector-forms';
-import { isASCII } from 'library/ascii';
+import { isASCII } from '../../../library/ascii';
 
 export const tagAdded = createEvent<string>();
 export const keyPressed = createEvent<React.KeyboardEvent>();

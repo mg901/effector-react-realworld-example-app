@@ -1,5 +1,5 @@
 import { forward, attach } from 'effector';
-import * as router from 'library/router';
+import * as router from '../../../library/router';
 import {
   PageGate,
   articleDeleted,

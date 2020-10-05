@@ -1,5 +1,5 @@
 import { forward, attach, sample, guard } from 'effector';
-import * as router from 'library/router';
+import * as router from '../../../../../library/router';
 import {
   PageGate,
   $feed,

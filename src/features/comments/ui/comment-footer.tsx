@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AuthBranch } from 'library/router';
+import { AuthBranch } from '../../../library/router';
 import { model, types } from '../model';
 import { ButtonDelete } from './button-delete';
 

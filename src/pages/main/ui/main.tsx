@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { useGate } from 'effector-react';
-import { AuthBranch } from 'library/router';
 import { APP_NAME } from '../../../config';
+import { AuthBranch } from '../../../library/router';
 import { Header, Spinner } from '../../../ui';
 import { model } from '../model';
 import { LoggedIn } from './logged-in';
