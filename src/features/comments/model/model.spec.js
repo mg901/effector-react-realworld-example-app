@@ -5,8 +5,6 @@ let fetchCommentHandler = null;
 
 describe('features/comments', () => {
   beforeEach(() => {
-    $comments.setState([]);
-
     fetchCommentHandler = fetchCommentFx.use.getCurrent();
   });
 
@@ -28,8 +26,8 @@ describe('features/comments', () => {
       author: 'John Doe',
       body: 'my first comment',
       id: '1',
-      createdAt: '2',
-      updatedAt: '3',
+      createdAt: '1',
+      updatedAt: '1',
     }));
 
     await fetchCommentFx();
@@ -38,8 +36,8 @@ describe('features/comments', () => {
         author: 'John Doe',
         body: 'my first comment',
         id: '1',
-        createdAt: '2',
-        updatedAt: '3',
+        createdAt: '1',
+        updatedAt: '1',
       },
     ]);
   });
