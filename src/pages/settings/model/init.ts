@@ -1,6 +1,6 @@
 import { sample } from 'effector';
-import { model } from 'features/user';
-import * as router from 'library/router';
+import { model } from '../../../features/user';
+import * as router from '../../../library/router';
 import {
   FormGate,
   form,

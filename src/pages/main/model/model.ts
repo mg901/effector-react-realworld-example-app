@@ -1,8 +1,8 @@
 import { createEffect, createStore } from 'effector';
 import { createGate } from 'effector-react';
-import { request } from 'api';
-import * as user from 'features/user';
-import { removeNotASCII } from 'library/ascii';
+import { request } from '../../../api';
+import * as user from '../../../features/user';
+import { removeNotASCII } from '../../../library/ascii';
 import * as types from './types';
 
 export const PageGate = createGate();

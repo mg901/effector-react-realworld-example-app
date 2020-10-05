@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import * as user from 'features/user';
-import { Button } from 'ui';
+import { Button } from '../../../ui';
+import * as user from '../../user';
 
 export const FormFooter: React.FC = () => {
   const { image, username } = useStore(user.model.$user);

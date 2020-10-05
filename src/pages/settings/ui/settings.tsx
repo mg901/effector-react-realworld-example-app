@@ -1,6 +1,6 @@
 import React from 'react';
-import * as user from 'features/user';
-import { Page, Row, Button } from 'ui';
+import * as user from '../../../features/user';
+import { Page, Row, Button } from '../../../ui';
 
 import { Errors } from './errors';
 import { Form } from './form';

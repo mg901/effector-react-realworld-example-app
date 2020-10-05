@@ -1,6 +1,6 @@
 import React from 'react';
 import { useList } from 'effector-react';
-import { List } from 'ui';
+import { List } from '../../../ui';
 import { model } from '../model';
 import { Comment } from './comment';
 

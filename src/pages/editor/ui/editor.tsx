@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Row } from 'ui';
+import { Page, Row } from '../../../ui';
 import { AddTag } from '../add-tag';
 import { Errors } from './errors';
 import { Form } from './form';

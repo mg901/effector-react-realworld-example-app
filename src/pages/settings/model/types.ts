@@ -1,4 +1,4 @@
-import { types } from 'features/user';
+import { types } from '../../../features/user';
 
 export type changeUserDataFxArgs = Pick<
   types.User,

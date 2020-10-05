@@ -1,5 +1,5 @@
 import { sample, forward } from 'effector';
-import * as user from 'features/user';
+import * as user from '../../../features/user';
 import { form, $errors, FormGate, formSubmitted, signInFx } from './model';
 
 formSubmitted.watch((e) => e.preventDefault());

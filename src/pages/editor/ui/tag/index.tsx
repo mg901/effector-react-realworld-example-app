@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonProps } from 'ui';
+import { Button, ButtonProps } from '../../../../ui';
 import './index.css';
 
 export const Tag: React.FC<ButtonProps> = ({ children, onClick }) => (

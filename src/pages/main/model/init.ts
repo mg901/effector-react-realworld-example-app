@@ -1,5 +1,5 @@
 import { split, sample, forward, merge } from 'effector';
-import * as authUser from 'features/user';
+import * as authUser from '../../../features/user';
 import * as model from './model';
 
 const { authenticated, notAuthenticated } = split(
