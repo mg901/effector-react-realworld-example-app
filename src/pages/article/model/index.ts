@@ -2,13 +2,13 @@ import { combine } from 'effector';
 import { createGate } from 'effector-react';
 import { request } from '../../../api';
 import { model } from '../../../app';
-import { Article } from '../../../features/types';
+import { types } from '../../../features/feed';
 import { GateState } from './types';
 
 export const articleDeleted = model.domain.createEvent<React.MouseEvent>();
 export const fetchArticleFx = model.domain.createEffect((slug: string) =>
   request
-    .get<{ article: Article }>(`articles/${slug}`)
+    .get<{ article: types.Article }>(`articles/${slug}`)
     .then((x) => x.data.article)
     .then(({ createdAt, ...article }) => ({
       ...article,
@@ -27,7 +27,7 @@ export const fetchPageDataFx = model.domain.createEffect((slug: string) =>
 export const Gate = createGate<GateState>();
 
 export const $slug = Gate.state.map((x) => x.id);
-export const $article = model.domain.createStore<Article>({
+export const $article = model.domain.createStore<types.Article>({
   title: '',
   slug: '',
   body: '',

@@ -2,15 +2,34 @@ import { Domain, Event, Effect, Store, StoreValue } from 'effector';
 import { Gate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
-import * as types from '../../types';
+
+export type Author = Readonly<{
+  username: string;
+  bio: null | string;
+  image: string;
+  following: boolean;
+}>;
+
+export type Article = Readonly<{
+  title: string;
+  slug: string;
+  body: string;
+  createdAt: string;
+  updatedAt: string;
+  tagList: readonly string[];
+  description: string;
+  author: Author;
+  favorited: boolean;
+  favoritesCount: number;
+}>;
 
 export type Feed = Readonly<{
-  articles: readonly types.Article[];
+  articles: readonly Article[];
   articlesCount: number;
 }>;
 
 export type FavoriteArticle = Readonly<{
-  article: types.Article;
+  article: Article;
 }>;
 
 export type UnfavoriteArticle = FavoriteArticle;
@@ -25,7 +44,7 @@ export type Options = Readonly<{
 export type Model = Readonly<{
   Gate: Gate<unknown>;
   currentPageWasSet: Event<number>;
-  favoriteToggled: Event<types.Article>;
+  favoriteToggled: Event<Article>;
   setFavoriteArticleFx: Effect<string, FavoriteArticle, AxiosError>;
   setUnfavoriteArticleFx: Effect<string, UnfavoriteArticle, Error>;
   $feed: Store<Feed>;

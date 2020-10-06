@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as types from '../../types';
+import * as types from '../model/types';
 
 type Props = Readonly<Pick<types.Article, 'author' | 'createdAt'>>;
 

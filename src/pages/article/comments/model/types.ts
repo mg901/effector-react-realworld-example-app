@@ -1,7 +1,7 @@
-import { Author } from '../../../../features/types';
+import { types } from '../../../../features/feed';
 
 export type Comment = Readonly<{
-  author: Author;
+  author: types.Author;
   body: string;
   id: string;
   createdAt: string;

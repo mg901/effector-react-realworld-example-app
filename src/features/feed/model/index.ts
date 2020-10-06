@@ -12,7 +12,6 @@ import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
 import { request } from '../../../api';
 import * as router from '../../../library/router';
-import { Article } from '../../types';
 import * as types from './types';
 
 const defaultOptions = {
@@ -32,7 +31,7 @@ export const createFeedModel = (
 
   // events
   const currentPageWasSet = createEvent<number>();
-  const favoriteToggled = createEvent<Article>();
+  const favoriteToggled = createEvent<types.Article>();
 
   // effects
   const setFavoriteArticleFx = createEffect<
