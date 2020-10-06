@@ -1,6 +1,6 @@
 import React from 'react';
 import { Page, Row } from '../../../ui';
-import { Sidebar } from '../sidebar';
+import { Sidebar } from '../modules/sidebar';
 import { Banner } from './banner';
 import { Routes } from './routes';
 import { Tabs } from './tabs';

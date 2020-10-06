@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Paths } from '../../../library/router';
+import { Paths } from '../../../modules/router';
 
 type Props = Readonly<{
   title: string;

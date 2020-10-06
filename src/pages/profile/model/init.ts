@@ -10,7 +10,7 @@ import {
   subscribeFx,
   unsubscribeFx,
 } from '.';
-import * as router from '../../../library/router';
+import * as router from '../../../modules/router';
 
 $profile.on(
   [fetchProfileFx.doneData, subscribeFx.doneData, unsubscribeFx.doneData],

@@ -7,7 +7,7 @@ import {
   fetchArticleFx,
   deleteArticleFx,
 } from '.';
-import * as router from '../../../library/router';
+import * as router from '../../../modules/router';
 
 forward({
   from: Gate.open,

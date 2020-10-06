@@ -1,6 +1,6 @@
 import { sample, forward } from 'effector';
 import { form, $errors, FormGate, formSubmitted, signInFx } from '.';
-import { model } from '../../../app';
+import { model } from '../../../modules/app';
 
 formSubmitted.watch((e) => e.preventDefault());
 

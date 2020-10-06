@@ -1,6 +1,6 @@
 import { createGate } from 'effector-react';
 import { request } from '../../../api';
-import { model, types } from '../../../app';
+import { model, types } from '../../../modules/app';
 
 export const Gate = createGate();
 

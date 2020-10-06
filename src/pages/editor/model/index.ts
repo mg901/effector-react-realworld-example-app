@@ -2,8 +2,8 @@ import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { request } from '../../../api';
-import { model } from '../../../app';
-import { types } from '../../../features/feed';
+import { model } from '../../../modules/app';
+import { types } from '../../../modules/feed';
 import { Form, GateState, Errors } from './types';
 
 export const formSubmitted = model.domain.createEvent<React.FormEvent>();

@@ -1,8 +1,8 @@
 import { combine } from 'effector';
 import { createGate } from 'effector-react';
 import { request } from '../../../api';
-import { model } from '../../../app';
-import { types } from '../../../features/feed';
+import { model } from '../../../modules/app';
+import { types } from '../../../modules/feed';
 import { GateState } from './types';
 
 export const articleDeleted = model.domain.createEvent<React.MouseEvent>();

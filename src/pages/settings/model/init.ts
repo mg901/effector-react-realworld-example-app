@@ -7,8 +7,8 @@ import {
   formSubmitted,
   changeUserDataFx,
 } from '.';
-import { model } from '../../../app';
-import * as router from '../../../library/router';
+import { model } from '../../../modules/app';
+import * as router from '../../../modules/router';
 
 formSubmitted.watch((e) => e.preventDefault());
 

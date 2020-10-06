@@ -2,7 +2,7 @@ import { combine } from 'effector';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { request } from '../../../api';
-import { model } from '../../../app';
+import { model } from '../../../modules/app';
 import * as types from './types';
 
 export const toggleFollowing = model.domain.createEvent<React.MouseEvent>();

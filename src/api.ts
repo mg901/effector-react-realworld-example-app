@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { model } from './app';
+import { model } from './modules/app';
 
 export const request = axios.create({
   baseURL: 'https://conduit.productionready.io/api/',

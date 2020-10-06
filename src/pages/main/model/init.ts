@@ -1,6 +1,6 @@
 import { sample, forward } from 'effector';
 import { Gate, fetchUserFx } from '.';
-import { model } from '../../../app';
+import { model } from '../../../modules/app';
 
 forward({
   from: [sample(model.$isAuthorized, Gate.open), model.$isAuthorized],

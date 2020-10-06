@@ -1,6 +1,6 @@
 import { createForm } from 'effector-forms';
-import { model } from '../../../../app';
 import { isASCII } from '../../../../library/ascii';
+import { model } from '../../../../modules/app';
 
 export const tagAdded = model.domain.createEvent<string>();
 export const keyPressed = model.domain.createEvent<React.KeyboardEvent>();

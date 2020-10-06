@@ -1,4 +1,4 @@
-import { types } from '../../../app';
+import { types } from '../../../modules/app';
 
 export type changeUserDataFxArgs = Pick<
   types.User,

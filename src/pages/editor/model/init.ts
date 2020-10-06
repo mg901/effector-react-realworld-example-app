@@ -11,8 +11,8 @@ import {
   createArticleFx,
   fetchArticleFx,
 } from '.';
-import * as router from '../../../library/router';
 import { uniq } from '../../../library/uniq';
+import * as router from '../../../modules/router';
 import * as addTagModel from '../add-tag/model';
 
 formSubmitted.watch((e) => e.preventDefault());
