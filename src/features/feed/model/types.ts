@@ -22,7 +22,7 @@ export type Options = Readonly<{
 }>;
 
 export type Model = Readonly<{
-  PageGate: Gate<unknown>;
+  Gate: Gate<unknown>;
   currentPageWasSet: Event<number>;
   favoriteToggled: Event<types.Article>;
   setFavoriteArticleFx: Effect<string, FavoriteArticle, AxiosError>;

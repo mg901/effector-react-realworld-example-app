@@ -3,7 +3,7 @@ import { useGate } from 'effector-react';
 import { APP_NAME } from '../../../config';
 import { AuthBranch } from '../../../library/router';
 import { Header, Spinner } from '../../../ui';
-import { model } from '../model';
+import { Gate } from '../model';
 import { LoggedIn } from './logged-in';
 import { LoggedOut } from './logged-out';
 import { Logo } from './logo';
@@ -11,7 +11,7 @@ import { Routes } from './routes';
 import '../model/init';
 
 export const Main: React.FC = () => {
-  useGate(model.PageGate);
+  useGate(Gate);
 
   return (
     <div className="">

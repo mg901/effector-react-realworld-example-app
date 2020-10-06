@@ -1,17 +1,17 @@
 import { forward, attach } from 'effector';
 import {
-  PageGate,
+  Gate,
   $feed,
   $currentPage,
   $pageSize,
   currentPageWasSet,
   fetchFeedFx,
-} from './model';
+} from '.';
 
 $feed.on(fetchFeedFx.doneData, (_, payload) => payload);
 
 forward({
-  from: [PageGate.open, currentPageWasSet],
+  from: [Gate.open, currentPageWasSet],
   to: attach({
     source: {
       pageSize: $pageSize,

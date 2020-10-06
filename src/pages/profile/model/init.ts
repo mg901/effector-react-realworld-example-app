@@ -1,23 +1,24 @@
 import { forward, attach, guard } from 'effector';
-import * as router from '../../../library/router';
 import {
   $profile,
   $username,
-  PageGate,
+  Gate,
   fetchProfileFx,
   toggleFollowing,
   $thenSubscribed,
   $thenUnsubscribed,
   subscribeFx,
   unsubscribeFx,
-} from './model';
+} from '.';
+import * as router from '../../../library/router';
 
 $profile.on(
   [fetchProfileFx.doneData, subscribeFx.doneData, unsubscribeFx.doneData],
   (_, payload) => payload,
 );
-$username.on(PageGate.state, (_, { url }) => url?.replace(/\/@/, ''));
+$username.on(Gate.state, (_, { url }) => url?.replace(/\/@/, ''));
 
+// fetch profile data after changing the route
 forward({
   from: $username,
   to: attach({

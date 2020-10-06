@@ -1,7 +1,6 @@
 import { forward, attach, sample, guard } from 'effector';
-import * as router from '../../../../../library/router';
 import {
-  PageGate,
+  Gate,
   $feed,
   $feedByTag,
   $currentTag,
@@ -11,14 +10,11 @@ import {
   fetchFeedFx,
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,
-} from './model';
+} from '.';
+import * as router from '../../../../../library/router';
 
 forward({
-  from: [
-    PageGate.open,
-    currentPageWasSet,
-    guard($currentTag, { filter: Boolean }),
-  ],
+  from: [Gate.open, currentPageWasSet, guard($currentTag, { filter: Boolean })],
   to: attach({
     source: {
       tag: $currentTag,

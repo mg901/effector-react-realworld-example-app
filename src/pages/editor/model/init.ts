@@ -1,10 +1,7 @@
 import { sample, guard, attach, forward } from 'effector';
-import * as router from '../../../library/router';
-import { uniq } from '../../../library/uniq';
-import * as addTag from '../add-tag';
 import {
   form,
-  FormGate,
+  Gate,
   $errors,
   $slug,
   $hasSlug,
@@ -13,12 +10,15 @@ import {
   tagDeleted,
   createArticleFx,
   fetchArticleFx,
-} from './model';
+} from '.';
+import * as router from '../../../library/router';
+import { uniq } from '../../../library/uniq';
+import * as addTagModel from '../add-tag/model';
 
 formSubmitted.watch((e) => e.preventDefault());
 
 guard({
-  source: FormGate.open,
+  source: Gate.open,
   filter: $hasSlug,
   target: attach({
     source: $slug,
@@ -35,7 +35,7 @@ forward({
 // add tag
 sample({
   source: form.$values,
-  clock: addTag.model.validTagAdded,
+  clock: addTagModel.validTagAdded,
   fn: ({ tagList, ...state }, tag) => ({
     ...state,
     tagList: uniq<string>([...tagList, tag]),
@@ -73,4 +73,4 @@ createArticleFx.doneData.watch(({ slug }) => {
 
 $errors
   .on(createArticleFx.failData, (_, error) => error.response?.data)
-  .reset(form.$values, FormGate.close);
+  .reset(form.$values, Gate.close);

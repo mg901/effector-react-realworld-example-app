@@ -115,7 +115,7 @@ export const createFeedModel = (
   });
 
   return {
-    PageGate: createGate(),
+    Gate: createGate(),
     currentPageWasSet,
     favoriteToggled,
     setFavoriteArticleFx,

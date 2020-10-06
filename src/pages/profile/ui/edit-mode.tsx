@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import { Button } from '../../../ui';
-import { model } from '../model';
+import { $isCurrentUser } from '../model';
 
 export const EditMode: React.FC = () => {
-  const is = useStore(model.$isCurrentUser);
+  const is = useStore($isCurrentUser);
 
   return !is ? null : (
     <Link to="/settings">

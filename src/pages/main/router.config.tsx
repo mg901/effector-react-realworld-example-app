@@ -62,7 +62,7 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       component: HomePage,
     },
     {
-      path: Paths.EDITOR || Paths.EDITOR_SLUG,
+      path: Paths.EDITOR_SLUG || Paths.EDITOR,
       component: lazy(() =>
         import('../editor').then((x) => ({ default: x.EditorPage })),
       ),

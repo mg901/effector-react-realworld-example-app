@@ -1,10 +1,10 @@
 import React from 'react';
 import { useField } from 'effector-forms';
 import { InputField } from '../../../ui';
-import { model } from '../model';
+import { form } from '../model';
 
 export const EmailField: React.FC = () => {
-  const { name, onChange } = useField(model.form.fields.email);
+  const { name, onChange } = useField(form.fields.email);
 
   return (
     <InputField
