@@ -1,20 +1,19 @@
 import { forward, attach } from 'effector';
-import * as router from '../../../library/router';
 import {
-  PageGate,
+  Gate,
   articleDeleted,
   $slug,
   $article,
-  fetchPageDataFx,
   fetchArticleFx,
   deleteArticleFx,
-} from './model';
+} from '.';
+import * as router from '../../../library/router';
 
 forward({
-  from: PageGate.open,
+  from: Gate.open,
   to: attach({
     source: $slug,
-    effect: fetchPageDataFx,
+    effect: fetchArticleFx,
   }),
 });
 

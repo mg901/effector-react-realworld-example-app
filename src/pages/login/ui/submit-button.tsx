@@ -1,10 +1,10 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { Button } from '../../../ui';
-import { model } from '../model';
+import { signInFx } from '../model';
 
 export const SubmitButton: React.FC = () => {
-  const disabled = useStore(model.signInFx.pending);
+  const disabled = useStore(signInFx.pending);
 
   return (
     <Button

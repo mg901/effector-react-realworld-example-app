@@ -1,16 +1,23 @@
-/* eslint-disable react/no-danger */
 import React from 'react';
+import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useStore } from 'effector-react';
 import Markdown from 'markdown-to-jsx';
-import { Comments } from '../../../features/comments';
 import { ArticleMeta } from '../../../features/feed';
 import { Container, Row, Page, TagList, Tag, Banner } from '../../../ui';
-import { model } from '../model';
+import { Comments } from '../comments';
+import * as model from '../model';
 import { EditMode } from './edit-mode';
 import '../model/init';
 
-export const ArticlePage: React.FC = () => {
-  useGate(model.PageGate);
+type Props = Readonly<RouteConfigComponentProps<{ id: string }>>;
+
+export const ArticlePage: React.FC<Props> = ({
+  match: {
+    params: { id },
+  },
+}) => {
+  useGate(model.Gate, { id });
+
   const { title, author, createdAt, body, tagList } = useStore(model.$article);
   const loading = useStore(model.fetchArticleFx.pending);
 
@@ -40,7 +47,7 @@ export const ArticlePage: React.FC = () => {
             <hr />
             <div className="article-actions" />
             <Row>
-              <Comments />
+              <Comments id={id} />
             </Row>
           </Page>
         </div>

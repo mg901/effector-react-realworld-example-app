@@ -1,20 +1,20 @@
 import { sample } from 'effector';
-import { model } from '../../../features/user';
-import * as router from '../../../library/router';
 import {
   FormGate,
   form,
-  $user,
+  $authUser,
   $errors,
   formSubmitted,
   changeUserDataFx,
-} from './model';
+} from '.';
+import { loggedOutClicked } from '../../../features/user';
+import * as router from '../../../library/router';
 
 formSubmitted.watch((e) => e.preventDefault());
 
 // set data form user store
 sample({
-  source: $user,
+  source: $authUser,
   clock: FormGate.open,
   target: form.set,
 });
@@ -30,7 +30,7 @@ changeUserDataFx.done.watch(() => {
   window.location.reload();
 });
 
-model.loggedOutClicked.watch(() => {
+loggedOutClicked.watch(() => {
   router.model.history.push('/');
 });
 

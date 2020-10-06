@@ -1,7 +1,7 @@
-import { types } from '../../../features/user';
+import { User } from '../../../features/user/types';
 
 export type changeUserDataFxArgs = Pick<
-  types.User,
+  User,
   'image' | 'username' | 'bio' | 'email'
 > &
   Readonly<{

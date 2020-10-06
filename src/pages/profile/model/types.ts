@@ -1,4 +1,4 @@
-export type PageGateType = Readonly<{
+export type GateState = Readonly<{
   url: string;
 }>;
 
@@ -14,7 +14,7 @@ export type GetProfileFxDone = Readonly<{
 }>;
 
 export type GetFeedFxArgs = Readonly<{
-  pageSize: number;
   username: string;
   page: number;
+  pageSize: number;
 }>;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useField } from 'effector-forms';
 import { InputField } from '../../../ui';
-import { model } from '../model';
+import { form } from '../model';
 
 export const PasswordField: React.FC = () => {
-  const { name, onChange } = useField(model.form.fields.password);
+  const { name, onChange } = useField(form.fields.password);
 
   return (
     <InputField

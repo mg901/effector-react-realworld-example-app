@@ -1,12 +1,12 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { Container, Row } from '../../../ui';
-import { model } from '../model';
+import { $profile } from '../model';
 import { EditMode } from './edit-mode';
 import { FollowUser } from './follow-user';
 
 export const UserInfo: React.FC = () => {
-  const { image, username, bio } = useStore(model.$profile);
+  const { image, username, bio } = useStore($profile);
 
   return (
     <div className="user-info">

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useField } from 'effector-forms';
 import { TextField } from '../../../ui';
-import { model } from '../model';
+import { form } from '../model';
 
 export const BodyField: React.FC = () => {
-  const { value, name, onChange } = useField(model.form.fields.body);
+  const { value, name, onChange } = useField(form.fields.body);
 
   return (
     <TextField

@@ -1,6 +1,6 @@
 import { sample, forward } from 'effector';
-import { model } from '../../../features/user';
-import { FormGate, form, formSubmitted, $errors, signUpFx } from './model';
+import { FormGate, form, formSubmitted, $errors, signUpFx } from '.';
+import { $user } from '../../../features/user';
 
 formSubmitted.watch((e) => e.preventDefault());
 
@@ -17,7 +17,7 @@ forward({
   to: form.reset,
 });
 
-model.$user.on(signUpFx.doneData, (_, payload) => payload);
+$user.on(signUpFx.doneData, (_, payload) => payload);
 
 $errors
   .on(signUpFx.failData, (_, error) => error.response?.data)
