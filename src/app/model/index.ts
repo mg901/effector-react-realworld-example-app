@@ -1,12 +1,14 @@
-import { createEvent, createStore } from 'effector';
+import { createDomain } from 'effector';
 import withStorage from 'effector-storage';
 import { TOKEN_NAME } from '../../config';
 import { Token, User } from './types';
 
-export const loggedOutClicked = createEvent<React.MouseEvent>();
-const createStorageStore = withStorage(createStore);
+export const domain = createDomain();
 
-export const $user = createStore<User>({
+export const loggedOutClicked = domain.createEvent<React.MouseEvent>();
+const createStorageStore = withStorage(domain.createStore);
+
+export const $user = domain.createStore<User>({
   bio: '',
   createdAt: '',
   email: '',

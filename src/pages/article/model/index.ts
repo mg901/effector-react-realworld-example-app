@@ -1,12 +1,12 @@
-import { createEvent, createEffect, createStore, combine } from 'effector';
+import { combine } from 'effector';
 import { createGate } from 'effector-react';
 import { request } from '../../../api';
+import { model } from '../../../app';
 import { Article } from '../../../features/types';
-import { $user } from '../../../features/user';
 import { GateState } from './types';
 
-export const articleDeleted = createEvent<React.MouseEvent>();
-export const fetchArticleFx = createEffect((slug: string) =>
+export const articleDeleted = model.domain.createEvent<React.MouseEvent>();
+export const fetchArticleFx = model.domain.createEffect((slug: string) =>
   request
     .get<{ article: Article }>(`articles/${slug}`)
     .then((x) => x.data.article)
@@ -16,18 +16,18 @@ export const fetchArticleFx = createEffect((slug: string) =>
     })),
 );
 
-export const deleteArticleFx = createEffect((slug: string) =>
+export const deleteArticleFx = model.domain.createEffect((slug: string) =>
   request.delete<void>(`articles/${slug}`),
 );
 
-export const fetchPageDataFx = createEffect((slug: string) =>
+export const fetchPageDataFx = model.domain.createEffect((slug: string) =>
   Promise.all([fetchArticleFx(slug)]),
 );
 
 export const Gate = createGate<GateState>();
 
 export const $slug = Gate.state.map((x) => x.id);
-export const $article = createStore<Article>({
+export const $article = model.domain.createStore<Article>({
   title: '',
   slug: '',
   body: '',
@@ -47,6 +47,6 @@ export const $article = createStore<Article>({
 
 export const $canModify = combine(
   $article,
-  $user,
+  model.$user,
   ({ author }, user) => author.username === user.username,
 );

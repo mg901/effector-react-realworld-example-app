@@ -1,10 +1,9 @@
-import { createEffect } from 'effector';
 import { createGate } from 'effector-react';
 import { request } from '../../../api';
-import { User } from '../../../features/user/types';
+import { model, types } from '../../../app';
 
 export const Gate = createGate();
 
-export const fetchUserFx = createEffect(() =>
-  request.get<{ user: User }>('user').then((x) => x.data.user),
+export const fetchUserFx = model.domain.createEffect(() =>
+  request.get<{ user: types.User }>('user').then((x) => x.data.user),
 );

@@ -1,24 +1,28 @@
-import { createEvent, createEffect, createStore, combine } from 'effector';
+import { combine } from 'effector';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { request } from '../../../api';
-import { $user } from '../../../features/user';
+import { model } from '../../../app';
 import * as types from './types';
 
-export const toggleFollowing = createEvent<React.MouseEvent>();
+export const toggleFollowing = model.domain.createEvent<React.MouseEvent>();
 
-export const fetchProfileFx = createEffect((username: string) =>
+export const fetchProfileFx = model.domain.createEffect((username: string) =>
   request
     .get<types.GetProfileFxDone>(`profiles/${username}`)
     .then((x) => x.data.profile),
 );
 
-export const subscribeFx = createEffect<string, types.Profile, AxiosError>({
+export const subscribeFx = model.domain.createEffect<
+  string,
+  types.Profile,
+  AxiosError
+>({
   handler: (username: string) =>
     request.post(`profiles/${username}/follow`).then((x) => x.data.profile),
 });
 
-export const unsubscribeFx = createEffect((username: string) =>
+export const unsubscribeFx = model.domain.createEffect((username: string) =>
   request
     .delete<types.GetProfileFxDone>(`profiles/${username}/follow`)
     .then((x) => x.data.profile),
@@ -26,8 +30,8 @@ export const unsubscribeFx = createEffect((username: string) =>
 
 export const Gate = createGate<types.GateState>();
 
-export const $username = createStore<string>('');
-export const $profile = createStore<types.Profile>({
+export const $username = model.domain.createStore<string>('');
+export const $profile = model.domain.createStore<types.Profile>({
   bio: '',
   following: false,
   image: '',
@@ -40,7 +44,7 @@ export const $thenUnsubscribed = $profile.map((x) => x.following === false);
 
 export const $isCurrentUser = combine(
   $profile,
-  $user,
+  model.$user,
   (profile, user) => profile.username === user.username,
 );
 

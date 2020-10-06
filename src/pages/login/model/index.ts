@@ -1,35 +1,36 @@
-import { createEvent, createEffect, createStore } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { request } from '../../../api';
-import { User } from '../../../features/user/types';
-import * as types from './types';
+import { model, types } from '../../../app';
+import { Form, Errors } from './types';
 
-export const formSubmitted = createEvent<React.FormEvent>();
+export const formSubmitted = model.domain.createEvent<React.FormEvent>();
 
-export const signInFx = createEffect<types.Form, User, AxiosError>({
-  handler: ({ email, password }) =>
-    request
-      .post<{ user: User }>('users/login', {
-        user: { email, password },
-      })
-      .then((x) => x.data.user),
-});
+export const signInFx = model.domain.createEffect<Form, types.User, AxiosError>(
+  {
+    handler: ({ email, password }) =>
+      request
+        .post<{ user: types.User }>('users/login', {
+          user: { email, password },
+        })
+        .then((x) => x.data.user),
+  },
+);
 
 export const FormGate = createGate();
 
 export const form = createForm({
   fields: {
     email: {
-      init: '' as types.Form['email'],
+      init: '' as Form['email'],
     },
     password: {
-      init: '' as types.Form['password'],
+      init: '' as Form['password'],
     },
   },
 });
 
-export const $errors = createStore<types.Errors>({
+export const $errors = model.domain.createStore<Errors>({
   errors: {},
 });

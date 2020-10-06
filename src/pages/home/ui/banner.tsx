@@ -1,11 +1,11 @@
 import React from 'react';
 import { useStore } from 'effector-react';
+import { model } from '../../../app';
 import { APP_NAME } from '../../../config';
-import { $isAuthorized } from '../../../features/user';
 import { Banner as UIBanner, Container } from '../../../ui';
 
 export const Banner: React.FC = () => {
-  const isAuth = useStore($isAuthorized);
+  const isAuth = useStore(model.$isAuthorized);
 
   return isAuth ? null : (
     <UIBanner>

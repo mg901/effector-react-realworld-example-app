@@ -1,11 +1,11 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { $user } from '../../../features/user';
+import { model } from '../../../app';
 import { Paths } from '../../../library/router';
 import { NavItem, NavLink } from '../../../ui';
 
 export const LoggedIn: React.FC = () => {
-  const { username, image } = useStore($user);
+  const { username, image } = useStore(model.$user);
 
   return (
     <>

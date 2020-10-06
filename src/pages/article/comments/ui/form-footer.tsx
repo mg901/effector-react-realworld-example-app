@@ -1,10 +1,10 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { $user } from '../../../../features/user';
+import { model } from '../../../../app';
 import { Button } from '../../../../ui';
 
 export const FormFooter: React.FC = () => {
-  const { image, username } = useStore($user);
+  const { image, username } = useStore(model.$user);
 
   return (
     <div className="card-footer">

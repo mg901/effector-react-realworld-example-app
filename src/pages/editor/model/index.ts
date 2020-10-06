@@ -1,21 +1,25 @@
-import { createEvent, createEffect, createStore } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { request } from '../../../api';
+import { model } from '../../../app';
 import { Article } from '../../../features/types';
 import * as types from './types';
 
-export const formSubmitted = createEvent<React.FormEvent>();
-export const tagDeleted = createEvent<string>();
-export const createArticleFx = createEffect<types.Form, Article, AxiosError>({
+export const formSubmitted = model.domain.createEvent<React.FormEvent>();
+export const tagDeleted = model.domain.createEvent<string>();
+export const createArticleFx = model.domain.createEffect<
+  types.Form,
+  Article,
+  AxiosError
+>({
   handler: (form) =>
     request
       .post<{ article: Article }>('articles', { article: form })
       .then(({ data }) => data.article),
 });
 
-export const fetchArticleFx = createEffect((slug: string) =>
+export const fetchArticleFx = model.domain.createEffect((slug: string) =>
   request
     .get<{ article: Article }>(`articles/${slug}`)
     .then(({ data: { article: a } }) => ({
@@ -55,6 +59,6 @@ export const form = createForm({
 
 export const $tagList = form.fields.tagList.$value;
 
-export const $errors = createStore<types.Errors>({
+export const $errors = model.domain.createStore<types.Errors>({
   errors: {},
 });

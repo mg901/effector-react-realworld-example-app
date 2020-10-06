@@ -1,10 +1,10 @@
 import { sample, forward } from 'effector';
 import { Gate, fetchUserFx } from '.';
-import { $isAuthorized, $user } from '../../../features/user';
+import { model } from '../../../app';
 
 forward({
-  from: [sample($isAuthorized, Gate.open), $isAuthorized],
+  from: [sample(model.$isAuthorized, Gate.open), model.$isAuthorized],
   to: fetchUserFx,
 });
 
-$user.on(fetchUserFx.doneData, (_, payload) => payload);
+model.$user.on(fetchUserFx.doneData, (_, payload) => payload);

@@ -1,16 +1,14 @@
-import { createEvent, createEffect, createStore } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosResponse, AxiosError } from 'axios';
 import { request } from '../../../api';
-import { $user } from '../../../features/user';
-import { User } from '../../../features/user/types';
-import * as types from './types';
+import { model, types } from '../../../app';
+import { Errors, changeUserDataFxArgs } from './types';
 
-export const formSubmitted = createEvent<React.FormEvent>();
+export const formSubmitted = model.domain.createEvent<React.FormEvent>();
 
-export const changeUserDataFx = createEffect<
-  types.changeUserDataFxArgs,
+export const changeUserDataFx = model.domain.createEffect<
+  changeUserDataFxArgs,
   AxiosResponse<void>,
   AxiosError
 >({
@@ -21,21 +19,21 @@ export const changeUserDataFx = createEffect<
 });
 
 export const FormGate = createGate();
-export const $authUser = $user.map((x) => x);
+export const $authUser = model.$user.map((x) => x);
 
 export const form = createForm({
   fields: {
     image: {
-      init: '' as User['image'],
+      init: '' as types.User['image'],
     },
     username: {
-      init: '' as User['username'],
+      init: '' as types.User['username'],
     },
     bio: {
-      init: '' as User['bio'],
+      init: '' as types.User['bio'],
     },
     email: {
-      init: '' as User['email'],
+      init: '' as types.User['email'],
     },
     password: {
       init: '' as string,
@@ -43,6 +41,6 @@ export const form = createForm({
   },
 });
 
-export const $errors = createStore<types.Errors>({
+export const $errors = model.domain.createStore<Errors>({
   errors: {},
 });

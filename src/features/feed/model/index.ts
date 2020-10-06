@@ -1,4 +1,5 @@
 import {
+  createDomain,
   createEvent,
   createStore,
   createEffect,
@@ -15,6 +16,7 @@ import { Article } from '../../types';
 import * as types from './types';
 
 const defaultOptions = {
+  domain: createDomain(),
   currentPage: 1,
   pageSize: 10,
   status: createStore<EffectState>('initial'),
