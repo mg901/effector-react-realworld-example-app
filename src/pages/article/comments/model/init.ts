@@ -51,6 +51,10 @@ $comments
     state.filter(({ id }) => id !== params.id),
   );
 
+// TODO: remove delete icon other people comments
 $errors
-  .on(fetchCommentFx.failData, (_, error) => error.response?.data)
+  .on(
+    [fetchCommentFx.failData, deleteCommentFx.failData],
+    (_, error) => error.response?.data,
+  )
   .reset(form.$touched);

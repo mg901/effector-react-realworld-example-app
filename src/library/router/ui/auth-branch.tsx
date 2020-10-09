@@ -1,13 +1,13 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { $isAuthorized } from '../../../features/user';
+import { model } from '../../../modules/user';
 
 type Props = Readonly<{
   check: 'anon' | 'auth';
 }>;
 
 export const AuthBranch: React.FC<Props> = ({ check, children }) => {
-  const isAuth = useStore($isAuthorized);
+  const isAuth = useStore(model.$isAuthorized);
 
   if (isAuth === true && check === 'auth') {
     return <>{children}</>;

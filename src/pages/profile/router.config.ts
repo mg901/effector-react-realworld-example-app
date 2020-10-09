@@ -6,7 +6,7 @@ export const routes = [
     path: Paths.PROFILE,
     exact: true,
     component: lazy(() =>
-      import('./pages/my-articles').then((x) => ({
+      import('./modules/my-articles').then((x) => ({
         default: x.MyArticles,
       })),
     ),
@@ -15,7 +15,7 @@ export const routes = [
     path: Paths.PROFILE_FAVORITES,
     exact: true,
     component: lazy(() =>
-      import('./pages/favorited-articles').then((x) => ({
+      import('./modules/favorited-articles').then((x) => ({
         default: x.FavoritedArticles,
       })),
     ),

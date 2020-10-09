@@ -1,4 +1,4 @@
-import * as types from '../../../features/types';
+import { types } from '../../../modules/feed';
 
 export type GateState = Readonly<{
   slug: string;

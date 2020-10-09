@@ -1,5 +1,5 @@
 import React from 'react';
-import { loggedOutClicked } from '../../../features/user';
+import { model } from '../../../modules/user';
 import { Page, Row, Button } from '../../../ui';
 import { Errors } from './errors';
 import { Form } from './form';
@@ -14,7 +14,7 @@ export const SettingsPage: React.FC = () => (
         <Form />
         <hr />
 
-        <Button className="btn-outline-danger" onClick={loggedOutClicked}>
+        <Button className="btn-outline-danger" onClick={model.loggedOutClicked}>
           Or click here to logout.
         </Button>
       </div>

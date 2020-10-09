@@ -7,8 +7,8 @@ import {
   formSubmitted,
   changeUserDataFx,
 } from '.';
-import { loggedOutClicked } from '../../../features/user';
 import * as router from '../../../library/router';
+import { model } from '../../../modules/user';
 
 formSubmitted.watch((e) => e.preventDefault());
 
@@ -30,7 +30,7 @@ changeUserDataFx.done.watch(() => {
   window.location.reload();
 });
 
-loggedOutClicked.watch(() => {
+model.loggedOutClicked.watch(() => {
   router.model.history.push('/');
 });
 
