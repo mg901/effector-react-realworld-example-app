@@ -1,6 +1,5 @@
 import { forward, attach, sample } from 'effector';
 import {
-  Gate,
   form,
   $comments,
   $errors,
@@ -12,7 +11,7 @@ import {
 } from '.';
 
 forward({
-  from: Gate.open,
+  from: $slug.updates,
   to: attach({
     source: $slug,
     effect: fetchCommentsFx,
