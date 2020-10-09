@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Page, Row } from 'ui';
 import { Paths } from '../../library/router';
+import { Page, Row } from '../../ui';
 import { Errors } from './ui/errors';
 import { Form } from './ui/form';
 

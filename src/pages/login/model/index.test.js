@@ -1,7 +1,6 @@
-import { fork, allSettled } from 'effector';
-import { $user } from 'modules/user/model';
+import { root, fork, allSettled } from 'effector-root';
 import { signInFx } from '.';
-import { root } from '../../../root';
+import { $user } from '../../../modules/user/model';
 
 describe('pages/login', () => {
   it('should sign in via email and password', async () => {

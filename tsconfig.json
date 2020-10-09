@@ -16,13 +16,6 @@
     "jsx": "react",
     "baseUrl": ".",
     "types": ["node", "jest"],
-    "paths": {
-      "config": ["./src/config"],
-      "api": ["./src/api"],
-      "library/*": ["./src/library/*"],
-      "modules/*": ["./src/modules/*"],
-      "ui": ["./src/ui"],
-    }
   },
   "include": ["src/**/*"],
   "exclude": ["./node_modules/*"]

@@ -1,10 +1,18 @@
-import { combine, forward, attach, guard, sample } from 'effector';
+import {
+  createEvent,
+  createEffect,
+  createStore,
+  combine,
+  forward,
+  attach,
+  guard,
+  sample,
+} from 'effector-root';
 import { status } from 'patronum/status';
-import { request } from 'api';
-import { limit } from 'library/limit';
-import * as router from 'library/router';
-import * as feed from 'modules/feed';
-import { root } from '../../../../../root';
+import { request } from '../../../../../api';
+import { limit } from '../../../../../library/limit';
+import * as router from '../../../../../library/router';
+import * as feed from '../../../../../modules/feed';
 import * as types from './types';
 
 export const {
@@ -17,9 +25,9 @@ export const {
   setUnfavoriteArticleFx,
 } = feed.createFeedModel();
 
-export const currentPageWasSet = root.createEvent<number>();
+export const currentPageWasSet = createEvent<number>();
 
-export const fetchFeedFx = root.createEffect(
+export const fetchFeedFx = createEffect(
   ({ tag, page }: types.GetFeedByTagArgs) =>
     request
       .get<feed.types.Feed>(
@@ -29,12 +37,13 @@ export const fetchFeedFx = root.createEffect(
 );
 
 export const $status = status({ effect: fetchFeedFx });
-export const $feed = root
-  .createStore<types.Feed>({})
-  .on(fetchFeedFx.done, (state, { params, result }) => ({
+export const $feed = createStore<types.Feed>({}).on(
+  fetchFeedFx.done,
+  (state, { params, result }) => ({
     ...state,
     [params.tag]: result,
-  }));
+  }),
+);
 
 export const $feedByTag = combine(
   $feed,

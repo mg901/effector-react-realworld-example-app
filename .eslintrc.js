@@ -76,6 +76,7 @@ module.exports = {
       {
         groups: [
           '/^react/',
+          '/^effector-root/',
           '/^effector/',
           '/^axios/',
           '/^patronum/',

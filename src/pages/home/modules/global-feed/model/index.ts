@@ -1,8 +1,7 @@
-import { forward, attach } from 'effector';
-import { request } from 'api';
-import { limit } from 'library/limit';
-import * as feed from 'modules/feed';
-import { root } from '../../../../../root';
+import { createEffect, forward, attach } from 'effector-root';
+import { request } from '../../../../../api';
+import { limit } from '../../../../../library/limit';
+import * as feed from '../../../../../modules/feed';
 import * as types from './types';
 
 export const {
@@ -17,7 +16,7 @@ export const {
   useModel,
 } = feed.createFeedModel();
 
-export const fetchFeedFx = root.createEffect(
+export const fetchFeedFx = createEffect(
   ({ pageSize, page }: types.fetchFeedFxArgs) =>
     request
       .get<feed.types.Feed>(`articles?${limit(pageSize, page)}`)

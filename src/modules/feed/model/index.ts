@@ -1,12 +1,11 @@
 import {
-  createDomain,
   createEvent,
   createStore,
   createEffect,
   guard,
   sample,
   combine,
-} from 'effector';
+} from 'effector-root';
 import { createGate, useStore } from 'effector-react';
 import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
@@ -15,7 +14,6 @@ import * as router from '../../../library/router';
 import * as types from './types';
 
 const defaultOptions = {
-  domain: createDomain(),
   currentPage: 1,
   pageSize: 10,
   status: createStore<EffectState>('initial'),

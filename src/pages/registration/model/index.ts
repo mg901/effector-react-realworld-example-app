@@ -1,16 +1,22 @@
-import { sample, forward } from 'effector';
+import {
+  createEvent,
+  createEffect,
+  createStore,
+  sample,
+  forward,
+} from 'effector-root';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
+
 import { AxiosError } from 'axios';
-import { request } from 'api';
-import * as user from 'modules/user';
-import { root } from '../../../root';
+import { request } from '../../../api';
+import * as user from '../../../modules/user';
 import { Form, Errors } from './types';
 
-export const formSubmitted = root.createEvent<React.FormEvent>();
+export const formSubmitted = createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
-export const signUpFx = root.createEffect<Form, user.types.User, AxiosError>({
+export const signUpFx = createEffect<Form, user.types.User, AxiosError>({
   handler: ({ username, email, password }) =>
     request
       .post<{ user: user.types.User }>('users', {
@@ -50,9 +56,8 @@ forward({
 
 user.model.$user.on(signUpFx.doneData, (_, payload) => payload);
 
-export const $errors = root
-  .createStore<Errors>({
-    errors: {},
-  })
+export const $errors = createStore<Errors>({
+  errors: {},
+})
   .on(signUpFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, FormGate.close);

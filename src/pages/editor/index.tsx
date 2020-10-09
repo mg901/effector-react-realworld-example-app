@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate } from 'effector-react';
-import { Page, Row } from 'ui';
+import { Page, Row } from '../../ui';
 import { AddTag } from './add-tag';
 import { Gate } from './model';
 import { Errors } from './ui/errors';

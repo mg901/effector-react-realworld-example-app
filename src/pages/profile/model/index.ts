@@ -1,28 +1,33 @@
-import { combine, forward, attach, guard } from 'effector';
+import {
+  createEvent,
+  createEffect,
+  createStore,
+  combine,
+  forward,
+  attach,
+  guard,
+} from 'effector-root';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
-import { request } from 'api';
-import * as router from 'library/router';
-import * as user from 'modules/user';
-import { root } from '../../../root';
+import { request } from '../../../api';
+import * as router from '../../../library/router';
+import * as user from '../../../modules/user';
 import * as types from './types';
 
-export const toggleFollowing = root.createEvent<React.MouseEvent>();
+export const toggleFollowing = createEvent<React.MouseEvent>();
 
-export const fetchProfileFx = root.createEffect((username: string) =>
+export const fetchProfileFx = createEffect((username: string) =>
   request
     .get<types.GetProfileFxDone>(`profiles/${username}`)
     .then((x) => x.data.profile),
 );
 
-export const subscribeFx = root.createEffect<string, types.Profile, AxiosError>(
-  {
-    handler: (username: string) =>
-      request.post(`profiles/${username}/follow`).then((x) => x.data.profile),
-  },
-);
+export const subscribeFx = createEffect<string, types.Profile, AxiosError>({
+  handler: (username: string) =>
+    request.post(`profiles/${username}/follow`).then((x) => x.data.profile),
+});
 
-export const unsubscribeFx = root.createEffect((username: string) =>
+export const unsubscribeFx = createEffect((username: string) =>
   request
     .delete<types.GetProfileFxDone>(`profiles/${username}/follow`)
     .then((x) => x.data.profile),
@@ -30,21 +35,19 @@ export const unsubscribeFx = root.createEffect((username: string) =>
 
 export const Gate = createGate<types.GateState>();
 
-export const $username = root
-  .createStore<string>('')
-  .on(Gate.state, (_, { url }) => url?.replace(/\/@/, ''));
+export const $username = createStore<string>('').on(Gate.state, (_, { url }) =>
+  url?.replace(/\/@/, ''),
+);
 
-export const $profile = root
-  .createStore<types.Profile>({
-    bio: '',
-    following: false,
-    image: '',
-    username: '',
-  })
-  .on(
-    [fetchProfileFx.doneData, subscribeFx.doneData, unsubscribeFx.doneData],
-    (_, payload) => payload,
-  );
+export const $profile = createStore<types.Profile>({
+  bio: '',
+  following: false,
+  image: '',
+  username: '',
+}).on(
+  [fetchProfileFx.doneData, subscribeFx.doneData, unsubscribeFx.doneData],
+  (_, payload) => payload,
+);
 
 export const $following = $profile.map((x) => x.following);
 export const $thenSubscribed = $profile.map((x) => x.following === true);

@@ -1,14 +1,20 @@
-import { combine, forward, attach } from 'effector';
+import {
+  createEvent,
+  createEffect,
+  createStore,
+  combine,
+  forward,
+  attach,
+} from 'effector-root';
 import { createGate } from 'effector-react';
-import { request } from 'api';
-import * as router from 'library/router';
-import { types } from 'modules/feed';
-import * as user from 'modules/user';
-import { root } from '../../../root';
+import { request } from '../../../api';
+import * as router from '../../../library/router';
+import { types } from '../../../modules/feed';
+import * as user from '../../../modules/user';
 import { GateState } from './types';
 
-export const articleDeleted = root.createEvent<React.MouseEvent>();
-export const fetchArticleFx = root.createEffect((slug: string) =>
+export const articleDeleted = createEvent<React.MouseEvent>();
+export const fetchArticleFx = createEffect((slug: string) =>
   request
     .get<{ article: types.Article }>(`articles/${slug}`)
     .then((x) => x.data.article)
@@ -18,11 +24,11 @@ export const fetchArticleFx = root.createEffect((slug: string) =>
     })),
 );
 
-export const deleteArticleFx = root.createEffect((slug: string) =>
+export const deleteArticleFx = createEffect((slug: string) =>
   request.delete<void>(`articles/${slug}`),
 );
 
-export const fetchPageDataFx = root.createEffect((slug: string) =>
+export const fetchPageDataFx = createEffect((slug: string) =>
   Promise.all([fetchArticleFx(slug)]),
 );
 
@@ -30,25 +36,23 @@ export const Gate = createGate<GateState>();
 
 export const $slug = Gate.state.map((x) => x.id);
 
-export const $article = root
-  .createStore<types.Article>({
-    title: '',
-    slug: '',
-    body: '',
-    createdAt: '',
-    updatedAt: '',
-    tagList: [],
-    description: '',
-    author: {
-      username: '',
-      bio: '',
-      image: '',
-      following: false,
-    },
-    favorited: false,
-    favoritesCount: 0,
-  })
-  .on(fetchArticleFx.doneData, (_, payload) => payload);
+export const $article = createStore<types.Article>({
+  title: '',
+  slug: '',
+  body: '',
+  createdAt: '',
+  updatedAt: '',
+  tagList: [],
+  description: '',
+  author: {
+    username: '',
+    bio: '',
+    image: '',
+    following: false,
+  },
+  favorited: false,
+  favoritesCount: 0,
+}).on(fetchArticleFx.doneData, (_, payload) => payload);
 
 export const $canModify = combine(
   $article,

@@ -1,6 +1,6 @@
 import React from 'react';
-import { model } from 'modules/user';
-import { Page, Row, Button } from 'ui';
+import { model } from '../../modules/user';
+import { Page, Row, Button } from '../../ui';
 import { Errors } from './ui/errors';
 import { Form } from './ui/form';
 

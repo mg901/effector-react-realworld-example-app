@@ -1,17 +1,16 @@
-import { sample } from 'effector';
+import { createEvent, createEffect, createStore, sample } from 'effector-root';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosResponse, AxiosError } from 'axios';
 import { request } from '../../../api';
 import * as router from '../../../library/router';
 import * as user from '../../../modules/user';
-import { root } from '../../../root';
 import { Errors, changeUserDataFxArgs } from './types';
 
-export const formSubmitted = root.createEvent<React.FormEvent>();
+export const formSubmitted = createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
-export const changeUserDataFx = root.createEffect<
+export const changeUserDataFx = createEffect<
   changeUserDataFxArgs,
   AxiosResponse<void>,
   AxiosError
@@ -67,9 +66,8 @@ user.model.loggedOutClicked.watch(() => {
   router.model.history.push('/');
 });
 
-export const $errors = root
-  .createStore<Errors>({
-    errors: {},
-  })
+export const $errors = createStore<Errors>({
+  errors: {},
+})
   .on(changeUserDataFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, FormGate.close);

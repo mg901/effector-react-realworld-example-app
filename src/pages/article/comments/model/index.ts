@@ -1,20 +1,26 @@
-import { forward, attach, sample } from 'effector';
+import {
+  createEvent,
+  createEffect,
+  createStore,
+  forward,
+  attach,
+  sample,
+} from 'effector-root';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { request } from '../../../../api';
-import { root } from '../../../../root';
 import { GateState } from '../../model/types';
 import * as types from './types';
 
-export const commentDeleted = root.createEvent<string>();
-export const fetchCommentsFx = root.createEffect((slug: string) =>
+export const commentDeleted = createEvent<string>();
+export const fetchCommentsFx = createEffect((slug: string) =>
   request
     .get<types.GetCommentsFxDone>(`articles/${slug}/comments`)
     .then((x) => x.data.comments),
 );
 
-export const fetchCommentFx = root.createEffect<
+export const fetchCommentFx = createEffect<
   types.AddCommentFxArgs,
   types.Comment,
   AxiosError
@@ -25,7 +31,7 @@ export const fetchCommentFx = root.createEffect<
       .then((x) => x.data.comment),
 });
 
-export const deleteCommentFx = root.createEffect<
+export const deleteCommentFx = createEffect<
   types.DeleteCommentFxArgs,
   void,
   AxiosError
@@ -36,8 +42,7 @@ export const deleteCommentFx = root.createEffect<
 export const Gate = createGate<GateState>();
 
 export const $slug = Gate.state.map((x) => x.id);
-export const $comments = root
-  .createStore<readonly types.Comment[]>([])
+export const $comments = createStore<readonly types.Comment[]>([])
   .on(fetchCommentsFx.doneData, (_, payload) => payload)
   .on(fetchCommentFx.doneData, (state, payload) => [payload, ...state])
   .on(deleteCommentFx.done, (state, { params }) =>
@@ -85,10 +90,9 @@ sample({
   target: deleteCommentFx,
 });
 
-export const $errors = root
-  .createStore<types.Errors>({
-    errors: {},
-  })
+export const $errors = createStore<types.Errors>({
+  errors: {},
+})
   .on(
     [fetchCommentFx.failData, deleteCommentFx.failData],
     (_, error) => error.response?.data,

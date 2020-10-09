@@ -1,9 +1,8 @@
-import { sample, guard, forward } from 'effector';
+import { createEvent, sample, guard, forward } from 'effector-root';
 import { createForm } from 'effector-forms';
-import { root } from '../../../root';
 
-export const tagAdded = root.createEvent<string>();
-export const keyPressed = root.createEvent<React.KeyboardEvent>();
+export const tagAdded = createEvent<string>();
+export const keyPressed = createEvent<React.KeyboardEvent>();
 
 export const form = createForm({
   fields: {

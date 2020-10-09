@@ -1,4 +1,4 @@
-import { createEvent, createStore } from 'effector';
+import { createEvent, createStore } from 'effector-root';
 import { createBrowserHistory, Location } from 'history';
 
 export const history = createBrowserHistory();

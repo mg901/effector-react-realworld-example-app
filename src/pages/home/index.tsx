@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Row } from 'ui';
+import { Page, Row } from '../../ui';
 import { Sidebar } from './modules/sidebar';
 import { Banner } from './ui/banner';
 import { Routes } from './ui/routes';

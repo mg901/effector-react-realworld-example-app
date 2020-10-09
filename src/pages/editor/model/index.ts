@@ -1,24 +1,27 @@
-import { sample, guard, attach, forward } from 'effector';
+import {
+  createEvent,
+  createEffect,
+  createStore,
+  sample,
+  guard,
+  attach,
+  forward,
+} from 'effector-root';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
-import { request } from 'api';
-import * as router from 'library/router';
-import { uniq } from 'library/uniq';
-import { types } from 'modules/feed';
-import { root } from '../../../root';
+import { request } from '../../../api';
+import * as router from '../../../library/router';
+import { uniq } from '../../../library/uniq';
+import { types } from '../../../modules/feed';
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
 
-export const formSubmitted = root.createEvent<React.FormEvent>();
+export const formSubmitted = createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
-export const tagDeleted = root.createEvent<string>();
-export const createArticleFx = root.createEffect<
-  Form,
-  types.Article,
-  AxiosError
->({
+export const tagDeleted = createEvent<string>();
+export const createArticleFx = createEffect<Form, types.Article, AxiosError>({
   handler: (form) =>
     request
       .post<{ article: types.Article }>('articles', { article: form })
@@ -29,7 +32,7 @@ createArticleFx.doneData.watch(({ slug }) => {
   router.model.history.replace(`/article/${slug}`);
 });
 
-export const fetchArticleFx = root.createEffect((slug: string) =>
+export const fetchArticleFx = createEffect((slug: string) =>
   request
     .get<{ article: types.Article }>(`articles/${slug}`)
     .then(({ data: { article: a } }) => ({
@@ -119,9 +122,8 @@ sample({
   target: createArticleFx,
 });
 
-export const $errors = root
-  .createStore<Errors>({
-    errors: {},
-  })
+export const $errors = createStore<Errors>({
+  errors: {},
+})
   .on(createArticleFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, Gate.close);

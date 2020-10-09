@@ -1,13 +1,12 @@
-import { forward, attach } from 'effector';
+import { createEffect, forward, attach } from 'effector-root';
 import { status } from 'patronum/status';
-import { request } from 'api';
-import { limit } from 'library/limit';
-import * as feed from 'modules/feed';
-import { root } from '../../../../root';
+import { request } from '../../../../api';
+import { limit } from '../../../../library/limit';
+import * as feed from '../../../../modules/feed';
 import * as model from '../../model';
 import * as types from '../../model/types';
 
-export const fetchFeedFx = root.createEffect(
+export const fetchFeedFx = createEffect(
   ({ username, page, pageSize }: types.GetFeedFxArgs) =>
     request
       .get<feed.types.Feed>(
@@ -31,7 +30,6 @@ export const {
   setUnfavoriteArticleFx,
   useModel,
 } = feed.createFeedModel({
-  domain: root,
   pageSize: 5,
   status: status({ effect: fetchFeedFx }),
 });

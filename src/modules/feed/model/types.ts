@@ -1,4 +1,4 @@
-import { Domain, Event, Effect, Store, StoreValue } from 'effector';
+import { Event, Effect, Store, StoreValue } from 'effector-root';
 import { Gate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
@@ -35,7 +35,6 @@ export type FavoriteArticle = Readonly<{
 export type UnfavoriteArticle = FavoriteArticle;
 
 export type Options = Readonly<{
-  domain: Domain;
   currentPage?: number;
   pageSize?: number;
   status?: Store<EffectState>;

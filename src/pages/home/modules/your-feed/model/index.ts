@@ -1,12 +1,11 @@
-import { forward, attach } from 'effector';
+import { createEffect, forward, attach } from 'effector-root';
 import { status } from 'patronum/status';
-import { request } from 'api';
-import { limit } from 'library/limit';
-import * as feed from 'modules/feed';
-import { root } from '../../../../../root';
+import { request } from '../../../../../api';
+import { limit } from '../../../../../library/limit';
+import * as feed from '../../../../../modules/feed';
 import * as types from './types';
 
-export const fetchFeedFx = root.createEffect(
+export const fetchFeedFx = createEffect(
   ({ pageSize, page }: types.fetchFeedFxArgs) =>
     request
       .get<feed.types.Feed>(`articles/feed?${limit(pageSize, page)}`)
@@ -23,7 +22,6 @@ export const {
   $pageSize,
   useModel,
 } = feed.createFeedModel({
-  domain: root,
   status: status({ effect: fetchFeedFx }),
 });
 
