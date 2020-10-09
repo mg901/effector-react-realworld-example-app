@@ -28,13 +28,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      - name: Set enviroment for tets
+      - run: yarn install
+
+      - name: Tests
         env:
           USER_LOGIN: ${{ secrets.USER_LOGIN }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
+        run: yarn test
 
-      - run: yarn install
-      - run: npm run test
       - run: yarn build
 
       - name: Deploy
