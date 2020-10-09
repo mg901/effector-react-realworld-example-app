@@ -30,12 +30,19 @@ jobs:
 
       - run: yarn install
 
-      - name: Tests
-        env:
-          USER_LOGIN: ${{ secrets.USER_LOGIN }}
-          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-        run: yarn test
+      - name: Set User Login
+      - uses: TickX/var-to-dotenv@v1.1.1
+        with:
+          key: 'USER_LOGIN'
+          value: ${{secrets.USER_LOGIN}}
 
+      - name: Set User Password
+      - uses: TickX/var-to-dotenv@v1.1.1
+        with:
+          key: 'USER_PASSWORD'
+          value: ${{secrets.USER_PASSWORD}}
+
+      - run: yarn test
       - run: yarn build
 
       - name: Deploy
