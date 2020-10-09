@@ -4,7 +4,6 @@ import * as model from '../model';
 import { BodyField } from './body-field';
 import { DescriptionField } from './description-field';
 import { TitleField } from './title-field';
-import '../model/init';
 
 export const Form: React.FC = () => (
   <UIForm id="editor" onSubmit={model.formSubmitted}>

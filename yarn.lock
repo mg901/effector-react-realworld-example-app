@@ -3629,15 +3629,20 @@ effector-react@^21.0.6:
   resolved "https://registry.yarnpkg.com/effector-react/-/effector-react-21.0.6.tgz#8af2053d10eac6a6813d2a3ea9bbd3a9cfefaf4b"
   integrity sha512-dmIlwFG2QfNVqlhJMuol38iMEYtRrG0pDe6INaUQ7t1+Fwv9RtrCc48bp8XjG6eUs03OK0Wn2efD5rzgjboTiA==
 
+effector-root@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/effector-root/-/effector-root-1.1.0.tgz#d4fb06c9017028278f1c87eeddd7349efb48d6a3"
+  integrity sha512-8LqvEXvzwB/1RaCI1dZ167zz+WtX9E/zT1dLD5kwJf15D9yjTBAQFqxZ1zjmcFP1Qq76LmHBEtTW7ZOvXUVgHA==
+
 effector-storage@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/effector-storage/-/effector-storage-3.0.0.tgz#a0ca81595d231e932fda87e6a7cf5dc806da9b99"
   integrity sha512-HdAqffSFYxSslc5YQsrr0L2qG7+X9PfITsPsOX9tvYxz4mtBILAN37ND+q7TAnMaLVCKTAjUdSn0D6q+w6IojA==
 
-effector@^21.4.1:
-  version "21.4.1"
-  resolved "https://registry.yarnpkg.com/effector/-/effector-21.4.1.tgz#151e9dc4695f4ce3d4ac4d3458f7d088cf3b27a2"
-  integrity sha512-J5bCxk7rZT2XU6+pa4tn1+4vA0yGfSEXfO2WCgZGlMPqZIcBzkiQpJ52pBSRgUft15SYoy2sFY0NurpgXCEgEA==
+effector@^21.4.2:
+  version "21.4.2"
+  resolved "https://registry.yarnpkg.com/effector/-/effector-21.4.2.tgz#f394f16ff66da4b4d2214e7fbd1518b4316c99f2"
+  integrity sha512-3MEV9sv5buPXPqNYZSZv/k8l7RH1JQCp+Fx13Lc7wdD/nAAuCyKCHtCGP9sOhsJhmt+ArCOCohEGjr6dVJ6frQ==
 
 electron-to-chromium@^1.3.571:
   version "1.3.576"

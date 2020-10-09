@@ -1,3 +1,4 @@
+import { forward, attach } from 'effector';
 import { request } from '../../../../../api';
 import { limit } from '../../../../../library/limit';
 import * as feed from '../../../../../modules/feed';
@@ -22,3 +23,16 @@ export const fetchFeedFx = root.createEffect(
       .get<feed.types.Feed>(`articles?${limit(pageSize, page)}`)
       .then((x) => x.data),
 );
+
+$feed.on(fetchFeedFx.doneData, (_, payload) => payload);
+
+forward({
+  from: [Gate.open, currentPageWasSet],
+  to: attach({
+    source: {
+      pageSize: $pageSize,
+      page: $currentPage,
+    },
+    effect: fetchFeedFx,
+  }),
+});

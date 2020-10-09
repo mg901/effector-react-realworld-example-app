@@ -7,7 +7,6 @@ import {
 } from '../../../../modules/feed';
 import { Pagination, Spinner } from '../../../../ui';
 import * as model from './model';
-import './model/init';
 
 export const FavoritedArticles: React.FC = () => {
   useGate(model.Gate);

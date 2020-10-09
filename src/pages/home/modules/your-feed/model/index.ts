@@ -1,3 +1,4 @@
+import { forward, attach } from 'effector';
 import { status } from 'patronum/status';
 import { request } from '../../../../../api';
 import { limit } from '../../../../../library/limit';
@@ -24,4 +25,17 @@ export const {
 } = feed.createFeedModel({
   domain: root,
   status: status({ effect: fetchFeedFx }),
+});
+
+$feed.on(fetchFeedFx.doneData, (_, payload) => payload);
+
+forward({
+  from: [Gate.open, currentPageWasSet],
+  to: attach({
+    source: {
+      pageSize: $pageSize,
+      page: $currentPage,
+    },
+    effect: fetchFeedFx,
+  }),
 });

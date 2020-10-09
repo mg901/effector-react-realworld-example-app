@@ -1,9 +1,9 @@
 import React from 'react';
-import { Page, Row } from '../../../ui';
-import { Sidebar } from '../modules/sidebar';
-import { Banner } from './banner';
-import { Routes } from './routes';
-import { Tabs } from './tabs';
+import { Page, Row } from '../../ui';
+import { Sidebar } from './modules/sidebar';
+import { Banner } from './ui/banner';
+import { Routes } from './ui/routes';
+import { Tabs } from './ui/tabs';
 
 export const HomePage: React.FC = () => (
   <div className="home-page">
