@@ -80,6 +80,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
     "effector": "^21.4.1",
     "effector-forms": "^0.0.14",
     "effector-react": "^21.0.6",
