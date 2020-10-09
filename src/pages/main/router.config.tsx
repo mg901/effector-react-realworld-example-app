@@ -1,7 +1,7 @@
 import React, { lazy } from 'react';
 import { RouteConfig } from 'react-router-config';
 import { Redirect } from 'react-router-dom';
-import { Paths, filterRoutes } from '../../modules/router';
+import { Paths, filterRoutes } from '../../library/router';
 import { HomePage } from '../home';
 
 export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
@@ -62,7 +62,15 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       component: HomePage,
     },
     {
-      path: Paths.EDITOR_SLUG || Paths.EDITOR,
+      path: Paths.EDITOR,
+      exact: true,
+      component: lazy(() =>
+        import('../editor').then((x) => ({ default: x.EditorPage })),
+      ),
+    },
+    {
+      path: Paths.EDITOR_SLUG,
+      exact: true,
       component: lazy(() =>
         import('../editor').then((x) => ({ default: x.EditorPage })),
       ),

@@ -1,7 +1,7 @@
 import { request } from '../../../../../api';
 import { limit } from '../../../../../library/limit';
-import { model } from '../../../../../modules/app';
 import * as feed from '../../../../../modules/feed';
+import { root } from '../../../../../root';
 import * as types from './types';
 
 export const {
@@ -16,7 +16,7 @@ export const {
   useModel,
 } = feed.createFeedModel();
 
-export const fetchFeedFx = model.domain.createEffect(
+export const fetchFeedFx = root.createEffect(
   ({ pageSize, page }: types.fetchFeedFxArgs) =>
     request
       .get<feed.types.Feed>(`articles?${limit(pageSize, page)}`)

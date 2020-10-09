@@ -11,7 +11,7 @@ import {
   setFavoriteArticleFx,
   setUnfavoriteArticleFx,
 } from '.';
-import * as router from '../../../../../modules/router';
+import * as router from '../../../../../library/router';
 
 forward({
   from: [Gate.open, currentPageWasSet, guard($currentTag, { filter: Boolean })],

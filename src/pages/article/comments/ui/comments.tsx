@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGate } from 'effector-react';
-import { AuthBranch } from '../../../../modules/router';
+import { AuthBranch } from '../../../../library/router';
 import { Gate } from '../model';
 import { CommentsList } from './comment-list';
 import { Errors } from './errors';

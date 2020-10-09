@@ -1,9 +1,9 @@
 import { createForm } from 'effector-forms';
 import { isASCII } from '../../../../library/ascii';
-import { model } from '../../../../modules/app';
+import { root } from '../../../../root';
 
-export const tagAdded = model.domain.createEvent<string>();
-export const keyPressed = model.domain.createEvent<React.KeyboardEvent>();
+export const tagAdded = root.createEvent<string>();
+export const keyPressed = root.createEvent<React.KeyboardEvent>();
 
 export const validTagAdded = tagAdded.filter({
   fn: (x) => Boolean(x.length) && isASCII(x),

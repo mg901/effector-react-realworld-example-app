@@ -1,9 +1,15 @@
-import { sample, forward } from 'effector';
+import { guard, forward } from 'effector';
 import { Gate, fetchUserFx } from '.';
-import { model } from '../../../modules/app';
+import { model } from '../../../modules/user';
 
 forward({
-  from: [sample(model.$isAuthorized, Gate.open), model.$isAuthorized],
+  from: [
+    guard({
+      source: Gate.open,
+      filter: model.$isAuthorized,
+    }),
+    model.$isAuthorized,
+  ],
   to: fetchUserFx,
 });
 

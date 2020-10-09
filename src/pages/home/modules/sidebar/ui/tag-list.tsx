@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useList } from 'effector-react';
-import { Paths } from '../../../../../modules/router';
+import { Paths } from '../../../../../library/router';
 import { TagList as List } from '../../../../../ui';
 import { $validTags } from '../model';
 

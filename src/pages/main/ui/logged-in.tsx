@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { model } from '../../../modules/app';
-import { Paths } from '../../../modules/router';
+import { Paths } from '../../../library/router';
+import { model } from '../../../modules/user';
 import { NavItem, NavLink } from '../../../ui';
 
 export const LoggedIn: React.FC = () => {

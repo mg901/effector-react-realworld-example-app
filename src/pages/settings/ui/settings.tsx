@@ -1,5 +1,5 @@
 import React from 'react';
-import { model } from '../../../modules/app';
+import { model } from '../../../modules/user';
 import { Page, Row, Button } from '../../../ui';
 import { Errors } from './errors';
 import { Form } from './form';

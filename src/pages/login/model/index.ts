@@ -2,21 +2,20 @@ import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { request } from '../../../api';
-import { model, types } from '../../../modules/app';
+import { types } from '../../../modules/user';
+import { root } from '../../../root';
 import { Form, Errors } from './types';
 
-export const formSubmitted = model.domain.createEvent<React.FormEvent>();
+export const formSubmitted = root.createEvent<React.FormEvent>();
 
-export const signInFx = model.domain.createEffect<Form, types.User, AxiosError>(
-  {
-    handler: ({ email, password }) =>
-      request
-        .post<{ user: types.User }>('users/login', {
-          user: { email, password },
-        })
-        .then((x) => x.data.user),
-  },
-);
+export const signInFx = root.createEffect<Form, types.User, AxiosError>({
+  handler: ({ email, password }) =>
+    request
+      .post<{ user: types.User }>('users/login', {
+        user: { email, password },
+      })
+      .then((x) => x.data.user),
+});
 
 export const FormGate = createGate();
 
@@ -31,6 +30,6 @@ export const form = createForm({
   },
 });
 
-export const $errors = model.domain.createStore<Errors>({
+export const $errors = root.createStore<Errors>({
   errors: {},
 });

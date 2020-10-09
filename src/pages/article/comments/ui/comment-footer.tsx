@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AuthBranch } from '../../../../modules/router';
+import { AuthBranch } from '../../../../library/router';
 import { commentDeleted } from '../model';
 import * as types from '../model/types';
 import { ButtonDelete } from './button-delete';

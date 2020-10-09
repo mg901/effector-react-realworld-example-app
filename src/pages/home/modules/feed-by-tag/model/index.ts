@@ -2,8 +2,8 @@ import { combine } from 'effector';
 import { status } from 'patronum/status';
 import { request } from '../../../../../api';
 import { limit } from '../../../../../library/limit';
-import { model } from '../../../../../modules/app';
 import * as feed from '../../../../../modules/feed';
+import { root } from '../../../../../root';
 import * as types from './types';
 
 export const {
@@ -16,9 +16,9 @@ export const {
   setUnfavoriteArticleFx,
 } = feed.createFeedModel();
 
-export const currentPageWasSet = model.domain.createEvent<number>();
+export const currentPageWasSet = root.createEvent<number>();
 
-export const fetchFeedFx = model.domain.createEffect(
+export const fetchFeedFx = root.createEffect(
   ({ tag, page }: types.GetFeedByTagArgs) =>
     request
       .get<feed.types.Feed>(
@@ -28,7 +28,7 @@ export const fetchFeedFx = model.domain.createEffect(
 );
 
 export const $status = status({ effect: fetchFeedFx });
-export const $feed = model.domain.createStore<types.Feed>({});
+export const $feed = root.createStore<types.Feed>({});
 export const $feedByTag = combine(
   $feed,
   $currentTag,

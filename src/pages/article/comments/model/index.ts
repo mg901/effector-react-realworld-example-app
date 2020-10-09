@@ -2,18 +2,18 @@ import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { request } from '../../../../api';
-import { model } from '../../../../modules/app';
+import { root } from '../../../../root';
 import { GateState } from '../../model/types';
 import * as types from './types';
 
-export const commentDeleted = model.domain.createEvent<string>();
-export const fetchCommentsFx = model.domain.createEffect((slug: string) =>
+export const commentDeleted = root.createEvent<string>();
+export const fetchCommentsFx = root.createEffect((slug: string) =>
   request
     .get<types.GetCommentsFxDone>(`articles/${slug}/comments`)
     .then((x) => x.data.comments),
 );
 
-export const fetchCommentFx = model.domain.createEffect<
+export const fetchCommentFx = root.createEffect<
   types.AddCommentFxArgs,
   types.Comment,
   AxiosError
@@ -24,16 +24,19 @@ export const fetchCommentFx = model.domain.createEffect<
       .then((x) => x.data.comment),
 });
 
-export const deleteCommentFx = model.domain.createEffect(
-  ({ slug, id }: types.DeleteCommentFxArgs) =>
-    request.delete<void>(`articles/${slug}/comments/${id}`),
-);
+export const deleteCommentFx = root.createEffect<
+  types.DeleteCommentFxArgs,
+  void,
+  AxiosError
+>({
+  handler: ({ slug, id }) => request.delete(`articles/${slug}/comments/${id}`),
+});
 
 export const Gate = createGate<GateState>();
 
 export const $slug = Gate.state.map((x) => x.id);
-export const $comments = model.domain.createStore<readonly types.Comment[]>([]);
-export const $errors = model.domain.createStore<types.Errors>({
+export const $comments = root.createStore<readonly types.Comment[]>([]);
+export const $errors = root.createStore<types.Errors>({
   errors: {},
 });
 

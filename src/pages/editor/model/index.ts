@@ -2,13 +2,13 @@ import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { request } from '../../../api';
-import { model } from '../../../modules/app';
 import { types } from '../../../modules/feed';
+import { root } from '../../../root';
 import { Form, GateState, Errors } from './types';
 
-export const formSubmitted = model.domain.createEvent<React.FormEvent>();
-export const tagDeleted = model.domain.createEvent<string>();
-export const createArticleFx = model.domain.createEffect<
+export const formSubmitted = root.createEvent<React.FormEvent>();
+export const tagDeleted = root.createEvent<string>();
+export const createArticleFx = root.createEffect<
   Form,
   types.Article,
   AxiosError
@@ -19,7 +19,7 @@ export const createArticleFx = model.domain.createEffect<
       .then(({ data }) => data.article),
 });
 
-export const fetchArticleFx = model.domain.createEffect((slug: string) =>
+export const fetchArticleFx = root.createEffect((slug: string) =>
   request
     .get<{ article: types.Article }>(`articles/${slug}`)
     .then(({ data: { article: a } }) => ({
@@ -59,6 +59,6 @@ export const form = createForm({
 
 export const $tagList = form.fields.tagList.$value;
 
-export const $errors = model.domain.createStore<Errors>({
+export const $errors = root.createStore<Errors>({
   errors: {},
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paths } from '../../../modules/router';
+import { Paths } from '../../../library/router';
 import { NavItem, NavLink } from '../../../ui';
 
 export const LoggedOut: React.FC = () => (

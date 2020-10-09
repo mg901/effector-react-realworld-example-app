@@ -2,27 +2,26 @@ import { combine } from 'effector';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { request } from '../../../api';
-import { model } from '../../../modules/app';
+import * as user from '../../../modules/user';
+import { root } from '../../../root';
 import * as types from './types';
 
-export const toggleFollowing = model.domain.createEvent<React.MouseEvent>();
+export const toggleFollowing = root.createEvent<React.MouseEvent>();
 
-export const fetchProfileFx = model.domain.createEffect((username: string) =>
+export const fetchProfileFx = root.createEffect((username: string) =>
   request
     .get<types.GetProfileFxDone>(`profiles/${username}`)
     .then((x) => x.data.profile),
 );
 
-export const subscribeFx = model.domain.createEffect<
-  string,
-  types.Profile,
-  AxiosError
->({
-  handler: (username: string) =>
-    request.post(`profiles/${username}/follow`).then((x) => x.data.profile),
-});
+export const subscribeFx = root.createEffect<string, types.Profile, AxiosError>(
+  {
+    handler: (username: string) =>
+      request.post(`profiles/${username}/follow`).then((x) => x.data.profile),
+  },
+);
 
-export const unsubscribeFx = model.domain.createEffect((username: string) =>
+export const unsubscribeFx = root.createEffect((username: string) =>
   request
     .delete<types.GetProfileFxDone>(`profiles/${username}/follow`)
     .then((x) => x.data.profile),
@@ -30,8 +29,8 @@ export const unsubscribeFx = model.domain.createEffect((username: string) =>
 
 export const Gate = createGate<types.GateState>();
 
-export const $username = model.domain.createStore<string>('');
-export const $profile = model.domain.createStore<types.Profile>({
+export const $username = root.createStore<string>('');
+export const $profile = root.createStore<types.Profile>({
   bio: '',
   following: false,
   image: '',
@@ -44,8 +43,8 @@ export const $thenUnsubscribed = $profile.map((x) => x.following === false);
 
 export const $isCurrentUser = combine(
   $profile,
-  model.$user,
-  (profile, user) => profile.username === user.username,
+  user.model.$user,
+  (profile, authUser) => profile.username === authUser.username,
 );
 
 export const $isAnotherUser = $isCurrentUser.map((x) => !x);

@@ -16,6 +16,7 @@ export const ArticlePage: React.FC<Props> = ({
     params: { id },
   },
 }) => {
+  const slug = useStore(model.$slug);
   useGate(model.Gate, { id });
 
   const { title, author, createdAt, body, tagList } = useStore(model.$article);
@@ -47,7 +48,8 @@ export const ArticlePage: React.FC<Props> = ({
             <hr />
             <div className="article-actions" />
             <Row>
-              <Comments id={id} />
+              <Comments id={slug} />
+              <div />
             </Row>
           </Page>
         </div>

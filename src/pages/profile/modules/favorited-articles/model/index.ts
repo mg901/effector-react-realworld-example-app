@@ -1,11 +1,11 @@
 import { status } from 'patronum/status';
 import { request } from '../../../../../api';
 import { limit } from '../../../../../library/limit';
-import { model } from '../../../../../modules/app';
 import * as feed from '../../../../../modules/feed';
+import { root } from '../../../../../root';
 import * as types from '../../../model/types';
 
-export const fetchFeedFx = model.domain.createEffect(
+export const fetchFeedFx = root.createEffect(
   ({ username, page, pageSize }: types.GetFeedFxArgs) =>
     request
       .get<feed.types.Feed>(
@@ -29,7 +29,7 @@ export const {
   setUnfavoriteArticleFx,
   useModel,
 } = feed.createFeedModel({
-  domain: model.domain,
+  domain: root,
   pageSize: 5,
   status: status({ effect: fetchFeedFx }),
 });
