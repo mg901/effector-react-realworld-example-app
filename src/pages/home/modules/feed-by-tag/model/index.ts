@@ -1,7 +1,8 @@
-import { combine } from 'effector';
+import { combine, forward, attach, guard, sample } from 'effector';
 import { status } from 'patronum/status';
 import { request } from '../../../../../api';
 import { limit } from '../../../../../library/limit';
+import * as router from '../../../../../library/router';
 import * as feed from '../../../../../modules/feed';
 import { root } from '../../../../../root';
 import * as types from './types';
@@ -28,7 +29,13 @@ export const fetchFeedFx = root.createEffect(
 );
 
 export const $status = status({ effect: fetchFeedFx });
-export const $feed = root.createStore<types.Feed>({});
+export const $feed = root
+  .createStore<types.Feed>({})
+  .on(fetchFeedFx.done, (state, { params, result }) => ({
+    ...state,
+    [params.tag]: result,
+  }));
+
 export const $feedByTag = combine(
   $feed,
   $currentTag,
@@ -37,6 +44,20 @@ export const $feedByTag = combine(
       articles: [],
       articlesCount: 0,
     },
+).on(
+  [setFavoriteArticleFx.done, setUnfavoriteArticleFx.done],
+  (state, { params, result }) => ({
+    ...state,
+    articles: state.articles.map((article) =>
+      article.slug !== params
+        ? article
+        : {
+            ...article,
+            favorited: result.article.favorited,
+            favoritesCount: result.article.favoritesCount,
+          },
+    ),
+  }),
 );
 
 export const $articles = $feedByTag.map((x) => x.articles);
@@ -55,4 +76,27 @@ export const $feedModel = combine({
   currentPage: $currentPage,
   pageSize: $pageSize,
   totalPages: $totalPages,
+});
+
+forward({
+  from: [Gate.open, currentPageWasSet, guard($currentTag, { filter: Boolean })],
+  to: attach({
+    source: {
+      tag: $currentTag,
+      page: $currentPage,
+      pageSize: $pageSize,
+    },
+    effect: fetchFeedFx,
+  }),
+});
+
+sample({
+  source: {
+    path: router.model.$pathname,
+    tag: $currentTag,
+  },
+  clock: currentPageWasSet,
+  fn: ({ path, tag }, page) => ({ path, page, tag }),
+}).watch(({ path, page, tag }) => {
+  router.model.history.replace(`${path}?tag=${tag}&page=${page}`);
 });

@@ -6,7 +6,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "start": "npm run clean && cross-env parcel src/index.html  --port 4100 --out-dir public",
-    "build": "npm run clean && cross-env cross-env NODE_ENV=production parcel build src/index.html --no-source-maps --out-dir public --public-url /",
+    "build": "npm run clean && cross-env cross-env NODE_ENV=production parcel build src/index.html --no-source-maps --out-dir public --public-url /effector-react-realworld-example-app",
     "clean": "cross-env rimraf public .cache",
     "commit": "cross-env git-cz",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
@@ -81,9 +81,10 @@
   "dependencies": {
     "axios": "^0.20.0",
     "dotenv": "^8.2.0",
-    "effector": "^21.4.1",
+    "effector": "^21.4.2",
     "effector-forms": "^0.0.14",
     "effector-react": "^21.0.6",
+    "effector-root": "^1.1.0",
     "effector-storage": "^3.0.0",
     "features": "^0.1.0",
     "history": "4.10.1",

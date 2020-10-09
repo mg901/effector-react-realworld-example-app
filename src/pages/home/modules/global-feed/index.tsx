@@ -3,7 +3,6 @@ import { useGate, useList, useStore } from 'effector-react';
 import { ArticlesWrapper, ArticlePreview } from '../../../../modules/feed';
 import { Pagination, Spinner } from '../../../../ui';
 import * as model from './model';
-import './model/init';
 
 export const GlobalFeedPage: React.FC = () => {
   useGate(model.Gate);

@@ -1,3 +1,4 @@
+import { forward, attach, sample } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
@@ -35,10 +36,13 @@ export const deleteCommentFx = root.createEffect<
 export const Gate = createGate<GateState>();
 
 export const $slug = Gate.state.map((x) => x.id);
-export const $comments = root.createStore<readonly types.Comment[]>([]);
-export const $errors = root.createStore<types.Errors>({
-  errors: {},
-});
+export const $comments = root
+  .createStore<readonly types.Comment[]>([])
+  .on(fetchCommentsFx.doneData, (_, payload) => payload)
+  .on(fetchCommentFx.doneData, (state, payload) => [payload, ...state])
+  .on(deleteCommentFx.done, (state, { params }) =>
+    state.filter(({ id }) => id !== params.id),
+  );
 
 export const form = createForm({
   fields: {
@@ -47,3 +51,46 @@ export const form = createForm({
     },
   },
 });
+
+forward({
+  from: $slug.updates,
+  to: attach({
+    source: $slug,
+    effect: fetchCommentsFx,
+  }),
+});
+
+// submit form
+forward({
+  from: form.submit,
+  to: attach({
+    source: {
+      slug: $slug,
+      body: form.fields.comment.$value,
+    },
+    effect: fetchCommentFx,
+  }),
+});
+
+// reset form
+forward({
+  from: fetchCommentFx,
+  to: form.reset,
+});
+
+sample({
+  source: $slug,
+  clock: commentDeleted,
+  fn: (slug, id) => ({ slug, id }),
+  target: deleteCommentFx,
+});
+
+export const $errors = root
+  .createStore<types.Errors>({
+    errors: {},
+  })
+  .on(
+    [fetchCommentFx.failData, deleteCommentFx.failData],
+    (_, error) => error.response?.data,
+  )
+  .reset(form.$touched);

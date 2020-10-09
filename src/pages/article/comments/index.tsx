@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useGate } from 'effector-react';
-import { AuthBranch } from '../../../../library/router';
-import { Gate } from '../model';
-import { CommentsList } from './comment-list';
-import { Errors } from './errors';
-import { Form } from './form';
-import '../model/init';
+import { AuthBranch } from '../../../library/router';
+import { Gate } from './model';
+import { CommentsList } from './ui/comment-list';
+import { Errors } from './ui/errors';
+import { Form } from './ui/form';
 
 type Props = Readonly<{
   id: string;

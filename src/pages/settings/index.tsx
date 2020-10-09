@@ -1,9 +1,8 @@
 import React from 'react';
-import { model } from '../../../modules/user';
-import { Page, Row, Button } from '../../../ui';
-import { Errors } from './errors';
-import { Form } from './form';
-import '../model/init';
+import { model } from '../../modules/user';
+import { Page, Row, Button } from '../../ui';
+import { Errors } from './ui/errors';
+import { Form } from './ui/form';
 
 export const SettingsPage: React.FC = () => (
   <Page>

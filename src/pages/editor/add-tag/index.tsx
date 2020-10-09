@@ -2,7 +2,6 @@ import React from 'react';
 import { useForm } from 'effector-forms';
 import { Form, Input } from '../../../ui';
 import * as model from './model';
-import './model/init';
 
 export const AddTag: React.FC = () => {
   const { fields } = useForm(model.form);

@@ -1,12 +1,11 @@
 import React from 'react';
 import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
 import { useGate } from 'effector-react';
-import { Container, Row } from '../../../ui';
-import { Gate } from '../model';
-import { routes } from '../router.config';
-import { Tabs } from './tabs';
-import { UserInfo } from './user-info';
-import '../model/init';
+import { Container, Row } from '../../ui';
+import { Gate } from './model';
+import { routes } from './router.config';
+import { Tabs } from './ui/tabs';
+import { UserInfo } from './ui/user-info';
 
 type Props = Readonly<RouteConfigComponentProps<{ url: string }>>;
 

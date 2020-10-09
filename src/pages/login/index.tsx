@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Paths } from '../../../library/router';
-import { Page, Row } from '../../../ui';
-import { Errors } from './errors';
-import { Form } from './form';
-import '../model/init';
+import { Paths } from '../../library/router';
+import { Page, Row } from '../../ui';
+import { Errors } from './ui/errors';
+import { Form } from './ui/form';
 
 export const LoginPage: React.FC = () => (
   <Page>
