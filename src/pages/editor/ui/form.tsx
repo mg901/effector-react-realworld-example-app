@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form as UIForm } from '../../../ui';
+import { Form as UIForm } from 'ui';
 import * as model from '../model';
 import { BodyField } from './body-field';
 import { DescriptionField } from './description-field';

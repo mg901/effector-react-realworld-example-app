@@ -1,9 +1,9 @@
 import { combine, forward, attach } from 'effector';
 import { createGate } from 'effector-react';
-import { request } from '../../../api';
-import * as router from '../../../library/router';
-import { types } from '../../../modules/feed';
-import * as user from '../../../modules/user';
+import { request } from 'api';
+import * as router from 'library/router';
+import { types } from 'modules/feed';
+import * as user from 'modules/user';
 import { root } from '../../../root';
 import { GateState } from './types';
 

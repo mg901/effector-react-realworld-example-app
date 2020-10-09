@@ -1,6 +1,6 @@
 import { fork, allSettled } from 'effector';
+import { $user } from 'modules/user/model';
 import { signInFx } from '.';
-import { $user } from '../../../modules/user/model';
 import { root } from '../../../root';
 
 describe('pages/login', () => {

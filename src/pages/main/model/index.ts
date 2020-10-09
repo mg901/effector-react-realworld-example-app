@@ -1,7 +1,7 @@
 import { guard, forward } from 'effector';
 import { createGate } from 'effector-react';
-import { request } from '../../../api';
-import * as user from '../../../modules/user';
+import { request } from 'api';
+import * as user from 'modules/user';
 import { root } from '../../../root';
 
 export const Gate = createGate();

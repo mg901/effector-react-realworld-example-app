@@ -1,7 +1,7 @@
 import { forward, attach } from 'effector';
-import { request } from '../../../../../api';
-import { limit } from '../../../../../library/limit';
-import * as feed from '../../../../../modules/feed';
+import { request } from 'api';
+import { limit } from 'library/limit';
+import * as feed from 'modules/feed';
 import { root } from '../../../../../root';
 import * as types from './types';
 

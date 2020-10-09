@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { Button } from '../../../ui';
+import { Button } from 'ui';
 import * as model from '../model';
 
 export const EditMode: React.FC = () => {

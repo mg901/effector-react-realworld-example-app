@@ -1,9 +1,9 @@
 import { combine, forward, attach, guard } from 'effector';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
-import { request } from '../../../api';
-import * as router from '../../../library/router';
-import * as user from '../../../modules/user';
+import { request } from 'api';
+import * as router from 'library/router';
+import * as user from 'modules/user';
 import { root } from '../../../root';
 import * as types from './types';
 

@@ -2,8 +2,8 @@ import { sample, forward } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
-import { request } from '../../../api';
-import * as user from '../../../modules/user';
+import { request } from 'api';
+import * as user from 'modules/user';
 import { root } from '../../../root';
 import { Form, Errors } from './types';
 
