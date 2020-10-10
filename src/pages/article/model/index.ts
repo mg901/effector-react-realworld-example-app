@@ -34,7 +34,7 @@ export const fetchPageDataFx = createEffect((slug: string) =>
 
 export const Gate = createGate<GateState>();
 
-export const $slug = Gate.state.map((x) => x.id);
+export const $slug = Gate.state.map((x) => x.slug);
 
 export const $article = createStore<types.Article>({
   title: '',

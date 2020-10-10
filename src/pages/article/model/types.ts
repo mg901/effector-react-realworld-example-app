@@ -19,7 +19,7 @@ export type Article = Readonly<{
 }>;
 
 export type GateState = Readonly<{
-  id: string;
+  slug: string;
 }>;
 
 export type GetArticleFxDone = Readonly<{

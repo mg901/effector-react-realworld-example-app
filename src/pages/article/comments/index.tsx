@@ -8,11 +8,11 @@ import { Errors } from './ui/errors';
 import { Form } from './ui/form';
 
 type Props = Readonly<{
-  id: string;
+  slug: string;
 }>;
 
-export const Comments: React.FC<Props> = ({ id }) => {
-  useGate(Gate, { id });
+export const Comments: React.FC<Props> = ({ slug }) => {
+  useGate(Gate, { slug });
 
   return (
     <div className="col-xs-12 col-md-8 offset-md-2">

@@ -11,5 +11,5 @@ export enum Paths {
   EDITOR_SLUG = '/editor/:slug',
   PROFILE = '/@:username',
   PROFILE_FAVORITES = '/@:username/favorites',
-  ARTICLE = '/article/:id',
+  ARTICLE = '/article/:slug',
 }

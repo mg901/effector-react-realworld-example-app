@@ -41,7 +41,7 @@ export const deleteCommentFx = createEffect<
 
 export const Gate = createGate<GateState>();
 
-export const $slug = Gate.state.map((x) => x.id);
+export const $slug = Gate.state.map((x) => x.slug);
 export const $comments = createStore<readonly types.Comment[]>([])
   .on(fetchCommentsFx.doneData, (_, payload) => payload)
   .on(fetchCommentFx.doneData, (state, payload) => [payload, ...state])

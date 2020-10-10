@@ -8,15 +8,14 @@ import { Comments } from './comments';
 import * as model from './model';
 import { EditMode } from './ui/edit-mode';
 
-type Props = Readonly<RouteConfigComponentProps<{ id: string }>>;
+type Props = Readonly<RouteConfigComponentProps<{ slug: string }>>;
 
 export const ArticlePage: React.FC<Props> = ({
   match: {
-    params: { id },
+    params: { slug: id },
   },
 }) => {
-  const slug = useStore(model.$slug);
-  useGate(model.Gate, { id });
+  useGate(model.Gate, { slug: id });
 
   const { title, author, createdAt, body, tagList } = useStore(model.$article);
   const loading = useStore(model.fetchArticleFx.pending);
@@ -47,7 +46,7 @@ export const ArticlePage: React.FC<Props> = ({
             <hr />
             <div className="article-actions" />
             <Row>
-              <Comments id={slug} />
+              <Comments slug={id} />
               <div />
             </Row>
           </Page>
