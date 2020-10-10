@@ -20,4 +20,5 @@ export const $user = createStore<User>({
 export const $token = createStorageStore<Token>(null, { key: TOKEN_NAME })
   .catch(console.error)
   .on($user, (_, { token }) => token);
+
 export const $isAuthorized = $token.map(Boolean);

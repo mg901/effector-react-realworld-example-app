@@ -13,11 +13,12 @@ user.model.$user.on(fetchUserFx.doneData, (_, payload) => payload);
 
 forward({
   from: [
-    guard({
-      source: Gate.open,
+    guard(Gate.open, {
       filter: user.model.$isAuthorized,
     }),
-    user.model.$isAuthorized,
+    guard(user.model.$isAuthorized, {
+      filter: Boolean,
+    }),
   ],
   to: fetchUserFx,
 });
