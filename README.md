@@ -47,11 +47,12 @@ The example application is a social blogging site (i.e. a Medium.com clone) call
 **The general page breakdown looks like this:**
 
 - Home page (URL: / )
-  - List of articles pulled from either Feed, Global, or by Tag
   - List of articles from Your Feed (URL : /your-feed)
+    - Pagination for list of articles
   - List of articles from Global Feed (URL : /global-feed)
-  - List of tags (URL: /feed-by-tag)
-  - Pagination for list of articles
+    - Pagination for list of articles
+  - List of Tags (URL: /feed-by-tag)
+    - Pagination for list of articles
 - Sign in/Sign up pages (URL: /#/login, /#/register )
   - Use JWT (store the token in localStorage)
 - Settings page (URL: /#/settings )
