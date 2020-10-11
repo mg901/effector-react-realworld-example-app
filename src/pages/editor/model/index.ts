@@ -28,10 +28,6 @@ export const createArticleFx = createEffect<Form, types.Article, AxiosError>({
       .then(({ data }) => data.article),
 });
 
-createArticleFx.doneData.watch(({ slug }) => {
-  router.model.history.replace(`/article/${slug}`);
-});
-
 export const fetchArticleFx = createEffect((slug: string) =>
   request
     .get<{ article: types.Article }>(`articles/${slug}`)
@@ -120,6 +116,10 @@ sample({
   source: form.$values,
   clock: form.submit,
   target: createArticleFx,
+});
+
+createArticleFx.doneData.watch(({ slug }) => {
+  router.model.history.replace(`/article/${slug}`);
 });
 
 export const $errors = createStore<Errors>({
