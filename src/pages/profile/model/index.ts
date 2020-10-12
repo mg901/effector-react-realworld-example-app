@@ -18,7 +18,7 @@ export const toggleFollowing = createEvent<React.MouseEvent>();
 
 export const fetchProfileFx = createEffect((username: string) =>
   request
-    .get<types.GetProfileFxDone>(`profiles/${username}`)
+    .get<types.FetchProfileFxDone>(`profiles/${username}`)
     .then((x) => x.data.profile),
 );
 
@@ -29,7 +29,7 @@ export const subscribeFx = createEffect<string, types.Profile, AxiosError>({
 
 export const unsubscribeFx = createEffect((username: string) =>
   request
-    .delete<types.GetProfileFxDone>(`profiles/${username}/follow`)
+    .delete<types.FetchProfileFxDone>(`profiles/${username}/follow`)
     .then((x) => x.data.profile),
 );
 

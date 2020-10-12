@@ -22,6 +22,6 @@ export type GateState = Readonly<{
   slug: string;
 }>;
 
-export type GetArticleFxDone = Readonly<{
+export type FetchArticleFxDone = Readonly<{
   article: Article;
 }>;

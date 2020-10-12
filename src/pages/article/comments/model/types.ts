@@ -8,7 +8,7 @@ export type Comment = Readonly<{
   updatedAt: string;
 }>;
 
-export type GetCommentsFxDone = Readonly<{
+export type FetchCommentsFxDone = Readonly<{
   comments: readonly Comment[];
 }>;
 
