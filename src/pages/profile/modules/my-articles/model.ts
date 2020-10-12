@@ -7,7 +7,7 @@ import * as model from '../../model';
 import * as types from '../../model/types';
 
 export const fetchFeedFx = createEffect(
-  ({ username, page, pageSize }: types.GetFeedFxArgs) =>
+  ({ username, page, pageSize }: types.FetchFeedFxArgs) =>
     request
       .get<feed.types.Feed>(
         `articles?author=${encodeURIComponent(username)}&${limit(

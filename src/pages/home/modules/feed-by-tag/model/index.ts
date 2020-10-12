@@ -28,7 +28,7 @@ export const {
 export const currentPageWasSet = createEvent<number>();
 
 export const fetchFeedFx = createEffect(
-  ({ tag, page }: types.GetFeedByTagArgs) =>
+  ({ tag, page }: types.FetchFeedByTagArgs) =>
     request
       .get<feed.types.Feed>(
         `articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`,

@@ -16,7 +16,7 @@ import * as types from './types';
 export const commentDeleted = createEvent<string>();
 export const fetchCommentsFx = createEffect((slug: string) =>
   request
-    .get<types.GetCommentsFxDone>(`articles/${slug}/comments`)
+    .get<types.FetchCommentsFxDone>(`articles/${slug}/comments`)
     .then((x) => x.data.comments),
 );
 
