@@ -10,7 +10,7 @@ module.exports = {
   mode: 'production',
   output: {
     path: PUBLIC,
-    publicPath: '/',
+    publicPath: '/effector-react-realworld-example-app/',
     filename: 'bundle.[contenthash].js',
   },
   optimization: {
