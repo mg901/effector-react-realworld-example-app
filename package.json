@@ -6,7 +6,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "start": "cross-env webpack-dev-server",
-    "build": "cross-env NODE_ENV=production webpack && npm run size-limit",
+    "build": "cross-env NODE_ENV=production webpack && size-limit",
     "clean": "cross-env rimraf dist .cache",
     "commit": "cross-env git-cz",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
