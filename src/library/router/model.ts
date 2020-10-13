@@ -1,7 +1,10 @@
 import { createEvent, createStore } from 'effector-root';
 import { createBrowserHistory, Location } from 'history';
 
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({
+  basename: '/effector-react-realworld-example-app',
+});
+
 export const locationUpdated = createEvent<Location>();
 export const $location = createStore<Location>(history.location).on(
   locationUpdated,

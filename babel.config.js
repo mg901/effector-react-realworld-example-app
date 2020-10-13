@@ -1,7 +1,7 @@
 module.exports = {
+  presets: ['@babel/env', '@babel/typescript', '@babel/react'],
   env: {
     test: {
-      presets: ['@babel/env', '@babel/typescript', '@babel/react'],
       plugins: [
         'effector/babel-plugin',
         [
