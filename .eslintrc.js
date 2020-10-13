@@ -96,8 +96,9 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.config.js'],
+      files: ['*.config.js', 'webpack/**'],
       rules: {
+        'import-helpers/order-imports': 0,
         '@typescript-eslint/no-var-requires': 0,
       },
     },

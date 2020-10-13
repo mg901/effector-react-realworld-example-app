@@ -30,10 +30,10 @@ jobs:
 
       - run: yarn install
       - run: yarn test
-      - run: yarn build && cp index.html 404.html
+      - run: yarn build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./
