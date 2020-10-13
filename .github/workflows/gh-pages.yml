@@ -30,7 +30,7 @@ jobs:
 
       - run: yarn install
       - run: yarn test
-      - run: yarn build cp index.html 404.html
+      - run: yarn build && cp index.html 404.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
