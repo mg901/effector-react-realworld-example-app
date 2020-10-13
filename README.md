@@ -6,7 +6,7 @@
 
 </a>&nbsp;&nbsp;<a href="https://thinkster.io/tutorials/build-a-real-world-react-redux-application" target="_blank"><img width="384" src="https://raw.githubusercontent.com/gothinkster/realworld/master/media/learn-btn-hr.png" /></a>
 
-### [RealWorld](https://github.com/gothinkster/realworld)
+### [Demo](https://mg901.github.io/effector-react-realworld-example-app)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
 Originally created for this [GH issue](https://github.com/mg901/effector-react-realworld-example-app/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc). The codebase is now feature complete; please submit bug fixes via pull requests & feedback via issues.
 
@@ -32,7 +32,7 @@ If you want to change the API URL to a local server, simply edit `src/api.ts` an
 
 ## Functionality overview
 
-The example application is a social blogging site (i.e. a Medium.com clone) called "Conduit". It uses a custom API for all requests, including authentication. You can view a live demo over at https://redux.productionready.io/
+The example application is a social blogging site (i.e. a Medium.com clone) called "Conduit". It uses a custom API for all requests, including authentication. You can view a live demo over at https://mg901.github.io/effector-react-realworld-example-app
 
 **General functionality:**
 
@@ -53,9 +53,9 @@ The example application is a social blogging site (i.e. a Medium.com clone) call
     - Pagination for list of articles
   - List of Tags (URL: /feed-by-tag)
     - Pagination for list of articles
-- Sign in/Sign up pages (URL: /#/login, /#/register )
+- Sign in/Sign up pages (URL: /login, /register )
   - Use JWT (store the token in localStorage)
-- Settings page (URL: /#/settings )
+- Settings page (URL: /settings )
 - Editor page to create/edit articles (URL: /editor, /editor/:slug )
 - Article page (URL: /article/, /article/:slug )
   - Delete article button (only shown to article's author)
