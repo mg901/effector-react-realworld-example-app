@@ -1,13 +1,13 @@
 const { resolve } = require('path');
 const { DefinePlugin, HotModuleReplacementPlugin } = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { DIST } = require('./constants');
+const { PUBLIC } = require('./constants');
 
 module.exports = {
   mode: 'development',
   output: {
-    path: resolve(DIST),
-    publicPath: '/dist/',
+    path: resolve(PUBLIC),
+    publicPath: '/',
     filename: 'bundle.js',
   },
   devtool: 'eval-cheap-module-source-map',

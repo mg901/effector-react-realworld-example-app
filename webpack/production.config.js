@@ -1,18 +1,18 @@
+const { resolve } = require('path');
 const { DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const { DIST } = require('./constants');
+const CopyPlugin = require('copy-webpack-plugin');
+const { SRC, PUBLIC } = require('./constants');
 
 module.exports = {
   mode: 'production',
   output: {
-    path: DIST,
-    publicPath: '/dist/',
-    filename: 'bundle.js',
-    chunkFilename: '[name].[contenthash].js',
+    path: PUBLIC,
+    publicPath: '/',
+    filename: 'bundle.[contenthash].js',
   },
-  watch: false,
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -23,6 +23,12 @@ module.exports = {
     ],
   },
   plugins: [
+    new CopyPlugin({
+      patterns: [{ from: resolve(SRC, '404.html'), to: PUBLIC }],
+      options: {
+        concurrency: 100,
+      },
+    }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),

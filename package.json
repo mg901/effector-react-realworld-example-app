@@ -7,7 +7,7 @@
     "predeploy": "npm run build",
     "start": "cross-env webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack && size-limit",
-    "clean": "cross-env rimraf dist .cache",
+    "clean": "cross-env rimraf public .cache",
     "commit": "cross-env git-cz",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint:all": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix.",
@@ -17,7 +17,7 @@
     "ts-check:watch": "yarn ts-check -- --watch",
     "test": "cross-env jest",
     "test:watch": "cross-env jest --watch",
-    "demo": "npx serve -s "
+    "demo": "npx serve -s public"
   },
   "browserslist": {
     "production": [
@@ -62,6 +62,7 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "commitizen": "^4.2.1",
+    "copy-webpack-plugin": "^6.2.1",
     "cross-env": "^7.0.2",
     "css-loader": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
@@ -77,6 +78,7 @@
     "eslint-plugin-react": "^7.21.3",
     "eslint-plugin-react-hooks": "^4.1.2",
     "file-loader": "^6.1.1",
+    "html-webpack-plugin": "^4.5.0",
     "husky": "^4.3.0",
     "jest": "^26.5.0",
     "lint-staged": "^10.4.0",

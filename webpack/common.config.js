@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { SRC } = require('./constants');
 
 module.exports = {
@@ -7,7 +8,12 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
-
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      inject: 'body',
+    }),
+  ],
   module: {
     rules: [
       {
