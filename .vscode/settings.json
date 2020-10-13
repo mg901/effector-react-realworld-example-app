@@ -1,0 +1,23 @@
+{
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/package-lock.json": true,
+    "**/yarn.lock": true,
+    "**/.eslintrc.js": true
+  },
+  "css.lint.unknownAtRules": "ignore",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.tabSize": 2,
+  "eslint.packageManager": "yarn",
+  "files.autoSave": "onFocusChange",
+  "gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+  },
+  "breadcrumbs.enabled": true,
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
