@@ -9,7 +9,7 @@ import {
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
-import { request } from '../../../../api';
+import { request } from 'api';
 import { GateState } from '../../model/types';
 import * as types from './types';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { AuthBranch } from '../../../../library/router';
-import * as user from '../../../../modules/user';
+import { AuthBranch } from 'library/router';
+import * as user from 'modules/user';
 import { commentDeleted } from '../model';
 import * as types from '../model/types';
 import { ButtonDelete } from './button-delete';

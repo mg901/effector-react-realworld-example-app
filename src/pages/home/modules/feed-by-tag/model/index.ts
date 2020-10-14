@@ -9,10 +9,10 @@ import {
   sample,
 } from 'effector-root';
 import { status } from 'patronum/status';
-import { request } from '../../../../../api';
-import { limit } from '../../../../../library/limit';
-import * as router from '../../../../../library/router';
-import * as feed from '../../../../../modules/feed';
+import { request } from 'api';
+import { limit } from 'library/limit';
+import * as router from 'library/router';
+import * as feed from 'modules/feed';
 import * as types from './types';
 
 export const {

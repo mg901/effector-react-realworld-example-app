@@ -6,6 +6,10 @@ module.exports = {
       {
         root: ['./src'],
         alias: {
+          api: './src/api',
+          config: './src/config',
+          library: './src/library',
+          modules: './src/modules',
           ui: './src/ui',
         },
         extensions: ['.js', '.ts', '.jsx', '.tsx'],

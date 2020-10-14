@@ -1,7 +1,7 @@
 import { createEffect, forward, attach } from 'effector-root';
-import { request } from '../../../../../api';
-import { limit } from '../../../../../library/limit';
-import * as feed from '../../../../../modules/feed';
+import { request } from 'api';
+import { limit } from 'library/limit';
+import * as feed from 'modules/feed';
 import * as types from './types';
 
 export const {
