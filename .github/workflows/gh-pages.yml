@@ -5,6 +5,10 @@ on:
     branches:
       - master
 
+  pull_request:
+    branches:
+      - '/^dependabot'
+
 jobs:
   deploy:
     runs-on: ubuntu-18.04
