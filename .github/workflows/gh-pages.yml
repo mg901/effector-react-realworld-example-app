@@ -29,6 +29,8 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn install
+      - run: yarn ts-check
+      - run: yarn lint:all
       - run: yarn test
       - run: yarn build
 
