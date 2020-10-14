@@ -29,6 +29,7 @@ module.exports = {
       node: {
         paths: ['./src'],
       },
+      'babel-module': {},
     },
   },
   rules: {
@@ -88,7 +89,10 @@ module.exports = {
           '/^@config/',
           ['parent', 'sibling', 'index'],
         ],
-        alphabetize: { order: 'asc', ignoreCase: true },
+        alphabetize: {
+          order: 'asc',
+          ignoreCase: true,
+        },
       },
     ],
     '@typescript-eslint/ban-types': 0,

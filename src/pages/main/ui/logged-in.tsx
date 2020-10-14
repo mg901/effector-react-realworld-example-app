@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { Paths } from '../../../library/router';
-import { model } from '../../../modules/user';
-import { NavItem, NavLink } from '../../../ui';
+import { Paths } from 'library/router';
+import { model } from 'modules/user';
+import { NavItem, NavLink } from 'ui';
 
 export const LoggedIn: React.FC = () => {
   const { username, image } = useStore(model.$user);

@@ -1,11 +1,7 @@
 import React from 'react';
 import { useGate, useList, useStore } from 'effector-react';
-import {
-  EmptyArticles,
-  ArticlesWrapper,
-  ArticlePreview,
-} from '../../../../modules/feed';
-import { Pagination, Spinner } from '../../../../ui';
+import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'modules/feed';
+import { Pagination, Spinner } from 'ui';
 import * as model from './model';
 
 export const YourFeedPage: React.FC = () => {

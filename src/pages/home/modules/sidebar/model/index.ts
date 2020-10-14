@@ -1,6 +1,6 @@
 import { createEffect, createStore, forward } from 'effector-root';
 import { createGate } from 'effector-react';
-import { request } from '../../../../../api';
+import { request } from 'api';
 import * as types from './types';
 
 export const Gate = createGate();

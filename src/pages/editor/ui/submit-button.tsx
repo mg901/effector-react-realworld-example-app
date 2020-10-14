@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'effector-forms';
 import { useStore } from 'effector-react';
-import { Button } from '../../../ui';
+import { Button } from 'ui';
 import * as model from '../model';
 
 export const SubmitButton: React.FC = () => {

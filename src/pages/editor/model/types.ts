@@ -1,4 +1,4 @@
-import { types } from '../../../modules/feed';
+import { types } from 'modules/feed';
 
 export type GateState = Readonly<{
   slug: string;
