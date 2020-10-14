@@ -8129,10 +8129,10 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-patronum@^0.109.0:
-  version "0.109.0"
-  resolved "https://registry.yarnpkg.com/patronum/-/patronum-0.109.0.tgz#ead4ce461f47dd9d61dae6bd27460d0c85246bfa"
-  integrity sha512-41RegP2L2JPyBaJMMq2rM31+wHw0U6rckMddfm2psQ9ChuPAHADBjyEPsUslxj9nLXqsXM78+zwgq47d1Sbi/Q==
+patronum@^0.110.0:
+  version "0.110.0"
+  resolved "https://registry.yarnpkg.com/patronum/-/patronum-0.110.0.tgz#0eb8c034fc928e166be4c72371959e3102b53490"
+  integrity sha512-y/y5/a+RIEzJbjwH9/zFrCJuQGRUvCxOW59+M9zKl0ctnTHwZtmhDD/1b3irzN4rdj+BK8c7HMmIVPBIwEYrMA==
 
 pbkdf2@^3.0.3:
   version "3.1.1"
