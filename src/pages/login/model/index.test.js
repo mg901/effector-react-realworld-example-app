@@ -1,5 +1,5 @@
 import { root, fork, allSettled } from 'effector-root';
-import { $user } from 'modules/user/model';
+import { $user, $token, $isAuthorized } from 'modules/user/model';
 import { signInFx } from './index';
 
 describe('pages/login', () => {
@@ -8,7 +8,7 @@ describe('pages/login', () => {
       bio: '',
       createdAt: '',
       email: '',
-      id: '123',
+      id: '1',
       image: '',
       token: 'token',
       updatedAt: '',
@@ -22,5 +22,7 @@ describe('pages/login', () => {
     await allSettled(signInFx, { scope });
 
     expect(scope.getState($user)).toMatchObject(expected);
+    expect(scope.getState($token)).toEqual(expected.token);
+    expect(scope.getState($isAuthorized)).toEqual(true);
   });
 });
