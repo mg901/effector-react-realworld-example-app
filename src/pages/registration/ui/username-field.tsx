@@ -11,7 +11,7 @@ export const UsernameField: React.FC = () => {
       className="form-control-lg"
       name={name}
       placeholder="Username"
-      type="email"
+      type="text"
       onChange={(e) => onChange(e.target.value)}
     />
   );
