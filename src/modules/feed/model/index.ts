@@ -36,14 +36,18 @@ export const createFeedModel = (
     string,
     types.FavoriteArticle,
     AxiosError
-  >((slug) =>
-    request.post(`articles/${slug}/favorite`).then((response) => response.data),
-  );
+  >(async (slug) => {
+    const { data } = await request.post(`articles/${slug}/favorite`);
 
-  const setUnfavoriteArticleFx = createEffect((slug: string) =>
-    request
-      .delete<types.UnfavoriteArticle>(`articles/${slug}/favorite`)
-      .then((response) => response.data),
+    return data;
+  });
+
+  const setUnfavoriteArticleFx = createEffect<string, types.UnfavoriteArticle>(
+    async (slug) => {
+      const { data } = await request.delete(`articles/${slug}/favorite`);
+
+      return data;
+    },
   );
 
   // stores
@@ -78,8 +82,8 @@ export const createFeedModel = (
     }),
   );
 
-  const $articles = $feed.map(({ articles }) => articles);
-  const $totalPages = $feed.map(({ articlesCount }) => articlesCount);
+  const $articles = $feed.map((x) => x.articles);
+  const $totalPages = $feed.map((x) => x.articlesCount);
   const $status = opts.status;
 
   const $isEmptyFeed = combine(

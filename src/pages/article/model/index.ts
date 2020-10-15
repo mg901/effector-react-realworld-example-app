@@ -14,10 +14,10 @@ import * as user from 'modules/user';
 import { GateState } from './types';
 
 export const articleDeleted = createEvent<React.MouseEvent>();
-export const fetchArticleFx = createEffect((slug: string) =>
+export const fetchArticleFx = createEffect<string, types.Article>((slug) =>
   request
     .get<{ article: types.Article }>(`articles/${slug}`)
-    .then((response) => response.data.article)
+    .then(({ data }) => data.article)
     .then(({ createdAt, ...article }) => ({
       ...article,
       createdAt: new Date(createdAt).toDateString(),
@@ -26,10 +26,6 @@ export const fetchArticleFx = createEffect((slug: string) =>
 
 export const deleteArticleFx = createEffect((slug: string) =>
   request.delete<void>(`articles/${slug}`),
-);
-
-export const fetchPageDataFx = createEffect((slug: string) =>
-  Promise.all([fetchArticleFx(slug)]),
 );
 
 export const Gate = createGate<GateState>();

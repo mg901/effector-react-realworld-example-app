@@ -22,10 +22,13 @@ formSubmitted.watch((e) => e.preventDefault());
 
 export const tagDeleted = createEvent<string>();
 export const createArticleFx = createEffect<Form, types.Article, AxiosError>(
-  (form) =>
-    request
-      .post<{ article: types.Article }>('articles', { article: form })
-      .then(({ data }) => data.article),
+  async (form) => {
+    const { data } = await request.post('articles', {
+      article: form,
+    });
+
+    return data.article;
+  },
 );
 
 export const fetchArticleFx = createEffect((slug: string) =>
@@ -42,7 +45,7 @@ export const fetchArticleFx = createEffect((slug: string) =>
 
 export const Gate = createGate<GateState>();
 
-export const $slug = Gate.state.map((props) => props.slug);
+export const $slug = Gate.state.map((p) => p.slug);
 export const $hasSlug = $slug.map(Boolean);
 export const $isEmptySlug = $hasSlug.map((is) => !is);
 
