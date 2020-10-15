@@ -1,7 +1,7 @@
 import {
   createEvent,
   createEffect,
-  createStore,
+  restore,
   combine,
   forward,
   attach,
@@ -32,7 +32,7 @@ export const Gate = createGate<GateState>();
 
 export const $slug = Gate.state.map((props) => props.slug);
 
-export const $article = createStore<types.Article>({
+export const $article = restore(fetchArticleFx.doneData, {
   title: '',
   slug: '',
   body: '',
@@ -48,7 +48,7 @@ export const $article = createStore<types.Article>({
   },
   favorited: false,
   favoritesCount: 0,
-}).on(fetchArticleFx.doneData, (_, payload) => payload);
+});
 
 export const $canModify = combine(
   $article,
