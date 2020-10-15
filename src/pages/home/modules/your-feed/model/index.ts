@@ -5,11 +5,14 @@ import { limit } from 'library/limit';
 import * as feed from 'modules/feed';
 import * as types from './types';
 
-export const fetchFeedFx = createEffect(
-  ({ pageSize, page }: types.fetchFeedFxArgs) =>
-    request
-      .get<feed.types.Feed>(`articles/feed?${limit(pageSize, page)}`)
-      .then((response) => response.data),
+export const fetchFeedFx = createEffect<types.fetchFeedFxArgs, feed.types.Feed>(
+  async ({ pageSize, page }) => {
+    const { data } = await request.get(
+      `articles/feed?${limit(pageSize, page)}`,
+    );
+
+    return data;
+  },
 );
 
 export const {

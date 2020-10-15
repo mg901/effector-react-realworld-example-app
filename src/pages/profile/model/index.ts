@@ -16,23 +16,28 @@ import * as types from './types';
 
 export const toggleFollowing = createEvent<React.MouseEvent>();
 
-export const fetchProfileFx = createEffect((username: string) =>
-  request
-    .get<types.FetchProfileFxDone>(`profiles/${username}`)
-    .then((response) => response.data.profile),
+export const fetchProfileFx = createEffect<string, types.Profile>(
+  async (username) => {
+    const { data } = await request.get(`profiles/${username}`);
+
+    return data.profile;
+  },
 );
 
 export const subscribeFx = createEffect<string, types.Profile, AxiosError>(
-  (username: string) =>
-    request
-      .post(`profiles/${username}/follow`)
-      .then((response) => response.data.profile),
+  async (username) => {
+    const { data } = await request.post(`profiles/${username}/follow`);
+
+    return data.profile;
+  },
 );
 
-export const unsubscribeFx = createEffect((username: string) =>
-  request
-    .delete<types.FetchProfileFxDone>(`profiles/${username}/follow`)
-    .then((response) => response.data.profile),
+export const unsubscribeFx = createEffect<string, types.Profile>(
+  async (username) => {
+    const { data } = await request.delete(`profiles/${username}/follow`);
+
+    return data.profile;
+  },
 );
 
 export const Gate = createGate<types.GateState>();
@@ -51,13 +56,9 @@ export const $profile = createStore<types.Profile>({
   (_, payload) => payload,
 );
 
-export const $following = $profile.map(({ following }) => following);
-export const $thenSubscribed = $profile.map(
-  ({ following }) => following === true,
-);
-export const $thenUnsubscribed = $profile.map(
-  ({ following }) => following === false,
-);
+export const $following = $profile.map((x) => x.following);
+export const $thenSubscribed = $profile.map((x) => x.following === true);
+export const $thenUnsubscribed = $profile.map((x) => x.following === false);
 
 export const $isCurrentUser = combine(
   $profile,

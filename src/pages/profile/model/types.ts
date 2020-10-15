@@ -9,10 +9,6 @@ export type Profile = Readonly<{
   username: string;
 }>;
 
-export type FetchProfileFxDone = Readonly<{
-  profile: Profile;
-}>;
-
 export type FetchFeedFxArgs = Readonly<{
   username: string;
   page: number;

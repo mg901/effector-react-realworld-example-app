@@ -15,7 +15,7 @@ export const changeUserDataFx = createEffect<
   AxiosResponse<void>,
   AxiosError
 >((payload) =>
-  request.put<void>('user', {
+  request.put('user', {
     user: payload,
   }),
 );

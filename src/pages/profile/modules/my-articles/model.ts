@@ -6,16 +6,17 @@ import * as feed from 'modules/feed';
 import * as model from '../../model';
 import * as types from '../../model/types';
 
-export const fetchFeedFx = createEffect(
-  ({ username, page, pageSize }: types.FetchFeedFxArgs) =>
-    request
-      .get<feed.types.Feed>(
-        `articles?author=${encodeURIComponent(username)}&${limit(
-          pageSize,
-          page,
-        )}`,
-      )
-      .then((response) => response.data),
+export const fetchFeedFx = createEffect<types.FetchFeedFxArgs, feed.types.Feed>(
+  async ({ username, page, pageSize }) => {
+    const { data } = await request.get(
+      `articles?author=${encodeURIComponent(username)}&${limit(
+        pageSize,
+        page,
+      )}`,
+    );
+
+    return data;
+  },
 );
 
 export const {

@@ -14,21 +14,27 @@ import { GateState } from '../../model/types';
 import * as types from './types';
 
 export const commentDeleted = createEvent<string>();
-export const fetchCommentsFx = createEffect((slug: string) =>
-  request
-    .get<types.FetchCommentsFxDone>(`articles/${slug}/comments`)
-    .then((response) => response.data.comments),
+
+export const fetchCommentsFx = createEffect<string, types.Comments>(
+  async (slug) => {
+    const { data } = await request.get(`articles/${slug}/comments`);
+
+    return data.comments;
+  },
 );
 
 export const fetchCommentFx = createEffect<
   types.AddCommentFxArgs,
   types.Comment,
   AxiosError
->(({ slug, body }) =>
-  request
-    .post<{ comment: types.Comment }>(`articles/${slug}/comments`, { body })
-    .then((response) => response.data.comment),
-);
+>(async ({ slug, body }) => {
+  const { data } = await request.post<{ comment: types.Comment }>(
+    `articles/${slug}/comments`,
+    { body },
+  );
+
+  return data.comment;
+});
 
 export const deleteCommentFx = createEffect<
   types.DeleteCommentFxArgs,
@@ -39,7 +45,8 @@ export const deleteCommentFx = createEffect<
 export const Gate = createGate<GateState>();
 
 export const $slug = Gate.state.map((props) => props.slug);
-export const $comments = createStore<readonly types.Comment[]>([])
+
+export const $comments = createStore<types.Comments>([])
   .on(fetchCommentsFx.doneData, (_, payload) => payload)
   .on(fetchCommentFx.doneData, (state, payload) => [payload, ...state])
   .on(deleteCommentFx.done, (state, { params }) =>

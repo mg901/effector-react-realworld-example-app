@@ -16,11 +16,12 @@ export const {
   useModel,
 } = feed.createFeedModel();
 
-export const fetchFeedFx = createEffect(
-  ({ pageSize, page }: types.fetchFeedFxArgs) =>
-    request
-      .get<feed.types.Feed>(`articles?${limit(pageSize, page)}`)
-      .then((response) => response.data),
+export const fetchFeedFx = createEffect<types.fetchFeedFxArgs, feed.types.Feed>(
+  async ({ pageSize, page }) => {
+    const { data } = await request.get(`articles?${limit(pageSize, page)}`);
+
+    return data;
+  },
 );
 
 $feed.on(fetchFeedFx.doneData, (_, payload) => payload);
