@@ -36,18 +36,13 @@ export const createFeedModel = (
     string,
     types.FavoriteArticle,
     AxiosError
-  >(async (slug) => {
-    const { data } = await request.post(`articles/${slug}/favorite`);
-
-    return data;
-  });
+  >((slug) =>
+    request.post(`articles/${slug}/favorite`).then(({ data }) => data),
+  );
 
   const setUnfavoriteArticleFx = createEffect<string, types.UnfavoriteArticle>(
-    async (slug) => {
-      const { data } = await request.delete(`articles/${slug}/favorite`);
-
-      return data;
-    },
+    (slug) =>
+      request.delete(`articles/${slug}/favorite`).then(({ data }) => data),
   );
 
   // stores

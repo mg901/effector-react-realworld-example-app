@@ -22,13 +22,12 @@ formSubmitted.watch((e) => e.preventDefault());
 
 export const tagDeleted = createEvent<string>();
 export const createArticleFx = createEffect<Form, types.Article, AxiosError>(
-  async (form) => {
-    const { data } = await request.post('articles', {
-      article: form,
-    });
-
-    return data.article;
-  },
+  (form) =>
+    request
+      .post('articles', {
+        article: form,
+      })
+      .then(({ data }) => data.article),
 );
 
 export const fetchArticleFx = createEffect((slug: string) =>

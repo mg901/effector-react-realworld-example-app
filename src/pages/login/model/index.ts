@@ -16,13 +16,12 @@ export const formSubmitted = createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
 export const signInFx = createEffect<Form, user.types.User, AxiosError>(
-  async ({ email, password }) => {
-    const { data } = await request.post('users/login', {
-      user: { email, password },
-    });
-
-    return data.user;
-  },
+  ({ email, password }) =>
+    request
+      .post('users/login', {
+        user: { email, password },
+      })
+      .then(({ data }) => data.user),
 );
 
 export const FormGate = createGate();

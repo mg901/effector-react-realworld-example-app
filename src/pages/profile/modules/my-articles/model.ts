@@ -7,16 +7,15 @@ import * as model from '../../model';
 import * as types from '../../model/types';
 
 export const fetchFeedFx = createEffect<types.FetchFeedFxArgs, feed.types.Feed>(
-  async ({ username, page, pageSize }) => {
-    const { data } = await request.get(
-      `articles?author=${encodeURIComponent(username)}&${limit(
-        pageSize,
-        page,
-      )}`,
-    );
-
-    return data;
-  },
+  ({ username, page, pageSize }) =>
+    request
+      .get(
+        `articles?author=${encodeURIComponent(username)}&${limit(
+          pageSize,
+          page,
+        )}`,
+      )
+      .then(({ data }) => data),
 );
 
 export const {

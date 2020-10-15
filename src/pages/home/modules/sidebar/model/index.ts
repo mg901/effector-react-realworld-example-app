@@ -5,11 +5,9 @@ import { TagsList } from './types';
 
 export const Gate = createGate();
 
-export const fetchTagsFx = createEffect<void, TagsList>(async () => {
-  const { data } = await request.get('tags');
-
-  return data.tags;
-});
+export const fetchTagsFx = createEffect<void, TagsList>(() =>
+  request.get('tags').then(({ data }) => data.tags),
+);
 
 export const $tags = restore(fetchTagsFx.doneData, []);
 
