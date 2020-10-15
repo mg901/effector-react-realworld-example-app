@@ -105,7 +105,7 @@
     "effector-root": "^1.1.0",
     "effector-storage": "^3.0.0",
     "features": "^0.1.0",
-    "history": "4.10.1",
+    "history": "5.0.0",
     "markdown-to-jsx": "^7.0.1",
     "patronum": "^0.110.0",
     "react": "^16.14.0",
