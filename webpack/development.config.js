@@ -19,9 +19,7 @@ module.exports = {
     },
     port: 4100,
     open: false,
-    historyApiFallback: {
-      rewrites: [{ from: /\//, to: '/404.html' }],
-    },
+    historyApiFallback: true,
     disableHostCheck: true,
   },
   watch: true,

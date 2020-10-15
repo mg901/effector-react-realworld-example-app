@@ -16,28 +16,21 @@ import * as types from './types';
 
 export const toggleFollowing = createEvent<React.MouseEvent>();
 
-export const fetchProfileFx = createEffect<string, types.Profile>(
-  async (username) => {
-    const { data } = await request.get(`profiles/${username}`);
-
-    return data.profile;
-  },
+export const fetchProfileFx = createEffect<string, types.Profile>((username) =>
+  request.get(`profiles/${username}`).then(({ data }) => data.profile),
 );
 
 export const subscribeFx = createEffect<string, types.Profile, AxiosError>(
-  async (username) => {
-    const { data } = await request.post(`profiles/${username}/follow`);
-
-    return data.profile;
-  },
+  (username) =>
+    request
+      .post(`profiles/${username}/follow`)
+      .then(({ data }) => data.profile),
 );
 
-export const unsubscribeFx = createEffect<string, types.Profile>(
-  async (username) => {
-    const { data } = await request.delete(`profiles/${username}/follow`);
-
-    return data.profile;
-  },
+export const unsubscribeFx = createEffect<string, types.Profile>((username) =>
+  request
+    .delete(`profiles/${username}/follow`)
+    .then(({ data }) => data.profile),
 );
 
 export const Gate = createGate<types.GateState>();

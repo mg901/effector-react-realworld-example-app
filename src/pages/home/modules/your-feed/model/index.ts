@@ -6,13 +6,10 @@ import * as feed from 'modules/feed';
 import * as types from './types';
 
 export const fetchFeedFx = createEffect<types.fetchFeedFxArgs, feed.types.Feed>(
-  async ({ pageSize, page }) => {
-    const { data } = await request.get(
-      `articles/feed?${limit(pageSize, page)}`,
-    );
-
-    return data;
-  },
+  ({ pageSize, page }) =>
+    request
+      .get(`articles/feed?${limit(pageSize, page)}`)
+      .then(({ data }) => data),
 );
 
 export const {

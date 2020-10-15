@@ -30,13 +30,11 @@ export const currentPageWasSet = createEvent<number>();
 export const fetchFeedFx = createEffect<
   types.FetchFeedByTagArgs,
   feed.types.Feed
->(async ({ tag, page }) => {
-  const { data } = await request.get(
-    `articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`,
-  );
-
-  return data;
-});
+>(({ tag, page }) =>
+  request
+    .get(`articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`)
+    .then(({ data }) => data),
+);
 
 export const $status = status({ effect: fetchFeedFx });
 export const $feed = createStore<types.Feed>({}).on(

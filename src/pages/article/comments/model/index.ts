@@ -15,26 +15,19 @@ import * as types from './types';
 
 export const commentDeleted = createEvent<string>();
 
-export const fetchCommentsFx = createEffect<string, types.Comments>(
-  async (slug) => {
-    const { data } = await request.get(`articles/${slug}/comments`);
-
-    return data.comments;
-  },
+export const fetchCommentsFx = createEffect<string, types.Comments>((slug) =>
+  request.get(`articles/${slug}/comments`).then(({ data }) => data.comments),
 );
 
 export const fetchCommentFx = createEffect<
   types.AddCommentFxArgs,
   types.Comment,
   AxiosError
->(async ({ slug, body }) => {
-  const { data } = await request.post<{ comment: types.Comment }>(
-    `articles/${slug}/comments`,
-    { body },
-  );
-
-  return data.comment;
-});
+>(({ slug, body }) =>
+  request
+    .post(`articles/${slug}/comments`, { body })
+    .then(({ data }) => data.comment),
+);
 
 export const deleteCommentFx = createEffect<
   types.DeleteCommentFxArgs,
