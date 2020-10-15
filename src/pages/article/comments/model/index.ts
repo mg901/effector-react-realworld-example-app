@@ -17,31 +17,28 @@ export const commentDeleted = createEvent<string>();
 export const fetchCommentsFx = createEffect((slug: string) =>
   request
     .get<types.FetchCommentsFxDone>(`articles/${slug}/comments`)
-    .then((x) => x.data.comments),
+    .then((response) => response.data.comments),
 );
 
 export const fetchCommentFx = createEffect<
   types.AddCommentFxArgs,
   types.Comment,
   AxiosError
->({
-  handler: ({ slug, body }) =>
-    request
-      .post<{ comment: types.Comment }>(`articles/${slug}/comments`, { body })
-      .then((x) => x.data.comment),
-});
+>(({ slug, body }) =>
+  request
+    .post<{ comment: types.Comment }>(`articles/${slug}/comments`, { body })
+    .then((response) => response.data.comment),
+);
 
 export const deleteCommentFx = createEffect<
   types.DeleteCommentFxArgs,
   void,
   AxiosError
->({
-  handler: ({ slug, id }) => request.delete(`articles/${slug}/comments/${id}`),
-});
+>(({ slug, id }) => request.delete(`articles/${slug}/comments/${id}`));
 
 export const Gate = createGate<GateState>();
 
-export const $slug = Gate.state.map((x) => x.slug);
+export const $slug = Gate.state.map((props) => props.slug);
 export const $comments = createStore<readonly types.Comment[]>([])
   .on(fetchCommentsFx.doneData, (_, payload) => payload)
   .on(fetchCommentFx.doneData, (state, payload) => [payload, ...state])

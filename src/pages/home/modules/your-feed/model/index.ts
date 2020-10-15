@@ -9,7 +9,7 @@ export const fetchFeedFx = createEffect(
   ({ pageSize, page }: types.fetchFeedFxArgs) =>
     request
       .get<feed.types.Feed>(`articles/feed?${limit(pageSize, page)}`)
-      .then((x) => x.data),
+      .then((response) => response.data),
 );
 
 export const {

@@ -21,12 +21,12 @@ export const formSubmitted = createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
 export const tagDeleted = createEvent<string>();
-export const createArticleFx = createEffect<Form, types.Article, AxiosError>({
-  handler: (form) =>
+export const createArticleFx = createEffect<Form, types.Article, AxiosError>(
+  (form) =>
     request
       .post<{ article: types.Article }>('articles', { article: form })
       .then(({ data }) => data.article),
-});
+);
 
 export const fetchArticleFx = createEffect((slug: string) =>
   request
@@ -42,9 +42,9 @@ export const fetchArticleFx = createEffect((slug: string) =>
 
 export const Gate = createGate<GateState>();
 
-export const $slug = Gate.state.map((x) => x.slug);
+export const $slug = Gate.state.map((props) => props.slug);
 export const $hasSlug = $slug.map(Boolean);
-export const $isEmptySlug = $hasSlug.map((x) => !x);
+export const $isEmptySlug = $hasSlug.map((is) => !is);
 
 export const form = createForm({
   fields: {

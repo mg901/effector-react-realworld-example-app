@@ -14,16 +14,11 @@ export const changeUserDataFx = createEffect<
   changeUserDataFxArgs,
   AxiosResponse<void>,
   AxiosError
->({
-  handler: (x) =>
-    request.put<void>('user', {
-      user: x,
-    }),
-});
-
-changeUserDataFx.done.watch(() => {
-  window.location.reload();
-});
+>((payload) =>
+  request.put<void>('user', {
+    user: payload,
+  }),
+);
 
 export const FormGate = createGate();
 export const $authUser = user.model.$user.map((x) => x);
@@ -60,6 +55,10 @@ sample({
   source: form.$values,
   clock: formSubmitted,
   target: changeUserDataFx,
+});
+
+changeUserDataFx.done.watch(() => {
+  window.location.reload();
 });
 
 user.model.loggedOutClicked.watch(() => {

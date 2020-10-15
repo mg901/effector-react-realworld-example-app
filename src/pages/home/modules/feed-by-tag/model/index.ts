@@ -33,7 +33,7 @@ export const fetchFeedFx = createEffect(
       .get<feed.types.Feed>(
         `articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`,
       )
-      .then((x) => x.data),
+      .then((response) => response.data),
 );
 
 export const $status = status({ effect: fetchFeedFx });
@@ -69,8 +69,8 @@ export const $feedByTag = combine(
   }),
 );
 
-export const $articles = $feedByTag.map((x) => x.articles);
-export const $totalPages = $feedByTag.map((x) => x.articlesCount);
+export const $articles = $feedByTag.map(({ articles }) => articles);
+export const $totalPages = $feedByTag.map(({ articlesCount }) => articlesCount);
 
 export const $isEmptyFeed = combine(
   $status,

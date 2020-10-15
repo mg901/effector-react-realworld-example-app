@@ -36,25 +36,24 @@ export const createFeedModel = (
     string,
     types.FavoriteArticle,
     AxiosError
-  >({
-    handler: (slug) =>
-      request.post(`articles/${slug}/favorite`).then((x) => x.data),
-  });
+  >((slug) =>
+    request.post(`articles/${slug}/favorite`).then((response) => response.data),
+  );
 
   const setUnfavoriteArticleFx = createEffect((slug: string) =>
     request
       .delete<types.UnfavoriteArticle>(`articles/${slug}/favorite`)
-      .then((x) => x.data),
+      .then((response) => response.data),
   );
 
   // stores
   const $pageSize = createStore<number>(opts.pageSize);
   const $currentTag = router.model.$search.map(
-    (x) => new URLSearchParams(x).get('tag') ?? '',
+    (search) => new URLSearchParams(search).get('tag') ?? '',
   );
 
-  const $currentPage = router.model.$search.map((x) => {
-    const page = new URLSearchParams(x).get('page') ?? opts.currentPage;
+  const $currentPage = router.model.$search.map((search) => {
+    const page = new URLSearchParams(search).get('page') ?? opts.currentPage;
 
     return Number(page);
   });
@@ -79,8 +78,8 @@ export const createFeedModel = (
     }),
   );
 
-  const $articles = $feed.map((x) => x.articles);
-  const $totalPages = $feed.map((x) => x.articlesCount);
+  const $articles = $feed.map(({ articles }) => articles);
+  const $totalPages = $feed.map(({ articlesCount }) => articlesCount);
   const $status = opts.status;
 
   const $isEmptyFeed = combine(
@@ -99,11 +98,11 @@ export const createFeedModel = (
 
   // set favorite / unfavorite article
   guard(favoriteToggled, {
-    filter: (x) => x.favorited === true,
+    filter: ({ favorited }) => favorited === true,
   }).watch(({ slug }) => setUnfavoriteArticleFx(slug));
 
   guard(favoriteToggled, {
-    filter: (x) => x.favorited === false,
+    filter: ({ favorited }) => favorited === false,
   }).watch(({ slug }) => setFavoriteArticleFx(slug));
 
   // if the user is not logged in
