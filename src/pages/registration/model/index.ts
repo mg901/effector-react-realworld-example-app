@@ -16,14 +16,14 @@ import { Form, Errors } from './types';
 export const formSubmitted = createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
-export const signUpFx = createEffect<Form, user.types.User, AxiosError>({
-  handler: ({ username, email, password }) =>
+export const signUpFx = createEffect<Form, user.types.User, AxiosError>(
+  ({ username, email, password }) =>
     request
       .post<{ user: user.types.User }>('users', {
         user: { email, password, username },
       })
-      .then((x) => x.data.user),
-});
+      .then((response) => response.data.user),
+);
 
 export const FormGate = createGate();
 

@@ -6,8 +6,8 @@ export const routes = [
     path: Paths.PROFILE,
     exact: true,
     component: lazy(() =>
-      import('./modules/my-articles').then((x) => ({
-        default: x.MyArticles,
+      import('./modules/my-articles').then((response) => ({
+        default: response.MyArticles,
       })),
     ),
   },
@@ -15,15 +15,17 @@ export const routes = [
     path: Paths.PROFILE_FAVORITES,
     exact: true,
     component: lazy(() =>
-      import('./modules/favorited-articles').then((x) => ({
-        default: x.FavoritedArticles,
+      import('./modules/favorited-articles').then((response) => ({
+        default: response.FavoritedArticles,
       })),
     ),
   },
   {
     path: '*',
     component: lazy(() =>
-      import('../not-match').then((x) => ({ default: x.NotMatchPage })),
+      import('../not-match').then((response) => ({
+        default: response.NotMatchPage,
+      })),
     ),
   },
 ];

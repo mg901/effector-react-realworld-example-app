@@ -6,7 +6,9 @@ import * as types from './types';
 export const Gate = createGate();
 
 export const fetchTagsFx = createEffect(() =>
-  request.get<types.getTagsFxDone>('tags').then((x) => x.data.tags),
+  request
+    .get<types.getTagsFxDone>('tags')
+    .then((response) => response.data.tags),
 );
 
 export const $tags = createStore<types.TagList>([]).on(

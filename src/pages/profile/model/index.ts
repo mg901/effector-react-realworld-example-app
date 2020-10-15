@@ -19,18 +19,20 @@ export const toggleFollowing = createEvent<React.MouseEvent>();
 export const fetchProfileFx = createEffect((username: string) =>
   request
     .get<types.FetchProfileFxDone>(`profiles/${username}`)
-    .then((x) => x.data.profile),
+    .then((response) => response.data.profile),
 );
 
-export const subscribeFx = createEffect<string, types.Profile, AxiosError>({
-  handler: (username: string) =>
-    request.post(`profiles/${username}/follow`).then((x) => x.data.profile),
-});
+export const subscribeFx = createEffect<string, types.Profile, AxiosError>(
+  (username: string) =>
+    request
+      .post(`profiles/${username}/follow`)
+      .then((response) => response.data.profile),
+);
 
 export const unsubscribeFx = createEffect((username: string) =>
   request
     .delete<types.FetchProfileFxDone>(`profiles/${username}/follow`)
-    .then((x) => x.data.profile),
+    .then((response) => response.data.profile),
 );
 
 export const Gate = createGate<types.GateState>();
@@ -49,9 +51,13 @@ export const $profile = createStore<types.Profile>({
   (_, payload) => payload,
 );
 
-export const $following = $profile.map((x) => x.following);
-export const $thenSubscribed = $profile.map((x) => x.following === true);
-export const $thenUnsubscribed = $profile.map((x) => x.following === false);
+export const $following = $profile.map(({ following }) => following);
+export const $thenSubscribed = $profile.map(
+  ({ following }) => following === true,
+);
+export const $thenUnsubscribed = $profile.map(
+  ({ following }) => following === false,
+);
 
 export const $isCurrentUser = combine(
   $profile,
@@ -59,7 +65,7 @@ export const $isCurrentUser = combine(
   (profile, authUser) => profile.username === authUser.username,
 );
 
-export const $isAnotherUser = $isCurrentUser.map((x) => !x);
+export const $isAnotherUser = $isCurrentUser.map((is) => !is);
 
 $username.on(Gate.state, (_, { url }) => url?.replace(/\/@/, ''));
 

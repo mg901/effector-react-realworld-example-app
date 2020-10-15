@@ -17,7 +17,7 @@ export const articleDeleted = createEvent<React.MouseEvent>();
 export const fetchArticleFx = createEffect((slug: string) =>
   request
     .get<{ article: types.Article }>(`articles/${slug}`)
-    .then((x) => x.data.article)
+    .then((response) => response.data.article)
     .then(({ createdAt, ...article }) => ({
       ...article,
       createdAt: new Date(createdAt).toDateString(),
@@ -34,7 +34,7 @@ export const fetchPageDataFx = createEffect((slug: string) =>
 
 export const Gate = createGate<GateState>();
 
-export const $slug = Gate.state.map((x) => x.slug);
+export const $slug = Gate.state.map((props) => props.slug);
 
 export const $article = createStore<types.Article>({
   title: '',
