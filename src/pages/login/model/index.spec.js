@@ -24,7 +24,7 @@ describe('pages/login: ', () => {
     await allSettled(signInFx, { scope });
 
     expect(scope.getState($user)).toMatchObject(expected);
-    expect(scope.getState($token)).toEqual(expected.token);
-    expect(scope.getState($isAuthorized)).toEqual(true);
+    expect(scope.getState($token)).toBe(expected.token);
+    expect(scope.getState($isAuthorized)).toBeTruthy();
   });
 });
