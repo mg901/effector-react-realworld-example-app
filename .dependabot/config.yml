@@ -7,4 +7,6 @@ update_configs:
       - match:
           dependency_name: 'webpack*'
       - match:
-          dependency_name: 'history*'
+          dependency_name: 'history'
+      - match:
+          dependency_name: '@types/history'
