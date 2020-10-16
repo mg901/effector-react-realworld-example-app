@@ -21,10 +21,12 @@ describe('pages/registration: ', () => {
       handlers: new Map().set(signUpFx, signUpFxMock),
     });
 
+    expect(scope.getState($isAuthorized)).toBeFalsy();
+
     await allSettled(signUpFx, { scope });
 
     expect(scope.getState($user)).toMatchObject(expected);
-    expect(scope.getState($token)).toEqual(expected.token);
-    expect(scope.getState($isAuthorized)).toEqual(true);
+    expect(scope.getState($token)).toBe(expected.token);
+    expect(scope.getState($isAuthorized)).toBeTruthy();
   });
 });

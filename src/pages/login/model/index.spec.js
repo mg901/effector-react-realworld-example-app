@@ -21,6 +21,8 @@ describe('pages/login: ', () => {
       handlers: new Map().set(signInFx, singInFxMock),
     });
 
+    expect(scope.getState($isAuthorized)).toBeFalsy();
+
     await allSettled(signInFx, { scope });
 
     expect(scope.getState($user)).toMatchObject(expected);
