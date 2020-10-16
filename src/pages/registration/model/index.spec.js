@@ -21,8 +21,6 @@ describe('pages/registration: ', () => {
       handlers: new Map().set(signUpFx, signUpFxMock),
     });
 
-    expect(scope.getState($user)).toMatchObject($user.defaultState);
-    expect(scope.getState($token)).toBe($user.defaultState.token);
     expect(scope.getState($isAuthorized)).toBeFalsy();
 
     await allSettled(signUpFx, { scope });
