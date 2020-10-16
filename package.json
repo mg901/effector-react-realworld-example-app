@@ -87,7 +87,7 @@
     "onchange": "^7.0.2",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "prettier": "^2.1.2",
-    "react-test-renderer": "^16.13.1",
+    "react-test-renderer": "^16.14.0",
     "rimraf": "^3.0.2",
     "size-limit": "^4.6.0",
     "terser-webpack-plugin": "^4.2.3",
