@@ -1401,28 +1401,28 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@size-limit/file@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-4.6.0.tgz#894d96bf8bb98d2d4129cbe54a067b33133c4d1c"
-  integrity sha512-sr5Zu/1bJYL4PeGtmO4XNBM+9++ySwvyaeXEK9L55Rm6WStzlXEKRVrM21jW5hHhEHG7MyZCGpD9mBqUPjL5AA==
+"@size-limit/file@4.6.2":
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-4.6.2.tgz#21271022e5cfe671d207519f5b46d1e683b9b02d"
+  integrity sha512-ZmYhMnH8Y3xGxZlG77E2Eub7Z8OHSYcm45wnvYEhOxOl86070xp9XQo19rztm2axyp1c4FSOQJnREm5lvvFmQA==
   dependencies:
     semver "7.3.2"
 
-"@size-limit/preset-app@^4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/preset-app/-/preset-app-4.6.0.tgz#4bfefdb605856a9ce1ece7d76a3ae39f64555a5f"
-  integrity sha512-gV3YAT/7/oKiBKDjruOo6W0qTkrgwh/B3m5rrZbd83Xa086pavQrEWZr1+P90rl8jDpCgHGShEwd1KRgPelx/A==
+"@size-limit/preset-app@^4.6.2":
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/@size-limit/preset-app/-/preset-app-4.6.2.tgz#e3377a4bb1b93e25d2e72aeff752cd90ee8af680"
+  integrity sha512-5EzILDAssk7DhbLKVvw/ep21bmN6BqlbAS0nUPZF67G4IK6yS9TWvfzBbxGL5go+zlotfrNlNova56LrCc1IQw==
   dependencies:
-    "@size-limit/file" "4.6.0"
-    "@size-limit/time" "4.6.0"
+    "@size-limit/file" "4.6.2"
+    "@size-limit/time" "4.6.2"
 
-"@size-limit/time@4.6.0":
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/@size-limit/time/-/time-4.6.0.tgz#a18da2656bb7bfe8cde0eccce6d59aba01958471"
-  integrity sha512-a+HIPPF9kZdzc6VK3O+OAA9oTgkxCxwzzw+q1Jq/a8JvNtsZPsLQimnnY2gv5wbfXSSy+w1pNOSPi7tWOBOoGA==
+"@size-limit/time@4.6.2":
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/@size-limit/time/-/time-4.6.2.tgz#67b1453ac21256fc4aa07437123b16666b0a2a9a"
+  integrity sha512-1jVZBKIBtutIJRwuqov6YxzDFy1xRKdqqIO445rYf6vLHPYK3X1TrniOh73QR6qb48FID0p4/UaPwnqnhHEbuQ==
   dependencies:
     estimo "^2.2.1"
-    react "^16.13.1"
+    react "^17.0.0"
 
 "@testing-library/dom@^7.26.0":
   version "7.26.0"
@@ -2923,7 +2923,7 @@ chokidar@^2.1.8:
   optionalDependencies:
     fsevents "^1.2.7"
 
-chokidar@^3.3.1, chokidar@^3.4.1, chokidar@^3.4.2:
+chokidar@^3.3.1, chokidar@^3.4.1, chokidar@^3.4.3:
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.4.3.tgz#c1df38231448e45ca4ac588e6c79573ba6a57d5b"
   integrity sha512-DtM3g7juCXQxFVSNPNByEC2+NImtBuxQQvWlHunpJIS5Ocr0lG306cC7FCi7cEA0fzmybPUIl4txBIobk1gGOQ==
@@ -8778,7 +8778,7 @@ react-test-renderer@^16.14.0:
     react-is "^16.8.6"
     scheduler "^0.19.1"
 
-react@^16.13.1, react@^16.14.0:
+react@^16.14.0:
   version "16.14.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.14.0.tgz#94d776ddd0aaa37da3eda8fc5b6b18a4c9a3114d"
   integrity sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g==
@@ -8786,6 +8786,14 @@ react@^16.13.1, react@^16.14.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
+
+react@^17.0.0:
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-17.0.0.tgz#ad96d5fa1a33bb9b06d0cc52672f7992d84aa662"
+  integrity sha512-rG9bqS3LMuetoSUKHN8G3fMNuQOePKDThK6+2yXFWtoeTDLVNh/QCaxT+Jr+rNf4lwNXpx+atdn3Aa0oi8/6eQ==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
 
 read-pkg-up@^2.0.0:
   version "2.0.0"
@@ -9473,13 +9481,13 @@ sisteransi@^1.0.4:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
 
-size-limit@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-4.6.0.tgz#1c053f7829d13c9c63c65638eb51a4053ef8465c"
-  integrity sha512-3HHBgucY8Gi/od3O6xFj43uF15bYIg7Z5eFN0ftH1HbrIm3DqPjGckI64IMf1aAA27kze0NFcpi0z4iCJfq7Cw==
+size-limit@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-4.6.2.tgz#5bf347eea2558d772a90ca07da0d8ff62382ecf0"
+  integrity sha512-xEzc0wfel2XbjRpSbf1IkLrE2HoAtH8FMl2JxAUU7c5/vQIeBWQUAsRvhu6+97gLEXiwC+vuU0OmAY4/Tmx5dg==
   dependencies:
     bytes "^3.1.0"
-    chokidar "^3.4.2"
+    chokidar "^3.4.3"
     ci-job-number "^1.2.2"
     colorette "^1.2.1"
     cosmiconfig "^7.0.0"
