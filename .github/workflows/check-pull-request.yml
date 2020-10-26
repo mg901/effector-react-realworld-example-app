@@ -30,3 +30,4 @@ jobs:
       - run: yarn lint:all
       - run: yarn test
       - run: yarn build
+      - run: yarn size-limit
