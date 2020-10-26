@@ -6,7 +6,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "start": "cross-env webpack-dev-server",
-    "build": "npm run clean && NODE_ENV=production webpack && size-limit",
+    "build": "npm run clean && NODE_ENV=production webpack",
     "clean": "cross-env rimraf public",
     "commit": "cross-env git-cz",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
@@ -34,7 +34,7 @@
   "size-limit": [
     {
       "path": "public/bundle.*.js",
-      "limit": "74.35kb"
+      "limit": "74.5kb"
     }
   ],
   "devDependencies": {
