@@ -98,7 +98,7 @@
     "webpack-merge": "^5.2.0"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.0",
     "effector": "^21.5.0",
     "effector-forms": "^0.0.18",
     "effector-react": "^21.0.6",
