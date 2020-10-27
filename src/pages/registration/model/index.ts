@@ -9,7 +9,7 @@ import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 
 import { AxiosError } from 'axios';
-import { request } from 'api';
+import { api } from 'api';
 import * as user from 'modules/user';
 import { Form, Errors } from './types';
 
@@ -18,7 +18,7 @@ formSubmitted.watch((e) => e.preventDefault());
 
 export const signUpFx = createEffect<Form, user.types.User, AxiosError>(
   ({ username, email, password }) =>
-    request
+    api
       .post('users', {
         user: { email, password, username },
       })

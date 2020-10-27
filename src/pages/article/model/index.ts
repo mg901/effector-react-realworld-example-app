@@ -7,7 +7,7 @@ import {
   attach,
 } from 'effector-root';
 import { createGate } from 'effector-react';
-import { request } from 'api';
+import { api } from 'api';
 import * as router from 'library/router';
 import { types } from 'modules/feed';
 import * as user from 'modules/user';
@@ -15,7 +15,7 @@ import { GateState } from './types';
 
 export const articleDeleted = createEvent<React.MouseEvent>();
 export const fetchArticleFx = createEffect<string, types.Article>((slug) =>
-  request
+  api
     .get<{ article: types.Article }>(`articles/${slug}`)
     .then(({ data }) => data.article)
     .then(({ createdAt, ...article }) => ({
@@ -25,7 +25,7 @@ export const fetchArticleFx = createEffect<string, types.Article>((slug) =>
 );
 
 export const deleteArticleFx = createEffect((slug: string) =>
-  request.delete<void>(`articles/${slug}`),
+  api.delete<void>(`articles/${slug}`),
 );
 
 export const Gate = createGate<GateState>();
