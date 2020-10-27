@@ -10,7 +10,7 @@ import {
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
-import { request } from 'api';
+import { api } from 'api';
 import * as router from 'library/router';
 import { uniq } from 'library/uniq';
 import { types } from 'modules/feed';
@@ -23,7 +23,7 @@ formSubmitted.watch((e) => e.preventDefault());
 export const tagDeleted = createEvent<string>();
 export const createArticleFx = createEffect<Form, types.Article, AxiosError>(
   (form) =>
-    request
+    api
       .post('articles', {
         article: form,
       })
@@ -31,7 +31,7 @@ export const createArticleFx = createEffect<Form, types.Article, AxiosError>(
 );
 
 export const fetchArticleFx = createEffect((slug: string) =>
-  request
+  api
     .get<{ article: types.Article }>(`articles/${slug}`)
     .then(({ data: { article: a } }) => ({
       slug: a.slug,
