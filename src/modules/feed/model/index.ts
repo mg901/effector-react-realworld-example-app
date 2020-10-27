@@ -9,7 +9,7 @@ import {
 import { createGate, useStore } from 'effector-react';
 import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
-import { request } from 'api';
+import { api } from 'api';
 import * as router from 'library/router';
 import * as types from './types';
 
@@ -36,13 +36,10 @@ export const createFeedModel = (
     string,
     types.FavoriteArticle,
     AxiosError
-  >((slug) =>
-    request.post(`articles/${slug}/favorite`).then(({ data }) => data),
-  );
+  >((slug) => api.post(`articles/${slug}/favorite`).then(({ data }) => data));
 
   const setUnfavoriteArticleFx = createEffect<string, types.UnfavoriteArticle>(
-    (slug) =>
-      request.delete(`articles/${slug}/favorite`).then(({ data }) => data),
+    (slug) => api.delete(`articles/${slug}/favorite`).then(({ data }) => data),
   );
 
   // stores
@@ -103,13 +100,6 @@ export const createFeedModel = (
   guard(favoriteToggled, {
     filter: ({ favorited }) => favorited === false,
   }).watch(({ slug }) => setFavoriteArticleFx(slug));
-
-  // if the user is not logged in
-  setFavoriteArticleFx.failData.watch((error) => {
-    if (error.response?.status === 401) {
-      router.model.history.push(router.Paths.LOGIN);
-    }
-  });
 
   return {
     Gate: createGate(),

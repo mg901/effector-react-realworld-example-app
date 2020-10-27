@@ -1,6 +1,6 @@
 import { createEffect, forward, attach } from 'effector-root';
 import { status } from 'patronum/status';
-import { request } from 'api';
+import { api } from 'api';
 import { limit } from 'library/limit';
 import * as feed from 'modules/feed';
 import * as model from '../../model';
@@ -8,7 +8,7 @@ import * as types from '../../model/types';
 
 export const fetchFeedFx = createEffect<types.FetchFeedFxArgs, feed.types.Feed>(
   ({ username, page, pageSize }) =>
-    request
+    api
       .get(
         `articles?author=${encodeURIComponent(username)}&${limit(
           pageSize,

@@ -9,7 +9,7 @@ import {
   sample,
 } from 'effector-root';
 import { status } from 'patronum/status';
-import { request } from 'api';
+import { api } from 'api';
 import { limit } from 'library/limit';
 import * as router from 'library/router';
 import * as feed from 'modules/feed';
@@ -31,7 +31,7 @@ export const fetchFeedFx = createEffect<
   types.FetchFeedByTagArgs,
   feed.types.Feed
 >(({ tag, page }) =>
-  request
+  api
     .get(`articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`)
     .then(({ data }) => data),
 );

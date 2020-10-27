@@ -9,14 +9,14 @@ import {
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
-import { request } from 'api';
+import { api } from 'api';
 import { GateState } from '../../model/types';
 import * as types from './types';
 
 export const commentDeleted = createEvent<string>();
 
 export const fetchCommentsFx = createEffect<string, types.Comments>((slug) =>
-  request.get(`articles/${slug}/comments`).then(({ data }) => data.comments),
+  api.get(`articles/${slug}/comments`).then(({ data }) => data.comments),
 );
 
 export const fetchCommentFx = createEffect<
@@ -24,7 +24,7 @@ export const fetchCommentFx = createEffect<
   types.Comment,
   AxiosError
 >(({ slug, body }) =>
-  request
+  api
     .post(`articles/${slug}/comments`, { body })
     .then(({ data }) => data.comment),
 );
@@ -33,7 +33,7 @@ export const deleteCommentFx = createEffect<
   types.DeleteCommentFxArgs,
   void,
   AxiosError
->(({ slug, id }) => request.delete(`articles/${slug}/comments/${id}`));
+>(({ slug, id }) => api.delete(`articles/${slug}/comments/${id}`));
 
 export const Gate = createGate<GateState>();
 

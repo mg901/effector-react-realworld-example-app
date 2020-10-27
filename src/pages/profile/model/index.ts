@@ -9,28 +9,23 @@ import {
 } from 'effector-root';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
-import { request } from 'api';
-import * as router from 'library/router';
+import { api } from 'api';
 import * as user from 'modules/user';
 import * as types from './types';
 
 export const toggleFollowing = createEvent<React.MouseEvent>();
 
 export const fetchProfileFx = createEffect<string, types.Profile>((username) =>
-  request.get(`profiles/${username}`).then(({ data }) => data.profile),
+  api.get(`profiles/${username}`).then(({ data }) => data.profile),
 );
 
 export const subscribeFx = createEffect<string, types.Profile, AxiosError>(
   (username) =>
-    request
-      .post(`profiles/${username}/follow`)
-      .then(({ data }) => data.profile),
+    api.post(`profiles/${username}/follow`).then(({ data }) => data.profile),
 );
 
 export const unsubscribeFx = createEffect<string, types.Profile>((username) =>
-  request
-    .delete(`profiles/${username}/follow`)
-    .then(({ data }) => data.profile),
+  api.delete(`profiles/${username}/follow`).then(({ data }) => data.profile),
 );
 
 export const Gate = createGate<types.GateState>();
@@ -88,10 +83,4 @@ guard({
     source: $username,
     effect: subscribeFx,
   }),
-});
-
-subscribeFx.failData.watch((error) => {
-  if (error.response?.status === 401) {
-    router.model.history.push(router.Paths.LOGIN);
-  }
 });
