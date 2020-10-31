@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { PatinationItem } from './pagination-item';
 
 type Props = Readonly<{
@@ -17,7 +17,7 @@ export const Pagination: React.FC<Props> = ({
   current,
   onItemClick,
 }) => {
-  const pages = createArray(total, pageSize);
+  const pages = useMemo(() => createArray(total, pageSize), [total, pageSize]);
   const show = total > pageSize;
 
   return !show ? null : (
