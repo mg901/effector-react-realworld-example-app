@@ -9,7 +9,7 @@ import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { api } from 'api';
-import * as user from 'modules/user';
+import * as user from 'shared-modules/user';
 import { Form, Errors } from './types';
 
 export const formSubmitted = createEvent<React.FormEvent>();

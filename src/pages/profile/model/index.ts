@@ -10,7 +10,7 @@ import {
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { api } from 'api';
-import * as user from 'modules/user';
+import * as user from 'shared-modules/user';
 import * as types from './types';
 
 export const toggleFollowing = createEvent<React.MouseEvent>();

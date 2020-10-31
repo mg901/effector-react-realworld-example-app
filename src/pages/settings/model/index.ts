@@ -4,7 +4,7 @@ import { createGate } from 'effector-react';
 import { AxiosResponse, AxiosError } from 'axios';
 import { api } from 'api';
 import * as router from 'library/router';
-import * as user from 'modules/user';
+import * as user from 'shared-modules/user';
 import { Errors, changeUserDataFxArgs } from './types';
 
 export const formSubmitted = createEvent<React.FormEvent>();

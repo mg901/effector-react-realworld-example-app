@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { model } from 'modules/user';
+import { model } from 'shared-modules/user';
 
 type Props = Readonly<{
   check: 'anon' | 'auth';

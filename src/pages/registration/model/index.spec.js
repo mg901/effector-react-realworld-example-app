@@ -1,5 +1,5 @@
 import { root, fork, allSettled } from 'effector-root';
-import { $user, $token, $isAuthorized } from 'modules/user/model';
+import { $user, $token, $isAuthorized } from 'shared-modules/user/model';
 import { signUpFx } from './index';
 
 describe('pages/registration: ', () => {

@@ -13,7 +13,7 @@ import { AxiosError } from 'axios';
 import { api } from 'api';
 import * as router from 'library/router';
 import { uniq } from 'library/uniq';
-import { types } from 'modules/feed';
+import { types } from 'shared-modules/feed';
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
 
