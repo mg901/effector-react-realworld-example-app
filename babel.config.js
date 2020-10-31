@@ -9,7 +9,7 @@ module.exports = {
           api: './src/api',
           config: './src/config',
           library: './src/library',
-          modules: './src/modules',
+          'shared-modules': './src/shared-modules',
           ui: './src/ui',
         },
         extensions: ['.js', '.ts', '.jsx', '.tsx'],

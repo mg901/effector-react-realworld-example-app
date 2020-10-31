@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useStore } from 'effector-react';
 import Markdown from 'markdown-to-jsx';
-import { ArticleMeta } from 'modules/feed';
+import { ArticleMeta } from 'shared-modules/feed';
 import { Container, Row, Page, TagList, Tag, Banner } from 'ui';
 import { Comments } from './comments';
 import * as model from './model';

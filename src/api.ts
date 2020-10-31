@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as router from './library/router';
-import { model } from './modules/user';
+import { model } from './shared-modules/user';
 
 export const api = axios.create({
   baseURL: process.env.API_ROOT || 'https://conduit.productionready.io/api/',

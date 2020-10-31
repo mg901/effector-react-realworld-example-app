@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from 'effector-react';
-import { model } from 'modules/user';
+import { model } from 'shared-modules/user';
 import { Button } from 'ui';
 
 export const FormFooter: React.FC = () => {

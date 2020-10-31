@@ -1,8 +1,8 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { Paths } from 'library/router';
-import { createFeedModel } from 'modules/feed';
-import { model } from 'modules/user';
+import { createFeedModel } from 'shared-modules/feed';
+import { model } from 'shared-modules/user';
 import { NavItem, NavLink } from 'ui';
 
 const feedModel = createFeedModel();

@@ -9,8 +9,8 @@ import {
 import { createGate } from 'effector-react';
 import { api } from 'api';
 import * as router from 'library/router';
-import { types } from 'modules/feed';
-import * as user from 'modules/user';
+import { types } from 'shared-modules/feed';
+import * as user from 'shared-modules/user';
 import { GateState } from './types';
 
 export const articleDeleted = createEvent<React.MouseEvent>();
