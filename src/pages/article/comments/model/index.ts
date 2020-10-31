@@ -2,6 +2,7 @@ import {
   createEvent,
   createEffect,
   createStore,
+  restore,
   forward,
   attach,
   sample,
@@ -39,8 +40,7 @@ export const Gate = createGate<GateState>();
 
 export const $slug = Gate.state.map((props) => props.slug);
 
-export const $comments = createStore<types.Comments>([])
-  .on(fetchCommentsFx.doneData, (_, payload) => payload)
+export const $comments = restore(fetchCommentsFx.doneData, [])
   .on(fetchCommentFx.doneData, (state, payload) => [payload, ...state])
   .on(deleteCommentFx.done, (state, { params }) =>
     state.filter(({ id }) => id !== params.id),
