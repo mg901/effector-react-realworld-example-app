@@ -45,9 +45,6 @@ export const $profile = createStore<types.Profile>({
 );
 
 export const $following = $profile.map((x) => x.following);
-export const $thenSubscribed = $profile.map((x) => x.following === true);
-export const $thenUnsubscribed = $profile.map((x) => x.following === false);
-
 export const $isCurrentUser = combine(
   $profile,
   user.model.$user,
@@ -69,7 +66,7 @@ forward({
 
 guard({
   source: toggleFollowing,
-  filter: $thenSubscribed,
+  filter: $profile.map((x) => x.following === true),
   target: attach({
     source: $username,
     effect: unsubscribeFx,
@@ -78,7 +75,7 @@ guard({
 
 guard({
   source: toggleFollowing,
-  filter: $thenUnsubscribed,
+  filter: $profile.map((x) => x.following === false),
   target: attach({
     source: $username,
     effect: subscribeFx,
