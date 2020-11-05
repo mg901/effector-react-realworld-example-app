@@ -1,6 +1,6 @@
 import { root, fork, allSettled } from 'effector-root';
 import { $user, $token, $isAuthorized } from 'shared-modules/user/model';
-import { signUpFx, $errors } from './index';
+import { signUpFx, $error } from './index';
 
 describe('pages/registration: ', () => {
   it('should successfully register via username, email and password', async () => {
@@ -30,10 +30,19 @@ describe('pages/registration: ', () => {
     expect(scope.getState($isAuthorized)).toBeTruthy();
   });
 
-  it('should return a message in case of unsuccessful registration', async () => {
+  it('should return an error in case of unsuccessful registration', async () => {
     const expected = {
-      errors: {
-        'email or password': ['is invalid'],
+      response: {
+        data: {
+          errors: {
+            email: ["can't be blank"],
+            password: ["can't be blank"],
+            username: [
+              "can't be blank",
+              'is too short (minimum is 1 character)',
+            ],
+          },
+        },
       },
     };
 
@@ -41,6 +50,6 @@ describe('pages/registration: ', () => {
 
     const scope = fork(root);
     await allSettled(signUpFx, { scope });
-    expect(scope.getState($errors)).toMatchObject(expected);
+    expect(scope.getState($error)).toMatchObject(expected.response.data);
   });
 });

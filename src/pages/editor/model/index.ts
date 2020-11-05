@@ -124,7 +124,7 @@ createArticleFx.doneData.watch(({ slug }) => {
   router.model.history.replace(`/article/${slug}`);
 });
 
-export const $errors = createStore<Errors>({
+export const $error = createStore<Errors>({
   errors: {},
 })
   .on(createArticleFx.failData, (_, error) => error.response?.data)

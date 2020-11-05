@@ -1,10 +1,10 @@
 import React from 'react';
 import { useStore } from 'effector-react';
 import { ErrorList } from 'ui';
-import { $errors } from '../model';
+import { $error } from '../model';
 
 export const Errors: React.FC = () => {
-  const errors = useStore($errors);
+  const errors = useStore($error);
 
   return <ErrorList errors={errors} />;
 };

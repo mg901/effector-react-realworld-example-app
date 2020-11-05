@@ -65,7 +65,7 @@ user.model.loggedOutClicked.watch(() => {
   router.model.history.push('/');
 });
 
-export const $errors = createStore<Errors>({
+export const $error = createStore<Errors>({
   errors: {},
 })
   .on(changeUserDataFx.failData, (_, error) => error.response?.data)
