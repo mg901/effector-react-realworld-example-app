@@ -3,7 +3,7 @@ import { $user, $token, $isAuthorized } from 'shared-modules/user/model';
 import { signUpFx } from './index';
 
 describe('pages/registration: ', () => {
-  it('should sign in via email and password', async () => {
+  it('should successfully register via username, email and password', async () => {
     const expected = {
       bio: '',
       createdAt: '',

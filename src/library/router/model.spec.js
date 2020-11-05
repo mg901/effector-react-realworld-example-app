@@ -2,7 +2,7 @@ import { root, fork, allSettled } from 'effector-root';
 import { locationUpdated, $location, $pathname, $search } from './model';
 
 describe('library/router: ', () => {
-  it('should sign in via email and password', async () => {
+  it('should update location', async () => {
     const expected = {
       hash: '',
       key: 'v2cvfx',
