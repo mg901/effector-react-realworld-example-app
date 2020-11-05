@@ -52,7 +52,7 @@ forward({
 
 user.model.$user.on(signInFx.doneData, (_, payload) => payload);
 
-export const $errors = createStore<Errors>({
+export const $error = createStore<Errors>({
   errors: {},
 })
   .on(signInFx.failData, (_, error) => error.response?.data)

@@ -56,7 +56,7 @@ forward({
 
 user.model.$user.on(signUpFx.doneData, (_, payload) => payload);
 
-export const $errors = createStore<Errors>({
+export const $error = createStore<Errors>({
   errors: {},
 })
   .on(signUpFx.failData, (_, error) => error.response?.data)

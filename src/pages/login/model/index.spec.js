@@ -1,6 +1,6 @@
 import { root, fork, allSettled } from 'effector-root';
 import { $user, $token, $isAuthorized } from 'shared-modules/user/model';
-import { signInFx } from './index';
+import { signInFx, $error } from './index';
 
 describe('pages/login: ', () => {
   it('should sign in via email and password', async () => {
@@ -28,5 +28,19 @@ describe('pages/login: ', () => {
     expect(scope.getState($user)).toMatchObject(expected);
     expect(scope.getState($token)).toBe(expected.token);
     expect(scope.getState($isAuthorized)).toBeTruthy();
+  });
+
+  it('should return an error if login fails', async () => {
+    const expected = {
+      response: {
+        data: { errors: { 'email or password': ['is invalid'] } },
+      },
+    };
+
+    signInFx.use(() => Promise.reject(expected));
+
+    const scope = fork(root);
+    await allSettled(signInFx, { scope });
+    expect(scope.getState($error)).toMatchObject(expected.response.data);
   });
 });

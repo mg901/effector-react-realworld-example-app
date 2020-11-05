@@ -87,7 +87,7 @@ sample({
   target: deleteCommentFx,
 });
 
-export const $errors = createStore<types.Errors>({
+export const $error = createStore<types.Errors>({
   errors: {},
 })
   .on(

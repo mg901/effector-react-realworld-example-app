@@ -29,7 +29,6 @@ export const deleteArticleFx = createEffect((slug: string) =>
 );
 
 export const Gate = createGate<GateState>();
-
 export const $slug = Gate.state.map((props) => props.slug);
 
 export const $article = restore(fetchArticleFx.doneData, {
