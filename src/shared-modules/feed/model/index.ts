@@ -92,14 +92,25 @@ export const createFeedModel = (
     router.model.history.replace(`${path}?page=${page}`);
   });
 
-  // set favorite / unfavorite article
-  guard(favoriteToggled, {
+  guard({
+    source: favoriteToggled,
     filter: ({ favorited }) => favorited === true,
-  }).watch(({ slug }) => setUnfavoriteArticleFx(slug));
+    target: setUnfavoriteArticleFx.prepend<types.Article>(({ slug }) => slug),
+  });
 
-  guard(favoriteToggled, {
+  guard({
+    source: favoriteToggled,
     filter: ({ favorited }) => favorited === false,
-  }).watch(({ slug }) => setFavoriteArticleFx(slug));
+    target: setFavoriteArticleFx.prepend<types.Article>(({ slug }) => slug),
+  });
+
+  const $model = combine({
+    pageSize: $pageSize,
+    currentPage: $currentPage,
+    currentTag: $currentTag,
+    totalPages: $totalPages,
+    isEmptyFeed: $isEmptyFeed,
+  });
 
   return {
     Gate: createGate(),
@@ -114,15 +125,6 @@ export const createFeedModel = (
     $currentTag,
     $totalPages,
     $isEmptyFeed,
-    useModel: () =>
-      useStore(
-        combine({
-          pageSize: $pageSize,
-          currentPage: $currentPage,
-          currentTag: $currentTag,
-          totalPages: $totalPages,
-          isEmptyFeed: $isEmptyFeed,
-        }),
-      ),
+    useModel: () => useStore($model),
   };
 };
