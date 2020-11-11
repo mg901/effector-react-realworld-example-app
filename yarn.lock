@@ -8081,10 +8081,10 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-patronum@^0.111.0:
-  version "0.111.0"
-  resolved "https://registry.yarnpkg.com/patronum/-/patronum-0.111.0.tgz#1151969ee160c9d599efc8b27d5a63d898c4babf"
-  integrity sha512-jbXMCcVHUZekNfhGMJVOuFY1Na2oJdac23WoINSTyaqMnACEVgg2tiqTQ1h69GHgnNrlwSBRRoPqDJ3HfUWBKQ==
+patronum@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/patronum/-/patronum-1.0.0.tgz#af666c8d519a249a732aa58c56666ecc9506d5a7"
+  integrity sha512-tT83RxnlJwPrBg2Ipp9RDzjga5BTXmOYGBlOUHiVTRc9Q9ZqAr41MZcUoAitca263SEC0blozQ4Gkh49kvZEsw==
 
 pbkdf2@^3.0.3:
   version "3.1.1"

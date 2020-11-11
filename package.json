@@ -110,7 +110,7 @@
     "features": "^0.1.0",
     "history": "4.10.1",
     "markdown-to-jsx": "^7.0.1",
-    "patronum": "^0.111.0",
+    "patronum": "^1.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
