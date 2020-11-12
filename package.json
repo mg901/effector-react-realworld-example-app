@@ -102,7 +102,7 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
-    "effector": "^21.7.0",
+    "effector": "^21.7.2",
     "effector-forms": "^0.0.18",
     "effector-react": "^21.0.8",
     "effector-root": "^1.1.0",
