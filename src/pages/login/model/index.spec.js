@@ -15,12 +15,9 @@ describe('pages/login: ', () => {
       username: 'John Doe',
     };
 
-    const singInFxMock = jest.fn(() => expected);
+    signInFx.use(() => expected);
 
-    const scope = fork(root, {
-      handlers: new Map().set(signInFx, singInFxMock),
-    });
-
+    const scope = fork(root);
     expect(scope.getState($isAuthorized)).toBeFalsy();
 
     await allSettled(signInFx, { scope });
