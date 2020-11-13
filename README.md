@@ -4,8 +4,6 @@
 
 > ### [Effector](https://effector.now.sh) + React codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld-example-apps) spec and API.
 
-</a>&nbsp;&nbsp;<a href="https://thinkster.io/tutorials/build-a-real-world-react-redux-application" target="_blank"><img width="384" src="https://raw.githubusercontent.com/gothinkster/realworld/master/media/learn-btn-hr.png" /></a>
-
 ### [Demo](https://mg901.github.io/effector-react-realworld-example-app)&nbsp;&nbsp;&nbsp;&nbsp;[RealWorld](https://github.com/gothinkster/realworld)
 
 Originally created for this [GH issue](https://github.com/mg901/effector-react-realworld-example-app/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc). The codebase is now feature complete; please submit bug fixes via pull requests & feedback via issues.
