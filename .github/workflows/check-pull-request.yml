@@ -7,11 +7,10 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-
-      - name: Setup Node
-        uses: actions/setup-node@v2.1.0
+      - uses: actions/setup-node@v2-beta
         with:
-          node-version: '12.x'
+          node-version: '12'
+          check-latest: true
 
       - name: Get yarn cache
         id: yarn-cache
