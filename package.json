@@ -34,18 +34,18 @@
   "size-limit": [
     {
       "path": "public/bundle.*.js",
-      "limit": "76kb"
+      "limit": "77kb"
     }
   ],
   "devDependencies": {
-    "@babel/core": "^7.12.3",
+    "@babel/core": "^7.12.7",
     "@babel/plugin-transform-runtime": "^7.12.1",
     "@babel/preset-env": "^7.12.7",
     "@babel/preset-react": "^7.12.7",
     "@babel/preset-typescript": "^7.12.7",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@size-limit/preset-app": "^4.8.0",
+    "@size-limit/preset-app": "^4.9.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/react-hooks": "^3.4.2",
@@ -97,7 +97,7 @@
     "webpack": "4.44.2",
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.11.0",
-    "webpack-merge": "^5.2.0"
+    "webpack-merge": "^5.4.0"
   },
   "dependencies": {
     "axios": "^0.21.0",
@@ -105,7 +105,7 @@
     "effector-forms": "^0.0.18",
     "effector-react": "^21.0.8",
     "effector-root": "^1.1.0",
-    "effector-storage": "^3.0.0",
+    "effector-storage": "^4.0.1",
     "features": "^0.1.0",
     "history": "4.10.1",
     "markdown-to-jsx": "^7.1.0",
