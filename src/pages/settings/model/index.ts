@@ -1,4 +1,10 @@
-import { createEvent, createEffect, createStore, sample } from 'effector-root';
+import {
+  createEvent,
+  createEffect,
+  createStore,
+  sample,
+  merge,
+} from 'effector-root';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosResponse, AxiosError } from 'axios';
@@ -46,7 +52,7 @@ export const form = createForm({
 // set data form user store
 sample({
   source: $authUser,
-  clock: FormGate.open,
+  clock: merge([FormGate.open, $authUser.updates]),
   target: form.set,
 });
 
