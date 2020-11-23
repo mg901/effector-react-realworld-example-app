@@ -34,7 +34,7 @@
   "size-limit": [
     {
       "path": "public/bundle.*.js",
-      "limit": "76kb"
+      "limit": "77kb"
     }
   ],
   "devDependencies": {
