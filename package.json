@@ -52,7 +52,7 @@
     "@types/history": "4.7.7",
     "@types/jest": "^26.0.15",
     "@types/marked": "^1.2.0",
-    "@types/node": "^14.14.9",
+    "@types/node": "^14.14.10",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router": "^5.1.8",
