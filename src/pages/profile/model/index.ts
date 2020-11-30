@@ -2,6 +2,8 @@ import {
   createEvent,
   createEffect,
   createStore,
+  restore,
+  merge,
   combine,
   forward,
   attach,
@@ -34,14 +36,18 @@ export const $username = createStore<string>('').on(Gate.state, (_, { url }) =>
   url?.replace(/\/@/, ''),
 );
 
-export const $profile = createStore<types.Profile>({
-  bio: '',
-  following: false,
-  image: '',
-  username: '',
-}).on(
-  [fetchProfileFx.doneData, subscribeFx.doneData, unsubscribeFx.doneData],
-  (_, payload) => payload,
+export const $profile = restore(
+  merge([
+    fetchProfileFx.doneData,
+    subscribeFx.doneData,
+    unsubscribeFx.doneData,
+  ]),
+  {
+    bio: '',
+    following: false,
+    image: '',
+    username: '',
+  },
 );
 
 export const $following = $profile.map((x) => x.following);
