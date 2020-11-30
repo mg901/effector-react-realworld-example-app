@@ -34,7 +34,7 @@
   "size-limit": [
     {
       "path": "public/bundle.*.js",
-      "limit": "77kb"
+      "limit": "80kb"
     }
   ],
   "devDependencies": {
@@ -52,7 +52,7 @@
     "@types/history": "4.7.7",
     "@types/jest": "^26.0.15",
     "@types/marked": "^1.2.0",
-    "@types/node": "^14.14.9",
+    "@types/node": "^14.14.10",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router": "^5.1.8",
@@ -62,7 +62,7 @@
     "@typescript-eslint/parser": "^4.8.1",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
-    "babel-loader": "^8.2.1",
+    "babel-loader": "^8.2.2",
     "babel-plugin-module-resolver": "^4.0.0",
     "commitizen": "^4.2.2",
     "copy-webpack-plugin": "^6.3.2",
@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
-    "effector": "^21.7.3",
+    "effector": "^21.7.5",
     "effector-forms": "^0.0.18",
     "effector-react": "^21.1.0",
     "effector-root": "^1.1.0",
