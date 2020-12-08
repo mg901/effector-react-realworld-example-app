@@ -48,7 +48,7 @@
     "@size-limit/preset-app": "^4.9.1",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
-    "@testing-library/react-hooks": "^3.5.0",
+    "@testing-library/react-hooks": "^3.6.0",
     "@types/history": "4.7.7",
     "@types/jest": "^26.0.16",
     "@types/marked": "^1.2.1",
