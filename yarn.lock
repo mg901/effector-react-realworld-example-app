@@ -735,7 +735,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
 
-"@babel/plugin-transform-runtime@^7.12.10":
+"@babel/plugin-transform-runtime@^7.12.1":
   version "7.12.10"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-runtime/-/plugin-transform-runtime-7.12.10.tgz#af0fded4e846c4b37078e8e5d06deac6cd848562"
   integrity sha512-xOrUfzPxw7+WDm9igMgQCbO3cJKymX7dFdsgRr1eu9n3KjjyU4pptIXbXPseQDquw+W+RuJEJMHKHNsPNNm3CA==
@@ -4065,10 +4065,10 @@ effector-forms@^0.0.18:
   resolved "https://registry.yarnpkg.com/effector-forms/-/effector-forms-0.0.18.tgz#fc3035cf33ed9022c667e0bfc2fb053c341082f3"
   integrity sha512-60VBBqoU2BSsc9YZb7UC3SK2f3EkLOXm+uu4pOwGufQ7vjWX+kSKfRK5eQrtqefJBMjpvIGmathVUhNjRUe4QA==
 
-effector-react@^21.2.0:
-  version "21.2.0"
-  resolved "https://registry.yarnpkg.com/effector-react/-/effector-react-21.2.0.tgz#c15e2ef59e27b7772704168a59acee0808f3ab41"
-  integrity sha512-lAz8b2F5YgfJKQIegbBT2w8Jqvcs+62QnnYJe4+PqI2s7X3oJvuQ2Zm1obrrsWpoMOqDUdEpaP0KDMq8YRg5ng==
+effector-react@^21.2.1:
+  version "21.2.1"
+  resolved "https://registry.yarnpkg.com/effector-react/-/effector-react-21.2.1.tgz#b6d1c8a5c61ffee841b41f4b697ec069094798c8"
+  integrity sha512-NvQBKnA6VQ14aZcHjag5muqvqnfr4H8g3Ry8/nuiEWqR/c9LkKK9mUoU1lyQU7m/eKlvuXSqeDQ1I4iBsobMqA==
 
 effector-root@^1.1.0:
   version "1.1.0"
