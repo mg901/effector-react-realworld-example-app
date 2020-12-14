@@ -105,7 +105,7 @@
     "axios": "^0.21.0",
     "effector": "^21.7.5",
     "effector-forms": "^0.0.18",
-    "effector-react": "^21.2.0",
+    "effector-react": "^21.2.1",
     "effector-root": "^1.1.0",
     "effector-storage": "^4.0.3",
     "features": "^0.1.0",
