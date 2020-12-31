@@ -46,7 +46,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@size-limit/preset-app": "^4.9.1",
-    "@testing-library/jest-dom": "^5.11.7",
+    "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
     "@testing-library/react-hooks": "^3.7.0",
     "@types/history": "4.7.7",
