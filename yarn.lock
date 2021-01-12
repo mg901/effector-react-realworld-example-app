@@ -4054,10 +4054,10 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
-effector-forms@^0.0.18:
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/effector-forms/-/effector-forms-0.0.18.tgz#fc3035cf33ed9022c667e0bfc2fb053c341082f3"
-  integrity sha512-60VBBqoU2BSsc9YZb7UC3SK2f3EkLOXm+uu4pOwGufQ7vjWX+kSKfRK5eQrtqefJBMjpvIGmathVUhNjRUe4QA==
+effector-forms@^0.0.19:
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/effector-forms/-/effector-forms-0.0.19.tgz#d3e1786aebf023923db6362dd61d4d3ea7f9e3d6"
+  integrity sha512-+aBWnjpMn/cqF0ceo4m+fDjSWR9GhZ6iRsv8waX0w4d61ofsX60WpzOKLHGzeJQLEE3wYCuY/QuQhomqc2FZww==
 
 effector-react@^21.2.1:
   version "21.2.1"
