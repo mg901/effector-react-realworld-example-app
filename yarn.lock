@@ -4105,10 +4105,10 @@ effector-root@^1.1.0:
   resolved "https://registry.yarnpkg.com/effector-root/-/effector-root-1.1.0.tgz#d4fb06c9017028278f1c87eeddd7349efb48d6a3"
   integrity sha512-8LqvEXvzwB/1RaCI1dZ167zz+WtX9E/zT1dLD5kwJf15D9yjTBAQFqxZ1zjmcFP1Qq76LmHBEtTW7ZOvXUVgHA==
 
-effector-storage@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/effector-storage/-/effector-storage-4.0.3.tgz#65f2e6a953558b6ef0ef8083c4e45e1d75ffe52a"
-  integrity sha512-4XWaR5i092b76CUyBYe4yiGOMJtJaBkndx/M9VffUywsM9exzypKhejGqOfjIrokl+2kzq/lwjSoD81rfaLYGg==
+effector-storage@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/effector-storage/-/effector-storage-4.1.0.tgz#b3975fded4ba2769e5a09873b5d41a9495dc9ef3"
+  integrity sha512-iTaApbgyMMvJVKS9GhTzXLtlgr3vzUYEA4Gl8eFdvg6MbTseoyQHPhY8uWdy9mcb8h5Lpvkq/EknvBoC1dr/8g==
 
 effector@^21.7.5:
   version "21.7.5"
