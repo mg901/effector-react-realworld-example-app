@@ -4072,10 +4072,10 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
-effector-forms@^0.0.19:
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/effector-forms/-/effector-forms-0.0.19.tgz#d3e1786aebf023923db6362dd61d4d3ea7f9e3d6"
-  integrity sha512-+aBWnjpMn/cqF0ceo4m+fDjSWR9GhZ6iRsv8waX0w4d61ofsX60WpzOKLHGzeJQLEE3wYCuY/QuQhomqc2FZww==
+effector-forms@^0.0.20:
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/effector-forms/-/effector-forms-0.0.20.tgz#feb471ecbecf80a1506a15b06a000d202d7f3f1c"
+  integrity sha512-ctn6tRFM2Ab3yA+aUtBug18c7RyEa4Be2rocZjQb7bHqybOsU/z9YQVzQcDQ0THxQf0f1H41hNTZqVS+p1xO4w==
 
 effector-react@^21.2.1:
   version "21.2.1"
