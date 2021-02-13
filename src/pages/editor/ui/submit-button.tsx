@@ -1,4 +1,3 @@
-import React from 'react';
 import { useForm } from 'effector-forms';
 import { useStore } from 'effector-react';
 import { Button } from 'ui';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { FormGroup } from './form-group';
 import { Input, InputProps } from './input';
 

@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 export type ButtonProps = Readonly<
   React.ButtonHTMLAttributes<HTMLButtonElement>
