@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { useField } from 'effector-forms';
 import { InputField } from 'ui';
 import { form } from '../model';

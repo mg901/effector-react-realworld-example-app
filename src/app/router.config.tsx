@@ -63,50 +63,50 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       path: Paths.HOME,
       component: HomePage,
     },
-    // {
-    //   path: Paths.EDITOR,
-    //   exact: true,
-    //   component: lazy(() =>
-    //     import('../pages/editor').then((response) => ({
-    //       default: response.EditorPage,
-    //     })),
-    //   ),
-    // },
-    // {
-    //   path: Paths.EDITOR_SLUG,
-    //   exact: true,
-    //   component: lazy(() =>
-    //     import('../pages/editor').then((response) => ({
-    //       default: response.EditorPage,
-    //     })),
-    //   ),
-    // },
-    // {
-    //   path: Paths.SETTINGS,
-    //   forAuth: true,
-    //   component: lazy(() =>
-    //     import('../pages/settings').then((response) => ({
-    //       default: response.SettingsPage,
-    //     })),
-    //   ),
-    // },
-    // {
-    //   path: Paths.PROFILE,
-    //   component: lazy(() =>
-    //     import('../pages/profile').then((response) => ({
-    //       default: response.ProfilePage,
-    //     })),
-    //   ),
-    // },
-    // {
-    //   path: Paths.ARTICLE,
-    //   exact: true,
-    //   component: lazy(() =>
-    //     import('../pages/article').then((response) => ({
-    //       default: response.ArticlePage,
-    //     })),
-    //   ),
-    // },
+    {
+      path: Paths.EDITOR,
+      exact: true,
+      component: lazy(() =>
+        import('../pages/editor').then((response) => ({
+          default: response.EditorPage,
+        })),
+      ),
+    },
+    {
+      path: Paths.EDITOR_SLUG,
+      exact: true,
+      component: lazy(() =>
+        import('../pages/editor').then((response) => ({
+          default: response.EditorPage,
+        })),
+      ),
+    },
+    {
+      path: Paths.SETTINGS,
+      forAuth: true,
+      component: lazy(() =>
+        import('../pages/settings').then((response) => ({
+          default: response.SettingsPage,
+        })),
+      ),
+    },
+    {
+      path: Paths.PROFILE,
+      component: lazy(() =>
+        import('../pages/profile').then((response) => ({
+          default: response.ProfilePage,
+        })),
+      ),
+    },
+    {
+      path: Paths.ARTICLE,
+      exact: true,
+      component: lazy(() =>
+        import('../pages/article').then((response) => ({
+          default: response.ArticlePage,
+        })),
+      ),
+    },
     {
       path: '*',
       component: lazy(() =>
