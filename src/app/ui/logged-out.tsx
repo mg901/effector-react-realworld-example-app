@@ -1,4 +1,3 @@
-import React from 'react';
 import { Paths } from 'library/router';
 import { NavItem, NavLink } from 'ui';
 

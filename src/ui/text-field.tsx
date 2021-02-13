@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormGroup } from './form-group';
 import { Textarea, TextareaProps } from './textarea';
 

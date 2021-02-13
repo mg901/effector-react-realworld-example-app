@@ -1,4 +1,4 @@
-import React from 'react';
+import { Suspense } from 'react';
 import { Router } from 'react-router-dom';
 import { useGate } from 'effector-react';
 import { APP_NAME } from 'config';
@@ -27,9 +27,9 @@ export const App: React.FC = () => {
           </AuthBranch>
         </ul>
       </Header>
-      <React.Suspense fallback={<Spinner loading />}>
+      <Suspense fallback={<Spinner loading />}>
         <Routes />
-      </React.Suspense>
+      </Suspense>
     </Router>
   );
 };
