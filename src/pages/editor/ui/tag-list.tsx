@@ -1,4 +1,3 @@
-import React from 'react';
 import { useList } from 'effector-react';
 import { TagList as List } from 'ui';
 import * as model from '../model';

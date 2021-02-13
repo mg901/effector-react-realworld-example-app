@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavItem, NavLink } from 'ui';
 
 type Props = Readonly<{

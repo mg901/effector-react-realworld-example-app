@@ -1,4 +1,3 @@
-import React from 'react';
 import { useStore } from 'effector-react';
 import { Button } from 'ui';
 import { changeUserDataFx } from '../model';
