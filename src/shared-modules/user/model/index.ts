@@ -1,5 +1,6 @@
 import { createEvent, createStore } from 'effector-root';
 import { persist } from 'effector-storage/local';
+import { setToken } from 'api';
 import { TOKEN_NAME } from 'config';
 import { Token, User } from './types';
 
@@ -20,6 +21,10 @@ export const $token = createStore<Token>(null).on(
   $user,
   (_, { token }) => token,
 );
+
+$token.watch((token) => {
+  setToken(token);
+});
 
 persist({
   store: $token,

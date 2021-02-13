@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type Props = Readonly<{
   errors: Readonly<{
     errors: Readonly<Record<string, string>>;

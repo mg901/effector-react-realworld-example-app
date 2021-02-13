@@ -1,3 +1,5 @@
+import React from 'react';
+
 import './index.css';
 
 type Props = Readonly<React.FormHTMLAttributes<HTMLFormElement>>;

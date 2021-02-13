@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { model } from 'shared-modules/user';
 import { Page, Row, Button } from 'ui';
 import { Errors } from './ui/errors';

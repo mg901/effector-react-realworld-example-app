@@ -1,3 +1,4 @@
+import React from 'react';
 import * as types from '../model/types';
 import { CommentFooter } from './comment-footer';
 

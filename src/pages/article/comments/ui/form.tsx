@@ -1,3 +1,4 @@
+import React from 'react';
 import { useForm } from 'effector-forms';
 import { Form as UIForm, Textarea } from 'ui';
 import { form } from '../model';

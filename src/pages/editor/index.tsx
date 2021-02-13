@@ -1,3 +1,4 @@
+import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate } from 'effector-react';
 import { Page, Row } from 'ui';

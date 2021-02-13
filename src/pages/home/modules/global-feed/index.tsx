@@ -1,3 +1,4 @@
+import React from 'react';
 import { useGate, useList, useStore } from 'effector-react';
 import { ArticlesWrapper, ArticlePreview } from 'shared-modules/feed';
 import { Pagination, Spinner } from 'ui';

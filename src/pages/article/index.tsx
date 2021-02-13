@@ -1,3 +1,4 @@
+import React from 'react';
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useStore } from 'effector-react';
 import Markdown from 'markdown-to-jsx';

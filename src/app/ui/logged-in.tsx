@@ -1,3 +1,4 @@
+import React from 'react';
 import { useStore } from 'effector-react';
 import { Paths } from 'library/router';
 import { model } from 'shared-modules/user';
