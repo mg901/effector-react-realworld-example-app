@@ -1,4 +1,3 @@
-import React from 'react';
 import { useList } from 'effector-react';
 import { List } from 'ui';
 import { $comments } from '../model';

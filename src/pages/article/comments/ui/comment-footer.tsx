@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import { AuthBranch } from 'library/router';
@@ -7,9 +6,11 @@ import { commentDeleted } from '../model';
 import * as types from '../model/types';
 import { ButtonDelete } from './button-delete';
 
-type Props = types.Comment;
-
-export const CommentFooter: React.FC<Props> = ({ author, createdAt, id }) => {
+export const CommentFooter: React.FC<types.Comment> = ({
+  author,
+  createdAt,
+  id,
+}) => {
   const { username } = useStore(user.model.$user);
   const isAuthUser = username === author.username;
 

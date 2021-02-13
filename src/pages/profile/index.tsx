@@ -1,4 +1,3 @@
-import React from 'react';
 import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
 import { useGate } from 'effector-react';
 import { Container, Row } from 'ui';

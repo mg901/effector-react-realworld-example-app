@@ -1,4 +1,3 @@
-import React from 'react';
 import { ButtonProps } from '../button';
 import './index.css';
 
@@ -7,7 +6,7 @@ type Props = ButtonProps &
     active: boolean;
   }>;
 
-export const PatinationItem: React.FC<Props> = ({
+export const PaginationItem: React.FC<Props> = ({
   active,
   onClick,
   children,

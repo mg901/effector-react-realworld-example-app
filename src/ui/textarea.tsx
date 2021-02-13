@@ -1,5 +1,3 @@
-import React from 'react';
-
 export type TextareaProps = Readonly<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>
 >;
