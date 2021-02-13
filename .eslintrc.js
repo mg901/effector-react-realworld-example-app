@@ -77,7 +77,6 @@ module.exports = {
       2,
       {
         groups: [
-          '/^react/',
           '/^effector-root/',
           '/^effector/',
           '/^axios/',

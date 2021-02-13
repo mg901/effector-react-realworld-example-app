@@ -1,5 +1,4 @@
 import { useMemo } from 'react';
-
 import { PaginationItem } from './pagination-item';
 
 type Props = Readonly<{
