@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{"C/cI":function(n,e,t){"use strict";t.r(e),t.d(e,"NotMatchPage",(function(){return u}));var c=t("mXGw"),a=t.n(c),o=t("UYjC"),u=function(){return a.a.createElement(o.c,null,a.a.createElement("h1",null,"404 Page Not Found"))}}}]);

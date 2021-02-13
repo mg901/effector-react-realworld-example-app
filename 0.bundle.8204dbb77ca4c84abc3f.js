@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{"C/cI":function(e,n,t){"use strict";t.r(n),t.d(n,"NotMatchPage",(function(){return a}));var c=t("UYjC"),a=function(){return React.createElement(c.c,null,React.createElement("h1",null,"404 Page Not Found"))}}}]);
