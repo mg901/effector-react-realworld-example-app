@@ -1,5 +1,5 @@
-import { useStore } from 'effector-react';
 import { Link } from 'react-router-dom';
+import { useStore } from 'effector-react';
 import { Button } from 'ui';
 import { $isCurrentUser } from '../model';
 

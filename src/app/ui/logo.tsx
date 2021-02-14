@@ -1,5 +1,5 @@
-import { Paths } from 'library/router';
 import { Link } from 'react-router-dom';
+import { Paths } from 'library/router';
 
 type Props = Readonly<{
   title: string;

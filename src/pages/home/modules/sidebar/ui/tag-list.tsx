@@ -1,6 +1,6 @@
+import { Link } from 'react-router-dom';
 import { useList } from 'effector-react';
 import { Paths } from 'library/router';
-import { Link } from 'react-router-dom';
 import { TagList as List } from 'ui';
 import { $tags } from '../model';
 
