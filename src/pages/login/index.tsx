@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { Paths } from 'library/router';
+import { Link } from 'react-router-dom';
 import { Page, Row } from 'ui';
 import { Errors } from './ui/errors';
 import { Form } from './ui/form';

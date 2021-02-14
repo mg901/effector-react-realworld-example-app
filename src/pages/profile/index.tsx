@@ -1,5 +1,5 @@
-import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
 import { useGate } from 'effector-react';
+import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
 import { Container, Row } from 'ui';
 import { Gate } from './model';
 import { routes } from './router.config';

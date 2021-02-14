@@ -1,5 +1,5 @@
-import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate } from 'effector-react';
+import { RouteConfigComponentProps } from 'react-router-config';
 import { Page, Row } from 'ui';
 import { AddTag } from './add-tag';
 import { Gate } from './model';
