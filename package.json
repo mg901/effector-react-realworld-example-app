@@ -109,7 +109,7 @@
     "features": "^0.1.0",
     "history": "4.10.1",
     "markdown-to-jsx": "^7.1.1",
-    "patronum": "^1.0.2",
+    "patronum": "^1.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
