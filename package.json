@@ -105,7 +105,7 @@
     "effector-forms": "^0.0.20",
     "effector-react": "^21.2.1",
     "effector-root": "^1.1.0",
-    "effector-storage": "^4.1.0",
+    "effector-storage": "^4.1.1",
     "features": "^0.1.0",
     "history": "4.10.1",
     "markdown-to-jsx": "^7.1.1",
