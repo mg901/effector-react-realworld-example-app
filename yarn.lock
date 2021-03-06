@@ -1370,25 +1370,25 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@size-limit/file@4.9.2":
-  version "4.9.2"
-  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-4.9.2.tgz#bd8553da2ce104e6f1c403e9f2a429ddb5fd9eb1"
-  integrity sha512-jMFbIvY1bLbirjsPpP4fN8/H3EZGML77NTrP0r5rFGKZMFMz+KbQJa4kEzO/OrKQSSJLi6WpOh+xQPOSR1U4PQ==
+"@size-limit/file@4.10.0":
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-4.10.0.tgz#b09d70bdf476cbff84938c7a7afb163fc4b92c23"
+  integrity sha512-cqJcGyZmA45n/GI1TF3M3DD0ZVRZYvEMA1+mYbIqx8GIYvFv4LAU3tw4KfitXsnyKgTSPUvyhiIhaAqa9x/lsg==
   dependencies:
     semver "7.3.4"
 
-"@size-limit/preset-app@^4.9.2":
-  version "4.9.2"
-  resolved "https://registry.yarnpkg.com/@size-limit/preset-app/-/preset-app-4.9.2.tgz#ef6965f6bc6d6590e4eade1769475bdf5cbf9893"
-  integrity sha512-blPp9KUnyLuw4J5ybjL04xLZ6MvwMDBJPQ3tR1Q3fV/ioxJ1OK9CgQBNVAoDRFea5rDBb0vSfD0rgIup44eiRg==
+"@size-limit/preset-app@^4.10.0":
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/@size-limit/preset-app/-/preset-app-4.10.0.tgz#9d10820bdb2c098c8098529b6430dca04a8b33a7"
+  integrity sha512-FOHUg1uZ295hz3bWrx6LshZ3HJ8C3WraCjBXT+feett0PdMAikmGapqXRrHu5dT4eRhhCUcqVdbwxsndjydrPw==
   dependencies:
-    "@size-limit/file" "4.9.2"
-    "@size-limit/time" "4.9.2"
+    "@size-limit/file" "4.10.0"
+    "@size-limit/time" "4.10.0"
 
-"@size-limit/time@4.9.2":
-  version "4.9.2"
-  resolved "https://registry.yarnpkg.com/@size-limit/time/-/time-4.9.2.tgz#651eb2bdbe122fa2c0a08da5d67adfa13e66c6d4"
-  integrity sha512-FNuuPbSlu/9gIup2BED9wo+2VybWEBYqoeHEP1tXibYQQe+Ubo1cbf8J7/7EuJFNrdaKi7dz+AdoCKYVTyf5fQ==
+"@size-limit/time@4.10.0":
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/@size-limit/time/-/time-4.10.0.tgz#bdbe37b6535fc510567aad0038bd691dd4b53b19"
+  integrity sha512-lf/PM2zFITTwIk7v3uPDa+Ob7Cww8U6GHlpEVj9L9rSd5DQtZoD6etSRhIcuotOnD9OpQDfA3v8RQKtlip2O+w==
   dependencies:
     estimo "^2.2.3"
     react "^17.0.1"
@@ -3154,10 +3154,10 @@ color@^3.0.0:
     color-convert "^1.9.1"
     color-string "^1.5.4"
 
-colorette@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.1.tgz#4d0b921325c14faf92633086a536db6e89564b1b"
-  integrity sha512-puCDz0CzydiSYOrnXpz/PKd69zRrribezjtE9yd4zvytoRc8+RY/KJPvtPFKZS3E3wP6neGyMe0vOTlHO5L3Pw==
+colorette@^1.2.1, colorette@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/colorette/-/colorette-1.2.2.tgz#cbcc79d5e99caea2dbf10eb3a26fd8b3e6acfa94"
+  integrity sha512-MKGMzyfeuutC/ZJ1cba9NqcNpfeqMUcYmyF1ZFY6/Cn7CNSAKx6a+s48sqLqyAiZuaP2TcqMhoo+dlwFnVxT9w==
 
 colors@>=0.6.0:
   version "1.4.0"
@@ -9591,15 +9591,15 @@ sisteransi@^1.0.5:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
 
-size-limit@^4.9.2:
-  version "4.9.2"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-4.9.2.tgz#b078c2841d6b6bcc576e066b4a6f7b6dd02c124c"
-  integrity sha512-GH1kXz5jHyh+ej0Iis8VpR6auYAsQjGazoYX3qrTgQnMXlYeltLrAcOxOH52IhXxxqE/P58MoxmoZ7MlUZ4wOg==
+size-limit@^4.10.0:
+  version "4.10.0"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-4.10.0.tgz#5b8bc1e40993bd12593c032d8be807c0eed54893"
+  integrity sha512-yuTd43xkoRexIluaxsYBk9sttd2jMBl10OcCVlscBTv8Z77fTElNUDDMuTffsqgeQNAV6K+rfk140gOgjklMnQ==
   dependencies:
     bytes "^3.1.0"
     chokidar "^3.5.1"
     ci-job-number "^1.2.2"
-    colorette "^1.2.1"
+    colorette "^1.2.2"
     globby "^11.0.2"
     lilconfig "^2.0.2"
     ora "^5.3.0"
