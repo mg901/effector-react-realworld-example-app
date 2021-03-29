@@ -4074,10 +4074,10 @@ effector-forms@^0.0.20:
   resolved "https://registry.yarnpkg.com/effector-forms/-/effector-forms-0.0.20.tgz#feb471ecbecf80a1506a15b06a000d202d7f3f1c"
   integrity sha512-ctn6tRFM2Ab3yA+aUtBug18c7RyEa4Be2rocZjQb7bHqybOsU/z9YQVzQcDQ0THxQf0f1H41hNTZqVS+p1xO4w==
 
-effector-react@^21.3.0:
-  version "21.3.0"
-  resolved "https://registry.yarnpkg.com/effector-react/-/effector-react-21.3.0.tgz#44a94355930aae25a386c039c6397091e2408e71"
-  integrity sha512-BnTxHUq1OcW7MwM67Fs43DbV3lcXlrhEyqcIUbMZPDkK6KTOz4nzHO1kP14bGQ7k+7nVeTV8xLCVGfmiZmNSkQ==
+effector-react@^21.3.1:
+  version "21.3.1"
+  resolved "https://registry.yarnpkg.com/effector-react/-/effector-react-21.3.1.tgz#d5f082dabc982ffd80c81e1c544751f735113a7f"
+  integrity sha512-iq/65va+zA5FOM5kgKDgzS0vY6rYqSNSVq9jZ4C7njPgiBpYd6jLTX+VWTxkT1sZwPRO6blanTNAajuy8jP+jw==
 
 effector-root@^1.2.0:
   version "1.2.0"
