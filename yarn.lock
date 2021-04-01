@@ -4121,10 +4121,10 @@ effector-root@^1.2.0:
     "@babel/helper-module-imports" "^7.12.13"
     "@babel/traverse" "^7.13.0"
 
-effector-storage@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/effector-storage/-/effector-storage-4.1.1.tgz#ad04ce0070ff2d2ea94bb058c4039a1cb4a82aea"
-  integrity sha512-TNzzRejqTEn1PdJWGJSlKaE/g9hRhcAJE4VcZbV9OdVPTmlxVUyLh4LJ5tijzQXba07fkymmapcTo62azk8keQ==
+effector-storage@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/effector-storage/-/effector-storage-4.2.0.tgz#8eae4bbb585d163de570712a0791ab5708b29164"
+  integrity sha512-W63sPJ5jSxfNDcHoVNM7KwwU/ns8PJaQ3kANWl+iWf1GlBJ0qoDVZKzjvsrhf4g9Id6V6ENTQHJQuiul5pDUUQ==
 
 effector@^21.8.11:
   version "21.8.11"
