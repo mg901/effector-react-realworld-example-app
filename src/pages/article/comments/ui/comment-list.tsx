@@ -5,8 +5,9 @@ import { Comment } from './comment';
 
 export const CommentsList: React.FC = () => (
   <List>
-    {useList($comments, (comment) => (
-      <Comment comment={comment} />
-    ))}
+    {useList($comments, {
+      getKey: (item) => item.id,
+      fn: (item) => <Comment comment={item} />,
+    })}
   </List>
 );
