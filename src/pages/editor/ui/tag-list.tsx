@@ -5,8 +5,9 @@ import { Tag } from './tag';
 
 export const TagList: React.FC = () => (
   <List>
-    {useList(model.$tagList, (tag) => (
-      <Tag onClick={() => model.tagDeleted(tag)}>{tag}</Tag>
-    ))}
+    {useList(model.$tagList, {
+      getKey: (tag) => tag,
+      fn: (tag) => <Tag onClick={() => model.tagDeleted(tag)}>{tag}</Tag>,
+    })}
   </List>
 );
