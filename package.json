@@ -103,7 +103,7 @@
     "axios": "^0.21.1",
     "effector": "^21.8.11",
     "effector-forms": "^0.0.21",
-    "effector-react": "^21.3.1",
+    "effector-react": "^21.3.2",
     "effector-root": "^1.2.0",
     "effector-storage": "^4.2.0",
     "features": "^0.1.0",
