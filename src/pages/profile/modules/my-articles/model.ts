@@ -2,7 +2,7 @@ import { createEffect, forward, attach } from 'effector-root';
 import { status } from 'patronum/status';
 import { api } from 'api';
 import { limit } from 'library/limit';
-import * as feed from 'shared-modules/feed';
+import * as feed from 'shared/feed';
 import * as model from '../../model';
 import * as types from '../../model/types';
 

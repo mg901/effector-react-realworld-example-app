@@ -1,6 +1,6 @@
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { model } from 'shared-modules/user';
+import { model } from 'shared/user';
 import { Paths } from '../constants';
 
 type Props = RouteProps;

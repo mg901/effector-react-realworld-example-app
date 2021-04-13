@@ -18,9 +18,10 @@
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "paths": {
       "api": ["./src/api"],
+      "router": ["./src/router"],
       "config": ["./src/config"],
       "library/*": ["./src/library/*"],
-      "shared-modules/*": ["src/shared-modules/*"],
+      "shared/*": ["shared/*"],
       "ui": ["./src/ui"]
     }
   },

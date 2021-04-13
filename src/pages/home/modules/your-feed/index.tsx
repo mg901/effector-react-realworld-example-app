@@ -1,9 +1,5 @@
 import { useGate, useList, useStore } from 'effector-react';
-import {
-  EmptyArticles,
-  ArticlesWrapper,
-  ArticlePreview,
-} from 'shared-modules/feed';
+import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'shared/feed';
 import { Pagination, Spinner } from 'ui';
 import * as model from './model';
 

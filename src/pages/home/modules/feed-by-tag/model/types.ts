@@ -1,4 +1,4 @@
-import { types } from 'shared-modules/feed';
+import { types } from 'shared/feed';
 
 export type Feed = Readonly<Record<string, types.Feed>>;
 

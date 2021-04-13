@@ -1,4 +1,4 @@
-import { model } from 'shared-modules/user';
+import { model } from 'shared/user';
 import { Page, Row, Button } from 'ui';
 import { Errors } from './ui/errors';
 import { Form } from './ui/form';

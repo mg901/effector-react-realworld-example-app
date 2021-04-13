@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react';
-import { Paths } from 'library/router';
-import { createFeedModel } from 'shared-modules/feed';
-import { model } from 'shared-modules/user';
+import { Paths } from 'router';
+import { createFeedModel } from 'shared/feed';
+import { model } from 'shared/user';
 import { NavItem, NavLink } from 'ui';
 
 const feedModel = createFeedModel();

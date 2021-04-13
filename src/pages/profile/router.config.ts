@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Paths } from 'library/router';
+import { Paths } from 'router';
 
 export const routes = [
   {
