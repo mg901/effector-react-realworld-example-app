@@ -20,6 +20,7 @@ module.exports = {
           config: './src/config',
           library: './src/library',
           shared: './src/shared',
+          pages: './src/pages',
           ui: './src/ui',
         },
         extensions: ['.js', '.ts', '.jsx', '.tsx'],

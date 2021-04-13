@@ -1,14 +1,17 @@
-import { RouteConfigComponentProps, renderRoutes } from 'react-router-config';
+import { useParams } from 'react-router-dom';
 import { useGate } from 'effector-react';
 import { Container, Row } from 'ui';
 import { Gate } from './model';
-import { routes } from './router.config';
+import { Routes } from './ui/routes';
 import { Tabs } from './ui/tabs';
 import { UserInfo } from './ui/user-info';
 
-type Props = Readonly<RouteConfigComponentProps<{ url: string }>>;
+type Params = Readonly<{
+  url: string;
+}>;
 
-const ProfilePage: React.FC<Props> = ({ match: { url } }) => {
+const Profile: React.FC = () => {
+  const { url } = useParams<Params>();
   useGate(Gate, { url });
 
   return (
@@ -17,7 +20,7 @@ const ProfilePage: React.FC<Props> = ({ match: { url } }) => {
       <Container>
         <Row>
           <Tabs path={url}>
-            <div>{renderRoutes(routes)}</div>
+            <Routes />
           </Tabs>
         </Row>
       </Container>
@@ -25,4 +28,4 @@ const ProfilePage: React.FC<Props> = ({ match: { url } }) => {
   );
 };
 
-export default ProfilePage;
+export default Profile;

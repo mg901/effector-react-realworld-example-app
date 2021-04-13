@@ -1,11 +1,15 @@
-import { useMemo } from 'react';
-import { renderRoutes } from 'react-router-config';
-import { useStore } from 'effector-react';
-import { model } from 'shared/user';
-import { makeRoutes } from '../router.config';
+import { lazy } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { Paths } from 'router';
 
-export const Routes = (): JSX.Element => {
-  const isAuth = useStore(model.$isAuthorized);
+const YourFeed = lazy(() => import('../pages/your-feed'));
+const GlobalFeed = lazy(() => import('../pages/global-feed'));
+const FeedByTab = lazy(() => import('../pages/feed-by-tag'));
 
-  return useMemo(() => renderRoutes(makeRoutes(isAuth)), [isAuth]);
-};
+export const Routes: React.FC = () => (
+  <Switch>
+    <Route component={YourFeed} path={Paths.YOUR_FEED} />
+    <Route component={GlobalFeed} path={Paths.GLOBAL_FEED} />
+    <Route component={FeedByTab} path={Paths.FEED_BY_TAG} />
+  </Switch>
+);

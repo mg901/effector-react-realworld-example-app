@@ -4,7 +4,7 @@ import { Page, Row } from 'ui';
 import { Errors } from './ui/errors';
 import { Form } from './ui/form';
 
-export const RegistrationPage: React.FC = () => (
+export const Registration: React.FC = () => (
   <Page>
     <Row>
       <div className="col-md-6 offset-md-3 col-xs-12">
@@ -20,4 +20,4 @@ export const RegistrationPage: React.FC = () => (
   </Page>
 );
 
-export default RegistrationPage;
+export default Registration;

@@ -1,4 +1,4 @@
-import { RouteConfigComponentProps } from 'react-router-config';
+import { useParams } from 'react-router-dom';
 import { useGate, useStore } from 'effector-react';
 import Markdown from 'markdown-to-jsx';
 import { ArticleMeta } from 'shared/feed';
@@ -7,15 +7,13 @@ import { Comments } from './comments';
 import * as model from './model';
 import { EditMode } from './ui/edit-mode';
 
-type Props = Readonly<RouteConfigComponentProps<{ slug: string }>>;
+type Params = Readonly<{
+  slug: string;
+}>;
 
-const ArticlePage: React.FC<Props> = ({
-  match: {
-    params: { slug: id },
-  },
-}) => {
+const Article: React.FC = () => {
+  const { slug: id } = useParams<Params>();
   useGate(model.Gate, { slug: id });
-
   const { title, author, createdAt, body, tagList } = useStore(model.$article);
   const loading = useStore(model.fetchArticleFx.pending);
 
@@ -55,4 +53,4 @@ const ArticlePage: React.FC<Props> = ({
   );
 };
 
-export default ArticlePage;
+export default Article;
