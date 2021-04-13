@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{"C/cI":function(n,c,e){"use strict";e.r(c);var o=e("UYjC"),t=e("oYCi");c.default=function(){return Object(t.jsx)(o.c,{children:Object(t.jsx)("h1",{children:"404 Page Not Found"})})}}}]);
