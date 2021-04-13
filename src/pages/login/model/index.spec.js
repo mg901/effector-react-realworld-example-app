@@ -1,5 +1,5 @@
 import { root, fork, allSettled } from 'effector-root';
-import { $user, $token, $isAuthorized } from 'shared-modules/user/model';
+import { $user, $token, $isAuthorized } from 'shared/user/model';
 import { signInFx, $error } from './index';
 
 describe('pages/login: ', () => {

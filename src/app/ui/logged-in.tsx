@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react';
-import { Paths } from 'router';
 import { model } from 'shared/user';
+import { Paths } from 'router';
 import { NavItem, NavLink } from 'ui';
 
 export const LoggedIn: React.FC = () => {

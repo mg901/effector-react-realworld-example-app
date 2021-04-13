@@ -10,10 +10,10 @@ import {
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
-import { api } from 'api';
-import { uniq } from 'library/uniq';
-import * as router from 'router';
 import { types } from 'shared/feed';
+import { api } from 'api';
+import * as router from 'router';
+import { uniq } from 'library/uniq';
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
 

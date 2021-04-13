@@ -8,8 +8,8 @@ import {
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
-import { api } from 'api';
 import * as user from 'shared/user';
+import { api } from 'api';
 import { Form, Errors } from './types';
 
 export const formSubmitted = createEvent<React.FormEvent>();

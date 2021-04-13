@@ -21,7 +21,7 @@
       "router": ["./src/router"],
       "config": ["./src/config"],
       "library/*": ["./src/library/*"],
-      "shared/*": ["shared/*"],
+      "shared/*": ["./src/shared/*"],
       "ui": ["./src/ui"]
     }
   },
