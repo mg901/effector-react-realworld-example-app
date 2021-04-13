@@ -4,7 +4,7 @@ import { Page, Row } from 'ui';
 import { Errors } from './ui/errors';
 import { Form } from './ui/form';
 
-export const LoginPage: React.FC = () => (
+const LoginPage: React.FC = () => (
   <Page>
     <Row>
       <div className="col-md-6 offset-md-3 col-xs-12">
@@ -20,3 +20,5 @@ export const LoginPage: React.FC = () => (
     </Row>
   </Page>
 );
+
+export default LoginPage;

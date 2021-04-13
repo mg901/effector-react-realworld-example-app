@@ -9,7 +9,7 @@ import { EditMode } from './ui/edit-mode';
 
 type Props = Readonly<RouteConfigComponentProps<{ slug: string }>>;
 
-export const ArticlePage: React.FC<Props> = ({
+const ArticlePage: React.FC<Props> = ({
   match: {
     params: { slug: id },
   },
@@ -54,3 +54,5 @@ export const ArticlePage: React.FC<Props> = ({
     </>
   );
 };
+
+export default ArticlePage;

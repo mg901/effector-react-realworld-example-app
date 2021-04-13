@@ -8,36 +8,20 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
       path: Paths.YOUR_FEED,
       exact: true,
       forAuth: true,
-      component: lazy(() =>
-        import('./modules/your-feed').then((response) => ({
-          default: response.YourFeedPage,
-        })),
-      ),
+      component: lazy(() => import('./pages/your-feed')),
     },
     {
       path: Paths.GLOBAL_FEED,
       exact: true,
-      component: lazy(() =>
-        import('./modules/global-feed').then((response) => ({
-          default: response.GlobalFeedPage,
-        })),
-      ),
+      component: lazy(() => import('./pages/global-feed')),
     },
     {
       path: Paths.FEED_BY_TAG,
       exact: true,
-      component: lazy(() =>
-        import('./modules/feed-by-tag').then((response) => ({
-          default: response.FeedByTagPage,
-        })),
-      ),
+      component: lazy(() => import('./pages/feed-by-tag')),
     },
     {
       path: '*',
-      component: lazy(() =>
-        import('../not-match').then((response) => ({
-          default: response.NotMatchPage,
-        })),
-      ),
+      component: lazy(() => import('../not-match')),
     },
   ].filter(filterRoutes(isAuth));

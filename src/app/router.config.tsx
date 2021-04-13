@@ -45,19 +45,11 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
     {
       path: Paths.LOGIN,
       exact: true,
-      component: lazy(() =>
-        import('../pages/login').then((response) => ({
-          default: response.LoginPage,
-        })),
-      ),
+      component: lazy(() => import('../pages/login')),
     },
     {
       path: Paths.REGISTRATION,
-      component: lazy(() =>
-        import('../pages/registration').then((response) => ({
-          default: response.RegistrationPage,
-        })),
-      ),
+      component: lazy(() => import('../pages/registration')),
     },
     {
       path: Paths.HOME,
@@ -66,53 +58,29 @@ export const makeRoutes = (isAuth: boolean): RouteConfig[] =>
     {
       path: Paths.EDITOR,
       exact: true,
-      component: lazy(() =>
-        import('../pages/editor').then((response) => ({
-          default: response.EditorPage,
-        })),
-      ),
+      component: lazy(() => import('../pages/editor')),
     },
     {
       path: Paths.EDITOR_SLUG,
       exact: true,
-      component: lazy(() =>
-        import('../pages/editor').then((response) => ({
-          default: response.EditorPage,
-        })),
-      ),
+      component: lazy(() => import('../pages/editor')),
     },
     {
       path: Paths.SETTINGS,
       forAuth: true,
-      component: lazy(() =>
-        import('../pages/settings').then((response) => ({
-          default: response.SettingsPage,
-        })),
-      ),
+      component: lazy(() => import('../pages/settings')),
     },
     {
       path: Paths.PROFILE,
-      component: lazy(() =>
-        import('../pages/profile').then((response) => ({
-          default: response.ProfilePage,
-        })),
-      ),
+      component: lazy(() => import('../pages/profile')),
     },
     {
       path: Paths.ARTICLE,
       exact: true,
-      component: lazy(() =>
-        import('../pages/article').then((response) => ({
-          default: response.ArticlePage,
-        })),
-      ),
+      component: lazy(() => import('../pages/article')),
     },
     {
       path: '*',
-      component: lazy(() =>
-        import('../pages/not-match').then((response) => ({
-          default: response.NotMatchPage,
-        })),
-      ),
+      component: lazy(() => import('../pages/not-match')),
     },
   ].filter(filterRoutes(isAuth));

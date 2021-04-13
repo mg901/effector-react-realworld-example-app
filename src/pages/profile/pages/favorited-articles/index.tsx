@@ -3,19 +3,10 @@ import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'shared/feed';
 import { Pagination, Spinner } from 'ui';
 import * as model from './model';
 
-export const FeedByTagPage: React.FC = () => {
+const FavoritedArticles: React.FC = () => {
   useGate(model.Gate);
-
-  // prettier-ignore
-  const { 
-    isEmptyFeed, 
-    currentPage, 
-    pageSize, 
-    totalPages, 
-    loading 
-  } = useStore(
-    model.$feedModel,
-  );
+  const loading = useStore(model.fetchFeedFx.pending);
+  const { totalPages, currentPage, pageSize, isEmptyFeed } = model.useModel();
 
   return (
     <>
@@ -27,9 +18,7 @@ export const FeedByTagPage: React.FC = () => {
             <li>
               <ArticlePreview
                 data={item}
-                onClick={() => {
-                  model.favoriteToggled(item);
-                }}
+                onClick={() => model.favoriteToggled(item)}
               />
             </li>
           ),
@@ -45,3 +34,5 @@ export const FeedByTagPage: React.FC = () => {
     </>
   );
 };
+
+export default FavoritedArticles;

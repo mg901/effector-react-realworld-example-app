@@ -3,7 +3,7 @@ import { ArticlesWrapper, ArticlePreview } from 'shared/feed';
 import { Pagination, Spinner } from 'ui';
 import * as model from './model';
 
-export const GlobalFeedPage: React.FC = () => {
+const GlobalFeedPage: React.FC = () => {
   useGate(model.Gate);
   const loading = useStore(model.fetchFeedFx.pending);
   const { totalPages, currentPage, pageSize } = model.useModel();
@@ -33,3 +33,5 @@ export const GlobalFeedPage: React.FC = () => {
     </>
   );
 };
+
+export default GlobalFeedPage;

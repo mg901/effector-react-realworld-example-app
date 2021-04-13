@@ -3,7 +3,7 @@ import { Page, Row, Button } from 'ui';
 import { Errors } from './ui/errors';
 import { Form } from './ui/form';
 
-export const SettingsPage: React.FC = () => (
+const SettingsPage: React.FC = () => (
   <Page>
     <Row>
       <div className="col-md-6 offset-md-3 col-xs-12">
@@ -19,3 +19,5 @@ export const SettingsPage: React.FC = () => (
     </Row>
   </Page>
 );
+
+export default SettingsPage;

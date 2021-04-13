@@ -19,3 +19,5 @@ export const RegistrationPage: React.FC = () => (
     </Row>
   </Page>
 );
+
+export default RegistrationPage;

@@ -3,7 +3,7 @@ import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'shared/feed';
 import { Pagination, Spinner } from 'ui';
 import * as model from './model';
 
-export const YourFeedPage: React.FC = () => {
+const YourFeedPage: React.FC = () => {
   useGate(model.Gate);
   const loading = useStore(model.fetchFeedFx.pending);
   const { totalPages, currentPage, pageSize, isEmptyFeed } = model.useModel();
@@ -34,3 +34,5 @@ export const YourFeedPage: React.FC = () => {
     </>
   );
 };
+
+export default YourFeedPage;

@@ -1,5 +1,5 @@
 import { Page, Row } from 'ui';
-import { Sidebar } from './modules/sidebar';
+import { Sidebar } from './sidebar';
 import { Banner } from './ui/banner';
 import { Routes } from './ui/routes';
 import { Tabs } from './ui/tabs';
@@ -21,3 +21,5 @@ export const HomePage: React.FC = () => (
     </Page>
   </div>
 );
+
+export default HomePage;

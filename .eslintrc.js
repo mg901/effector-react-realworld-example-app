@@ -107,5 +107,15 @@ module.exports = {
         '@typescript-eslint/no-var-requires': 0,
       },
     },
+    {
+      files: [
+        './src/pages/*/index.tsx',
+        './src/pages/*.tsx',
+        './src/pages/**/pages/**/index.tsx',
+      ],
+      rules: {
+        'import/no-default-export': 0,
+      },
+    },
   ],
 };

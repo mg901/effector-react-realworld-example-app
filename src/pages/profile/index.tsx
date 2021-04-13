@@ -8,7 +8,7 @@ import { UserInfo } from './ui/user-info';
 
 type Props = Readonly<RouteConfigComponentProps<{ url: string }>>;
 
-export const ProfilePage: React.FC<Props> = ({ match: { url } }) => {
+const ProfilePage: React.FC<Props> = ({ match: { url } }) => {
   useGate(Gate, { url });
 
   return (
@@ -24,3 +24,5 @@ export const ProfilePage: React.FC<Props> = ({ match: { url } }) => {
     </div>
   );
 };
+
+export default ProfilePage;
