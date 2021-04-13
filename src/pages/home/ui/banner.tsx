@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react';
-import { APP_NAME } from 'config';
-import { model } from 'shared-modules/user';
+import { model } from 'shared/user';
 import { Banner as UIBanner, Container } from 'ui';
+import { APP_NAME } from 'config';
 
 export const Banner: React.FC = () => {
   const isAuth = useStore(model.$isAuthorized);

@@ -83,11 +83,11 @@ module.exports = {
           '/^axios/',
           '/^patronum/',
           'module',
-          '/^@core/',
-          '/^@library/',
-          '/^@ui/',
-          '/^@api/',
-          '/^@config/',
+          '/^api/',
+          '/^router/',
+          '/^library/',
+          '/^ui/',
+          '/^config/',
           ['parent', 'sibling', 'index'],
         ],
         alphabetize: {
@@ -105,6 +105,16 @@ module.exports = {
       rules: {
         'import-helpers/order-imports': 0,
         '@typescript-eslint/no-var-requires': 0,
+      },
+    },
+    {
+      files: [
+        './src/pages/*/index.tsx',
+        './src/pages/*.tsx',
+        './src/pages/**/pages/**/index.tsx',
+      ],
+      rules: {
+        'import/no-default-export': 0,
       },
     },
   ],

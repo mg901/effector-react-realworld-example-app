@@ -10,7 +10,7 @@ import { TagList } from './ui/tag-list';
 
 type Props = Readonly<RouteConfigComponentProps<{ slug: string }>>;
 
-export const EditorPage: React.FC<Props> = ({
+const EditorPage: React.FC<Props> = ({
   match: {
     params: { slug },
   },
@@ -31,3 +31,5 @@ export const EditorPage: React.FC<Props> = ({
     </Page>
   );
 };
+
+export default EditorPage;

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Paths } from 'library/router';
+import { Paths } from 'router';
 import { Page, Row } from 'ui';
 import { Errors } from './ui/errors';
 import { Form } from './ui/form';
@@ -19,3 +19,5 @@ export const RegistrationPage: React.FC = () => (
     </Row>
   </Page>
 );
+
+export default RegistrationPage;

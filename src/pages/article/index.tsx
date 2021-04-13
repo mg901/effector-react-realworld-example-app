@@ -1,7 +1,7 @@
 import { RouteConfigComponentProps } from 'react-router-config';
 import { useGate, useStore } from 'effector-react';
 import Markdown from 'markdown-to-jsx';
-import { ArticleMeta } from 'shared-modules/feed';
+import { ArticleMeta } from 'shared/feed';
 import { Container, Row, Page, TagList, Tag, Banner } from 'ui';
 import { Comments } from './comments';
 import * as model from './model';
@@ -9,7 +9,7 @@ import { EditMode } from './ui/edit-mode';
 
 type Props = Readonly<RouteConfigComponentProps<{ slug: string }>>;
 
-export const ArticlePage: React.FC<Props> = ({
+const ArticlePage: React.FC<Props> = ({
   match: {
     params: { slug: id },
   },
@@ -54,3 +54,5 @@ export const ArticlePage: React.FC<Props> = ({
     </>
   );
 };
+
+export default ArticlePage;

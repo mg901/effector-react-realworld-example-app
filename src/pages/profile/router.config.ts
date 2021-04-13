@@ -1,31 +1,19 @@
 import { lazy } from 'react';
-import { Paths } from 'library/router';
+import { Paths } from 'router';
 
 export const routes = [
   {
     path: Paths.PROFILE,
     exact: true,
-    component: lazy(() =>
-      import('./modules/my-articles').then((response) => ({
-        default: response.MyArticles,
-      })),
-    ),
+    component: lazy(() => import('./pages/my-articles')),
   },
   {
     path: Paths.PROFILE_FAVORITES,
     exact: true,
-    component: lazy(() =>
-      import('./modules/favorited-articles').then((response) => ({
-        default: response.FavoritedArticles,
-      })),
-    ),
+    component: lazy(() => import('./pages/favorited-articles')),
   },
   {
     path: '*',
-    component: lazy(() =>
-      import('../not-match').then((response) => ({
-        default: response.NotMatchPage,
-      })),
-    ),
+    component: lazy(() => import('../not-match')),
   },
 ];

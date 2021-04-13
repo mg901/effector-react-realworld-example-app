@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { AuthBranch } from 'library/router';
-import * as user from 'shared-modules/user';
+import * as user from 'shared/user';
+import { AuthBranch } from 'router';
 import { commentDeleted } from '../model';
 import * as types from '../model/types';
 import { ButtonDelete } from './button-delete';

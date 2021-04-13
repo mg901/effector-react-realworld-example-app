@@ -1,4 +1,4 @@
-import { types } from 'shared-modules/feed';
+import { types } from 'shared/feed';
 
 export type Comment = Readonly<{
   author: types.Author;
