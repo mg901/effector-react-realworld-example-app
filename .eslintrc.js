@@ -36,7 +36,6 @@ module.exports = {
     'import/no-default-export': 2,
     'import/no-self-import': 2,
     'import/no-named-as-default': 2,
-    'arrow-body-style': 2,
     'newline-before-return': 2,
     'import/extensions': [
       2,
@@ -52,6 +51,7 @@ module.exports = {
         allow: ['error'],
       },
     ],
+    'arrow-body-style': 0,
     'no-shadow': 0,
     'no-use-before-define': 0,
     'react/jsx-props-no-spreading': 0,

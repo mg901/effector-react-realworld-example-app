@@ -17,6 +17,7 @@ export const Routes: React.FC = () => (
     <Route component={Registration} path={Paths.REGISTRATION} />
     <Route exact component={Home} path={Paths.ROOT} />
     <Route component={Editor} path={Paths.EDITOR} />
+    <Route component={Editor} path={Paths.EDITOR_SLUG} />
     <Route component={Settings} path={Paths.SETTINGS} />
     <Route component={Profile} path={Paths.PROFILE} />
     <Route component={Article} path={Paths.ARTICLE} />

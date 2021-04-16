@@ -7,19 +7,19 @@ import { Tabs } from './ui/tabs';
 import { UserInfo } from './ui/user-info';
 
 type Params = Readonly<{
-  url: string;
+  username: string;
 }>;
 
 const Profile: React.FC = () => {
-  const { url } = useParams<Params>();
-  useGate(Gate, { url });
+  const params = useParams<Params>();
+  useGate(Gate, params);
 
   return (
     <div className="profile-page">
       <UserInfo />
       <Container>
         <Row>
-          <Tabs path={url}>
+          <Tabs path={params.username}>
             <Routes />
           </Tabs>
         </Row>

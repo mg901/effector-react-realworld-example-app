@@ -32,8 +32,9 @@ export const unsubscribeFx = createEffect<string, types.Profile>((username) =>
 
 export const Gate = createGate<types.GateState>();
 
-export const $username = createStore<string>('').on(Gate.state, (_, { url }) =>
-  url?.replace(/\/@/, ''),
+export const $username = createStore<string>('').on(
+  Gate.state,
+  (_, { username }) => username,
 );
 
 export const $profile = restore(
@@ -58,8 +59,6 @@ export const $isCurrentUser = combine(
 );
 
 export const $isAnotherUser = $isCurrentUser.map((is) => !is);
-
-$username.on(Gate.state, (_, { url }) => url?.replace(/\/@/, ''));
 
 // fetch profile data after changing the route
 forward({

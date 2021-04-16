@@ -1,11 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useGate, useStore } from 'effector-react';
-import Markdown from 'markdown-to-jsx';
-import { ArticleMeta } from 'shared/feed';
-import { Container, Row, Page, TagList, Tag, Banner } from 'ui';
+import { Row, Page } from 'ui';
 import { Comments } from './comments';
 import * as model from './model';
-import { EditMode } from './ui/edit-mode';
+import { Content } from './ui/content';
+import { Header } from './ui/header';
 
 type Params = Readonly<{
   slug: string;
@@ -14,32 +13,15 @@ type Params = Readonly<{
 const Article: React.FC = () => {
   const { slug: id } = useParams<Params>();
   useGate(model.Gate, { slug: id });
-  const { title, author, createdAt, body, tagList } = useStore(model.$article);
   const loading = useStore(model.fetchArticleFx.pending);
 
   return (
     <>
       {!loading && (
         <div className="article-page">
-          <Banner>
-            <Container>
-              <h1>{title}</h1>
-              <ArticleMeta author={author} createdAt={createdAt}>
-                <EditMode />
-              </ArticleMeta>
-            </Container>
-          </Banner>
+          <Header />
           <Page>
-            <Row className="article-content">
-              <div className="col-xs-12">
-                <Markdown>{body}</Markdown>
-                <TagList>
-                  {tagList.map((tag) => (
-                    <Tag key={tag}>{tag.toLowerCase()}</Tag>
-                  ))}
-                </TagList>
-              </div>
-            </Row>
+            <Content />
             <hr />
             <div className="article-actions" />
             <Row>

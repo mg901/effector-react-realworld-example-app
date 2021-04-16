@@ -13,8 +13,8 @@ type Params = Readonly<{
 }>;
 
 const Editor: React.FC = () => {
-  const { slug } = useParams<Params>();
-  useGate(Gate, { slug });
+  const params = useParams<Params>();
+  useGate(Gate, params);
 
   return (
     <Page>
