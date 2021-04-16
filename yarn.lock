@@ -4111,13 +4111,10 @@ effector-react@^21.3.2:
   resolved "https://registry.yarnpkg.com/effector-react/-/effector-react-21.3.2.tgz#1ef52bf72fb304cb76e8bd1d7b75dd5f588ff661"
   integrity sha512-+SGFgsfVnQ4cSwcjugjK+DnKVk7MDaNTOOzw2n1+8/c477w6YwFi4KusPnMfeWtaAdfidTmRn1EoYSvUhAX+EQ==
 
-effector-root@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/effector-root/-/effector-root-1.2.0.tgz#7dafba1d561a531e9315b051867d93d132031a30"
-  integrity sha512-UQQv2827sZ4C1XtYgUdqurPT8GBl/RCnLE+XUegjoWcVilkIFXP5g/PZR/voRcTqIqINfScOns0xgbV15r5/Cw==
-  dependencies:
-    "@babel/helper-module-imports" "^7.12.13"
-    "@babel/traverse" "^7.13.0"
+effector-root@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/effector-root/-/effector-root-1.3.0.tgz#05dd07d406e91913b08e3bd908a25f9c83011f97"
+  integrity sha512-kIcH/rkwKPS/1n1ZEcIvC/A+ZG9AlM2k/FxlyxjW3E6p7adxdvw10LQkTtR8VihEGi1fAkE7hPji+m/on20Gjw==
 
 effector-storage@^4.2.0:
   version "4.2.0"
