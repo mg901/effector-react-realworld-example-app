@@ -23,7 +23,9 @@ export const $token = createStore<Token>(null).on(
 );
 
 $token.watch((token) => {
-  setToken(token);
+  if (token) {
+    setToken(token);
+  }
 });
 
 persist({
