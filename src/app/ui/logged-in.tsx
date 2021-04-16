@@ -1,13 +1,14 @@
 import { useStore } from 'effector-react';
 import { model } from 'shared/user';
-import { Paths } from 'router';
+import { AuthBranch, Paths } from 'router';
+
 import { NavItem, NavLink } from 'ui';
 
 export const LoggedIn: React.FC = () => {
   const { username, image } = useStore(model.$user);
 
   return (
-    <>
+    <AuthBranch check="auth">
       <NavItem>
         <NavLink to={Paths.ROOT}>Home</NavLink>
       </NavItem>
@@ -32,6 +33,6 @@ export const LoggedIn: React.FC = () => {
           {username}
         </NavLink>
       </NavItem>
-    </>
+    </AuthBranch>
   );
 };

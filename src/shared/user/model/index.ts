@@ -1,4 +1,4 @@
-import { createEvent, createStore } from 'effector-root';
+import { createEvent, createStore, guard } from 'effector-root';
 import { persist } from 'effector-storage/local';
 import { setToken } from 'api';
 import { TOKEN_NAME } from 'config';
@@ -22,11 +22,10 @@ export const $token = createStore<Token>(null).on(
   (_, { token }) => token,
 );
 
-$token.watch((token) => {
-  if (token) {
-    setToken(token);
-  }
-});
+guard({
+  source: $token,
+  filter: Boolean,
+}).watch(setToken);
 
 persist({
   store: $token,

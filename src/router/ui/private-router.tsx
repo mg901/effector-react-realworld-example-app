@@ -1,9 +1,12 @@
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import { model } from 'shared/user';
-import { Paths } from 'router';
+import { Paths } from '../constants';
 
-export const PrivateRoute: React.FC = ({ children, ...props }) => {
+export const PrivateRoute: React.FC<RouteProps> = ({
+  component: Component,
+  ...props
+}) => {
   const isAuth = useStore(model.$isAuthorized);
 
   return (
@@ -11,7 +14,8 @@ export const PrivateRoute: React.FC = ({ children, ...props }) => {
       {...props}
       render={({ location }) =>
         isAuth ? (
-          children
+          // @ts-ignore
+          <Component />
         ) : (
           <Redirect
             to={{
