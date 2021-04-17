@@ -1,4 +1,5 @@
 import { types } from 'shared/feed';
+import { ReadonlyDeep } from 'type-fest';
 
 export type Comment = Readonly<{
   author: types.Author;
@@ -20,6 +21,6 @@ export type DeleteCommentFxArgs = Readonly<{
   id: string;
 }>;
 
-export type Errors = Readonly<{
-  errors: Readonly<Record<string, string>>;
+export type Errors = ReadonlyDeep<{
+  errors: Record<string, string>;
 }>;

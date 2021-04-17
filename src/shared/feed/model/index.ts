@@ -36,10 +36,14 @@ export const createFeedModel = (
     string,
     types.FavoriteArticle,
     AxiosError
-  >((slug) => api.post(`articles/${slug}/favorite`).then(({ data }) => data));
+  >((slug) => {
+    return api.post(`articles/${slug}/favorite`).then(({ data }) => data);
+  });
 
   const setUnfavoriteArticleFx = createEffect<string, types.UnfavoriteArticle>(
-    (slug) => api.delete(`articles/${slug}/favorite`).then(({ data }) => data),
+    (slug) => {
+      return api.delete(`articles/${slug}/favorite`).then(({ data }) => data);
+    },
   );
 
   // stores
@@ -102,6 +106,13 @@ export const createFeedModel = (
     source: favoriteToggled,
     filter: ({ favorited }) => favorited === false,
     target: setFavoriteArticleFx.prepend<types.Article>(({ slug }) => slug),
+  });
+
+  guard({
+    source: setFavoriteArticleFx.failData,
+    filter: (error) => error.response?.status === 401,
+  }).watch(() => {
+    router.model.history.push(router.Paths.LOGIN);
   });
 
   const $model = combine({

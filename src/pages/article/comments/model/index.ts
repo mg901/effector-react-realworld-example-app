@@ -16,25 +16,27 @@ import * as types from './types';
 
 export const commentDeleted = createEvent<string>();
 
-export const fetchCommentsFx = createEffect<string, types.Comments>((slug) =>
-  api.get(`articles/${slug}/comments`).then(({ data }) => data.comments),
-);
+export const fetchCommentsFx = createEffect<string, types.Comments>((slug) => {
+  return api.get(`articles/${slug}/comments`).then(({ data }) => data.comments);
+});
 
 export const fetchCommentFx = createEffect<
   types.AddCommentFxArgs,
   types.Comment,
   AxiosError
->(({ slug, body }) =>
-  api
+>(({ slug, body }) => {
+  return api
     .post(`articles/${slug}/comments`, { body })
-    .then(({ data }) => data.comment),
-);
+    .then(({ data }) => data.comment);
+});
 
 export const deleteCommentFx = createEffect<
   types.DeleteCommentFxArgs,
   void,
   AxiosError
->(({ slug, id }) => api.delete(`articles/${slug}/comments/${id}`));
+>(({ slug, id }) => {
+  return api.delete(`articles/${slug}/comments/${id}`);
+});
 
 export const Gate = createGate<GateState>();
 

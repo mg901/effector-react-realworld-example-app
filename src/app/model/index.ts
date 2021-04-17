@@ -5,9 +5,9 @@ import { api } from 'api';
 
 export const Gate = createGate();
 
-export const fetchUserFx = createEffect<void, user.types.User>(() =>
-  api.get('user').then(({ data }) => data.user),
-);
+export const fetchUserFx = createEffect<void, user.types.User>(() => {
+  return api.get('user').then(({ data }) => data.user);
+});
 
 user.model.$user.on(fetchUserFx.doneData, (_, payload) => payload);
 

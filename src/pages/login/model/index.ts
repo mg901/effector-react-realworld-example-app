@@ -10,18 +10,20 @@ import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import * as user from 'shared/user';
 import { api } from 'api';
+import { model } from 'router';
 import { Form, Errors } from './types';
 
 export const formSubmitted = createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
 export const signInFx = createEffect<Form, user.types.User, AxiosError>(
-  ({ email, password }) =>
-    api
+  ({ email, password }) => {
+    return api
       .post('users/login', {
         user: { email, password },
       })
-      .then(({ data }) => data.user),
+      .then(({ data }) => data.user);
+  },
 );
 
 export const FormGate = createGate();
@@ -48,6 +50,10 @@ sample({
 forward({
   from: FormGate.close,
   to: form.reset,
+});
+
+signInFx.done.watch(() => {
+  model.history.push('/');
 });
 
 user.model.$user.on(signInFx.doneData, (_, payload) => payload);

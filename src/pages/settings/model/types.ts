@@ -1,4 +1,5 @@
 import { types } from 'shared/user';
+import { ReadonlyDeep } from 'type-fest';
 
 export type changeUserDataFxArgs = Pick<
   types.User,
@@ -8,6 +9,6 @@ export type changeUserDataFxArgs = Pick<
     password: string;
   }>;
 
-export type Errors = Readonly<{
-  errors: Readonly<Record<string, string>>;
+export type Errors = ReadonlyDeep<{
+  errors: Record<string, string>;
 }>;

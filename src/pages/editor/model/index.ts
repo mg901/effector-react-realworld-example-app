@@ -3,7 +3,6 @@ import {
   createEffect,
   createStore,
   sample,
-  guard,
   attach,
   forward,
 } from 'effector-root';
@@ -22,16 +21,17 @@ formSubmitted.watch((e) => e.preventDefault());
 
 export const tagDeleted = createEvent<string>();
 export const createArticleFx = createEffect<Form, types.Article, AxiosError>(
-  (form) =>
-    api
+  (form) => {
+    return api
       .post('articles', {
         article: form,
       })
-      .then(({ data }) => data.article),
+      .then(({ data }) => data.article);
+  },
 );
 
-export const fetchArticleFx = createEffect((slug: string) =>
-  api
+export const fetchArticleFx = createEffect((slug: string) => {
+  return api
     .get<{ article: types.Article }>(`articles/${slug}`)
     .then(({ data: { article: a } }) => ({
       slug: a.slug,
@@ -39,8 +39,8 @@ export const fetchArticleFx = createEffect((slug: string) =>
       description: a.description,
       body: a.body,
       tagList: a.tagList,
-    })),
-);
+    }));
+});
 
 export const Gate = createGate<GateState>();
 
@@ -70,9 +70,8 @@ export const form = createForm({
 
 export const $tagList = form.fields.tagList.$value;
 
-guard({
-  source: Gate.open,
-  filter: $hasSlug,
+sample({
+  clock: Gate.open,
   target: attach({
     source: $slug,
     effect: fetchArticleFx,

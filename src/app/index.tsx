@@ -1,15 +1,16 @@
 import { Suspense } from 'react';
 import { Router } from 'react-router-dom';
 import { useGate } from 'effector-react';
-import { AuthBranch, model } from 'router';
+import { model } from 'router';
 import { Header, Spinner } from 'ui';
 import { APP_NAME } from 'config';
 import { Gate } from './model';
+import { Routes } from './routes';
 import { LoggedIn } from './ui/logged-in';
 import { LoggedOut } from './ui/logged-out';
 import { Logo } from './ui/logo';
-import { Routes } from './ui/routes';
-import './index.css';
+
+import 'ui/main.css';
 
 export const App: React.FC = () => {
   useGate(Gate);
@@ -19,12 +20,8 @@ export const App: React.FC = () => {
       <Header>
         <Logo title={APP_NAME} />
         <ul className="nav navbar-nav pull-xs-right">
-          <AuthBranch check="anon">
-            <LoggedOut />
-          </AuthBranch>
-          <AuthBranch check="auth">
-            <LoggedIn />
-          </AuthBranch>
+          <LoggedOut />
+          <LoggedIn />
         </ul>
       </Header>
       <Suspense fallback={<Spinner loading />}>

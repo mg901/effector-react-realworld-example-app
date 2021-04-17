@@ -1,5 +1,5 @@
 export type GateState = Readonly<{
-  url: string;
+  username: string;
 }>;
 
 export type Profile = Readonly<{

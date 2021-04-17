@@ -20,11 +20,11 @@ export const changeUserDataFx = createEffect<
   changeUserDataFxArgs,
   AxiosResponse<void>,
   AxiosError
->((payload) =>
-  api.put('user', {
+>((payload) => {
+  return api.put('user', {
     user: payload,
-  }),
-);
+  });
+});
 
 export const FormGate = createGate();
 export const $authUser = user.model.$user.map((x) => x);

@@ -4,8 +4,6 @@ import { App } from './index';
 
 it('should rended the app correctly', () => {
   render(<App />);
-  const linkElement = screen.getByText(
-    /a place to share your effector knowledge./i,
-  );
+  const linkElement = screen.getByText(/conduit/i);
   expect(linkElement).toBeInTheDocument();
 });

@@ -17,8 +17,11 @@ export const {
 } = feed.createFeedModel();
 
 export const fetchFeedFx = createEffect<types.fetchFeedFxArgs, feed.types.Feed>(
-  ({ pageSize, page }) =>
-    api.get(`articles?${limit(pageSize, page)}`).then(({ data }) => data),
+  ({ pageSize, page }) => {
+    return api
+      .get(`articles?${limit(pageSize, page)}`)
+      .then(({ data }) => data);
+  },
 );
 
 $feed.on(fetchFeedFx.doneData, (_, payload) => payload);

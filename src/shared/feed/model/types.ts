@@ -2,6 +2,7 @@ import { Event, Effect, Store, StoreValue } from 'effector-root';
 import { Gate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
+import { ReadonlyDeep } from 'type-fest';
 
 export type Author = Readonly<{
   username: string;
@@ -10,20 +11,20 @@ export type Author = Readonly<{
   following: boolean;
 }>;
 
-export type Article = Readonly<{
+export type Article = ReadonlyDeep<{
   title: string;
   slug: string;
   body: string;
   createdAt: string;
   updatedAt: string;
-  tagList: readonly string[];
+  tagList: string[];
   description: string;
   author: Author;
   favorited: boolean;
   favoritesCount: number;
 }>;
 
-export type Feed = Readonly<{
+export type Feed = ReadonlyDeep<{
   articles: readonly Article[];
   articlesCount: number;
 }>;
