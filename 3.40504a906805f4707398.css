@@ -1,0 +1,1 @@
+.button-favorite{color:var(--color-primary);background-image:none;background-color:transparent;border-color:var(--color-primary)}.button-favorite[data-active=true]{color:var(--color-white);background-color:var(--color-primary);border-color:var(--color-primary)}.articles-wrapper{min-height:20rem}
