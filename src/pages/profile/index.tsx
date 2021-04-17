@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useGate } from 'effector-react';
 import { Container, Row } from 'ui';
 import { Gate } from './model';
-import { Routes } from './ui/routes';
+import { Routes } from './routes';
 import { Tabs } from './ui/tabs';
 import { UserInfo } from './ui/user-info';
 

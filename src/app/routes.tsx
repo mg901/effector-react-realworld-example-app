@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
-import { Paths } from 'router';
+import { Paths, PrivateRoute } from 'router';
 
 const Login = lazy(() => import('pages/login'));
 const Registration = lazy(() => import('pages/registration'));
@@ -18,10 +18,10 @@ export const Routes: React.FC = () => {
       <Route component={Login} path={Paths.LOGIN} />
       <Route component={Registration} path={Paths.REGISTRATION} />
       <Route component={Home} path={Paths.HOME} />
-      <Route component={Editor} path={Paths.EDITOR} />
-      <Route component={Editor} path={Paths.EDITOR_SLUG} />
-      <Route component={Settings} path={Paths.SETTINGS} />
-      <Route component={Profile} path={Paths.PROFILE} />
+      <PrivateRoute exact component={Editor} path={Paths.EDITOR} />
+      <PrivateRoute component={Editor} path={Paths.EDITOR_SLUG} />
+      <PrivateRoute component={Settings} path={Paths.SETTINGS} />
+      <PrivateRoute component={Profile} path={Paths.PROFILE} />
       <Route component={Article} path={Paths.ARTICLE} />
       <Route component={NoMatch} path="*" />
     </Switch>

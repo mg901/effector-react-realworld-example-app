@@ -6,8 +6,11 @@ import { limit } from 'library/limit';
 import * as types from './types';
 
 export const fetchFeedFx = createEffect<types.fetchFeedFxArgs, feed.types.Feed>(
-  ({ pageSize, page }) =>
-    api.get(`articles/feed?${limit(pageSize, page)}`).then(({ data }) => data),
+  ({ pageSize, page }) => {
+    return api
+      .get(`articles/feed?${limit(pageSize, page)}`)
+      .then(({ data }) => data);
+  },
 );
 
 export const {

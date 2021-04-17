@@ -14,19 +14,19 @@ import * as router from 'router';
 import { GateState } from './types';
 
 export const articleDeleted = createEvent<React.MouseEvent>();
-export const fetchArticleFx = createEffect<string, types.Article>((slug) =>
-  api
+export const fetchArticleFx = createEffect<string, types.Article>((slug) => {
+  return api
     .get<{ article: types.Article }>(`articles/${slug}`)
     .then(({ data }) => data.article)
     .then(({ createdAt, ...article }) => ({
       ...article,
       createdAt: new Date(createdAt).toDateString(),
-    })),
-);
+    }));
+});
 
-export const deleteArticleFx = createEffect((slug: string) =>
-  api.delete<void>(`articles/${slug}`),
-);
+export const deleteArticleFx = createEffect((slug: string) => {
+  return api.delete<void>(`articles/${slug}`);
+});
 
 export const Gate = createGate<GateState>();
 export const $slug = Gate.state.map((props) => props.slug);

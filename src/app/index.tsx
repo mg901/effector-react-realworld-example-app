@@ -4,13 +4,13 @@ import { useGate } from 'effector-react';
 import { model } from 'router';
 import { Header, Spinner } from 'ui';
 import { APP_NAME } from 'config';
-import { Gate } from '../../model';
-import { Routes } from '../../routes';
-import { LoggedIn } from '../logged-in';
-import { LoggedOut } from '../logged-out';
-import { Logo } from '../logo';
+import { Gate } from './model';
+import { Routes } from './routes';
+import { LoggedIn } from './ui/logged-in';
+import { LoggedOut } from './ui/logged-out';
+import { Logo } from './ui/logo';
 
-import './index.css';
+import 'ui/main.css';
 
 export const App: React.FC = () => {
   useGate(Gate);
