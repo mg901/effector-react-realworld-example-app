@@ -19,7 +19,7 @@ const Profile: React.FC = () => {
       <UserInfo />
       <Container>
         <Row>
-          <Tabs path={params.username}>
+          <Tabs>
             <Routes />
           </Tabs>
         </Row>

@@ -6,7 +6,7 @@ import * as router from 'router';
 const changeHistoryFx = createEffect((isAuth: boolean) => {
   const path = isAuth ? 'your-feed' : 'global-feed';
 
-  router.model.history.push(`/home/${path}`);
+  router.model.history.replace(`/home/${path}`);
 });
 
 export const Gate = createGate();

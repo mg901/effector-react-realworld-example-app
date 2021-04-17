@@ -6,13 +6,9 @@ import * as model from './model';
 import { Content } from './ui/content';
 import { Header } from './ui/header';
 
-type Params = Readonly<{
-  slug: string;
-}>;
-
 const Article: React.FC = () => {
-  const { slug: id } = useParams<Params>();
-  useGate(model.Gate, { slug: id });
+  const { slug } = useParams<{ slug: string }>();
+  useGate(model.Gate, { slug });
   const loading = useStore(model.fetchArticleFx.pending);
 
   return (
@@ -25,7 +21,7 @@ const Article: React.FC = () => {
             <hr />
             <div className="article-actions" />
             <Row>
-              <Comments slug={id} />
+              <Comments slug={slug} />
               <div />
             </Row>
           </Page>
