@@ -3,8 +3,9 @@ import {
   createEffect,
   createStore,
   sample,
-  attach,
   forward,
+  guard,
+  attach,
 } from 'effector-root';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
@@ -44,7 +45,8 @@ export const fetchArticleFx = createEffect((slug: string) => {
 
 export const Gate = createGate<GateState>();
 
-export const $slug = Gate.state.map((p) => p.slug);
+export const $slug = Gate.state.map((p) => p.slug ?? '');
+
 export const $hasSlug = $slug.map(Boolean);
 export const $isEmptySlug = $hasSlug.map((is) => !is);
 
@@ -68,14 +70,20 @@ export const form = createForm({
   },
 });
 
+guard({
+  source: $slug,
+  clock: Gate.open,
+  filter: (x) => !x === false,
+  target: form.reset,
+});
+
 export const $tagList = form.fields.tagList.$value;
 
-sample({
+guard({
+  source: $slug,
   clock: Gate.open,
-  target: attach({
-    source: $slug,
-    effect: fetchArticleFx,
-  }),
+  filter: Boolean,
+  target: fetchArticleFx,
 });
 
 // set form data
