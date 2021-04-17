@@ -5,7 +5,6 @@ import {
   sample,
   forward,
   guard,
-  attach,
 } from 'effector-root';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
