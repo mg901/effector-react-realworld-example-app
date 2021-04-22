@@ -10,7 +10,7 @@ import { createGate } from 'effector-react';
 import { AxiosResponse, AxiosError } from 'axios';
 import * as user from 'shared/user';
 import { api } from 'api';
-import * as router from 'router';
+import { history } from 'router';
 import { Errors, changeUserDataFxArgs } from './types';
 
 export const formSubmitted = createEvent<React.FormEvent>();
@@ -68,7 +68,7 @@ changeUserDataFx.done.watch(() => {
 });
 
 user.model.loggedOutClicked.watch(() => {
-  router.model.history.push('/');
+  history.push('/');
 });
 
 export const $error = createStore<Errors>({

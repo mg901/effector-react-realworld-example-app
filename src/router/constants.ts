@@ -1,4 +1,4 @@
-export enum Paths {
+export enum Urls {
   ROOT = '/',
   HOME = '/home',
   YOUR_FEED = '/your-feed',

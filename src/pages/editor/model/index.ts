@@ -11,7 +11,7 @@ import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { types } from 'shared/feed';
 import { api } from 'api';
-import * as router from 'router';
+import { history } from 'router';
 import { uniq } from 'library/uniq';
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
@@ -127,7 +127,7 @@ sample({
 });
 
 createArticleFx.doneData.watch(({ slug }) => {
-  router.model.history.replace(`/article/${slug}`);
+  history.replace(`/article/${slug}`);
 });
 
 export const $error = createStore<Errors>({

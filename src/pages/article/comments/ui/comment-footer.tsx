@@ -1,7 +1,4 @@
 import { Link } from 'react-router-dom';
-import { useStore } from 'effector-react';
-import * as user from 'shared/user';
-import { AuthBranch } from 'router';
 import { commentDeleted } from '../model';
 import * as types from '../model/types';
 import { ButtonDelete } from './button-delete';
@@ -11,9 +8,6 @@ export const CommentFooter: React.FC<types.Comment> = ({
   createdAt,
   id,
 }) => {
-  const { username } = useStore(user.model.$user);
-  const isAuthUser = username === author.username;
-
   return (
     <div className="card-footer">
       <Link className="comment-author" to={`/@${author.username}`}>
@@ -28,9 +22,7 @@ export const CommentFooter: React.FC<types.Comment> = ({
         {author.username}
       </Link>
       <span className="date-posted">{new Date(createdAt).toDateString()}</span>
-      <AuthBranch check="auth">
-        {isAuthUser && <ButtonDelete onClick={() => commentDeleted(id)} />}
-      </AuthBranch>
+      <ButtonDelete author={author} onClick={() => commentDeleted(id)} />
     </div>
   );
 };
