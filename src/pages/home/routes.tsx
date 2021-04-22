@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Switch, Redirect, Route, useRouteMatch } from 'react-router-dom';
-import { Paths, AuthBranch, PrivateRoute } from 'router';
+import { Urls, AuthCosumer, PrivateRoute } from 'router';
 
 const YourFeed = lazy(() => import('./pages/your-feed'));
 const GlobalFeed = lazy(() => import('./pages/global-feed'));
@@ -13,16 +13,19 @@ export const Routes: React.FC = () => {
   return (
     <Switch>
       <Route exact path="/home">
-        <AuthBranch check="auth">
-          <Redirect to={`${path}${Paths.YOUR_FEED}`} />
-        </AuthBranch>
-        <AuthBranch check="anon">
-          <Redirect to={`${path}${Paths.GLOBAL_FEED}`} />
-        </AuthBranch>
+        <AuthCosumer>
+          {({ isAuth }) =>
+            isAuth ? (
+              <Redirect to={`${path}${Urls.YOUR_FEED}`} />
+            ) : (
+              <Redirect to={`${path}${Urls.GLOBAL_FEED}`} />
+            )
+          }
+        </AuthCosumer>
       </Route>
-      <Route component={GlobalFeed} path={`${path}${Paths.GLOBAL_FEED}`} />
-      <PrivateRoute component={YourFeed} path={`${path}${Paths.YOUR_FEED}`} />
-      <Route component={FeedByTab} path={`${path}${Paths.FEED_BY_TAG}`} />
+      <Route component={GlobalFeed} path={`${path}${Urls.GLOBAL_FEED}`} />
+      <PrivateRoute component={YourFeed} path={`${path}${Urls.YOUR_FEED}`} />
+      <Route component={FeedByTab} path={`${path}${Urls.FEED_BY_TAG}`} />
       <Route component={NoMatch} path="*" />
     </Switch>
   );

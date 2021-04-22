@@ -5,6 +5,7 @@ import { Comments } from './comments';
 import * as model from './model';
 import { Content } from './ui/content';
 import { Header } from './ui/header';
+import { LogoutMessage } from './ui/logout-message';
 
 const Article: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -21,8 +22,10 @@ const Article: React.FC = () => {
             <hr />
             <div className="article-actions" />
             <Row>
-              <Comments slug={slug} />
-              <div />
+              <div className="col-xs-12 col-md-8 offset-md-2">
+                <Comments slug={slug} />
+                <LogoutMessage />
+              </div>
             </Row>
           </Page>
         </div>

@@ -1,27 +1,26 @@
 import { useStore } from 'effector-react';
 import { model } from 'shared/user';
-import { AuthBranch, Paths } from 'router';
-
+import { Urls } from 'router';
 import { NavItem, NavLink } from 'ui';
 
-export const LoggedIn: React.FC = () => {
+export const LoginLinks: React.FC = () => {
   const { username, image } = useStore(model.$user);
 
   return (
-    <AuthBranch check="auth">
+    <>
       <NavItem>
-        <NavLink to={Paths.ROOT}>Home</NavLink>
+        <NavLink to={Urls.ROOT}>Home</NavLink>
       </NavItem>
 
       <NavItem>
-        <NavLink to={Paths.EDITOR}>
+        <NavLink to={Urls.EDITOR}>
           <i className="ion-compose" />
           &nbsp;New Post
         </NavLink>
       </NavItem>
 
       <NavItem>
-        <NavLink to={Paths.SETTINGS}>
+        <NavLink to={Urls.SETTINGS}>
           <i className="ion-gear-a" />
           &nbsp;Settings
         </NavLink>
@@ -33,6 +32,6 @@ export const LoggedIn: React.FC = () => {
           {username}
         </NavLink>
       </NavItem>
-    </AuthBranch>
+    </>
   );
 };

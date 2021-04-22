@@ -107,5 +107,5 @@ sample({
   clock: currentPageWasSet,
   fn: ({ path, tag }, page) => ({ path, page, tag }),
 }).watch(({ path, page, tag }) => {
-  router.model.history.replace(`${path}?tag=${tag}&page=${page}`);
+  router.history.replace(`${path}?tag=${tag}&page=${page}`);
 });

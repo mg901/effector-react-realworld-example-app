@@ -93,7 +93,7 @@ export const createFeedModel = (
     clock: currentPageWasSet,
     fn: (path, page) => ({ path, page }),
   }).watch(({ path, page }) => {
-    router.model.history.replace(`${path}?page=${page}`);
+    router.history.replace(`${path}?page=${page}`);
   });
 
   guard({
@@ -112,7 +112,7 @@ export const createFeedModel = (
     source: setFavoriteArticleFx.failData,
     filter: (error) => error.response?.status === 401,
   }).watch(() => {
-    router.model.history.push(router.Paths.LOGIN);
+    router.history.push(router.Urls.LOGIN);
   });
 
   const $model = combine({

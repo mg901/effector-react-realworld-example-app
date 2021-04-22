@@ -3,7 +3,7 @@ import { Form as UIForm, Textarea } from 'ui';
 import { form } from '../model';
 import { FormFooter } from './form-footer';
 
-export const Form: React.FC = () => {
+export const AddComment: React.FC = () => {
   const { submit, fields } = useForm(form);
 
   const handleSubmit = (e: React.FormEvent) => {

@@ -10,7 +10,7 @@ import { createGate } from 'effector-react';
 import { types } from 'shared/feed';
 import * as user from 'shared/user';
 import { api } from 'api';
-import * as router from 'router';
+import { history } from 'router';
 import { GateState } from './types';
 
 export const articleDeleted = createEvent<React.MouseEvent>();
@@ -72,5 +72,5 @@ forward({
 });
 
 deleteArticleFx.done.watch(() => {
-  router.model.history.push('/');
+  history.push('/');
 });
