@@ -62,7 +62,6 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
-    '@typescript-eslint/no-use-before-define': 2,
     '@typescript-eslint/no-shadow': 2,
     '@typescript-eslint/no-unused-vars': 2,
     '@typescript-eslint/explicit-module-boundary-types': 2,
@@ -98,6 +97,7 @@ module.exports = {
     ],
     '@typescript-eslint/ban-types': 0,
     '@typescript-eslint/ban-ts-comment': 0,
+    '@typescript-eslint/no-use-before-define': 0,
   },
   overrides: [
     {

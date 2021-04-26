@@ -8,9 +8,6 @@ type Props = Readonly<{
   onItemClick: (x: number) => number;
 }>;
 
-const createArray = (total: number, pageSize: number) =>
-  Array.from({ length: Math.ceil(total / pageSize) }, (_, x) => x + 1);
-
 export const Pagination: React.FC<Props> = ({
   total,
   pageSize,
@@ -23,17 +20,27 @@ export const Pagination: React.FC<Props> = ({
   return !show ? null : (
     <nav>
       <ul className="pagination">
-        {pages.map((item) => (
-          <li className="page-item" key={item}>
-            <PaginationItem
-              active={item === current}
-              key={item}
-              onClick={() => onItemClick(item)}>
-              {item}
-            </PaginationItem>
-          </li>
-        ))}
+        {pages.map((item) => {
+          return (
+            <li className="page-item" key={item}>
+              <PaginationItem
+                active={isCurrent(item, current)}
+                key={item}
+                onClick={() => onItemClick(item)}>
+                {item}
+              </PaginationItem>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
 };
+
+function createArray(total: number, pageSize: number): number[] {
+  return Array.from({ length: Math.ceil(total / pageSize) }, (_, x) => x + 1);
+}
+
+function isCurrent(item: number, current: number): boolean {
+  return item === current + 1;
+}

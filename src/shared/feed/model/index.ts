@@ -55,7 +55,7 @@ export const createFeedModel = (
   const $currentPage = router.model.$search.map((search) => {
     const page = new URLSearchParams(search).get('page') ?? opts.currentPage;
 
-    return Number(page);
+    return Number(page) - 1;
   });
 
   // reducer
