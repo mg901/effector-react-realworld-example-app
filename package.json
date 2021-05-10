@@ -67,7 +67,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.4",
     "cz-conventional-changelog": "^3.3.0",
-    "dotenv": "^9.0.0",
+    "dotenv": "^9.0.1",
     "eslint": "^7.25.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^7.2.0",
