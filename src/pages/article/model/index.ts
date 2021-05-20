@@ -3,8 +3,7 @@ import {
   createEffect,
   restore,
   combine,
-  forward,
-  attach,
+  sample,
 } from 'effector-root';
 import { createGate } from 'effector-react';
 import { types } from 'shared/feed';
@@ -55,20 +54,16 @@ export const $canModify = combine(
   ({ author }, authUser) => author.username === authUser.username,
 );
 
-forward({
-  from: Gate.open,
-  to: attach({
-    source: $slug,
-    effect: fetchArticleFx,
-  }),
+sample({
+  source: $slug,
+  clock: Gate.open,
+  target: fetchArticleFx,
 });
 
-forward({
-  from: articleDeleted,
-  to: attach({
-    source: $slug,
-    effect: deleteArticleFx,
-  }),
+sample({
+  source: $slug,
+  clock: articleDeleted,
+  target: deleteArticleFx,
 });
 
 deleteArticleFx.done.watch(() => {

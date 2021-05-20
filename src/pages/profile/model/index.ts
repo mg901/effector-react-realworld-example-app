@@ -70,10 +70,7 @@ export const $isAnotherUser = $isCurrentUser.map((is) => !is);
 // fetch profile data after changing the route
 forward({
   from: $username,
-  to: attach({
-    source: $username,
-    effect: fetchProfileFx,
-  }),
+  to: fetchProfileFx,
 });
 
 guard({

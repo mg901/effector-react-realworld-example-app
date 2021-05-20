@@ -1,4 +1,4 @@
-import { createEffect, forward, attach } from 'effector-root';
+import { createEffect, sample } from 'effector-root';
 import { status } from 'patronum/status';
 import * as feed from 'shared/feed';
 import { api } from 'api';
@@ -36,14 +36,12 @@ export const {
 
 $feed.on(fetchFeedFx.doneData, (_, payload) => payload);
 
-forward({
-  from: [Gate.open, currentPageWasSet],
-  to: attach({
-    source: {
-      username: model.$username,
-      page: $currentPage,
-      pageSize: $pageSize,
-    },
-    effect: fetchFeedFx,
-  }),
+sample({
+  source: {
+    username: model.$username,
+    page: $currentPage,
+    pageSize: $pageSize,
+  },
+  clock: [Gate.open, currentPageWasSet],
+  target: fetchFeedFx,
 });

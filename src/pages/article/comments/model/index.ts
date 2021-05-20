@@ -4,7 +4,6 @@ import {
   createStore,
   restore,
   forward,
-  attach,
   sample,
 } from 'effector-root';
 import { createForm } from 'effector-forms';
@@ -56,24 +55,20 @@ export const form = createForm({
   },
 });
 
-forward({
-  from: $slug.updates,
-  to: attach({
-    source: $slug,
-    effect: fetchCommentsFx,
-  }),
+sample({
+  source: $slug,
+  clock: $slug.updates,
+  target: fetchCommentsFx,
 });
 
 // submit form
-forward({
-  from: form.submit,
-  to: attach({
-    source: {
-      slug: $slug,
-      body: form.fields.comment.$value,
-    },
-    effect: fetchCommentFx,
-  }),
+sample({
+  source: {
+    slug: $slug,
+    body: form.fields.comment.$value,
+  },
+  clock: form.submit,
+  target: fetchCommentFx,
 });
 
 // reset form

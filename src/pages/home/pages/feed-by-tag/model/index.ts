@@ -3,8 +3,6 @@ import {
   createEffect,
   createStore,
   combine,
-  forward,
-  attach,
   guard,
   sample,
 } from 'effector-root';
@@ -87,16 +85,18 @@ export const $feedModel = combine({
   totalPages: $totalPages,
 });
 
-forward({
-  from: [Gate.open, currentPageWasSet, guard($currentTag, { filter: Boolean })],
-  to: attach({
-    source: {
-      tag: $currentTag,
-      page: $currentPage,
-      pageSize: $pageSize,
-    },
-    effect: fetchFeedFx,
-  }),
+sample({
+  source: {
+    tag: $currentTag,
+    page: $currentPage,
+    pageSize: $pageSize,
+  },
+  clock: [
+    Gate.open,
+    currentPageWasSet,
+    guard($currentTag, { filter: Boolean }),
+  ],
+  target: fetchFeedFx,
 });
 
 sample({
