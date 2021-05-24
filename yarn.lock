@@ -1439,25 +1439,25 @@
   dependencies:
     debug "^4.1.1"
 
-"@size-limit/file@4.10.3":
-  version "4.10.3"
-  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-4.10.3.tgz#0d101a951a223e30efa43091ae32898dc5a88eaf"
-  integrity sha512-AB1Oz1g5U+QbxI8fJjhi58E/nOChG48QeyOFxoH2bJXh3pCBkYBTwFS22nOJObhfc/YAplu69E3vR2/ZaTr1lQ==
+"@size-limit/file@4.11.0":
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/@size-limit/file/-/file-4.11.0.tgz#d453ea543e4f4f1ba5e8b3bd517d1f27759b747d"
+  integrity sha512-GPQPcFHBa6U8Z7xEl42gB1RJxCDqUILL5/WzgWDC9Q9WujnKuZwq16+yoCxrvTQfbl4Ol+Z42M50FvvibFMy9w==
   dependencies:
     semver "7.3.5"
 
-"@size-limit/preset-app@^4.10.3":
-  version "4.10.3"
-  resolved "https://registry.yarnpkg.com/@size-limit/preset-app/-/preset-app-4.10.3.tgz#7fa73924f57e51359422f2f56df32824dbd30050"
-  integrity sha512-Xyj28qSipJASVspvXkzUIvUljpuCSDZXIIH6ks5sdLjLd+dD5ZgxNy7fOm94EvgC5n0YmfBc6uUsRtmR4kGJnA==
+"@size-limit/preset-app@^4.11.0":
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/@size-limit/preset-app/-/preset-app-4.11.0.tgz#38166637d1cee61f8374a7b2001074c3d17bc46e"
+  integrity sha512-5XeNejFZNtWgKoPy+fgj+haS9LJWQ77yA3Fu/6RA9A6HPKvaH4secpE4OqNNtbBuowJjrKTXViUUUyiN7XPWuQ==
   dependencies:
-    "@size-limit/file" "4.10.3"
-    "@size-limit/time" "4.10.3"
+    "@size-limit/file" "4.11.0"
+    "@size-limit/time" "4.11.0"
 
-"@size-limit/time@4.10.3":
-  version "4.10.3"
-  resolved "https://registry.yarnpkg.com/@size-limit/time/-/time-4.10.3.tgz#98f406642078740dec5245c912d8ce3703a04e93"
-  integrity sha512-FWK3AJN5uJJcEFzBTzZYc/44wuMUHsL7O6eXK1jArrje/kagtJbM/ho4Xxu6GGO8iqEtehBiITiM9WsiiBBx0g==
+"@size-limit/time@4.11.0":
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/@size-limit/time/-/time-4.11.0.tgz#0ca2faf46466e9d18fb5abf9727d745ec46b1013"
+  integrity sha512-tg4I/iGf54mrmkJasHGw1E2E0aJ03YYiNChhD3K0f9tIpBxtN05oAsR61sZ5gjTPf0SQ7ySQZtsxKZYzOvtyGg==
   dependencies:
     estimo "^2.2.7"
     react "^17.0.2"
@@ -9677,10 +9677,10 @@ sisteransi@^1.0.5:
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
 
-size-limit@^4.10.3:
-  version "4.10.3"
-  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-4.10.3.tgz#159612e4a40bb2371e4b38b3f24d7c1fd1ab75bf"
-  integrity sha512-XUYQvgsZDgr4OZKRRtx+Zyp5qcpIx3adgujLEYm+Hpqi2EHoHwxYco1XmEkXA4/0Br5CopowEwDnN7QYh+klOA==
+size-limit@^4.11.0:
+  version "4.11.0"
+  resolved "https://registry.yarnpkg.com/size-limit/-/size-limit-4.11.0.tgz#61b325752e1978615ff9acc0745438ee3272172b"
+  integrity sha512-vguQEHxnBt0ldv4Q1gMkjSKNpCtH5/eXLbVqUumMvUOcA2BI/I82wTe7Ag3it5hKdbZYebDmRutDizxNsvpUAw==
   dependencies:
     bytes-iec "^3.1.1"
     chokidar "^3.5.1"
