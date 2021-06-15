@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { PaginationItem } from './pagination-item';
+import { Item } from './item';
 
 type Props = Readonly<{
   total: number;
@@ -23,12 +23,12 @@ export const Pagination: React.FC<Props> = ({
         {pages.map((item) => {
           return (
             <li className="page-item" key={item}>
-              <PaginationItem
+              <Item
                 active={isCurrent(item, current)}
                 key={item}
                 onClick={() => onItemClick(item)}>
                 {item}
-              </PaginationItem>
+              </Item>
             </li>
           );
         })}

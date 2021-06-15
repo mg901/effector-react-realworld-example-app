@@ -1,4 +1,4 @@
-import { ButtonProps } from '../button';
+import { ButtonProps } from '../../button';
 import './index.css';
 
 type Props = ButtonProps &
@@ -6,11 +6,7 @@ type Props = ButtonProps &
     active: boolean;
   }>;
 
-export const PaginationItem: React.FC<Props> = ({
-  active,
-  onClick,
-  children,
-}) => (
+export const Item: React.FC<Props> = ({ active, onClick, children }) => (
   <button
     className="pagination-item"
     data-active={active}
