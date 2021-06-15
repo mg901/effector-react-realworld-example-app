@@ -3,10 +3,7 @@ import { useGate } from 'effector-react';
 import { Page, Row } from 'shared/ui';
 import { AddTag } from './add-tag';
 import { Gate } from './model';
-import { Errors } from './ui/errors';
-import { Form } from './ui/form';
-import { SubmitButton } from './ui/submit-button';
-import { TagList } from './ui/tag-list';
+import { Errors, Form, SubmitButton, TagList } from './ui';
 
 type Params = Readonly<{
   slug: string;

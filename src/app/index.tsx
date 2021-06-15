@@ -6,10 +6,7 @@ import { Header, Spinner } from 'shared/ui';
 import { AuthProvider, history, AuthCosumer } from 'router';
 import { Gate } from './model';
 import { Routes } from './routes';
-import { LoginLinks } from './ui/login-links';
-
-import { Logo } from './ui/logo';
-import { LogoutLinks } from './ui/logout-links';
+import { LoginLinks, Logo, LogoutLinks } from './ui';
 
 import 'shared/ui/main.css';
 

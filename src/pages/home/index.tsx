@@ -1,8 +1,7 @@
 import { Page, Row } from 'shared/ui';
 import { Routes } from './routes';
 import { Sidebar } from './sidebar';
-import { LogoutBanner } from './ui/logout-banner';
-import { Tabs } from './ui/tabs';
+import { LogoutBanner, Tabs } from './ui';
 
 export const Home: React.FC = () => (
   <div className="home-page">

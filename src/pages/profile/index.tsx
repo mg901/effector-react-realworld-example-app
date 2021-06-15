@@ -3,8 +3,7 @@ import { useGate } from 'effector-react';
 import { Container, Row } from 'shared/ui';
 import { Gate } from './model';
 import { Routes } from './routes';
-import { Tabs } from './ui/tabs';
-import { UserInfo } from './ui/user-info';
+import { Tabs, UserInfo } from './ui';
 
 type Params = Readonly<{
   username: string;

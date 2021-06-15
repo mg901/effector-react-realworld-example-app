@@ -2,9 +2,7 @@ import { useGate } from 'effector-react';
 import { AuthCosumer } from 'router';
 import { Gate as ArticleGate } from '../model';
 import { Gate as CommentsGate } from './model';
-import { AddComment } from './ui/add-comment';
-import { CommentsList } from './ui/comment-list';
-import { Errors } from './ui/errors';
+import { AddComment, CommentsList, Errors } from './ui';
 
 type Props = Readonly<{
   slug: string;

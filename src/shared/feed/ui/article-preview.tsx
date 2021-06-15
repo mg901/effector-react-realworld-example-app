@@ -4,10 +4,10 @@ import * as types from '../model/types';
 import { ArticleMeta } from './article-meta';
 import { ButtonFavorite } from './button-favorite';
 
-type Props = {
+type Props = Readonly<{
   data: types.Article;
   onClick: ButtonProps['onClick'];
-};
+}>;
 
 export const ArticlePreview: React.FC<Props> = ({
   data: {

@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Page, Row } from 'shared/ui';
 import { Urls } from 'router';
-import { Errors } from './ui/errors';
-import { Form } from './ui/form';
+import { Errors, Form } from './ui';
 
 export const Registration: React.FC = () => (
   <Page>

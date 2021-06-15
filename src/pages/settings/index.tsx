@@ -1,7 +1,6 @@
 import { Page, Row, Button } from 'shared/ui';
 import { model } from 'shared/user';
-import { Errors } from './ui/errors';
-import { Form } from './ui/form';
+import { Errors, Form } from './ui';
 
 const Settings: React.FC = () => (
   <Page>
