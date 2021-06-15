@@ -1,5 +1,5 @@
+import { NavItem, NavLink } from 'shared/ui';
 import { Urls, AuthCosumer } from 'router';
-import { NavItem, NavLink } from 'ui';
 
 type Props = Readonly<{
   url: string;

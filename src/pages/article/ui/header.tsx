@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react';
 import { ArticleMeta } from 'shared/feed';
-import { Container, Banner } from 'ui';
+import { Container, Banner } from 'shared/ui';
 import * as model from '../model';
 import { EditMode } from './edit-mode';
 

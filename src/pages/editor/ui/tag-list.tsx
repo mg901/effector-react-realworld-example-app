@@ -1,5 +1,5 @@
 import { useList } from 'effector-react';
-import { TagList as List } from 'ui';
+import { TagList as List } from 'shared/ui';
 import * as model from '../model';
 import { Tag } from './tag';
 

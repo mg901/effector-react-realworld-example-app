@@ -1,5 +1,5 @@
 import { useForm } from 'effector-forms';
-import { Form, Input } from 'ui';
+import { Form, Input } from 'shared/ui';
 import * as model from './model';
 
 export const AddTag: React.FC = () => {

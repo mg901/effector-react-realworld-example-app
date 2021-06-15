@@ -23,7 +23,7 @@
       "library/*": ["./src/library/*"],
       "shared/*": ["./src/shared/*"],
       "pages/*": ["./src/pages/*"],
-      "ui": ["./src/ui"]
+      "ui": ["src/shared/ui"]
     }
   },
   "include": ["src/**/*"],

@@ -1,5 +1,5 @@
 import { useField } from 'effector-forms';
-import { TextField } from 'ui';
+import { TextField } from 'shared/ui';
 import { form } from '../model';
 
 export const BioField: React.FC = () => {

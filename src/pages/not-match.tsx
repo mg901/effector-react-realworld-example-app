@@ -1,4 +1,4 @@
-import { Container } from 'ui';
+import { Container } from 'shared/ui';
 
 const NotMatchPage: React.FC = () => (
   <Container>

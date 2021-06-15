@@ -1,4 +1,4 @@
-import { Form as UIForm } from 'ui';
+import { Form as UIForm } from 'shared/ui';
 import * as model from '../model';
 import { BodyField } from './body-field';
 import { DescriptionField } from './description-field';

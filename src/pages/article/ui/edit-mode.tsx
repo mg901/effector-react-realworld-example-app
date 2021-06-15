@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { Button } from 'ui';
+import { Button } from 'shared/ui';
 import * as model from '../model';
 
 export const EditMode: React.FC = () => {

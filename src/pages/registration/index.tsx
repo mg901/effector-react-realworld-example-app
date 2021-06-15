@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
+import { Page, Row } from 'shared/ui';
 import { Urls } from 'router';
-import { Page, Row } from 'ui';
 import { Errors } from './ui/errors';
 import { Form } from './ui/form';
 

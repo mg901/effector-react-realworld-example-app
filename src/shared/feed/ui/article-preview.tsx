@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { TagList, Tag, ButtonProps } from 'ui';
+import { TagList, Tag, ButtonProps } from 'shared/ui';
 import * as types from '../model/types';
 import { ArticleMeta } from './article-meta';
 import { ButtonFavorite } from './button-favorite';

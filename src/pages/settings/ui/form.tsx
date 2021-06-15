@@ -1,5 +1,5 @@
 import { useGate } from 'effector-react';
-import { Form as UIForm } from 'ui';
+import { Form as UIForm } from 'shared/ui';
 import * as model from '../model';
 import { BioField } from './bio-field';
 import { EmailField } from './email-field';

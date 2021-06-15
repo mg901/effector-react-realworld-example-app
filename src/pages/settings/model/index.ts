@@ -8,8 +8,8 @@ import {
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosResponse, AxiosError } from 'axios';
+import { api } from 'shared/api';
 import * as user from 'shared/user';
-import { api } from 'api';
 import { history } from 'router';
 import { Errors, changeUserDataFxArgs } from './types';
 

@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import { Button } from 'ui';
+import { Button } from 'shared/ui';
 import * as model from '../model';
 
 type Props = Readonly<{

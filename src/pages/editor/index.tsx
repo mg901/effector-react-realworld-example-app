@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useGate } from 'effector-react';
-import { Page, Row } from 'ui';
+import { Page, Row } from 'shared/ui';
 import { AddTag } from './add-tag';
 import { Gate } from './model';
 import { Errors } from './ui/errors';
