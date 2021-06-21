@@ -1,5 +1,5 @@
 import { root, fork, allSettled } from 'effector-root';
-import { createArticleFx, $error } from './model';
+import { createArticleFx, $errors } from './model';
 
 describe('pages/editor ', () => {
   it('should return an error if you submit a form with empty fields', async () => {
@@ -22,6 +22,6 @@ describe('pages/editor ', () => {
 
     const scope = fork(root);
     await allSettled(createArticleFx, { scope });
-    expect(scope.getState($error)).toMatchObject(expected.response.data);
+    expect(scope.getState($errors)).toMatchObject(expected.response.data);
   });
 });

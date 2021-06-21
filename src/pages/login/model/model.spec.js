@@ -1,6 +1,6 @@
 import { root, fork, allSettled } from 'effector-root';
 import * as user from 'shared/entities/user';
-import { signInFx, $error } from './index';
+import { signInFx, $errors } from './model';
 
 describe('pages/login: ', () => {
   it('should sign in via email and password', async () => {
@@ -38,6 +38,6 @@ describe('pages/login: ', () => {
 
     const scope = fork(root);
     await allSettled(signInFx, { scope });
-    expect(scope.getState($error)).toMatchObject(expected.response.data);
+    expect(scope.getState($errors)).toMatchObject(expected.response.data);
   });
 });

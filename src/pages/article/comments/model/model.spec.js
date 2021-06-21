@@ -1,5 +1,5 @@
 import { root, fork, allSettled } from 'effector-root';
-import { fetchCommentFx, $error } from './index';
+import { fetchCommentFx, $error } from './model';
 
 describe('pages/article  ', () => {
   it('should return an error if you submit a form with empty fields', async () => {
