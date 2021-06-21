@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Page, Row } from 'shared/ui';
-import { Urls } from 'router';
+import { URLS } from 'router';
 import { Errors, Form } from './ui';
 
 const Login: React.FC = () => (
@@ -10,7 +10,7 @@ const Login: React.FC = () => (
         <h1 className="text-xs-center">Sign In</h1>
 
         <p className="text-xs-center">
-          <Link to={Urls.REGISTRATION}>Need an account?</Link>
+          <Link to={URLS.REGISTRATION}>Need an account?</Link>
         </p>
 
         <Errors />

@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
-import { Urls, PrivateRoute } from 'router';
+import { URLS, PrivateRoute } from 'router';
 
 const Login = lazy(() => import('pages/login'));
 const Registration = lazy(() => import('pages/registration'));
@@ -14,15 +14,15 @@ const NoMatch = lazy(() => import('pages/not-match'));
 export const Routes: React.FC = () => {
   return (
     <Switch>
-      <Redirect exact from={Urls.ROOT} to={Urls.HOME} />
-      <Route component={Login} path={Urls.LOGIN} />
-      <Route component={Registration} path={Urls.REGISTRATION} />
-      <Route component={Home} path={Urls.HOME} />
-      <PrivateRoute exact component={Editor} path={Urls.EDITOR} />
-      <PrivateRoute component={Editor} path={Urls.EDITOR_SLUG} />
-      <PrivateRoute component={Settings} path={Urls.SETTINGS} />
-      <PrivateRoute component={Profile} path={Urls.PROFILE} />
-      <Route component={Article} path={Urls.ARTICLE} />
+      <Redirect exact from={URLS.ROOT} to={URLS.HOME} />
+      <Route component={Login} path={URLS.LOGIN} />
+      <Route component={Registration} path={URLS.REGISTRATION} />
+      <Route component={Home} path={URLS.HOME} />
+      <PrivateRoute exact component={Editor} path={URLS.EDITOR} />
+      <PrivateRoute component={Editor} path={URLS.EDITOR_SLUG} />
+      <PrivateRoute component={Settings} path={URLS.SETTINGS} />
+      <PrivateRoute component={Profile} path={URLS.PROFILE} />
+      <Route component={Article} path={URLS.ARTICLE} />
       <Route component={NoMatch} path="*" />
     </Switch>
   );

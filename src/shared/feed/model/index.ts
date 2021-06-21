@@ -112,7 +112,7 @@ export const createFeedModel = (
     source: setFavoriteArticleFx.failData,
     filter: (error) => error.response?.status === 401,
   }).watch(() => {
-    router.history.push(router.Urls.LOGIN);
+    router.history.push(router.URLS.LOGIN);
   });
 
   const $model = combine({

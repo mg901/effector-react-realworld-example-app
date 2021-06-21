@@ -1,6 +1,6 @@
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import * as user from 'shared/entities/user';
-import { Urls } from '../urls';
+import { URLS } from '../urls';
 
 export const PrivateRoute: React.FC<RouteProps> = ({
   component: Component,
@@ -18,7 +18,7 @@ export const PrivateRoute: React.FC<RouteProps> = ({
         ) : (
           <Redirect
             to={{
-              pathname: Urls.LOGIN,
+              pathname: URLS.LOGIN,
               state: { from: location },
             }}
           />
