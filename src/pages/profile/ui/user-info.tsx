@@ -1,11 +1,10 @@
-import { useStore } from 'effector-react';
 import { Container, Row } from 'shared/ui';
-import { $profile } from '../model';
+import * as profile from '../model';
 import { EditMode } from './edit-mode';
 import { FollowUser } from './follow-user';
 
 export const UserInfo: React.FC = () => {
-  const { image, username, bio } = useStore($profile);
+  const { image, username, bio } = profile.selectors.useProfile();
 
   return (
     <div className="user-info">

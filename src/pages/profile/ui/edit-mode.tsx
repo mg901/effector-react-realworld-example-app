@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
-import { useStore } from 'effector-react';
 import { Button } from 'shared/ui';
-import { $isCurrentUser } from '../model';
+import { selectors } from '../model';
 
 export const EditMode: React.FC = () => {
-  const is = useStore($isCurrentUser);
+  const is = selectors.useIsCurrentUser();
 
   return !is ? null : (
     <Link to="/settings">

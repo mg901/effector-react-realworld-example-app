@@ -1,21 +1,20 @@
-import { useStore } from 'effector-react';
 import { Button } from 'shared/ui';
-import * as model from '../model';
+import * as profile from '../model';
 
 type Props = Readonly<{
   username: string;
 }>;
 
 export const FollowUser: React.FC<Props> = ({ username }) => {
-  const following = useStore(model.$following);
-  const is = useStore(model.$isAnotherUser);
+  const whenFollow = profile.selectors.useWhenFollow();
+  const is = profile.selectors.useIsAnotherUser();
 
   return !is ? null : (
     <Button
       className="btn-sm action-btn btn-secondary"
-      onClick={model.toggleFollowing}>
+      onClick={profile.model.toggleFollowing}>
       <i className="ion-plus-round" />
-      &nbsp;{following ? 'Unfollow' : 'Follow'} {username}
+      &nbsp;{whenFollow ? 'Unfollow' : 'Follow'} {username}
     </Button>
   );
 };

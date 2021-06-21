@@ -7,8 +7,8 @@ import { Content, Header, LogoutMessage } from './ui';
 
 const Article: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  useGate(article.model.Gate, { slug });
   const loading = article.selectors.useLoadArticle();
+  useGate(article.model.Gate, { slug });
 
   return (
     <>
