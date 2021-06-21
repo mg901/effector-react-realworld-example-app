@@ -1,8 +1,8 @@
-import { types } from 'shared/user';
+import * as user from 'shared/entities/user';
 import { ReadonlyDeep } from 'type-fest';
 
 export type changeUserDataFxArgs = Pick<
-  types.User,
+  user.types.User,
   'image' | 'username' | 'bio' | 'email'
 > &
   Readonly<{

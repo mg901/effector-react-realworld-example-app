@@ -1,4 +1,5 @@
 import { createEvent, createStore, guard } from 'effector-root';
+
 import { persist } from 'effector-storage/local';
 import { setToken } from 'shared/api';
 import { TOKEN_NAME } from 'shared/config';

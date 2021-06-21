@@ -1,5 +1,5 @@
+import * as user from 'shared/entities/user';
 import { Page, Row, Button } from 'shared/ui';
-import { model } from 'shared/user';
 import { Errors, Form } from './ui';
 
 const Settings: React.FC = () => (
@@ -11,7 +11,9 @@ const Settings: React.FC = () => (
         <Form />
         <hr />
 
-        <Button className="btn-outline-danger" onClick={model.loggedOutClicked}>
+        <Button
+          className="btn-outline-danger"
+          onClick={user.model.loggedOutClicked}>
           Or click here to logout.
         </Button>
       </div>

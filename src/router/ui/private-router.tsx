@@ -1,13 +1,12 @@
 import { Route, Redirect, RouteProps } from 'react-router-dom';
-import { useStore } from 'effector-react';
-import { model } from 'shared/user';
+import * as user from 'shared/entities/user';
 import { Urls } from '../urls';
 
 export const PrivateRoute: React.FC<RouteProps> = ({
   component: Component,
   ...props
 }) => {
-  const isAuth = useStore(model.$isAuthorized);
+  const isAuth = user.selectors.useIsAuth();
 
   return (
     <Route

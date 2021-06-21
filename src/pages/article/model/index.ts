@@ -7,8 +7,8 @@ import {
 } from 'effector-root';
 import { createGate } from 'effector-react';
 import { api } from 'shared/api';
+import * as user from 'shared/entities/user';
 import { types } from 'shared/feed';
-import * as user from 'shared/user';
 import { history } from 'router';
 import { GateState } from './types';
 
