@@ -1,6 +1,6 @@
 import { root, fork, allSettled } from 'effector-root';
 import * as user from 'shared/entities/user';
-import { signUpFx, $error } from './index';
+import { signUpFx, $error } from './model';
 
 describe('pages/registration: ', () => {
   it('should successfully register via username, email and password', async () => {

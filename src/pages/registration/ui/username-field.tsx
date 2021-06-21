@@ -1,9 +1,9 @@
 import { useField } from 'effector-forms';
 import { InputField } from 'shared/ui';
-import { form } from '../model';
+import { model } from '../model';
 
 export const UsernameField: React.FC = () => {
-  const { name, onChange } = useField(form.fields.username);
+  const { name, onChange } = useField(model.form.fields.username);
 
   return (
     <InputField
