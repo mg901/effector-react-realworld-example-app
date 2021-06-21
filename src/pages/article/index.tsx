@@ -1,14 +1,14 @@
 import { useParams } from 'react-router-dom';
-import { useGate, useStore } from 'effector-react';
+import { useGate } from 'effector-react';
 import { Row, Page } from 'shared/ui';
 import { Comments } from './comments';
-import * as model from './model/model';
+import * as article from './model';
 import { Content, Header, LogoutMessage } from './ui';
 
 const Article: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  useGate(model.Gate, { slug });
-  const loading = useStore(model.fetchArticleFx.pending);
+  useGate(article.model.Gate, { slug });
+  const loading = article.selectors.useLoadArticle();
 
   return (
     <>
