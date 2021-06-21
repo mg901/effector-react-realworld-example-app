@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useGate, useStore } from 'effector-react';
 import { Row, Page } from 'shared/ui';
 import { Comments } from './comments';
-import * as model from './model';
+import * as model from './model/model';
 import { Content, Header, LogoutMessage } from './ui';
 
 const Article: React.FC = () => {

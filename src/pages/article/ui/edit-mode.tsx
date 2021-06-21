@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
-import { useStore } from 'effector-react';
 import { Button } from 'shared/ui';
-import * as model from '../model';
+import * as article from '../model';
 
 export const EditMode: React.FC = () => {
-  const canModify = useStore(model.$canModify);
-  const { slug } = useStore(model.$article);
+  const canModify = article.selectors.useCanModify();
+  const { slug } = article.selectors.useArticle();
 
   return (
     <>
@@ -19,7 +18,7 @@ export const EditMode: React.FC = () => {
 
           <Button
             className="btn-sm btn-outline-danger"
-            onClick={model.articleDeleted}>
+            onClick={article.model.articleDeleted}>
             <i className="ion-trash-a" /> Delete Article
           </Button>
         </span>

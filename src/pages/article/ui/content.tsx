@@ -1,11 +1,10 @@
-import { useStore } from 'effector-react';
 import Markdown from 'markdown-to-jsx';
 import { Row } from 'shared/ui';
-import * as model from '../model';
+import * as article from '../model';
 import { Tags } from './tags';
 
 export const Content: React.FC = () => {
-  const { body } = useStore(model.$article);
+  const { body } = article.selectors.useArticle();
 
   return (
     <Row className="article-content">
