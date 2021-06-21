@@ -1,9 +1,9 @@
 import { useField } from 'effector-forms';
 import { TextField } from 'shared/ui';
-import { form } from '../model';
+import * as settings from '../model';
 
 export const BioField: React.FC = () => {
-  const { value, name, onChange } = useField(form.fields.bio);
+  const { value, name, onChange } = useField(settings.model.form.fields.bio);
 
   return (
     <TextField

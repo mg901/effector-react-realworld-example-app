@@ -1,9 +1,9 @@
 import { useField } from 'effector-forms';
 import { InputField } from 'shared/ui';
-import { form } from '../model';
+import * as settings from '../model';
 
 export const ImageField: React.FC = () => {
-  const { value, name, onChange } = useField(form.fields.image);
+  const { value, name, onChange } = useField(settings.model.form.fields.image);
 
   return (
     <InputField
