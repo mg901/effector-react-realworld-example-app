@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { commentDeleted } from '../model';
+import * as comments from '../model';
 import * as types from '../model/types';
 import { ButtonDelete } from './button-delete';
 
@@ -22,7 +22,10 @@ export const CommentFooter: React.FC<types.Comment> = ({
         {author.username}
       </Link>
       <span className="date-posted">{new Date(createdAt).toDateString()}</span>
-      <ButtonDelete author={author} onClick={() => commentDeleted(id)} />
+      <ButtonDelete
+        author={author}
+        onClick={() => comments.model.commentDeleted(id)}
+      />
     </div>
   );
 };

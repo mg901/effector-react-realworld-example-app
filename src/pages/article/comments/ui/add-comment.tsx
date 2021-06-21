@@ -1,10 +1,10 @@
 import { useForm } from 'effector-forms';
 import { Form as UIForm, Textarea } from 'shared/ui';
-import { form } from '../model';
+import * as comments from '../model';
 import { FormFooter } from './form-footer';
 
 export const AddComment: React.FC = () => {
-  const { submit, fields } = useForm(form);
+  const { submit, fields } = useForm(comments.model.form);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,11 +1,11 @@
 import { useList } from 'effector-react';
 import { List } from 'shared/ui';
-import { $comments } from '../model';
+import * as comments from '../model';
 import { Comment } from './comment';
 
 export const CommentsList: React.FC = () => (
   <List>
-    {useList($comments, {
+    {useList(comments.model.$comments, {
       getKey: (item) => item.id,
       fn: (item) => <Comment comment={item} />,
     })}
