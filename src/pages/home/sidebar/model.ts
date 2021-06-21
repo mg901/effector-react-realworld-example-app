@@ -1,11 +1,10 @@
 import { createEffect, restore, forward } from 'effector-root';
 import { createGate } from 'effector-react';
 import { api } from 'shared/api';
-import { TagsList } from './types';
 
 export const Gate = createGate();
 
-export const fetchTagsFx = createEffect<void, TagsList>(() => {
+export const fetchTagsFx = createEffect<void, readonly string[]>(() => {
   return api.get('tags').then(({ data }) => data.tags);
 });
 
