@@ -1,6 +1,6 @@
 import { useList } from 'effector-react';
 import { TagList as List } from 'shared/ui';
-import * as model from '../model';
+import { model } from '../model';
 import { Tag } from './tag';
 
 export const TagList: React.FC = () => (

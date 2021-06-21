@@ -1,9 +1,9 @@
 import { useField } from 'effector-forms';
 import { TextField } from 'shared/ui';
-import { form } from '../model';
+import { model } from '../model';
 
 export const BodyField: React.FC = () => {
-  const { value, name, onChange } = useField(form.fields.body);
+  const { value, name, onChange } = useField(model.form.fields.body);
 
   return (
     <TextField
