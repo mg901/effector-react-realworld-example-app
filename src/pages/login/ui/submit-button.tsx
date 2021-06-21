@@ -1,14 +1,13 @@
-import { useStore } from 'effector-react';
 import { Button } from 'shared/ui';
-import { signInFx } from '../model';
+import { selectors } from '../model';
 
 export const SubmitButton: React.FC = () => {
-  const disabled = useStore(signInFx.pending);
+  const loading = selectors.useLoading();
 
   return (
     <Button
       className="btn-lg btn-primary pull-xs-right"
-      disabled={disabled}
+      disabled={loading}
       type="submit">
       Sign In
     </Button>
