@@ -1,11 +1,10 @@
 import { useForm } from 'effector-forms';
-import { useStore } from 'effector-react';
 import { Button } from 'shared/ui';
-import { model } from '../model';
+import { model, selectors } from '../model';
 
 export const SubmitButton: React.FC = () => {
   const { submit } = useForm(model.form);
-  const disabled = useStore(model.createArticleFx.pending);
+  const disabled = selectors.useCreateArticle();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     submit();
