@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import { Router } from 'react-router-dom';
 import { useGate } from 'effector-react';
+import * as user from 'entities/user';
 import { APP_NAME } from 'shared/config';
-import * as user from 'shared/entities/user';
+import * as router from 'shared/library/router';
 import { Header, Spinner } from 'shared/ui';
-import { history } from 'router';
 import { Gate } from './model';
 import { Routes } from './routes';
 import { LoginLinks, Logo, LogoutLinks } from './ui';
@@ -16,7 +16,7 @@ export const App: React.FC = () => {
   const isAuth = user.selectors.useIsAuth();
 
   return (
-    <Router history={history}>
+    <Router history={router.history}>
       <Header>
         <Logo title={APP_NAME} />
         <ul className="nav navbar-nav pull-xs-right">

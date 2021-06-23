@@ -1,5 +1,5 @@
 import { root, fork, allSettled } from 'effector-root';
-import * as user from 'shared/entities/user';
+import * as user from 'entities/user';
 import { signUpFx, $errors } from './model';
 
 describe('pages/registration: ', () => {

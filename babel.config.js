@@ -15,13 +15,10 @@ module.exports = {
       {
         root: ['./src'],
         alias: {
-          api: './src/api',
-          router: './src/router',
-          config: './src/config',
-          library: './src/library',
           shared: './src/shared',
+          entities: './src/entities',
+          features: './src/features',
           pages: './src/pages',
-          ui: './src/ui',
         },
         extensions: ['.js', '.ts', '.jsx', '.tsx'],
       },

@@ -1,16 +1,8 @@
-import {
-  createEvent,
-  createStore,
-  createEffect,
-  guard,
-  sample,
-  combine,
-} from 'effector-root';
+import { createEvent, createStore, sample, combine } from 'effector-root';
 import { createGate, useStore } from 'effector-react';
-import { AxiosError } from 'axios';
+
 import { EffectState } from 'patronum/status';
-import { api } from 'shared/api';
-import * as router from 'router';
+import * as router from 'shared/library/router';
 import * as types from './types';
 
 const defaultOptions = {
@@ -29,24 +21,6 @@ export const createFeedModel = (
 
   // events
   const currentPageWasSet = createEvent<number>();
-  const favoriteToggled = createEvent<types.Article>();
-
-  // effects
-  const setFavoriteArticleFx = createEffect<
-    string,
-    types.FavoriteArticle,
-    AxiosError
-  >((slug) => {
-    return api.post(`articles/${slug}/favorite`).then(({ data }) => data);
-  });
-
-  const setUnfavoriteArticleFx = createEffect<string, types.UnfavoriteArticle>(
-    (slug) => {
-      return api.delete(`articles/${slug}/favorite`).then(({ data }) => data);
-    },
-  );
-
-  // stores
   const $pageSize = createStore<number>(opts.pageSize);
   const $currentTag = router.model.$search.map(
     (search) => new URLSearchParams(search).get('tag') ?? '',
@@ -62,21 +36,7 @@ export const createFeedModel = (
   const $feed = createStore<types.Feed>({
     articles: [],
     articlesCount: 0,
-  }).on(
-    [setFavoriteArticleFx.done, setUnfavoriteArticleFx.done],
-    (state, { params, result }) => ({
-      ...state,
-      articles: state.articles.map((article) =>
-        article.slug !== params
-          ? article
-          : {
-              ...article,
-              favorited: result.article.favorited,
-              favoritesCount: result.article.favoritesCount,
-            },
-      ),
-    }),
-  );
+  });
 
   const $articles = $feed.map((x) => x.articles);
   const $totalPages = $feed.map((x) => x.articlesCount);
@@ -96,25 +56,6 @@ export const createFeedModel = (
     router.history.replace(`${path}?page=${page}`);
   });
 
-  guard({
-    source: favoriteToggled,
-    filter: ({ favorited }) => favorited === true,
-    target: setUnfavoriteArticleFx.prepend<types.Article>(({ slug }) => slug),
-  });
-
-  guard({
-    source: favoriteToggled,
-    filter: ({ favorited }) => favorited === false,
-    target: setFavoriteArticleFx.prepend<types.Article>(({ slug }) => slug),
-  });
-
-  guard({
-    source: setFavoriteArticleFx.failData,
-    filter: (error) => error.response?.status === 401,
-  }).watch(() => {
-    router.history.push(router.URLS.LOGIN);
-  });
-
   const $model = combine({
     pageSize: $pageSize,
     currentPage: $currentPage,
@@ -126,9 +67,6 @@ export const createFeedModel = (
   return {
     Gate: createGate(),
     currentPageWasSet,
-    favoriteToggled,
-    setFavoriteArticleFx,
-    setUnfavoriteArticleFx,
     $feed,
     $articles,
     $pageSize,

@@ -1,4 +1,4 @@
-import * as user from 'shared/entities/user';
+import * as user from 'entities/user';
 import { Page, Row, Button } from 'shared/ui';
 import { Errors, Form } from './ui';
 

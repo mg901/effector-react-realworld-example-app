@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
+import { ToggleLike } from 'features/toggle-like-on-article';
 import { TagList, Tag, ButtonProps } from 'shared/ui';
 import * as types from '../model/types';
 import { ArticleMeta } from './article-meta';
-import { ButtonFavorite } from './button-favorite';
 
 type Props = Readonly<{
   data: types.Article;
@@ -25,9 +25,9 @@ export const ArticlePreview: React.FC<Props> = ({
   <article className="article-preview">
     <ArticleMeta author={author} createdAt={createdAt}>
       <div className="pull-xs-right">
-        <ButtonFavorite active={favorited} onClick={onClick}>
+        <ToggleLike active={favorited} onClick={onClick}>
           {favoritesCount}
-        </ButtonFavorite>
+        </ToggleLike>
       </div>
     </ArticleMeta>
     <Link className="preview-link" to={`/article/${slug}`}>

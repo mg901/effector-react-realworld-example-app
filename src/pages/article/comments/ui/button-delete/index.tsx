@@ -1,4 +1,4 @@
-import * as user from 'shared/entities/user';
+import * as user from 'entities/user';
 import { Button, ButtonProps } from 'shared/ui';
 import * as types from '../../model/types';
 import './index.css';

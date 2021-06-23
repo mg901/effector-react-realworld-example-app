@@ -1,6 +1,6 @@
-import * as user from 'shared/entities/user';
+import * as user from 'entities/user';
+import * as router from 'shared/library/router';
 import { NavItem, NavLink } from 'shared/ui';
-import { URLS } from 'router';
 
 type Props = Readonly<{
   url: string;
@@ -13,7 +13,7 @@ export const YourFeedLink: React.FC<Props> = ({ url }) => {
 
   return (
     <NavItem>
-      <NavLink to={`${url}${URLS.YOUR_FEED}`}>Your Feed</NavLink>
+      <NavLink to={`${url}${router.URLS.YOUR_FEED}`}>Your Feed</NavLink>
     </NavItem>
   );
 };

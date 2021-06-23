@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import * as user from 'shared/entities/user';
+import * as user from 'entities/user';
 
 export const LogoutMessage: React.FC = () => {
   const isAuth = user.selectors.useIsAuth();

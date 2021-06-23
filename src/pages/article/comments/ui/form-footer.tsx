@@ -1,4 +1,4 @@
-import * as user from 'shared/entities/user';
+import * as user from 'entities/user';
 import { Button } from 'shared/ui';
 
 export const FormFooter: React.FC = () => {

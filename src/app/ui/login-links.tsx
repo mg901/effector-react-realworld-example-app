@@ -1,6 +1,6 @@
-import * as user from 'shared/entities/user';
+import * as user from 'entities/user';
+import * as router from 'shared/library/router';
 import { NavItem, NavLink } from 'shared/ui';
-import { URLS } from 'router';
 
 export const LoginLinks: React.FC = () => {
   const { username, image } = user.selectors.useUser();
@@ -8,18 +8,18 @@ export const LoginLinks: React.FC = () => {
   return (
     <>
       <NavItem>
-        <NavLink to={URLS.ROOT}>Home</NavLink>
+        <NavLink to={router.URLS.ROOT}>Home</NavLink>
       </NavItem>
 
       <NavItem>
-        <NavLink to={URLS.EDITOR}>
+        <NavLink to={router.URLS.EDITOR}>
           <i className="ion-compose" />
           &nbsp;New Post
         </NavLink>
       </NavItem>
 
       <NavItem>
-        <NavLink to={URLS.SETTINGS}>
+        <NavLink to={router.URLS.SETTINGS}>
           <i className="ion-gear-a" />
           &nbsp;Settings
         </NavLink>

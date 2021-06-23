@@ -1,8 +1,8 @@
 /* eslint-disable react/destructuring-assignment */
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useList } from 'effector-react';
+import * as router from 'shared/library/router';
 import { TagList as List } from 'shared/ui';
-import { URLS } from 'router';
 import { $tags } from '../model';
 
 export const TagList: React.FC = () => {
@@ -15,7 +15,7 @@ export const TagList: React.FC = () => {
         fn: (tag) => (
           <Link
             className="tag-default tag-pill"
-            to={`${url}${URLS.FEED_BY_TAG}?tag=${tag}`}>
+            to={`${url}${router.URLS.FEED_BY_TAG}?tag=${tag}`}>
             {tag.toLowerCase()}
           </Link>
         ),

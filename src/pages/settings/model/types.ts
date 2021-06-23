@@ -1,5 +1,4 @@
-import * as user from 'shared/entities/user';
-import { ReadonlyDeep } from 'type-fest';
+import * as user from 'entities/user';
 
 export type changeUserDataFxArgs = Pick<
   user.types.User,
@@ -8,7 +7,6 @@ export type changeUserDataFxArgs = Pick<
   Readonly<{
     password: string;
   }>;
-
-export type Errors = ReadonlyDeep<{
-  errors: Record<string, string>;
+export type Errors = Readonly<{
+  errors: Readonly<Record<string, string>>;
 }>;

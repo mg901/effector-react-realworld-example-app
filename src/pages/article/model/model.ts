@@ -6,10 +6,10 @@ import {
   sample,
 } from 'effector-root';
 import { createGate } from 'effector-react';
+import * as user from 'entities/user';
 import { api } from 'shared/api';
-import * as user from 'shared/entities/user';
 import { types } from 'shared/feed';
-import { history } from 'router';
+import * as router from 'shared/library/router';
 import { GateState } from './types';
 
 export const articleDeleted = createEvent<React.MouseEvent>();
@@ -67,5 +67,5 @@ sample({
 });
 
 deleteArticleFx.done.watch(() => {
-  history.push('/');
+  router.history.push('/');
 });

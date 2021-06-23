@@ -2,7 +2,7 @@ import { createEffect, sample } from 'effector-root';
 import { status } from 'patronum/status';
 import { api } from 'shared/api';
 import * as feed from 'shared/feed';
-import { limit } from 'library/limit';
+import { limit } from 'shared/library/limit';
 import * as model from '../../model/model';
 import * as types from '../../model/types';
 
@@ -22,13 +22,11 @@ export const fetchFeedFx = createEffect<types.FetchFeedFxArgs, feed.types.Feed>(
 export const {
   Gate,
   currentPageWasSet,
-  favoriteToggled,
   $currentPage,
   $articles,
   $totalPages,
   $feed,
   $pageSize,
-  setUnfavoriteArticleFx,
   useModel,
 } = feed.createFeedModel({
   pageSize: 5,
@@ -43,6 +41,6 @@ sample({
     username: model.$username,
     page: $currentPage,
   },
-  clock: [Gate.open, currentPageWasSet, setUnfavoriteArticleFx.done],
+  clock: [Gate.open, currentPageWasSet],
   target: fetchFeedFx,
 });

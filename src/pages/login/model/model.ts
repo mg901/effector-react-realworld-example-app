@@ -8,9 +8,9 @@ import {
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
+import * as user from 'entities/user';
 import { api } from 'shared/api';
-import * as user from 'shared/entities/user';
-import { history } from 'router';
+import * as router from 'shared/library/router';
 import { Form, Errors } from './types';
 
 export const formSubmitted = createEvent<React.FormEvent>();
@@ -53,7 +53,7 @@ forward({
 });
 
 signInFx.done.watch(() => {
-  history.push('/');
+  router.history.push('/');
 });
 
 user.model.$user.on(signInFx.doneData, (_, payload) => payload);

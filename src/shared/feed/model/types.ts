@@ -1,8 +1,6 @@
-import { Event, Effect, Store, StoreValue } from 'effector-root';
+import { Event, Store, StoreValue } from 'effector-root';
 import { Gate } from 'effector-react';
-import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
-import { ReadonlyDeep } from 'type-fest';
 
 export type Author = Readonly<{
   username: string;
@@ -11,7 +9,7 @@ export type Author = Readonly<{
   following: boolean;
 }>;
 
-export type Article = ReadonlyDeep<{
+export type Article = Readonly<{
   title: string;
   slug: string;
   body: string;
@@ -24,7 +22,7 @@ export type Article = ReadonlyDeep<{
   favoritesCount: number;
 }>;
 
-export type Feed = ReadonlyDeep<{
+export type Feed = Readonly<{
   articles: readonly Article[];
   articlesCount: number;
 }>;
@@ -44,9 +42,6 @@ export type Options = Readonly<{
 export type Model = Readonly<{
   Gate: Gate<unknown>;
   currentPageWasSet: Event<number>;
-  favoriteToggled: Event<Article>;
-  setFavoriteArticleFx: Effect<string, FavoriteArticle, AxiosError>;
-  setUnfavoriteArticleFx: Effect<string, UnfavoriteArticle, Error>;
   $feed: Store<Feed>;
   $articles: Store<Feed['articles']>;
   $pageSize: Store<number>;

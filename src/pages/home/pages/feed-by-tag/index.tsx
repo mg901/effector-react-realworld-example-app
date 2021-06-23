@@ -1,7 +1,8 @@
 import { useGate, useList, useStore } from 'effector-react';
+
 import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'shared/feed';
 import { Pagination, Spinner } from 'shared/ui';
-import * as model from './model';
+import { model } from './model';
 
 const FeedByTagPage: React.FC = () => {
   useGate(model.Gate);
