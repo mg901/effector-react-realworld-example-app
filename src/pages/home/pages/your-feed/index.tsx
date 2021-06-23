@@ -1,12 +1,15 @@
 import { useGate, useList } from 'effector-react';
 import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'shared/feed';
-import { Spinner } from 'shared/ui';
+import { Spinner, Pagination } from 'shared/ui';
 import * as yourFeed from './model';
 
 const YourFeedPage: React.FC = () => {
   useGate(yourFeed.model.Gate);
   const loading = yourFeed.selectors.useLoading();
   const isEmptyFeed = yourFeed.selectors.useIsEmptyFeed();
+  const currentPage = yourFeed.selectors.useCurrentPage();
+  const articlesCount = yourFeed.selectors.useArticlesCount();
+  const pageSize = yourFeed.selectors.usePageSize();
 
   return (
     <>
@@ -24,12 +27,12 @@ const YourFeedPage: React.FC = () => {
           ),
         })}
       </ArticlesWrapper>
-      {/* <Pagination
+      <Pagination
         current={currentPage}
         pageSize={pageSize}
-        total={totalPages}
-        onItemClick={model.currentPageWasSet}
-      /> */}
+        total={articlesCount}
+        onItemClick={yourFeed.model.currentPageWasSet}
+      />
       <Spinner loading={loading} />
     </>
   );

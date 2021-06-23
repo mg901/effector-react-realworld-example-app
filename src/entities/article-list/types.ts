@@ -22,7 +22,7 @@ export type Article = Readonly<{
   favoritesCount: number;
 }>;
 
-export type Feed = {
+export type ArticleList = {
   articles: readonly Article[];
   articlesCount: number;
 };

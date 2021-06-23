@@ -1,23 +1,27 @@
-import { useGate, useList, useStore } from 'effector-react';
-import { ArticlesWrapper, ArticlePreview } from 'shared/feed';
-import { Pagination, Spinner } from 'shared/ui';
-import * as model from './model';
+import { useGate, useList } from 'effector-react';
+import { ArticlesWrapper, ArticlePreview, EmptyArticles } from 'shared/feed';
+import { Spinner, Pagination } from 'shared/ui';
+import * as globalFeed from './model';
 
 const GlobalFeedPage: React.FC = () => {
-  useGate(model.Gate);
-  const loading = useStore(model.fetchFeedFx.pending);
-  const { totalPages, currentPage, pageSize } = model.useModel();
+  useGate(globalFeed.model.Gate);
+  const loading = globalFeed.selectors.useLoading();
+  const isEmptyFeed = globalFeed.selectors.useIsEmptyFeed();
+  const currentPage = globalFeed.selectors.useCurrentPage();
+  const articlesCount = globalFeed.selectors.useArticlesCount();
+  const pageSize = globalFeed.selectors.usePageSize();
 
   return (
     <>
+      <EmptyArticles show={isEmptyFeed} />
       <ArticlesWrapper>
-        {useList(model.$articles, {
+        {useList(globalFeed.model.$articles, {
           getKey: (item) => item.slug,
           fn: (item) => (
             <li>
               <ArticlePreview
                 data={item}
-                onClick={() => model.favoriteToggled(item)}
+                onClick={() => globalFeed.model.favoriteToggled(item)}
               />
             </li>
           ),
@@ -26,8 +30,8 @@ const GlobalFeedPage: React.FC = () => {
       <Pagination
         current={currentPage}
         pageSize={pageSize}
-        total={totalPages}
-        onItemClick={model.currentPageWasSet}
+        total={articlesCount}
+        onItemClick={globalFeed.model.currentPageWasSet}
       />
       <Spinner loading={loading} />
     </>

@@ -5,19 +5,13 @@ import * as patination from 'features/pagination';
 import * as toggleLike from 'features/toggle-like-on-article';
 import { api } from 'shared/api';
 import { limit } from 'shared/library/limit';
-
-export type fetchFeedFxArgs = Readonly<{
-  pageSize: number;
-  page: number;
-}>;
+import * as types from './types';
 
 export const fetchFeedFx = createEffect<
-  fetchFeedFxArgs,
+  types.fetchFeedFxArgs,
   articleList.types.ArticleList
 >(({ pageSize, page }) => {
-  return api
-    .get(`articles/feed?${limit(pageSize, page)}`)
-    .then(({ data }) => data);
+  return api.get(`articles?${limit(pageSize, page)}`).then(({ data }) => data);
 });
 
 export const { Gate, $feed, $articles, $pageSize, $isEmptyFeed } =

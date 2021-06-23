@@ -22,9 +22,9 @@ export const currentPageWasSet = createEvent<number>();
 export const fetchFeedFx = createEffect<
   types.FetchFeedByTagArgs,
   feed.types.Feed
->(({ tag, page }) => {
+>(({ tag, page, pageSize }) => {
   return api
-    .get(`articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`)
+    .get(`articles?tag=${encodeURIComponent(tag)}&${limit(pageSize, page)}`)
     .then(({ data }) => data);
 });
 

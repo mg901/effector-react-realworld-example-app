@@ -4,9 +4,9 @@ import {
   $feed,
   $currentPage,
   $pageSize,
+  $articlesCount,
   fetchFeedFx,
   $isEmptyFeed,
-  $articlesCount,
 } from './model';
 
 export const useFeed = (): articleList.types.ArticleList => useStore($feed);

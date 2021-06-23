@@ -16,7 +16,7 @@ export const createFeedModel = (options: types.Options = defaultOptions) => {
   const Gate = createGate();
   const $pageSize = createStore<number>(opts.pageSize);
 
-  const $feed = createStore<types.Feed>({
+  const $feed = createStore<types.ArticleList>({
     articles: [],
     articlesCount: 0,
   });

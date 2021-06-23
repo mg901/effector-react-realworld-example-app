@@ -1,14 +1,16 @@
 import { createEffect, createEvent, guard, Store } from 'effector-root';
 import { AxiosError } from 'axios';
 import * as article from 'entities/article';
-import * as feed from 'entities/feed';
+import * as articleList from 'entities/article-list';
 import { api } from 'shared/api';
 import * as router from 'shared/library/router';
 
 type Done = { article: article.types.Article };
 type Fail = AxiosError;
 
-export const createToggleLike = (store: Store<feed.types.Feed>) => {
+export const createToggleLike = (
+  store: Store<articleList.types.ArticleList>,
+) => {
   const favoriteToggled = createEvent<article.types.Article>();
 
   const setFavoriteArticleFx = createEffect<string, Done, Fail>((slug) => {
