@@ -1,23 +1,23 @@
 import { createEffect, sample } from 'effector-root';
 import { status } from 'patronum/status';
-import * as feed from 'shared/feed';
 import { api } from 'shared/api';
+import * as feed from 'shared/feed';
 import { limit } from 'shared/library/limit';
-import * as model from '../../model';
-import * as types from '../../model/types';
+import * as profile from '../../model';
 
-export const fetchFeedFx = createEffect<types.FetchFeedFxArgs, feed.types.Feed>(
-  ({ username, page, pageSize }) => {
-    return api
-      .get(
-        `articles?favorited=${encodeURIComponent(username)}&${limit(
-          pageSize,
-          page,
-        )}`,
-      )
-      .then((response) => response.data);
-  },
-);
+export const fetchFeedFx = createEffect<
+  profile.types.FetchFeedFxArgs,
+  feed.types.Feed
+>(({ username, page, pageSize }) => {
+  return api
+    .get(
+      `articles?favorited=${encodeURIComponent(username)}&${limit(
+        pageSize,
+        page,
+      )}`,
+    )
+    .then((response) => response.data);
+});
 
 export const {
   Gate,
@@ -40,7 +40,7 @@ $feed.on(fetchFeedFx.doneData, (_, payload) => payload);
 sample({
   source: {
     pageSize: $pageSize,
-    username: model.$username,
+    username: profile.model.$username,
     page: $currentPage,
   },
   clock: [Gate.open, currentPageWasSet, setUnfavoriteArticleFx.done],
