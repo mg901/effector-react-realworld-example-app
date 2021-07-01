@@ -2,7 +2,7 @@ import { createEffect, sample } from 'effector-root';
 import { status } from 'patronum/status';
 import * as feed from 'shared/feed';
 import { api } from 'shared/api';
-import { limit } from 'library/limit';
+import { limit } from 'shared/library/limit';
 import * as types from './types';
 
 export const fetchFeedFx = createEffect<types.fetchFeedFxArgs, feed.types.Feed>(

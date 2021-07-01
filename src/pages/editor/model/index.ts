@@ -11,8 +11,8 @@ import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { api } from 'shared/api';
 import { types } from 'shared/feed';
+import { uniq } from 'shared/library/uniq';
 import { history } from 'shared/router';
-import { uniq } from 'library/uniq';
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
 
