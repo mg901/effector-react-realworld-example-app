@@ -1,6 +1,6 @@
-import { Urls } from 'router';
+import { Urls } from 'shared/router';
 
-import { NavItem, NavLink } from 'ui';
+import { NavItem, NavLink } from 'shared/ui';
 
 export const LogoutLinks: React.FC = () => {
   return (

@@ -1,6 +1,6 @@
 import { useGate, useList, useStore } from 'effector-react';
 import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'shared/feed';
-import { Pagination, Spinner } from 'ui';
+import { Pagination, Spinner } from 'shared/ui';
 import * as model from './model';
 
 const FavoritedArticles: React.FC = () => {

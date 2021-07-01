@@ -1,6 +1,6 @@
 import { createEffect, sample } from 'effector-root';
+import { api } from 'shared/api';
 import * as feed from 'shared/feed';
-import { api } from 'api';
 import { limit } from 'library/limit';
 import * as types from './types';
 

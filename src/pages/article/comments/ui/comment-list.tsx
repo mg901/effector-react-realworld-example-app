@@ -1,5 +1,5 @@
 import { useList } from 'effector-react';
-import { List } from 'ui';
+import { List } from 'shared/ui';
 import { $comments } from '../model';
 import { Comment } from './comment';
 

@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import { PrivateRoute } from 'router';
+import { PrivateRoute } from 'shared/router';
 
 const MyArticles = lazy(() => import('./pages/my-articles'));
 const FavoritedArticles = lazy(() => import('./pages/favorited-articles'));

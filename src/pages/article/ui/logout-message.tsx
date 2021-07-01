@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AuthCosumer } from 'router';
+import { AuthCosumer } from 'shared/router';
 
 export const LogoutMessage: React.FC = () => {
   return (

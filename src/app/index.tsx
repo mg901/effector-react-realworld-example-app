@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 import { Router } from 'react-router-dom';
 import { useGate } from 'effector-react';
-import { AuthProvider, history, AuthCosumer } from 'router';
-import { Header, Spinner } from 'ui';
-import { APP_NAME } from 'config';
+import { APP_NAME } from 'shared/config';
+import { Header, Spinner } from 'shared/ui';
+import { AuthProvider, history, AuthCosumer } from 'shared/router';
 import { Gate } from './model';
 import { Routes } from './routes';
 import { LoginLinks } from './ui/login-links';
@@ -11,7 +11,7 @@ import { LoginLinks } from './ui/login-links';
 import { Logo } from './ui/logo';
 import { LogoutLinks } from './ui/logout-links';
 
-import 'ui/main.css';
+import 'shared/ui/main.css';
 
 export const App: React.FC = () => {
   useGate(Gate);

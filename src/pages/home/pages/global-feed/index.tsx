@@ -1,6 +1,6 @@
 import { useGate, useList, useStore } from 'effector-react';
 import { ArticlesWrapper, ArticlePreview } from 'shared/feed';
-import { Pagination, Spinner } from 'ui';
+import { Pagination, Spinner } from 'shared/ui';
 import * as model from './model';
 
 const GlobalFeedPage: React.FC = () => {

@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import { Container, Row } from 'ui';
+import { Container, Row } from 'shared/ui';
 import { $profile } from '../model';
 import { EditMode } from './edit-mode';
 import { FollowUser } from './follow-user';

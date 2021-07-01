@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import { TagList, Tag } from 'ui';
+import { TagList, Tag } from 'shared/ui';
 import * as model from '../model';
 
 export const Tags: React.FC = () => {

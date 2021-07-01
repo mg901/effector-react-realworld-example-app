@@ -1,5 +1,5 @@
 import { useField } from 'effector-forms';
-import { InputField } from 'ui';
+import { InputField } from 'shared/ui';
 import { form } from '../model';
 
 export const EmailField: React.FC = () => {

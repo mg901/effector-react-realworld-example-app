@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useGate, useStore } from 'effector-react';
-import { Row, Page } from 'ui';
+import { Row, Page } from 'shared/ui';
 import { Comments } from './comments';
 import * as model from './model';
 import { Content } from './ui/content';

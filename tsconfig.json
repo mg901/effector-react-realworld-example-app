@@ -18,7 +18,7 @@
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "paths": {
       "api": ["./src/api"],
-      "router": ["./src/router"],
+      "router": ["src/shared/router"],
       "config": ["./src/config"],
       "library/*": ["./src/library/*"],
       "shared/*": ["./src/shared/*"],
