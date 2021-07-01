@@ -17,13 +17,8 @@
     "baseUrl": ".",
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "paths": {
-      "api": ["./src/api"],
-      "router": ["src/shared/router"],
-      "config": ["./src/config"],
-      "library/*": ["./src/library/*"],
       "shared/*": ["./src/shared/*"],
-      "pages/*": ["./src/pages/*"],
-      "ui": ["./src/ui"]
+      "pages/*": ["./src/pages/*"]
     }
   },
   "include": ["src/**/*"],
