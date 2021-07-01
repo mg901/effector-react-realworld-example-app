@@ -1,6 +1,6 @@
 import { useField } from 'effector-forms';
 import { InputField } from 'shared/ui';
-import { form } from '../model';
+import { form } from '../model/model';
 
 export const TitleField: React.FC = () => {
   const { value, name, onChange } = useField(form.fields.title);

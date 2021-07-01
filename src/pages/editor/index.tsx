@@ -2,11 +2,8 @@ import { useParams } from 'react-router-dom';
 import { useGate } from 'effector-react';
 import { Page, Row } from 'shared/ui';
 import { AddTag } from './add-tag';
-import { Gate } from './model';
-import { Errors } from './ui/errors';
-import { Form } from './ui/form';
-import { SubmitButton } from './ui/submit-button';
-import { TagList } from './ui/tag-list';
+import { model } from './model';
+import { Errors, Form, SubmitButton, TagList } from './ui';
 
 type Params = Readonly<{
   slug: string;
@@ -14,7 +11,7 @@ type Params = Readonly<{
 
 const Editor: React.FC = () => {
   const params = useParams<Params>();
-  useGate(Gate, params);
+  useGate(model.Gate, params);
 
   return (
     <Page>
