@@ -12,7 +12,7 @@ export { Input, InputProps } from './input';
 export { List } from './list';
 export { NavItem } from './nav-item';
 export { NavLink } from './nav-link';
-export { Pagination } from './pagination';
+export { Pagination } from './pagination/pagination';
 export { Page } from './page';
 export { Row } from './row';
 export { TagList } from './tag-list';

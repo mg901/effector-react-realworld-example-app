@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { PaginationItem } from './pagination-item';
+import { Item } from './item';
 
 type Props = Readonly<{
   total: number;
@@ -23,12 +23,12 @@ export const Pagination: React.FC<Props> = ({
         {pages.map((item) => {
           return (
             <li className="page-item" key={item}>
-              <PaginationItem
-                active={isCurrent(item, current)}
+              <Item
+                active={checkIsActive(item, current)}
                 key={item}
                 onClick={() => onItemClick(item)}>
                 {item}
-              </PaginationItem>
+              </Item>
             </li>
           );
         })}
@@ -41,6 +41,6 @@ function createArray(total: number, pageSize: number): number[] {
   return Array.from({ length: Math.ceil(total / pageSize) }, (_, x) => x + 1);
 }
 
-function isCurrent(item: number, current: number): boolean {
+function checkIsActive(item: number, current: number): boolean {
   return item === current + 1;
 }
