@@ -1,5 +1,9 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
+  env: {
+    browser: true,
+    jest: true,
+  },
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -17,10 +21,6 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
   ],
   plugins: ['@typescript-eslint', 'import-helpers'],
-  env: {
-    browser: true,
-    jest: true,
-  },
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],

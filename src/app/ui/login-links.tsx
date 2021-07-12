@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react';
-import { model } from 'shared/user';
 import { Urls } from 'shared/router';
 import { NavItem, NavLink } from 'shared/ui';
+import { model } from 'shared/user';
 
 export const LoginLinks: React.FC = () => {
   const { username, image } = useStore(model.$user);

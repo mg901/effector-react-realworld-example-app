@@ -9,8 +9,8 @@ import {
 import { status } from 'patronum/status';
 import { api } from 'shared/api';
 import * as feed from 'shared/feed';
-import * as router from 'shared/router';
 import { limit } from 'shared/library/limit';
+import * as router from 'shared/router';
 import * as types from './types';
 
 export const {
