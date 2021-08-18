@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Urls } from 'shared/router';
+import { Urls } from 'shared/library/router';
 import { Page, Row } from 'shared/ui';
 import { Errors } from './ui/errors';
 import { Form } from './ui/form';

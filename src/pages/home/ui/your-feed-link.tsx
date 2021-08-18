@@ -1,4 +1,4 @@
-import { Urls, AuthCosumer } from 'shared/router';
+import { Urls, AuthCosumer } from 'shared/library/router';
 import { NavItem, NavLink } from 'shared/ui';
 
 type Props = Readonly<{

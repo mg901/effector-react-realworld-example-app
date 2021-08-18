@@ -10,7 +10,7 @@ import { createGate, useStore } from 'effector-react';
 import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
 import { api } from 'shared/api';
-import * as router from 'shared/router';
+import * as router from 'shared/library/router';
 import * as types from './types';
 
 const defaultOptions = {

@@ -12,7 +12,7 @@ import { AxiosError } from 'axios';
 import { api } from 'shared/api';
 import { types } from 'shared/feed';
 import { uniq } from 'shared/library/uniq';
-import { history } from 'shared/router';
+import { history } from 'shared/library/router';
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
 

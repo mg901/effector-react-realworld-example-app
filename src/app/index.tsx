@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Router } from 'react-router-dom';
 import { useGate } from 'effector-react';
 import { APP_NAME } from 'shared/config';
-import { AuthProvider, history, AuthCosumer } from 'shared/router';
+import { AuthProvider, history, AuthCosumer } from 'shared/library/router';
 import { Header, Spinner } from 'shared/ui';
 import { Gate } from './model';
 import { Routes } from './routes';

@@ -1,4 +1,4 @@
-import { Urls } from 'shared/router';
+import { Urls } from 'shared/library/router';
 
 import { NavItem, NavLink } from 'shared/ui';
 

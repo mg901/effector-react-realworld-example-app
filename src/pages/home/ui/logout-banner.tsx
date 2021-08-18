@@ -1,5 +1,5 @@
 import { APP_NAME } from 'shared/config';
-import { AuthCosumer } from 'shared/router';
+import { AuthCosumer } from 'shared/library/router';
 import { Banner as UIBanner, Container } from 'shared/ui';
 
 export const LogoutBanner: React.FC = () => (

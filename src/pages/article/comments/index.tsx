@@ -1,5 +1,5 @@
 import { useGate } from 'effector-react';
-import { AuthCosumer } from 'shared/router';
+import { AuthCosumer } from 'shared/library/router';
 import { Gate as ArticleGate } from '../model';
 import { Gate as CommentsGate } from './model';
 import { AddComment } from './ui/add-comment';

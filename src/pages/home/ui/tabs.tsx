@@ -1,7 +1,7 @@
 import { useRouteMatch } from 'react-router-dom';
 import { useStore } from 'effector-react';
 import { createFeedModel } from 'shared/feed';
-import { Urls } from 'shared/router';
+import { Urls } from 'shared/library/router';
 import { NavItem, NavLink } from 'shared/ui';
 import { YourFeedLink } from './your-feed-link';
 

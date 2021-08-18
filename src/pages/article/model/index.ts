@@ -8,7 +8,7 @@ import {
 import { createGate } from 'effector-react';
 import { api } from 'shared/api';
 import { types } from 'shared/feed';
-import { history } from 'shared/router';
+import { history } from 'shared/library/router';
 import * as user from 'shared/user';
 import { GateState } from './types';
 

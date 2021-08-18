@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useList } from 'effector-react';
-import { Urls } from 'shared/router';
+import { Urls } from 'shared/library/router';
 import { TagList as List } from 'shared/ui';
 import { $tags } from '../model';
 
