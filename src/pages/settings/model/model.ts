@@ -7,8 +7,7 @@ import {
 } from 'effector-root';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
-import { AxiosResponse, AxiosError } from 'axios';
-import { api } from 'shared/api';
+import * as api from 'shared/api';
 import { history } from 'shared/library/router';
 import * as user from 'shared/user';
 import { Errors, changeUserDataFxArgs } from './types';
@@ -18,8 +17,8 @@ formSubmitted.watch((e) => e.preventDefault());
 
 export const changeUserDataFx = createEffect<
   changeUserDataFxArgs,
-  AxiosResponse<void>,
-  AxiosError
+  api.types.ApiResponse<void>,
+  api.types.ApiError
 >((payload) => {
   return api.put('user', {
     user: payload,

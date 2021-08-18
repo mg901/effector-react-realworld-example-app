@@ -10,8 +10,7 @@ import {
   guard,
 } from 'effector-root';
 import { createGate } from 'effector-react';
-import { AxiosError } from 'axios';
-import { api } from 'shared/api';
+import * as api from 'shared/api';
 import * as user from 'shared/user';
 import * as types from './types';
 
@@ -23,17 +22,19 @@ export const fetchProfileFx = createEffect<string, types.Profile>(
   },
 );
 
-export const subscribeFx = createEffect<string, types.Profile, AxiosError>(
-  (username) => {
-    return api
-      .post(`profiles/${username}/follow`)
-      .then(({ data }) => data.profile);
-  },
-);
+export const subscribeFx = createEffect<
+  string,
+  types.Profile,
+  api.types.ApiError
+>((username) => {
+  return api
+    .post(`profiles/${username}/follow`)
+    .then(({ data }) => data.profile);
+});
 
 export const unsubscribeFx = createEffect<string, types.Profile>((username) => {
   return api
-    .delete(`profiles/${username}/follow`)
+    .remove(`profiles/${username}/follow`)
     .then(({ data }) => data.profile);
 });
 

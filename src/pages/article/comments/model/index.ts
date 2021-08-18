@@ -8,8 +8,7 @@ import {
 } from 'effector-root';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
-import { AxiosError } from 'axios';
-import { api } from 'shared/api';
+import * as api from 'shared/api';
 import { GateState } from '../../model/types';
 import * as types from './types';
 
@@ -22,7 +21,7 @@ export const fetchCommentsFx = createEffect<string, types.Comments>((slug) => {
 export const fetchCommentFx = createEffect<
   types.AddCommentFxArgs,
   types.Comment,
-  AxiosError
+  api.types.ApiError
 >(({ slug, body }) => {
   return api
     .post(`articles/${slug}/comments`, { body })
@@ -32,9 +31,9 @@ export const fetchCommentFx = createEffect<
 export const deleteCommentFx = createEffect<
   types.DeleteCommentFxArgs,
   void,
-  AxiosError
+  api.types.ApiError
 >(({ slug, id }) => {
-  return api.delete(`articles/${slug}/comments/${id}`);
+  return api.remove(`articles/${slug}/comments/${id}`);
 });
 
 export const Gate = createGate<GateState>();

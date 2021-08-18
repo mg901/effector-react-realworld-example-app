@@ -1,6 +1,6 @@
 import { createEffect, guard } from 'effector-root';
 import { createGate } from 'effector-react';
-import { api } from 'shared/api';
+import * as api from 'shared/api';
 import * as user from 'shared/user';
 
 export const Gate = createGate();

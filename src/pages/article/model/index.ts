@@ -6,7 +6,7 @@ import {
   sample,
 } from 'effector-root';
 import { createGate } from 'effector-react';
-import { api } from 'shared/api';
+import * as api from 'shared/api';
 import { types } from 'shared/feed';
 import { history } from 'shared/library/router';
 import * as user from 'shared/user';
@@ -24,7 +24,7 @@ export const fetchArticleFx = createEffect<string, types.Article>((slug) => {
 });
 
 export const deleteArticleFx = createEffect((slug: string) => {
-  return api.delete<void>(`articles/${slug}`);
+  return api.remove<void>(`articles/${slug}`);
 });
 
 export const Gate = createGate<GateState>();

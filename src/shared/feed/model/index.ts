@@ -7,9 +7,8 @@ import {
   combine,
 } from 'effector-root';
 import { createGate, useStore } from 'effector-react';
-import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
-import { api } from 'shared/api';
+import * as api from 'shared/api';
 import * as router from 'shared/library/router';
 import * as types from './types';
 
@@ -35,14 +34,14 @@ export const createFeedModel = (
   const setFavoriteArticleFx = createEffect<
     string,
     types.FavoriteArticle,
-    AxiosError
+    api.types.ApiError
   >((slug) => {
     return api.post(`articles/${slug}/favorite`).then(({ data }) => data);
   });
 
   const setUnfavoriteArticleFx = createEffect<string, types.UnfavoriteArticle>(
     (slug) => {
-      return api.delete(`articles/${slug}/favorite`).then(({ data }) => data);
+      return api.remove(`articles/${slug}/favorite`).then(({ data }) => data);
     },
   );
 

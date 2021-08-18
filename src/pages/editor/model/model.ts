@@ -8,11 +8,10 @@ import {
 } from 'effector-root';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
-import { AxiosError } from 'axios';
-import { api } from 'shared/api';
+import * as api from 'shared/api';
 import { types } from 'shared/feed';
-import { uniq } from 'shared/library/uniq';
 import { history } from 'shared/library/router';
+import { uniq } from 'shared/library/uniq';
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
 
@@ -20,15 +19,17 @@ export const formSubmitted = createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
 export const tagDeleted = createEvent<string>();
-export const createArticleFx = createEffect<Form, types.Article, AxiosError>(
-  (form) => {
-    return api
-      .post('articles', {
-        article: form,
-      })
-      .then(({ data }) => data.article);
-  },
-);
+export const createArticleFx = createEffect<
+  Form,
+  types.Article,
+  api.types.ApiError
+>((form) => {
+  return api
+    .post('articles', {
+      article: form,
+    })
+    .then(({ data }) => data.article);
+});
 
 export const fetchArticleFx = createEffect((slug: string) => {
   return api

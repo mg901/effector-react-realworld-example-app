@@ -7,7 +7,7 @@ import {
   sample,
 } from 'effector-root';
 import { status } from 'patronum/status';
-import { api } from 'shared/api';
+import * as api from 'shared/api';
 import * as feed from 'shared/feed';
 import { limit } from 'shared/library/limit';
 import * as router from 'shared/library/router';
