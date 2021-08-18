@@ -1,2 +1,3 @@
 export * as model from './model';
-export * as types from './model/types';
+export * as selectors from './selectors';
+export * as types from './types';

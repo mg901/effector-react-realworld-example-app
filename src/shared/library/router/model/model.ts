@@ -1,5 +1,5 @@
 import { createDomain, restore } from 'effector-root';
-import { history, Location } from '../history';
+import { history, Location } from '../router';
 
 export const domain = createDomain('router');
 export const locationUpdated = domain.createEvent<Location>();

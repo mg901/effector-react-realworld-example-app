@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react';
 import * as user from 'entities/user';
-import { Urls } from 'shared/library/router';
+import { URLS } from 'shared/library/router';
 import { NavItem, NavLink } from 'shared/ui';
 
 export const LoginLinks: React.FC = () => {
@@ -9,18 +9,18 @@ export const LoginLinks: React.FC = () => {
   return (
     <>
       <NavItem>
-        <NavLink to={Urls.ROOT}>Home</NavLink>
+        <NavLink to={URLS.ROOT}>Home</NavLink>
       </NavItem>
 
       <NavItem>
-        <NavLink to={Urls.EDITOR}>
+        <NavLink to={URLS.EDITOR}>
           <i className="ion-compose" />
           &nbsp;New Post
         </NavLink>
       </NavItem>
 
       <NavItem>
-        <NavLink to={Urls.SETTINGS}>
+        <NavLink to={URLS.SETTINGS}>
           <i className="ion-gear-a" />
           &nbsp;Settings
         </NavLink>

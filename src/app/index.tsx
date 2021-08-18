@@ -1,8 +1,9 @@
 import { Suspense } from 'react';
 import { Router } from 'react-router-dom';
 import { useGate } from 'effector-react';
+import * as user from 'entities/user';
 import { APP_NAME } from 'shared/config';
-import { AuthProvider, history, AuthCosumer } from 'shared/library/router';
+import { history } from 'shared/library/router';
 import { Header, Spinner } from 'shared/ui';
 import { Gate } from './model';
 import { Routes } from './routes';
@@ -15,22 +16,19 @@ import 'shared/ui/main.css';
 
 export const App: React.FC = () => {
   useGate(Gate);
+  const isAuth = user.selectors.useIsAuth();
 
   return (
     <Router history={history}>
-      <AuthProvider>
-        <Header>
-          <Logo title={APP_NAME} />
-          <ul className="nav navbar-nav pull-xs-right">
-            <AuthCosumer>
-              {({ isAuth }) => (isAuth ? <LoginLinks /> : <LogoutLinks />)}
-            </AuthCosumer>
-          </ul>
-        </Header>
-        <Suspense fallback={<Spinner loading />}>
-          <Routes />
-        </Suspense>
-      </AuthProvider>
+      <Header>
+        <Logo title={APP_NAME} />
+        <ul className="nav navbar-nav pull-xs-right">
+          {isAuth ? <LoginLinks /> : <LogoutLinks />}
+        </ul>
+      </Header>
+      <Suspense fallback={<Spinner loading />}>
+        <Routes />
+      </Suspense>
     </Router>
   );
 };

@@ -1,4 +1,5 @@
-import { Urls, AuthCosumer } from 'shared/library/router';
+import * as user from 'entities/user';
+import { URLS } from 'shared/library/router';
 import { NavItem, NavLink } from 'shared/ui';
 
 type Props = Readonly<{
@@ -6,15 +7,15 @@ type Props = Readonly<{
 }>;
 
 export const YourFeedLink: React.FC<Props> = ({ url }) => {
+  const isAuth = user.selectors.useIsAuth();
+
   return (
-    <AuthCosumer>
-      {({ isAuth }) =>
-        isAuth ? (
-          <NavItem>
-            <NavLink to={`${url}${Urls.YOUR_FEED}`}>Your Feed</NavLink>
-          </NavItem>
-        ) : null
-      }
-    </AuthCosumer>
+    <>
+      {isAuth ? (
+        <NavItem>
+          <NavLink to={`${url}${URLS.YOUR_FEED}`}>Your Feed</NavLink>
+        </NavItem>
+      ) : null}
+    </>
   );
 };
