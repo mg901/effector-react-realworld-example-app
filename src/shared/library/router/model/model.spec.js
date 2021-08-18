@@ -1,5 +1,5 @@
-import { root, fork, allSettled } from 'effector-root';
-import { locationUpdated, $location, $pathname, $search } from './model';
+import { fork, allSettled } from 'effector';
+import * as model from './model';
 
 describe('library/router: ', () => {
   it('should update location', async () => {
@@ -10,16 +10,16 @@ describe('library/router: ', () => {
       search: '?page=27',
     };
 
-    const scope = fork(root);
+    const scope = fork(model.router);
 
-    await allSettled(locationUpdated, {
+    await allSettled(model.locationUpdated, {
       scope,
       params: expected,
     });
 
-    scope.getState($location);
-    expect(scope.getState($location)).toMatchObject(expected);
-    expect(scope.getState($pathname)).toBe(expected.pathname);
-    expect(scope.getState($search)).toBe(expected.search);
+    scope.getState(model.$location);
+    expect(scope.getState(model.$location)).toMatchObject(expected);
+    expect(scope.getState(model.$pathname)).toBe(expected.pathname);
+    expect(scope.getState(model.$search)).toBe(expected.search);
   });
 });
