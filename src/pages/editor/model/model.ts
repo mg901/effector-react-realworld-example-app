@@ -1,11 +1,4 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  sample,
-  forward,
-  guard,
-} from 'effector-root';
+import { createDomain, sample, forward, guard } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import * as api from 'shared/api';
@@ -15,11 +8,12 @@ import { uniq } from 'shared/library/uniq';
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
 
-export const formSubmitted = createEvent<React.FormEvent>();
+export const editor = createDomain('editor');
+export const formSubmitted = editor.createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
-export const tagDeleted = createEvent<string>();
-export const createArticleFx = createEffect<
+export const tagDeleted = editor.createEvent<string>();
+export const createArticleFx = editor.createEffect<
   Form,
   types.Article,
   api.types.ApiError
@@ -31,7 +25,7 @@ export const createArticleFx = createEffect<
     .then(({ data }) => data.article);
 });
 
-export const fetchArticleFx = createEffect((slug: string) => {
+export const fetchArticleFx = editor.createEffect((slug: string) => {
   return api
     .get<{ article: types.Article }>(`articles/${slug}`)
     .then(({ data: { article: a } }) => ({
@@ -131,8 +125,9 @@ createArticleFx.doneData.watch(({ slug }) => {
   history.replace(`/article/${slug}`);
 });
 
-export const $errors = createStore<Errors>({
-  errors: {},
-})
+export const $errors = editor
+  .createStore<Errors>({
+    errors: {},
+  })
   .on(createArticleFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, Gate.close);
