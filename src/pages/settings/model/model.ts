@@ -1,10 +1,4 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  sample,
-  merge,
-} from 'effector-root';
+import { createDomain, sample, merge } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import * as user from 'entities/user';
@@ -12,10 +6,11 @@ import * as api from 'shared/api';
 import { history } from 'shared/library/router';
 import { Errors, changeUserDataFxArgs } from './types';
 
-export const formSubmitted = createEvent<React.FormEvent>();
+export const settingsPage = createDomain('settings-page');
+export const formSubmitted = settingsPage.createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
-export const changeUserDataFx = createEffect<
+export const changeUserDataFx = settingsPage.createEffect<
   changeUserDataFxArgs,
   api.types.ApiResponse<void>,
   api.types.ApiError
@@ -70,8 +65,9 @@ user.model.loggedOutClicked.watch(() => {
   history.push('/');
 });
 
-export const $errors = createStore<Errors>({
-  errors: {},
-})
+export const $errors = settingsPage
+  .createStore<Errors>({
+    errors: {},
+  })
   .on(changeUserDataFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, FormGate.close);
