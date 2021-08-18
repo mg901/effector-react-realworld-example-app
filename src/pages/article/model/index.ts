@@ -1,29 +1,27 @@
-import {
-  createEvent,
-  createEffect,
-  restore,
-  combine,
-  sample,
-} from 'effector-root';
+import { createDomain, restore, combine, sample } from 'effector';
 import { createGate } from 'effector-react';
+import * as article from 'entities/article';
 import * as user from 'entities/user';
 import * as api from 'shared/api';
-import { types } from 'shared/feed';
 import { history } from 'shared/library/router';
 import { GateState } from './types';
 
-export const articleDeleted = createEvent<React.MouseEvent>();
-export const fetchArticleFx = createEffect<string, types.Article>((slug) => {
+export const articlePage = createDomain('article-page');
+export const articleDeleted = articlePage.createEvent<React.MouseEvent>();
+export const fetchArticleFx = articlePage.createEffect<
+  string,
+  article.types.Article
+>((slug) => {
   return api
-    .get<{ article: types.Article }>(`articles/${slug}`)
+    .get<{ article: article.types.Article }>(`articles/${slug}`)
     .then(({ data }) => data.article)
-    .then(({ createdAt, ...article }) => ({
-      ...article,
+    .then(({ createdAt, ...rest }) => ({
+      ...rest,
       createdAt: new Date(createdAt).toDateString(),
     }));
 });
 
-export const deleteArticleFx = createEffect((slug: string) => {
+export const deleteArticleFx = articlePage.createEffect((slug: string) => {
   return api.remove<void>(`articles/${slug}`);
 });
 
