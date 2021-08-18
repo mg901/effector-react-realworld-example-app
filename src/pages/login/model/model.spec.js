@@ -1,5 +1,5 @@
-import { root, fork, allSettled } from 'effector-root';
-import { $user, $token, $isAuthorized } from 'shared/user/model';
+import { fork, allSettled } from 'effector';
+import * as user from 'entities/user';
 import { signInFx, $errors } from './model';
 
 describe('pages/login: ', () => {
@@ -17,14 +17,14 @@ describe('pages/login: ', () => {
 
     signInFx.use(() => expected);
 
-    const scope = fork(root);
-    expect(scope.getState($isAuthorized)).toBeFalsy();
+    const scope = fork(user.model.userDomain);
+    expect(scope.getState(user.model.$isAuthorized)).toBeFalsy();
 
     await allSettled(signInFx, { scope });
 
-    expect(scope.getState($user)).toMatchObject(expected);
-    expect(scope.getState($token)).toBe(expected.token);
-    expect(scope.getState($isAuthorized)).toBeTruthy();
+    expect(scope.getState(user.model.$user)).toMatchObject(expected);
+    expect(scope.getState(user.model.$token)).toBe(expected.token);
+    expect(scope.getState(user.model.$isAuthorized)).toBeTruthy();
   });
 
   it('should return an error if login fails', async () => {
@@ -36,7 +36,7 @@ describe('pages/login: ', () => {
 
     signInFx.use(() => Promise.reject(expected));
 
-    const scope = fork(root);
+    const scope = fork(user.model.userDomain);
     await allSettled(signInFx, { scope });
     expect(scope.getState($errors)).toMatchObject(expected.response.data);
   });
