@@ -1,5 +1,5 @@
 import { useForm } from 'effector-forms';
-import { Form as UIForm, Textarea } from 'shared/ui';
+import { Form as UIForm, FormControl } from 'shared/ui';
 import { form } from '../model';
 import { FormFooter } from './form-footer';
 
@@ -14,11 +14,14 @@ export const AddComment: React.FC = () => {
   return (
     <UIForm className="card comment-form" onSubmit={handleSubmit}>
       <div className="card-block">
-        <Textarea
+        <FormControl
+          as="textarea"
           placeholder="Write a comment..."
           rows={3}
           value={fields.comment.value}
-          onChange={(e) => fields.comment.onChange(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            fields.comment.onChange(e.target.value)
+          }
         />
       </div>
       <FormFooter />
