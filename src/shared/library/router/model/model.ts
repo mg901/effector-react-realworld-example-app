@@ -1,4 +1,4 @@
-import { createDomain, restore } from 'effector-root';
+import { createDomain, restore } from 'effector';
 import { history, Location } from '../history';
 
 export const router = createDomain('router');
