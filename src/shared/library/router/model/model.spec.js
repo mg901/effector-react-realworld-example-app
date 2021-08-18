@@ -1,4 +1,4 @@
-import { fork, allSettled } from 'effector';
+import { fork, allSettled } from 'effector-root';
 import * as model from './model';
 
 describe('library/router: ', () => {
@@ -10,7 +10,7 @@ describe('library/router: ', () => {
       search: '?page=27',
     };
 
-    const scope = fork(model.router);
+    const scope = fork(model.domain);
 
     await allSettled(model.locationUpdated, {
       scope,

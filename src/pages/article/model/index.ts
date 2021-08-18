@@ -6,9 +6,9 @@ import * as api from 'shared/api';
 import { history } from 'shared/library/router';
 import { GateState } from './types';
 
-export const articlePage = createDomain('article-page');
-export const articleDeleted = articlePage.createEvent<React.MouseEvent>();
-export const fetchArticleFx = articlePage.createEffect<
+export const domain = createDomain('article-page');
+export const articleDeleted = domain.createEvent<React.MouseEvent>();
+export const fetchArticleFx = domain.createEffect<
   string,
   article.types.Article
 >((slug) => {
@@ -21,7 +21,7 @@ export const fetchArticleFx = articlePage.createEffect<
     }));
 });
 
-export const deleteArticleFx = articlePage.createEffect((slug: string) => {
+export const deleteArticleFx = domain.createEffect((slug: string) => {
   return api.remove<void>(`articles/${slug}`);
 });
 

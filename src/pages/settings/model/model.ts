@@ -6,11 +6,11 @@ import * as api from 'shared/api';
 import { history } from 'shared/library/router';
 import { Errors, changeUserDataFxArgs } from './types';
 
-export const settingsPage = createDomain('settings-page');
-export const formSubmitted = settingsPage.createEvent<React.FormEvent>();
+export const domain = createDomain('settings-page');
+export const formSubmitted = domain.createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
-export const changeUserDataFx = settingsPage.createEffect<
+export const changeUserDataFx = domain.createEffect<
   changeUserDataFxArgs,
   api.types.ApiResponse<void>,
   api.types.ApiError
@@ -65,7 +65,7 @@ user.model.loggedOutClicked.watch(() => {
   history.push('/');
 });
 
-export const $errors = settingsPage
+export const $errors = domain
   .createStore<Errors>({
     errors: {},
   })

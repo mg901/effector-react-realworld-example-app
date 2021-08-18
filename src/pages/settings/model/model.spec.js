@@ -1,5 +1,5 @@
 import { fork, allSettled } from 'effector';
-import { settingsPage, changeUserDataFx, $errors } from './model';
+import { domain, changeUserDataFx, $errors } from './model';
 
 describe('pages/settings ', () => {
   it('should return an error if you submit a form with an empty password', async () => {
@@ -11,7 +11,7 @@ describe('pages/settings ', () => {
 
     changeUserDataFx.use(() => Promise.reject(expected));
 
-    const scope = fork(settingsPage);
+    const scope = fork(domain);
     await allSettled(changeUserDataFx, { scope });
     expect(scope.getState($errors)).toMatchObject(expected.response.data);
   });

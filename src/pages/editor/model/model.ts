@@ -8,12 +8,12 @@ import { uniq } from 'shared/library/uniq';
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
 
-export const editor = createDomain('editor');
-export const formSubmitted = editor.createEvent<React.FormEvent>();
+export const domain = createDomain('editor-page');
+export const formSubmitted = domain.createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
-export const tagDeleted = editor.createEvent<string>();
-export const createArticleFx = editor.createEffect<
+export const tagDeleted = domain.createEvent<string>();
+export const createArticleFx = domain.createEffect<
   Form,
   types.Article,
   api.types.ApiError
@@ -25,7 +25,7 @@ export const createArticleFx = editor.createEffect<
     .then(({ data }) => data.article);
 });
 
-export const fetchArticleFx = editor.createEffect((slug: string) => {
+export const fetchArticleFx = domain.createEffect((slug: string) => {
   return api
     .get<{ article: types.Article }>(`articles/${slug}`)
     .then(({ data: { article: a } }) => ({
@@ -125,7 +125,7 @@ createArticleFx.doneData.watch(({ slug }) => {
   history.replace(`/article/${slug}`);
 });
 
-export const $errors = editor
+export const $errors = domain
   .createStore<Errors>({
     errors: {},
   })

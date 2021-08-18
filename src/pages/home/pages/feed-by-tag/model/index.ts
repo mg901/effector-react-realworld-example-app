@@ -1,11 +1,4 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  combine,
-  guard,
-  sample,
-} from 'effector-root';
+import { createDomain, combine, guard, sample } from 'effector';
 import { status } from 'patronum/status';
 import * as api from 'shared/api';
 import * as feed from 'shared/feed';
@@ -23,9 +16,10 @@ export const {
   setUnfavoriteArticleFx,
 } = feed.createFeedModel();
 
-export const currentPageWasSet = createEvent<number>();
+export const domain = createDomain('feed-by-tag-page');
+export const currentPageWasSet = domain.createEvent<number>();
 
-export const fetchFeedFx = createEffect<
+export const fetchFeedFx = domain.createEffect<
   types.FetchFeedByTagArgs,
   feed.types.Feed
 >(({ tag, page }) => {
@@ -35,13 +29,12 @@ export const fetchFeedFx = createEffect<
 });
 
 export const $status = status({ effect: fetchFeedFx });
-export const $feed = createStore<types.Feed>({}).on(
-  fetchFeedFx.done,
-  (state, { params, result }) => ({
+export const $feed = domain
+  .createStore<types.Feed>({})
+  .on(fetchFeedFx.done, (state, { params, result }) => ({
     ...state,
     [params.tag]: result,
-  }),
-);
+  }));
 
 export const $feedByTag = combine(
   $feed,

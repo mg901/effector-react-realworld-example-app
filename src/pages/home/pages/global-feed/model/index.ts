@@ -1,4 +1,4 @@
-import { createEffect, sample } from 'effector-root';
+import { createDomain, sample } from 'effector';
 import * as api from 'shared/api';
 import * as feed from 'shared/feed';
 import { limit } from 'shared/library/limit';
@@ -16,13 +16,13 @@ export const {
   useModel,
 } = feed.createFeedModel();
 
-export const fetchFeedFx = createEffect<types.fetchFeedFxArgs, feed.types.Feed>(
-  ({ pageSize, page }) => {
-    return api
-      .get(`articles?${limit(pageSize, page)}`)
-      .then(({ data }) => data);
-  },
-);
+export const domain = createDomain('global-feed-page');
+export const fetchFeedFx = domain.createEffect<
+  types.fetchFeedFxArgs,
+  feed.types.Feed
+>(({ pageSize, page }) => {
+  return api.get(`articles?${limit(pageSize, page)}`).then(({ data }) => data);
+});
 
 $feed.on(fetchFeedFx.doneData, (_, payload) => payload);
 

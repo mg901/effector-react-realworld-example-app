@@ -1,10 +1,4 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  sample,
-  forward,
-} from 'effector-root';
+import { createDomain, sample, forward } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 
@@ -12,18 +6,21 @@ import * as user from 'entities/user';
 import * as api from 'shared/api';
 import { Form, Errors } from './types';
 
-export const formSubmitted = createEvent<React.FormEvent>();
+export const domain = createDomain('registration-page');
+export const formSubmitted = domain.createEvent<React.FormEvent>();
 formSubmitted.watch((e) => e.preventDefault());
 
-export const signUpFx = createEffect<Form, user.types.User, api.types.ApiError>(
-  ({ username, email, password }) => {
-    return api
-      .post('users', {
-        user: { email, password, username },
-      })
-      .then(({ data }) => data.user);
-  },
-);
+export const signUpFx = domain.createEffect<
+  Form,
+  user.types.User,
+  api.types.ApiError
+>(({ username, email, password }) => {
+  return api
+    .post('users', {
+      user: { email, password, username },
+    })
+    .then(({ data }) => data.user);
+});
 
 export const FormGate = createGate();
 
@@ -56,8 +53,9 @@ forward({
 
 user.model.$user.on(signUpFx.doneData, (_, payload) => payload);
 
-export const $errors = createStore<Errors>({
-  errors: {},
-})
+export const $errors = domain
+  .createStore<Errors>({
+    errors: {},
+  })
   .on(signUpFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, FormGate.close);

@@ -1,28 +1,27 @@
 import {
-  createEvent,
-  createEffect,
-  createStore,
+  createDomain,
   restore,
   merge,
   combine,
   forward,
   attach,
   guard,
-} from 'effector-root';
+} from 'effector';
 import { createGate } from 'effector-react';
 import * as user from 'entities/user';
 import * as api from 'shared/api';
 import * as types from './types';
 
-export const toggleFollowing = createEvent<React.MouseEvent>();
+export const domain = createDomain('profile-page');
+export const toggleFollowing = domain.createEvent<React.MouseEvent>();
 
-export const fetchProfileFx = createEffect<string, types.Profile>(
+export const fetchProfileFx = domain.createEffect<string, types.Profile>(
   (username) => {
     return api.get(`profiles/${username}`).then(({ data }) => data.profile);
   },
 );
 
-export const subscribeFx = createEffect<
+export const subscribeFx = domain.createEffect<
   string,
   types.Profile,
   api.types.ApiError
@@ -32,18 +31,19 @@ export const subscribeFx = createEffect<
     .then(({ data }) => data.profile);
 });
 
-export const unsubscribeFx = createEffect<string, types.Profile>((username) => {
-  return api
-    .remove(`profiles/${username}/follow`)
-    .then(({ data }) => data.profile);
-});
+export const unsubscribeFx = domain.createEffect<string, types.Profile>(
+  (username) => {
+    return api
+      .remove(`profiles/${username}/follow`)
+      .then(({ data }) => data.profile);
+  },
+);
 
 export const Gate = createGate<types.GateState>();
 
-export const $username = createStore<string>('').on(
-  Gate.state,
-  (_, { username }) => username,
-);
+export const $username = domain
+  .createStore<string>('')
+  .on(Gate.state, (_, { username }) => username);
 
 export const $profile = restore(
   merge([
