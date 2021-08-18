@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react';
+import * as user from 'entities/user';
 import { AuthCosumer } from 'shared/library/router';
 import { Button, ButtonProps } from 'shared/ui';
-import * as user from 'shared/user';
 import * as types from '../../model/types';
 import './index.css';
 

@@ -1,6 +1,6 @@
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { useStore } from 'effector-react';
-import { model } from 'shared/user';
+import { model } from 'entities/user';
 import { Urls } from '../urls';
 
 export const PrivateRoute: React.FC<RouteProps> = ({

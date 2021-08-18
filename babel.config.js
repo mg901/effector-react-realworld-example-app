@@ -16,6 +16,8 @@ module.exports = {
         root: ['./src'],
         alias: {
           shared: './src/shared',
+          entities: './src/entities',
+          features: './src/features',
           pages: './src/pages',
         },
         extensions: ['.js', '.ts', '.jsx', '.tsx'],

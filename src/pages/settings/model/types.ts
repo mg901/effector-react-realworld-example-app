@@ -1,7 +1,7 @@
-import { types } from 'shared/user';
+import * as user from 'entities/user';
 
 export type changeUserDataFxArgs = Pick<
-  types.User,
+  user.types.User,
   'image' | 'username' | 'bio' | 'email'
 > &
   Readonly<{

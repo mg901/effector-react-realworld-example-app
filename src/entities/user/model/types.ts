@@ -1,5 +1,3 @@
-export type FormField = Readonly<Record<string, string>>;
-
 export type User = Readonly<{
   image: string;
   username: string;

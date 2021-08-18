@@ -1,13 +1,13 @@
 import { createContext } from 'react';
 import { useStore } from 'effector-react';
-import { model } from 'shared/user';
+import * as user from 'entities/user';
 
 const AuthContext = createContext({
   isAuth: false,
 });
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const isAuth = useStore(model.$isAuthorized);
+  const isAuth = useStore(user.model.$isAuthorized);
 
   return (
     <AuthContext.Provider value={{ isAuth }}>{children}</AuthContext.Provider>
