@@ -12,19 +12,9 @@ module.exports = {
   },
   devtool: 'eval-cheap-module-source-map',
   devServer: {
-    hot: true,
-    overlay: true,
-    stats: {
-      'errors-only': true,
-    },
     port: 4100,
     open: false,
     historyApiFallback: true,
-    disableHostCheck: true,
-  },
-  watch: true,
-  watchOptions: {
-    aggregateTimeout: 100,
   },
   plugins: [
     new MiniCssExtractPlugin({

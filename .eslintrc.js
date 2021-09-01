@@ -4,15 +4,13 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2020,
+    ecmaVersion: 2021,
     sourceType: 'module',
   },
   extends: [
     'airbnb',
     'airbnb/hooks',
-    'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
   ],
@@ -41,6 +39,7 @@ module.exports = {
       2,
       'ignorePackages',
       {
+        js: 'never',
         ts: 'never',
         tsx: 'never',
       },
