@@ -1,10 +1,8 @@
-import { ReadonlyDeep } from 'type-fest';
-
 export type Form = Readonly<{
   email: string;
   password: string;
 }>;
 
-export type Errors = ReadonlyDeep<{
+export type Errors = Readonly<{
   errors: Record<string, string>;
 }>;

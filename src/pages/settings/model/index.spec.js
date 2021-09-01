@@ -1,4 +1,4 @@
-import { root, fork, allSettled } from 'effector';
+import { fork, allSettled } from 'effector';
 import { changeUserDataFx, $error } from './index';
 
 describe('pages/settings ', () => {
@@ -11,7 +11,7 @@ describe('pages/settings ', () => {
 
     changeUserDataFx.use(() => Promise.reject(expected));
 
-    const scope = fork(root);
+    const scope = fork();
     await allSettled(changeUserDataFx, { scope });
     expect(scope.getState($error)).toMatchObject(expected.response.data);
   });

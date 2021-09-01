@@ -1,4 +1,4 @@
-import { root, fork, allSettled } from 'effector';
+import { fork, allSettled } from 'effector';
 import { createArticleFx, $error } from './index';
 
 describe('pages/editor ', () => {
@@ -20,7 +20,7 @@ describe('pages/editor ', () => {
 
     createArticleFx.use(() => Promise.reject(expected));
 
-    const scope = fork(root);
+    const scope = fork();
     await allSettled(createArticleFx, { scope });
     expect(scope.getState($error)).toMatchObject(expected.response.data);
   });

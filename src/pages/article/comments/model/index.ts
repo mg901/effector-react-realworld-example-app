@@ -1,4 +1,5 @@
 import {
+  createDomain,
   createEvent,
   createEffect,
   createStore,

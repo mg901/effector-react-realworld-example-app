@@ -1,4 +1,4 @@
-import { root, fork, allSettled } from 'effector';
+import { fork, allSettled } from 'effector';
 import { $user, $token, $isAuthorized } from 'shared/user/model';
 import { signUpFx, $error } from './index';
 
@@ -17,7 +17,7 @@ describe('pages/registration: ', () => {
 
     signUpFx.use(() => expected);
 
-    const scope = fork(root);
+    const scope = fork();
     expect(scope.getState($isAuthorized)).toBeFalsy();
 
     await allSettled(signUpFx, { scope });
@@ -45,7 +45,7 @@ describe('pages/registration: ', () => {
 
     signUpFx.use(() => Promise.reject(expected));
 
-    const scope = fork(root);
+    const scope = fork();
     await allSettled(signUpFx, { scope });
     expect(scope.getState($error)).toMatchObject(expected.response.data);
   });

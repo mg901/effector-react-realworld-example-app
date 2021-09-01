@@ -1,11 +1,4 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  sample,
-  forward,
-  guard,
-} from 'effector';
+import { createDomain, sample, forward, guard } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
@@ -16,20 +9,23 @@ import { uniq } from 'library/uniq';
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
 
-export const formSubmitted = createEvent();
+const domain = createDomain('editor-page');
+export const formSubmitted = domain.createEvent();
 
-export const tagDeleted = createEvent<string>();
-export const createArticleFx = createEffect<Form, types.Article, AxiosError>(
-  (form) => {
-    return api
-      .post('articles', {
-        article: form,
-      })
-      .then(({ data }) => data.article);
-  },
-);
+export const tagDeleted = domain.createEvent<string>();
+export const createArticleFx = domain.createEffect<
+  Form,
+  types.Article,
+  AxiosError
+>((form) => {
+  return api
+    .post('articles', {
+      article: form,
+    })
+    .then(({ data }) => data.article);
+});
 
-export const fetchArticleFx = createEffect((slug: string) => {
+export const fetchArticleFx = domain.createEffect((slug: string) => {
   return api
     .get<{ article: types.Article }>(`articles/${slug}`)
     .then(({ data: { article: a } }) => ({
@@ -129,8 +125,9 @@ createArticleFx.doneData.watch(({ slug }) => {
   history.replace(`/article/${slug}`);
 });
 
-export const $error = createStore<Errors>({
-  errors: {},
-})
+export const $error = domain
+  .createStore<Errors>({
+    errors: {},
+  })
   .on(createArticleFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, Gate.close);

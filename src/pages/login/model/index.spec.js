@@ -1,6 +1,6 @@
-import { root, fork, allSettled } from 'effector';
+import { fork, allSettled } from 'effector';
 import { $user, $token, $isAuthorized } from 'shared/user/model';
-import { signInFx, $error } from './index';
+import { domain, signInFx, $error } from './index';
 
 describe('pages/login: ', () => {
   it('should sign in via email and password', async () => {
@@ -17,7 +17,7 @@ describe('pages/login: ', () => {
 
     signInFx.use(() => expected);
 
-    const scope = fork(root);
+    const scope = fork();
     expect(scope.getState($isAuthorized)).toBeFalsy();
 
     await allSettled(signInFx, { scope });
@@ -36,7 +36,7 @@ describe('pages/login: ', () => {
 
     signInFx.use(() => Promise.reject(expected));
 
-    const scope = fork(root);
+    const scope = fork();
     await allSettled(signInFx, { scope });
     expect(scope.getState($error)).toMatchObject(expected.response.data);
   });

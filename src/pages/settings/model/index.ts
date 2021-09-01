@@ -1,10 +1,4 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  sample,
-  merge,
-} from 'effector';
+import { createDomain, sample, merge } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosResponse, AxiosError } from 'axios';
@@ -13,9 +7,10 @@ import { api } from 'api';
 import { history } from 'router';
 import { Errors, changeUserDataFxArgs } from './types';
 
-export const formSubmitted = createEvent();
+const domain = createDomain('settings-page');
+export const formSubmitted = domain.createEvent();
 
-export const changeUserDataFx = createEffect<
+export const changeUserDataFx = domain.createEffect<
   changeUserDataFxArgs,
   AxiosResponse<void>,
   AxiosError
@@ -70,8 +65,9 @@ user.model.loggedOutClicked.watch(() => {
   history.push('/');
 });
 
-export const $error = createStore<Errors>({
-  errors: {},
-})
+export const $error = domain
+  .createStore<Errors>({
+    errors: {},
+  })
   .on(changeUserDataFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, FormGate.close);
