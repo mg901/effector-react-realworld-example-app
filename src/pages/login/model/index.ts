@@ -1,10 +1,4 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  sample,
-  forward,
-} from 'effector';
+import { createDomain, sample, forward } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
@@ -13,10 +7,10 @@ import { api } from 'api';
 import { history } from 'router';
 import { Form, Errors } from './types';
 
-export const formSubmitted = createEvent<React.FormEvent>();
-formSubmitted.watch((e) => e.preventDefault());
+const domain = createDomain('login-page');
+export const formSubmitted = domain.createEvent();
 
-export const signInFx = createEffect<Form, user.types.User, AxiosError>(
+export const signInFx = domain.createEffect<Form, user.types.User, AxiosError>(
   ({ email, password }) => {
     return api
       .post('users/login', {
@@ -58,8 +52,9 @@ signInFx.done.watch(() => {
 
 user.model.$user.on(signInFx.doneData, (_, payload) => payload);
 
-export const $error = createStore<Errors>({
-  errors: {},
-})
+export const $error = domain
+  .createStore<Errors>({
+    errors: {},
+  })
   .on(signInFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, FormGate.close);
