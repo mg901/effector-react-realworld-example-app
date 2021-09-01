@@ -1,4 +1,4 @@
-import { root, fork, allSettled } from 'effector-root';
+import { root, fork, allSettled } from 'effector';
 import { createArticleFx, $error } from './index';
 
 describe('pages/editor ', () => {

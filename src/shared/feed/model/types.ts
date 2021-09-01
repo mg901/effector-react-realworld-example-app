@@ -1,4 +1,4 @@
-import { Event, Effect, Store, StoreValue } from 'effector-root';
+import { Event, Effect, Store, StoreValue } from 'effector';
 import { Gate } from 'effector-react';
 import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';

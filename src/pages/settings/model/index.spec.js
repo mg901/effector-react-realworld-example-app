@@ -1,4 +1,4 @@
-import { root, fork, allSettled } from 'effector-root';
+import { root, fork, allSettled } from 'effector';
 import { changeUserDataFx, $error } from './index';
 
 describe('pages/settings ', () => {

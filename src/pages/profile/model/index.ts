@@ -8,7 +8,7 @@ import {
   forward,
   attach,
   guard,
-} from 'effector-root';
+} from 'effector';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';
 import * as user from 'shared/user';

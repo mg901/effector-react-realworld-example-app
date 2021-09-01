@@ -1,4 +1,4 @@
-import { createEvent, createStore, guard } from 'effector-root';
+import { createEvent, createStore, guard } from 'effector';
 import { persist } from 'effector-storage/local';
 import { setToken } from 'api';
 import { TOKEN_NAME } from 'config';

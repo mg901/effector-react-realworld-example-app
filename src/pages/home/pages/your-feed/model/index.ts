@@ -1,4 +1,4 @@
-import { createEffect, sample } from 'effector-root';
+import { createEffect, sample } from 'effector';
 import { status } from 'patronum/status';
 import * as feed from 'shared/feed';
 import { api } from 'api';

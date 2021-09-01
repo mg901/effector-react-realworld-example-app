@@ -5,7 +5,7 @@ import {
   combine,
   guard,
   sample,
-} from 'effector-root';
+} from 'effector';
 import { status } from 'patronum/status';
 import * as feed from 'shared/feed';
 import { api } from 'api';

@@ -1,4 +1,4 @@
-import { root, fork, allSettled } from 'effector-root';
+import { root, fork, allSettled } from 'effector';
 import { $user, $token, $isAuthorized } from 'shared/user/model';
 import { signUpFx, $error } from './index';
 

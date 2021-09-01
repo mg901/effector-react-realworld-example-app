@@ -4,7 +4,7 @@ import {
   createStore,
   sample,
   forward,
-} from 'effector-root';
+} from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 

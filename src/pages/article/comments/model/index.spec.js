@@ -1,4 +1,4 @@
-import { root, fork, allSettled } from 'effector-root';
+import { root, fork, allSettled } from 'effector';
 import { fetchCommentFx, $error } from './index';
 
 describe('pages/article  ', () => {

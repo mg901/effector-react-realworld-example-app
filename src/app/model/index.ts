@@ -1,4 +1,4 @@
-import { createEffect, guard } from 'effector-root';
+import { createEffect, guard } from 'effector';
 import { createGate } from 'effector-react';
 import * as user from 'shared/user';
 import { api } from 'api';

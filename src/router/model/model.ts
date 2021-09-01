@@ -1,4 +1,4 @@
-import { createEvent, restore } from 'effector-root';
+import { createEvent, restore } from 'effector';
 import { history, Location } from '../history';
 
 export const locationUpdated = createEvent<Location>();

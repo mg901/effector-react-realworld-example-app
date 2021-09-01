@@ -1,10 +1,4 @@
-import {
-  createEvent,
-  createEffect,
-  restore,
-  combine,
-  sample,
-} from 'effector-root';
+import { createEvent, createEffect, restore, combine, sample } from 'effector';
 import { createGate } from 'effector-react';
 import { types } from 'shared/feed';
 import * as user from 'shared/user';

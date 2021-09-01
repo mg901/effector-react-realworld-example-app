@@ -5,7 +5,7 @@ import {
   sample,
   forward,
   guard,
-} from 'effector-root';
+} from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import { AxiosError } from 'axios';

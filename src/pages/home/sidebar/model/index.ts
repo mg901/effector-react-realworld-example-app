@@ -1,4 +1,4 @@
-import { createEffect, restore, forward } from 'effector-root';
+import { createEffect, restore, forward } from 'effector';
 import { createGate } from 'effector-react';
 import { api } from 'api';
 import { TagsList } from './types';

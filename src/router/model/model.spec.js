@@ -1,4 +1,4 @@
-import { root, fork, allSettled } from 'effector-root';
+import { root, fork, allSettled } from 'effector';
 import { locationUpdated, $location, $pathname, $search } from './model';
 
 describe('library/router: ', () => {

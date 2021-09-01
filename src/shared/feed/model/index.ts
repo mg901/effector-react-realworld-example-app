@@ -5,7 +5,7 @@ import {
   guard,
   sample,
   combine,
-} from 'effector-root';
+} from 'effector';
 import { createGate, useStore } from 'effector-react';
 import { AxiosError } from 'axios';
 import { EffectState } from 'patronum/status';
