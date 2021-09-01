@@ -1,6 +1,6 @@
 import { fork, allSettled } from 'effector';
 import { $user, $token, $isAuthorized } from 'shared/user/model';
-import { domain, signInFx, $error } from './index';
+import { signInFx, $error } from './index';
 
 describe('pages/login: ', () => {
   it('should sign in via email and password', async () => {
