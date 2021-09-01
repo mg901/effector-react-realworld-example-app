@@ -7,8 +7,7 @@ import * as api from 'shared/api';
 import { Form, Errors } from './types';
 
 export const domain = createDomain('registration-page');
-export const formSubmitted = domain.createEvent<React.FormEvent>();
-formSubmitted.watch((e) => e.preventDefault());
+export const formSubmitted = domain.createEvent();
 
 export const signUpFx = domain.createEffect<
   Form,

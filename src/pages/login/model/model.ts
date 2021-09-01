@@ -7,8 +7,7 @@ import { history } from 'shared/library/router';
 import { Form, Errors } from './types';
 
 export const domain = createDomain('login');
-export const formSubmitted = domain.createEvent<React.FormEvent>();
-formSubmitted.watch((e) => e.preventDefault());
+export const formSubmitted = domain.createEvent();
 
 export const signInFx = domain.createEffect<
   Form,
