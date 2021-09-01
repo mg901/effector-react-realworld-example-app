@@ -6,7 +6,7 @@ import * as api from 'shared/api';
 import { history } from 'shared/library/router';
 import { GateState } from './types';
 
-export const domain = createDomain('article-page');
+const domain = createDomain('article-page');
 export const articleDeleted = domain.createEvent<React.MouseEvent>();
 export const fetchArticleFx = domain.createEffect<
   string,

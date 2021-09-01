@@ -14,9 +14,7 @@ module.exports = {
   extends: [
     'airbnb',
     'airbnb/hooks',
-    'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
     'plugin:import/typescript',
     'plugin:@typescript-eslint/recommended',
   ],
@@ -37,6 +35,15 @@ module.exports = {
     'no-shadow': 0,
     'no-use-before-define': 0,
     'newline-before-return': 2,
+    'import/extensions': [
+      2,
+      'ignorePackages',
+      {
+        js: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
     'no-console': [
       2,
       {
@@ -64,14 +71,6 @@ module.exports = {
     'import/no-default-export': 2,
     'import/no-self-import': 2,
     'import/no-named-as-default': 2,
-    'import/extensions': [
-      2,
-      'ignorePackages',
-      {
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
     'import-helpers/order-imports': [
       2,
       {

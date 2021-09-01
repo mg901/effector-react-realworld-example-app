@@ -1,4 +1,4 @@
-import { root, fork, allSettled } from 'effector-root';
+import { fork, allSettled } from 'effector';
 import { fetchCommentFx, $error } from './index';
 
 describe('pages/article  ', () => {
@@ -11,7 +11,7 @@ describe('pages/article  ', () => {
 
     fetchCommentFx.use(() => Promise.reject(expected));
 
-    const scope = fork(root);
+    const scope = fork();
     await allSettled(fetchCommentFx, { scope });
     expect(scope.getState($error)).toMatchObject(expected.response.data);
   });

@@ -9,8 +9,7 @@ import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
 
 export const domain = createDomain('editor-page');
-export const formSubmitted = domain.createEvent<React.FormEvent>();
-formSubmitted.watch((e) => e.preventDefault());
+export const formSubmitted = domain.createEvent();
 
 export const tagDeleted = domain.createEvent<string>();
 export const createArticleFx = domain.createEffect<

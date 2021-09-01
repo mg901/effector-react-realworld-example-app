@@ -1,4 +1,4 @@
-import { Event, Effect, Store, StoreValue } from 'effector-root';
+import { Event, Effect, Store, StoreValue } from 'effector';
 import { Gate } from 'effector-react';
 import { EffectState } from 'patronum/status';
 import * as api from 'shared/api';

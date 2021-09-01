@@ -1,4 +1,4 @@
-import { fork, allSettled } from 'effector-root';
+import { fork, allSettled } from 'effector';
 import * as model from './model';
 
 describe('library/router: ', () => {

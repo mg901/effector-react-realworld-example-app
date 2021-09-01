@@ -1,8 +1,8 @@
 const { resolve } = require('path');
-const { DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
+const { DefinePlugin } = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const { SRC, PUBLIC } = require('./constants');
 
@@ -11,16 +11,22 @@ module.exports = {
   output: {
     path: PUBLIC,
     publicPath: '/effector-react-realworld-example-app/',
-    filename: 'bundle.[contenthash].js',
+    filename: '[name].[contenthash].js',
   },
   optimization: {
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        sourceMap: false,
-      }),
-      new OptimizeCSSAssetsPlugin(),
-    ],
+    moduleIds: 'deterministic',
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+    minimize: true,
+    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
   },
   plugins: [
     new CopyPlugin({
@@ -37,7 +43,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
-    new HashedModuleIdsPlugin(),
     new DefinePlugin({
       'process.env': JSON.stringify(process.env),
     }),

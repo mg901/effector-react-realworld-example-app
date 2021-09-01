@@ -5,7 +5,7 @@ import {
   guard,
   sample,
   combine,
-} from 'effector-root';
+} from 'effector';
 import { createGate, useStore } from 'effector-react';
 import { EffectState } from 'patronum/status';
 import * as api from 'shared/api';

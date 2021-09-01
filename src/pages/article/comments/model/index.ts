@@ -5,7 +5,7 @@ import {
   restore,
   forward,
   sample,
-} from 'effector-root';
+} from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 import * as api from 'shared/api';

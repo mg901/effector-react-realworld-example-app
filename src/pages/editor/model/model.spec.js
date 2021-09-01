@@ -1,5 +1,5 @@
 import { fork, allSettled } from 'effector';
-import { domain, createArticleFx, $errors } from './model';
+import { model } from './index';
 
 describe('pages/editor ', () => {
   it('should return an error if you submit a form with empty fields', async () => {
@@ -18,10 +18,10 @@ describe('pages/editor ', () => {
       },
     };
 
-    createArticleFx.use(() => Promise.reject(expected));
+    model.createArticleFx.use(() => Promise.reject(expected));
 
-    const scope = fork(domain);
-    await allSettled(createArticleFx, { scope });
-    expect(scope.getState($errors)).toMatchObject(expected.response.data);
+    const scope = fork();
+    await allSettled(model.createArticleFx, { scope });
+    expect(scope.getState(model.$errors)).toMatchObject(expected.response.data);
   });
 });

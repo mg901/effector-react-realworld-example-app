@@ -1,4 +1,4 @@
-import { createEvent, sample, guard, forward } from 'effector-root';
+import { createEvent, sample, guard, forward } from 'effector';
 import { createForm } from 'effector-forms';
 
 export const tagAdded = createEvent<string>();

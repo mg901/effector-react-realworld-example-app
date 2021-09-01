@@ -1,6 +1,6 @@
 import { fork, allSettled } from 'effector';
 import * as user from 'entities/user';
-import { signInFx, $errors } from './model';
+import { model } from './index';
 
 describe('pages/login: ', () => {
   it('should sign in via email and password', async () => {
@@ -15,12 +15,12 @@ describe('pages/login: ', () => {
       username: 'John Doe',
     };
 
-    signInFx.use(() => expected);
+    model.signInFx.use(() => expected);
 
-    const scope = fork(user.model.userDomain);
+    const scope = fork();
     expect(scope.getState(user.model.$isAuthorized)).toBeFalsy();
 
-    await allSettled(signInFx, { scope });
+    await allSettled(model.signInFx, { scope });
 
     expect(scope.getState(user.model.$user)).toMatchObject(expected);
     expect(scope.getState(user.model.$token)).toBe(expected.token);
@@ -34,10 +34,10 @@ describe('pages/login: ', () => {
       },
     };
 
-    signInFx.use(() => Promise.reject(expected));
+    model.signInFx.use(() => Promise.reject(expected));
 
-    const scope = fork(user.model.userDomain);
-    await allSettled(signInFx, { scope });
-    expect(scope.getState($errors)).toMatchObject(expected.response.data);
+    const scope = fork();
+    await allSettled(model.signInFx, { scope });
+    expect(scope.getState(model.$errors)).toMatchObject(expected.response.data);
   });
 });
