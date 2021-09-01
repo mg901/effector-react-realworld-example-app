@@ -13,8 +13,7 @@ import { api } from 'api';
 import { history } from 'router';
 import { Form, Errors } from './types';
 
-export const formSubmitted = createEvent<React.FormEvent>();
-formSubmitted.watch((e) => e.preventDefault());
+export const formSubmitted = createEvent();
 
 export const signInFx = createEffect<Form, user.types.User, AxiosError>(
   ({ email, password }) => {

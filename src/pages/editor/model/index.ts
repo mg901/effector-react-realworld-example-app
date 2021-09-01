@@ -16,8 +16,7 @@ import { uniq } from 'library/uniq';
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState, Errors } from './types';
 
-export const formSubmitted = createEvent<React.FormEvent>();
-formSubmitted.watch((e) => e.preventDefault());
+export const formSubmitted = createEvent();
 
 export const tagDeleted = createEvent<string>();
 export const createArticleFx = createEffect<Form, types.Article, AxiosError>(

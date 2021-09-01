@@ -13,8 +13,7 @@ import * as user from 'shared/user';
 import { api } from 'api';
 import { Form, Errors } from './types';
 
-export const formSubmitted = createEvent<React.FormEvent>();
-formSubmitted.watch((e) => e.preventDefault());
+export const formSubmitted = createEvent();
 
 export const signUpFx = createEffect<Form, user.types.User, AxiosError>(
   ({ username, email, password }) => {

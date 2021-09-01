@@ -12,7 +12,11 @@ export const Form: React.FC = () => {
   useGate(model.FormGate);
 
   return (
-    <UIForm onSubmit={model.formSubmitted}>
+    <UIForm
+      onSubmit={(e) => {
+        e.preventDefault();
+        model.formSubmitted();
+      }}>
       <ImageField />
       <UsernameField />
       <BioField />
