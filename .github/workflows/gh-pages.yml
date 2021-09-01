@@ -31,7 +31,6 @@ jobs:
       - run: yarn lint
       - run: yarn test
       - run: yarn build
-      - run: yarn size-limit
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

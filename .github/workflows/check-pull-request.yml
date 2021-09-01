@@ -28,4 +28,3 @@ jobs:
       - run: yarn lint
       - run: yarn test
       - run: yarn build
-      - run: yarn size-limit

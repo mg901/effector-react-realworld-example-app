@@ -34,7 +34,7 @@
   "size-limit": [
     {
       "path": "public/*.*.js",
-      "limit": "90kb"
+      "limit": "111kb"
     }
   ],
   "devDependencies": {
