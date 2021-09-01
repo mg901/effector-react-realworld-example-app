@@ -33,7 +33,7 @@
   },
   "size-limit": [
     {
-      "path": "public/bundle.*.js",
+      "path": "public/*.*.js",
       "limit": "90kb"
     }
   ],
