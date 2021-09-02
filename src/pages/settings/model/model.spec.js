@@ -1,5 +1,5 @@
 import { fork, allSettled } from 'effector';
-import { model } from './index';
+import { model } from './model';
 
 describe('pages/settings ', () => {
   it('should return an error if you submit a form with an empty password', async () => {

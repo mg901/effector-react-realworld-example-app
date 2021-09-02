@@ -1,6 +1,4 @@
 import { useStore } from 'effector-react';
-import { $errors, signUpFx } from './model';
-import { Errors } from './types';
+import { signUpFx } from './model';
 
-export const useErrors = (): Errors => useStore($errors);
 export const useSignUpPending = (): boolean => useStore(signUpFx.pending);

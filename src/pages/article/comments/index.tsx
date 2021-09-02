@@ -1,10 +1,10 @@
 import { useGate } from 'effector-react';
 import * as user from 'entities/user';
+import { ErrorList } from 'features/error-list';
 import { Gate as ArticleGate } from '../model';
 import { Gate as CommentsGate } from './model';
 import { AddComment } from './ui/add-comment';
 import { CommentsList } from './ui/comment-list';
-import { Errors } from './ui/errors';
 
 type Props = Readonly<{
   slug: string;
@@ -19,7 +19,7 @@ export const Comments: React.FC<Props> = ({ slug }) => {
     <>
       {isAuth ? (
         <>
-          <Errors />
+          <ErrorList />
           <AddComment />
           <CommentsList />
         </>

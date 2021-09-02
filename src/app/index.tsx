@@ -1,14 +1,17 @@
 import { Suspense } from 'react';
 import { Router } from 'react-router-dom';
 import { useGate } from 'effector-react';
+
 import * as user from 'entities/user';
 import { APP_NAME } from 'shared/config';
 import { history } from 'shared/library/router';
-import { Header, Spinner } from 'shared/ui';
+import { Spinner } from 'shared/ui';
+
 import { Gate } from './model';
 import { Routes } from './routes';
-import { LoginLinks } from './ui/login-links';
 
+import { Header } from './ui/header';
+import { LoginLinks } from './ui/login-links';
 import { Logo } from './ui/logo';
 import { LogoutLinks } from './ui/logout-links';
 

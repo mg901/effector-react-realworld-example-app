@@ -4484,11 +4484,6 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-features@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/features/-/features-0.1.0.tgz#c0deafd57547f4cab806dfa0fa55294e491fe14c"
-  integrity sha1-wN6v1XVH9Mq4Bt+g+lUpTkkf4Uw=
-
 figures@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/figures/-/figures-2.0.0.tgz#3ab1a2d2a62c8bfb431a0c94cb797a2fce27c962"

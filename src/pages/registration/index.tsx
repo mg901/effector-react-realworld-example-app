@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
+import { ErrorList } from 'features/error-list';
 import { URLS } from 'shared/library/router';
 import { Page, Row } from 'shared/ui';
-import { Errors } from './ui/errors';
 import { Form } from './ui/form';
 
 export const Registration: React.FC = () => (
@@ -13,7 +13,7 @@ export const Registration: React.FC = () => (
         <p className="text-xs-center">
           <Link to={URLS.LOGIN}>Have an account?</Link>
         </p>
-        <Errors />
+        <ErrorList />
         <Form />
       </div>
     </Row>

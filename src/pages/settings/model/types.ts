@@ -7,7 +7,3 @@ export type changeUserDataFxArgs = Pick<
   Readonly<{
     password: string;
   }>;
-
-export type Errors = Readonly<{
-  errors: Readonly<Record<string, string>>;
-}>;

@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useGate } from 'effector-react';
+import { ErrorList } from 'features/error-list';
 import { Page, Row } from 'shared/ui';
 import { AddTag } from './add-tag';
 import { model } from './model';
-import { Errors, Form, SubmitButton, TagList } from './ui';
+import { Form, SubmitButton, TagList } from './ui';
 
 type Params = Readonly<{
   slug: string;
@@ -17,7 +18,7 @@ const Editor: React.FC = () => {
     <Page>
       <Row>
         <div className="col-md-10 offset-md-1 col-xs-12">
-          <Errors />
+          <ErrorList />
           <Form />
           <AddTag />
           <TagList />

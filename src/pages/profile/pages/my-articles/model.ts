@@ -16,7 +16,7 @@ export const fetchFeedFx = createEffect<
         page,
       )}`,
     )
-    .then(({ data }) => data);
+    .then((x) => x.data);
 });
 
 export const {

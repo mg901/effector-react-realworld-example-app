@@ -1,4 +1,4 @@
-import { Container } from './container';
+import { Container } from 'shared/ui';
 
 type Props = Readonly<{
   className?: string;

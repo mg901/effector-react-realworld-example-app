@@ -1,10 +1,12 @@
 import { createDomain, sample, merge } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
+
 import * as user from 'entities/user';
+import * as errorsList from 'features/error-list';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
-import { Errors, changeUserDataFxArgs } from './types';
+import { changeUserDataFxArgs } from './types';
 
 export const domain = createDomain('settings-page');
 export const formSubmitted = domain.createEvent();
@@ -64,9 +66,6 @@ user.model.loggedOutClicked.watch(() => {
   history.push('/');
 });
 
-export const $errors = domain
-  .createStore<Errors>({
-    errors: {},
-  })
+errorsList.model.$errors
   .on(changeUserDataFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, FormGate.close);

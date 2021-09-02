@@ -1,12 +1,15 @@
 import { createDomain, sample, forward, guard } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
+
+import * as errorsList from 'features/error-list';
 import * as api from 'shared/api';
 import { types } from 'shared/feed';
 import { history } from 'shared/library/router';
 import { uniq } from 'shared/library/uniq';
+
 import * as addTagModel from '../add-tag/model';
-import { Form, GateState, Errors } from './types';
+import { Form, GateState } from './types';
 
 export const domain = createDomain('editor-page');
 export const formSubmitted = domain.createEvent();
@@ -124,9 +127,6 @@ createArticleFx.doneData.watch(({ slug }) => {
   history.replace(`/article/${slug}`);
 });
 
-export const $errors = domain
-  .createStore<Errors>({
-    errors: {},
-  })
+errorsList.model.$errors
   .on(createArticleFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, Gate.close);

@@ -1,10 +1,12 @@
 import { createDomain, sample, forward } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
+
 import * as user from 'entities/user';
+import * as errorsList from 'features/error-list';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
-import { Form, Errors } from './types';
+import { Form } from './types';
 
 export const domain = createDomain('login');
 export const formSubmitted = domain.createEvent();
@@ -53,9 +55,6 @@ signInFx.done.watch(() => {
 
 user.model.$user.on(signInFx.doneData, (_, payload) => payload);
 
-export const $errors = domain
-  .createStore<Errors>({
-    errors: {},
-  })
+errorsList.model.$errors
   .on(signInFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, FormGate.close);

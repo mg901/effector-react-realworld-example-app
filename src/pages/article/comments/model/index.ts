@@ -1,13 +1,7 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  restore,
-  forward,
-  sample,
-} from 'effector';
+import { createEvent, createEffect, restore, forward, sample } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
+import * as errorsList from 'features/error-list';
 import * as api from 'shared/api';
 import { GateState } from '../../model/types';
 import * as types from './types';
@@ -83,9 +77,7 @@ sample({
   target: deleteCommentFx,
 });
 
-export const $error = createStore<types.Errors>({
-  errors: {},
-})
+errorsList.model.$errors
   .on(
     [fetchCommentFx.failData, deleteCommentFx.failData],
     (_, error) => error.response?.data,

@@ -3,8 +3,9 @@ import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 
 import * as user from 'entities/user';
+import * as errorsList from 'features/error-list';
 import * as api from 'shared/api';
-import { Form, Errors } from './types';
+import { Form } from './types';
 
 export const domain = createDomain('registration-page');
 export const formSubmitted = domain.createEvent();
@@ -52,9 +53,6 @@ forward({
 
 user.model.$user.on(signUpFx.doneData, (_, payload) => payload);
 
-export const $errors = domain
-  .createStore<Errors>({
-    errors: {},
-  })
+errorsList.model.$errors
   .on(signUpFx.failData, (_, error) => error.response?.data)
   .reset(form.$values, FormGate.close);
