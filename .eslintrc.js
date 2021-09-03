@@ -16,9 +16,10 @@ module.exports = {
     'airbnb/hooks',
     'plugin:prettier/recommended',
     'plugin:import/typescript',
+    'plugin:effector/recommended',
     'plugin:@typescript-eslint/recommended',
   ],
-  plugins: ['@typescript-eslint', 'import-helpers'],
+  plugins: ['@typescript-eslint', 'import-helpers', 'effector'],
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],

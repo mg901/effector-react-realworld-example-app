@@ -4102,6 +4102,13 @@ eslint-module-utils@^2.6.2:
     debug "^3.2.7"
     pkg-dir "^2.0.0"
 
+eslint-plugin-effector@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-effector/-/eslint-plugin-effector-0.2.0.tgz#06837e08ed183d70b067a5e8cd653d2e8e269b5c"
+  integrity sha512-JaAg5sg+50w5lmB3/Mq4fbbNmetCHbrMkIbtnIWvPP0mirpsDkj7S0kRatfUUQ5/9VgyZfzCdOtHIqK+rrL6zQ==
+  dependencies:
+    prettier "^2.3.2"
+
 eslint-plugin-import-helpers@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-import-helpers/-/eslint-plugin-import-helpers-1.1.0.tgz#ab5c3f33de2a2f461061e8a13b143e8499c3baa0"
