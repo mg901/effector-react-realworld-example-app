@@ -1,5 +1,6 @@
 import { fork, allSettled } from 'effector';
-import { model } from './index';
+import * as errorList from 'features/error-list';
+import { createArticleFx } from './model';
 
 describe('pages/editor ', () => {
   it('should return an error if you submit a form with empty fields', async () => {
@@ -18,10 +19,12 @@ describe('pages/editor ', () => {
       },
     };
 
-    model.createArticleFx.use(() => Promise.reject(expected));
+    createArticleFx.use(() => Promise.reject(expected));
 
     const scope = fork();
-    await allSettled(model.createArticleFx, { scope });
-    expect(scope.getState(model.$errors)).toMatchObject(expected.response.data);
+    await allSettled(createArticleFx, { scope });
+    expect(scope.getState(errorList.model.$errors)).toMatchObject(
+      expected.response.data,
+    );
   });
 });

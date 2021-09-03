@@ -7,6 +7,7 @@ import { history } from 'shared/library/router';
 import { GateState } from './types';
 
 const domain = createDomain('article-page');
+
 export const articleDeleted = domain.createEvent<React.MouseEvent>();
 export const fetchArticleFx = domain.createEffect<
   string,
@@ -49,7 +50,7 @@ export const $article = restore(fetchArticleFx.doneData, {
 export const $canModify = combine(
   $article,
   user.model.$user,
-  ({ author }, authUser) => author.username === authUser.username,
+  ({ author }, authUser) => author?.username === authUser.username,
 );
 
 sample({

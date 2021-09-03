@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { App } from './index';
+import { App } from '../../index';
 
 it('should rended the app correctly', () => {
   render(<App />);

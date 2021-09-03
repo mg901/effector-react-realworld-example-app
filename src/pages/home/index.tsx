@@ -1,10 +1,10 @@
 import { Page, Row } from 'shared/ui';
 import { Routes } from './routes';
-import { Sidebar } from './sidebar';
 import { LogoutBanner } from './ui/logout-banner';
+import { Sidebar } from './ui/sidebar';
 import { Tabs } from './ui/tabs';
 
-export const Home: React.FC = () => (
+export const HomePage: React.FC = () => (
   <div className="home-page">
     <LogoutBanner />
     <Page>
@@ -22,4 +22,4 @@ export const Home: React.FC = () => (
   </div>
 );
 
-export default Home;
+export default HomePage;

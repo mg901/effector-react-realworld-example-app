@@ -10,7 +10,7 @@ type Params = Readonly<{
   username: string;
 }>;
 
-const Profile: React.FC = () => {
+const ProfilePage: React.FC = () => {
   const params = useParams<Params>();
   useGate(model.Gate, params);
 
@@ -28,4 +28,4 @@ const Profile: React.FC = () => {
   );
 };
 
-export default Profile;
+export default ProfilePage;

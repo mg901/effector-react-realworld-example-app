@@ -7,7 +7,7 @@ import { Content } from './ui/content';
 import { Header } from './ui/header';
 import { LogoutMessage } from './ui/logout-message';
 
-const Article: React.FC = () => {
+const ArticlePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   useGate(model.Gate, { slug });
   const loading = useStore(model.fetchArticleFx.pending);
@@ -34,4 +34,4 @@ const Article: React.FC = () => {
   );
 };
 
-export default Article;
+export default ArticlePage;

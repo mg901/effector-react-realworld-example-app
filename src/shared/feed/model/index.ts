@@ -36,12 +36,12 @@ export const createFeedModel = (
     types.FavoriteArticle,
     api.types.ApiError
   >((slug) => {
-    return api.post(`articles/${slug}/favorite`).then(({ data }) => data);
+    return api.post(`articles/${slug}/favorite`).then((x) => x.data);
   });
 
   const setUnfavoriteArticleFx = createEffect<string, types.UnfavoriteArticle>(
     (slug) => {
-      return api.remove(`articles/${slug}/favorite`).then(({ data }) => data);
+      return api.remove(`articles/${slug}/favorite`).then((x) => x.data);
     },
   );
 

@@ -2,7 +2,6 @@ import { Event, Effect, Store, StoreValue } from 'effector';
 import { Gate } from 'effector-react';
 import { EffectState } from 'patronum/status';
 import * as api from 'shared/api';
-import { ReadonlyDeep } from 'type-fest';
 
 export type Author = Readonly<{
   username: string;
@@ -11,7 +10,7 @@ export type Author = Readonly<{
   following: boolean;
 }>;
 
-export type Article = ReadonlyDeep<{
+export type Article = Readonly<{
   title: string;
   slug: string;
   body: string;
@@ -24,7 +23,7 @@ export type Article = ReadonlyDeep<{
   favoritesCount: number;
 }>;
 
-export type Feed = ReadonlyDeep<{
+export type Feed = Readonly<{
   articles: readonly Article[];
   articlesCount: number;
 }>;

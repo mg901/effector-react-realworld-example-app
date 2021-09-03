@@ -1,6 +1,7 @@
 import { fork, allSettled } from 'effector';
 import * as user from 'entities/user';
-import { model } from './index';
+import * as errorList from 'features/error-list';
+import { signUpFx } from './model';
 
 describe('pages/registration: ', () => {
   it('should successfully register via username, email and password', async () => {
@@ -15,12 +16,12 @@ describe('pages/registration: ', () => {
       username: 'John Doe',
     };
 
-    model.signUpFx.use(() => expected);
+    signUpFx.use(() => expected);
 
     const scope = fork();
     expect(scope.getState(user.model.$isAuthorized)).toBeFalsy();
 
-    await allSettled(model.signUpFx, { scope });
+    await allSettled(signUpFx, { scope });
 
     expect(scope.getState(user.model.$user)).toMatchObject(expected);
     expect(scope.getState(user.model.$token)).toBe(expected.token);
@@ -43,10 +44,12 @@ describe('pages/registration: ', () => {
       },
     };
 
-    model.signUpFx.use(() => Promise.reject(expected));
+    signUpFx.use(() => Promise.reject(expected));
 
     const scope = fork();
-    await allSettled(model.signUpFx, { scope });
-    expect(scope.getState(model.$errors)).toMatchObject(expected.response.data);
+    await allSettled(signUpFx, { scope });
+    expect(scope.getState(errorList.model.$errors)).toMatchObject(
+      expected.response.data,
+    );
   });
 });

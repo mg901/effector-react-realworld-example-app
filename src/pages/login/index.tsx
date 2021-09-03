@@ -4,7 +4,7 @@ import { URLS } from 'shared/library/router';
 import { Page, Row } from 'shared/ui';
 import { Form } from './ui/form';
 
-const Login: React.FC = () => (
+const LoginPage: React.FC = () => (
   <Page>
     <Row>
       <div className="col-md-6 offset-md-3 col-xs-12">
@@ -21,4 +21,4 @@ const Login: React.FC = () => (
   </Page>
 );
 
-export default Login;
+export default LoginPage;

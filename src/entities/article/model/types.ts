@@ -22,3 +22,7 @@ export type Feed = Readonly<{
   articles: readonly Article[];
   articlesCount: number;
 }>;
+
+export type SelectedArticle = Readonly<{
+  article: Article;
+}>;

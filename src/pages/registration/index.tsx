@@ -4,7 +4,7 @@ import { URLS } from 'shared/library/router';
 import { Page, Row } from 'shared/ui';
 import { Form } from './ui/form';
 
-export const Registration: React.FC = () => (
+export const RegistrationPage: React.FC = () => (
   <Page>
     <Row>
       <div className="col-md-6 offset-md-3 col-xs-12">
@@ -20,4 +20,4 @@ export const Registration: React.FC = () => (
   </Page>
 );
 
-export default Registration;
+export default RegistrationPage;

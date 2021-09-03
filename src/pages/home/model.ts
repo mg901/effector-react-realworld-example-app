@@ -1,11 +1,11 @@
-import { createEffect, restore, forward } from 'effector';
+import { createDomain, restore, forward } from 'effector';
 import { createGate } from 'effector-react';
 import * as api from 'shared/api';
-import { TagsList } from './types';
 
 export const Gate = createGate();
 
-export const fetchTagsFx = createEffect<void, TagsList>(() => {
+const domain = createDomain('home-page');
+export const fetchTagsFx = domain.createEffect<void, readonly string[]>(() => {
   return api.get('tags').then(({ data }) => data.tags);
 });
 

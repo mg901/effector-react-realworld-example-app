@@ -10,7 +10,7 @@ type Params = Readonly<{
   slug: string;
 }>;
 
-const Editor: React.FC = () => {
+const EditorPage: React.FC = () => {
   const params = useParams<Params>();
   useGate(model.Gate, params);
 
@@ -29,4 +29,4 @@ const Editor: React.FC = () => {
   );
 };
 
-export default Editor;
+export default EditorPage;

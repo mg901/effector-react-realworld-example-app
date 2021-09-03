@@ -1,6 +1,6 @@
 import { useForm } from 'effector-forms';
 import { Form as UIForm, FormControl } from 'shared/ui';
-import { form } from '../model';
+import { form } from '../model/model';
 import { FormFooter } from './form-footer';
 
 export const AddComment: React.FC = () => {
