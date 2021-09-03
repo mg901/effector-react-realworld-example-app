@@ -25,7 +25,7 @@ export const fetchFeedFx = domain.createEffect<
 >(({ tag, page }) => {
   return api
     .get(`articles?tag=${encodeURIComponent(tag)}&${limit(10, page)}`)
-    .then(({ data }) => data);
+    .then((x) => x.data);
 });
 
 export const $status = status({ effect: fetchFeedFx });

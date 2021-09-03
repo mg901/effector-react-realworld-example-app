@@ -107,13 +107,6 @@ export const createFeedModel = (
     target: setFavoriteArticleFx.prepend<types.Article>(({ slug }) => slug),
   });
 
-  // guard({
-  //   source: setFavoriteArticleFx.failData,
-  //   filter: (error) => error.response?.status === 401,
-  // }).watch(() => {
-  //   router.history.push(router.URLS.LOGIN);
-  // });
-
   const $model = combine({
     pageSize: $pageSize,
     currentPage: $currentPage,

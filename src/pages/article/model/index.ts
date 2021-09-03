@@ -15,10 +15,10 @@ export const fetchArticleFx = domain.createEffect<
 >((slug) => {
   return api
     .get<{ article: article.types.Article }>(`articles/${slug}`)
-    .then(({ data }) => data.article)
+    .then((x) => x.data.article)
     .then(({ createdAt, ...rest }) => ({
       ...rest,
-      createdAt: new Date(createdAt).toDateString(),
+      createdAt: new Date(createdAt as string).toDateString(),
     }));
 });
 
@@ -50,7 +50,7 @@ export const $article = restore(fetchArticleFx.doneData, {
 export const $canModify = combine(
   $article,
   user.model.$user,
-  ({ author }, authUser) => author?.username === authUser.username,
+  ({ author }, authUser) => author.username === authUser.username,
 );
 
 sample({

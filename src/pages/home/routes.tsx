@@ -3,10 +3,10 @@ import { Switch, Redirect, Route, useRouteMatch } from 'react-router-dom';
 import * as user from 'entities/user';
 import { URLS, PrivateRoute } from 'shared/library/router';
 
-const YourFeed = lazy(() => import('./pages/your-feed'));
-const GlobalFeed = lazy(() => import('./pages/global-feed'));
-const FeedByTab = lazy(() => import('./pages/feed-by-tag'));
-const NoMatch = lazy(() => import('pages/not-match'));
+const YourFeedPage = lazy(() => import('./pages/your-feed'));
+const GlobalFeedPage = lazy(() => import('./pages/global-feed'));
+const FeedByTabPage = lazy(() => import('./pages/feed-by-tag'));
+const NoMatchPage = lazy(() => import('pages/not-match'));
 
 export const Routes: React.FC = () => {
   const { path } = useRouteMatch<{ path: string }>();
@@ -21,10 +21,13 @@ export const Routes: React.FC = () => {
           <Redirect to={`${path}${URLS.GLOBAL_FEED}`} />
         )}
       </Route>
-      <Route component={GlobalFeed} path={`${path}${URLS.GLOBAL_FEED}`} />
-      <PrivateRoute component={YourFeed} path={`${path}${URLS.YOUR_FEED}`} />
-      <Route component={FeedByTab} path={`${path}${URLS.FEED_BY_TAG}`} />
-      <Route component={NoMatch} path="*" />
+      <Route component={GlobalFeedPage} path={`${path}${URLS.GLOBAL_FEED}`} />
+      <PrivateRoute
+        component={YourFeedPage}
+        path={`${path}${URLS.YOUR_FEED}`}
+      />
+      <Route component={FeedByTabPage} path={`${path}${URLS.FEED_BY_TAG}`} />
+      <Route component={NoMatchPage} path="*" />
     </Switch>
   );
 };

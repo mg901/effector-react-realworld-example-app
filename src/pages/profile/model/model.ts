@@ -17,7 +17,7 @@ export const toggleFollowing = domain.createEvent<React.MouseEvent>();
 
 export const fetchProfileFx = domain.createEffect<string, types.Profile>(
   (username) => {
-    return api.get(`profiles/${username}`).then(({ data }) => data.profile);
+    return api.get(`profiles/${username}`).then((x) => x.data.profile);
   },
 );
 
@@ -26,16 +26,14 @@ export const subscribeFx = domain.createEffect<
   types.Profile,
   api.types.ApiError
 >((username) => {
-  return api
-    .post(`profiles/${username}/follow`)
-    .then(({ data }) => data.profile);
+  return api.post(`profiles/${username}/follow`).then((x) => x.data.profile);
 });
 
 export const unsubscribeFx = domain.createEffect<string, types.Profile>(
   (username) => {
     return api
       .remove(`profiles/${username}/follow`)
-      .then(({ data }) => data.profile);
+      .then((x) => x.data.profile);
   },
 );
 

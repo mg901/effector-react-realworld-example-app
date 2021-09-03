@@ -1,14 +1,16 @@
+import { StoreValue } from 'effector';
 import { useStore } from 'effector-react';
-import {
-  $following,
-  $isCurrentUser,
-  $isNotCurrentUser,
-  $profile,
-} from './model';
+import * as model from './model';
 
-import { Profile } from './types';
+export const useIsCurrentUser = (): StoreValue<typeof model.$isCurrentUser> =>
+  useStore(model.$isCurrentUser);
 
-export const useIsCurrentUser = (): boolean => useStore($isCurrentUser);
-export const useFollowing = (): boolean => useStore($following);
-export const useIsNotCurrentUser = (): boolean => useStore($isNotCurrentUser);
-export const useProfile = (): Profile => useStore($profile);
+export const useFollowing = (): StoreValue<typeof model.$following> =>
+  useStore(model.$following);
+
+export const useIsNotCurrentUser = (): StoreValue<
+  typeof model.$isNotCurrentUser
+> => useStore(model.$isNotCurrentUser);
+
+export const useProfile = (): StoreValue<typeof model.$profile> =>
+  useStore(model.$profile);

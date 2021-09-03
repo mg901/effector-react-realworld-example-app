@@ -16,7 +16,7 @@ export type Article = Readonly<{
   body: string;
   createdAt: string;
   updatedAt: string;
-  tagList: string[];
+  tagList: readonly string[];
   description: string;
   author: Author;
   favorited: boolean;

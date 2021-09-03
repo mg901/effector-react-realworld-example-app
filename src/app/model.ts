@@ -6,7 +6,7 @@ import * as api from 'shared/api';
 export const Gate = createGate();
 
 export const fetchUserFx = createEffect<void, user.types.User>(() => {
-  return api.get('user').then(({ data }) => data.user);
+  return api.get('user').then((x) => x.data.user);
 });
 
 user.model.$user.on(fetchUserFx.doneData, (_, payload) => payload);

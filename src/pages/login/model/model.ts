@@ -20,7 +20,7 @@ export const signInFx = domain.createEffect<
     .post('users/login', {
       user: { email, password },
     })
-    .then(({ data }) => data.user);
+    .then((x) => x.data.user);
 });
 
 export const FormGate = createGate();

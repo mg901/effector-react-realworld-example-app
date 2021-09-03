@@ -11,9 +11,9 @@ export const Routes: React.FC = () => {
 
   return (
     <Switch>
+      <Route component={NoMatch} path="*" />
       <PrivateRoute exact component={MyArticles} path={path} />
       <PrivateRoute component={FavoritedArticles} path={`${path}/favorites`} />
-      <Route component={NoMatch} path="*" />
     </Switch>
   );
 };

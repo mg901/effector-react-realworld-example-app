@@ -21,7 +21,7 @@ export const fetchFeedFx = domain.createEffect<
   types.fetchFeedFxArgs,
   feed.types.Feed
 >(({ pageSize, page }) => {
-  return api.get(`articles?${limit(pageSize, page)}`).then(({ data }) => data);
+  return api.get(`articles?${limit(pageSize, page)}`).then((x) => x.data);
 });
 
 $feed.on(fetchFeedFx.doneData, (_, payload) => payload);

@@ -9,7 +9,7 @@ import * as types from './types';
 export const commentDeleted = createEvent<string>();
 
 export const fetchCommentsFx = createEffect<string, types.Comments>((slug) => {
-  return api.get(`articles/${slug}/comments`).then(({ data }) => data.comments);
+  return api.get(`articles/${slug}/comments`).then((x) => x.data.comments);
 });
 
 export const fetchCommentFx = createEffect<
@@ -19,7 +19,7 @@ export const fetchCommentFx = createEffect<
 >(({ slug, body }) => {
   return api
     .post(`articles/${slug}/comments`, { body })
-    .then(({ data }) => data.comment);
+    .then((x) => x.data.comment);
 });
 
 export const deleteCommentFx = createEffect<

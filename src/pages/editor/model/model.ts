@@ -24,7 +24,7 @@ export const createArticleFx = domain.createEffect<
     .post('articles', {
       article: form,
     })
-    .then(({ data }) => data.article);
+    .then((x) => x.data.article);
 });
 
 export const fetchArticleFx = domain.createEffect((slug: string) => {

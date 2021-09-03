@@ -5,22 +5,31 @@ import * as types from './types';
 
 export const domain = createDomain('article');
 
-const currentPageWasSet = domain.createEvent<number>();
-const favoriteToggled = domain.createEvent<types.Article>();
+export const currentPageWasSet = domain.createEvent<number>();
+export const favoriteToggled = domain.createEvent<types.Article>();
 
 const setFavoriteArticleFx = domain.createEffect<
   string,
-  types.SelectedArticle,
-  api.types.ApiError
+  { article: types.Article }
 >((slug) => {
   return api.post(`articles/${slug}/favorite`).then((x) => x.data);
 });
 
 const setUnfavoriteArticleFx = domain.createEffect<
   string,
-  types.SelectedArticle
+  { article: types.Article }
 >(async (slug) => {
   return api.remove(`articles/${slug}/favorite`).then((x) => x.data);
+});
+
+export const $currentTag = router.model.$search.map(
+  (search) => new URLSearchParams(search).get('tag') ?? '',
+);
+
+export const $currentPage = router.model.$search.map((search) => {
+  const page = new URLSearchParams(search).get('page') ?? 1;
+
+  return Number(page) - 1;
 });
 
 export const $feed = domain
@@ -58,11 +67,11 @@ sample({
 guard({
   source: favoriteToggled,
   filter: ({ favorited }) => favorited === true,
-  target: setUnfavoriteArticleFx.prepend<types.Article>((x) => x?.slug),
+  target: setUnfavoriteArticleFx.prepend<types.Article>((x) => x.slug),
 });
 
 guard({
   source: favoriteToggled,
   filter: ({ favorited }) => favorited === false,
-  target: setFavoriteArticleFx.prepend<types.Article>((x) => x?.slug),
+  target: setFavoriteArticleFx.prepend<types.Article>((x) => x.slug),
 });
