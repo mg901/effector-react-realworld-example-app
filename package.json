@@ -100,7 +100,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "axios": "^0.21.3",
+    "axios": "^0.21.4",
     "effector": "^22.1.0",
     "effector-forms": "^0.0.21",
     "effector-react": "^22.0.4",
