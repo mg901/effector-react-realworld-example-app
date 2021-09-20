@@ -1,10 +1,10 @@
-import { types } from 'shared/feed';
+import * as article from 'entities/article';
 
 export type GateState = Readonly<{
   slug: string;
 }>;
 
 export type Form = Pick<
-  types.Article,
+  article.types.Article,
   'slug' | 'title' | 'description' | 'body' | 'tagList'
 >;
