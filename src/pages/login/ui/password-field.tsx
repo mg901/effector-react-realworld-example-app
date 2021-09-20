@@ -1,18 +1,20 @@
 import { useField } from 'effector-forms';
-import { InputField } from 'ui';
-import { form } from '../model';
+import { FormField } from 'shared/ui';
+import { model } from '../model';
 
 export const PasswordField: React.FC = () => {
-  const { name, onChange } = useField(form.fields.password);
+  const { name, onChange } = useField(model.form.fields.password);
 
   return (
-    <InputField
+    <FormField
       autoComplete="current-password"
       className="form-control-lg"
       name={name}
       placeholder="Password"
       type="password"
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        onChange(e.target.value)
+      }
     />
   );
 };

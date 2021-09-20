@@ -1,29 +1,34 @@
 import { lazy } from 'react';
-import { Switch, Redirect, Route } from 'react-router-dom';
-import { Urls, PrivateRoute } from 'router';
+import {
+  Switch,
+  Redirect,
+  Route,
+  URLS,
+  PrivateRoute,
+} from 'shared/library/router';
 
-const Login = lazy(() => import('pages/login'));
-const Registration = lazy(() => import('pages/registration'));
-const Home = lazy(() => import('pages/home'));
-const Editor = lazy(() => import('pages/editor'));
-const Settings = lazy(() => import('pages/settings'));
-const Profile = lazy(() => import('pages/profile'));
-const Article = lazy(() => import('pages/article'));
-const NoMatch = lazy(() => import('pages/not-match'));
+const LoginPage = lazy(() => import('pages/login'));
+const RegistrationPage = lazy(() => import('pages/registration'));
+const HomePage = lazy(() => import('pages/home'));
+const EditorPage = lazy(() => import('pages/editor'));
+const SettingsPage = lazy(() => import('pages/settings'));
+const ProfilePage = lazy(() => import('pages/profile'));
+const ArticlePage = lazy(() => import('pages/article'));
+const NoMatchPage = lazy(() => import('pages/not-match'));
 
 export const Routes: React.FC = () => {
   return (
     <Switch>
-      <Redirect exact from={Urls.ROOT} to={Urls.HOME} />
-      <Route component={Login} path={Urls.LOGIN} />
-      <Route component={Registration} path={Urls.REGISTRATION} />
-      <Route component={Home} path={Urls.HOME} />
-      <PrivateRoute exact component={Editor} path={Urls.EDITOR} />
-      <PrivateRoute component={Editor} path={Urls.EDITOR_SLUG} />
-      <PrivateRoute component={Settings} path={Urls.SETTINGS} />
-      <PrivateRoute component={Profile} path={Urls.PROFILE} />
-      <Route component={Article} path={Urls.ARTICLE} />
-      <Route component={NoMatch} path="*" />
+      <Redirect exact from={URLS.ROOT} to={URLS.HOME} />
+      <Route component={LoginPage} path={URLS.LOGIN} />
+      <Route component={RegistrationPage} path={URLS.REGISTRATION} />
+      <Route component={HomePage} path={URLS.HOME} />
+      <PrivateRoute exact component={EditorPage} path={URLS.EDITOR} />
+      <PrivateRoute component={EditorPage} path={URLS.EDITOR_SLUG} />
+      <PrivateRoute component={SettingsPage} path={URLS.SETTINGS} />
+      <PrivateRoute component={ProfilePage} path={URLS.PROFILE} />
+      <Route component={ArticlePage} path={URLS.ARTICLE} />
+      <Route component={NoMatchPage} path="*" />
     </Switch>
   );
 };

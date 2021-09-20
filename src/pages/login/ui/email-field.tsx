@@ -1,17 +1,19 @@
 import { useField } from 'effector-forms';
-import { InputField } from 'ui';
-import { form } from '../model';
+import { FormField } from 'shared/ui';
+import { model } from '../model';
 
 export const EmailField: React.FC = () => {
-  const { name, onChange } = useField(form.fields.email);
+  const { name, onChange } = useField(model.form.fields.email);
 
   return (
-    <InputField
+    <FormField
       className="form-control-lg"
       name={name}
       placeholder="Email"
       type="email"
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        onChange(e.target.value)
+      }
     />
   );
 };

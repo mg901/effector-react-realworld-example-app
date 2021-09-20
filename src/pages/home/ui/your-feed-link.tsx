@@ -1,20 +1,23 @@
-import { Urls, AuthCosumer } from 'router';
-import { NavItem, NavLink } from 'ui';
+import * as user from 'entities/user';
+import { URLS, NavLink } from 'shared/library/router';
+import { NavItem } from 'shared/ui';
 
 type Props = Readonly<{
   url: string;
 }>;
 
 export const YourFeedLink: React.FC<Props> = ({ url }) => {
+  const isAuth = user.selectors.useIsAuth();
+
   return (
-    <AuthCosumer>
-      {({ isAuth }) =>
-        isAuth ? (
-          <NavItem>
-            <NavLink to={`${url}${Urls.YOUR_FEED}`}>Your Feed</NavLink>
-          </NavItem>
-        ) : null
-      }
-    </AuthCosumer>
+    <>
+      {isAuth ? (
+        <NavItem>
+          <NavLink exact className="nav-link" to={`${url}${URLS.YOUR_FEED}`}>
+            Your Feed
+          </NavLink>
+        </NavItem>
+      ) : null}
+    </>
   );
 };

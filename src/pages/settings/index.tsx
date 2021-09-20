@@ -1,18 +1,20 @@
-import { model } from 'shared/user';
-import { Page, Row, Button } from 'ui';
-import { Errors } from './ui/errors';
+import * as user from 'entities/user';
+import { Page, Row, Button } from 'shared/ui';
+import { ErrorList } from 'widgets/error-list';
 import { Form } from './ui/form';
 
-const Settings: React.FC = () => (
+const SettingsPage: React.FC = () => (
   <Page>
     <Row>
       <div className="col-md-6 offset-md-3 col-xs-12">
         <h1 className="text-xs-center">Your Settings</h1>
-        <Errors />
+        <ErrorList />
         <Form />
         <hr />
 
-        <Button className="btn-outline-danger" onClick={model.loggedOutClicked}>
+        <Button
+          className="btn-outline-danger"
+          onClick={user.model.loggedOutClicked}>
           Or click here to logout.
         </Button>
       </div>
@@ -20,4 +22,4 @@ const Settings: React.FC = () => (
   </Page>
 );
 
-export default Settings;
+export default SettingsPage;

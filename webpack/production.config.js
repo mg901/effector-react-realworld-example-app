@@ -30,7 +30,12 @@ module.exports = {
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: resolve(SRC, '404.html'), to: PUBLIC }],
+      patterns: [
+        {
+          from: resolve(SRC, '404.html'),
+          to: PUBLIC,
+        },
+      ],
       options: {
         concurrency: 100,
       },

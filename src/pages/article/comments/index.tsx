@@ -1,10 +1,10 @@
 import { useGate } from 'effector-react';
-import { AuthCosumer } from 'router';
+import * as user from 'entities/user';
+import { ErrorList } from 'widgets/error-list';
 import { Gate as ArticleGate } from '../model';
-import { Gate as CommentsGate } from './model';
+import * as comments from './model';
 import { AddComment } from './ui/add-comment';
 import { CommentsList } from './ui/comment-list';
-import { Errors } from './ui/errors';
 
 type Props = Readonly<{
   slug: string;
@@ -12,19 +12,18 @@ type Props = Readonly<{
 
 export const Comments: React.FC<Props> = ({ slug }) => {
   useGate(ArticleGate, { slug });
-  useGate(CommentsGate, { slug });
+  useGate(comments.model.Gate, { slug });
+  const isAuth = user.selectors.useIsAuth();
 
   return (
-    <AuthCosumer>
-      {({ isAuth }) =>
-        isAuth ? (
-          <>
-            <Errors />
-            <AddComment />
-            <CommentsList />
-          </>
-        ) : null
-      }
-    </AuthCosumer>
+    <>
+      {isAuth ? (
+        <>
+          <ErrorList />
+          <AddComment />
+          <CommentsList />
+        </>
+      ) : null}
+    </>
   );
 };

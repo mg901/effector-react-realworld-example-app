@@ -1,14 +1,13 @@
-import { useStore } from 'effector-react';
-import { Button } from 'ui';
-import * as model from '../model';
+import { Button } from 'shared/ui';
+import { selectors, model } from '../model';
 
 type Props = Readonly<{
   username: string;
 }>;
 
 export const FollowUser: React.FC<Props> = ({ username }) => {
-  const following = useStore(model.$following);
-  const is = useStore(model.$isAnotherUser);
+  const following = selectors.useFollowing();
+  const is = selectors.useIsNotCurrentUser();
 
   return !is ? null : (
     <Button

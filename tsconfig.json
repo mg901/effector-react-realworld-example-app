@@ -17,13 +17,11 @@
     "baseUrl": ".",
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "paths": {
-      "api": ["./src/api"],
-      "router": ["./src/router"],
-      "config": ["./src/config"],
-      "library/*": ["./src/library/*"],
       "shared/*": ["./src/shared/*"],
-      "pages/*": ["./src/pages/*"],
-      "ui": ["./src/ui"]
+      "entities/*": ["./src/entities/*"],
+      "features/*": ["src/features/*"],
+      "widgets/*": ["src/widgets/*"],
+      "pages/*": ["./src/pages/*"]
     }
   },
   "include": ["src/**/*"],

@@ -1,9 +1,8 @@
-import { useStore } from 'effector-react';
-import { Button } from 'ui';
-import { signUpFx } from '../model';
+import { Button } from 'shared/ui';
+import { selectors } from '../model';
 
 export const SubmitButton: React.FC = () => {
-  const disabled = useStore(signUpFx.pending);
+  const disabled = selectors.useSignUpPending();
 
   return (
     <Button

@@ -1,13 +1,14 @@
-import { useParams } from 'react-router-dom';
 import { useGate, useStore } from 'effector-react';
-import { Row, Page } from 'ui';
+import { useParams } from 'shared/library/router';
+import { Row, Page } from 'shared/ui';
+
 import { Comments } from './comments';
 import * as model from './model';
 import { Content } from './ui/content';
 import { Header } from './ui/header';
 import { LogoutMessage } from './ui/logout-message';
 
-const Article: React.FC = () => {
+const ArticlePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   useGate(model.Gate, { slug });
   const loading = useStore(model.fetchArticleFx.pending);
@@ -34,4 +35,4 @@ const Article: React.FC = () => {
   );
 };
 
-export default Article;
+export default ArticlePage;

@@ -1,6 +1,6 @@
 import { useList } from 'effector-react';
-import { List } from 'ui';
-import { $comments } from '../model';
+import { List } from 'shared/ui';
+import { $comments } from '../model/model';
 import { Comment } from './comment';
 
 export const CommentsList: React.FC = () => (

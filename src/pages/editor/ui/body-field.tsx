@@ -1,17 +1,20 @@
 import { useField } from 'effector-forms';
-import { TextField } from 'ui';
-import { form } from '../model';
+import { FormField } from 'shared/ui';
+import { model } from '../model';
 
 export const BodyField: React.FC = () => {
-  const { value, name, onChange } = useField(form.fields.body);
+  const { value, name, onChange } = useField(model.form.fields.body);
 
   return (
-    <TextField
+    <FormField
+      as="textarea"
       name={name}
       placeholder="Write your article (in markdown)"
       rows={8}
       value={value}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+        onChange(e.target.value)
+      }
     />
   );
 };

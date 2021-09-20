@@ -1,38 +1,33 @@
-import { useGate, useList, useStore } from 'effector-react';
-import { EmptyArticles, ArticlesWrapper, ArticlePreview } from 'shared/feed';
-import { Pagination, Spinner } from 'ui';
-import * as model from './model';
+import { useGate } from 'effector-react';
+import * as article from 'entities/article';
+import {
+  Gate,
+  paginationChanged,
+  favoriteArticleToggled,
+  $articles,
+  selectors,
+} from './model';
 
-const MyArticles: React.FC = () => {
-  useGate(model.Gate);
-  const loading = useStore(model.fetchFeedFx.pending);
-  const { totalPages, currentPage, pageSize, isEmptyFeed } = model.useModel();
+const MyArticlesPage: React.FC = () => {
+  useGate(Gate);
+  const loading = selectors.useLoading();
+  const isEmpty = selectors.useIsEmpty();
+  const pageSize = selectors.usePageSize();
+  const pageNumber = selectors.usePageNumber();
+  const totalPages = selectors.useTotalPages();
 
   return (
-    <>
-      <EmptyArticles show={isEmptyFeed} />
-      <ArticlesWrapper>
-        {useList(model.$articles, {
-          getKey: (item) => item.slug,
-          fn: (item) => (
-            <li>
-              <ArticlePreview
-                data={item}
-                onClick={() => model.favoriteToggled(item)}
-              />
-            </li>
-          ),
-        })}
-      </ArticlesWrapper>
-      <Pagination
-        current={currentPage}
-        pageSize={pageSize}
-        total={totalPages}
-        onItemClick={model.currentPageWasSet}
-      />
-      <Spinner loading={loading} />
-    </>
+    <article.Feed
+      articles={$articles}
+      isEmpty={isEmpty}
+      loading={loading}
+      pageNumber={pageNumber}
+      pageSize={pageSize}
+      totalPages={totalPages}
+      onArticleClick={favoriteArticleToggled}
+      onPageChange={paginationChanged}
+    />
   );
 };
 
-export default MyArticles;
+export default MyArticlesPage;

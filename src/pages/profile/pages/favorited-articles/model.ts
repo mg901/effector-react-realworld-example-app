@@ -1,48 +1,50 @@
 import { createEffect, sample } from 'effector';
-import { status } from 'patronum/status';
-import * as feed from 'shared/feed';
-import { api } from 'api';
-import { limit } from 'library/limit';
-import * as model from '../../model';
-import * as types from '../../model/types';
+import { createGate } from 'effector-react';
+import * as article from 'entities/article';
+import * as api from 'shared/api';
+import { limit } from 'shared/library/limit';
+import * as profile from '../../model';
 
-export const fetchFeedFx = createEffect<types.FetchFeedFxArgs, feed.types.Feed>(
-  ({ username, page, pageSize }) => {
-    return api
-      .get(
-        `articles?favorited=${encodeURIComponent(username)}&${limit(
-          pageSize,
-          page,
-        )}`,
-      )
-      .then((response) => response.data);
-  },
-);
+export type FetchFeedFxArgs = Readonly<{
+  username: string;
+  pageIndex: number;
+  pageSize: number;
+}>;
 
-export const {
-  Gate,
-  currentPageWasSet,
-  favoriteToggled,
-  $currentPage,
-  $articles,
-  $totalPages,
-  $feed,
-  $pageSize,
-  setUnfavoriteArticleFx,
-  useModel,
-} = feed.createFeedModel({
-  pageSize: 5,
-  status: status({ effect: fetchFeedFx }),
+export const fetchFeedFx = createEffect<
+  FetchFeedFxArgs,
+  article.types.FeedType
+>(({ username, pageIndex, pageSize }) => {
+  return api
+    .get(
+      `articles?favorited=${encodeURIComponent(username)}&${limit(
+        pageSize,
+        pageIndex,
+      )}`,
+    )
+    .then((x) => x.data);
 });
 
-$feed.on(fetchFeedFx.doneData, (_, payload) => payload);
+export const Gate = createGate();
+
+export const {
+  paginationChanged,
+  favoriteArticleToggled,
+  $pageIndex,
+  $pageSize,
+  $articles,
+  selectors,
+} = article.model.createFeed({
+  effect: fetchFeedFx,
+  pageSize: 5,
+});
 
 sample({
   source: {
+    username: profile.model.$username,
+    pageIndex: $pageIndex,
     pageSize: $pageSize,
-    username: model.$username,
-    page: $currentPage,
   },
-  clock: [Gate.open, currentPageWasSet, setUnfavoriteArticleFx.done],
+  clock: [Gate.open, paginationChanged],
   target: fetchFeedFx,
 });

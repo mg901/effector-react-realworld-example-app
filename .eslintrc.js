@@ -1,5 +1,9 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
+  env: {
+    browser: true,
+    jest: true,
+  },
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -12,13 +16,10 @@ module.exports = {
     'airbnb/hooks',
     'plugin:prettier/recommended',
     'plugin:import/typescript',
+    'plugin:effector/recommended',
     'plugin:@typescript-eslint/recommended',
   ],
-  plugins: ['@typescript-eslint', 'import-helpers'],
-  env: {
-    browser: true,
-    jest: true,
-  },
+  plugins: ['@typescript-eslint', 'import-helpers', 'effector'],
   settings: {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
@@ -31,9 +32,9 @@ module.exports = {
     },
   },
   rules: {
-    'import/no-default-export': 2,
-    'import/no-self-import': 2,
-    'import/no-named-as-default': 2,
+    'arrow-body-style': 0,
+    'no-shadow': 0,
+    'no-use-before-define': 0,
     'newline-before-return': 2,
     'import/extensions': [
       2,
@@ -50,20 +51,14 @@ module.exports = {
         allow: ['error'],
       },
     ],
-    'arrow-body-style': 0,
-    'no-shadow': 0,
-    'no-use-before-define': 0,
+
+    'react/prop-types': 0,
+    'react/react-in-jsx-scope': 0,
+    'react/require-default-props': 0,
     'react/jsx-props-no-spreading': 0,
     'react/jsx-filename-extension': 0,
-    'react/prop-types': 0,
-    'react/jsx-closing-bracket-location': 0,
     'react/jsx-one-expression-per-line': 0,
-    'react/react-in-jsx-scope': 0,
-    'import/prefer-default-export': 0,
-    'import/no-extraneous-dependencies': 0,
-    '@typescript-eslint/no-shadow': 2,
-    '@typescript-eslint/no-unused-vars': 2,
-    '@typescript-eslint/explicit-module-boundary-types': 2,
+    'react/jsx-closing-bracket-location': 0,
     'react/jsx-sort-props': [
       2,
       {
@@ -71,6 +66,12 @@ module.exports = {
         shorthandFirst: true,
       },
     ],
+
+    'import/prefer-default-export': 0,
+    'import/no-extraneous-dependencies': 0,
+    'import/no-default-export': 2,
+    'import/no-self-import': 2,
+    'import/no-named-as-default': 2,
     'import-helpers/order-imports': [
       2,
       {
@@ -94,9 +95,13 @@ module.exports = {
         },
       },
     ],
+
     '@typescript-eslint/ban-types': 0,
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-use-before-define': 0,
+    '@typescript-eslint/no-shadow': 2,
+    '@typescript-eslint/no-unused-vars': 2,
+    '@typescript-eslint/explicit-module-boundary-types': 2,
   },
   overrides: [
     {

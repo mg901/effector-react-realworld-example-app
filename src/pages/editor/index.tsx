@@ -1,26 +1,24 @@
 import { useParams } from 'react-router-dom';
 import { useGate } from 'effector-react';
-import { Page, Row } from 'ui';
+import { Page, Row } from 'shared/ui';
+import { ErrorList } from 'widgets/error-list';
 import { AddTag } from './add-tag';
-import { Gate } from './model';
-import { Errors } from './ui/errors';
-import { Form } from './ui/form';
-import { SubmitButton } from './ui/submit-button';
-import { TagList } from './ui/tag-list';
+import { model } from './model';
+import { Form, SubmitButton, TagList } from './ui';
 
 type Params = Readonly<{
   slug: string;
 }>;
 
-const Editor: React.FC = () => {
+const EditorPage: React.FC = () => {
   const params = useParams<Params>();
-  useGate(Gate, params);
+  useGate(model.Gate, params);
 
   return (
     <Page>
       <Row>
         <div className="col-md-10 offset-md-1 col-xs-12">
-          <Errors />
+          <ErrorList />
           <Form />
           <AddTag />
           <TagList />
@@ -31,4 +29,4 @@ const Editor: React.FC = () => {
   );
 };
 
-export default Editor;
+export default EditorPage;

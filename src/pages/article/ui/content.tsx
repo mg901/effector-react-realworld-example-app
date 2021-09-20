@@ -1,6 +1,6 @@
 import { useStore } from 'effector-react';
 import Markdown from 'markdown-to-jsx';
-import { Row } from 'ui';
+import { Row } from 'shared/ui';
 import * as model from '../model';
 import { Tags } from './tags';
 

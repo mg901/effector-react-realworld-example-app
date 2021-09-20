@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
-import { commentDeleted } from '../model';
+import { Link } from 'shared/library/router';
+
+import { commentDeleted } from '../model/model';
 import * as types from '../model/types';
 import { ButtonDelete } from './button-delete';
 

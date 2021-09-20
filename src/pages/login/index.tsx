@@ -1,24 +1,24 @@
 import { Link } from 'react-router-dom';
-import { Urls } from 'router';
-import { Page, Row } from 'ui';
-import { Errors } from './ui/errors';
+import { URLS } from 'shared/library/router';
+import { Page, Row } from 'shared/ui';
+import { ErrorList } from 'widgets/error-list';
 import { Form } from './ui/form';
 
-const Login: React.FC = () => (
+const LoginPage: React.FC = () => (
   <Page>
     <Row>
       <div className="col-md-6 offset-md-3 col-xs-12">
         <h1 className="text-xs-center">Sign In</h1>
 
         <p className="text-xs-center">
-          <Link to={Urls.REGISTRATION}>Need an account?</Link>
+          <Link to={URLS.REGISTRATION}>Need an account?</Link>
         </p>
 
-        <Errors />
+        <ErrorList />
         <Form />
       </div>
     </Row>
   </Page>
 );
 
-export default Login;
+export default LoginPage;

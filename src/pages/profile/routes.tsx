@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import { PrivateRoute } from 'router';
+import { PrivateRoute } from 'shared/library/router';
 
 const MyArticles = lazy(() => import('./pages/my-articles'));
 const FavoritedArticles = lazy(() => import('./pages/favorited-articles'));
@@ -11,9 +11,9 @@ export const Routes: React.FC = () => {
 
   return (
     <Switch>
+      <Route component={NoMatch} path="*" />
       <PrivateRoute exact component={MyArticles} path={path} />
       <PrivateRoute component={FavoritedArticles} path={`${path}/favorites`} />
-      <Route component={NoMatch} path="*" />
     </Switch>
   );
 };
