@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import { ArticleMeta } from 'shared/feed';
+import * as article from 'entities/article';
 import { Container, Banner } from 'shared/ui';
 import * as model from '../model';
 import { EditMode } from './edit-mode';
@@ -11,9 +11,9 @@ export const Header: React.FC = () => {
     <Banner>
       <Container>
         <h1>{title}</h1>
-        <ArticleMeta author={author} createdAt={createdAt}>
+        <article.ArticleMeta author={author} createdAt={createdAt}>
           <EditMode />
-        </ArticleMeta>
+        </article.ArticleMeta>
       </Container>
     </Banner>
   );

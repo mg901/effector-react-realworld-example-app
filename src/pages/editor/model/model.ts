@@ -2,8 +2,8 @@ import { createDomain, sample, forward, guard } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 
+import * as article from 'entities/article';
 import * as api from 'shared/api';
-import { types } from 'shared/feed';
 import { history } from 'shared/library/router';
 import { uniq } from 'shared/library/uniq';
 import * as errorsList from 'widgets/error-list';
@@ -17,7 +17,7 @@ export const formSubmitted = domain.createEvent();
 export const tagDeleted = domain.createEvent<string>();
 export const createArticleFx = domain.createEffect<
   Form,
-  types.Article,
+  article.types.Article,
   api.types.ApiError
 >((form) => {
   return api
@@ -29,7 +29,7 @@ export const createArticleFx = domain.createEffect<
 
 export const fetchArticleFx = domain.createEffect((slug: string) => {
   return api
-    .get<{ article: types.Article }>(`articles/${slug}`)
+    .get<{ article: article.types.Article }>(`articles/${slug}`)
     .then(({ data: { article: a } }) => ({
       slug: a.slug,
       title: a.title,
@@ -49,19 +49,19 @@ export const $isEmptySlug = $hasSlug.map((is) => !is);
 export const form = createForm({
   fields: {
     slug: {
-      init: '' as types.Article['slug'],
+      init: '' as article.types.Article['slug'],
     },
     title: {
-      init: '' as types.Article['title'],
+      init: '' as article.types.Article['title'],
     },
     description: {
-      init: '' as types.Article['description'],
+      init: '' as article.types.Article['description'],
     },
     body: {
-      init: '' as types.Article['body'],
+      init: '' as article.types.Article['body'],
     },
     tagList: {
-      init: [] as types.Article['tagList'],
+      init: [] as article.types.Article['tagList'],
     },
   },
 });
