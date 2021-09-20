@@ -3,8 +3,8 @@ import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 
 import * as user from 'entities/user';
-import * as errorsList from 'features/error-list';
 import * as api from 'shared/api';
+import * as errorsList from 'widgets/error-list';
 import { Form } from './types';
 
 export const domain = createDomain('registration-page');

@@ -1,8 +1,8 @@
 import { createEvent, createEffect, restore, forward, sample } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
-import * as errorsList from 'features/error-list';
 import * as api from 'shared/api';
+import * as errorsList from 'widgets/error-list';
 import { GateState } from '../../model/types';
 import * as types from './types';
 
@@ -27,7 +27,7 @@ export const deleteCommentFx = createEffect<
   void,
   api.types.ApiError
 >(({ slug, id }) => {
-  return api.remove(`articles/${slug}/comments/${id}`);
+  return api.del(`articles/${slug}/comments/${id}`);
 });
 
 export const Gate = createGate<GateState>();

@@ -1,6 +1,6 @@
 import { useGate } from 'effector-react';
 import * as user from 'entities/user';
-import { ErrorList } from 'features/error-list';
+import { ErrorList } from 'widgets/error-list';
 import { Gate as ArticleGate } from '../model';
 import * as comments from './model';
 import { AddComment } from './ui/add-comment';

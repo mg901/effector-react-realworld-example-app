@@ -8118,6 +8118,16 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-polymorphic-box@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/react-polymorphic-box/-/react-polymorphic-box-3.0.3.tgz#4d0fe6e874a288c5c0868dce514962b100815d04"
+  integrity sha512-UUm65IGKXW7/KW4z4hyPFaQ8GMcdRMlMm3jPlU26DZ8CaWUbNP3wLD9dfjjSapgFC63uXCibtn6Th6IYd1Cm8g==
+
+react-polymorphic-types@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-polymorphic-types/-/react-polymorphic-types-2.0.0.tgz#0c0230ec8d1af9c57f92e3c2c033928669b1184c"
+  integrity sha512-Xfz5qfEzLAvB2ijL9hZfHRa9bsQG6te262KHjnbezZ2XyubnSDzh3TV6OgvBsQsz7FCRHjbDbqA5UTkNEziTlw==
+
 react-router-dom@^5.2.1:
   version "5.2.1"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.2.1.tgz#34af8b551a4ce17487d3f80e651b91651978dff6"

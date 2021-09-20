@@ -3,47 +3,36 @@ import { createGate } from 'effector-react';
 import * as article from 'entities/article';
 import * as api from 'shared/api';
 import { limit } from 'shared/library/limit';
-import * as profile from '../../model';
 
-export type FetchFeedFxArgs = Readonly<{
-  username: string;
-  pageIndex: number;
+export type fetchFeedFxArgs = Readonly<{
   pageSize: number;
+  pageIndex: number;
 }>;
 
 export const fetchFeedFx = createEffect<
-  FetchFeedFxArgs,
+  fetchFeedFxArgs,
   article.types.FeedType
->(({ username, pageIndex, pageSize }) => {
-  return api
-    .get(
-      `articles?favorited=${encodeURIComponent(username)}&${limit(
-        pageSize,
-        pageIndex,
-      )}`,
-    )
-    .then((x) => x.data);
-});
+>(({ pageSize, pageIndex }) =>
+  api.get(`articles/feed?${limit(pageSize, pageIndex)}`).then((x) => x.data),
+);
 
 export const Gate = createGate();
 
 export const {
   paginationChanged,
   favoriteArticleToggled,
-  $pageIndex,
   $pageSize,
+  $pageIndex,
   $articles,
   selectors,
 } = article.model.createFeed({
   effect: fetchFeedFx,
-  pageSize: 5,
 });
 
 sample({
   source: {
-    username: profile.model.$username,
-    pageIndex: $pageIndex,
     pageSize: $pageSize,
+    pageIndex: $pageIndex,
   },
   clock: [Gate.open, paginationChanged],
   target: fetchFeedFx,

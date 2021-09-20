@@ -31,9 +31,7 @@ export const subscribeFx = domain.createEffect<
 
 export const unsubscribeFx = domain.createEffect<string, types.Profile>(
   (username) => {
-    return api
-      .remove(`profiles/${username}/follow`)
-      .then((x) => x.data.profile);
+    return api.del(`profiles/${username}/follow`).then((x) => x.data.profile);
   },
 );
 

@@ -1,6 +1,6 @@
 import * as user from 'entities/user';
-import { ErrorList } from 'features/error-list';
 import { Page, Row, Button } from 'shared/ui';
+import { ErrorList } from 'widgets/error-list';
 import { Form } from './ui/form';
 
 const SettingsPage: React.FC = () => (

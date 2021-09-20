@@ -21,3 +21,6 @@
   -webkit-animation: spinner-border var(--delay) linear infinite;
   animation: spinner-border var(--delay) linear infinite;
 }
+
+.spinner-small {
+}

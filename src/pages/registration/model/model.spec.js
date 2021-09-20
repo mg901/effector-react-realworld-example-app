@@ -1,6 +1,6 @@
 import { fork, allSettled } from 'effector';
 import * as user from 'entities/user';
-import * as errorList from 'features/error-list';
+import * as errorList from 'widgets/error-list';
 import { signUpFx } from './model';
 
 describe('pages/registration: ', () => {

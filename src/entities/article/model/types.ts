@@ -1,11 +1,11 @@
-export type Author = Readonly<{
+export type Author = {
   username: string;
   bio: null | string;
   image: string;
   following: boolean;
-}>;
+};
 
-export type Article = Readonly<{
+export interface Article {
   title: string;
   slug: string;
   body: string;
@@ -16,13 +16,9 @@ export type Article = Readonly<{
   author: Author;
   favorited: boolean;
   favoritesCount: number;
-}>;
+}
 
-export type Feed = Readonly<{
+export interface FeedType {
   articles: readonly Article[];
   articlesCount: number;
-}>;
-
-export type SelectedArticle = Readonly<{
-  article: Article;
-}>;
+}

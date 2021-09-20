@@ -1,6 +1,11 @@
 import { lazy } from 'react';
-import { Switch, Redirect, Route } from 'react-router-dom';
-import { URLS, PrivateRoute } from 'shared/library/router';
+import {
+  Switch,
+  Redirect,
+  Route,
+  URLS,
+  PrivateRoute,
+} from 'shared/library/router';
 
 const LoginPage = lazy(() => import('pages/login'));
 const RegistrationPage = lazy(() => import('pages/registration'));

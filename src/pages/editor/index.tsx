@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useGate } from 'effector-react';
-import { ErrorList } from 'features/error-list';
 import { Page, Row } from 'shared/ui';
+import { ErrorList } from 'widgets/error-list';
 import { AddTag } from './add-tag';
 import { model } from './model';
 import { Form, SubmitButton, TagList } from './ui';

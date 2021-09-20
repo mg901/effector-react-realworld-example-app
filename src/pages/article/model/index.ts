@@ -18,12 +18,12 @@ export const fetchArticleFx = domain.createEffect<
     .then((x) => x.data.article)
     .then(({ createdAt, ...rest }) => ({
       ...rest,
-      createdAt: new Date(createdAt as string).toDateString(),
+      createdAt: new Date(createdAt).toDateString(),
     }));
 });
 
 export const deleteArticleFx = domain.createEffect((slug: string) => {
-  return api.remove<void>(`articles/${slug}`);
+  return api.del<void>(`articles/${slug}`);
 });
 
 export const Gate = createGate<GateState>();

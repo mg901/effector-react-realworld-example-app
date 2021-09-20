@@ -5,15 +5,13 @@ import {
   createStore,
   combine,
   restore,
-  split,
   Store,
   Effect,
 } from 'effector';
-import { useStore } from 'effector-react';
 import { persist } from 'effector-storage/query';
 import { status } from 'patronum/status';
+import { types } from 'entities/article';
 import * as api from 'shared/api';
-import * as types from './types';
 
 type Feed = Readonly<{
   articles: readonly types.Article[];
@@ -22,14 +20,14 @@ type Feed = Readonly<{
 
 type Options = {
   pageSize?: number;
-  effect: Effect<any, Feed, any>;
+  effect: Effect<any, any, any>;
 };
 
 export function createFeed({ pageSize, effect }: Options) {
   const $feed = createStore<Feed>({
     articlesCount: 0,
     articles: [],
-  }).on(effect.doneData, (_, payload) => payload);
+  });
 
   const $totalPages = $feed.map((x) => x.articlesCount);
   const $articles = $feed.map((x) => x.articles);
@@ -43,30 +41,12 @@ export function createFeed({ pageSize, effect }: Options) {
     (st, articles) => (st === 'done' || st === 'fail') && articles.length === 0,
   );
 
-  const { paginationChanged, $pageSize, $pageIndex, $pageNumber } =
-    createPagination(pageSize);
-
-  const { favoriteArticleToggled } = toggleArticleLike($feed);
-
-  const selectors = {
-    useLoading: () => useStore(effect.pending),
-    useIsEmpty: () => useStore($isEmptyFeed),
-    usePageSize: () => useStore($pageSize),
-    usePageIndex: () => useStore($pageIndex),
-    usePageNumber: () => useStore($pageNumber),
-    useTotalPages: () => useStore($totalPages),
-  };
-
   return {
-    paginationChanged,
-    favoriteArticleToggled,
     $totalPages,
     $articles,
     $isEmptyFeed,
-    $pageSize,
-    $pageIndex,
-    $pageNumber,
-    selectors,
+    ...createPagination(pageSize),
+    ...toggleLike($feed),
   };
 }
 
@@ -81,33 +61,33 @@ export function createPagination(pageSize = 10) {
     key: 'page',
   });
 
-  const $pageIndex = $pageCount.map((x) => x - 1);
+  const $currentPage = $pageCount.map((x) => x - 1);
 
   return {
     paginationChanged,
     $pageSize,
     $pageNumber: $pageCount,
-    $pageIndex,
+    $currentPage,
   };
 }
 
-function toggleArticleLike(feed: Store<Feed>) {
-  const favoriteArticleToggled = createEvent<types.Article>();
+function toggleLike(feed: Store<Feed>) {
+  const favoriteToggled = createEvent<types.Article>();
 
   type SelectedArticle = Readonly<{
     article: types.Article;
   }>;
 
   const setFavoriteArticleFx = createEffect<
-    types.Article,
+    string,
     SelectedArticle,
     api.types.ApiError
-  >(({ slug }) => {
+  >((slug) => {
     return api.post(`articles/${slug}/favorite`).then((x) => x.data);
   });
 
-  const setUnfavoriteArticleFx = createEffect<types.Article, SelectedArticle>(
-    ({ slug }) => {
+  const setUnfavoriteArticleFx = createEffect<string, SelectedArticle>(
+    (slug) => {
       return api.del(`articles/${slug}/favorite`).then((x) => x.data);
     },
   );
@@ -117,7 +97,7 @@ function toggleArticleLike(feed: Store<Feed>) {
     (state, { params, result }) => ({
       ...state,
       articles: state.articles.map((article) =>
-        article.slug !== params.slug
+        article.slug !== params
           ? article
           : {
               ...article,
@@ -128,19 +108,7 @@ function toggleArticleLike(feed: Store<Feed>) {
     }),
   );
 
-  split({
-    source: favoriteArticleToggled,
-    match: {
-      favorite: (x) => x.favorited === true,
-      unfavorite: (x) => x.favorited === false,
-    },
-    cases: {
-      favorite: setUnfavoriteArticleFx,
-      unfavorite: setFavoriteArticleFx,
-    },
-  });
-
   return {
-    favoriteArticleToggled,
+    favoriteToggled,
   };
 }

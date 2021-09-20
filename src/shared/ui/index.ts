@@ -9,7 +9,6 @@ export * from './form-field';
 export * from './form-group';
 export * from './list';
 export * from './nav-item';
-export * from './nav-link';
 export * from './pagination';
 export * from './page';
 export * from './row';

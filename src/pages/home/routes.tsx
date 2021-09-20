@@ -5,7 +5,7 @@ import { URLS, PrivateRoute } from 'shared/library/router';
 
 const YourFeedPage = lazy(() => import('./pages/your-feed'));
 const GlobalFeedPage = lazy(() => import('./pages/global-feed'));
-const FeedByTabPage = lazy(() => import('./pages/feed-by-tag'));
+const FeedByTagPage = lazy(() => import('./pages/feed-by-tag'));
 const NoMatchPage = lazy(() => import('pages/not-match'));
 
 export const Routes: React.FC = () => {
@@ -26,7 +26,7 @@ export const Routes: React.FC = () => {
         component={YourFeedPage}
         path={`${path}${URLS.YOUR_FEED}`}
       />
-      <Route component={FeedByTabPage} path={`${path}${URLS.FEED_BY_TAG}`} />
+      <Route component={FeedByTagPage} path={`${path}${URLS.FEED_BY_TAG}`} />
       <Route component={NoMatchPage} path="*" />
     </Switch>
   );

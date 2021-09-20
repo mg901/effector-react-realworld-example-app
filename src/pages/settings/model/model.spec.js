@@ -1,5 +1,5 @@
 import { fork, allSettled } from 'effector';
-import * as errorList from 'features/error-list';
+import * as errorList from 'widgets/error-list';
 import { changeUserDataFx } from './model';
 
 describe('pages/settings ', () => {

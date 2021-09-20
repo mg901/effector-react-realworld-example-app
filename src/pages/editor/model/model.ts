@@ -2,11 +2,11 @@ import { createDomain, sample, forward, guard } from 'effector';
 import { createForm } from 'effector-forms';
 import { createGate } from 'effector-react';
 
-import * as errorsList from 'features/error-list';
 import * as api from 'shared/api';
 import { types } from 'shared/feed';
 import { history } from 'shared/library/router';
 import { uniq } from 'shared/library/uniq';
+import * as errorsList from 'widgets/error-list';
 
 import * as addTagModel from '../add-tag/model';
 import { Form, GateState } from './types';

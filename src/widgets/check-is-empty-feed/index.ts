@@ -5,11 +5,13 @@ export const checkIsEmptyFeed = (
   $articles: Store<any>,
   effect: Effect<any, any, any>,
 ): Store<boolean> => {
-  const $status = status({ effect });
+  const $status = status({
+    effect,
+  });
 
   return combine(
     $status,
     $articles,
-    (is, articles) => is === 'done' && articles.length === 0,
+    (st, articles) => (st === 'done' || st === 'fail') && articles.length === 0,
   );
 };
