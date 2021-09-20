@@ -10,7 +10,7 @@ describe('library/router: ', () => {
       search: '?page=27',
     };
 
-    const scope = fork(model.domain);
+    const scope = fork();
 
     await allSettled(model.locationUpdated, {
       scope,
@@ -19,7 +19,7 @@ describe('library/router: ', () => {
 
     scope.getState(model.$location);
     expect(scope.getState(model.$location)).toMatchObject(expected);
-    expect(scope.getState(model.$pathname)).toBe(expected.pathname);
-    expect(scope.getState(model.$search)).toBe(expected.search);
+    expect(scope.getState(model.$locationPathname)).toBe(expected.pathname);
+    expect(scope.getState(model.$locationSearch)).toBe(expected.search);
   });
 });
