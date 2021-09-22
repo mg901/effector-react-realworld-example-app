@@ -35,7 +35,7 @@ export const Gate = createGate<GateState>();
 export const $slug = Gate.state.map((props) => props.slug);
 
 export const $comments = restore(fetchCommentsFx.doneData, [])
-  .on(fetchCommentFx.doneData, (state, payload) => [payload, ...state])
+  .on(fetchCommentFx.doneData, (state, payload) => [payload].concat(state))
   .on(deleteCommentFx.done, (state, { params }) =>
     state.filter(({ id }) => id !== params.id),
   );
