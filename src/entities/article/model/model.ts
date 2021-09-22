@@ -4,7 +4,6 @@ import {
   createEffect,
   createStore,
   combine,
-  restore,
   split,
   Store,
   Effect,
@@ -74,19 +73,23 @@ export function createPagination(pageSize = 10) {
   const paginationChanged = createEvent<number>();
 
   const $pageSize = createStore<number>(pageSize);
-  const $pageCount = restore(paginationChanged, 1);
+  const $queryPage = createStore('1').on(
+    paginationChanged.map(String),
+    (_, payload) => payload,
+  );
+  const $pageNumber = $queryPage.map(Number);
 
   persist({
-    store: $pageCount,
+    store: $queryPage,
     key: 'page',
   });
 
-  const $pageIndex = $pageCount.map((x) => x - 1);
+  const $pageIndex = $pageNumber.map((x) => x - 1);
 
   return {
     paginationChanged,
     $pageSize,
-    $pageNumber: $pageCount,
+    $pageNumber,
     $pageIndex,
   };
 }

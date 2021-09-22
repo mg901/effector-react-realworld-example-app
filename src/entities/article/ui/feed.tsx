@@ -1,6 +1,6 @@
 import { Store } from 'effector';
 import { useList } from 'effector-react';
-import { Pagination, Spinner } from 'shared/ui';
+import { Pagination, PaginationProps, Spinner } from 'shared/ui';
 import * as types from '../model/types';
 import { ArticlePreview } from './article-preview';
 import { ArticlesWrapper } from './articles-wrapper';
@@ -13,7 +13,7 @@ type Props = Readonly<{
   pageNumber: number;
   totalPages: number;
   articles: Store<types.FeedType['articles']>;
-  onPageChange: (x: number) => void;
+  onPageChange: PaginationProps['onPageChange'];
   onArticleClick: (x: types.Article) => void;
 }>;
 

@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 import { Item } from './item';
 
-type Props = Readonly<{
+export type PaginationProps = Readonly<{
   total: number;
   pageSize: number;
   current: number;
   onPageChange: (x: number) => void;
 }>;
 
-export const Pagination: React.FC<Props> = ({
+export const Pagination: React.FC<PaginationProps> = ({
   total,
   pageSize,
   current,
