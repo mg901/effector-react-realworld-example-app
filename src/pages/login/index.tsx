@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { URLS } from 'shared/library/router';
 import { Page, Row } from 'shared/ui';
 import { ErrorList } from 'widgets/error-list';
-import { Form } from './ui/form';
+import { LoginForm } from './ui/form';
 
 const LoginPage: React.FC = () => (
   <Page>
@@ -15,7 +15,7 @@ const LoginPage: React.FC = () => (
         </p>
 
         <ErrorList />
-        <Form />
+        <LoginForm />
       </div>
     </Row>
   </Page>
