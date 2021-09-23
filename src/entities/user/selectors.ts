@@ -1,4 +1,6 @@
+import { StoreValue } from 'effector';
 import { useStore } from 'effector-react';
 import { $isAuthorized } from './model';
 
-export const useIsAuth = (): boolean => useStore($isAuthorized);
+export const useIsAuth = (): StoreValue<typeof $isAuthorized> =>
+  useStore($isAuthorized);

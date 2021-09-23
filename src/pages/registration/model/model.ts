@@ -1,10 +1,8 @@
-import { createEvent, createEffect } from 'effector';
+import { createEffect } from 'effector';
 import * as user from 'entities/user';
 import * as api from 'shared/api';
 import * as router from 'shared/library/router';
 import * as errorsList from 'widgets/error-list';
-
-export const formSubmitted = createEvent();
 
 type Form = {
   username: string;

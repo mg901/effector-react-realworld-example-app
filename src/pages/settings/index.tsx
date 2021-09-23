@@ -1,7 +1,7 @@
 import * as user from 'entities/user';
 import { Page, Row, Button } from 'shared/ui';
 import { ErrorList } from 'widgets/error-list';
-import { Form } from './ui/form';
+import { SettingsForm } from './ui/form';
 
 const SettingsPage: React.FC = () => (
   <Page>
@@ -9,7 +9,7 @@ const SettingsPage: React.FC = () => (
       <div className="col-md-6 offset-md-3 col-xs-12">
         <h1 className="text-xs-center">Your Settings</h1>
         <ErrorList />
-        <Form />
+        <SettingsForm />
         <hr />
 
         <Button
