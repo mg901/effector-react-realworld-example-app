@@ -1,5 +1,5 @@
 import { useForm } from 'effector-forms';
-import { Form as UIForm, FormControl } from 'shared/ui';
+import { Form } from 'shared/ui';
 import { form } from '../model/model';
 import { FormFooter } from './form-footer';
 
@@ -12,9 +12,9 @@ export const AddComment: React.FC = () => {
   };
 
   return (
-    <UIForm className="card comment-form" onSubmit={handleSubmit}>
+    <Form className="card comment-form" onSubmit={handleSubmit}>
       <div className="card-block">
-        <FormControl
+        <Form.Control
           as="textarea"
           placeholder="Write a comment..."
           rows={3}
@@ -25,6 +25,6 @@ export const AddComment: React.FC = () => {
         />
       </div>
       <FormFooter />
-    </UIForm>
+    </Form>
   );
 };

@@ -1,5 +1,5 @@
 import { useForm } from 'effector-forms';
-import { Form, FormControl } from 'shared/ui';
+import { Form } from 'shared/ui';
 import * as model from './model';
 
 export const AddTag: React.FC = () => {
@@ -7,7 +7,7 @@ export const AddTag: React.FC = () => {
 
   return (
     <Form onSubmit={(e) => e.preventDefault()}>
-      <FormControl
+      <Form.Control
         autoComplete="off"
         name="tag-list"
         placeholder="Enter tags"

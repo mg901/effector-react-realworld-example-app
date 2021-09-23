@@ -1,8 +1,10 @@
 import './index.css';
+import { FormControl } from '../form-control';
+import { FormGroup } from '../form-group';
 
 type Props = Readonly<React.FormHTMLAttributes<HTMLFormElement>>;
 
-export const Form: React.FC<Props> = ({
+const FormComponent: React.FC<Props> = ({
   className = '',
   children,
   ...props
@@ -11,3 +13,8 @@ export const Form: React.FC<Props> = ({
     <fieldset>{children}</fieldset>
   </form>
 );
+
+export const Form = Object.assign(FormComponent, {
+  Group: FormGroup,
+  Control: FormControl,
+});
