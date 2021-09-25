@@ -9,6 +9,10 @@ export const CommentFooter: React.FC<types.Comment> = ({
   createdAt,
   id,
 }) => {
+  const handleDeleteComment = () => {
+    commentDeleted(id);
+  };
+
   return (
     <div className="card-footer">
       <Link className="comment-author" to={`/@${author.username}`}>
@@ -23,7 +27,7 @@ export const CommentFooter: React.FC<types.Comment> = ({
         {author.username}
       </Link>
       <span className="date-posted">{new Date(createdAt).toDateString()}</span>
-      <ButtonDelete author={author} onClick={() => commentDeleted(id)} />
+      <ButtonDelete author={author} onClick={handleDeleteComment} />
     </div>
   );
 };

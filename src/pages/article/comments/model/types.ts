@@ -1,14 +1,10 @@
-import * as article from 'entities/article';
-
-export type Comment = Readonly<{
-  author: article.types.Author;
+export type Comment<Author> = {
+  author: Author;
   body: string;
   id: string;
   createdAt: string;
   updatedAt: string;
-}>;
-
-export type Comments = readonly Comment[];
+};
 
 export type AddCommentFxArgs = Readonly<{
   slug: string;

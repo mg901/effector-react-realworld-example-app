@@ -1,27 +1,26 @@
 import {
-  createDomain,
+  createEvent,
+  createEffect,
+  createStore,
   restore,
   merge,
   combine,
+  split,
   forward,
   attach,
-  guard,
 } from 'effector';
 import { createGate } from 'effector-react';
 import * as user from 'entities/user';
 import * as api from 'shared/api';
 import * as types from './types';
 
-export const domain = createDomain('profile-page');
-export const toggleFollowing = domain.createEvent<React.MouseEvent>();
+export const toggleFollowing = createEvent<React.MouseEvent>();
 
-export const fetchProfileFx = domain.createEffect<string, types.Profile>(
-  (username) => {
-    return api.get(`profiles/${username}`).then((x) => x.data.profile);
-  },
-);
+export const getProfileFx = createEffect<string, types.Profile>((username) => {
+  return api.get(`profiles/${username}`).then((x) => x.data.profile);
+});
 
-export const subscribeFx = domain.createEffect<
+export const subscribeFx = createEffect<
   string,
   types.Profile,
   api.types.ApiError
@@ -29,24 +28,19 @@ export const subscribeFx = domain.createEffect<
   return api.post(`profiles/${username}/follow`).then((x) => x.data.profile);
 });
 
-export const unsubscribeFx = domain.createEffect<string, types.Profile>(
-  (username) => {
-    return api.del(`profiles/${username}/follow`).then((x) => x.data.profile);
-  },
-);
+export const unsubscribeFx = createEffect<string, types.Profile>((username) => {
+  return api.del(`profiles/${username}/follow`).then((x) => x.data.profile);
+});
 
 export const Gate = createGate<types.GateState>();
 
-export const $username = domain
-  .createStore<string>('')
-  .on(Gate.state, (_, { username }) => username);
+export const $username = createStore<string>('').on(
+  Gate.state,
+  (_, { username }) => username,
+);
 
 export const $profile = restore(
-  merge([
-    fetchProfileFx.doneData,
-    subscribeFx.doneData,
-    unsubscribeFx.doneData,
-  ]),
+  merge([getProfileFx.doneData, subscribeFx.doneData, unsubscribeFx.doneData]),
   {
     bio: '',
     following: false,
@@ -67,23 +61,23 @@ export const $isNotCurrentUser = $isCurrentUser.map((is) => !is);
 // fetch profile data after changing the route
 forward({
   from: $username,
-  to: fetchProfileFx,
+  to: getProfileFx,
 });
 
-guard({
+split({
   source: toggleFollowing,
-  filter: $profile.map((x) => x.following === true),
-  target: attach({
-    source: $username,
-    effect: unsubscribeFx,
-  }),
-});
-
-guard({
-  source: toggleFollowing,
-  filter: $profile.map((x) => x.following === false),
-  target: attach({
-    source: $username,
-    effect: subscribeFx,
-  }),
+  match: {
+    subscribe: $profile.map((x) => x.following === false),
+    unsubscribe: $profile.map((x) => x.following === true),
+  },
+  cases: {
+    subscribe: attach({
+      source: $username,
+      effect: unsubscribeFx,
+    }),
+    unsubscribe: attach({
+      source: $username,
+      effect: unsubscribeFx,
+    }),
+  },
 });

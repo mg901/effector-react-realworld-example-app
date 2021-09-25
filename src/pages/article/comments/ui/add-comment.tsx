@@ -1,27 +1,27 @@
-import { useForm } from 'effector-forms';
+// import { useForm } from 'react-hook-form';
 import { Form } from 'shared/ui';
-import { form } from '../model/model';
 import { FormFooter } from './form-footer';
 
 export const AddComment: React.FC = () => {
-  const { submit, fields } = useForm(form);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    submit();
-  };
+  // const { handleSubmit, register } = useForm({
+  //   defaultValues: {
+  //     comment: '',
+  //   },
+  // });
 
   return (
-    <Form className="card comment-form" onSubmit={handleSubmit}>
+    <Form
+      className="card comment-form"
+      // onSubmit={handleSubmit((data) => {
+      //   console.log('data');
+      // })}
+    >
       <div className="card-block">
         <Form.Control
           as="textarea"
           placeholder="Write a comment..."
           rows={3}
-          value={fields.comment.value}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            fields.comment.onChange(e.target.value)
-          }
+          {...register('comment')}
         />
       </div>
       <FormFooter />

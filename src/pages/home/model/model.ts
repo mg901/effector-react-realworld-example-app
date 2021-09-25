@@ -7,13 +7,13 @@ import * as api from 'shared/api';
 export const Gate = createGate();
 
 export const tagSelected = createEvent<string>();
-export const fetchTagsFx = createEffect(() => {
+export const getTagsFx = createEffect(() => {
   return api
     .get('tags')
     .then<article.types.Article['tagList']>((x) => x.data.tags);
 });
 
-export const $tags = restore(fetchTagsFx.doneData, []);
+export const $tags = restore(getTagsFx.doneData, []);
 export const $currentTag = restore(tagSelected, '');
 
 persist({
@@ -23,5 +23,5 @@ persist({
 
 forward({
   from: Gate.open,
-  to: fetchTagsFx,
+  to: getTagsFx,
 });

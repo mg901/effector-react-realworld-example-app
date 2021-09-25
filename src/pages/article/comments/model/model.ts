@@ -1,20 +1,22 @@
-import { createEvent, createEffect, restore, forward, sample } from 'effector';
-import { createForm } from 'effector-forms';
+import { createEvent, createEffect, restore, sample } from 'effector';
 import { createGate } from 'effector-react';
+import * as article from 'entities/article';
 import * as api from 'shared/api';
 import * as errorsList from 'widgets/error-list';
 import { GateState } from '../../model/types';
 import * as types from './types';
 
+type Comment = types.Comment<article.types.Article>;
+
 export const commentDeleted = createEvent<string>();
 
-export const fetchCommentsFx = createEffect<string, types.Comments>((slug) => {
+export const getCommentsFx = createEffect<string, Comment[]>((slug) => {
   return api.get(`articles/${slug}/comments`).then((x) => x.data.comments);
 });
 
-export const fetchCommentFx = createEffect<
+export const getCommentFx = createEffect<
   types.AddCommentFxArgs,
-  types.Comment,
+  Comment,
   api.types.ApiError
 >(({ slug, body }) => {
   return api
@@ -34,41 +36,11 @@ export const Gate = createGate<GateState>();
 
 export const $slug = Gate.state.map((props) => props.slug);
 
-export const $comments = restore(fetchCommentsFx.doneData, [])
-  .on(fetchCommentFx.doneData, (state, payload) => [payload].concat(state))
+export const $comments = restore(getCommentsFx.doneData, [])
+  .on(getCommentFx.doneData, (state, payload) => [payload].concat(state))
   .on(deleteCommentFx.done, (state, { params }) =>
     state.filter(({ id }) => id !== params.id),
   );
-
-export const form = createForm({
-  fields: {
-    comment: {
-      init: '' as string,
-    },
-  },
-});
-
-sample({
-  source: $slug,
-  clock: $slug.updates,
-  target: fetchCommentsFx,
-});
-
-// submit form
-sample({
-  source: {
-    slug: $slug,
-    body: form.fields.comment.$value,
-  },
-  clock: form.submit,
-  target: fetchCommentFx,
-});
-
-// reset form
-forward({
-  from: fetchCommentFx,
-  to: form.reset,
-});
 
 sample({
   source: $slug,
@@ -77,9 +49,7 @@ sample({
   target: deleteCommentFx,
 });
 
-errorsList.model.$errors
-  .on(
-    [fetchCommentFx.failData, deleteCommentFx.failData],
-    (_, error) => error.response?.data,
-  )
-  .reset(form.$touched);
+errorsList.model.$errors.on(
+  [getCommentFx.failData, deleteCommentFx.failData],
+  (_, error) => error.response?.data,
+);

@@ -6,12 +6,8 @@ import { Routes } from './routes';
 import { Tabs } from './ui/tabs';
 import { UserInfo } from './ui/user-info';
 
-type Params = Readonly<{
-  username: string;
-}>;
-
 const ProfilePage: React.FC = () => {
-  const params = useParams<Params>();
+  const params = useParams<{ username: string }>();
   useGate(model.Gate, params);
 
   return (

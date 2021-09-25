@@ -14,7 +14,8 @@ const SettingsPage: React.FC = () => (
 
         <Button
           className="btn-outline-danger"
-          onClick={user.model.loggedOutClicked}>
+          onClick={user.model.loggedOutClicked}
+        >
           Or click here to logout.
         </Button>
       </div>

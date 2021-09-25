@@ -1,17 +1,22 @@
-import { useGate, useStore } from 'effector-react';
+import { useEffect } from 'react';
 import { useParams } from 'shared/library/router';
 import { Row, Page } from 'shared/ui';
 
 import { Comments } from './comments';
-import * as model from './model';
+import { model, selectors } from './model';
 import { Content } from './ui/content';
 import { Header } from './ui/header';
 import { LogoutMessage } from './ui/logout-message';
 
 const ArticlePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  useGate(model.Gate, { slug });
-  const loading = useStore(model.fetchArticleFx.pending);
+  const loading = selectors.useGetArticlePending();
+
+  useEffect(() => {
+    if (slug) {
+      model.getArticleFx(slug);
+    }
+  }, [slug]);
 
   return (
     <>

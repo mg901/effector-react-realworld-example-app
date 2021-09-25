@@ -102,6 +102,7 @@
   },
   "dependencies": {
     "axios": "^0.21.4",
+    "clsx": "^1.1.1",
     "effector": "^22.1.1",
     "effector-forms": "^0.0.21",
     "effector-react": "^22.0.4",

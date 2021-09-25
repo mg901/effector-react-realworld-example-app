@@ -7,7 +7,7 @@ export const CommentsList: React.FC = () => (
   <List>
     {useList($comments, {
       getKey: (item) => item.id,
-      fn: (item) => <Comment comment={item} />,
+      fn: (item) => <Comment data={item} />,
     })}
   </List>
 );

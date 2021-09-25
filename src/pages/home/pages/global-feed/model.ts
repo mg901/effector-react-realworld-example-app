@@ -5,16 +5,14 @@ import * as api from 'shared/api';
 
 import { limit } from 'shared/library/limit';
 
-export type fetchFeedFxArgs = Readonly<{
+export type getFeedFxArgs = Readonly<{
   pageSize: number;
   pageIndex: number;
 }>;
 
-export const fetchFeedFx = createEffect<
-  fetchFeedFxArgs,
-  article.types.FeedType
->(({ pageSize, pageIndex }) =>
-  api.get(`articles?${limit(pageSize, pageIndex)}`).then((x) => x.data),
+export const getFeedFx = createEffect<getFeedFxArgs, article.types.FeedType>(
+  ({ pageSize, pageIndex }) =>
+    api.get(`articles?${limit(pageSize, pageIndex)}`).then((x) => x.data),
 );
 
 export const Gate = createGate();
@@ -27,7 +25,7 @@ export const {
   $articles,
   selectors,
 } = article.model.createFeed({
-  effect: fetchFeedFx,
+  effect: getFeedFx,
 });
 
 sample({
@@ -36,5 +34,5 @@ sample({
     pageIndex: $pageIndex,
   },
   clock: [Gate.open, paginationChanged],
-  target: fetchFeedFx,
+  target: getFeedFx,
 });

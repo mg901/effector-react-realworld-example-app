@@ -1,3 +1,3 @@
 export const FormGroup: React.FC = ({ children }) => (
-  <fieldset className="form-group">{children}</fieldset>
+  <div className="form-group">{children}</div>
 );

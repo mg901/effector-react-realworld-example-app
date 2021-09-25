@@ -5,14 +5,14 @@ import * as api from 'shared/api';
 
 export const Gate = createGate();
 
-export const fetchUserFx = createEffect<void, user.types.User>(() => {
+export const getUserFx = createEffect<void, user.types.User>(() => {
   return api.get('user').then((x) => x.data.user);
 });
 
-user.model.$user.on(fetchUserFx.doneData, (_, payload) => payload);
+user.model.$user.on(getUserFx.doneData, (_, payload) => payload);
 
 guard({
   source: Gate.open,
   filter: user.model.$isAuthorized,
-  target: fetchUserFx,
+  target: getUserFx,
 });

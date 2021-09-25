@@ -2,14 +2,14 @@ import * as types from '../model/types';
 import { CommentFooter } from './comment-footer';
 
 type Props = Readonly<{
-  comment: types.Comment;
+  data: types.Comment;
 }>;
 
-export const Comment: React.FC<Props> = ({ comment }) => (
+export const Comment: React.FC<Props> = ({ data }) => (
   <div className="card">
     <div className="card-block">
-      <p className="card-text">{comment.body}</p>
+      <p className="card-text">{data.body}</p>
     </div>
-    <CommentFooter {...comment} />
+    <CommentFooter {...data} />
   </div>
 );

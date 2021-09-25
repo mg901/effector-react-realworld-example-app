@@ -1,6 +1,6 @@
 import { fork, allSettled } from 'effector';
 import * as errorList from 'widgets/error-list';
-import { fetchCommentFx } from './model';
+import { getCommentFx } from './model';
 
 describe('pages/article  ', () => {
   it('should return an error if you submit a form with empty fields', async () => {
@@ -10,10 +10,10 @@ describe('pages/article  ', () => {
       },
     };
 
-    fetchCommentFx.use(() => Promise.reject(expected));
+    getCommentFx.use(() => Promise.reject(expected));
 
     const scope = fork();
-    await allSettled(fetchCommentFx, { scope });
+    await allSettled(getCommentFx, { scope });
     expect(scope.getState(errorList.model.$errors)).toMatchObject(
       expected.response.data,
     );

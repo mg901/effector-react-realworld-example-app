@@ -11,19 +11,18 @@ export type FetchFeedFxArgs = Readonly<{
   pageSize: number;
 }>;
 
-export const fetchFeedFx = createEffect<
-  FetchFeedFxArgs,
-  article.types.FeedType
->(({ username, pageIndex, pageSize }) => {
-  return api
-    .get(
-      `articles?author=${encodeURIComponent(username)}&${limit(
-        pageSize,
-        pageIndex,
-      )}`,
-    )
-    .then((x) => x.data);
-});
+export const getFeedFx = createEffect<FetchFeedFxArgs, article.types.FeedType>(
+  ({ username, pageIndex, pageSize }) => {
+    return api
+      .get(
+        `articles?author=${encodeURIComponent(username)}&${limit(
+          pageSize,
+          pageIndex,
+        )}`,
+      )
+      .then((x) => x.data);
+  },
+);
 
 export const Gate = createGate();
 
@@ -35,7 +34,7 @@ export const {
   $articles,
   selectors,
 } = article.model.createFeed({
-  effect: fetchFeedFx,
+  effect: getFeedFx,
   pageSize: 5,
 });
 
@@ -46,5 +45,5 @@ sample({
     pageSize: $pageSize,
   },
   clock: [Gate.open, paginationChanged],
-  target: fetchFeedFx,
+  target: getFeedFx,
 });

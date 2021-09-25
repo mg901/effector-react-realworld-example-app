@@ -11,8 +11,10 @@ export const FollowUser: React.FC<Props> = ({ username }) => {
 
   return !is ? null : (
     <Button
-      className="btn-sm action-btn btn-secondary"
-      onClick={model.toggleFollowing}>
+      className="action-btn btn-secondary"
+      size="sm"
+      onClick={model.toggleFollowing}
+    >
       <i className="ion-plus-round" />
       &nbsp;{following ? 'Unfollow' : 'Follow'} {username}
     </Button>
