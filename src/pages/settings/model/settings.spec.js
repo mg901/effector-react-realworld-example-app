@@ -1,6 +1,6 @@
 import { fork, allSettled } from 'effector';
 import * as errorList from 'widgets/error-list';
-import { changeUserDataFx } from './model';
+import { changeUserDataFx } from './settings';
 
 describe('pages/settings ', () => {
   it('should return an error if you submit a form with an empty password', async () => {

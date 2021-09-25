@@ -1,6 +1,6 @@
 import { fork, allSettled } from 'effector';
 import * as errorList from 'widgets/error-list';
-import { createArticleFx } from './model';
+import { createArticleFx } from './editor';
 
 describe('pages/editor ', () => {
   it('should return an error if you submit a form with empty fields', async () => {

@@ -1,5 +1,5 @@
 import { fork, allSettled } from 'effector';
-import * as model from './model';
+import * as model from './router';
 
 describe('library/router: ', () => {
   it('should update location', async () => {

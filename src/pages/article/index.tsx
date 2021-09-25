@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'shared/library/router';
 import { Row, Page } from 'shared/ui';
-
 import { Comments } from './comments';
 import { model, selectors } from './model';
 import { Content } from './ui/content';
@@ -29,7 +28,7 @@ const ArticlePage: React.FC = () => {
             <div className="article-actions" />
             <Row>
               <div className="col-xs-12 col-md-8 offset-md-2">
-                <Comments slug={slug} />
+                <Comments />
                 <LogoutMessage />
               </div>
             </Row>

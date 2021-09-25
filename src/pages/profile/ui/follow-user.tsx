@@ -6,17 +6,25 @@ type Props = Readonly<{
 }>;
 
 export const FollowUser: React.FC<Props> = ({ username }) => {
-  const following = selectors.useFollowing();
+  const canFollow = selectors.useCanFollow();
   const is = selectors.useIsNotCurrentUser();
+
+  const handleClick = () => {
+    if (canFollow) {
+      model.unsubscribeFx(username);
+    } else {
+      model.subscribeFx(username);
+    }
+  };
 
   return !is ? null : (
     <Button
       className="action-btn btn-secondary"
       size="sm"
-      onClick={model.toggleFollowing}
+      onClick={handleClick}
     >
       <i className="ion-plus-round" />
-      &nbsp;{following ? 'Unfollow' : 'Follow'} {username}
+      &nbsp;{canFollow ? 'Unfollow' : 'Follow'} {username}
     </Button>
   );
 };

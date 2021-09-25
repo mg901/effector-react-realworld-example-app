@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import { createArticleFx } from './model';
+import { createArticleFx } from './editor';
 
 export const useCreateArticlePending = (): boolean =>
   useStore(createArticleFx.pending);

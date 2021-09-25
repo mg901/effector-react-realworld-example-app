@@ -1,4 +1,4 @@
 import { useStore } from 'effector-react';
-import { signUpFx } from './model';
+import { signUpFx } from './registration';
 
 export const useSignUpPending = (): boolean => useStore(signUpFx.pending);

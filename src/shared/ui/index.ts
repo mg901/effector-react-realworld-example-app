@@ -4,6 +4,8 @@ export * from './banner';
 export * from './button';
 export * from './container';
 export * from './error-list';
+export * from './form-control';
+export * from './form-group';
 export * from './list';
 export * from './nav-item';
 export * from './pagination';

@@ -1,10 +1,8 @@
 import { createEvent, createEffect, restore, combine, forward } from 'effector';
-import { createGate } from 'effector-react';
 import * as article from 'entities/article';
 import * as user from 'entities/user';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
-import { GateState } from './types';
 
 export const articleDeleted = createEvent<string>();
 export const getArticleFx = createEffect<string, article.types.Article>(
@@ -22,9 +20,6 @@ export const getArticleFx = createEffect<string, article.types.Article>(
 export const deleteArticleFx = createEffect((slug: string) => {
   return api.del<void>(`articles/${slug}`);
 });
-
-export const Gate = createGate<GateState>();
-export const $slug = Gate.state.map((props) => props.slug);
 
 export const $article = restore(getArticleFx.doneData, {
   title: '',

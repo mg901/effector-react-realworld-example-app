@@ -1,6 +1,6 @@
 import { StoreValue } from 'effector';
 import { useStore } from 'effector-react';
-import { getArticleFx, $canModify, $article } from './model';
+import { getArticleFx, $canModify, $article } from './article';
 
 export const useGetArticlePending = (): boolean =>
   useStore(getArticleFx.pending);

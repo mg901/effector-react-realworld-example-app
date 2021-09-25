@@ -1,20 +1,35 @@
-import { useGate } from 'effector-react';
+import { useCallback, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import * as article from 'entities/article';
 import {
-  Gate,
   paginationChanged,
   favoriteArticleToggled,
   $articles,
   selectors,
+  getFeedFx,
 } from './model';
 
 const FavoritedArticlesPage: React.FC = () => {
-  useGate(Gate);
+  const { username } = useParams<{ username: string }>();
   const loading = selectors.useLoading();
   const isEmpty = selectors.useIsEmpty();
   const pageSize = selectors.usePageSize();
+  const pageIndex = selectors.usePageIndex();
   const pageNumber = selectors.usePageNumber();
   const totalPages = selectors.useTotalPages();
+
+  const handleGetFeed = useCallback(() => {
+    getFeedFx({ username, pageIndex, pageSize });
+  }, [username, pageIndex, pageSize]);
+
+  const handlePageChange = (page: number) => {
+    paginationChanged(page);
+    handleGetFeed();
+  };
+
+  useEffect(() => {
+    handleGetFeed();
+  }, [handleGetFeed]);
 
   return (
     <article.Feed
@@ -25,7 +40,7 @@ const FavoritedArticlesPage: React.FC = () => {
       pageSize={pageSize}
       totalPages={totalPages}
       onArticleClick={favoriteArticleToggled}
-      onPageChange={paginationChanged}
+      onPageChange={handlePageChange}
     />
   );
 };

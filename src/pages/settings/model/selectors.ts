@@ -1,6 +1,6 @@
 import { StoreValue } from 'effector';
 import { useStore } from 'effector-react';
-import { changeUserDataFx, $user } from './model';
+import { changeUserDataFx, $user } from './settings';
 
 export const useOnSubmitPending = (): StoreValue<
   typeof changeUserDataFx.pending

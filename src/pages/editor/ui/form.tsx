@@ -19,6 +19,7 @@ export const EditorForm: React.FC = () => {
       tagList: [],
     },
   });
+  const { handleSubmit, register, reset } = methods;
 
   useEffect(() => {
     if (slug) {
@@ -26,30 +27,27 @@ export const EditorForm: React.FC = () => {
     }
 
     const unwatch = model.getArticleFx.doneData.watch((x) => {
-      methods.reset(x);
+      reset(x);
     });
 
     return () => unwatch();
-  }, [slug, methods]);
+  }, [slug, reset]);
 
   return (
     <>
       <FormProvider {...methods}>
-        <Form
-          id="editor"
-          onSubmit={methods.handleSubmit(model.createArticleFx)}
-        >
+        <Form id="editor" onSubmit={handleSubmit(model.createArticleFx)}>
           <Form.Group>
             <Form.Control
               placeholder="Article Title"
               size="lg"
-              {...methods.register('title')}
+              {...register('title')}
             />
           </Form.Group>
           <Form.Group>
             <Form.Control
               placeholder="What's this article about?"
-              {...methods.register('description')}
+              {...register('description')}
             />
           </Form.Group>
           <Form.Group>
@@ -57,7 +55,7 @@ export const EditorForm: React.FC = () => {
               as="textarea"
               placeholder="Write your article (in markdown)"
               rows={8}
-              {...methods.register('body')}
+              {...register('body')}
             />
           </Form.Group>
         </Form>
