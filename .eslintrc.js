@@ -35,6 +35,7 @@ module.exports = {
     'arrow-body-style': 0,
     'no-shadow': 0,
     'no-use-before-define': 0,
+    'prettier/prettier': 0,
     'newline-before-return': 2,
     'import/extensions': [
       2,

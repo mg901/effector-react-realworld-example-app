@@ -1,11 +1,10 @@
-import { useStore } from 'effector-react';
 import * as article from 'entities/article';
 import { Container, Banner } from 'shared/ui';
-import * as model from '../model';
+import { selectors } from '../model';
 import { EditMode } from './edit-mode';
 
 export const Header: React.FC = () => {
-  const { title, author, createdAt } = useStore(model.$article);
+  const { title, author, createdAt } = selectors.useArticle();
 
   return (
     <Banner>

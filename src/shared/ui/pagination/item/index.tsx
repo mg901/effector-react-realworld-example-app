@@ -11,7 +11,8 @@ export const Item: React.FC<Props> = ({ active, onClick, children }) => (
     className="pagination-item"
     data-active={active}
     type="button"
-    onClick={onClick}>
+    onClick={onClick}
+  >
     <span className="page-link">{children}</span>
   </button>
 );

@@ -1,9 +1,4 @@
-import * as article from 'entities/article';
-
-export type GateState = Readonly<{
+export type DeleteCommentFxArgs = Readonly<{
   slug: string;
-}>;
-
-export type FetchArticleFxDone = Readonly<{
-  article: article.types.Article;
+  id: string;
 }>;

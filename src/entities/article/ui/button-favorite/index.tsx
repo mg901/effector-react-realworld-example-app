@@ -12,9 +12,11 @@ export const ButtonFavorite: React.FC<Props> = ({
   children,
 }) => (
   <Button
-    className="btn btn-sm btn-outline-primary"
+    className="btn-outline-primary"
     data-active={active}
-    onClick={onClick}>
+    size="sm"
+    onClick={onClick}
+  >
     <i className="ion-heart" /> {children}
   </Button>
 );

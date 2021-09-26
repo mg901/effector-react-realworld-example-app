@@ -1,11 +1,11 @@
 import { StoreValue } from 'effector';
 import { useStore } from 'effector-react';
-import * as model from './model';
+import * as model from './profile';
 
 export const useIsCurrentUser = (): StoreValue<typeof model.$isCurrentUser> =>
   useStore(model.$isCurrentUser);
 
-export const useFollowing = (): StoreValue<typeof model.$following> =>
+export const useCanFollow = (): StoreValue<typeof model.$following> =>
   useStore(model.$following);
 
 export const useIsNotCurrentUser = (): StoreValue<

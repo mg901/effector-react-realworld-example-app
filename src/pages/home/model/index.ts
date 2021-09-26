@@ -1,2 +1,2 @@
-export * as model from './model';
+export * as model from './home';
 export * as selectors from './selectors';

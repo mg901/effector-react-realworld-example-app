@@ -1,23 +1,36 @@
-import { useGate } from 'effector-react';
-import { Form as UIForm } from 'shared/ui';
+import { useForm } from 'react-hook-form';
+import { Form } from 'shared/ui';
 import { model } from '../model';
-import { EmailField } from './email-field';
-import { PasswordField } from './password-field';
+import { ButtonSubmit } from './button-submit';
 
-import { SubmitButton } from './submit-button';
-
-export const Form: React.FC = () => {
-  useGate(model.FormGate);
+export const LoginForm: React.FC = () => {
+  const { handleSubmit, register } = useForm({
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
   return (
-    <UIForm
-      onSubmit={(e) => {
-        e.preventDefault();
-        model.formSubmitted();
-      }}>
-      <EmailField />
-      <PasswordField />
-      <SubmitButton />
-    </UIForm>
+    <Form onSubmit={handleSubmit(model.signInFx)}>
+      <Form.Group>
+        <Form.Control
+          placeholder="Email"
+          size="lg"
+          type="email"
+          {...register('email')}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Control
+          autoComplete="current-password"
+          placeholder="Password"
+          size="lg"
+          type="password"
+          {...register('password')}
+        />
+      </Form.Group>
+      <ButtonSubmit />
+    </Form>
   );
 };

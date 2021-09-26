@@ -1,9 +1,8 @@
-import { useStore } from 'effector-react';
 import { TagList, Tag } from 'shared/ui';
-import * as model from '../model';
+import { selectors } from '../model';
 
 export const Tags: React.FC = () => {
-  const { tagList } = useStore(model.$article);
+  const { tagList } = selectors.useArticle();
 
   return (
     <TagList>

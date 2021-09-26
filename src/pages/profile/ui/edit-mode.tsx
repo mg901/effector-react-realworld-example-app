@@ -7,7 +7,7 @@ export const EditMode: React.FC = () => {
 
   return !is ? null : (
     <Link to="/settings">
-      <Button className="btn-sm btn-outline-secondary action-btn">
+      <Button className="btn-outline-secondary action-btn" size="sm">
         <i className="ion-gear-a" /> Edit Profile Settings
       </Button>
     </Link>

@@ -1,30 +1,60 @@
-import { useForm } from 'effector-forms';
-import { Form as UIForm, FormControl } from 'shared/ui';
-import { form } from '../model/model';
-import { FormFooter } from './form-footer';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
+import * as user from 'entities/user';
+import { Button, Form } from 'shared/ui';
+import { model } from '../model';
 
-export const AddComment: React.FC = () => {
-  const { submit, fields } = useForm(form);
+type FormData = {
+  body: string;
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    submit();
+const defaultValues = {
+  body: '',
+};
+
+export function AddCommentForm(): JSX.Element {
+  const { slug } = useParams<{ slug: string }>();
+  const { handleSubmit, register, reset } = useForm<FormData>({
+    defaultValues,
+  });
+
+  const onSubmit = ({ body }: FormData) => {
+    model.addCommentFx({ body, slug });
   };
 
+  useEffect(() => {
+    const unwatch = model.addCommentFx.done.watch(() => {
+      reset(defaultValues);
+    });
+
+    return () => unwatch();
+  });
+
   return (
-    <UIForm className="card comment-form" onSubmit={handleSubmit}>
+    <Form className="card comment-form" onSubmit={handleSubmit(onSubmit)}>
       <div className="card-block">
-        <FormControl
+        <Form.Control
           as="textarea"
           placeholder="Write a comment..."
           rows={3}
-          value={fields.comment.value}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-            fields.comment.onChange(e.target.value)
-          }
+          {...register('body')}
         />
       </div>
-      <FormFooter />
-    </UIForm>
+      <Footer />
+    </Form>
   );
-};
+}
+
+export function Footer(): JSX.Element {
+  const { image, username } = user.selectors.useUser();
+
+  return (
+    <div className="card-footer">
+      <img alt={username} className="comment-author-img" src={image} />
+      <Button className="btn-primary" size="sm" type="submit">
+        Post Comment
+      </Button>
+    </div>
+  );
+}

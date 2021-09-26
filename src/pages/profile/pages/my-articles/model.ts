@@ -1,9 +1,8 @@
-import { createEffect, sample } from 'effector';
+import { createEffect } from 'effector';
 import { createGate } from 'effector-react';
 import * as article from 'entities/article';
 import * as api from 'shared/api';
 import { limit } from 'shared/library/limit';
-import * as profile from '../../model';
 
 export type FetchFeedFxArgs = Readonly<{
   username: string;
@@ -11,19 +10,18 @@ export type FetchFeedFxArgs = Readonly<{
   pageSize: number;
 }>;
 
-export const fetchFeedFx = createEffect<
-  FetchFeedFxArgs,
-  article.types.FeedType
->(({ username, pageIndex, pageSize }) => {
-  return api
-    .get(
-      `articles?author=${encodeURIComponent(username)}&${limit(
-        pageSize,
-        pageIndex,
-      )}`,
-    )
-    .then((x) => x.data);
-});
+export const getFeedFx = createEffect<FetchFeedFxArgs, article.types.FeedType>(
+  ({ username, pageIndex, pageSize }) => {
+    return api
+      .get(
+        `articles?author=${encodeURIComponent(username)}&${limit(
+          pageSize,
+          pageIndex,
+        )}`,
+      )
+      .then((x) => x.data);
+  },
+);
 
 export const Gate = createGate();
 
@@ -35,16 +33,6 @@ export const {
   $articles,
   selectors,
 } = article.model.createFeed({
-  effect: fetchFeedFx,
+  effect: getFeedFx,
   pageSize: 5,
-});
-
-sample({
-  source: {
-    username: profile.model.$username,
-    pageIndex: $pageIndex,
-    pageSize: $pageSize,
-  },
-  clock: [Gate.open, paginationChanged],
-  target: fetchFeedFx,
 });

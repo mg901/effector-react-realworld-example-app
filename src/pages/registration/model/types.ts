@@ -1,1 +1,5 @@
-export type Form = Readonly<Record<string, string>>;
+export type FormType = {
+  username: string;
+  email: string;
+  password: string;
+};

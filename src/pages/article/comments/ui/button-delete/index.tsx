@@ -1,7 +1,6 @@
-import { useStore } from 'effector-react';
 import * as user from 'entities/user';
 import { Button, ButtonProps } from 'shared/ui';
-import * as types from '../../model/types';
+import { types } from '../../model';
 import './index.css';
 
 type Props = Readonly<{
@@ -10,7 +9,7 @@ type Props = Readonly<{
 }>;
 
 export const ButtonDelete: React.FC<Props> = ({ author, onClick }) => {
-  const { username } = useStore(user.model.$user);
+  const { username } = user.selectors.useUser();
   const isAuth = user.selectors.useIsAuth();
   const isSelf = username === author.username;
 

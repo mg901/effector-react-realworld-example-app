@@ -17,7 +17,8 @@ export const TagList: React.FC = () => {
             className="tag-default tag-pill"
             to={`${url}${URLS.FEED_BY_TAG}?tag=${tag}`}
             type="button"
-            onClick={() => home.model.tagSelected(tag)}>
+            onClick={() => home.model.tagSelected(tag)}
+          >
             {tag.toLowerCase()}
           </Link>
         ),

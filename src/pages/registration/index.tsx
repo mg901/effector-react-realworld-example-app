@@ -2,7 +2,7 @@ import { Link, URLS } from 'shared/library/router';
 import { Page, Row } from 'shared/ui';
 import { ErrorList } from 'widgets/error-list';
 
-import { Form } from './ui/form';
+import { RegistrationForm } from './ui/form';
 
 export const RegistrationPage: React.FC = () => (
   <Page>
@@ -14,7 +14,7 @@ export const RegistrationPage: React.FC = () => (
           <Link to={URLS.LOGIN}>Have an account?</Link>
         </p>
         <ErrorList />
-        <Form />
+        <RegistrationForm />
       </div>
     </Row>
   </Page>

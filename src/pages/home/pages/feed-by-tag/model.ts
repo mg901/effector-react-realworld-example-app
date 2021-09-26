@@ -11,7 +11,7 @@ export type FetchFeedByTagArgs = Readonly<{
   pageSize: number;
 }>;
 
-export const fetchFeedFx = createEffect<
+export const getFeedFx = createEffect<
   FetchFeedByTagArgs,
   article.types.FeedType
 >(({ tag, pageSize, pageIndex }) =>
@@ -32,7 +32,7 @@ export const {
   $articles,
   selectors,
 } = article.model.createFeed({
-  effect: fetchFeedFx,
+  effect: getFeedFx,
 });
 
 sample({
@@ -42,5 +42,5 @@ sample({
     pageIndex: $pageIndex,
   },
   clock: [Gate.open, paginationChanged, home.model.tagSelected],
-  target: fetchFeedFx,
+  target: getFeedFx,
 });

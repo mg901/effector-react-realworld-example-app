@@ -1,25 +1,29 @@
 import { Link } from 'react-router-dom';
-import { useStore } from 'effector-react';
 import { Button } from 'shared/ui';
-import * as model from '../model';
+import { model, selectors } from '../model';
 
 export const EditMode: React.FC = () => {
-  const canModify = useStore(model.$canModify);
-  const { slug } = useStore(model.$article);
+  const canModify = selectors.useCanModify();
+  const { slug } = selectors.useArticle();
+
+  const handleDeleteArticle = () => {
+    model.articleDeleted(slug);
+  };
 
   return (
     <>
       {canModify && (
         <span>
           <Link to={`/editor/${slug}`}>
-            <Button className="btn-sm btn-outline-secondary">
+            <Button className="btn-outline-secondary" size="sm">
               <i className="ion-edit" /> Edit Article
             </Button>
           </Link>
 
           <Button
             className="btn-sm btn-outline-danger"
-            onClick={model.articleDeleted}>
+            onClick={handleDeleteArticle}
+          >
             <i className="ion-trash-a" /> Delete Article
           </Button>
         </span>

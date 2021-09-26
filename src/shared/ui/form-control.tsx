@@ -1,16 +1,38 @@
-interface Props<C extends React.ElementType> {
-  as?: C;
-}
+import { forwardRef } from 'react';
 
-type FormControlProps<C extends React.ElementType> = Props<C> &
-  Omit<React.ComponentPropsWithoutRef<C>, keyof Props<C>>;
+import type {
+  PolymorphicForwardRefExoticComponent,
+  PolymorphicPropsWithoutRef,
+  PolymorphicPropsWithRef,
+} from 'react-polymorphic-types';
 
-export const FormControl = <C extends React.ElementType = 'input'>({
-  as,
-  className,
-  ...props
-}: FormControlProps<C>): JSX.Element => {
-  const Component = as ?? 'input';
+export const FormControlDefaultElement = 'input';
 
-  return <Component {...props} className={`form-control ${className}`} />;
+export type FormControlOwnProps = {
+  size?: 'lg';
 };
+
+export type ControlProps<
+  T extends React.ElementType = typeof FormControlDefaultElement,
+> = PolymorphicPropsWithRef<FormControlOwnProps, T>;
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const FormControl: PolymorphicForwardRefExoticComponent<
+  FormControlOwnProps,
+  typeof FormControlDefaultElement
+> = forwardRef(function FormControl<
+  T extends React.ElementType = typeof FormControlDefaultElement,
+>(
+  { as, size, ...props }: PolymorphicPropsWithoutRef<FormControlOwnProps, T>,
+  ref: React.ForwardedRef<Element>,
+) {
+  const Element: React.ElementType = as || FormControlDefaultElement;
+
+  return (
+    <Element
+      ref={ref}
+      {...props}
+      className={`form-control ${size === 'lg' ? 'form-control-lg' : ''}`}
+    />
+  );
+});

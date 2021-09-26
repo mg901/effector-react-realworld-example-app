@@ -20,7 +20,8 @@ export const Tabs: React.FC = () => {
           <NavLink
             exact
             className="nav-link"
-            to={`${url}${URLS.FEED_BY_TAG}?tag=${currentTag}`}>
+            to={`${url}${URLS.FEED_BY_TAG}?tag=${currentTag}`}
+          >
             <i className="ion-pound" />
             {currentTag}
           </NavLink>

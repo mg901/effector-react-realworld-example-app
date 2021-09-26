@@ -26,7 +26,8 @@ export const Pagination: React.FC<PaginationProps> = ({
               <Item
                 active={checkIsActive(item, current)}
                 key={item}
-                onClick={() => onPageChange(item)}>
+                onClick={() => onPageChange(item)}
+              >
                 {item}
               </Item>
             </li>
