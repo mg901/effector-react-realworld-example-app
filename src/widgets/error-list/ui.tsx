@@ -1,9 +1,8 @@
-import { useStore } from 'effector-react';
-import { $hasErrors, $errorsList } from './model';
+import { selectors } from './model';
 
 export const ErrorList: React.FC = () => {
-  const hasErrors = useStore($hasErrors);
-  const errorList = useStore($errorsList);
+  const hasErrors = selectors.useHasErrors();
+  const errorList = selectors.useErrorList();
 
   return (
     <>

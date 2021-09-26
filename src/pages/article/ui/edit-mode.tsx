@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
-import { useStore } from 'effector-react';
 import { Button } from 'shared/ui';
 import { model, selectors } from '../model';
 
 export const EditMode: React.FC = () => {
   const canModify = selectors.useCanModify();
-  const { slug } = useStore(model.$article);
+  const { slug } = selectors.useArticle();
 
   const handleDeleteArticle = () => {
     model.articleDeleted(slug);
