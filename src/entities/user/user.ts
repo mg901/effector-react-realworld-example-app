@@ -22,6 +22,7 @@ export const $token = createStore<Token>(null).on(
   (_, { token }) => token,
 );
 
+// eslint-disable-next-line effector/no-useless-methods
 guard({
   source: $token,
   filter: Boolean,
