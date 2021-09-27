@@ -1,8 +1,9 @@
 import { StoreValue } from 'effector';
 import { useStore } from 'effector-react';
-import { addCommentFx, $error } from './comments';
+import { addCommentFx, $errors, $hasError } from './comments';
 
 export const useAddCommentPending = (): boolean =>
   useStore(addCommentFx.pending);
 
-export const useError = (): StoreValue<typeof $error> => useStore($error);
+export const useHasError = (): boolean => useStore($hasError);
+export const useErrors = (): StoreValue<typeof $errors> => useStore($errors);

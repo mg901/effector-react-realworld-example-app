@@ -1,6 +1,6 @@
 import { StoreValue } from 'effector';
 import { useStore } from 'effector-react';
-import { changeUserDataFx, $user, $error } from './settings';
+import { changeUserDataFx, $user, $hasError, $errors } from './settings';
 
 export const useOnSubmitPending = (): StoreValue<
   typeof changeUserDataFx.pending
@@ -8,4 +8,5 @@ export const useOnSubmitPending = (): StoreValue<
 
 export const useUser = (): StoreValue<typeof $user> => useStore($user);
 
-export const useError = (): StoreValue<typeof $error> => useStore($error);
+export const useHasError = (): boolean => useStore($hasError);
+export const useErrors = (): StoreValue<typeof $errors> => useStore($errors);

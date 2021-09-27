@@ -49,3 +49,6 @@ export const $error = createStore<Record<string, unknown>>({
   [addCommentFx.failData, deleteCommentFx.failData],
   (_, error) => error.response?.data,
 );
+
+export const $hasError = $error.map((x) => Object.keys(Object(x)).length > 0);
+export const $errors = $error.map((x) => Object.entries(Object(x?.errors)));

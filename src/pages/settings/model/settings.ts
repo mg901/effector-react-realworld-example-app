@@ -33,3 +33,6 @@ user.model.loggedOutClicked.watch(() => {
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
 }).on(changeUserDataFx.failData, (_, error) => error.response?.data);
+
+export const $hasError = $error.map((x) => Object.keys(Object(x)).length > 0);
+export const $errors = $error.map((x) => Object.entries(Object(x?.errors)));

@@ -25,3 +25,6 @@ user.model.$user.on(signUpFx.doneData, (_, payload) => payload);
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
 }).on(signUpFx.failData, (_, error) => error.response?.data);
+
+export const $hasError = $error.map((x) => Object.keys(Object(x)).length > 0);
+export const $errors = $error.map((x) => Object.entries(Object(x?.errors)));

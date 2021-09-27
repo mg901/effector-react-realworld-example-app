@@ -1,7 +1,8 @@
 import { StoreValue } from 'effector';
 import { useStore } from 'effector-react';
-import { signInFx, $error } from './login';
+import { signInFx, $hasError, $errors } from './login';
 
 export const useSignInPending = (): boolean => useStore(signInFx.pending);
 
-export const useError = (): StoreValue<typeof $error> => useStore($error);
+export const useHasError = (): boolean => useStore($hasError);
+export const useErrors = (): StoreValue<typeof $errors> => useStore($errors);
