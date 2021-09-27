@@ -1,6 +1,5 @@
 import { fork, allSettled } from 'effector';
-import * as errorList from 'widgets/error-list';
-import { createArticleFx } from './editor';
+import { createArticleFx, $error } from './editor';
 
 describe('pages/editor ', () => {
   it('should return an error if you submit a form with empty fields', async () => {
@@ -23,8 +22,6 @@ describe('pages/editor ', () => {
 
     const scope = fork();
     await allSettled(createArticleFx, { scope });
-    expect(scope.getState(errorList.model.$errors)).toMatchObject(
-      expected.response.data,
-    );
+    expect(scope.getState($error)).toMatchObject(expected.response.data);
   });
 });

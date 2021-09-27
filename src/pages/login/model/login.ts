@@ -1,8 +1,7 @@
-import { createEffect } from 'effector';
+import { createEffect, createStore } from 'effector';
 import * as user from 'entities/user';
 import * as api from 'shared/api';
 import * as router from 'shared/library/router';
-import * as errorsList from 'widgets/error-list';
 
 export type Form = {
   email: string;
@@ -25,7 +24,6 @@ signInFx.done.watch(() => {
 
 user.model.$user.on(signInFx.doneData, (_, payload) => payload);
 
-errorsList.model.$errors.on(
-  signInFx.failData,
-  (_, error) => error.response?.data,
-);
+export const $error = createStore<Record<string, unknown>>({
+  errors: {},
+}).on(signInFx.failData, (_, error) => error.response?.data);

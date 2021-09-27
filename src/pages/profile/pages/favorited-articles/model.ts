@@ -36,7 +36,7 @@ export const {
 
 export const { paginationChanged, $pageSize, $pageIndex, $pageNumber } =
   createPagination({
-    pageSize: 10,
+    pageSize: 5,
   });
 
 export const selectors = {

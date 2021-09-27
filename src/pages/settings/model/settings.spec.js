@@ -1,6 +1,5 @@
 import { fork, allSettled } from 'effector';
-import * as errorList from 'widgets/error-list';
-import { changeUserDataFx } from './settings';
+import { changeUserDataFx, $error } from './settings';
 
 describe('pages/settings ', () => {
   it('should return an error if you submit a form with an empty password', async () => {
@@ -14,8 +13,6 @@ describe('pages/settings ', () => {
 
     const scope = fork();
     await allSettled(changeUserDataFx, { scope });
-    expect(scope.getState(errorList.model.$errors)).toMatchObject(
-      expected.response.data,
-    );
+    expect(scope.getState($error)).toMatchObject(expected.response.data);
   });
 });

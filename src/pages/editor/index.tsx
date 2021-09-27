@@ -1,13 +1,12 @@
 import { Page, Row } from 'shared/ui';
-import { ErrorList } from 'widgets/error-list';
-import { EditorForm } from './ui';
+import { EditorForm, Error } from './ui';
 
 const EditorPage: React.FC = () => {
   return (
     <Page>
       <Row>
         <div className="col-md-10 offset-md-1 col-xs-12">
-          <ErrorList />
+          <Error />
           <EditorForm />
         </div>
       </Row>

@@ -1,17 +1,16 @@
-export type Props = Readonly<{
-  errors: Readonly<{
-    errors: Readonly<Record<string, string>>;
-  }>;
-}>;
+type Props = {
+  error: Record<string, unknown>;
+};
 
-export const ErrorList: React.FC<Props> = ({ errors }) => {
-  const errorList = Object.keys(Object(errors));
+export const ErrorList: React.FC<Props> = ({ error }) => {
+  const hasErrors = checkHasErrors(error);
+  const errors = getErrors(error);
 
   return (
     <>
-      {errorList.length > 0 && (
+      {hasErrors && (
         <ul className="error-messages">
-          {Object.entries(errors.errors).map(([key, val]) => (
+          {errors.map(([key, val]) => (
             <li key={key}>
               {key} {val}
             </li>
@@ -21,3 +20,10 @@ export const ErrorList: React.FC<Props> = ({ errors }) => {
     </>
   );
 };
+
+function checkHasErrors(x: Props['error']) {
+  return Object.keys(Object(x)).length > 0;
+}
+function getErrors(x: Props['error']) {
+  return Object.entries(Object(x?.errors));
+}

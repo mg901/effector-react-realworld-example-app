@@ -1,6 +1,11 @@
-import { createEvent, createEffect, restore, forward } from 'effector';
+import {
+  createEvent,
+  createEffect,
+  createStore,
+  restore,
+  forward,
+} from 'effector';
 import * as api from 'shared/api';
-import * as errorsList from 'widgets/error-list';
 import * as types from './types';
 
 export const commentDeleted = createEvent<types.DeleteCommentArgs>();
@@ -38,7 +43,9 @@ export const $comments = restore(getCommentsFx.doneData, [])
     state.filter(({ id }) => id !== params.id),
   );
 
-errorsList.model.$errors.on(
+export const $error = createStore<Record<string, unknown>>({
+  errors: {},
+}).on(
   [addCommentFx.failData, deleteCommentFx.failData],
   (_, error) => error.response?.data,
 );

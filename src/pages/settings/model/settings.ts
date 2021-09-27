@@ -1,8 +1,7 @@
-import { createEffect } from 'effector';
+import { createEffect, createStore } from 'effector';
 import * as user from 'entities/user';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
-import * as errorsList from 'widgets/error-list';
 import { changeUserDataFxArgs } from './types';
 
 export const changeUserDataFx = createEffect<
@@ -31,7 +30,6 @@ user.model.loggedOutClicked.watch(() => {
   history.push('/');
 });
 
-errorsList.model.$errors.on(
-  changeUserDataFx.failData,
-  (_, error) => error.response?.data,
-);
+export const $error = createStore<Record<string, unknown>>({
+  errors: {},
+}).on(changeUserDataFx.failData, (_, error) => error.response?.data);

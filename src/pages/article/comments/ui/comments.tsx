@@ -1,7 +1,7 @@
 import * as user from 'entities/user';
-import { ErrorList } from 'widgets/error-list';
 import { AddCommentForm } from './add-comment';
 import { CommentsList } from './comment-list';
+import { Error } from './error';
 
 export const Comments: React.FC = () => {
   const isAuth = user.selectors.useIsAuth();
@@ -10,7 +10,7 @@ export const Comments: React.FC = () => {
     <>
       {isAuth ? (
         <>
-          <ErrorList />
+          <Error />
           <AddCommentForm />
           <CommentsList />
         </>

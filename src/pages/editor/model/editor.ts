@@ -1,9 +1,7 @@
-import { createEvent, createEffect } from 'effector';
-
+import { createEvent, createEffect, createStore } from 'effector';
 import * as article from 'entities/article';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
-import * as errorsList from 'widgets/error-list';
 
 export const formSubmitted = createEvent();
 
@@ -30,7 +28,6 @@ createArticleFx.doneData.watch(({ slug }) => {
   history.replace(`/article/${slug}`);
 });
 
-errorsList.model.$errors.on(
-  createArticleFx.failData,
-  (_, error) => error.response?.data,
-);
+export const $error = createStore<Record<string, unknown>>({
+  errors: {},
+}).on(createArticleFx.failData, (_, error) => error.response?.data);
