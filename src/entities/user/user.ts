@@ -1,4 +1,10 @@
-import { createEvent, createStore, guard } from 'effector';
+import {
+  createEffect,
+  createEvent,
+  createStore,
+  forward,
+  guard,
+} from 'effector';
 import { persist } from 'effector-storage/local';
 import { setToken } from 'shared/api';
 import { TOKEN_NAME } from 'shared/config';
@@ -18,14 +24,14 @@ export const $user = createStore<User>({
 }).reset(loggedOutClicked);
 
 export const $token = createStore<Token>(null).on(
-  $user,
-  (_, { token }) => token,
+  $user.map((x) => x.token),
+  (_, payload) => payload,
 );
 
-guard({
-  source: $token,
-  filter: Boolean,
-}).watch(setToken);
+forward({
+  from: guard({ source: $token, filter: Boolean }),
+  to: createEffect(setToken),
+});
 
 persist({
   store: $token,

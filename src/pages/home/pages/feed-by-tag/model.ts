@@ -1,6 +1,7 @@
-import { createEffect, sample } from 'effector';
-import { createGate } from 'effector-react';
+import { createEffect, StoreValue } from 'effector';
+import { useStore } from 'effector-react';
 import * as article from 'entities/article';
+import { createPagination } from 'features/pagination';
 import * as api from 'shared/api';
 import { limit } from 'shared/library/limit';
 import * as home from '../../model';
@@ -22,25 +23,30 @@ export const getFeedFx = createEffect<
     .then((x) => x.data),
 );
 
-export const Gate = createGate();
-
 export const {
-  paginationChanged,
   favoriteArticleToggled,
-  $pageSize,
-  $pageIndex,
+  $feed,
+  $isEmptyFeed,
   $articles,
-  selectors,
+  $totalPages,
 } = article.model.createFeed({
   effect: getFeedFx,
 });
 
-sample({
-  source: {
-    tag: home.model.$currentTag,
-    pageSize: $pageSize,
-    pageIndex: $pageIndex,
-  },
-  clock: [Gate.open, paginationChanged, home.model.tagSelected],
-  target: getFeedFx,
-});
+export const { paginationChanged, $pageSize, $pageIndex, $pageNumber } =
+  createPagination({
+    pageSize: 10,
+  });
+
+export const selectors = {
+  useGetFeedPending: (): boolean => useStore(getFeedFx.pending),
+
+  useIsEmptyFeed: (): StoreValue<typeof $isEmptyFeed> => useStore($isEmptyFeed),
+  useTotalPages: (): StoreValue<typeof $totalPages> => useStore($totalPages),
+
+  usePageSize: (): StoreValue<typeof $pageSize> => useStore($pageSize),
+  usePageNumber: (): StoreValue<typeof $pageNumber> => useStore($pageNumber),
+  usePageIndex: (): StoreValue<typeof $pageIndex> => useStore($pageIndex),
+  useCurrentTag: (): StoreValue<typeof home.model.$currentTag> =>
+    useStore(home.model.$currentTag),
+};

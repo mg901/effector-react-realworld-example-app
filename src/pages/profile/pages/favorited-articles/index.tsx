@@ -11,8 +11,8 @@ import {
 
 const FavoritedArticlesPage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
-  const loading = selectors.useLoading();
-  const isEmpty = selectors.useIsEmpty();
+  const loading = selectors.useGetFeedPending();
+  const isEmpty = selectors.useIsEmptyFeed();
   const pageSize = selectors.usePageSize();
   const pageIndex = selectors.usePageIndex();
   const pageNumber = selectors.usePageNumber();

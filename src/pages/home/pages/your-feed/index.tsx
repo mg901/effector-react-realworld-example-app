@@ -1,20 +1,29 @@
-import { useGate } from 'effector-react';
+import { useEffect } from 'react';
 import * as article from 'entities/article';
 import {
-  Gate,
   paginationChanged,
   favoriteArticleToggled,
   $articles,
+  getFeedFx,
   selectors,
 } from './model';
 
 const YourFeedPage: React.FC = () => {
-  useGate(Gate);
-  const loading = selectors.useLoading();
-  const isEmpty = selectors.useIsEmpty();
+  const loading = selectors.useGetFeedPending();
+  const isEmpty = selectors.useIsEmptyFeed();
   const pageSize = selectors.usePageSize();
+  const pageIndex = selectors.usePageIndex();
   const pageNumber = selectors.usePageNumber();
   const totalPages = selectors.useTotalPages();
+
+  const handlePageChange = (page: number) => {
+    paginationChanged(page);
+    getFeedFx({ pageSize, pageIndex });
+  };
+
+  useEffect(() => {
+    getFeedFx({ pageSize, pageIndex });
+  }, [pageSize, pageIndex]);
 
   return (
     <article.Feed
@@ -25,7 +34,7 @@ const YourFeedPage: React.FC = () => {
       pageSize={pageSize}
       totalPages={totalPages}
       onArticleClick={favoriteArticleToggled}
-      onPageChange={paginationChanged}
+      onPageChange={handlePageChange}
     />
   );
 };

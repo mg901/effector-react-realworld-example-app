@@ -1,34 +1,28 @@
-import { createEvent, createStore, restore, Event, Store } from 'effector';
+import { createEvent, createStore } from 'effector';
 import { persist } from 'effector-storage/query';
 
-interface Options {
-  pageSize?: number;
-}
-
-type Output = {
-  paginationChanged: Event<number>;
-  $pageSize: Store<number>;
-  $pageNumber: Store<number>;
-  $currentPage: Store<number>;
-};
-
-export const createPagination = (options: Options = {}): Output => {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function createPagination({ pageSize = 10 } = {}) {
   const paginationChanged = createEvent<number>();
 
-  const $pageSize = createStore<number>(options.pageSize ?? 10);
-  const $pageCount = restore(paginationChanged, 1);
+  const $pageSize = createStore<number>(pageSize);
+  const $queryPage = createStore('1').on(
+    paginationChanged.map(String),
+    (_, payload) => payload,
+  );
+  const $pageNumber = $queryPage.map(Number);
 
   persist({
-    store: $pageCount,
+    store: $queryPage,
     key: 'page',
   });
 
-  const $currentPage = $pageCount.map((x) => x - 1);
+  const $pageIndex = $pageNumber.map((x) => x - 1);
 
   return {
     paginationChanged,
     $pageSize,
-    $pageNumber: $pageCount,
-    $currentPage,
+    $pageNumber,
+    $pageIndex,
   };
-};
+}

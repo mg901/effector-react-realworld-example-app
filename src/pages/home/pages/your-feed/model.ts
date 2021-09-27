@@ -1,6 +1,7 @@
-import { createEffect, sample } from 'effector';
-import { createGate } from 'effector-react';
+import { createEffect, StoreValue } from 'effector';
+import { useStore } from 'effector-react';
 import * as article from 'entities/article';
+import { createPagination } from 'features/pagination';
 import * as api from 'shared/api';
 import { limit } from 'shared/library/limit';
 
@@ -14,24 +15,28 @@ export const getFeedFx = createEffect<getFeedFxArgs, article.types.FeedType>(
     api.get(`articles/feed?${limit(pageSize, pageIndex)}`).then((x) => x.data),
 );
 
-export const Gate = createGate();
-
 export const {
-  paginationChanged,
   favoriteArticleToggled,
-  $pageSize,
-  $pageIndex,
+  $feed,
+  $isEmptyFeed,
   $articles,
-  selectors,
+  $totalPages,
 } = article.model.createFeed({
   effect: getFeedFx,
 });
 
-sample({
-  source: {
-    pageSize: $pageSize,
-    pageIndex: $pageIndex,
-  },
-  clock: [Gate.open, paginationChanged],
-  target: getFeedFx,
-});
+export const { paginationChanged, $pageSize, $pageIndex, $pageNumber } =
+  createPagination({
+    pageSize: 10,
+  });
+
+export const selectors = {
+  useGetFeedPending: (): boolean => useStore(getFeedFx.pending),
+
+  useIsEmptyFeed: (): StoreValue<typeof $isEmptyFeed> => useStore($isEmptyFeed),
+  useTotalPages: (): StoreValue<typeof $totalPages> => useStore($totalPages),
+
+  usePageSize: (): StoreValue<typeof $pageSize> => useStore($pageSize),
+  usePageNumber: (): StoreValue<typeof $pageNumber> => useStore($pageNumber),
+  usePageIndex: (): StoreValue<typeof $pageIndex> => useStore($pageIndex),
+};
