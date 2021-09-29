@@ -6,13 +6,13 @@ import * as api from 'shared/api';
 import { limit } from 'shared/library/limit';
 import * as profile from '../../model';
 
-export type FetchFeedFxArgs = Readonly<{
+export type getFeedFxArgs = Readonly<{
   username: string;
   pageIndex: number;
   pageSize: number;
 }>;
 
-export const getFeedFx = createEffect<FetchFeedFxArgs, article.types.FeedType>(
+export const getFeedFx = createEffect<getFeedFxArgs, article.types.FeedType>(
   ({ username, pageIndex, pageSize }) => {
     return api
       .get(
@@ -49,9 +49,8 @@ guard({
     pageSize: $pageSize,
     pageIndex: $pageIndex,
   },
-  filter: (x) => Boolean(x.username),
+  filter: (x): x is getFeedFxArgs => Boolean(x.username),
   clock: [Gate.open, paginationChanged, setUnfavoriteArticleFx.done],
-  // @ts-ignore
   target: getFeedFx,
 });
 
