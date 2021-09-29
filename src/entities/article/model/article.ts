@@ -47,6 +47,20 @@ export function createFeed({ effect }: Options) {
     articles: [],
   })
     .on(effect.doneData, (_, payload) => payload)
+    .on(favoriteArticleToggled, (state, payload) => ({
+      ...state,
+      articles: state.articles.map((article) =>
+        article.slug !== payload.slug
+          ? article
+          : {
+              ...article,
+              favorited: !article.favorited,
+              favoritesCount: article.favorited
+                ? article.favoritesCount - 1
+                : article.favoritesCount + 1,
+            },
+      ),
+    }))
     .on(
       [setFavoriteArticleFx.done, setUnfavoriteArticleFx.done],
       (state, { params, result }) => ({
@@ -58,6 +72,21 @@ export function createFeed({ effect }: Options) {
                 ...article,
                 favorited: result.article.favorited,
                 favoritesCount: result.article.favoritesCount,
+              },
+        ),
+      }),
+    )
+    .on(
+      [setFavoriteArticleFx.fail, setUnfavoriteArticleFx.fail],
+      (state, { params }) => ({
+        ...state,
+        articles: state.articles.map((article) =>
+          article.slug !== params.slug
+            ? article
+            : {
+                ...article,
+                favorited: params.favorited,
+                favoritesCount: params.favoritesCount,
               },
         ),
       }),
