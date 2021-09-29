@@ -1,9 +1,10 @@
-import { createEffect, StoreValue } from 'effector';
-import { useStore } from 'effector-react';
+import { createEffect, StoreValue, guard } from 'effector';
+import { createGate, useStore } from 'effector-react';
 import * as article from 'entities/article';
 import { createPagination } from 'features/pagination';
 import * as api from 'shared/api';
 import { limit } from 'shared/library/limit';
+import * as profile from '../../model';
 
 export type FetchFeedFxArgs = Readonly<{
   username: string;
@@ -24,20 +25,35 @@ export const getFeedFx = createEffect<FetchFeedFxArgs, article.types.FeedType>(
   },
 );
 
+export const { paginationChanged, $pageSize, $pageIndex, $pageNumber } =
+  createPagination({
+    pageSize: 5,
+  });
+
 export const {
   favoriteArticleToggled,
   $feed,
   $isEmptyFeed,
   $articles,
   $totalPages,
+  setUnfavoriteArticleFx,
 } = article.model.createFeed({
   effect: getFeedFx,
 });
 
-export const { paginationChanged, $pageSize, $pageIndex, $pageNumber } =
-  createPagination({
-    pageSize: 5,
-  });
+export const Gate = createGate();
+
+guard({
+  source: {
+    username: profile.model.$username,
+    pageSize: $pageSize,
+    pageIndex: $pageIndex,
+  },
+  filter: (x) => Boolean(x.username),
+  clock: [Gate.open, paginationChanged, setUnfavoriteArticleFx.done],
+  // @ts-ignore
+  target: getFeedFx,
+});
 
 export const selectors = {
   useGetFeedPending: (): boolean => useStore(getFeedFx.pending),
@@ -47,5 +63,4 @@ export const selectors = {
 
   usePageSize: (): StoreValue<typeof $pageSize> => useStore($pageSize),
   usePageNumber: (): StoreValue<typeof $pageNumber> => useStore($pageNumber),
-  usePageIndex: (): StoreValue<typeof $pageIndex> => useStore($pageIndex),
 };

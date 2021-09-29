@@ -95,6 +95,7 @@ export function createFeed({ effect }: Options) {
 
   return {
     favoriteArticleToggled,
+    setUnfavoriteArticleFx,
     $feed,
     $totalPages,
     $articles,

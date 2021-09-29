@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useGate } from 'effector-react';
 import { Container, Row } from 'shared/ui';
 import { model } from './model';
 import { Routes } from './routes';
@@ -8,10 +8,7 @@ import { UserInfo } from './ui/user-info';
 
 const ProfilePage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
-
-  useEffect(() => {
-    model.getProfileFx(username);
-  }, [username]);
+  useGate(model.Gate, { username });
 
   return (
     <div className="profile-page">

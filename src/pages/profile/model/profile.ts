@@ -1,4 +1,5 @@
-import { createEffect, restore, merge, combine } from 'effector';
+import { createEffect, restore, merge, combine, guard } from 'effector';
+import { createGate } from 'effector-react';
 import * as user from 'entities/user';
 import * as api from 'shared/api';
 import * as types from './types';
@@ -17,6 +18,15 @@ export const subscribeFx = createEffect<
 
 export const unsubscribeFx = createEffect<string, types.Profile>((username) => {
   return api.del(`profiles/${username}/follow`).then((x) => x.data.profile);
+});
+
+export const Gate = createGate<{ username?: string }>();
+export const $username = Gate.state.map((x) => x?.username);
+
+guard({
+  source: $username,
+  filter: Boolean,
+  target: getProfileFx,
 });
 
 export const $profile = restore(

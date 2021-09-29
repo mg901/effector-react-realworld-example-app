@@ -12,7 +12,7 @@ export const ButtonFavorite: React.FC<Props> = ({
   children,
 }) => (
   <Button
-    className="btn-outline-primary"
+    className="button-favorite btn-outline-primary"
     data-active={active}
     size="sm"
     onClick={onClick}
