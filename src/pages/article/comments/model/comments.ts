@@ -20,7 +20,7 @@ export const addCommentFx = createEffect<
   api.types.ApiError
 >(({ slug, body }) => {
   return api
-    .post(`articles/${slug}/comments`, { body })
+    .post(`articles/${slug}/comments`, { comment: { body } })
     .then((x) => x.data.comment);
 });
 
