@@ -1,4 +1,4 @@
-export type DeleteCommentFxArgs = Readonly<{
+export type DeleteCommentFxArgs = {
   slug: string;
   id: string;
-}>;
+};

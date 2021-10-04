@@ -6,10 +6,10 @@ import * as api from 'shared/api';
 
 import { limit } from 'shared/library/limit';
 
-export type getFeedFxArgs = Readonly<{
+export type getFeedFxArgs = {
   pageSize: number;
   pageIndex: number;
-}>;
+};
 
 export const getFeedFx = createEffect<getFeedFxArgs, article.types.FeedType>(
   ({ pageSize, pageIndex }) =>

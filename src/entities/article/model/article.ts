@@ -12,10 +12,10 @@ import { status } from 'patronum/status';
 import * as api from 'shared/api';
 import * as types from './types';
 
-type Feed = Readonly<{
+type Feed = {
   articles: readonly types.Article[];
   articlesCount: number;
-}>;
+};
 
 type Options = {
   effect: Effect<any, Feed, any>;
@@ -24,9 +24,9 @@ type Options = {
 export function createFeed({ effect }: Options) {
   const favoriteArticleToggled = createEvent<types.Article>();
 
-  type SelectedArticle = Readonly<{
+  type SelectedArticle = {
     article: types.Article;
-  }>;
+  };
 
   const setFavoriteArticleFx = createEffect<
     types.Article,

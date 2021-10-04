@@ -1,4 +1,4 @@
-export type User = Readonly<{
+export type User = {
   image: string;
   username: string;
   bio: string;
@@ -7,6 +7,6 @@ export type User = Readonly<{
   id: number | null;
   createdAt: string;
   updatedAt: string;
-}>;
+};
 
 export type Token = null | string;

@@ -6,11 +6,11 @@ import * as api from 'shared/api';
 import { limit } from 'shared/library/limit';
 import * as profile from '../../model';
 
-export type getFeedFxArgs = Readonly<{
+export type getFeedFxArgs = {
   username: string;
   pageIndex: number;
   pageSize: number;
-}>;
+};
 
 export const getFeedFx = createEffect<getFeedFxArgs, article.types.FeedType>(
   ({ username, pageIndex, pageSize }) => {
