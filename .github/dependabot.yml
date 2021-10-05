@@ -1,18 +1,15 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "02:00"
-  open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: history
-    versions:
-    - ">= 0"
-  - dependency-name: "@types/history"
-    versions:
-    - ">= 0"
-  - dependency-name: webpack*
-    versions:
-    - ">= 0"
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: daily
+      time: '02:00'
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: history
+        versions:
+          - '>= 0'
+      - dependency-name: '@types/history'
+        versions:
+          - '>= 0'
