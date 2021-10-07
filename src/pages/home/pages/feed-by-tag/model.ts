@@ -1,7 +1,7 @@
-import { createEffect, StoreValue } from 'effector';
+import { createEffect, createStore, StoreValue } from 'effector';
 import { useStore } from 'effector-react';
 import * as article from 'entities/article';
-import { createPagination } from 'features/pagination';
+import { syncPaginationWithQueryParams } from 'features/sync-pagination-with-query-params';
 import * as api from 'shared/api';
 import { limit } from 'shared/library/limit';
 import * as home from '../../model';
@@ -33,10 +33,10 @@ export const {
   effect: getFeedFx,
 });
 
-export const { paginationChanged, $pageSize, $pageIndex, $pageNumber } =
-  createPagination({
-    pageSize: 10,
-  });
+export const $pageSize = createStore(10);
+
+export const { queryParamsSetted, $pageIndex, $pageNumber } =
+  syncPaginationWithQueryParams();
 
 export const selectors = {
   useGetFeedPending: (): boolean => useStore(getFeedFx.pending),

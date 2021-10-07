@@ -7,7 +7,6 @@ import {
   split,
   Effect,
 } from 'effector';
-import { useStore } from 'effector-react';
 import { status } from 'patronum/status';
 import * as api from 'shared/api';
 import * as types from './types';
@@ -23,6 +22,12 @@ type Options = {
 
 export function createFeed({ effect }: Options) {
   const favoriteArticleToggled = createEvent<types.Article>();
+  const favoriteClicked = favoriteArticleToggled.filter({
+    fn: (x) => x.favorited === true,
+  });
+  const unfavoriteClicked = favoriteArticleToggled.filter({
+    fn: (x) => x.favorited === false,
+  });
 
   type SelectedArticle = {
     article: types.Article;
@@ -47,7 +52,7 @@ export function createFeed({ effect }: Options) {
     articles: [],
   })
     .on(effect.doneData, (_, payload) => payload)
-    .on(favoriteArticleToggled, (state, payload) => ({
+    .on(favoriteClicked, (state, payload) => ({
       ...state,
       articles: state.articles.map((article) =>
         article.slug !== payload.slug
@@ -55,9 +60,19 @@ export function createFeed({ effect }: Options) {
           : {
               ...article,
               favorited: !article.favorited,
-              favoritesCount: article.favorited
-                ? article.favoritesCount - 1
-                : article.favoritesCount + 1,
+              favoritesCount: article.favoritesCount - 1,
+            },
+      ),
+    }))
+    .on(unfavoriteClicked, (state, payload) => ({
+      ...state,
+      articles: state.articles.map((article) =>
+        article.slug !== payload.slug
+          ? article
+          : {
+              ...article,
+              favorited: !article.favorited,
+              favoritesCount: article.favoritesCount + 1,
             },
       ),
     }))
@@ -117,11 +132,6 @@ export function createFeed({ effect }: Options) {
     },
   });
 
-  const selectors = {
-    useLoading: () => useStore(effect.pending),
-    useIsEmpty: () => useStore($isEmptyFeed),
-  };
-
   return {
     favoriteArticleToggled,
     setUnfavoriteArticleFx,
@@ -129,6 +139,5 @@ export function createFeed({ effect }: Options) {
     $totalPages,
     $articles,
     $isEmptyFeed,
-    selectors,
   };
 }

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import * as article from 'entities/article';
 import {
-  paginationChanged,
+  queryParamsSetted,
   favoriteArticleToggled,
   $articles,
   getFeedFx,
@@ -17,7 +17,7 @@ const YourFeedPage: React.FC = () => {
   const totalPages = selectors.useTotalPages();
 
   const handlePageChange = (page: number) => {
-    paginationChanged(page);
+    queryParamsSetted(page);
     getFeedFx({ pageSize, pageIndex });
   };
 

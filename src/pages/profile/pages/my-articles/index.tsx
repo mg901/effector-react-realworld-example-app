@@ -5,7 +5,7 @@ import {
   favoriteArticleToggled,
   $articles,
   selectors,
-  paginationChanged,
+  queryParamsSetted,
 } from './model';
 
 const MyArticlesPage: React.FC = () => {
@@ -25,7 +25,7 @@ const MyArticlesPage: React.FC = () => {
       pageSize={pageSize}
       totalPages={totalPages}
       onArticleClick={favoriteArticleToggled}
-      onPageChange={paginationChanged}
+      onPageChange={queryParamsSetted}
     />
   );
 };

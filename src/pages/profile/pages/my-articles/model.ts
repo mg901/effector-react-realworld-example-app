@@ -1,8 +1,8 @@
-import { createEffect, guard, StoreValue } from 'effector';
+import { createEffect, createStore, guard, StoreValue } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as article from 'entities/article';
-import { createPagination } from 'features/pagination';
 import * as api from 'shared/api';
+import { syncPaginationWithQueryParams } from 'features/sync-pagination-with-query-params';
 import { limit } from 'shared/library/limit';
 import * as profile from '../../model';
 
@@ -35,10 +35,10 @@ export const {
   effect: getFeedFx,
 });
 
-export const { paginationChanged, $pageSize, $pageIndex, $pageNumber } =
-  createPagination({
-    pageSize: 5,
-  });
+export const $pageSize = createStore(5);
+
+export const { queryParamsSetted, $pageIndex, $pageNumber } =
+  syncPaginationWithQueryParams();
 
 export const Gate = createGate();
 
@@ -49,7 +49,7 @@ guard({
     pageIndex: $pageIndex,
   },
   filter: (x): x is getFeedFxArgs => Boolean(x.username),
-  clock: [Gate.open, paginationChanged],
+  clock: [Gate.open, queryParamsSetted],
   target: getFeedFx,
 });
 

@@ -2,7 +2,7 @@ import { useGate } from 'effector-react';
 import * as article from 'entities/article';
 import {
   Gate,
-  paginationChanged,
+  queryParamsSetted,
   favoriteArticleToggled,
   $articles,
   selectors,
@@ -25,7 +25,7 @@ const FavoritedArticlesPage: React.FC = () => {
       pageSize={pageSize}
       totalPages={totalPages}
       onArticleClick={favoriteArticleToggled}
-      onPageChange={paginationChanged}
+      onPageChange={queryParamsSetted}
     />
   );
 };

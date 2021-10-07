@@ -1,8 +1,8 @@
-import { createEffect, StoreValue, guard } from 'effector';
+import { createEffect, createStore, StoreValue, guard } from 'effector';
 import { createGate, useStore } from 'effector-react';
 import * as article from 'entities/article';
-import { createPagination } from 'features/pagination';
 import * as api from 'shared/api';
+import { syncPaginationWithQueryParams } from 'features/sync-pagination-with-query-params';
 import { limit } from 'shared/library/limit';
 import * as profile from '../../model';
 
@@ -25,10 +25,10 @@ export const getFeedFx = createEffect<getFeedFxArgs, article.types.FeedType>(
   },
 );
 
-export const { paginationChanged, $pageSize, $pageIndex, $pageNumber } =
-  createPagination({
-    pageSize: 5,
-  });
+export const $pageSize = createStore(5);
+
+export const { queryParamsSetted, $pageIndex, $pageNumber } =
+  syncPaginationWithQueryParams();
 
 export const {
   favoriteArticleToggled,
@@ -50,7 +50,7 @@ guard({
     pageIndex: $pageIndex,
   },
   filter: (x): x is getFeedFxArgs => Boolean(x.username),
-  clock: [Gate.open, paginationChanged, setUnfavoriteArticleFx.done],
+  clock: [Gate.open, queryParamsSetted, setUnfavoriteArticleFx.done],
   target: getFeedFx,
 });
 
