@@ -1,5 +1,1 @@
-const BrowserEnvironment = require('jest-environment-jsdom');
-
-class CustomEnvironment extends BrowserEnvironment {}
-
-module.exports = CustomEnvironment;
+module.exports = require('jest-environment-jsdom');
