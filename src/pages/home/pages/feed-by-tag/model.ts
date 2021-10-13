@@ -12,15 +12,13 @@ export type FetchFeedByTagArgs = Readonly<{
   pageSize: number;
 }>;
 
-export const getFeedFx = createEffect<
-  FetchFeedByTagArgs,
-  article.types.FeedType
->(({ tag, pageSize, pageIndex }) =>
-  api
-    .get(
-      `articles?tag=${encodeURIComponent(tag)}&${limit(pageSize, pageIndex)}`,
-    )
-    .then((x) => x.data),
+export const getFeedFx = createEffect(
+  ({ tag, pageSize, pageIndex }: FetchFeedByTagArgs) =>
+    api
+      .get<article.types.FeedType>(
+        `articles?tag=${encodeURIComponent(tag)}&${limit(pageSize, pageIndex)}`,
+      )
+      .then((x) => x.data),
 );
 
 export const {

@@ -12,10 +12,10 @@ export type getFeedFxArgs = {
   pageSize: number;
 };
 
-export const getFeedFx = createEffect<getFeedFxArgs, article.types.FeedType>(
-  ({ username, pageIndex, pageSize }) => {
+export const getFeedFx = createEffect(
+  ({ username, pageIndex, pageSize }: getFeedFxArgs) => {
     return api
-      .get(
+      .get<article.types.FeedType>(
         `articles?author=${encodeURIComponent(username)}&${limit(
           pageSize,
           pageIndex,
