@@ -4,8 +4,10 @@ import * as user from 'entities/user';
 import * as api from 'shared/api';
 import * as types from './types';
 
-export const getProfileFx = createEffect<string, types.Profile>((username) => {
-  return api.get(`profiles/${username}`).then((x) => x.data.profile);
+export const getProfileFx = createEffect((username: string) => {
+  return api
+    .get<{ profile: types.Profile }>(`profiles/${username}`)
+    .then((x) => x.data.profile);
 });
 
 export const subscribeFx = createEffect<
@@ -13,11 +15,15 @@ export const subscribeFx = createEffect<
   types.Profile,
   api.types.ApiError
 >((username) => {
-  return api.post(`profiles/${username}/follow`).then((x) => x.data.profile);
+  return api
+    .post<{ profile: types.Profile }>(`profiles/${username}/follow`)
+    .then((x) => x.data.profile);
 });
 
-export const unsubscribeFx = createEffect<string, types.Profile>((username) => {
-  return api.del(`profiles/${username}/follow`).then((x) => x.data.profile);
+export const unsubscribeFx = createEffect((username: string) => {
+  return api
+    .del<{ profile: types.Profile }>(`profiles/${username}/follow`)
+    .then((x) => x.data.profile);
 });
 
 export const Gate = createGate<{ username?: string }>();

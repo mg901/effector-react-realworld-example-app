@@ -8,15 +8,17 @@ export type Form = {
   password: string;
 };
 
-export const signInFx = createEffect<Form, user.types.User, api.types.ApiError>(
-  ({ email, password }) => {
-    return api
-      .post('users/login', {
-        user: { email, password },
-      })
-      .then((x) => x.data.user);
-  },
-);
+export const signInFx = createEffect<
+  Form,
+  user.types.User,
+  api.types.ApiError<Record<string, unknown>>
+>(({ email, password }) => {
+  return api
+    .post<{ user: user.types.User }>('users/login', {
+      user: { email, password },
+    })
+    .then((x) => x.data.user);
+});
 
 signInFx.done.watch(() => {
   router.history.push('/');

@@ -38,14 +38,16 @@ export function createFeed({ effect }: Options) {
     SelectedArticle,
     api.types.ApiError
   >(({ slug }) => {
-    return api.post(`articles/${slug}/favorite`).then((x) => x.data);
+    return api
+      .post<SelectedArticle>(`articles/${slug}/favorite`)
+      .then((x) => x.data);
   });
 
-  const setUnfavoriteArticleFx = createEffect<types.Article, SelectedArticle>(
-    ({ slug }) => {
-      return api.del(`articles/${slug}/favorite`).then((x) => x.data);
-    },
-  );
+  const setUnfavoriteArticleFx = createEffect(({ slug }: types.Article) => {
+    return api
+      .del<SelectedArticle>(`articles/${slug}/favorite`)
+      .then((x) => x.data);
+  });
 
   const $feed = createStore<Feed>({
     articlesCount: 0,

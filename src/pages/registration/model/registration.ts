@@ -7,10 +7,10 @@ import * as types from './types';
 export const signUpFx = createEffect<
   types.FormType,
   user.types.User,
-  api.types.ApiError
+  api.types.ApiError<Record<string, unknown>>
 >(({ username, email, password }) => {
   return api
-    .post('users', {
+    .post<{ user: user.types.User }>('users', {
       user: { username, email, password },
     })
     .then((x) => x.data.user);

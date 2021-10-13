@@ -10,9 +10,13 @@ export type getFeedFxArgs = Readonly<{
   pageIndex: number;
 }>;
 
-export const getFeedFx = createEffect<getFeedFxArgs, article.types.FeedType>(
-  ({ pageSize, pageIndex }) =>
-    api.get(`articles/feed?${limit(pageSize, pageIndex)}`).then((x) => x.data),
+export const getFeedFx = createEffect(
+  ({ pageSize, pageIndex }: getFeedFxArgs) =>
+    api
+      .get<article.types.FeedType>(
+        `articles/feed?${limit(pageSize, pageIndex)}`,
+      )
+      .then((x) => x.data),
 );
 
 export const {

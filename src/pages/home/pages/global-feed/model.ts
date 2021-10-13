@@ -11,9 +11,11 @@ export type getFeedFxArgs = {
   pageIndex: number;
 };
 
-export const getFeedFx = createEffect<getFeedFxArgs, article.types.FeedType>(
-  ({ pageSize, pageIndex }) =>
-    api.get(`articles?${limit(pageSize, pageIndex)}`).then((x) => x.data),
+export const getFeedFx = createEffect(
+  ({ pageSize, pageIndex }: getFeedFxArgs) =>
+    api
+      .get<article.types.FeedType>(`articles?${limit(pageSize, pageIndex)}`)
+      .then((x) => x.data),
 );
 
 export const {

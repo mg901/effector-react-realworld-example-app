@@ -9,10 +9,10 @@ export const tagDeleted = createEvent<string>();
 export const createArticleFx = createEffect<
   article.types.Article,
   article.types.Article,
-  api.types.ApiError
+  api.types.ApiError<Record<string, unknown>>
 >((form) => {
   return api
-    .post('articles', {
+    .post<{ article: article.types.Article }>('articles', {
       article: form,
     })
     .then((x) => x.data.article);

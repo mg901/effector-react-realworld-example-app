@@ -10,24 +10,28 @@ import * as types from './types';
 
 export const commentDeleted = createEvent<types.DeleteCommentArgs>();
 
-export const getCommentsFx = createEffect<string, types.Comment[]>((slug) => {
-  return api.get(`articles/${slug}/comments`).then((x) => x.data.comments);
+export const getCommentsFx = createEffect((slug: string) => {
+  return api
+    .get<{ comments: types.Comment[] }>(`articles/${slug}/comments`)
+    .then((x) => x.data.comments);
 });
 
 export const addCommentFx = createEffect<
   types.AddCommentFxArgs,
   types.Comment,
-  api.types.ApiError
+  api.types.ApiError<Record<string, unknown>>
 >(({ slug, body }) => {
   return api
-    .post(`articles/${slug}/comments`, { comment: { body } })
+    .post<{ comment: types.Comment }>(`articles/${slug}/comments`, {
+      comment: { body },
+    })
     .then((x) => x.data.comment);
 });
 
 export const deleteCommentFx = createEffect<
   types.DeleteCommentArgs,
   void,
-  api.types.ApiError
+  api.types.ApiError<Record<string, unknown>>
 >(({ slug, id }) => {
   return api.del(`articles/${slug}/comments/${id}`);
 });

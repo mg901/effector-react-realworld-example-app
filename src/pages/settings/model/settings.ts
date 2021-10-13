@@ -7,7 +7,7 @@ import { changeUserDataFxArgs } from './types';
 export const changeUserDataFx = createEffect<
   changeUserDataFxArgs,
   api.types.ApiResponse<void>,
-  api.types.ApiError
+  api.types.ApiError<Record<string, unknown>>
 >((payload) => {
   return api.put('user', {
     user: payload,
