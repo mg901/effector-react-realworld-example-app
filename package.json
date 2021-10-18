@@ -84,7 +84,7 @@
     "husky": "4.3.8",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.0",
-    "jest-environment-jsdom": "^27.2.5",
+    "jest-environment-jsdom": "^27.3.0",
     "lint-staged": "^11.2.3",
     "mini-css-extract-plugin": "^2.4.2",
     "node-static": "^0.7.11",
