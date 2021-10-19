@@ -1,10 +1,9 @@
-import { useEffect, Suspense } from 'react';
+import { Suspense } from 'react';
 import * as user from 'entities/user';
 import { APP_NAME } from 'shared/config';
 import { Router, history } from 'shared/library/router';
 import { Spinner } from 'shared/ui';
 
-import * as model from '../../model';
 import { Routes } from '../../routes';
 import { Header } from '../header';
 import { LoginLinks } from '../login-links';
@@ -15,12 +14,6 @@ import '../../main.css';
 
 export const App: React.FC = () => {
   const isAuth = user.selectors.useIsAuth();
-
-  useEffect(() => {
-    if (isAuth) {
-      model.getUserFx();
-    }
-  }, [isAuth]);
 
   return (
     <Router history={history}>
