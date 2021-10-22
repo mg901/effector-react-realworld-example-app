@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "predeploy": "npm run build",
+    "prepare": "husky install",
     "start": "cross-env webpack-dev-server",
     "build": "npm run clean && NODE_ENV=production webpack",
     "clean": "cross-env rimraf public",
