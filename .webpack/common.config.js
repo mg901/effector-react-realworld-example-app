@@ -1,6 +1,7 @@
 const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { SRC } = require('./constants');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const { SRC, FAVICON } = require('./constants');
 
 module.exports = {
   context: SRC,
@@ -12,6 +13,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'index.html',
       inject: 'body',
+    }),
+    new FaviconsWebpackPlugin({
+      logo: FAVICON,
     }),
   ],
   module: {

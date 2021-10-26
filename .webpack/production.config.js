@@ -4,8 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
-const { SRC, DIST, FAVICON } = require('./constants');
+const { SRC, DIST } = require('./constants');
 
 module.exports = {
   mode: 'production',
@@ -30,9 +29,6 @@ module.exports = {
     minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
   },
   plugins: [
-    new FaviconsWebpackPlugin({
-      logo: FAVICON,
-    }),
     new CopyPlugin({
       patterns: [
         {
