@@ -6,9 +6,9 @@
   "scripts": {
     "predeploy": "npm run build",
     "prepare": "husky install",
-    "start": "cross-env webpack-dev-server",
+    "start": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "npm run clean && NODE_ENV=production webpack",
-    "clean": "cross-env rimraf public",
+    "clean": "cross-env rimraf build",
     "commit": "cross-env git-cz",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix.",
@@ -18,7 +18,7 @@
     "ts-check:watch": "yarn ts-check -- --watch",
     "test": "cross-env jest",
     "test:watch": "cross-env jest --watch",
-    "demo": "npx serve -s public"
+    "demo": "npx serve -s build"
   },
   "browserslist": {
     "production": [
@@ -34,7 +34,7 @@
   },
   "size-limit": [
     {
-      "path": "public/*.*.js",
+      "path": "build/*.*.js",
       "limit": "111kb"
     }
   ],
@@ -80,6 +80,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
     "eslint-plugin-react-hooks": "^4.1.2",
+    "favicons": "^6.2.2",
+    "favicons-webpack-plugin": "^5.0.2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
