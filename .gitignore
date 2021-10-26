@@ -12,7 +12,7 @@ coverage
 .DS_Store
 .env
 .cache
-public
+build
 npm-debug.log
 .idea
 *.log

@@ -4,12 +4,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const { SRC, PUBLIC } = require('./constants');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const { SRC, DIST, FAVICON } = require('./constants');
 
 module.exports = {
   mode: 'production',
   output: {
-    path: PUBLIC,
+    path: DIST,
     publicPath: '/effector-react-realworld-example-app/',
     filename: '[name].[contenthash].js',
   },
@@ -29,11 +30,14 @@ module.exports = {
     minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
   },
   plugins: [
+    new FaviconsWebpackPlugin({
+      logo: FAVICON,
+    }),
     new CopyPlugin({
       patterns: [
         {
           from: resolve(SRC, '404.html'),
-          to: PUBLIC,
+          to: DIST,
         },
       ],
       options: {
