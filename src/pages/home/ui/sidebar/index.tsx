@@ -1,15 +1,12 @@
-import { useEffect } from 'react';
+import { useGate } from 'effector-react';
 import { Spinner } from 'shared/ui';
 import * as home from '../../model';
 import { TagList } from '../tag-list';
 import './index.css';
 
 export const Sidebar: React.FC = () => {
+  useGate(home.model.Gate);
   const loading = home.selectors.useLoadTags();
-
-  useEffect(() => {
-    home.model.getTagsFx();
-  }, []);
 
   return (
     <aside className="sidebar">
