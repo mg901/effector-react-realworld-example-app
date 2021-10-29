@@ -1,4 +1,5 @@
-import { Page, Row } from 'shared/ui';
+import { Suspense } from 'react';
+import { Page, Row, Spinner } from 'shared/ui';
 import { Routes } from './routes';
 import { LogoutBanner } from './ui/logout-banner';
 import { Sidebar } from './ui/sidebar';
@@ -11,7 +12,9 @@ export const HomePage: React.FC = () => (
       <Row>
         <main className="col-md-9">
           <Tabs />
-          <Routes />
+          <Suspense fallback={<Spinner loading />}>
+            <Routes />
+          </Suspense>
         </main>
 
         <div className="col-md-3">

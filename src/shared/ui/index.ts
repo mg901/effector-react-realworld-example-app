@@ -1,4 +1,6 @@
 export * from './form';
+export * from './page';
+export * from './pagination';
 export * from './spinner';
 export * from './banner';
 export * from './button';
@@ -8,8 +10,6 @@ export * from './form-control';
 export * from './form-group';
 export * from './list';
 export * from './nav-item';
-export * from './pagination';
-export * from './page';
 export * from './row';
 export * from './tag-list';
 export * from './tag';
