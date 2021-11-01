@@ -1,9 +1,7 @@
-import { Suspense } from 'react';
 import { useGate } from 'effector-react';
 import * as user from 'entities/user';
-import { APP_NAME } from 'shared/config';
-import { Router, history } from 'shared/library/router';
-import { Spinner } from 'shared/ui';
+import { APP_NAME } from 'shared/constants';
+import { Router, history, RoutesWrapper } from 'shared/library/router';
 
 import * as model from '../../model';
 import { Routes } from '../../routes';
@@ -26,9 +24,9 @@ export const App: React.FC = () => {
           {isAuth ? <LoginLinks /> : <LogoutLinks />}
         </ul>
       </Header>
-      <Suspense fallback={<Spinner loading />}>
+      <RoutesWrapper>
         <Routes />
-      </Suspense>
+      </RoutesWrapper>
     </Router>
   );
 };

@@ -1,7 +1,13 @@
 import { lazy } from 'react';
-import { Switch, Redirect, Route, useRouteMatch } from 'react-router-dom';
 import * as user from 'entities/user';
-import { URLS, PrivateRoute } from 'shared/library/router';
+import {
+  Switch,
+  Redirect,
+  Route,
+  useRouteMatch,
+  URLS,
+  PrivateRoute,
+} from 'shared/library/router';
 
 const YourFeedPage = lazy(() => import('./pages/your-feed'));
 const GlobalFeedPage = lazy(() => import('./pages/global-feed'));

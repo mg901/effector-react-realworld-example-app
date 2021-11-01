@@ -49,7 +49,7 @@ export const Feed: React.FC<Props> = ({
         total={totalPages}
         onPageChange={onPageChange}
       />
-      <Spinner loading={loading} />
+      <Spinner show={loading} />
     </>
   );
 };

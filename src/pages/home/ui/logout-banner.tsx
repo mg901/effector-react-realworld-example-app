@@ -1,5 +1,5 @@
 import * as user from 'entities/user';
-import { APP_NAME } from 'shared/config';
+import { APP_NAME } from 'shared/constants';
 import { Banner as BannerUi, Container } from 'shared/ui';
 
 export const LogoutBanner: React.FC = () => {

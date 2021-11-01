@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'shared/library/router';
 import { Button } from 'shared/ui';
 import { selectors } from '../model';
 

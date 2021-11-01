@@ -1,3 +1,4 @@
+import { RoutesWrapper } from 'shared/library/router';
 import { Page, Row } from 'shared/ui';
 import { Routes } from './routes';
 import { LogoutBanner } from './ui/logout-banner';
@@ -11,7 +12,9 @@ export const HomePage: React.FC = () => (
       <Row>
         <main className="col-md-9">
           <Tabs />
-          <Routes />
+          <RoutesWrapper>
+            <Routes />
+          </RoutesWrapper>
         </main>
 
         <div className="col-md-3">

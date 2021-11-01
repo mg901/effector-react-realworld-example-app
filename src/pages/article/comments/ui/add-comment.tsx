@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
 import * as user from 'entities/user';
+import { useParams } from 'shared/library/router';
 import { Button, Form } from 'shared/ui';
 import { model } from '../model';
 

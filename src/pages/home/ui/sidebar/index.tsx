@@ -12,7 +12,7 @@ export const Sidebar: React.FC = () => {
     <aside className="sidebar">
       <p>Popular Tags</p>
       <TagList />
-      <Spinner loading={loading} />
+      <Spinner show={loading} />
     </aside>
   );
 };
