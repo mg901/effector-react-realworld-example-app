@@ -10,6 +10,7 @@ export * from './form-control';
 export * from './form-group';
 export * from './list';
 export * from './nav-item';
+export * from './page-fallback';
 export * from './row';
 export * from './tag-list';
 export * from './tag';

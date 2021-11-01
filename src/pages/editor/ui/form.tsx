@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
 import * as article from 'entities/article';
+import { useParams } from 'shared/library/router';
 import { Form } from 'shared/ui';
 import { model } from '../model';
 import { AddTagForm } from './add-tag-form';

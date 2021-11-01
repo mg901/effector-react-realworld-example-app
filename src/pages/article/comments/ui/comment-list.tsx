@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { useList } from 'effector-react';
+import { useParams } from 'shared/library/router';
 import { List } from 'shared/ui';
 import { model } from '../model';
 import { Comment } from './comment';

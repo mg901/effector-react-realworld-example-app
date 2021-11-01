@@ -1,7 +1,6 @@
-import { Suspense } from 'react';
-import { useParams } from 'react-router-dom';
 import { useGate } from 'effector-react';
-import { Container, Row, Spinner } from 'shared/ui';
+import { useParams, RoutesWrapper } from 'shared/library/router';
+import { Container, Row } from 'shared/ui';
 import { model } from './model';
 import { Routes } from './routes';
 import { Tabs } from './ui/tabs';
@@ -17,9 +16,9 @@ const ProfilePage: React.FC = () => {
       <Container>
         <Row>
           <Tabs>
-            <Suspense fallback={<Spinner loading />}>
+            <RoutesWrapper>
               <Routes />
-            </Suspense>
+            </RoutesWrapper>
           </Tabs>
         </Row>
       </Container>
