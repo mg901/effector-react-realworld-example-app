@@ -2,13 +2,14 @@ import { forwardRef } from 'react';
 import './index.css';
 
 type Props = Readonly<{
-  show: boolean;
+  show?: boolean;
 }>;
 
-export const Spinner = forwardRef<HTMLDivElement, Props>(({ show }, ref) =>
-  !show ? null : (
-    <div className="spinner-border text-success" ref={ref}>
-      <span className="sr-only" />
-    </div>
-  ),
+export const Spinner = forwardRef<HTMLDivElement, Props>(
+  ({ show = true }, ref) =>
+    !show ? null : (
+      <div className="spinner-border text-success" ref={ref}>
+        <span className="sr-only" />
+      </div>
+    ),
 );

@@ -1,24 +1,27 @@
 import { Suspense } from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import { useLocation } from 'react-router-dom';
-import { Page } from 'shared/ui';
-import { Spinner } from '../../../ui';
+import { Page, Spinner } from 'shared/ui';
 
-export const RoutesWrapper: React.FC = ({ children }) => {
+type RoutesWrapperProps = {
+  children: React.ReactNode;
+};
+
+export function RoutesWrapper({ children }: RoutesWrapperProps): JSX.Element {
   const location = useLocation();
 
   return (
     <ErrorBoundary FallbackComponent={PageFallback} key={location.pathname}>
-      <Suspense fallback={<Spinner show />}>{children}</Suspense>
+      <Suspense fallback={<Spinner />}>{children}</Suspense>
     </ErrorBoundary>
   );
-};
+}
 
-export const PageFallback: React.FC<FallbackProps> = ({ error }) => {
+export function PageFallback({ error }: FallbackProps): JSX.Element {
   return (
     <Page>
       <p>Something went wrong:</p>
       <pre>{error.message}</pre>
     </Page>
   );
-};
+}
