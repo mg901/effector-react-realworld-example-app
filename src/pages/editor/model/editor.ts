@@ -33,7 +33,9 @@ export const Gate = createGate();
 
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
-}).on(createArticleFx.failData, (_, error) => error.response?.data);
+})
+  .on(createArticleFx.failData, (_, error) => error.response?.data)
+  .reset(Gate.close);
 
 export const $hasError = $error.map((x) => Object.keys(Object(x)).length > 0);
 export const $errors = $error.map((x) => Object.entries(Object(x?.errors)));
