@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import * as article from 'entities/article';
 import { uniq } from 'shared/library/uniq';
@@ -19,23 +19,26 @@ export const AddTagForm: React.FC = () => {
     }
   };
 
-  const handleDeleteTag = (tag: string) => {
-    setValue(
-      'tagList',
-      tags.filter((x) => x !== tag),
-    );
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
   };
+
+  const handleDeleteTag = useCallback(
+    (tag: string) => {
+      setValue(
+        'tagList',
+        tags.filter((x) => x !== tag),
+      );
+    },
+    [setValue, tags],
+  );
 
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Control ref={ref} onKeyDown={handleAddTag} />
       <List>
         {tags.map((tag) => (
-          <Tag key={tag} onClick={() => handleDeleteTag(tag)}>
+          <Tag key={tag} tag={tag} onTagClick={handleDeleteTag}>
             {tag}
           </Tag>
         ))}
