@@ -1,4 +1,5 @@
 import { createEvent, createEffect, createStore } from 'effector';
+import { createGate } from 'effector-react';
 import * as article from 'entities/article';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
@@ -27,6 +28,8 @@ export const getArticleFx = createEffect((slug: string) => {
 createArticleFx.doneData.watch(({ slug }) => {
   history.replace(`/article/${slug}`);
 });
+
+export const Gate = createGate();
 
 export const $error = createStore<Record<string, unknown>>({
   errors: {},

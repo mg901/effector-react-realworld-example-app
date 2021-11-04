@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { Item } from './item';
 
 export type PaginationProps = Readonly<{
@@ -17,6 +17,13 @@ export const Pagination: React.FC<PaginationProps> = ({
   const pages = useMemo(() => createArray(total, pageSize), [total, pageSize]);
   const show = total > pageSize;
 
+  const handleClick = useCallback(
+    (item: number) => {
+      onPageChange(item);
+    },
+    [onPageChange],
+  );
+
   return !show ? null : (
     <nav>
       <ul className="pagination">
@@ -25,8 +32,9 @@ export const Pagination: React.FC<PaginationProps> = ({
             <li className="page-item" key={item}>
               <Item
                 active={checkIsActive(item, current)}
+                item={item}
                 key={item}
-                onClick={() => onPageChange(item)}
+                onItemClick={handleClick}
               >
                 {item}
               </Item>
