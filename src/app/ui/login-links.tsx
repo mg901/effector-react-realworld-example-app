@@ -1,10 +1,8 @@
 import { URLS, NavLink } from 'shared/library/router';
 import { NavItem } from 'shared/ui';
-import { useUser } from '../../pages/settings/model/selectors';
+import { LinkWithUserPic } from './link-with-user-pic';
 
-export const LoginLinks: React.FC = () => {
-  const { username, image } = useUser();
-
+export function LoginLinks(): JSX.Element {
   return (
     <>
       <NavItem>
@@ -28,11 +26,8 @@ export const LoginLinks: React.FC = () => {
       </NavItem>
 
       <NavItem>
-        <NavLink exact className="nav-link" to={`/@${username}`}>
-          <img alt={username} className="user-pic" src={image} />
-          {username}
-        </NavLink>
+        <LinkWithUserPic />
       </NavItem>
     </>
   );
-};
+}
