@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: process.env.API_ROOT ?? 'https://conduit.productionready.io/api/',
+  baseURL: process.env.API_ROOT ?? 'https://api.realworld.io/api/',
 });
 
 export const { get, post, delete: del, put } = instance;
