@@ -1,4 +1,4 @@
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import { Button, ButtonProps } from 'shared/ui';
 import { types } from '../../model';
 import './index.css';
@@ -9,8 +9,8 @@ type Props = Readonly<{
 }>;
 
 export const ButtonDelete: React.FC<Props> = ({ author, onClick }) => {
-  const { username } = user.selectors.useUser();
-  const isAuth = user.selectors.useIsAuth();
+  const { username } = visitor.selectors.useVisitor();
+  const isAuth = visitor.selectors.useIsAuth();
   const isSelf = username === author.username;
 
   if (isAuth && isSelf) {

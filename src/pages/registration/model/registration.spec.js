@@ -1,5 +1,5 @@
 import { fork, allSettled } from 'effector';
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import { signUpFx, $error } from './registration';
 
 describe('pages/registration: ', () => {
@@ -18,13 +18,13 @@ describe('pages/registration: ', () => {
     signUpFx.use(() => expected);
 
     const scope = fork();
-    expect(scope.getState(user.model.$isAuthorized)).toBeFalsy();
+    expect(scope.getState(visitor.model.$isAuthorized)).toBeFalsy();
 
     await allSettled(signUpFx, { scope });
 
-    expect(scope.getState(user.model.$user)).toMatchObject(expected);
-    expect(scope.getState(user.model.$token)).toBe(expected.token);
-    expect(scope.getState(user.model.$isAuthorized)).toBeTruthy();
+    expect(scope.getState(visitor.model.$user)).toMatchObject(expected);
+    expect(scope.getState(visitor.model.$token)).toBe(expected.token);
+    expect(scope.getState(visitor.model.$isAuthorized)).toBeTruthy();
   });
 
   it('should return an error in case of unsuccessful registration', async () => {

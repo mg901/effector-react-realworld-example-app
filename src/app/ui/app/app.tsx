@@ -1,5 +1,5 @@
 import { useGate } from 'effector-react';
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import { APP_NAME } from 'shared/constants';
 import { Router, history, RoutesWrapper } from 'shared/library/router';
 
@@ -14,7 +14,7 @@ import '../../main.css';
 
 export const App: React.FC = () => {
   useGate(model.Gate);
-  const isAuth = user.selectors.useIsAuth();
+  const isAuth = visitor.selectors.useIsAuth();
 
   return (
     <Router history={history}>

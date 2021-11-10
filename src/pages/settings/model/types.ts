@@ -1,7 +1,7 @@
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 
 export type changeUserDataFxArgs = Pick<
-  user.types.User,
+  visitor.types.User,
   'image' | 'username' | 'bio' | 'email'
 > & {
   password: string;

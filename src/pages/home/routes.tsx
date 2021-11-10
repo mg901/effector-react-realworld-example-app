@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import {
   Switch,
   Redirect,
@@ -16,7 +16,7 @@ const NoMatchPage = lazy(() => import('pages/not-match'));
 
 export const Routes: React.FC = () => {
   const { path } = useRouteMatch<{ path: string }>();
-  const isAuth = user.selectors.useIsAuth();
+  const isAuth = visitor.selectors.useIsAuth();
 
   return (
     <Switch>

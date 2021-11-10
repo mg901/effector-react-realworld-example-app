@@ -1,4 +1,4 @@
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import { Page, Row, Button } from 'shared/ui';
 import { SettingsForm, Error } from './ui';
 
@@ -14,7 +14,7 @@ const SettingsPage: React.FC = () => {
 
           <Button
             className="btn-outline-danger"
-            onClick={user.model.loggedOutClicked}
+            onClick={visitor.model.loggedOutClicked}
           >
             Or click here to logout.
           </Button>
