@@ -1,9 +1,9 @@
 import { createEffect, createStore, StoreValue } from 'effector';
 import { useStore } from 'effector-react';
 import * as article from 'entities/article';
-import { syncPaginationWithQueryParams } from 'features/sync-pagination-with-query-params';
 import * as api from 'shared/api';
 import { limit } from 'shared/library/limit';
+import { syncPaginationWithQueryParams } from 'shared/library/sync-pagination-with-query-params';
 
 export type getFeedFxArgs = Readonly<{
   pageSize: number;
