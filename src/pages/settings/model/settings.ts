@@ -1,5 +1,5 @@
 import { createEffect, createStore } from 'effector';
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
 import { changeUserDataFxArgs } from './types';
@@ -14,7 +14,7 @@ export const changeUserDataFx = createEffect<
   });
 });
 
-export const $user = user.model.$user.map((x) => ({
+export const $user = visitor.model.$visitor.map((x) => ({
   image: x.image,
   username: x.username,
   bio: x.bio,
@@ -26,7 +26,7 @@ changeUserDataFx.done.watch(() => {
   window.location.reload();
 });
 
-user.model.loggedOutClicked.watch(() => {
+visitor.model.loggedOutClicked.watch(() => {
   history.push('/');
 });
 

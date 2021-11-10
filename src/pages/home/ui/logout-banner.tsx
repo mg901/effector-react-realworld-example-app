@@ -1,9 +1,9 @@
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import { APP_NAME } from 'shared/constants';
 import { Banner as BannerUi, Container } from 'shared/ui';
 
 export const LogoutBanner: React.FC = () => {
-  const isAuth = user.selectors.useIsAuth();
+  const isAuth = visitor.selectors.useIsAuth();
 
   return (
     <>

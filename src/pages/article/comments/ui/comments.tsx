@@ -1,10 +1,10 @@
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import { AddCommentForm } from './add-comment';
 import { CommentsList } from './comment-list';
 import { Error } from './error';
 
 export const Comments: React.FC = () => {
-  const isAuth = user.selectors.useIsAuth();
+  const isAuth = visitor.selectors.useIsAuth();
 
   return (
     <>

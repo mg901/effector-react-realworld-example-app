@@ -1,6 +1,6 @@
 import { createEvent, createEffect, restore, combine, forward } from 'effector';
 import * as article from 'entities/article';
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
 
@@ -41,8 +41,8 @@ export const $article = restore(getArticleFx.doneData, {
 
 export const $canModify = combine(
   $article,
-  user.model.$user,
-  ({ author }, authUser) => author.username === authUser.username,
+  visitor.model.$visitor,
+  ({ author }, user) => author.username === user.username,
 );
 
 forward({

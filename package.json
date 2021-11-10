@@ -14,11 +14,11 @@
     "lint": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix.",
     "pretty": "cross-env fixme=fixme prettier --write '**/*.{j,t}{s,sx}'",
     "pretty:watch": "cross-env fixme=fixme onchange '**/*.{j,t}{s,sx}' -- prettier --write {{changed}}",
-    "ts-check": "cross-env tsc",
-    "ts-check:watch": "yarn ts-check -- --watch",
+    "typecheck": "cross-env tsc",
+    "typecheck:watch": "yarn typecheck -- --watch",
     "test": "cross-env jest",
     "test:watch": "cross-env jest --watch",
-    "demo": "npx serve -s build"
+    "preview": "npx serve -s build"
   },
   "browserslist": {
     "production": [

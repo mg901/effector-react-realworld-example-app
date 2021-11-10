@@ -1,9 +1,9 @@
 import { Route, Redirect, RouteProps } from 'react-router-dom';
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import { URLS } from '../router';
 
 export const PrivateRoute: React.FC<RouteProps> = (props) => {
-  const isAuth = user.selectors.useIsAuth();
+  const isAuth = visitor.selectors.useIsAuth();
 
   return !isAuth ? (
     <Redirect

@@ -1,4 +1,4 @@
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import { URLS, NavLink } from 'shared/library/router';
 import { NavItem } from 'shared/ui';
 
@@ -7,7 +7,7 @@ type Props = Readonly<{
 }>;
 
 export const YourFeedLink: React.FC<Props> = ({ url }) => {
-  const isAuth = user.selectors.useIsAuth();
+  const isAuth = visitor.selectors.useIsAuth();
 
   return (
     <>

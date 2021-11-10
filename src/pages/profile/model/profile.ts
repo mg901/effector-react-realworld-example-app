@@ -1,6 +1,6 @@
 import { createEffect, restore, merge, combine, guard } from 'effector';
 import { createGate } from 'effector-react';
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
 import * as types from './types';
 
@@ -48,8 +48,8 @@ export const $profile = restore(
 export const $following = $profile.map((x) => x.following);
 export const $isCurrentUser = combine(
   $profile,
-  user.model.$user,
-  (profile, authUser) => profile.username === authUser.username,
+  visitor.model.$visitor,
+  (profile, user) => profile.username === user.username,
 );
 
 export const $isNotCurrentUser = $isCurrentUser.map((is) => !is);

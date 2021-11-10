@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import { useParams } from 'shared/library/router';
 import { Button, Form } from 'shared/ui';
 import { model } from '../model';
@@ -47,7 +47,7 @@ export function AddCommentForm(): JSX.Element {
 }
 
 export function Footer(): JSX.Element {
-  const { image, username } = user.selectors.useUser();
+  const { image, username } = visitor.selectors.useVisitor();
 
   return (
     <div className="card-footer">

@@ -12,7 +12,7 @@ import { Token, User } from './types';
 
 export const loggedOutClicked = createEvent<React.MouseEvent>();
 
-export const $user = createStore<User>({
+export const $visitor = createStore<User>({
   bio: '',
   createdAt: '',
   email: '',
@@ -24,7 +24,7 @@ export const $user = createStore<User>({
 }).reset(loggedOutClicked);
 
 export const $token = createStore<Token>(null).on(
-  $user.map((x) => x.token),
+  $visitor.map((x) => x.token),
   (_, payload) => payload,
 );
 

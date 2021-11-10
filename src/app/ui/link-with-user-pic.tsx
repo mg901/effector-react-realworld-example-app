@@ -1,8 +1,8 @@
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import { NavLink } from 'shared/library/router';
 
 export const LinkWithUserPic: React.FC = () => {
-  const { username, image } = user.selectors.useUser();
+  const { username, image } = visitor.selectors.useVisitor();
 
   return (
     <NavLink exact className="nav-link" to={`/@${username}`}>

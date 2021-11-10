@@ -1,16 +1,16 @@
 import { createEffect, createStore } from 'effector';
-import * as user from 'entities/user';
+import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
 import * as router from 'shared/library/router';
 import * as types from './types';
 
 export const signUpFx = createEffect<
   types.FormType,
-  user.types.User,
+  visitor.types.User,
   api.types.ApiError<Record<string, unknown>>
 >(({ username, email, password }) => {
   return api
-    .post<{ user: user.types.User }>('users', {
+    .post<{ user: visitor.types.User }>('users', {
       user: { username, email, password },
     })
     .then((x) => x.data.user);
@@ -20,7 +20,7 @@ signUpFx.done.watch(() => {
   router.history.push('/');
 });
 
-user.model.$user.on(signUpFx.doneData, (_, payload) => payload);
+visitor.model.$visitor.on(signUpFx.doneData, (_, payload) => payload);
 
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
