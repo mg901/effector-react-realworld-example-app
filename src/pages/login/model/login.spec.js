@@ -22,7 +22,7 @@ describe('pages/login: ', () => {
 
     await allSettled(signInFx, { scope });
 
-    expect(scope.getState(visitor.model.$user)).toMatchObject(expected);
+    expect(scope.getState(visitor.model.$visitor)).toMatchObject(expected);
     expect(scope.getState(visitor.model.$token)).toBe(expected.token);
     expect(scope.getState(visitor.model.$isAuthorized)).toBeTruthy();
   });
