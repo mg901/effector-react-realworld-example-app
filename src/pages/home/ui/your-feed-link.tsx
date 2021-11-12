@@ -9,15 +9,11 @@ type Props = Readonly<{
 export const YourFeedLink: React.FC<Props> = ({ url }) => {
   const isAuth = visitor.selectors.useIsAuth();
 
-  return (
-    <>
-      {isAuth ? (
-        <NavItem>
-          <NavLink exact className="nav-link" to={`${url}${URLS.YOUR_FEED}`}>
-            Your Feed
-          </NavLink>
-        </NavItem>
-      ) : null}
-    </>
+  return !isAuth ? null : (
+    <NavItem>
+      <NavLink exact className="nav-link" to={`${url}${URLS.YOUR_FEED}`}>
+        Your Feed
+      </NavLink>
+    </NavItem>
   );
 };

@@ -61,6 +61,8 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'react/jsx-one-expression-per-line': 0,
     'react/jsx-closing-bracket-location': 0,
+    'react/no-unstable-nested-components': 0,
+    'react/function-component-definition': 0,
     'react/jsx-sort-props': [
       2,
       {
