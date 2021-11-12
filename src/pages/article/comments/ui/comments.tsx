@@ -6,15 +6,11 @@ import { Error } from './error';
 export const Comments: React.FC = () => {
   const isAuth = visitor.selectors.useIsAuth();
 
-  return (
+  return !isAuth ? null : (
     <>
-      {isAuth ? (
-        <>
-          <Error />
-          <AddCommentForm />
-          <CommentsList />
-        </>
-      ) : null}
+      <Error />
+      <AddCommentForm />
+      <CommentsList />
     </>
   );
 };

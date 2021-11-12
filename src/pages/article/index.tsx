@@ -17,26 +17,22 @@ const ArticlePage: React.FC = () => {
     }
   }, [slug]);
 
-  return (
-    <>
-      {!loading && (
-        <div className="article-page">
-          <Header />
-          <Page>
-            <Content />
-            <hr />
-            <div className="article-actions" />
-            <Row>
-              <div className="col-xs-12 col-md-8 offset-md-2">
-                <Comments />
-                <LogoutMessage />
-              </div>
-            </Row>
-          </Page>
-        </div>
-      )}
-    </>
-  );
+  return !loading ? (
+    <div className="article-page">
+      <Header />
+      <Page>
+        <Content />
+        <hr />
+        <div className="article-actions" />
+        <Row>
+          <div className="col-xs-12 col-md-8 offset-md-2">
+            <Comments />
+            <LogoutMessage />
+          </div>
+        </Row>
+      </Page>
+    </div>
+  ) : null;
 };
 
 export default ArticlePage;
