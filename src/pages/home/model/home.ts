@@ -9,7 +9,7 @@ export const tagSelected = createEvent<string>();
 export const getTagsFx = createEffect(() => {
   return api
     .get<{ tags: article.types.Article['tagList'] }>('tags')
-    .then((x) => x.data.tags);
+    .then((response) => response.data.tags);
 });
 
 export const Gate = createGate();

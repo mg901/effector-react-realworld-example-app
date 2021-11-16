@@ -22,11 +22,13 @@ type Options = {
 
 export function createFeed({ effect }: Options) {
   const favoriteArticleToggled = createEvent<types.Article>();
+
   const favoriteClicked = favoriteArticleToggled.filter({
-    fn: (x) => x.favorited === true,
+    fn: (article) => article.favorited === true,
   });
+
   const unfavoriteClicked = favoriteArticleToggled.filter({
-    fn: (x) => x.favorited === false,
+    fn: (article) => article.favorited === false,
   });
 
   type SelectedArticle = {
@@ -40,13 +42,13 @@ export function createFeed({ effect }: Options) {
   >(({ slug }) => {
     return api
       .post<SelectedArticle>(`articles/${slug}/favorite`)
-      .then((x) => x.data);
+      .then((response) => response.data);
   });
 
   const setUnfavoriteArticleFx = createEffect(({ slug }: types.Article) => {
     return api
       .del<SelectedArticle>(`articles/${slug}/favorite`)
-      .then((x) => x.data);
+      .then((response) => response.data);
   });
 
   const $feed = createStore<Feed>({
@@ -109,8 +111,8 @@ export function createFeed({ effect }: Options) {
       }),
     );
 
-  const $totalPages = $feed.map((x) => x.articlesCount);
-  const $articles = $feed.map((x) => x.articles);
+  const $totalPages = $feed.map((feed) => feed.articlesCount);
+  const $articles = $feed.map((articles) => articles.articles);
   const $status = status({
     effect,
   });
@@ -125,8 +127,8 @@ export function createFeed({ effect }: Options) {
   split({
     source: favoriteArticleToggled,
     match: {
-      favorite: (x) => x.favorited === true,
-      unfavorite: (x) => x.favorited === false,
+      favorite: (article) => article.favorited === true,
+      unfavorite: (article) => article.favorited === false,
     },
     cases: {
       favorite: setUnfavoriteArticleFx,

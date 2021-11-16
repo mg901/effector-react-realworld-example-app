@@ -9,7 +9,7 @@ export const getArticleFx = createEffect<string, article.types.Article>(
   (slug) => {
     return api
       .get<{ article: article.types.Article }>(`articles/${slug}`)
-      .then((x) => x.data.article)
+      .then((response) => response.data.article)
       .then(({ createdAt, ...rest }) => ({
         ...rest,
         createdAt: new Date(createdAt).toDateString(),

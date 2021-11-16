@@ -15,7 +15,7 @@ export const getFeedFx = createEffect(
   ({ pageSize, pageIndex }: getFeedFxArgs) =>
     api
       .get<article.types.FeedType>(`articles?${limit(pageSize, pageIndex)}`)
-      .then((x) => x.data),
+      .then((response) => response.data),
 );
 
 export const {

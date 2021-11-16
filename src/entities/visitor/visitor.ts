@@ -8,11 +8,11 @@ import {
 import { persist } from 'effector-storage/local';
 import { setToken } from 'shared/api';
 import { TOKEN_NAME } from 'shared/constants';
-import { Token, User } from './types';
+import { Token, Visitor } from './types';
 
 export const loggedOutClicked = createEvent<React.MouseEvent>();
 
-export const $visitor = createStore<User>({
+export const $visitor = createStore<Visitor>({
   bio: '',
   createdAt: '',
   email: '',
@@ -24,7 +24,7 @@ export const $visitor = createStore<User>({
 }).reset(loggedOutClicked);
 
 export const $token = createStore<Token>(null).on(
-  $visitor.map((x) => x.token),
+  $visitor.map((visitor) => visitor.token),
   (_, payload) => payload,
 );
 

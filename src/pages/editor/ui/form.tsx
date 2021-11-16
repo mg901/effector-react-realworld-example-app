@@ -21,6 +21,7 @@ export const EditorForm: React.FC = () => {
       tagList: [],
     },
   });
+
   const { handleSubmit, register, reset } = methods;
 
   useEffect(() => {

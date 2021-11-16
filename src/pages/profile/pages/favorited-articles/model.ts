@@ -21,7 +21,7 @@ export const getFeedFx = createEffect(
           pageIndex,
         )}`,
       )
-      .then((x) => x.data);
+      .then((response) => response.data);
   },
 );
 

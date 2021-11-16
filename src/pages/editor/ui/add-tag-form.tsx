@@ -10,24 +10,24 @@ export const AddTagForm: React.FC = () => {
   const ref = useRef<HTMLInputElement>(null);
   const tags = watch('tagList') as article.types.Article['tagList'];
 
-  const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleAddTag = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const tag = ref.current?.value;
 
-    if (e.key === 'Enter' && tag) {
+    if (event.key === 'Enter' && tag) {
       setValue('tagList', uniq(tags.concat(tag)));
       ref.current.value = '';
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
   };
 
   const handleDeleteTag = useCallback(
     (tag: string) => {
       setValue(
         'tagList',
-        tags.filter((x) => x !== tag),
+        tags.filter((item) => item !== tag),
       );
     },
     [setValue, tags],
