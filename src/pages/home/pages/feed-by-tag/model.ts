@@ -18,7 +18,7 @@ export const getFeedFx = createEffect(
       .get<article.types.FeedType>(
         `articles?tag=${encodeURIComponent(tag)}&${limit(pageSize, pageIndex)}`,
       )
-      .then((x) => x.data),
+      .then((response) => response.data),
 );
 
 export const {

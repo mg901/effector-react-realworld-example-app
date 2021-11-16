@@ -7,7 +7,7 @@ import * as types from './types';
 export const getProfileFx = createEffect((username: string) => {
   return api
     .get<{ profile: types.Profile }>(`profiles/${username}`)
-    .then((x) => x.data.profile);
+    .then((response) => response.data.profile);
 });
 
 export const subscribeFx = createEffect<
@@ -17,17 +17,17 @@ export const subscribeFx = createEffect<
 >((username) => {
   return api
     .post<{ profile: types.Profile }>(`profiles/${username}/follow`)
-    .then((x) => x.data.profile);
+    .then((response) => response.data.profile);
 });
 
 export const unsubscribeFx = createEffect((username: string) => {
   return api
     .del<{ profile: types.Profile }>(`profiles/${username}/follow`)
-    .then((x) => x.data.profile);
+    .then((response) => response.data.profile);
 });
 
 export const Gate = createGate<{ username?: string }>();
-export const $username = Gate.state.map((x) => x?.username);
+export const $username = Gate.state.map((props) => props?.username);
 
 guard({
   source: $username,
@@ -45,7 +45,7 @@ export const $profile = restore(
   },
 );
 
-export const $following = $profile.map((x) => x.following);
+export const $following = $profile.map((profile) => profile.following);
 export const $isCurrentUser = combine(
   $profile,
   visitor.model.$visitor,

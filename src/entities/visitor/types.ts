@@ -1,4 +1,4 @@
-export type User = {
+export type Visitor = {
   image: string;
   username: string;
   bio: string;

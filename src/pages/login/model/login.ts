@@ -10,14 +10,14 @@ export type Form = {
 
 export const signInFx = createEffect<
   Form,
-  visitor.types.User,
+  visitor.types.Visitor,
   api.types.ApiError<Record<string, unknown>>
 >(({ email, password }) => {
   return api
-    .post<{ user: visitor.types.User }>('users/login', {
+    .post<{ user: visitor.types.Visitor }>('users/login', {
       user: { email, password },
     })
-    .then((x) => x.data.user);
+    .then((response) => response.data.user);
 });
 
 signInFx.done.watch(() => {

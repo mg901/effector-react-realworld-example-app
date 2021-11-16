@@ -16,7 +16,7 @@ export const createArticleFx = createEffect<
     .post<{ article: article.types.Article }>('articles', {
       article: form,
     })
-    .then((x) => x.data.article);
+    .then((response) => response.data.article);
 });
 
 export const getArticleFx = createEffect((slug: string) => {
@@ -37,5 +37,10 @@ export const $error = createStore<Record<string, unknown>>({
   .on(createArticleFx.failData, (_, error) => error.response?.data)
   .reset(Gate.close);
 
-export const $hasError = $error.map((x) => Object.keys(Object(x)).length > 0);
-export const $errors = $error.map((x) => Object.entries(Object(x?.errors)));
+export const $hasError = $error.map(
+  (error) => Object.keys(Object(error)).length > 0,
+);
+
+export const $errors = $error.map((error) =>
+  Object.entries(Object(error?.errors)),
+);

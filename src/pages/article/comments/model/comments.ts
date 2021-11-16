@@ -13,7 +13,7 @@ export const commentDeleted = createEvent<types.DeleteCommentArgs>();
 export const getCommentsFx = createEffect((slug: string) => {
   return api
     .get<{ comments: types.Comment[] }>(`articles/${slug}/comments`)
-    .then((x) => x.data.comments);
+    .then((response) => response.data.comments);
 });
 
 export const addCommentFx = createEffect<
@@ -25,7 +25,7 @@ export const addCommentFx = createEffect<
     .post<{ comment: types.Comment }>(`articles/${slug}/comments`, {
       comment: { body },
     })
-    .then((x) => x.data.comment);
+    .then((response) => response.data.comment);
 });
 
 export const deleteCommentFx = createEffect<
@@ -54,5 +54,10 @@ export const $error = createStore<Record<string, unknown>>({
   (_, error) => error.response?.data,
 );
 
-export const $hasError = $error.map((x) => Object.keys(Object(x)).length > 0);
-export const $errors = $error.map((x) => Object.entries(Object(x?.errors)));
+export const $hasError = $error.map(
+  (error) => Object.keys(Object(error)).length > 0,
+);
+
+export const $errors = $error.map((error) =>
+  Object.entries(Object(error?.errors)),
+);
