@@ -7,7 +7,7 @@ type RoutesWrapperProps = {
   children: React.ReactNode;
 };
 
-export function RoutesWrapper({ children }: RoutesWrapperProps): JSX.Element {
+export const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ children }) => {
   const location = useLocation();
 
   return (
@@ -15,7 +15,7 @@ export function RoutesWrapper({ children }: RoutesWrapperProps): JSX.Element {
       <Suspense fallback={<Spinner />}>{children}</Suspense>
     </ErrorBoundary>
   );
-}
+};
 
 export function PageFallback({ error }: FallbackProps): JSX.Element {
   return (

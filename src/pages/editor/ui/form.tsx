@@ -9,37 +9,12 @@ import { AddTagForm } from './add-tag-form';
 import { ButtonSubmit } from './button-submit';
 
 export const EditorForm: React.FC = () => {
-  useGate(model.Gate);
-  const { slug } = useParams<{ slug: string }>();
-
-  const methods = useForm<article.types.Article>({
-    defaultValues: {
-      slug: '',
-      title: '',
-      description: '',
-      body: '',
-      tagList: [],
-    },
-  });
-
-  const { handleSubmit, register, reset } = methods;
-
-  useEffect(() => {
-    if (slug) {
-      model.getArticleFx(slug);
-    }
-
-    const unwatch = model.getArticleFx.doneData.watch((x) => {
-      reset(x);
-    });
-
-    return () => unwatch();
-  }, [slug, reset]);
+  const { methods, handleSubmit, register } = useEditor();
 
   return (
     <>
       <FormProvider {...methods}>
-        <Form id="editor" onSubmit={handleSubmit(model.createArticleFx)}>
+        <Form id="editor" onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Control
               placeholder="Article Title"
@@ -68,3 +43,38 @@ export const EditorForm: React.FC = () => {
     </>
   );
 };
+
+function useEditor() {
+  useGate(model.Gate);
+  const { slug } = useParams<{ slug: string }>();
+
+  const methods = useForm<article.types.Article>({
+    defaultValues: {
+      slug: '',
+      title: '',
+      description: '',
+      body: '',
+      tagList: [],
+    },
+  });
+
+  const { handleSubmit, register, reset } = methods;
+
+  useEffect(() => {
+    if (slug) {
+      model.getArticleFx(slug);
+    }
+
+    const unwatch = model.getArticleFx.doneData.watch((x) => {
+      reset(x);
+    });
+
+    return () => unwatch();
+  }, [slug, reset]);
+
+  return {
+    handleSubmit: handleSubmit(model.createArticleFx),
+    methods,
+    register,
+  };
+}

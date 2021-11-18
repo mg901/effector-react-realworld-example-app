@@ -17,6 +17,8 @@ const FeedByTagPage: React.FC = () => {
   const pageNumber = selectors.usePageNumber();
   const totalPages = selectors.useTotalPages();
 
+  // console.log('feed by tag');
+
   const handlePageChange = (page: number) => {
     queryParamsSetted(page);
     getFeedFx({ tag, pageSize, pageIndex });

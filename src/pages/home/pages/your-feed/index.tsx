@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, memo } from 'react';
 import * as article from 'entities/article';
 import {
   queryParamsSetted,
@@ -8,13 +8,15 @@ import {
   selectors,
 } from './model';
 
-const YourFeedPage: React.FC = () => {
+const YourFeedPage: React.FC = memo(() => {
   const loading = selectors.useGetFeedPending();
   const isEmpty = selectors.useIsEmptyFeed();
   const pageSize = selectors.usePageSize();
   const pageIndex = selectors.usePageIndex();
   const pageNumber = selectors.usePageNumber();
   const totalPages = selectors.useTotalPages();
+
+  // console.log('your feed');
 
   const handlePageChange = (page: number) => {
     queryParamsSetted(page);
@@ -37,6 +39,6 @@ const YourFeedPage: React.FC = () => {
       onPageChange={handlePageChange}
     />
   );
-};
+});
 
 export default YourFeedPage;

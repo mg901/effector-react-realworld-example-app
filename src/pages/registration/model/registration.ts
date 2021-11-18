@@ -1,4 +1,5 @@
 import { createEffect, createStore } from 'effector';
+import { createGate } from 'effector-react';
 import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
 import * as router from 'shared/library/router';
@@ -22,6 +23,7 @@ signUpFx.done.watch(() => {
 
 visitor.model.$visitor.on(signUpFx.doneData, (_, payload) => payload);
 
+export const Gate = createGate();
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
 }).on(signUpFx.failData, (_, error) => error.response?.data);

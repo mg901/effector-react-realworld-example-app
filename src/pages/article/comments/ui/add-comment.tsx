@@ -1,38 +1,15 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import * as visitor from 'entities/visitor';
 import { useParams } from 'shared/library/router';
-import { Button, Form } from 'shared/ui';
+import { Form } from 'shared/ui';
 import { model } from '../model';
-
-type FormData = {
-  body: string;
-};
-
-const defaultValues = {
-  body: '',
-};
+import { Footer } from './footer';
 
 export function AddCommentForm(): JSX.Element {
-  const { slug } = useParams<{ slug: string }>();
-  const { handleSubmit, register, reset } = useForm<FormData>({
-    defaultValues,
-  });
-
-  const onSubmit = ({ body }: FormData) => {
-    model.addCommentFx({ body, slug });
-  };
-
-  useEffect(() => {
-    const unwatch = model.addCommentFx.done.watch(() => {
-      reset(defaultValues);
-    });
-
-    return () => unwatch();
-  });
+  const { handleSubmit, register } = useAddComment();
 
   return (
-    <Form className="card comment-form" onSubmit={handleSubmit(onSubmit)}>
+    <Form className="card comment-form" onSubmit={handleSubmit}>
       <div className="card-block">
         <Form.Control
           as="textarea"
@@ -46,15 +23,34 @@ export function AddCommentForm(): JSX.Element {
   );
 }
 
-export function Footer(): JSX.Element {
-  const { image, username } = visitor.selectors.useVisitor();
+type FormValues = {
+  body: string;
+};
 
-  return (
-    <div className="card-footer">
-      <img alt={username} className="comment-author-img" src={image} />
-      <Button className="btn-primary" size="sm" type="submit">
-        Post Comment
-      </Button>
-    </div>
-  );
+function useAddComment() {
+  const defaultValues = {
+    body: '',
+  };
+
+  const { slug } = useParams<{ slug: string }>();
+  const { handleSubmit, register, reset } = useForm<FormValues>({
+    defaultValues,
+  });
+
+  const onSubmit = ({ body }: FormValues) => {
+    model.addCommentFx({ body, slug });
+  };
+
+  useEffect(() => {
+    const unwatch = model.addCommentFx.done.watch(() => {
+      reset(defaultValues);
+    });
+
+    return () => unwatch();
+  });
+
+  return {
+    register,
+    handleSubmit: handleSubmit(onSubmit),
+  };
 }
