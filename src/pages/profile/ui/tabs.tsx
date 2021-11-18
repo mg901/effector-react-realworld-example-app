@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useRouteMatch, NavLink } from 'shared/library/router';
 import { NavItem } from 'shared/ui';
 

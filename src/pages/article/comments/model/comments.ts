@@ -5,6 +5,7 @@ import {
   restore,
   forward,
 } from 'effector';
+import { createGate } from 'effector-react';
 import * as api from 'shared/api';
 import * as types from './types';
 
@@ -47,12 +48,15 @@ export const $comments = restore(getCommentsFx.doneData, [])
     state.filter(({ id }) => id !== params.id),
   );
 
+export const Gate = createGate();
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
-}).on(
-  [addCommentFx.failData, deleteCommentFx.failData],
-  (_, error) => error.response?.data,
-);
+})
+  .on(
+    [addCommentFx.failData, deleteCommentFx.failData],
+    (_, error) => error.response?.data,
+  )
+  .reset(Gate.close);
 
 export const $hasError = $error.map(
   (error) => Object.keys(Object(error)).length > 0,

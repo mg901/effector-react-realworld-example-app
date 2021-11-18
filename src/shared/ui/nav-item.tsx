@@ -1,3 +1,5 @@
-export const NavItem: React.FC = ({ children }) => (
-  <li className="nav-item">{children}</li>
-);
+import { memo } from 'react';
+
+export const NavItem: React.FC = memo(({ children }) => {
+  return <li className="nav-item">{children}</li>;
+});
