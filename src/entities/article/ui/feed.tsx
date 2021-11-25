@@ -36,7 +36,7 @@ export const Feed: React.FC<Props> = ({
           fn: (item) => (
             <li>
               <ArticlePreview
-                data={item}
+                article={item}
                 onClick={() => onArticleClick(item)}
               />
             </li>

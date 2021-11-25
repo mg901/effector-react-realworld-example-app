@@ -6,12 +6,12 @@ import { ArticleMeta } from './article-meta';
 import { ButtonFavorite } from './button-favorite';
 
 type Props = {
-  data: types.Article;
+  article: types.Article;
   onClick: ButtonProps['onClick'];
 };
 
 export const ArticlePreview: React.FC<Props> = ({
-  data: {
+  article: {
     author,
     createdAt,
     slug,
