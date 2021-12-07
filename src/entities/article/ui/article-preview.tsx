@@ -1,5 +1,5 @@
 import { Link } from 'shared/library/router';
-import { TagList, Tag, ButtonProps } from 'shared/ui';
+import { TagsWrapper, Tag, ButtonProps } from 'shared/ui';
 
 import { types } from '../model';
 import { ArticleMeta } from './article-meta';
@@ -35,11 +35,11 @@ export const ArticlePreview: React.FC<Props> = ({
       <h1>{title}</h1>
       <p>{description}</p>
       <span>Read more...</span>
-      <TagList>
+      <TagsWrapper>
         {tagList.map((tag) => (
           <Tag key={tag}>{tag.toLowerCase()}</Tag>
         ))}
-      </TagList>
+      </TagsWrapper>
     </Link>
   </article>
 );

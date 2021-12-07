@@ -1,4 +1,4 @@
-import { useEffect, memo } from 'react';
+import { useEffect } from 'react';
 import * as article from 'entities/article';
 import {
   queryParamsSetted,
@@ -8,7 +8,7 @@ import {
   selectors,
 } from './model';
 
-const YourFeedPage: React.FC = memo(() => {
+const YourFeedPage: React.FC = () => {
   const loading = selectors.useGetFeedPending();
   const isEmpty = selectors.useIsEmptyFeed();
   const pageSize = selectors.usePageSize();
@@ -39,6 +39,6 @@ const YourFeedPage: React.FC = memo(() => {
       onPageChange={handlePageChange}
     />
   );
-});
+};
 
 export default YourFeedPage;

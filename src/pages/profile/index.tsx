@@ -1,5 +1,5 @@
 import { useGate } from 'effector-react';
-import { useParams, RoutesWrapper } from 'shared/library/router';
+import { useParams } from 'shared/library/router';
 import { Container, Row } from 'shared/ui';
 import { model } from './model';
 import { Routes } from './routes';
@@ -16,9 +16,7 @@ const ProfilePage: React.FC = () => {
       <Container>
         <Row>
           <Tabs>
-            <RoutesWrapper>
-              <Routes />
-            </RoutesWrapper>
+            <Routes />
           </Tabs>
         </Row>
       </Container>

@@ -18,15 +18,33 @@ export const Routes: React.FC = () => {
   return (
     <Switch>
       <Redirect exact from={URLS.ROOT} to={URLS.HOME} />
-      <Route component={LoginPage} path={URLS.LOGIN} />
-      <Route component={RegistrationPage} path={URLS.REGISTRATION} />
-      <Route component={HomePage} path={URLS.HOME} />
-      <PrivateRoute exact component={EditorPage} path={URLS.EDITOR} />
-      <PrivateRoute component={EditorPage} path={URLS.EDITOR_SLUG} />
-      <PrivateRoute component={SettingsPage} path={URLS.SETTINGS} />
-      <PrivateRoute component={ProfilePage} path={URLS.PROFILE} />
-      <Route component={ArticlePage} path={URLS.ARTICLE} />
-      <Route component={NoMatchPage} path="*" />
+      <Route path={URLS.LOGIN}>
+        <LoginPage />
+      </Route>
+      <Route path={URLS.REGISTRATION}>
+        <RegistrationPage />
+      </Route>
+      <Route path={URLS.HOME}>
+        <HomePage />
+      </Route>
+      <PrivateRoute exact path={URLS.EDITOR}>
+        <EditorPage />
+      </PrivateRoute>
+      <PrivateRoute path={URLS.EDITOR_SLUG}>
+        <EditorPage />
+      </PrivateRoute>
+      <PrivateRoute path={URLS.SETTINGS}>
+        <SettingsPage />
+      </PrivateRoute>
+      <PrivateRoute path={URLS.PROFILE}>
+        <ProfilePage />
+      </PrivateRoute>
+      <Route path={URLS.ARTICLE}>
+        <ArticlePage />
+      </Route>
+      <Route path="*">
+        <NoMatchPage />
+      </Route>
     </Switch>
   );
 };

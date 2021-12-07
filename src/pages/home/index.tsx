@@ -1,48 +1,26 @@
-// import { RoutesWrapper } from 'shared/library/router';
 import { Page, Row } from 'shared/ui';
-// import { Routes } from './routes';
+import { Routes } from './routes';
 import { LogoutBanner } from './ui/logout-banner';
-import { Aside } from './ui/sidebar';
-// import { Tabs } from './ui/tabs';
-import { TagList } from './ui/tag-list';
+import { Sidebar } from './ui/sidebar';
+import { Tabs } from './ui/tabs';
 
-// const Main = () => {
-//   return (
-//     <main className="col-md-9">
-//       <Tabs />
-//       <RoutesWrapper>
-//         <Routes />
-//       </RoutesWrapper>
-//     </main>
-//   );
-// };
-
-const Sidebar = () => {
-  return (
-    <div className="col-md-3">
-      <Aside>
-        <TagList />
-      </Aside>
-    </div>
-  );
-};
-
-const Home: React.FC = ({ children }) => {
+const HomePage: React.FC = () => {
   return (
     <div className="home-page">
       <LogoutBanner />
       <Page>
         <Row>
-          {children}
-          <Sidebar />
+          <main className="col-md-9">
+            <Tabs />
+            <Routes />
+          </main>
+          <div className="col-md-3">
+            <Sidebar />
+          </div>
         </Row>
       </Page>
     </div>
   );
-};
-
-const HomePage: React.FC = () => {
-  return <Home>{/* <Main /> */}</Home>;
 };
 
 export default HomePage;

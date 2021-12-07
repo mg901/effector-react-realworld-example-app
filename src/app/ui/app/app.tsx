@@ -1,11 +1,7 @@
 import { useGate } from 'effector-react';
 import * as visitor from 'entities/visitor';
 import { APP_NAME } from 'shared/constants';
-import {
-  Router as ReactRouter,
-  history,
-  // RoutesWrapper,
-} from 'shared/library/router';
+import { Router, history } from 'shared/library/router';
 
 import * as model from '../../model';
 import { Routes } from '../../routes';
@@ -16,16 +12,12 @@ import { LogoutLinks } from '../logout-links';
 
 import '../../main.css';
 
-const Router: React.FC = ({ children }) => {
-  return <ReactRouter history={history}>{children}</ReactRouter>;
-};
-
 export const App: React.FC = () => {
   useGate(model.Gate);
   const isAuth = visitor.selectors.useIsAuth();
 
   return (
-    <Router>
+    <Router history={history}>
       <Header>
         <Logo title={APP_NAME} />
         <ul className="nav navbar-nav pull-xs-right">
