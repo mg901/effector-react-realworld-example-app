@@ -1,4 +1,11 @@
-import { lazy } from 'react';
+import ArticlePage from 'pages/article';
+import EditorPage from 'pages/editor';
+import HomePage from 'pages/home';
+import LoginPage from 'pages/login';
+import NoMatchPage from 'pages/not-match';
+import ProfilePage from 'pages/profile';
+import RegistrationPage from 'pages/registration';
+import SettingsPage from 'pages/settings';
 import {
   Switch,
   Redirect,
@@ -6,15 +13,6 @@ import {
   URLS,
   PrivateRoute,
 } from 'shared/library/router';
-
-const LoginPage = lazy(() => import('pages/login'));
-const RegistrationPage = lazy(() => import('pages/registration'));
-const HomePage = lazy(() => import('pages/home'));
-const EditorPage = lazy(() => import('pages/editor'));
-const SettingsPage = lazy(() => import('pages/settings'));
-const ProfilePage = lazy(() => import('pages/profile'));
-const ArticlePage = lazy(() => import('pages/article'));
-const NoMatchPage = lazy(() => import('pages/not-match'));
 
 export const Routes: React.FC = () => {
   return (
