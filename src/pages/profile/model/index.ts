@@ -1,3 +1,2 @@
-export * as model from './profile';
-export * as selectors from './selectors';
+export * from './store';
 export * as types from './types';

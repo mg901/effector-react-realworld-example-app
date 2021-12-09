@@ -25,7 +25,7 @@ export const {
   $isEmptyFeed,
   $articles,
   $totalPages,
-} = article.model.createFeed({
+} = article.createFeed({
   effect: getFeedFx,
 });
 

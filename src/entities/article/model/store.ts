@@ -21,35 +21,37 @@ type Options = {
 };
 
 export function createFeed({ effect }: Options) {
-  const favoriteArticleToggled = createEvent<types.Article>();
+  const favoriteArticleToggled = createEvent<types.SelectedArticle>();
 
   const favoriteClicked = favoriteArticleToggled.filter({
-    fn: (article) => article.favorited === true,
+    fn: (payload) => payload.favorited === true,
   });
 
   const unfavoriteClicked = favoriteArticleToggled.filter({
-    fn: (article) => article.favorited === false,
+    fn: (payload) => payload.favorited === false,
   });
 
-  type SelectedArticle = {
+  type ResponseWithArticle = {
     article: types.Article;
   };
 
   const setFavoriteArticleFx = createEffect<
-    types.Article,
-    SelectedArticle,
+    types.SelectedArticle,
+    ResponseWithArticle,
     api.types.ApiError
   >(({ slug }) => {
     return api
-      .post<SelectedArticle>(`articles/${slug}/favorite`)
+      .post<ResponseWithArticle>(`articles/${slug}/favorite`)
       .then((response) => response.data);
   });
 
-  const setUnfavoriteArticleFx = createEffect(({ slug }: types.Article) => {
-    return api
-      .del<SelectedArticle>(`articles/${slug}/favorite`)
-      .then((response) => response.data);
-  });
+  const setUnfavoriteArticleFx = createEffect(
+    ({ slug }: types.SelectedArticle) => {
+      return api
+        .del<ResponseWithArticle>(`articles/${slug}/favorite`)
+        .then((response) => response.data);
+    },
+  );
 
   const $feed = createStore<Feed>({
     articlesCount: 0,

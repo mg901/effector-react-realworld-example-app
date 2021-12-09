@@ -5,6 +5,7 @@ import {
   forward,
   guard,
 } from 'effector';
+import { useStore } from 'effector-react';
 import { persist } from 'effector-storage/local';
 import { setToken } from 'shared/api';
 import { TOKEN_NAME } from 'shared/constants';
@@ -39,3 +40,8 @@ persist({
 });
 
 export const $isAuthorized = $token.map(Boolean);
+
+export const selectors = {
+  useIsAuthorized: () => useStore($isAuthorized),
+  useVisitor: () => useStore($visitor),
+};

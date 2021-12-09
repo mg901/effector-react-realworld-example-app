@@ -1,16 +1,16 @@
 import { Link } from 'shared/library/router';
 import { Button } from 'shared/ui';
-import { model, selectors } from '../model';
+import * as model from '../model';
 
 export const EditMode: React.FC = () => {
-  const canModify = selectors.useCanModify();
-  const { slug } = selectors.useArticle();
+  const canModify = model.selectors.useCanModify();
+  const { slug } = model.selectors.useArticle();
 
   const handleDeleteArticle = () => {
     model.articleDeleted(slug);
   };
 
-  return !canModify ? null : (
+  return canModify ? (
     <span>
       <Link to={`/editor/${slug}`}>
         <Button className="btn-outline-secondary" size="sm">
@@ -25,5 +25,5 @@ export const EditMode: React.FC = () => {
         <i className="ion-trash-a" /> Delete Article
       </Button>
     </span>
-  );
+  ) : null;
 };

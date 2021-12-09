@@ -31,7 +31,7 @@ export const {
   $isEmptyFeed,
   $articles,
   $totalPages,
-} = article.model.createFeed({
+} = article.createFeed({
   effect: getFeedFx,
 });
 
@@ -44,7 +44,7 @@ export const Gate = createGate();
 
 guard({
   source: {
-    username: profile.model.$username,
+    username: profile.$username,
     pageSize: $pageSize,
     pageIndex: $pageIndex,
   },

@@ -1,9 +1,9 @@
 import { useParams, Link } from 'shared/library/router';
-import { types, model } from '../model';
+import * as model from '../model';
 import { ButtonDelete } from './button-delete';
 
 export type CommentFooterProps = Pick<
-  types.Comment,
+  model.types.Comment,
   'author' | 'createdAt' | 'id'
 >;
 

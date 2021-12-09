@@ -8,3 +8,5 @@ export type Profile = {
   image: string;
   username: string;
 };
+
+export type FollowToggledArgs = Pick<Profile, 'username' | 'following'>;

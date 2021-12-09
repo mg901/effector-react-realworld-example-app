@@ -1,30 +1,23 @@
 import { Button } from 'shared/ui';
-import { selectors, model } from '../model';
+import * as model from '../model';
 
-type Props = Readonly<{
-  username: string;
-}>;
+export const FollowUser: React.FC = () => {
+  const username = model.selectors.useUsername();
+  const following = model.selectors.useFollowing();
+  const isVisitor = model.selectors.useIsVisitor();
 
-export const FollowUser: React.FC<Props> = ({ username }) => {
-  const canFollow = selectors.useCanFollow();
-  const is = selectors.useIsNotCurrentUser();
-
-  const handleClick = () => {
-    if (canFollow) {
-      model.unsubscribeFx(username);
-    } else {
-      model.subscribeFx(username);
-    }
+  const handleToggle = () => {
+    model.followToggled({ username, following });
   };
 
-  return !is ? null : (
+  return isVisitor ? null : (
     <Button
       className="action-btn btn-secondary"
       size="sm"
-      onClick={handleClick}
+      onClick={handleToggle}
     >
       <i className="ion-plus-round" />
-      &nbsp;{canFollow ? 'Unfollow' : 'Follow'} {username}
+      &nbsp;{following ? 'Unfollow' : 'Follow'} {username}
     </Button>
   );
 };

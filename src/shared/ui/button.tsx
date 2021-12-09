@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import { forwardRef } from 'react';
+import { memo, forwardRef } from 'react';
 import clsx from 'clsx';
 
 export type ButtonProps = Readonly<
@@ -8,7 +8,8 @@ export type ButtonProps = Readonly<
   }
 >;
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+// prettier-ignore
+export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(
   ({ type = 'button', size = '', className = '', children, ...props }, ref) => {
     const btnClasses = clsx('btn', {
       'btn-sm': size === 'sm',
@@ -26,4 +27,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       </button>
     );
   },
-);
+));
+
+Button.displayName = 'Button';

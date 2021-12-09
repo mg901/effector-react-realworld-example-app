@@ -1,24 +1,27 @@
-import { useGate } from 'effector-react';
-import { useParams, RoutesWrapper } from 'shared/library/router';
+import { useEffect } from 'react';
+import { useParams } from 'shared/library/router';
 import { Container, Row } from 'shared/ui';
-import { model } from './model';
+import * as model from './model';
 import { Routes } from './routes';
+import { ProfileInfo } from './ui/profile-info';
 import { Tabs } from './ui/tabs';
-import { UserInfo } from './ui/user-info';
 
 const ProfilePage: React.FC = () => {
   const { username } = useParams<{ username: string }>();
-  useGate(model.Gate, { username });
+
+  useEffect(() => {
+    if (username) {
+      model.getProfileFx(username);
+    }
+  }, [username]);
 
   return (
     <div className="profile-page">
-      <UserInfo />
+      <ProfileInfo />
       <Container>
         <Row>
           <Tabs>
-            <RoutesWrapper>
-              <Routes />
-            </RoutesWrapper>
+            <Routes />
           </Tabs>
         </Row>
       </Container>

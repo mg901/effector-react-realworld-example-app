@@ -1,10 +1,10 @@
 import { useGate } from 'effector-react';
 import * as visitor from 'entities/visitor';
 import { APP_NAME } from 'shared/constants';
-import { Router, history, RoutesWrapper } from 'shared/library/router';
+import { Router, history } from 'shared/library/router';
 
-import * as model from '../../model';
 import { Routes } from '../../routes';
+import * as model from '../../store';
 import { Header } from '../header';
 import { LoginLinks } from '../login-links';
 import { Logo } from '../logo';
@@ -14,7 +14,7 @@ import '../../main.css';
 
 export const App: React.FC = () => {
   useGate(model.Gate);
-  const isAuth = visitor.selectors.useIsAuth();
+  const isAuth = visitor.selectors.useIsAuthorized();
 
   return (
     <Router history={history}>
@@ -24,9 +24,8 @@ export const App: React.FC = () => {
           {isAuth ? <LoginLinks /> : <LogoutLinks />}
         </ul>
       </Header>
-      <RoutesWrapper>
-        <Routes />
-      </RoutesWrapper>
+
+      <Routes />
     </Router>
   );
 };

@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm as useReactHookForm, FormProvider } from 'react-hook-form';
 import { useGate } from 'effector-react';
 import * as article from 'entities/article';
 import { useParams } from 'shared/library/router';
 import { Form } from 'shared/ui';
-import { model } from '../model';
+import * as model from '../model';
 import { AddTagForm } from './add-tag-form';
 import { ButtonSubmit } from './button-submit';
 
 export const EditorForm: React.FC = () => {
-  const { methods, handleSubmit, register } = useEditor();
+  const { methods, handleSubmit, register } = useForm();
 
   return (
     <>
@@ -44,11 +44,11 @@ export const EditorForm: React.FC = () => {
   );
 };
 
-function useEditor() {
+function useForm() {
   useGate(model.Gate);
   const { slug } = useParams<{ slug: string }>();
 
-  const methods = useForm<article.types.Article>({
+  const methods = useReactHookForm<article.types.Article>({
     defaultValues: {
       slug: '',
       title: '',

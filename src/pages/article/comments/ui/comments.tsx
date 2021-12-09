@@ -4,7 +4,7 @@ import { CommentsList } from './comment-list';
 import { Error } from './error';
 
 export const Comments: React.FC = () => {
-  const isAuth = visitor.selectors.useIsAuth();
+  const isAuth = visitor.selectors.useIsAuthorized();
 
   return !isAuth ? null : (
     <>

@@ -1,5 +1,5 @@
-import { lazy } from 'react';
 import * as visitor from 'entities/visitor';
+import NoMatchPage from 'pages/not-match';
 import {
   Switch,
   Redirect,
@@ -9,14 +9,13 @@ import {
   PrivateRoute,
 } from 'shared/library/router';
 
-const YourFeedPage = lazy(() => import('./pages/your-feed'));
-const GlobalFeedPage = lazy(() => import('./pages/global-feed'));
-const FeedByTagPage = lazy(() => import('./pages/feed-by-tag'));
-const NoMatchPage = lazy(() => import('pages/not-match'));
+import FeedByTagPage from './pages/feed-by-tag';
+import GlobalFeedPage from './pages/global-feed';
+import YourFeedPage from './pages/your-feed';
 
 export const Routes: React.FC = () => {
   const { path } = useRouteMatch<{ path: string }>();
-  const isAuth = visitor.selectors.useIsAuth();
+  const isAuth = visitor.selectors.useIsAuthorized();
 
   return (
     <Switch>

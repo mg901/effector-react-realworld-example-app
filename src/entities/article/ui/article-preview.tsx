@@ -1,17 +1,19 @@
+import { memo } from 'react';
 import { Link } from 'shared/library/router';
-import { TagList, Tag, ButtonProps } from 'shared/ui';
+import { TagsWrapper, Tag } from 'shared/ui';
 
 import { types } from '../model';
 import { ArticleMeta } from './article-meta';
 import { ButtonFavorite } from './button-favorite';
 
-type Props = {
-  article: types.Article;
-  onClick: ButtonProps['onClick'];
+type Props = Omit<types.Article, 'body' | 'updatedAt'> & {
+  onClick: (
+    payload: Pick<types.Article, 'slug' | 'favorited' | 'favoritesCount'>,
+  ) => void;
 };
 
-export const ArticlePreview: React.FC<Props> = ({
-  article: {
+export const ArticlePreview: React.FC<Props> = memo(
+  ({
     author,
     createdAt,
     slug,
@@ -20,26 +22,35 @@ export const ArticlePreview: React.FC<Props> = ({
     tagList,
     favorited,
     favoritesCount,
+    onClick,
+  }) => {
+    return (
+      <article className="article-preview">
+        <ArticleMeta author={author} createdAt={createdAt}>
+          <div className="pull-xs-right">
+            <ButtonFavorite
+              favorited={favorited}
+              favoritesCount={favoritesCount}
+              slug={slug}
+              onClick={onClick}
+            >
+              {favoritesCount}
+            </ButtonFavorite>
+          </div>
+        </ArticleMeta>
+        <Link className="preview-link" to={`/article/${slug}`}>
+          <h1>{title}</h1>
+          <p>{description}</p>
+          <span>Read more...</span>
+          <TagsWrapper>
+            {tagList.map((tag) => (
+              <Tag key={tag}>{tag.toLowerCase()}</Tag>
+            ))}
+          </TagsWrapper>
+        </Link>
+      </article>
+    );
   },
-  onClick,
-}) => (
-  <article className="article-preview">
-    <ArticleMeta author={author} createdAt={createdAt}>
-      <div className="pull-xs-right">
-        <ButtonFavorite active={favorited} onClick={onClick}>
-          {favoritesCount}
-        </ButtonFavorite>
-      </div>
-    </ArticleMeta>
-    <Link className="preview-link" to={`/article/${slug}`}>
-      <h1>{title}</h1>
-      <p>{description}</p>
-      <span>Read more...</span>
-      <TagList>
-        {tagList.map((tag) => (
-          <Tag key={tag}>{tag.toLowerCase()}</Tag>
-        ))}
-      </TagList>
-    </Link>
-  </article>
 );
+
+ArticlePreview.displayName = 'Article Preview';

@@ -15,7 +15,7 @@ export const SettingsForm: React.FC = () => {
   }, [reset, user]);
 
   return (
-    <Form onSubmit={handleSubmit(settings.model.changeUserDataFx)}>
+    <Form onSubmit={handleSubmit(settings.changeUserDataFx)}>
       <Form.Group>
         <Form.Control
           placeholder="URL of profile picture"

@@ -5,7 +5,7 @@ import {
   restore,
   forward,
 } from 'effector';
-import { createGate } from 'effector-react';
+import { useStore, createGate } from 'effector-react';
 import * as api from 'shared/api';
 import * as types from './types';
 
@@ -65,3 +65,9 @@ export const $hasError = $error.map(
 export const $errors = $error.map((error) =>
   Object.entries(Object(error?.errors)),
 );
+
+export const selectors = {
+  useAddCommentFxPending: () => useStore(addCommentFx.pending),
+  useHasError: () => useStore($hasError),
+  useErrors: () => useStore($errors),
+};

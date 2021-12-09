@@ -1,10 +1,9 @@
-import { memo } from 'react';
 import * as article from 'entities/article';
 import { Container, Banner } from 'shared/ui';
 import { selectors } from '../model';
 import { EditMode } from './edit-mode';
 
-export const Header: React.FC = memo(() => {
+export const Header: React.FC = () => {
   const { title, author, createdAt } = selectors.useArticle();
 
   return (
@@ -17,4 +16,4 @@ export const Header: React.FC = memo(() => {
       </Container>
     </Banner>
   );
-});
+};

@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import NoMatch from 'pages/not-match';
 import {
   Switch,
   Route,
@@ -6,9 +6,8 @@ import {
   PrivateRoute,
 } from 'shared/library/router';
 
-const MyArticles = lazy(() => import('./pages/my-articles'));
-const FavoritedArticles = lazy(() => import('./pages/favorited-articles'));
-const NoMatch = lazy(() => import('pages/not-match'));
+import FavoritedArticles from './pages/favorited-articles';
+import MyArticles from './pages/my-articles';
 
 export const Routes: React.FC = () => {
   const { path } = useRouteMatch<{ path: string }>();

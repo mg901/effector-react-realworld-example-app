@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm as useReactHookForm } from 'react-hook-form';
 import { useParams } from 'shared/library/router';
 import { Form } from 'shared/ui';
-import { model } from '../model';
+import * as model from '../model';
 import { Footer } from './footer';
 
 export function AddCommentForm(): JSX.Element {
-  const { handleSubmit, register } = useAddComment();
+  const { handleSubmit, register } = useForm();
 
   return (
     <Form className="card comment-form" onSubmit={handleSubmit}>
@@ -27,13 +27,13 @@ type FormValues = {
   body: string;
 };
 
-function useAddComment() {
+function useForm() {
   const defaultValues = {
     body: '',
   };
 
   const { slug } = useParams<{ slug: string }>();
-  const { handleSubmit, register, reset } = useForm<FormValues>({
+  const { handleSubmit, register, reset } = useReactHookForm<FormValues>({
     defaultValues,
   });
 

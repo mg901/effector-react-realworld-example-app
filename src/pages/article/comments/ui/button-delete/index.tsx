@@ -10,7 +10,7 @@ type Props = Readonly<{
 
 export const ButtonDelete: React.FC<Props> = ({ author, onClick }) => {
   const { username } = visitor.selectors.useVisitor();
-  const isAuth = visitor.selectors.useIsAuth();
+  const isAuth = visitor.selectors.useIsAuthorized();
   const isSelf = username === author.username;
 
   if (isAuth && isSelf) {
