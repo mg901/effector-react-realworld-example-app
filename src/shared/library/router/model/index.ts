@@ -1,1 +1,1 @@
-export * as model from './router';
+export * from './store';

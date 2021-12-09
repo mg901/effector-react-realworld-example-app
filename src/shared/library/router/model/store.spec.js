@@ -1,7 +1,7 @@
 import { fork, allSettled } from 'effector';
-import * as model from './router';
+import * as store from './store';
 
-describe('library/router: ', () => {
+describe('library/router/store', () => {
   it('should update location', async () => {
     const expected = {
       hash: '',
@@ -12,14 +12,14 @@ describe('library/router: ', () => {
 
     const scope = fork();
 
-    await allSettled(model.locationUpdated, {
+    await allSettled(store.locationUpdated, {
       scope,
       params: expected,
     });
 
-    scope.getState(model.$location);
-    expect(scope.getState(model.$location)).toMatchObject(expected);
-    expect(scope.getState(model.$locationPathname)).toBe(expected.pathname);
-    expect(scope.getState(model.$locationSearch)).toBe(expected.search);
+    scope.getState(store.$location);
+    expect(scope.getState(store.$location)).toMatchObject(expected);
+    expect(scope.getState(store.$locationPathname)).toBe(expected.pathname);
+    expect(scope.getState(store.$locationSearch)).toBe(expected.search);
   });
 });
