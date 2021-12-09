@@ -11,14 +11,14 @@ export const TagList: React.FC = () => {
 
   return (
     <>
-      {useList(home.model.$tags, {
+      {useList(home.$tags, {
         getKey: (tag) => tag,
         fn: (tag) => (
           <Link
             className="tag-default tag-pill"
             to={`${url}${URLS.FEED_BY_TAG}?tag=${tag}`}
             type="button"
-            onClick={() => home.model.tagSelected(tag)}
+            onClick={() => home.tagSelected(tag)}
           >
             {tag.toLowerCase()}
           </Link>

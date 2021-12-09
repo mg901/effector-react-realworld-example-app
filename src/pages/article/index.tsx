@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import { useParams } from 'shared/library/router';
 import { Row, Page } from 'shared/ui';
 import { Comments } from './comments';
-import { model, selectors } from './model';
+import * as model from './model';
 import { Content } from './ui/content';
 import { Header } from './ui/header';
 import { LogoutMessage } from './ui/logout-message';
 
 const ArticlePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const loading = selectors.useGetArticlePending();
+  const loading = model.selectors.useGetArticlePending();
 
   useEffect(() => {
     if (slug) {

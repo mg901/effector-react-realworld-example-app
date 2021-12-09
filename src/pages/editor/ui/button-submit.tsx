@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { Button } from 'shared/ui';
 import { selectors } from '../model';
 
-export const ButtonSubmit: React.FC = () => {
+export const ButtonSubmit: React.FC = memo(() => {
   const disabled = selectors.useCreateArticlePending();
 
   return (
@@ -15,4 +16,4 @@ export const ButtonSubmit: React.FC = () => {
       Publish article
     </Button>
   );
-};
+});

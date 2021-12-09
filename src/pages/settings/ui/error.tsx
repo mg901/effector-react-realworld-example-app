@@ -1,9 +1,9 @@
 import { ErrorList } from 'shared/ui';
-import { selectors } from '../model';
+import * as model from '../model';
 
 export const Error: React.FC = () => {
-  const has = selectors.useHasError();
-  const errors = selectors.useErrors();
+  const has = model.selectors.useHasError();
+  const errors = model.selectors.useErrors();
 
   return has ? <ErrorList errors={errors} /> : null;
 };

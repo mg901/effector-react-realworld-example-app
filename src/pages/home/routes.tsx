@@ -15,7 +15,7 @@ import YourFeedPage from './pages/your-feed';
 
 export const Routes: React.FC = () => {
   const { path } = useRouteMatch<{ path: string }>();
-  const isAuth = visitor.selectors.useIsAuth();
+  const isAuth = visitor.selectors.useIsAuthorized();
 
   return (
     <Switch>

@@ -1,5 +1,5 @@
 import { createEffect, createEvent, forward, restore } from 'effector';
-import { createGate } from 'effector-react';
+import { useStore, createGate } from 'effector-react';
 
 import { persist } from 'effector-storage/query';
 import * as article from 'entities/article';
@@ -26,3 +26,8 @@ forward({
   from: Gate.open,
   to: getTagsFx,
 });
+
+export const selectors = {
+  useLoadTags: () => useStore(getTagsFx.pending),
+  useCurrentTag: () => useStore($currentTag),
+};

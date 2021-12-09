@@ -1,5 +1,5 @@
 import { createEvent, createEffect, createStore } from 'effector';
-import { createGate } from 'effector-react';
+import { useStore, createGate } from 'effector-react';
 import * as article from 'entities/article';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
@@ -44,3 +44,9 @@ export const $hasError = $error.map(
 export const $errors = $error.map((error) =>
   Object.entries(Object(error?.errors)),
 );
+
+export const selectors = {
+  useCreateArticlePending: () => useStore(createArticleFx.pending),
+  useHasError: () => useStore($hasError),
+  useErrors: () => useStore($errors),
+};

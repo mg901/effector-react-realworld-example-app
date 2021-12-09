@@ -11,11 +11,11 @@ export const getUserFx = createEffect(() => {
 
 export const Gate = createGate();
 
-visitor.model.$visitor.on(getUserFx.doneData, (_, payload) => payload);
+visitor.$visitor.on(getUserFx.doneData, (_, payload) => payload);
 
 guard({
   clock: Gate.open,
-  source: visitor.model.$isAuthorized,
+  source: visitor.$isAuthorized,
   filter: Boolean,
   target: getUserFx,
 });

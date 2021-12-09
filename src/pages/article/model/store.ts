@@ -1,4 +1,5 @@
 import { createEvent, createEffect, restore, combine, forward } from 'effector';
+import { useStore } from 'effector-react';
 import * as article from 'entities/article';
 import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
@@ -41,7 +42,7 @@ export const $article = restore(getArticleFx.doneData, {
 
 export const $canModify = combine(
   $article,
-  visitor.model.$visitor,
+  visitor.$visitor,
   ({ author }, user) => author.username === user.username,
 );
 
@@ -53,3 +54,9 @@ forward({
 deleteArticleFx.done.watch(() => {
   history.push('/');
 });
+
+export const selectors = {
+  useGetArticlePending: () => useStore(getArticleFx.pending),
+  useCanModify: () => useStore($canModify),
+  useArticle: () => useStore($article),
+};

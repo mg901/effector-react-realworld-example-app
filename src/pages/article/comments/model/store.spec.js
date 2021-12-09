@@ -1,7 +1,7 @@
 import { fork, allSettled } from 'effector';
-import { addCommentFx, $error } from './comments';
+import { addCommentFx, $error } from './store';
 
-describe('pages/article  ', () => {
+describe('pages/article/store', () => {
   it('should return an error if you submit a form with empty fields', async () => {
     const expected = {
       response: {

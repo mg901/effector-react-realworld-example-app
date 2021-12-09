@@ -1,4 +1,4 @@
-import { createEffect, createStore, StoreValue } from 'effector';
+import { createEffect, createStore } from 'effector';
 import { useStore } from 'effector-react';
 import * as article from 'entities/article';
 import * as api from 'shared/api';
@@ -27,7 +27,7 @@ export const {
   $isEmptyFeed,
   $articles,
   $totalPages,
-} = article.model.createFeed({
+} = article.createFeed({
   effect: getFeedFx,
 });
 
@@ -38,13 +38,10 @@ export const { queryParamsSetted, $pageIndex, $pageNumber } =
 
 export const selectors = {
   useGetFeedPending: (): boolean => useStore(getFeedFx.pending),
-
-  useIsEmptyFeed: (): StoreValue<typeof $isEmptyFeed> => useStore($isEmptyFeed),
-  useTotalPages: (): StoreValue<typeof $totalPages> => useStore($totalPages),
-
-  usePageSize: (): StoreValue<typeof $pageSize> => useStore($pageSize),
-  usePageNumber: (): StoreValue<typeof $pageNumber> => useStore($pageNumber),
-  usePageIndex: (): StoreValue<typeof $pageIndex> => useStore($pageIndex),
-  useCurrentTag: (): StoreValue<typeof home.model.$currentTag> =>
-    useStore(home.model.$currentTag),
+  useIsEmptyFeed: () => useStore($isEmptyFeed),
+  useTotalPages: () => useStore($totalPages),
+  usePageSize: () => useStore($pageSize),
+  usePageNumber: () => useStore($pageNumber),
+  usePageIndex: () => useStore($pageIndex),
+  useCurrentTag: () => useStore(home.$currentTag),
 };

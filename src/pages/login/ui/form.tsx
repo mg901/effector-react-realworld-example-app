@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { Form } from 'shared/ui';
-import { model } from '../model';
+import * as model from '../model';
 import { ButtonSubmit } from './button-submit';
 
 export const LoginForm: React.FC = () => {

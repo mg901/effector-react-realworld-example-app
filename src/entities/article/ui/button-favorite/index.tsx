@@ -1,22 +1,30 @@
-import { Button, ButtonProps } from 'shared/ui';
+import { Button } from 'shared/ui';
+import { types } from '../../model';
 import './index.css';
 
-type Props = ButtonProps &
-  Readonly<{
-    active: boolean;
-  }>;
+type Props = Pick<types.Article, 'slug' | 'favorited' | 'favoritesCount'> & {
+  onClick: (payload: types.SelectedArticle) => void;
+};
 
 export const ButtonFavorite: React.FC<Props> = ({
-  active,
+  slug,
+  favorited,
+  favoritesCount,
   onClick,
   children,
-}) => (
-  <Button
-    className="button-favorite btn-outline-primary"
-    data-active={active}
-    size="sm"
-    onClick={onClick}
-  >
-    <i className="ion-heart" /> {children}
-  </Button>
-);
+}) => {
+  const handleClick = () => {
+    onClick({ slug, favorited, favoritesCount });
+  };
+
+  return (
+    <Button
+      className="button-favorite btn-outline-primary"
+      data-active={favorited}
+      size="sm"
+      onClick={handleClick}
+    >
+      <i className="ion-heart" /> {children}
+    </Button>
+  );
+};

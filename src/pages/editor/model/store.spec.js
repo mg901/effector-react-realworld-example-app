@@ -1,7 +1,7 @@
 import { fork, allSettled } from 'effector';
-import { createArticleFx, $error } from './editor';
+import { createArticleFx, $error } from './store';
 
-describe('pages/editor ', () => {
+describe('pages/editor/store', () => {
   it('should return an error if you submit a form with empty fields', async () => {
     const expected = {
       response: {

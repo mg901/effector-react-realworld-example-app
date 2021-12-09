@@ -8,43 +8,44 @@ export type PaginationProps = Readonly<{
   onPageChange: (x: number) => void;
 }>;
 
-export const Pagination: React.FC<PaginationProps> = memo(
-  ({ total, pageSize, current, onPageChange }) => {
-    const pages = useMemo(
-      () => createArray(total, pageSize),
-      [total, pageSize],
-    );
-    const show = total > pageSize;
+export const Pagination: React.FC<PaginationProps> = memo((props) => {
+  const { show, items, handleClick } = usePagination(props);
 
-    const handleClick = useCallback(
-      (item: number) => {
-        onPageChange(item);
-      },
-      [onPageChange],
-    );
+  return show ? (
+    <nav>
+      <ul className="pagination">
+        {items.map((item) => {
+          return (
+            <li className="page-item" key={item}>
+              <Item
+                active={checkIsActive(item, props.current)}
+                item={item}
+                key={item}
+                onItemClick={handleClick}
+              >
+                {item}
+              </Item>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  ) : null;
+});
 
-    return !show ? null : (
-      <nav>
-        <ul className="pagination">
-          {pages.map((item) => {
-            return (
-              <li className="page-item" key={item}>
-                <Item
-                  active={checkIsActive(item, current)}
-                  item={item}
-                  key={item}
-                  onItemClick={handleClick}
-                >
-                  {item}
-                </Item>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
-    );
-  },
-);
+function usePagination({ total, pageSize, onPageChange }: PaginationProps) {
+  const items = useMemo(() => createArray(total, pageSize), [total, pageSize]);
+  const show = total > pageSize;
+
+  const handleClick = useCallback(
+    (item: number) => {
+      onPageChange(item);
+    },
+    [onPageChange],
+  );
+
+  return { items, show, handleClick };
+}
 
 function createArray(total: number, pageSize: number): number[] {
   return Array.from({ length: Math.ceil(total / pageSize) }, (_, x) => x + 1);

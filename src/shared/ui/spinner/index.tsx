@@ -7,10 +7,10 @@ type Props = Readonly<{
 
 export const Spinner = forwardRef<HTMLDivElement, Props>(
   ({ show = true }, ref) => {
-    return !show ? null : (
+    return show ? (
       <div className="spinner-border text-success" ref={ref}>
         <span className="sr-only" />
       </div>
-    );
+    ) : null;
   },
 );

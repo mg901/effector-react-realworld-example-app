@@ -1,7 +1,7 @@
 import { fork, allSettled } from 'effector';
-import { changeUserDataFx, $error } from './settings';
+import { changeUserDataFx, $error } from './store';
 
-describe('pages/settings ', () => {
+describe('pages/settings/store', () => {
   it('should return an error if you submit a form with an empty password', async () => {
     const expected = {
       response: {

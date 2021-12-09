@@ -22,3 +22,8 @@ export interface FeedType {
   articles: readonly Article[];
   articlesCount: number;
 }
+
+export type SelectedArticle = Pick<
+  Article,
+  'slug' | 'favorited' | 'favoritesCount'
+>;

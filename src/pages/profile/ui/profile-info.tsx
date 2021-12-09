@@ -1,22 +1,21 @@
 import { Container, Row } from 'shared/ui';
-import { selectors } from '../model';
 import { EditMode } from './edit-mode';
 import { FollowUser } from './follow-user';
+import { ProfileBio } from './profile-bio';
+import { ProfileImage } from './profile-image';
+import { ProfileTitle } from './profile-title';
 
-export const UserInfo: React.FC = () => {
-  const { image, username, bio } = selectors.useProfile();
-
+export const ProfileInfo: React.FC = () => {
   return (
     <div className="user-info">
       <Container>
         <Row>
           <div className="col-xs-12 col-md-10 offset-md-1">
-            <img alt={username} className="user-img" src={image} />
-            <h4>{username}</h4>
-            {bio && <p>{bio}</p>}
-
+            <ProfileImage />
+            <ProfileTitle />
+            <ProfileBio />
             <EditMode />
-            <FollowUser username={username} />
+            <FollowUser />
           </div>
         </Row>
       </Container>

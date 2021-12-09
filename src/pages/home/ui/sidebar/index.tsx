@@ -5,7 +5,7 @@ import { TagList } from '../tag-list';
 import './index.css';
 
 export const Sidebar: React.FC = () => {
-  useGate(home.model.Gate);
+  useGate(home.Gate);
 
   return (
     <aside className="sidebar">

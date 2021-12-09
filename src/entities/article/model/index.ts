@@ -1,2 +1,2 @@
-export * as model from './article';
+export * from './store';
 export * as types from './types';

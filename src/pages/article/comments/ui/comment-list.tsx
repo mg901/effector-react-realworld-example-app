@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useList } from 'effector-react';
 import { useParams } from 'shared/library/router';
 import { List } from 'shared/ui';
-import { model } from '../model';
+import * as model from '../model';
 import { Comment } from './comment';
 
 export const CommentsList: React.FC = () => {

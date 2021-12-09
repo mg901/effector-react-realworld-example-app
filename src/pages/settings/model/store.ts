@@ -1,4 +1,5 @@
 import { createEffect, createStore } from 'effector';
+import { useStore } from 'effector-react';
 import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
@@ -14,7 +15,7 @@ export const changeUserDataFx = createEffect<
   });
 });
 
-export const $user = visitor.model.$visitor.map((x) => ({
+export const $user = visitor.$visitor.map((x) => ({
   image: x.image,
   username: x.username,
   bio: x.bio,
@@ -26,7 +27,7 @@ changeUserDataFx.done.watch(() => {
   window.location.reload();
 });
 
-visitor.model.loggedOutClicked.watch(() => {
+visitor.loggedOutClicked.watch(() => {
   history.push('/');
 });
 
@@ -41,3 +42,10 @@ export const $hasError = $error.map(
 export const $errors = $error.map((error) =>
   Object.entries(Object(error?.errors)),
 );
+
+export const selectors = {
+  useOnSubmitPending: () => useStore(changeUserDataFx.pending),
+  useUser: () => useStore($user),
+  useHasError: (): boolean => useStore($hasError),
+  useErrors: () => useStore($errors),
+};
