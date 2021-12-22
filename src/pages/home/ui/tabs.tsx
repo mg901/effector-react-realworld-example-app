@@ -1,11 +1,12 @@
-import { useRouteMatch, URLS, NavLink } from 'shared/library/router';
+import { useRouteMatch, NavLink } from 'react-router-dom';
+import { URLS, useQuery } from 'shared/library/router';
 import { NavItem } from 'shared/ui';
-import * as home from '../model';
 import { YourFeedLink } from './your-feed-link';
 
 export const Tabs: React.FC = () => {
-  const currentTag = home.selectors.useCurrentTag();
   const { url } = useRouteMatch<{ url: string }>();
+  const query = useQuery();
+  const tag = query.get('tag');
 
   return (
     <ul className="feed-toggle nav nav-pills outline-active">
@@ -15,15 +16,15 @@ export const Tabs: React.FC = () => {
           Global Feed
         </NavLink>
       </NavItem>
-      {currentTag && (
+      {tag && (
         <NavItem>
           <NavLink
             exact
             className="nav-link"
-            to={`${url}${URLS.FEED_BY_TAG}?tag=${currentTag}`}
+            to={`${url}${URLS.FEED_BY_TAG}?tag=${tag}`}
           >
             <i className="ion-pound" />
-            {currentTag}
+            {tag}
           </NavLink>
         </NavItem>
       )}

@@ -1,7 +1,9 @@
+import { Router, Route } from 'react-router-dom';
 import { useGate } from 'effector-react';
 import * as visitor from 'entities/visitor';
 import { APP_NAME } from 'shared/constants';
-import { Router, history } from 'shared/library/router';
+import { history } from 'shared/library/router';
+import { QueryParamProvider } from 'use-query-params';
 
 import { Routes } from '../../routes';
 import * as model from '../../store';
@@ -18,14 +20,16 @@ export const App: React.FC = () => {
 
   return (
     <Router history={history}>
-      <Header>
-        <Logo title={APP_NAME} />
-        <ul className="nav navbar-nav pull-xs-right">
-          {isAuth ? <LoginLinks /> : <LogoutLinks />}
-        </ul>
-      </Header>
+      <QueryParamProvider ReactRouterRoute={Route}>
+        <Header>
+          <Logo title={APP_NAME} />
+          <ul className="nav navbar-nav pull-xs-right">
+            {isAuth ? <LoginLinks /> : <LogoutLinks />}
+          </ul>
+        </Header>
 
-      <Routes />
+        <Routes />
+      </QueryParamProvider>
     </Router>
   );
 };

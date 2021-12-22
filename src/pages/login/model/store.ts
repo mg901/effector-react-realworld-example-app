@@ -13,12 +13,15 @@ export const signInFx = createEffect<
   Form,
   visitor.types.Visitor,
   api.types.ApiError<Record<string, unknown>>
->(({ email, password }) => {
-  return api
-    .post<{ user: visitor.types.Visitor }>('users/login', {
+>(async ({ email, password }) => {
+  const { data } = await api.post<{ user: visitor.types.Visitor }>(
+    'users/login',
+    {
       user: { email, password },
-    })
-    .then((response) => response.data.user);
+    },
+  );
+
+  return data.user;
 });
 
 signInFx.done.watch(() => {

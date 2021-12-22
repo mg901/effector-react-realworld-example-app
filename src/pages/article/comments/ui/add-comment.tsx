@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useForm as useReactHookForm } from 'react-hook-form';
-import { useParams } from 'shared/library/router';
+import { useParams } from 'react-router-dom';
 import { Form } from 'shared/ui';
 import * as model from '../model';
 import { Footer } from './footer';

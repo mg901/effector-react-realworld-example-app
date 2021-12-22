@@ -9,10 +9,12 @@ export const changeUserDataFx = createEffect<
   changeUserDataFxArgs,
   api.types.ApiResponse<void>,
   api.types.ApiError<Record<string, unknown>>
->((payload) => {
-  return api.put('user', {
+>(async (payload) => {
+  const result = await api.put('user', {
     user: payload,
   });
+
+  return result;
 });
 
 export const $user = visitor.$visitor.map((x) => ({

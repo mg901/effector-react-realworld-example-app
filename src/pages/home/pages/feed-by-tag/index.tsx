@@ -1,44 +1,52 @@
 import { useEffect } from 'react';
 import * as article from 'entities/article';
+import { Pagination } from 'shared/ui';
 import {
-  queryParamsSetted,
-  favoriteArticleToggled,
-  getFeedFx,
-  $articles,
-  selectors,
-} from './model';
+  useQueryParams,
+  withDefault,
+  NumberParam,
+  StringParam,
+} from 'use-query-params';
+import * as model from './model';
 
-const FeedByTagPage: React.FC = () => {
-  const loading = selectors.useGetFeedPending();
-  const isEmpty = selectors.useIsEmptyFeed();
-  const tag = selectors.useCurrentTag();
-  const pageSize = selectors.usePageSize();
-  const pageIndex = selectors.usePageIndex();
-  const pageNumber = selectors.usePageNumber();
-  const totalPages = selectors.useTotalPages();
+type Props = Readonly<{
+  pageSize?: number;
+}>;
 
-  // console.log('feed by tag');
-
-  const handlePageChange = (page: number) => {
-    queryParamsSetted(page);
-    getFeedFx({ tag, pageSize, pageIndex });
-  };
+const FeedByTagPage: React.FC<Props> = ({ pageSize = 10 }) => {
+  const [{ page, tag }, setQuery] = useQueryParams({
+    page: withDefault(NumberParam, 1),
+    tag: StringParam,
+  });
+  const loading = model.selectors.useGetFeedPending();
+  const isEmpty = model.selectors.useIsEmptyFeed();
+  const totalPages = model.selectors.useTotalPages();
 
   useEffect(() => {
-    getFeedFx({ tag, pageSize, pageIndex });
-  }, [tag, pageSize, pageIndex]);
+    if (tag) {
+      model.getFeedFx({ page, tag, pageSize });
+    }
+  }, [page, tag, pageSize]);
+
+  const handlePageChange = (x: number) => {
+    setQuery({ page: x });
+  };
 
   return (
-    <article.Feed
-      articles={$articles}
-      isEmpty={isEmpty}
-      loading={loading}
-      pageNumber={pageNumber}
-      pageSize={pageSize}
-      totalPages={totalPages}
-      onArticleClick={favoriteArticleToggled}
-      onPageChange={handlePageChange}
-    />
+    <>
+      <article.Feed
+        articlesStore={model.$articles}
+        isEmpty={isEmpty}
+        loading={loading}
+        onFavoriteToggle={model.favoriteArticleToggled}
+      />
+      <Pagination
+        current={page}
+        pageSize={pageSize}
+        total={totalPages}
+        onPageChange={handlePageChange}
+      />
+    </>
   );
 };
 

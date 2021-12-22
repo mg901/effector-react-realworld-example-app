@@ -1,43 +1,42 @@
 import { useEffect } from 'react';
 import * as article from 'entities/article';
-import {
-  queryParamsSetted,
-  favoriteArticleToggled,
-  getFeedFx,
-  $articles,
-  selectors,
-} from './model';
+import { Pagination } from 'shared/ui';
+import { useQueryParam, withDefault, NumberParam } from 'use-query-params';
+import * as model from './model';
 
-const GlobalFeedPage: React.FC = () => {
-  const loading = selectors.useGetFeedPending();
-  const isEmpty = selectors.useIsEmptyFeed();
-  const pageSize = selectors.usePageSize();
-  const pageIndex = selectors.usePageIndex();
-  const pageNumber = selectors.usePageNumber();
-  const totalPages = selectors.useTotalPages();
+type Props = Readonly<{
+  pageSize?: number;
+}>;
 
-  // console.log('global feed');
-
-  const handlePageChange = (page: number) => {
-    queryParamsSetted(page);
-    getFeedFx({ pageSize, pageIndex });
-  };
+const GlobalFeedPage: React.FC<Props> = ({ pageSize = 10 }) => {
+  const [page, setPage] = useQueryParam('page', withDefault(NumberParam, 1));
+  const loading = model.selectors.useGetFeedPending();
+  const isEmpty = model.selectors.useIsEmptyFeed();
+  const totalPages = model.selectors.useTotalPages();
 
   useEffect(() => {
-    getFeedFx({ pageSize, pageIndex });
-  }, [pageSize, pageIndex]);
+    model.getFeedFx({ pageSize, page });
+  }, [page, pageSize]);
+
+  const handlePageChange = (x: number) => {
+    setPage(x);
+  };
 
   return (
-    <article.Feed
-      articles={$articles}
-      isEmpty={isEmpty}
-      loading={loading}
-      pageNumber={pageNumber}
-      pageSize={pageSize}
-      totalPages={totalPages}
-      onArticleClick={favoriteArticleToggled}
-      onPageChange={handlePageChange}
-    />
+    <>
+      <article.Feed
+        articlesStore={model.$articles}
+        isEmpty={isEmpty}
+        loading={loading}
+        onFavoriteToggle={model.favoriteArticleToggled}
+      />
+      <Pagination
+        current={page}
+        pageSize={pageSize}
+        total={totalPages}
+        onPageChange={handlePageChange}
+      />
+    </>
   );
 };
 

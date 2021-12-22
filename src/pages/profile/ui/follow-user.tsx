@@ -2,7 +2,7 @@ import { Button } from 'shared/ui';
 import * as model from '../model';
 
 export const FollowUser: React.FC = () => {
-  const username = model.selectors.useUsername();
+  const username = model.selectors.useUserName();
   const following = model.selectors.useFollowing();
   const isVisitor = model.selectors.useIsVisitor();
 

@@ -1,7 +1,8 @@
 /* eslint-disable react/destructuring-assignment */
 
+import { Link, useRouteMatch } from 'react-router-dom';
 import { useList } from 'effector-react';
-import { Link, useRouteMatch, URLS } from 'shared/library/router';
+import { URLS } from 'shared/library/router';
 import { Spinner } from 'shared/ui';
 import * as home from '../model';
 

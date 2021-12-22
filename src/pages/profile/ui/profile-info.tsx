@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Container, Row } from 'shared/ui';
 import { EditMode } from './edit-mode';
 import { FollowUser } from './follow-user';
@@ -5,7 +6,7 @@ import { ProfileBio } from './profile-bio';
 import { ProfileImage } from './profile-image';
 import { ProfileTitle } from './profile-title';
 
-export const ProfileInfo: React.FC = () => {
+export const ProfileInfo: React.FC = memo(() => {
   return (
     <div className="user-info">
       <Container>
@@ -21,4 +22,6 @@ export const ProfileInfo: React.FC = () => {
       </Container>
     </div>
   );
-};
+});
+
+ProfileInfo.displayName = 'ProfileInfo';

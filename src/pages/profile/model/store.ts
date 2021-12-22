@@ -22,16 +22,20 @@ export const subscribeFx = createEffect<
   string,
   types.Profile,
   api.types.ApiError
->((username) => {
-  return api
-    .post<{ profile: types.Profile }>(`profiles/${username}/follow`)
-    .then((response) => response.data.profile);
+>(async (username) => {
+  const { data } = await api.post<{ profile: types.Profile }>(
+    `profiles/${username}/follow`,
+  );
+
+  return data.profile;
 });
 
-export const unsubscribeFx = createEffect((username: string) => {
-  return api
-    .del<{ profile: types.Profile }>(`profiles/${username}/follow`)
-    .then((response) => response.data.profile);
+export const unsubscribeFx = createEffect(async (username: string) => {
+  const { data } = await api.del<{ profile: types.Profile }>(
+    `profiles/${username}/follow`,
+  );
+
+  return data.profile;
 });
 
 export const $profile = createStore({
@@ -71,6 +75,6 @@ export const selectors = {
   useIsVisitor: () => useStore($isVisitor),
   useFollowing: () => useStore($following),
   useBio: () => useStore($bio),
-  useUsername: () => useStore($username),
+  useUserName: () => useStore($username),
   useImage: () => useStore($image),
 };
