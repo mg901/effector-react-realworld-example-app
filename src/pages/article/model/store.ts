@@ -1,28 +1,13 @@
 import { createEvent, createEffect, restore, combine, forward } from 'effector';
 import { useStore } from 'effector-react';
-import * as article from 'entities/article';
+
 import * as visitor from 'entities/visitor';
-import * as api from 'shared/api';
 import { history } from 'shared/library/router';
+import * as endpoints from './endpoints';
 
 export const articleDeleted = createEvent<string>();
-export const getArticleFx = createEffect<string, article.types.Article>(
-  (slug) => {
-    return api
-      .get<{ article: article.types.Article }>(`articles/${slug}`)
-      .then((response) => response.data.article)
-      .then(({ createdAt, ...rest }) => ({
-        ...rest,
-        createdAt: new Date(createdAt).toDateString(),
-      }));
-  },
-);
-
-export const deleteArticleFx = createEffect(async (slug: string) => {
-  const result = await api.del<void>(`articles/${slug}`);
-
-  return result;
-});
+export const getArticleFx = createEffect(endpoints.getArticle);
+export const deleteArticleFx = createEffect(endpoints.deleteArticle);
 
 export const $article = restore(getArticleFx.doneData, {
   title: '',

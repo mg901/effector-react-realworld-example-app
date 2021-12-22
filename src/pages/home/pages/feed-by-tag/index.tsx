@@ -7,7 +7,7 @@ import {
   NumberParam,
   StringParam,
 } from 'use-query-params';
-import * as model from './model';
+import * as model from './model/store';
 
 type Props = Readonly<{
   pageSize?: number;

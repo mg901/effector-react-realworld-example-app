@@ -37,10 +37,6 @@ function useForm() {
     defaultValues,
   });
 
-  const onSubmit = ({ body }: FormValues) => {
-    model.addCommentFx({ body, slug });
-  };
-
   useEffect(() => {
     const unwatch = model.addCommentFx.done.watch(() => {
       reset(defaultValues);
@@ -51,6 +47,8 @@ function useForm() {
 
   return {
     register,
-    handleSubmit: handleSubmit(onSubmit),
+    handleSubmit: handleSubmit(({ body }: FormValues) => {
+      model.addCommentFx({ body, slug });
+    }),
   };
 }

@@ -1,25 +1,9 @@
 import { createEffect } from 'effector';
 import { useStore } from 'effector-react';
 import * as article from 'entities/article';
-import * as api from 'shared/api';
+import * as endpoints from './endpoints';
 
-import { limit } from 'shared/library/limit';
-
-export type getFeedFxArgs = {
-  pageSize: number;
-  page: number;
-};
-
-export const getFeedFx = createEffect(
-  async ({ pageSize, page }: getFeedFxArgs) => {
-    const pageIndex = page - 1;
-    const { data } = await api.get<article.types.FeedType>(
-      `articles?${limit(pageSize, pageIndex)}`,
-    );
-
-    return data;
-  },
-);
+export const getFeedFx = createEffect(endpoints.getFeed);
 
 export const {
   favoriteArticleToggled,

@@ -27,3 +27,7 @@ export type SelectedArticle = Pick<
   Article,
   'slug' | 'favorited' | 'favoritesCount'
 >;
+
+export type ToggleFavoriteArticleResponse = {
+  article: Article;
+};

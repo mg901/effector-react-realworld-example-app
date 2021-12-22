@@ -73,7 +73,13 @@ function useForm() {
   }, [slug, reset]);
 
   return {
-    handleSubmit: handleSubmit(model.createArticleFx),
+    handleSubmit: handleSubmit((values) => {
+      if (slug) {
+        model.updateArticleFx({ ...values, slug });
+      } else {
+        model.createArticleFx(values);
+      }
+    }),
     methods,
     register,
   };

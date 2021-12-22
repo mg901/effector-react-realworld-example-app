@@ -3,19 +3,14 @@ import { useStore } from 'effector-react';
 import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
+import * as endpoints from './endpoints';
 import { FormValues } from './types';
 
 export const changeUserDataFx = createEffect<
   FormValues,
   api.types.ApiResponse<void>,
   api.types.ApiError<Record<string, unknown>>
->(async (payload) => {
-  const result = await api.put('user', {
-    user: payload,
-  });
-
-  return result;
-});
+>(endpoints.changeUserData);
 
 export const $user = visitor.$visitor.map((x) => ({
   image: x.image,
