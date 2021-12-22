@@ -3,10 +3,10 @@ import { createGate } from 'effector-react';
 import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
 
-export const getUserFx = createEffect(() => {
-  return api.get<{ user: visitor.types.Visitor }>('user').then((response) => {
-    return response.data.user;
-  });
+export const getUserFx = createEffect(async () => {
+  const { data } = await api.get<{ user: visitor.types.Visitor }>('user');
+
+  return data.user;
 });
 
 export const Gate = createGate();

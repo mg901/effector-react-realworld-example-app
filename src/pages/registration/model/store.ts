@@ -9,12 +9,12 @@ export const signUpFx = createEffect<
   types.FormValues,
   visitor.types.Visitor,
   api.types.ApiError<Record<string, unknown>>
->(({ username, email, password }) => {
-  return api
-    .post<{ user: visitor.types.Visitor }>('users', {
-      user: { username, email, password },
-    })
-    .then((response) => response.data.user);
+>(async ({ username, email, password }) => {
+  const { data } = await api.post<{ user: visitor.types.Visitor }>('users', {
+    user: { username, email, password },
+  });
+
+  return data.user;
 });
 
 signUpFx.done.watch(() => {

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'shared/library/router';
+import { useParams } from 'react-router-dom';
 import { Row, Page } from 'shared/ui';
 import { Comments } from './comments';
 import * as model from './model';

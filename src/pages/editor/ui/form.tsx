@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useForm as useReactHookForm, FormProvider } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { useGate } from 'effector-react';
 import * as article from 'entities/article';
-import { useParams } from 'shared/library/router';
 import { Form } from 'shared/ui';
 import * as model from '../model';
 import { AddTagForm } from './add-tag-form';

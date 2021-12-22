@@ -1,10 +1,6 @@
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import NoMatch from 'pages/not-match';
-import {
-  Switch,
-  Route,
-  useRouteMatch,
-  PrivateRoute,
-} from 'shared/library/router';
+import { PrivateRoute } from 'shared/library/router';
 
 import FavoritedArticles from './pages/favorited-articles';
 import MyArticles from './pages/my-articles';
@@ -14,9 +10,15 @@ export const Routes: React.FC = () => {
 
   return (
     <Switch>
-      <PrivateRoute exact component={MyArticles} path={path} />
-      <PrivateRoute component={FavoritedArticles} path={`${path}/favorites`} />
-      <Route component={NoMatch} path="*" />
+      <PrivateRoute exact path={path}>
+        <MyArticles />
+      </PrivateRoute>
+      <PrivateRoute path={`${path}/favorites`}>
+        <FavoritedArticles />
+      </PrivateRoute>
+      <Route path="*">
+        <NoMatch />
+      </Route>
     </Switch>
   );
 };

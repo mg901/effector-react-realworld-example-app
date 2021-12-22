@@ -21,12 +21,15 @@ export const addCommentFx = createEffect<
   types.AddCommentFxArgs,
   types.Comment,
   api.types.ApiError<Record<string, unknown>>
->(({ slug, body }) => {
-  return api
-    .post<{ comment: types.Comment }>(`articles/${slug}/comments`, {
+>(async ({ slug, body }) => {
+  const { data } = await api.post<{ comment: types.Comment }>(
+    `articles/${slug}/comments`,
+    {
       comment: { body },
-    })
-    .then((response) => response.data.comment);
+    },
+  );
+
+  return data.comment;
 });
 
 export const deleteCommentFx = createEffect<
@@ -34,7 +37,7 @@ export const deleteCommentFx = createEffect<
   void,
   api.types.ApiError<Record<string, unknown>>
 >(({ slug, id }) => {
-  return api.del(`articles/${slug}/comments/${id}`);
+  api.del(`articles/${slug}/comments/${id}`);
 });
 
 forward({

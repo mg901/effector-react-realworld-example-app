@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Link } from 'shared/library/router';
+import { Link } from 'react-router-dom';
 import { types } from '../model';
 
 type Props = Readonly<Pick<types.Article, 'author' | 'createdAt'>>;

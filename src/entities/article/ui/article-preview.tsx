@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Link } from 'shared/library/router';
+import { Link } from 'react-router-dom';
 import { TagsWrapper, Tag } from 'shared/ui';
 
 import { types } from '../model';
@@ -7,9 +7,7 @@ import { ArticleMeta } from './article-meta';
 import { ButtonFavorite } from './button-favorite';
 
 type Props = Omit<types.Article, 'body' | 'updatedAt'> & {
-  onClick: (
-    payload: Pick<types.Article, 'slug' | 'favorited' | 'favoritesCount'>,
-  ) => void;
+  onFavoriteToggle: () => void;
 };
 
 export const ArticlePreview: React.FC<Props> = memo(
@@ -22,7 +20,7 @@ export const ArticlePreview: React.FC<Props> = memo(
     tagList,
     favorited,
     favoritesCount,
-    onClick,
+    onFavoriteToggle,
   }) => {
     return (
       <article className="article-preview">
@@ -32,7 +30,7 @@ export const ArticlePreview: React.FC<Props> = memo(
               favorited={favorited}
               favoritesCount={favoritesCount}
               slug={slug}
-              onClick={onClick}
+              onClick={onFavoriteToggle}
             >
               {favoritesCount}
             </ButtonFavorite>

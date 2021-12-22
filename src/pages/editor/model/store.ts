@@ -11,18 +11,23 @@ export const createArticleFx = createEffect<
   article.types.Article,
   article.types.Article,
   api.types.ApiError<Record<string, unknown>>
->((form) => {
-  return api
-    .post<{ article: article.types.Article }>('articles', {
+>(async (form) => {
+  const { data } = await api.post<{ article: article.types.Article }>(
+    'articles',
+    {
       article: form,
-    })
-    .then((response) => response.data.article);
+    },
+  );
+
+  return data.article;
 });
 
-export const getArticleFx = createEffect((slug: string) => {
-  return api
-    .get<{ article: article.types.Article }>(`articles/${slug}`)
-    .then(({ data }) => data.article);
+export const getArticleFx = createEffect(async (slug: string) => {
+  const { data } = await api.get<{ article: article.types.Article }>(
+    `articles/${slug}`,
+  );
+
+  return data.article;
 });
 
 createArticleFx.doneData.watch(({ slug }) => {

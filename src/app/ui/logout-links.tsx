@@ -1,4 +1,5 @@
-import { URLS, NavLink } from 'shared/library/router';
+import { NavLink } from 'react-router-dom';
+import { URLS } from 'shared/library/router';
 
 import { NavItem } from 'shared/ui';
 

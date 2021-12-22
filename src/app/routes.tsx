@@ -1,3 +1,4 @@
+import { Switch, Redirect, Route } from 'react-router-dom';
 import ArticlePage from 'pages/article';
 import EditorPage from 'pages/editor';
 import HomePage from 'pages/home';
@@ -6,13 +7,7 @@ import NoMatchPage from 'pages/not-match';
 import ProfilePage from 'pages/profile';
 import RegistrationPage from 'pages/registration';
 import SettingsPage from 'pages/settings';
-import {
-  Switch,
-  Redirect,
-  Route,
-  URLS,
-  PrivateRoute,
-} from 'shared/library/router';
+import { URLS, PrivateRoute } from 'shared/library/router';
 
 export const Routes: React.FC = () => {
   return (

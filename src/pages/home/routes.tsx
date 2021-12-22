@@ -1,13 +1,7 @@
+import { Switch, Redirect, Route, useRouteMatch } from 'react-router-dom';
 import * as visitor from 'entities/visitor';
 import NoMatchPage from 'pages/not-match';
-import {
-  Switch,
-  Redirect,
-  Route,
-  useRouteMatch,
-  URLS,
-  PrivateRoute,
-} from 'shared/library/router';
+import { URLS, PrivateRoute } from 'shared/library/router';
 
 import FeedByTagPage from './pages/feed-by-tag';
 import GlobalFeedPage from './pages/global-feed';
@@ -26,13 +20,18 @@ export const Routes: React.FC = () => {
           <Redirect to={`${path}${URLS.GLOBAL_FEED}`} />
         )}
       </Route>
-      <Route component={GlobalFeedPage} path={`${path}${URLS.GLOBAL_FEED}`} />
-      <PrivateRoute
-        component={YourFeedPage}
-        path={`${path}${URLS.YOUR_FEED}`}
-      />
-      <Route component={FeedByTagPage} path={`${path}${URLS.FEED_BY_TAG}`} />
-      <Route component={NoMatchPage} path="*" />
+      <Route path={`${path}${URLS.GLOBAL_FEED}`}>
+        <GlobalFeedPage />
+      </Route>
+      <PrivateRoute path={`${path}${URLS.YOUR_FEED}`}>
+        <YourFeedPage />
+      </PrivateRoute>
+      <Route path={`${path}${URLS.FEED_BY_TAG}`}>
+        <FeedByTagPage />
+      </Route>
+      <Route path="*">
+        <NoMatchPage />
+      </Route>
     </Switch>
   );
 };

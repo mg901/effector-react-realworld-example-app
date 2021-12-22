@@ -18,8 +18,10 @@ export const getArticleFx = createEffect<string, article.types.Article>(
   },
 );
 
-export const deleteArticleFx = createEffect((slug: string) => {
-  return api.del<void>(`articles/${slug}`);
+export const deleteArticleFx = createEffect(async (slug: string) => {
+  const result = await api.del<void>(`articles/${slug}`);
+
+  return result;
 });
 
 export const $article = restore(getArticleFx.doneData, {
