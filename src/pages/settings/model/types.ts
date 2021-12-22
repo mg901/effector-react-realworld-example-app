@@ -1,8 +1,8 @@
 import * as visitor from 'entities/visitor';
 
-export type changeUserDataFxArgs = Pick<
+export type FormValues = Pick<
   visitor.types.Visitor,
   'image' | 'username' | 'bio' | 'email'
 > & {
-  password: string;
+  password?: string;
 };

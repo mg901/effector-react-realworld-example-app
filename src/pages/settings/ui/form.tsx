@@ -1,21 +1,14 @@
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm as useReactHookForm } from 'react-hook-form';
 import { Form } from 'shared/ui';
-import * as settings from '../model';
+import * as model from '../model';
 import { ButtonSubmit } from './button-submit';
 
 export const SettingsForm: React.FC = () => {
-  const user = settings.selectors.useUser();
-  const { handleSubmit, register, reset } = useForm({
-    defaultValues: user,
-  });
-
-  useEffect(() => {
-    reset(user);
-  }, [reset, user]);
+  const { handleSubmit, register } = useForm();
 
   return (
-    <Form onSubmit={handleSubmit(settings.changeUserDataFx)}>
+    <Form onSubmit={handleSubmit}>
       <Form.Group>
         <Form.Control
           placeholder="URL of profile picture"
@@ -59,3 +52,27 @@ export const SettingsForm: React.FC = () => {
     </Form>
   );
 };
+
+function useForm() {
+  const user = model.selectors.useUser();
+  const { handleSubmit, register, reset } = useReactHookForm({
+    defaultValues: user,
+  });
+
+  useEffect(() => {
+    reset(user);
+  }, [reset, user]);
+
+  const onSubmit = (data: model.types.FormValues) => {
+    if (!data.password) {
+      model.changeUserDataFx({ ...data, password: undefined });
+    } else {
+      model.changeUserDataFx(data);
+    }
+  };
+
+  return {
+    register,
+    handleSubmit: handleSubmit(onSubmit),
+  };
+}

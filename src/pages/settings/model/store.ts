@@ -3,10 +3,10 @@ import { useStore } from 'effector-react';
 import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
-import { changeUserDataFxArgs } from './types';
+import { FormValues } from './types';
 
 export const changeUserDataFx = createEffect<
-  changeUserDataFxArgs,
+  FormValues,
   api.types.ApiResponse<void>,
   api.types.ApiError<Record<string, unknown>>
 >(async (payload) => {
