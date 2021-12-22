@@ -8,35 +8,20 @@ import {
 import { useStore } from 'effector-react';
 import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
+import * as endpoints from './endpoints';
 import * as types from './types';
 
 export const followToggled = createEvent<types.FollowToggledArgs>();
 
-export const getProfileFx = createEffect((username: string) => {
-  return api
-    .get<{ profile: types.Profile }>(`profiles/${username}`)
-    .then((response) => response.data.profile);
-});
+export const getProfileFx = createEffect(endpoints.getProfile);
 
-export const subscribeFx = createEffect<
+export const subscribeToUserFx = createEffect<
   string,
   types.Profile,
   api.types.ApiError
->(async (username) => {
-  const { data } = await api.post<{ profile: types.Profile }>(
-    `profiles/${username}/follow`,
-  );
+>(endpoints.subscribeToUser);
 
-  return data.profile;
-});
-
-export const unsubscribeFx = createEffect(async (username: string) => {
-  const { data } = await api.del<{ profile: types.Profile }>(
-    `profiles/${username}/follow`,
-  );
-
-  return data.profile;
-});
+export const unsubscribeFromUserFx = createEffect(endpoints.unsubscribeToUser);
 
 export const $profile = createStore({
   bio: '',
@@ -44,7 +29,11 @@ export const $profile = createStore({
   image: '',
   username: '',
 }).on(
-  [getProfileFx.doneData, subscribeFx.doneData, unsubscribeFx.doneData],
+  [
+    getProfileFx.doneData,
+    subscribeToUserFx.doneData,
+    unsubscribeFromUserFx.doneData,
+  ],
   (_, payload) => payload,
 );
 
@@ -60,8 +49,10 @@ split({
     cantFollowed: (p) => p.following === false,
   },
   cases: {
-    canFollowed: unsubscribeFx.prepend((p: types.Profile) => p.username),
-    cantFollowed: subscribeFx.prepend((p: types.Profile) => p.username),
+    canFollowed: unsubscribeFromUserFx.prepend(
+      (p: types.Profile) => p.username,
+    ),
+    cantFollowed: subscribeToUserFx.prepend((p: types.Profile) => p.username),
   },
 });
 

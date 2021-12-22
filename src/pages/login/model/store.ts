@@ -3,26 +3,14 @@ import { useStore, createGate } from 'effector-react';
 import * as visitor from 'entities/visitor';
 import * as api from 'shared/api';
 import * as router from 'shared/library/router';
-
-export type Form = {
-  email: string;
-  password: string;
-};
+import * as endpoints from './endpoints';
+import * as types from './types';
 
 export const signInFx = createEffect<
-  Form,
+  types.SignInPayload,
   visitor.types.Visitor,
   api.types.ApiError<Record<string, unknown>>
->(async ({ email, password }) => {
-  const { data } = await api.post<{ user: visitor.types.Visitor }>(
-    'users/login',
-    {
-      user: { email, password },
-    },
-  );
-
-  return data.user;
-});
+>(endpoints.signIn);
 
 signInFx.done.watch(() => {
   router.history.push('/');

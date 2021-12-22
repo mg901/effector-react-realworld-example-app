@@ -9,6 +9,27 @@ type Props = Readonly<{
 }>;
 
 const YourFeedPage: React.FC<Props> = ({ pageSize = 10 }) => {
+  const feed = useFeed(pageSize);
+
+  return (
+    <>
+      <article.Feed
+        articlesStore={model.$articles}
+        isEmpty={feed.isEmpty}
+        loading={feed.loading}
+        onFavoriteToggle={model.favoriteArticleToggled}
+      />
+      <Pagination
+        current={feed.page}
+        pageSize={pageSize}
+        total={feed.totalPages}
+        onPageChange={feed.handlePageChange}
+      />
+    </>
+  );
+};
+
+function useFeed(pageSize: number) {
   const [page, setPage] = useQueryParam('page', withDefault(NumberParam, 1));
   const loading = model.selectors.useGetFeedPending();
   const isEmpty = model.selectors.useIsEmptyFeed();
@@ -22,22 +43,13 @@ const YourFeedPage: React.FC<Props> = ({ pageSize = 10 }) => {
     setPage(x);
   };
 
-  return (
-    <>
-      <article.Feed
-        articlesStore={model.$articles}
-        isEmpty={isEmpty}
-        loading={loading}
-        onFavoriteToggle={model.favoriteArticleToggled}
-      />
-      <Pagination
-        current={page}
-        pageSize={pageSize}
-        total={totalPages}
-        onPageChange={handlePageChange}
-      />
-    </>
-  );
-};
+  return {
+    page,
+    loading,
+    isEmpty,
+    totalPages,
+    handlePageChange,
+  };
+}
 
 export default YourFeedPage;

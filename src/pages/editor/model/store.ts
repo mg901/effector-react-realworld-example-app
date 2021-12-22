@@ -1,8 +1,9 @@
-import { createEvent, createEffect, createStore } from 'effector';
+import { createEvent, createEffect, createStore, forward } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as article from 'entities/article';
 import * as api from 'shared/api';
 import { history } from 'shared/library/router';
+import * as endpoints from './endpoints';
 
 export const formSubmitted = createEvent();
 
@@ -11,31 +12,22 @@ export const createArticleFx = createEffect<
   article.types.Article,
   article.types.Article,
   api.types.ApiError<Record<string, unknown>>
->(async (form) => {
-  const { data } = await api.post<{ article: article.types.Article }>(
-    'articles',
-    {
-      article: form,
-    },
-  );
+>(endpoints.createArticle);
 
-  return data.article;
-});
+export const getArticleFx = createEffect(endpoints.getArticle);
+export const updateArticleFx = createEffect(endpoints.updateArticle);
+export const redirectToArticleIdFx = createEffect(
+  ({ slug }: article.types.Article) => {
+    history.replace(`/article/${slug}`);
+  },
+);
 
-export const getArticleFx = createEffect(async (slug: string) => {
-  const { data } = await api.get<{ article: article.types.Article }>(
-    `articles/${slug}`,
-  );
-
-  return data.article;
-});
-
-createArticleFx.doneData.watch(({ slug }) => {
-  history.replace(`/article/${slug}`);
+forward({
+  from: [updateArticleFx.doneData, createArticleFx.doneData],
+  to: redirectToArticleIdFx,
 });
 
 export const Gate = createGate();
-
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
 })

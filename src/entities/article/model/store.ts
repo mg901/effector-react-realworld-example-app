@@ -9,6 +9,7 @@ import {
 } from 'effector';
 import { status } from 'patronum/status';
 import * as api from 'shared/api';
+import * as endpoints from './endpoints';
 import * as types from './types';
 
 type Feed = {
@@ -31,27 +32,13 @@ export function createFeed({ effect }: Options) {
     fn: (payload) => payload.favorited === false,
   });
 
-  type ResponseWithArticle = {
-    article: types.Article;
-  };
-
   const setFavoriteArticleFx = createEffect<
     types.SelectedArticle,
-    ResponseWithArticle,
+    types.ToggleFavoriteArticleResponse,
     api.types.ApiError
-  >(({ slug }) => {
-    return api
-      .post<ResponseWithArticle>(`articles/${slug}/favorite`)
-      .then((response) => response.data);
-  });
+  >(endpoints.setFavoriteArticle);
 
-  const setUnfavoriteArticleFx = createEffect(
-    ({ slug }: types.SelectedArticle) => {
-      return api
-        .del<ResponseWithArticle>(`articles/${slug}/favorite`)
-        .then((response) => response.data);
-    },
-  );
+  const setUnfavoriteArticleFx = createEffect(endpoints.setUnfavoriteArticle);
 
   const $feed = createStore<Feed>({
     articlesCount: 0,

@@ -7,38 +7,24 @@ import {
 } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as api from 'shared/api';
+import * as endpoints from './endpoints';
 import * as types from './types';
 
-export const commentDeleted = createEvent<types.DeleteCommentArgs>();
+export const commentDeleted = createEvent<types.DeleteCommentPayload>();
 
-export const getCommentsFx = createEffect((slug: string) => {
-  return api
-    .get<{ comments: types.Comment[] }>(`articles/${slug}/comments`)
-    .then((response) => response.data.comments);
-});
+export const getCommentsFx = createEffect(endpoints.getComments);
 
 export const addCommentFx = createEffect<
-  types.AddCommentFxArgs,
+  types.AddCommentPayload,
   types.Comment,
   api.types.ApiError<Record<string, unknown>>
->(async ({ slug, body }) => {
-  const { data } = await api.post<{ comment: types.Comment }>(
-    `articles/${slug}/comments`,
-    {
-      comment: { body },
-    },
-  );
-
-  return data.comment;
-});
+>(endpoints.addComment);
 
 export const deleteCommentFx = createEffect<
-  types.DeleteCommentArgs,
+  types.DeleteCommentPayload,
   void,
   api.types.ApiError<Record<string, unknown>>
->(({ slug, id }) => {
-  api.del(`articles/${slug}/comments/${id}`);
-});
+>(endpoints.deleteComment);
 
 forward({
   from: commentDeleted,

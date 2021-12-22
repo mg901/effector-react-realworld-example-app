@@ -6,6 +6,23 @@ import { Form, List } from 'shared/ui';
 import { Tag } from './tag';
 
 export const AddTagForm: React.FC = () => {
+  const { handleSubmit, ref, tags, handleAddTag, handleDeleteTag } = useForm();
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Form.Control ref={ref} onKeyDown={handleAddTag} />
+      <List>
+        {tags.map((tag) => (
+          <Tag key={tag} tag={tag} onTagClick={handleDeleteTag}>
+            {tag}
+          </Tag>
+        ))}
+      </List>
+    </Form>
+  );
+};
+
+function useForm() {
   const { setValue, watch } = useFormContext();
   const ref = useRef<HTMLInputElement>(null);
   const tags = watch('tagList') as article.types.Article['tagList'];
@@ -33,16 +50,11 @@ export const AddTagForm: React.FC = () => {
     [setValue, tags],
   );
 
-  return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Control ref={ref} onKeyDown={handleAddTag} />
-      <List>
-        {tags.map((tag) => (
-          <Tag key={tag} tag={tag} onTagClick={handleDeleteTag}>
-            {tag}
-          </Tag>
-        ))}
-      </List>
-    </Form>
-  );
-};
+  return {
+    ref,
+    tags,
+    handleAddTag,
+    handleSubmit,
+    handleDeleteTag,
+  };
+}
