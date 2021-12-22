@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Comments } from 'entities/comment';
 import { Row, Page } from 'shared/ui';
@@ -11,7 +11,7 @@ const ArticlePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const loading = model.selectors.useGetArticlePending();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (slug) {
       model.getArticleFx(slug);
     }
