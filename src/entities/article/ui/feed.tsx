@@ -10,7 +10,7 @@ type Props = Readonly<{
   loading: boolean;
   isEmpty: boolean;
   articlesStore: Store<types.FeedType['articles']>;
-  onFavoriteToggle: () => void;
+  onFavoriteToggle: (payload: types.SelectedArticle) => void;
 }>;
 
 export const Feed: React.FC<Props> = ({

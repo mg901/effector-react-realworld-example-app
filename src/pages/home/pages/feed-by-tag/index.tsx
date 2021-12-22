@@ -14,6 +14,27 @@ type Props = Readonly<{
 }>;
 
 const FeedByTagPage: React.FC<Props> = ({ pageSize = 10 }) => {
+  const feed = useFeed(pageSize);
+
+  return (
+    <>
+      <article.Feed
+        articlesStore={model.$articles}
+        isEmpty={feed.isEmpty}
+        loading={feed.loading}
+        onFavoriteToggle={model.favoriteArticleToggled}
+      />
+      <Pagination
+        current={feed.page}
+        pageSize={pageSize}
+        total={feed.totalPages}
+        onPageChange={feed.handlePageChange}
+      />
+    </>
+  );
+};
+
+function useFeed(pageSize: number) {
   const [{ page, tag }, setQuery] = useQueryParams({
     page: withDefault(NumberParam, 1),
     tag: StringParam,
@@ -32,22 +53,13 @@ const FeedByTagPage: React.FC<Props> = ({ pageSize = 10 }) => {
     setQuery({ page: x });
   };
 
-  return (
-    <>
-      <article.Feed
-        articlesStore={model.$articles}
-        isEmpty={isEmpty}
-        loading={loading}
-        onFavoriteToggle={model.favoriteArticleToggled}
-      />
-      <Pagination
-        current={page}
-        pageSize={pageSize}
-        total={totalPages}
-        onPageChange={handlePageChange}
-      />
-    </>
-  );
-};
+  return {
+    page,
+    loading,
+    isEmpty,
+    totalPages,
+    handlePageChange,
+  };
+}
 
 export default FeedByTagPage;

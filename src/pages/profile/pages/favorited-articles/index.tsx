@@ -10,6 +10,27 @@ type Props = Readonly<{
 }>;
 
 const FavoritedArticlesPage: React.FC<Props> = ({ pageSize = 5 }) => {
+  const feed = useFeed(pageSize);
+
+  return (
+    <>
+      <article.Feed
+        articlesStore={model.$articles}
+        isEmpty={feed.isEmpty}
+        loading={feed.loading}
+        onFavoriteToggle={feed.handleFavoriteToggle}
+      />
+      <Pagination
+        current={feed.page}
+        pageSize={pageSize}
+        total={feed.totalPages}
+        onPageChange={feed.handlePageChange}
+      />
+    </>
+  );
+};
+
+function useFeed(pageSize: number) {
   const [page, setPage] = useQueryParam('page', withDefault(NumberParam, 1));
   const username = profile.selectors.useUserName();
   const loading = model.selectors.useGetFeedPending();
@@ -24,22 +45,21 @@ const FavoritedArticlesPage: React.FC<Props> = ({ pageSize = 5 }) => {
     setPage(x);
   };
 
-  return (
-    <>
-      <article.Feed
-        articlesStore={model.$articles}
-        isEmpty={isEmpty}
-        loading={loading}
-        onFavoriteToggle={model.favoriteArticleToggled}
-      />
-      <Pagination
-        current={page}
-        pageSize={pageSize}
-        total={totalPages}
-        onPageChange={handlePageChange}
-      />
-    </>
-  );
-};
+  const handleFavoriteToggle = (payload: article.types.SelectedArticle) => {
+    model.favoriteArticleToggled(payload);
+    model.setUnfavoriteArticleFx.done.watch(() => {
+      model.getFeedFx({ username, page, pageSize });
+    });
+  };
+
+  return {
+    page,
+    loading,
+    isEmpty,
+    totalPages,
+    handlePageChange,
+    handleFavoriteToggle,
+  };
+}
 
 export default FavoritedArticlesPage;

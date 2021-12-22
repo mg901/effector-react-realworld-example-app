@@ -30,6 +30,7 @@ export const {
   $isEmptyFeed,
   $articles,
   $totalPages,
+  setUnfavoriteArticleFx,
 } = article.createFeed({
   effect: getFeedFx,
 });

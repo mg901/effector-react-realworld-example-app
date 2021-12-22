@@ -7,7 +7,7 @@ import { ArticleMeta } from './article-meta';
 import { ButtonFavorite } from './button-favorite';
 
 type Props = Omit<types.Article, 'body' | 'updatedAt'> & {
-  onFavoriteToggle: () => void;
+  onFavoriteToggle: (payload: types.SelectedArticle) => void;
 };
 
 export const ArticlePreview: React.FC<Props> = memo(
