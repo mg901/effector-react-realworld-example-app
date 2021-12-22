@@ -20,7 +20,7 @@ export const RoutesWrapper: React.FC<RoutesWrapperProps> = ({ children }) => {
 export function PageFallback({ error }: FallbackProps): JSX.Element {
   return (
     <Page>
-      <p>Something went wrong:</p>
+      <p>Ooops! Something went wrong:</p>
       <pre>{error.message}</pre>
     </Page>
   );
