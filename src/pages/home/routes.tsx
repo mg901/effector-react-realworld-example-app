@@ -1,8 +1,9 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { Switch, Redirect, Route, useRouteMatch } from 'react-router-dom';
 import * as visitor from 'entities/visitor';
-import NoMatchPage from 'pages/not-match';
-import { URLS, RoutesWrapper, PrivateRoute } from 'shared/library/router';
+import NoMatchPage from 'pages/no-match';
+import { URLS, PrivateRoute } from 'shared/library/router';
+import { Spinner } from 'shared/ui';
 
 const GlobalFeed = lazy(() => import('./pages/global-feed'));
 const YourFeed = lazy(() => import('./pages/global-feed'));
@@ -13,7 +14,7 @@ export const Routes: React.FC = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
   return (
-    <RoutesWrapper>
+    <Suspense fallback={<Spinner />}>
       <Switch>
         <Route exact path="/home">
           {isAuth ? (
@@ -35,6 +36,6 @@ export const Routes: React.FC = () => {
           <NoMatchPage />
         </Route>
       </Switch>
-    </RoutesWrapper>
+    </Suspense>
   );
 };

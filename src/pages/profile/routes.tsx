@@ -1,7 +1,7 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import NoMatch from 'pages/not-match';
-import { RoutesWrapper, PrivateRoute } from 'shared/library/router';
+import NotMatch from 'pages/no-match';
+import { Spinner } from 'shared/ui';
 
 const MyArticles = lazy(() => import('./pages/my-articles'));
 const FavoritedArticles = lazy(() => import('./pages/favorited-articles'));
@@ -10,18 +10,18 @@ export const Routes: React.FC = () => {
   const { path } = useRouteMatch<{ path: string }>();
 
   return (
-    <RoutesWrapper>
+    <Suspense fallback={<Spinner />}>
       <Switch>
-        <PrivateRoute exact path={path}>
+        <Route exact path={path}>
           <MyArticles />
-        </PrivateRoute>
-        <PrivateRoute path={`${path}/favorites`}>
+        </Route>
+        <Route path={`${path}/favorites`}>
           <FavoritedArticles />
-        </PrivateRoute>
+        </Route>
         <Route path="*">
-          <NoMatch />
+          <NotMatch />
         </Route>
       </Switch>
-    </RoutesWrapper>
+    </Suspense>
   );
 };

@@ -18,5 +18,5 @@ export enum URLS {
   EDITOR = '/editor',
   EDITOR_SLUG = '/editor/:slug',
   PROFILE = '/@:username',
-  ARTICLE = '/article/:slug',
+  ARTICLE_SLUG = '/article/:slug',
 }
