@@ -31,6 +31,8 @@ export const Routes: React.FC = () => {
         </Route>
         {isAuth ? (
           <>
+            <Redirect exact from={URLS.LOGIN} to={URLS.HOME} />
+            <Redirect exact from={URLS.REGISTRATION} to={URLS.HOME} />
             <PrivateRoute exact path={URLS.EDITOR}>
               <Editor />
             </PrivateRoute>
