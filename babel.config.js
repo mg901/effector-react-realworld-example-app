@@ -10,6 +10,7 @@ module.exports = {
     ],
   ],
   plugins: [
+    '@babel/transform-async-to-generator',
     [
       'module-resolver',
       {
