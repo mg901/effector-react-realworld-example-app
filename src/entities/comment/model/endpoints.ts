@@ -1,23 +1,18 @@
 import * as api from 'shared/api';
 import * as types from './types';
 
-export const getComments = async (slug: string) => {
-  const { data } = await api.get<{ comments: types.Comment[] }>(
-    `articles/${slug}/comments`,
-  );
-
-  return data.comments;
+export const getComments = (slug: string) => {
+  api
+    .get<{ comments: types.Comment[] }>(`articles/${slug}/comments`)
+    .then((response) => response.data.comments);
 };
 
-export const addComment = async ({ slug, body }: types.AddCommentPayload) => {
-  const { data } = await api.post<{ comment: types.Comment }>(
-    `articles/${slug}/comments`,
-    {
+export const addComment = ({ slug, body }: types.AddCommentPayload) => {
+  api
+    .post<{ comment: types.Comment }>(`articles/${slug}/comments`, {
       comment: { body },
-    },
-  );
-
-  return data.comment;
+    })
+    .then((response) => response.data.comment);
 };
 
 export const deleteComment = ({ slug, id }: types.DeleteCommentPayload) => {

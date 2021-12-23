@@ -7,11 +7,10 @@ export type getFeedFxArgs = Readonly<{
   page: number;
 }>;
 
-export const getFeed = async ({ pageSize, page }: getFeedFxArgs) => {
+export const getFeed = ({ pageSize, page }: getFeedFxArgs) => {
   const pageIndex = page - 1;
-  const { data } = await api.get<article.types.FeedType>(
-    `articles/feed?${limit(pageSize, pageIndex)}`,
-  );
 
-  return data;
+  return api
+    .get<article.types.FeedType>(`articles/feed?${limit(pageSize, pageIndex)}`)
+    .then((response) => response.data);
 };
