@@ -11,8 +11,6 @@ export const getArticle = (slug: string) => {
     }));
 };
 
-export const deleteArticle = async (slug: string) => {
-  const result = await api.del<void>(`articles/${slug}`);
-
-  return result;
+export const deleteArticle = (slug: string) => {
+  return api.del<void>(`articles/${slug}`);
 };
