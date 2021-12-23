@@ -4401,10 +4401,10 @@ eslint-module-utils@^2.7.1:
     find-up "^2.1.0"
     pkg-dir "^2.0.0"
 
-eslint-plugin-effector@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-effector/-/eslint-plugin-effector-0.4.2.tgz#afe2f63ed086a1c0ea681ee52df2b44acc17544d"
-  integrity sha512-0u8QX7A+epG6hGUrgTZpZzGgwMcDMCqfcQtM9Z1au0D+KvqQ1fvJxeH1H6pR+mAik6s3Y3p1JrXONsYpPgxBxw==
+eslint-plugin-effector@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-effector/-/eslint-plugin-effector-0.5.2.tgz#54225f3631dbb5f6913956d53621d91bbdce3f2c"
+  integrity sha512-4LntOzMIMPlYMYFHGjkwxKArPpiIQee7z2HKMl6omyn6F85sfTCcW/Em9Mgb330wKqA25PSxwx9YuGSMwN/97A==
   dependencies:
     prettier "^2.3.2"
 
