@@ -9,7 +9,8 @@ export type getFeedFxArgs = {
 
 export const getFeed = ({ pageSize, page }: getFeedFxArgs) => {
   const pageIndex = page - 1;
-  api
+
+  return api
     .get<article.types.FeedType>(`articles?${limit(pageSize, pageIndex)}`)
     .then((response) => response.data);
 };

@@ -7,5 +7,5 @@ export const signUp = ({ username, email, password }: types.FormValues) => {
     .post<{ user: visitor.types.Visitor }>('users', {
       user: { username, email, password },
     })
-    .then((response) => response.data);
+    .then((response) => response.data.user);
 };

@@ -10,7 +10,8 @@ export type GetFeedPayload = Readonly<{
 
 export const getFeed = ({ page, tag, pageSize }: GetFeedPayload) => {
   const pageIndex = page - 1;
-  api
+
+  return api
     .get<article.types.FeedType>(
       `articles?tag=${encodeURIComponent(tag)}&${limit(pageSize, pageIndex)}`,
     )
