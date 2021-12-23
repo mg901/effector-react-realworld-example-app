@@ -1,9 +1,9 @@
 import { Container } from 'shared/ui';
 
-const NotMatchPage: React.FC = () => (
+const NoMatchPage: React.FC = () => (
   <Container>
     <h1>404 Page Not Found</h1>
   </Container>
 );
 
-export default NotMatchPage;
+export default NoMatchPage;
