@@ -1,10 +1,10 @@
 import { Button } from 'shared/ui';
 import './index.css';
 
-type Props = {
+type Props = Readonly<{
   tag: string;
   onTagClick: (x: string) => void;
-};
+}>;
 
 export const Tag: React.FC<Props> = ({ tag, onTagClick, children }) => {
   const handleClick = () => onTagClick(tag);

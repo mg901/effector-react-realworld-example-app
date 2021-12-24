@@ -2,9 +2,11 @@ import { Button } from 'shared/ui';
 import { types } from '../../model';
 import './index.css';
 
-type Props = Pick<types.Article, 'slug' | 'favorited' | 'favoritesCount'> & {
-  onClick: (payload: types.SelectedArticle) => void;
-};
+type Props = Readonly<
+  Pick<types.Article, 'slug' | 'favorited' | 'favoritesCount'> & {
+    onClick: (payload: types.SelectedArticle) => void;
+  }
+>;
 
 export const ButtonFavorite: React.FC<Props> = ({
   slug,

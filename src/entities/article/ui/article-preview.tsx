@@ -6,9 +6,10 @@ import { types } from '../model';
 import { ArticleMeta } from './article-meta';
 import { ButtonFavorite } from './button-favorite';
 
-type Props = Omit<types.Article, 'body' | 'updatedAt'> & {
-  onFavoriteToggle: (payload: types.SelectedArticle) => void;
-};
+type Props = Omit<types.Article, 'body' | 'updatedAt'> &
+  Readonly<{
+    onFavoriteToggle: (payload: types.SelectedArticle) => void;
+  }>;
 
 export const ArticlePreview: React.FC<Props> = memo(
   ({

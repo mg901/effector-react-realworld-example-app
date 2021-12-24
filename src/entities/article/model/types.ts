@@ -5,7 +5,7 @@ export type Author = {
   following: boolean;
 };
 
-export interface Article {
+export type Article = Readonly<{
   title: string;
   slug: string;
   body: string;
@@ -16,12 +16,12 @@ export interface Article {
   author: Author;
   favorited: boolean;
   favoritesCount: number;
-}
+}>;
 
-export interface FeedType {
+export type FeedType = Readonly<{
   articles: readonly Article[];
   articlesCount: number;
-}
+}>;
 
 export type SelectedArticle = Pick<
   Article,
