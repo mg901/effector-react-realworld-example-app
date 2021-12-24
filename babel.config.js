@@ -1,12 +1,6 @@
 module.exports = {
   presets: [
-    [
-      '@babel/preset-env',
-      {
-        useBuiltIns: 'entry',
-        corejs: 3,
-      },
-    ],
+    '@babel/preset-env',
     '@babel/typescript',
     [
       '@babel/preset-react',
@@ -16,7 +10,6 @@ module.exports = {
     ],
   ],
   plugins: [
-    '@babel/transform-async-to-generator',
     [
       'module-resolver',
       {
