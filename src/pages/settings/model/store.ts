@@ -1,16 +1,24 @@
-import { createEffect, createStore } from 'effector';
+import { createEffect, createStore, forward } from 'effector';
 import { useStore } from 'effector-react';
 import * as visitor from 'entities/visitor';
-import * as api from 'shared/api';
-import { history } from 'shared/library/router';
-import * as endpoints from './endpoints';
+import * as http from 'shared/http';
+import * as router from 'shared/library/router';
+import * as api from './api';
 import { FormValues } from './types';
 
 export const changeUserDataFx = createEffect<
   FormValues,
-  api.types.ApiResponse<void>,
-  api.types.ApiError<Record<string, unknown>>
->(endpoints.changeUserData);
+  http.types.ApiResponse<void>,
+  http.types.ApiError<Record<string, unknown>>
+>(api.changeUserData);
+
+export const navigateToRootFx = createEffect(() => {
+  router.history.push('/');
+});
+
+const reloadPageFx = createEffect(() => {
+  window.location.reload();
+});
 
 export const $user = visitor.$visitor.map((x) => ({
   image: x.image,
@@ -20,17 +28,19 @@ export const $user = visitor.$visitor.map((x) => ({
   password: '',
 }));
 
-changeUserDataFx.done.watch(() => {
-  window.location.reload();
-});
-
-visitor.loggedOutClicked.watch(() => {
-  history.push('/');
-});
-
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
 }).on(changeUserDataFx.failData, (_, error) => error.response?.data);
+
+forward({
+  from: changeUserDataFx.done,
+  to: reloadPageFx,
+});
+
+forward({
+  from: visitor.loggedOutClicked,
+  to: navigateToRootFx,
+});
 
 export const $hasError = $error.map(
   (error) => Object.keys(Object(error)).length > 0,

@@ -1,8 +1,8 @@
 import * as article from 'entities/article';
-import * as api from 'shared/api';
+import * as http from 'shared/http';
 
 export const getTags = () => {
-  return api
+  return http
     .get<{ tags: article.types.Article['tagList'] }>('tags')
     .then((response) => response.data.tags);
 };

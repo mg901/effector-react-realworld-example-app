@@ -1,5 +1,5 @@
 import * as article from 'entities/article';
-import * as api from 'shared/api';
+import * as http from 'shared/http';
 import { limit } from 'shared/library/limit';
 
 export type GetFeedPayload = Readonly<{
@@ -11,7 +11,7 @@ export type GetFeedPayload = Readonly<{
 export const getFeed = ({ page, tag, pageSize }: GetFeedPayload) => {
   const pageIndex = page - 1;
 
-  return api
+  return http
     .get<article.types.FeedType>(
       `articles?tag=${encodeURIComponent(tag)}&${limit(pageSize, pageIndex)}`,
     )

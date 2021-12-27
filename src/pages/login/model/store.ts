@@ -1,22 +1,27 @@
-import { createEffect, createStore } from 'effector';
+import { createEffect, createStore, forward } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as visitor from 'entities/visitor';
-import * as api from 'shared/api';
+import * as http from 'shared/http';
 import * as router from 'shared/library/router';
-import * as endpoints from './endpoints';
+import * as api from './api';
 import * as types from './types';
 
 export const signInFx = createEffect<
   types.SignInPayload,
   visitor.types.Visitor,
-  api.types.ApiError<Record<string, unknown>>
->(endpoints.signIn);
+  http.types.ApiError<Record<string, unknown>>
+>(api.signIn);
 
-signInFx.done.watch(() => {
+export const navigateToRootFx = createEffect(() => {
   router.history.push('/');
 });
 
 visitor.$visitor.on(signInFx.doneData, (_, payload) => payload);
+
+forward({
+  from: signInFx.done,
+  to: navigateToRootFx,
+});
 
 export const Gate = createGate();
 export const $error = createStore<Record<string, unknown>>({

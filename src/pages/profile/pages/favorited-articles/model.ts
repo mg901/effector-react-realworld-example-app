@@ -1,9 +1,9 @@
 import { createEffect } from 'effector';
 import { useStore } from 'effector-react';
 import * as article from 'entities/article';
-import * as endpoints from './endpoints';
+import * as api from './api';
 
-export const getFeedFx = createEffect(endpoints.getFeed);
+export const getFeedFx = createEffect(api.getFeed);
 
 export const {
   favoriteArticleToggled,

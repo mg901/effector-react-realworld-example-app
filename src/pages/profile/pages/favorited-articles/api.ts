@@ -1,5 +1,5 @@
 import * as article from 'entities/article';
-import * as api from 'shared/api';
+import * as http from 'shared/http';
 import { limit } from 'shared/library/limit';
 
 export type getFeedPayload = Readonly<{
@@ -11,7 +11,7 @@ export type getFeedPayload = Readonly<{
 export const getFeed = ({ username, page, pageSize }: getFeedPayload) => {
   const pageIndex = page - 1;
 
-  return api
+  return http
     .get<article.types.FeedType>(
       `articles?favorited=${encodeURIComponent(username)}&${limit(
         pageSize,
