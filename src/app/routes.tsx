@@ -11,7 +11,7 @@ const Editor = lazy(() => import('pages/editor'));
 const Settings = lazy(() => import('pages/settings'));
 const Profile = lazy(() => import('pages/profile'));
 const Article = lazy(() => import('pages/article'));
-const NotMatch = lazy(() => import('pages/no-match'));
+const NoMatch = lazy(() => import('pages/no-match'));
 
 export const Routes = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
@@ -19,42 +19,30 @@ export const Routes = () => {
   return (
     <Suspense fallback={<Spinner />}>
       <Switch>
-        <Redirect from={URLS.LOGIN} to={URLS.ROOT} />
-        <Redirect exact from={URLS.REGISTRATION} to={URLS.ROOT} />
         <Redirect exact from={URLS.ROOT} to={URLS.HOME} />
+        <Route path={URLS.LOGIN}>
+          {!isAuth ? <Login /> : <Redirect to={URLS.HOME} />}
+        </Route>
+        <Route path={URLS.REGISTRATION}>
+          {!isAuth ? <Registration /> : <Redirect to={URLS.HOME} />}
+        </Route>
         <Route path={URLS.HOME}>
           <Home />
         </Route>
-        <Route exact path={URLS.ARTICLE_SLUG}>
+        <PrivateRoute path={[URLS.EDITOR, URLS.EDITOR_SLUG]}>
+          <Editor />
+        </PrivateRoute>
+        <PrivateRoute path={URLS.SETTINGS}>
+          <Settings />
+        </PrivateRoute>
+        <PrivateRoute path={URLS.PROFILE}>
+          <Profile />
+        </PrivateRoute>
+        <Route path={URLS.ARTICLE_SLUG}>
           <Article />
         </Route>
-        <Route exact path={URLS.PROFILE}>
-          <Profile />
-        </Route>
-        {isAuth ? (
-          <>
-            <PrivateRoute exact path={URLS.EDITOR}>
-              <Editor />
-            </PrivateRoute>
-            <PrivateRoute exact path={URLS.EDITOR_SLUG}>
-              <Editor />
-            </PrivateRoute>
-            <PrivateRoute exact path={URLS.SETTINGS}>
-              <Settings />
-            </PrivateRoute>
-          </>
-        ) : (
-          <>
-            <Route exact path={URLS.LOGIN}>
-              <Login />
-            </Route>
-            <Route exact path={URLS.REGISTRATION}>
-              <Registration />
-            </Route>
-          </>
-        )}
         <Route path="*">
-          <NotMatch />
+          <NoMatch />
         </Route>
       </Switch>
     </Suspense>
