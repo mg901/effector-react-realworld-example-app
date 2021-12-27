@@ -2,7 +2,7 @@ import * as visitor from 'entities/visitor';
 import { Page, Row, Button } from 'shared/ui';
 import { SettingsForm, Error } from './ui';
 
-const SettingsPage: React.FC = () => {
+const SettingsPage = () => {
   return (
     <Page>
       <Row>

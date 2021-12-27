@@ -6,7 +6,7 @@ import { Spinner } from 'shared/ui';
 const MyArticles = lazy(() => import('./pages/my-articles'));
 const FavoritedArticles = lazy(() => import('./pages/favorited-articles'));
 
-export const Routes: React.FC = () => {
+export const Routes = () => {
   const { path } = useRouteMatch<{ path: string }>();
 
   return (

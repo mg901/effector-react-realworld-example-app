@@ -3,7 +3,7 @@ import { Row } from 'shared/ui';
 import { selectors } from '../model';
 import { Tags } from './tags';
 
-export const Content: React.FC = () => {
+export const Content = () => {
   const { body } = selectors.useArticle();
 
   return (

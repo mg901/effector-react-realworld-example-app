@@ -13,12 +13,12 @@ type Props = Readonly<{
   onFavoriteToggle: (payload: types.SelectedArticle) => void;
 }>;
 
-export const Feed: React.FC<Props> = ({
+export const Feed = ({
   loading,
   isEmpty,
   articlesStore,
   onFavoriteToggle,
-}) => {
+}: Props) => {
   return (
     <>
       <EmptyFeed show={isEmpty} />

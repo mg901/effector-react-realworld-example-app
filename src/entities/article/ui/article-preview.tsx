@@ -11,7 +11,7 @@ type Props = Omit<types.Article, 'body' | 'updatedAt'> &
     onFavoriteToggle: (payload: types.SelectedArticle) => void;
   }>;
 
-export const ArticlePreview: React.FC<Props> = memo(
+export const ArticlePreview = memo(
   ({
     author,
     createdAt,
@@ -22,7 +22,7 @@ export const ArticlePreview: React.FC<Props> = memo(
     favorited,
     favoritesCount,
     onFavoriteToggle,
-  }) => {
+  }: Props) => {
     return (
       <article className="article-preview">
         <ArticleMeta author={author} createdAt={createdAt}>

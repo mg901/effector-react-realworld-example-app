@@ -4,7 +4,7 @@ import * as home from '../../model';
 import { TagList } from '../tag-list';
 import './index.css';
 
-export const Sidebar: React.FC = () => {
+export const Sidebar = () => {
   useGate(home.Gate);
 
   return (

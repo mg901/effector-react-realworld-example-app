@@ -5,7 +5,11 @@ type RouteMatch = {
   url: string;
 };
 
-export const Tabs: React.FC = ({ children }) => {
+type Props = Readonly<{
+  children: React.ReactNode;
+}>;
+
+export const Tabs = ({ children }: Props) => {
   const { url } = useRouteMatch<RouteMatch>();
 
   return (

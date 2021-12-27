@@ -2,7 +2,7 @@ import { useGate } from 'effector-react';
 import { ErrorList } from 'shared/ui';
 import * as model from '../model';
 
-export const Error: React.FC = () => {
+export const Error = () => {
   useGate(model.Gate);
   const has = model.selectors.useHasError();
   const errors = model.selectors.useErrors();

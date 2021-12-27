@@ -4,7 +4,7 @@ import { LogoutBanner } from './ui/logout-banner';
 import { Sidebar } from './ui/sidebar';
 import { Tabs } from './ui/tabs';
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   return (
     <div className="home-page">
       <LogoutBanner />

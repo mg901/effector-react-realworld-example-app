@@ -14,7 +14,7 @@ import { LogoutLinks } from '../logout-links';
 
 import '../../main.css';
 
-export const App: React.FC = () => {
+export const App = () => {
   useGate(model.Gate);
   const isAuth = visitor.selectors.useIsAuthorized();
 

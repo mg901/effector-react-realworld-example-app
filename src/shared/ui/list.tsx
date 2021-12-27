@@ -1,3 +1,7 @@
-export const List: React.FC = ({ children }) => (
+type Props = Readonly<{
+  children: React.ReactNode;
+}>;
+
+export const List = ({ children }: Props) => (
   <ul className="list-unstyled">{children}</ul>
 );

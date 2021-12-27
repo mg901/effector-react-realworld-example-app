@@ -8,7 +8,7 @@ export type PaginationProps = Readonly<{
   onPageChange: (x: number) => void;
 }>;
 
-export const Pagination: React.FC<PaginationProps> = memo((props) => {
+export const Pagination = memo((props: PaginationProps) => {
   const { show, items, handleClick } = usePagination(props);
 
   return show ? (

@@ -6,7 +6,7 @@ import { URLS } from 'shared/library/router';
 import { Spinner } from 'shared/ui';
 import * as home from '../model';
 
-export const TagList: React.FC = () => {
+export const TagList = () => {
   const { url } = useRouteMatch<{ url: string }>();
   const loading = home.selectors.useLoadTags();
 

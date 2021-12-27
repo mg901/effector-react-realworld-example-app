@@ -7,7 +7,7 @@ type Props = Readonly<{
   url: string;
 }>;
 
-export const YourFeedLink: React.FC<Props> = ({ url }) => {
+export const YourFeedLink = ({ url }: Props) => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
   return isAuth ? (

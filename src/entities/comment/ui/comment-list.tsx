@@ -5,7 +5,7 @@ import { List } from 'shared/ui';
 import * as model from '../model';
 import { Comment } from './comment';
 
-export const CommentsList: React.FC = () => {
+export const CommentsList = () => {
   const { slug } = useParams<{ slug: string }>();
 
   useEffect(() => {

@@ -6,7 +6,7 @@ import { Routes } from './routes';
 import { ProfileInfo } from './ui/profile-info';
 import { Tabs } from './ui/tabs';
 
-const ProfilePage: React.FC = () => {
+const ProfilePage = () => {
   const { username } = useParams<{ username: string }>();
 
   useEffect(() => {

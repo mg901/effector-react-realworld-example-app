@@ -9,19 +9,17 @@ type Props = ButtonProps &
     item: number;
   }>;
 
-export const Item: React.FC<Props> = memo(
-  ({ active, onItemClick, item, children }) => {
-    const onClick = () => onItemClick(item);
+export const Item = memo(({ active, onItemClick, item, children }: Props) => {
+  const onClick = () => onItemClick(item);
 
-    return (
-      <button
-        className="pagination-item"
-        data-active={active}
-        type="button"
-        onClick={onClick}
-      >
-        <span className="page-link">{children}</span>
-      </button>
-    );
-  },
-);
+  return (
+    <button
+      className="pagination-item"
+      data-active={active}
+      type="button"
+      onClick={onClick}
+    >
+      <span className="page-link">{children}</span>
+    </button>
+  );
+});

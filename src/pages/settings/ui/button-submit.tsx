@@ -1,7 +1,7 @@
 import { Button } from 'shared/ui';
 import * as model from '../model';
 
-export const ButtonSubmit: React.FC = () => {
+export const ButtonSubmit = () => {
   const disabled = model.selectors.useOnSubmitPending();
 
   return (

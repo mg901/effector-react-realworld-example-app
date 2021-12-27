@@ -9,7 +9,7 @@ type Props = Readonly<{
   pageSize?: number;
 }>;
 
-const FavoritedArticlesPage: React.FC<Props> = ({ pageSize = 5 }) => {
+const FavoritedArticlesPage = ({ pageSize = 5 }: Props) => {
   const feed = useFeed(pageSize);
 
   return (

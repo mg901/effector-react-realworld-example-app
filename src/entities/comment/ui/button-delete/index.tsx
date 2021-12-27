@@ -8,7 +8,7 @@ type Props = Readonly<{
   author: types.Comment['author'];
 }>;
 
-export const ButtonDelete: React.FC<Props> = ({ author, onClick }) => {
+export const ButtonDelete = ({ author, onClick }: Props) => {
   const { username } = visitor.selectors.useVisitor();
   const isAuth = visitor.selectors.useIsAuthorized();
   const isSelf = username === author.username;

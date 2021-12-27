@@ -5,16 +5,17 @@ import './index.css';
 type Props = Readonly<
   Pick<types.Article, 'slug' | 'favorited' | 'favoritesCount'> & {
     onClick: (payload: types.SelectedArticle) => void;
+    children: React.ReactNode;
   }
 >;
 
-export const ButtonFavorite: React.FC<Props> = ({
+export const ButtonFavorite = ({
   slug,
   favorited,
   favoritesCount,
   onClick,
   children,
-}) => {
+}: Props) => {
   const handleClick = () => {
     onClick({ slug, favorited, favoritesCount });
   };

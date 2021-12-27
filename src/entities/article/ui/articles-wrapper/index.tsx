@@ -1,5 +1,9 @@
 import './index.css';
 
-export const ArticlesWrapper: React.FC = ({ children }) => {
+type Props = Readonly<{
+  children: React.ReactNode;
+}>;
+
+export const ArticlesWrapper = ({ children }: Props) => {
   return <ul className="articles-wrapper list-unstyled">{children}</ul>;
 };

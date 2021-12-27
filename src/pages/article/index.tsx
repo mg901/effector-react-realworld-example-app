@@ -7,7 +7,7 @@ import { Content } from './ui/content';
 import { Header } from './ui/header';
 import { LogoutMessage } from './ui/logout-message';
 
-const ArticlePage: React.FC = () => {
+const ArticlePage = () => {
   const { slug } = useParams<{ slug: string }>();
   const loading = model.selectors.useGetArticlePending();
 

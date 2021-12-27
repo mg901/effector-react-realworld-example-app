@@ -9,7 +9,7 @@ const GlobalFeed = lazy(() => import('./pages/global-feed'));
 const YourFeed = lazy(() => import('./pages/global-feed'));
 const FeedByTag = lazy(() => import('./pages/feed-by-tag'));
 
-export const Routes: React.FC = () => {
+export const Routes = () => {
   const { path } = useRouteMatch<{ path: string }>();
   const isAuth = visitor.selectors.useIsAuthorized();
 

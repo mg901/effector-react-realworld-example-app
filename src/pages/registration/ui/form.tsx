@@ -3,7 +3,7 @@ import { Form } from 'shared/ui';
 import * as model from '../model';
 import { ButtonSubmit } from './button-submit';
 
-export const RegistrationForm: React.FC = () => {
+export const RegistrationForm = () => {
   const { handleSubmit, register } = useForm({
     defaultValues: {
       username: '',

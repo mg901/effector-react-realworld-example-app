@@ -6,7 +6,7 @@ import { ProfileBio } from './profile-bio';
 import { ProfileImage } from './profile-image';
 import { ProfileTitle } from './profile-title';
 
-export const ProfileInfo: React.FC = memo(() => {
+export const ProfileInfo = memo(() => {
   return (
     <div className="user-info">
       <Container>

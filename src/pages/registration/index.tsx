@@ -3,7 +3,7 @@ import { URLS } from 'shared/library/router';
 import { Page, Row } from 'shared/ui';
 import { RegistrationForm, Error } from './ui';
 
-const RegistrationPage: React.FC = () => {
+const RegistrationPage = () => {
   return (
     <Page>
       <Row>

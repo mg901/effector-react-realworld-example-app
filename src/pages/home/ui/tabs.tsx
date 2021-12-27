@@ -3,7 +3,7 @@ import { URLS, useQuery } from 'shared/library/router';
 import { NavItem } from 'shared/ui';
 import { YourFeedLink } from './your-feed-link';
 
-export const Tabs: React.FC = () => {
+export const Tabs = () => {
   const { url } = useRouteMatch<{ url: string }>();
   const query = useQuery();
   const tag = query.get('tag');

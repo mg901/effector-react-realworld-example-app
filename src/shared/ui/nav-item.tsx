@@ -1,6 +1,10 @@
 import { memo } from 'react';
 
-export const NavItem: React.FC = memo(({ children }) => {
+type Props = Readonly<{
+  children: React.ReactNode;
+}>;
+
+export const NavItem = memo(({ children }: Props) => {
   return <li className="nav-item">{children}</li>;
 });
 

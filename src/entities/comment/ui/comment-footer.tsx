@@ -7,11 +7,7 @@ export type CommentFooterProps = Pick<
   'author' | 'createdAt' | 'id'
 >;
 
-export const Footer: React.FC<CommentFooterProps> = ({
-  author,
-  createdAt,
-  id,
-}) => {
+export const Footer = ({ author, createdAt, id }: CommentFooterProps) => {
   const { slug } = useParams<{ slug: string }>();
 
   const handleDeleteComment = () => {

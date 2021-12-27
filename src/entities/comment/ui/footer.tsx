@@ -1,7 +1,7 @@
 import * as visitor from 'entities/visitor';
 import { Button } from 'shared/ui';
 
-export const Footer: React.FC = () => {
+export const Footer = () => {
   const { image, username } = visitor.selectors.useVisitor();
 
   return (
