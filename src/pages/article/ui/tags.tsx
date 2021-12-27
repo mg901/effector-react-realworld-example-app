@@ -1,7 +1,7 @@
 import { TagsWrapper, Tag } from 'shared/ui';
 import { selectors } from '../model';
 
-export const Tags: React.FC = () => {
+export const Tags = () => {
   const { tagList } = selectors.useArticle();
 
   return (

@@ -5,7 +5,7 @@ type Props = Readonly<{
   title: string;
 }>;
 
-export const Logo: React.FC<Props> = ({ title }) => (
+export const Logo = ({ title }: Props) => (
   <Link className="navbar-brand" to={URLS.ROOT}>
     {title.toLowerCase()}
   </Link>

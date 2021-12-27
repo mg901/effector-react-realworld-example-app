@@ -1,7 +1,11 @@
 import { Container } from '../container';
 import './index.css';
 
-export const Page: React.FC = ({ children }) => (
+type Props = Readonly<{
+  children: React.ReactNode;
+}>;
+
+export const Page = ({ children }: Props) => (
   <Container className="page">{children}</Container>
 );
 

@@ -3,7 +3,7 @@ import { URLS } from 'shared/library/router';
 
 import { NavItem } from 'shared/ui';
 
-export const LogoutLinks: React.FC = () => {
+export const LogoutLinks = () => {
   return (
     <>
       <NavItem>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'shared/ui';
 import * as model from '../model';
 
-export const EditMode: React.FC = () => {
+export const EditMode = () => {
   const canModify = model.selectors.useCanModify();
   const { slug } = model.selectors.useArticle();
 

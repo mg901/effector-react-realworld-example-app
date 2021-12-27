@@ -8,7 +8,7 @@ type Props = Readonly<{
   pageSize?: number;
 }>;
 
-const GlobalFeedPage: React.FC<Props> = ({ pageSize = 10 }) => {
+const GlobalFeedPage = ({ pageSize = 10 }: Props) => {
   const [page, setPage] = useQueryParam('page', withDefault(NumberParam, 1));
   const loading = model.selectors.useGetFeedPending();
   const isEmpty = model.selectors.useIsEmptyFeed();

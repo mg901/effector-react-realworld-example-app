@@ -5,7 +5,7 @@ import { uniq } from 'shared/library/uniq';
 import { Form, List } from 'shared/ui';
 import { Tag } from './tag';
 
-export const AddTagForm: React.FC = () => {
+export const AddTagForm = () => {
   const { handleSubmit, ref, tags, handleAddTag, handleDeleteTag } = useForm();
 
   return (

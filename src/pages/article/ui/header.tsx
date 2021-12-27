@@ -3,7 +3,7 @@ import { Container, Banner } from 'shared/ui';
 import { selectors } from '../model';
 import { EditMode } from './edit-mode';
 
-export const Header: React.FC = () => {
+export const Header = () => {
   const { title, author, createdAt } = selectors.useArticle();
 
   return (

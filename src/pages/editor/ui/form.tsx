@@ -8,7 +8,7 @@ import * as model from '../model';
 import { AddTagForm } from './add-tag-form';
 import { ButtonSubmit } from './button-submit';
 
-export const EditorForm: React.FC = () => {
+export const EditorForm = () => {
   const { methods, handleSubmit, register } = useForm();
 
   return (

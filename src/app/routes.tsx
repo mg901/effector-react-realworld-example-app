@@ -13,7 +13,7 @@ const Profile = lazy(() => import('pages/profile'));
 const Article = lazy(() => import('pages/article'));
 const NotMatch = lazy(() => import('pages/no-match'));
 
-export const Routes: React.FC = () => {
+export const Routes = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
   return (

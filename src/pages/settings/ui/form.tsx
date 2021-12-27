@@ -4,7 +4,7 @@ import { Form } from 'shared/ui';
 import * as model from '../model';
 import { ButtonSubmit } from './button-submit';
 
-export const SettingsForm: React.FC = () => {
+export const SettingsForm = () => {
   const { handleSubmit, register } = useForm();
 
   return (

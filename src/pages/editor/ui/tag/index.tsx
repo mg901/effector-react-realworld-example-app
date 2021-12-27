@@ -4,9 +4,10 @@ import './index.css';
 type Props = Readonly<{
   tag: string;
   onTagClick: (x: string) => void;
+  children: React.ReactNode;
 }>;
 
-export const Tag: React.FC<Props> = ({ tag, onTagClick, children }) => {
+export const Tag = ({ tag, onTagClick, children }: Props) => {
   const handleClick = () => onTagClick(tag);
 
   return (

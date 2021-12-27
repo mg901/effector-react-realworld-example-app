@@ -1,7 +1,7 @@
 import { Page, Row } from 'shared/ui';
 import { EditorForm, Error } from './ui';
 
-const EditorPage: React.FC = () => {
+const EditorPage = () => {
   return (
     <Page>
       <Row>
