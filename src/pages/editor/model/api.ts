@@ -1,8 +1,8 @@
 import * as article from 'entities/article';
-import * as api from 'shared/api';
+import * as http from 'shared/http';
 
 export const createArticle = (payload: article.types.Article) => {
-  return api
+  return http
     .post<{
       article: article.types.Article;
     }>('articles', {
@@ -12,13 +12,13 @@ export const createArticle = (payload: article.types.Article) => {
 };
 
 export const getArticle = (slug: string) => {
-  return api
+  return http
     .get<{ article: article.types.Article }>(`articles/${slug}`)
     .then((response) => response.data.article);
 };
 
 export const updateArticle = (payload: article.types.Article) => {
-  return api
+  return http
     .put(`/articles/${payload.slug}`, {
       article: { ...payload, slug: undefined },
     })

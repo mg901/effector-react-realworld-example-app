@@ -1,8 +1,8 @@
-import * as api from 'shared/api';
+import * as http from 'shared/http';
 import { FormValues } from './types';
 
 export const changeUserData = (payload: FormValues) => {
-  return api.put('user', {
+  return http.put('user', {
     user: payload,
   });
 };

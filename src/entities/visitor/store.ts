@@ -7,8 +7,8 @@ import {
 } from 'effector';
 import { useStore } from 'effector-react';
 import { persist } from 'effector-storage/local';
-import { setToken } from 'shared/api';
 import { TOKEN_NAME } from 'shared/constants';
+import { setToken } from 'shared/http';
 import { Token, Visitor } from './types';
 
 export const loggedOutClicked = createEvent<React.MouseEvent>();

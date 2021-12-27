@@ -1,7 +1,7 @@
-import * as api from 'shared/api';
+import * as http from 'shared/http';
 import * as router from 'shared/library/router';
 
-api.instance.interceptors.response.use(
+http.instance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {

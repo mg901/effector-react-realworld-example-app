@@ -2,27 +2,27 @@ import { createEffect } from 'effector';
 import { useStore } from 'effector-react';
 
 import * as article from 'entities/article';
-import * as api from 'shared/api';
+import * as http from 'shared/http';
 import { limit } from 'shared/library/limit';
 
-export type GetFeedFxArgs = {
+export type GetFeedFxPayload = {
   username: string;
   page: number;
   pageSize: number;
 };
 
 export const getFeedFx = createEffect(
-  async ({ username, page, pageSize }: GetFeedFxArgs) => {
+  ({ username, page, pageSize }: GetFeedFxPayload) => {
     const pageIndex = page - 1;
 
-    const { data } = await api.get<article.types.FeedType>(
-      `articles?author=${encodeURIComponent(username)}&${limit(
-        pageSize,
-        pageIndex,
-      )}`,
-    );
-
-    return data;
+    return http
+      .get<article.types.FeedType>(
+        `articles?author=${encodeURIComponent(username)}&${limit(
+          pageSize,
+          pageIndex,
+        )}`,
+      )
+      .then((response) => response.data);
   },
 );
 

@@ -6,25 +6,24 @@ import {
   forward,
 } from 'effector';
 import { useStore, createGate } from 'effector-react';
-import * as api from 'shared/api';
-import * as endpoints from './endpoints';
+import * as http from 'shared/http';
+import * as api from './api';
 import * as types from './types';
 
 export const commentDeleted = createEvent<types.DeleteCommentPayload>();
-
-export const getCommentsFx = createEffect(endpoints.getComments);
+export const getCommentsFx = createEffect(api.getComments);
 
 export const addCommentFx = createEffect<
   types.AddCommentPayload,
   types.Comment,
-  api.types.ApiError<Record<string, unknown>>
->(endpoints.addComment);
+  http.types.ApiError<Record<string, unknown>>
+>(api.addComment);
 
 export const deleteCommentFx = createEffect<
   types.DeleteCommentPayload,
   void,
-  api.types.ApiError<Record<string, unknown>>
->(endpoints.deleteComment);
+  http.types.ApiError<Record<string, unknown>>
+>(api.deleteComment);
 
 forward({
   from: commentDeleted,

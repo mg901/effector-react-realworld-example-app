@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import {
   createEvent,
   createEffect,
@@ -8,8 +7,8 @@ import {
   Effect,
 } from 'effector';
 import { status } from 'patronum/status';
-import * as api from 'shared/api';
-import * as endpoints from './endpoints';
+import * as http from 'shared/http';
+import * as api from './api';
 import * as types from './types';
 
 type Feed = {
@@ -35,10 +34,10 @@ export function createFeed({ effect }: Options) {
   const setFavoriteArticleFx = createEffect<
     types.SelectedArticle,
     types.ToggleFavoriteArticleResponse,
-    api.types.ApiError
-  >(endpoints.setFavoriteArticle);
+    http.types.ApiError
+  >(api.setFavoriteArticle);
 
-  const setUnfavoriteArticleFx = createEffect(endpoints.setUnfavoriteArticle);
+  const setUnfavoriteArticleFx = createEffect(api.setUnfavoriteArticle);
 
   const $feed = createStore<Feed>({
     articlesCount: 0,

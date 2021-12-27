@@ -7,21 +7,20 @@ import {
 } from 'effector';
 import { useStore } from 'effector-react';
 import * as visitor from 'entities/visitor';
-import * as api from 'shared/api';
-import * as endpoints from './endpoints';
+import * as http from 'shared/http';
+import * as api from './api';
 import * as types from './types';
 
 export const followToggled = createEvent<types.FollowToggledArgs>();
-
-export const getProfileFx = createEffect(endpoints.getProfile);
+export const getProfileFx = createEffect(api.getProfile);
 
 export const subscribeToUserFx = createEffect<
   string,
   types.Profile,
-  api.types.ApiError
->(endpoints.subscribeToUser);
+  http.types.ApiError
+>(api.subscribeToUser);
 
-export const unsubscribeFromUserFx = createEffect(endpoints.unsubscribeToUser);
+export const unsubscribeFromUserFx = createEffect(api.unsubscribeToUser);
 
 export const $profile = createStore({
   bio: '',

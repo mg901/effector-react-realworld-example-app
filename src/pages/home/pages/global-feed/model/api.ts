@@ -1,5 +1,5 @@
 import * as article from 'entities/article';
-import * as api from 'shared/api';
+import * as http from 'shared/http';
 import { limit } from 'shared/library/limit';
 
 export type getFeedFxArgs = {
@@ -10,7 +10,7 @@ export type getFeedFxArgs = {
 export const getFeed = ({ pageSize, page }: getFeedFxArgs) => {
   const pageIndex = page - 1;
 
-  return api
+  return http
     .get<article.types.FeedType>(`articles?${limit(pageSize, pageIndex)}`)
     .then((response) => response.data);
 };

@@ -1,9 +1,9 @@
 import { createEvent, createEffect, createStore, forward } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as article from 'entities/article';
-import * as api from 'shared/api';
+import * as http from 'shared/http';
 import { history } from 'shared/library/router';
-import * as endpoints from './endpoints';
+import * as api from './api';
 
 export const formSubmitted = createEvent();
 
@@ -11,11 +11,11 @@ export const tagDeleted = createEvent<string>();
 export const createArticleFx = createEffect<
   article.types.Article,
   article.types.Article,
-  api.types.ApiError<Record<string, unknown>>
->(endpoints.createArticle);
+  http.types.ApiError<Record<string, unknown>>
+>(api.createArticle);
 
-export const getArticleFx = createEffect(endpoints.getArticle);
-export const updateArticleFx = createEffect(endpoints.updateArticle);
+export const getArticleFx = createEffect(api.getArticle);
+export const updateArticleFx = createEffect(api.updateArticle);
 export const redirectToArticleIdFx = createEffect(
   ({ slug }: article.types.Article) => {
     history.replace(`/article/${slug}`);
