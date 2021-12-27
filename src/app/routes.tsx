@@ -19,41 +19,41 @@ export const Routes = () => {
   return (
     <Suspense fallback={<Spinner />}>
       <Switch>
+        <Redirect from={URLS.LOGIN} to={URLS.ROOT} />
+        <Redirect exact from={URLS.REGISTRATION} to={URLS.ROOT} />
         <Redirect exact from={URLS.ROOT} to={URLS.HOME} />
         <Route path={URLS.HOME}>
           <Home />
         </Route>
-        <Route path={URLS.ARTICLE_SLUG}>
+        <Route exact path={URLS.ARTICLE_SLUG}>
           <Article />
         </Route>
-        <Route path={URLS.PROFILE}>
+        <Route exact path={URLS.PROFILE}>
           <Profile />
         </Route>
         {isAuth ? (
           <>
-            <Redirect exact from={URLS.LOGIN} to={URLS.HOME} />
-            <Redirect exact from={URLS.REGISTRATION} to={URLS.HOME} />
             <PrivateRoute exact path={URLS.EDITOR}>
               <Editor />
             </PrivateRoute>
-            <PrivateRoute path={URLS.EDITOR_SLUG}>
+            <PrivateRoute exact path={URLS.EDITOR_SLUG}>
               <Editor />
             </PrivateRoute>
-            <PrivateRoute path={URLS.SETTINGS}>
+            <PrivateRoute exact path={URLS.SETTINGS}>
               <Settings />
             </PrivateRoute>
           </>
         ) : (
           <>
-            <Route path={URLS.LOGIN}>
+            <Route exact path={URLS.LOGIN}>
               <Login />
             </Route>
-            <Route path={URLS.REGISTRATION}>
+            <Route exact path={URLS.REGISTRATION}>
               <Registration />
             </Route>
           </>
         )}
-        <Route exact path="*">
+        <Route path="*">
           <NotMatch />
         </Route>
       </Switch>
