@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[771],{8771:function(e,n,u){u.r(n);var c=u(1650),r=u(4246);n.default=function(){return(0,r.jsx)(c.W,{children:(0,r.jsx)("h1",{children:"404 Page Not Found"})})}}}]);
