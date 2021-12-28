@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import * as visitor from 'entities/visitor';
-import { URLS } from 'shared/library/router';
-import { NavItem } from 'shared/ui';
+import * as visitor from '@/entities/visitor';
+import { URLS } from '@/shared/router';
+import { NavItem } from '@/shared/ui';
 
 type Props = Readonly<{
   url: string;

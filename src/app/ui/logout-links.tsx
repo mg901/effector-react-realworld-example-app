@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { URLS } from 'shared/library/router';
+import { URLS } from '@/shared/router';
 
-import { NavItem } from 'shared/ui';
+import { NavItem } from '@/shared/ui';
 
 export const LogoutLinks = () => {
   return (

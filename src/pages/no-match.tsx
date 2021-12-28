@@ -1,4 +1,4 @@
-import { Container } from 'shared/ui';
+import { Container } from '@/shared/ui';
 
 const NoMatchPage = () => (
   <Container>

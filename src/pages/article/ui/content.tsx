@@ -1,5 +1,5 @@
 import Markdown from 'markdown-to-jsx';
-import { Row } from 'shared/ui';
+import { Row } from '@/shared/ui';
 import { selectors } from '../model';
 import { Tags } from './tags';
 

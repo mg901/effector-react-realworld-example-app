@@ -1,4 +1,4 @@
-import * as visitor from 'entities/visitor';
+import * as visitor from '@/entities/visitor';
 import { AddCommentForm } from './add-comment';
 import { CommentsList } from './comment-list';
 import { Error } from './error';

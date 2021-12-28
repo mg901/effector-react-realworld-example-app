@@ -1,5 +1,5 @@
-import * as article from 'entities/article';
-import { Container, Banner } from 'shared/ui';
+import * as article from '@/entities/article';
+import { Container, Banner } from '@/shared/ui';
 import { selectors } from '../model';
 import { EditMode } from './edit-mode';
 

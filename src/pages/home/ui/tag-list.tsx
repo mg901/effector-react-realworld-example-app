@@ -2,8 +2,8 @@
 
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useList } from 'effector-react';
-import { URLS } from 'shared/library/router';
-import { Spinner } from 'shared/ui';
+import { URLS } from '@/shared/router';
+import { Spinner } from '@/shared/ui';
 import * as home from '../model';
 
 export const TagList = () => {

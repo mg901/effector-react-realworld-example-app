@@ -1,4 +1,4 @@
-import { Button } from 'shared/ui';
+import { Button } from '@/shared/ui';
 import * as model from '../model';
 
 export const ButtonSubmit = () => {

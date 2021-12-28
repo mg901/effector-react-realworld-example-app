@@ -1,4 +1,4 @@
-import * as visitor from 'entities/visitor';
+import * as visitor from '@/entities/visitor';
 
 export type FormValues = Pick<
   visitor.types.Visitor,

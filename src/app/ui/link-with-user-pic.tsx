@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import * as visitor from 'entities/visitor';
+import * as visitor from '@/entities/visitor';
 
 export const LinkWithUserPic = () => {
   const { username, image } = visitor.selectors.useVisitor();

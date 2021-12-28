@@ -1,4 +1,4 @@
-import * as article from 'entities/article';
+import * as article from '@/entities/article';
 
 export type Comment = Readonly<{
   author: article.types.Author;

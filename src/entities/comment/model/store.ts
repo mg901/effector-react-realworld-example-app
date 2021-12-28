@@ -6,7 +6,6 @@ import {
   forward,
 } from 'effector';
 import { useStore, createGate } from 'effector-react';
-import * as http from 'shared/http';
 import * as api from './api';
 import * as types from './types';
 
@@ -16,13 +15,13 @@ export const getCommentsFx = createEffect(api.getComments);
 export const addCommentFx = createEffect<
   types.AddCommentPayload,
   types.Comment,
-  http.types.ApiError<Record<string, unknown>>
+  Record<string, unknown>
 >(api.addComment);
 
 export const deleteCommentFx = createEffect<
   types.DeleteCommentPayload,
   void,
-  http.types.ApiError<Record<string, unknown>>
+  Record<string, unknown>
 >(api.deleteComment);
 
 forward({
@@ -40,10 +39,7 @@ export const Gate = createGate();
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
 })
-  .on(
-    [addCommentFx.failData, deleteCommentFx.failData],
-    (_, error) => error.response?.data,
-  )
+  .on([addCommentFx.failData, deleteCommentFx.failData], (_, error) => error)
   .reset(Gate.close);
 
 export const $hasError = $error.map(

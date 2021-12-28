@@ -1,5 +1,5 @@
 import { fork, allSettled } from 'effector';
-import * as visitor from 'entities/visitor';
+import * as visitor from '@/entities/visitor';
 import { signUpFx, $error } from './store';
 
 describe('pages/registration/store', () => {
@@ -29,24 +29,15 @@ describe('pages/registration/store', () => {
 
   it('should return an error in case of unsuccessful registration', async () => {
     const expected = {
-      response: {
-        data: {
-          errors: {
-            email: ["can't be blank"],
-            password: ["can't be blank"],
-            username: [
-              "can't be blank",
-              'is too short (minimum is 1 character)',
-            ],
-          },
-        },
-      },
+      email: ["can't be blank"],
+      password: ["can't be blank"],
+      username: ["can't be blank", 'is too short (minimum is 1 character)'],
     };
 
     signUpFx.use(() => Promise.reject(expected));
 
     const scope = fork();
     await allSettled(signUpFx, { scope });
-    expect(scope.getState($error)).toMatchObject(expected.response.data);
+    expect(scope.getState($error)).toMatchObject(expected);
   });
 });

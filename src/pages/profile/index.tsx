@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Row } from 'shared/ui';
+import { Container, Row } from '@/shared/ui';
 import * as model from './model';
 import { Routes } from './routes';
 import { ProfileInfo } from './ui/profile-info';

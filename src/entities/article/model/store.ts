@@ -7,7 +7,6 @@ import {
   Effect,
 } from 'effector';
 import { status } from 'patronum/status';
-import * as http from 'shared/http';
 import * as api from './api';
 import * as types from './types';
 
@@ -33,8 +32,7 @@ export function createFeed({ effect }: Options) {
 
   const setFavoriteArticleFx = createEffect<
     types.SelectedArticle,
-    types.ToggleFavoriteArticleResponse,
-    http.types.ApiError
+    types.ToggleFavoriteArticleResponse
   >(api.setFavoriteArticle);
 
   const setUnfavoriteArticleFx = createEffect(api.setUnfavoriteArticle);

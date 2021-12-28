@@ -1,10 +1,13 @@
-import * as article from 'entities/article';
-import * as http from 'shared/http';
+import * as article from '@/entities/article';
+import * as http from '@/shared/http';
 
 export const getArticle = (slug: string) => {
   return http
-    .get<{ article: article.types.Article }>(`articles/${slug}`)
-    .then((response) => response.data.article)
+    .request<{ article: article.types.Article }>({
+      url: `articles/${slug}`,
+      method: 'get',
+    })
+    .then((response) => response.article)
     .then(({ createdAt, ...rest }) => ({
       ...rest,
       createdAt: new Date(createdAt).toDateString(),
@@ -12,5 +15,5 @@ export const getArticle = (slug: string) => {
 };
 
 export const deleteArticle = (slug: string) => {
-  return http.del<void>(`articles/${slug}`);
+  return http.request({ url: `articles/${slug}`, method: 'delete' });
 };

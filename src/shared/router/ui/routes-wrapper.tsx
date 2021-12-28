@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
 import { useLocation } from 'react-router-dom';
-import { Page, Spinner } from 'shared/ui';
+import { Page, Spinner } from '@/shared/ui';
 
 type RoutesWrapperProps = {
   children: React.ReactNode;

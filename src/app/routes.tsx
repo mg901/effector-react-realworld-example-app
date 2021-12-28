@@ -1,17 +1,17 @@
 import { lazy, Suspense } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
-import * as visitor from 'entities/visitor';
-import { URLS, PrivateRoute } from 'shared/library/router';
-import { Spinner } from 'shared/ui';
+import * as visitor from '@/entities/visitor';
+import { URLS, PrivateRoute } from '@/shared/router';
+import { Spinner } from '@/shared/ui';
 
-const Login = lazy(() => import('pages/login'));
-const Registration = lazy(() => import('pages/registration'));
-const Home = lazy(() => import('pages/home'));
-const Editor = lazy(() => import('pages/editor'));
-const Settings = lazy(() => import('pages/settings'));
-const Profile = lazy(() => import('pages/profile'));
-const Article = lazy(() => import('pages/article'));
-const NoMatch = lazy(() => import('pages/no-match'));
+const Login = lazy(() => import('@/pages/login'));
+const Registration = lazy(() => import('@/pages/registration'));
+const Home = lazy(() => import('@/pages/home'));
+const Editor = lazy(() => import('@/pages/editor'));
+const Settings = lazy(() => import('@/pages/settings'));
+const Profile = lazy(() => import('@/pages/profile'));
+const Article = lazy(() => import('@/pages/article'));
+const NoMatch = lazy(() => import('@/pages/no-match'));
 
 export const Routes = () => {
   const isAuth = visitor.selectors.useIsAuthorized();

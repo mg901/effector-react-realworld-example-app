@@ -1,4 +1,4 @@
-import { Page, Row } from 'shared/ui';
+import { Page, Row } from '@/shared/ui';
 import { Routes } from './routes';
 import { LogoutBanner } from './ui/logout-banner';
 import { Sidebar } from './ui/sidebar';

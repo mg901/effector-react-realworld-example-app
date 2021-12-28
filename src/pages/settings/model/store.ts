@@ -1,15 +1,14 @@
-import { createEffect, createStore, forward } from 'effector';
+import { createEffect, restore, forward } from 'effector';
 import { useStore } from 'effector-react';
-import * as visitor from 'entities/visitor';
-import * as http from 'shared/http';
-import * as router from 'shared/library/router';
+import * as visitor from '@/entities/visitor';
+import * as router from '@/shared/router';
 import * as api from './api';
-import { FormValues } from './types';
+import * as types from './types';
 
 export const changeUserDataFx = createEffect<
-  FormValues,
-  http.types.ApiResponse<void>,
-  http.types.ApiError<Record<string, unknown>>
+  types.FormValues,
+  void,
+  Record<string, unknown>
 >(api.changeUserData);
 
 export const navigateToRootFx = createEffect(() => {
@@ -28,9 +27,9 @@ export const $user = visitor.$visitor.map((x) => ({
   password: '',
 }));
 
-export const $error = createStore<Record<string, unknown>>({
+export const $error = restore(changeUserDataFx.failData, {
   errors: {},
-}).on(changeUserDataFx.failData, (_, error) => error.response?.data);
+});
 
 forward({
   from: changeUserDataFx.done,
@@ -38,7 +37,7 @@ forward({
 });
 
 forward({
-  from: visitor.loggedOutClicked,
+  from: visitor.logout,
   to: navigateToRootFx,
 });
 

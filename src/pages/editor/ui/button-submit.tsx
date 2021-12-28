@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Button } from 'shared/ui';
+import { Button } from '@/shared/ui';
 import { selectors } from '../model';
 
 export const ButtonSubmit = memo(() => {

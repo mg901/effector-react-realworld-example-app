@@ -1,20 +1,29 @@
-import * as http from 'shared/http';
+import * as http from '@/shared/http';
 import * as types from './types';
 
 export const getProfile = (username: string) => {
   return http
-    .get<{ profile: types.Profile }>(`profiles/${username}`)
-    .then((response) => response.data.profile);
+    .request<{ profile: types.Profile }>({
+      url: `profiles/${username}`,
+      method: 'get',
+    })
+    .then((response) => response.profile);
 };
 
 export const subscribeToUser = (username: string) => {
   return http
-    .post<{ profile: types.Profile }>(`profiles/${username}/follow`)
-    .then((response) => response.data.profile);
+    .request<{ profile: types.Profile }>({
+      url: `profiles/${username}/follow`,
+      method: 'post',
+    })
+    .then((response) => response.profile);
 };
 
 export const unsubscribeToUser = (username: string) => {
   return http
-    .del<{ profile: types.Profile }>(`profiles/${username}/follow`)
-    .then((response) => response.data.profile);
+    .request<{ profile: types.Profile }>({
+      url: `profiles/${username}/follow`,
+      method: 'delete',
+    })
+    .then((response) => response.profile);
 };

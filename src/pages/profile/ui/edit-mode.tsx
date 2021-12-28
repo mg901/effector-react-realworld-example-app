@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Button } from 'shared/ui';
+import { Button } from '@/shared/ui';
 import * as model from '../model';
 
 export const EditMode = () => {

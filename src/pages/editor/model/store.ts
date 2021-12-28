@@ -1,8 +1,7 @@
-import { createEvent, createEffect, createStore, forward } from 'effector';
+import { createEvent, createEffect, restore, forward } from 'effector';
 import { useStore, createGate } from 'effector-react';
-import * as article from 'entities/article';
-import * as http from 'shared/http';
-import { history } from 'shared/library/router';
+import * as article from '@/entities/article';
+import * as router from '@/shared/router';
 import * as api from './api';
 
 export const formSubmitted = createEvent();
@@ -11,14 +10,15 @@ export const tagDeleted = createEvent<string>();
 export const createArticleFx = createEffect<
   article.types.Article,
   article.types.Article,
-  http.types.ApiError<Record<string, unknown>>
+  Record<string, unknown>
 >(api.createArticle);
 
 export const getArticleFx = createEffect(api.getArticle);
 export const updateArticleFx = createEffect(api.updateArticle);
+
 export const redirectToArticleIdFx = createEffect(
   ({ slug }: article.types.Article) => {
-    history.replace(`/article/${slug}`);
+    router.history.replace(`/article/${slug}`);
   },
 );
 
@@ -28,11 +28,9 @@ forward({
 });
 
 export const Gate = createGate();
-export const $error = createStore<Record<string, unknown>>({
+export const $error = restore(createArticleFx.failData, {
   errors: {},
-})
-  .on(createArticleFx.failData, (_, error) => error.response?.data)
-  .reset(Gate.close);
+}).reset(Gate.close);
 
 export const $hasError = $error.map(
   (error) => Object.keys(Object(error)).length > 0,

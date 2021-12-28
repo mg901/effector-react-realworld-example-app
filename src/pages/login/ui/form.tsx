@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { Form } from 'shared/ui';
+import { Form } from '@/shared/ui';
 import * as model from '../model';
 import { ButtonSubmit } from './button-submit';
 

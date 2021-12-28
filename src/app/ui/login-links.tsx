@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import { URLS } from 'shared/library/router';
-import { NavItem } from 'shared/ui';
+import { URLS } from '@/shared/router';
+import { NavItem } from '@/shared/ui';
 import { LinkWithUserPic } from './link-with-user-pic';
 
 export function LoginLinks(): JSX.Element {

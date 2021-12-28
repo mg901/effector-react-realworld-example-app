@@ -1,4 +1,4 @@
-import { TagsWrapper, Tag } from 'shared/ui';
+import { TagsWrapper, Tag } from '@/shared/ui';
 import { selectors } from '../model';
 
 export const Tags = () => {
