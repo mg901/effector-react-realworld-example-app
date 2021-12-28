@@ -3,6 +3,9 @@
   "name": "effector-react-realworld-example-app",
   "version": "1.0.0",
   "license": "MIT",
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "predeploy": "npm run build",
     "prepare": "husky install",
