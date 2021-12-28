@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom';
+import { Avatar } from '@/entities/visitor';
 import { URLS } from '@/shared/router';
 import { NavItem } from '@/shared/ui';
-import { LinkWithUserPic } from './link-with-user-pic';
+import { LinkToVisitor } from './link-to-visitor';
 
-export function LoginLinks(): JSX.Element {
+export const LoginLinks = () => {
   return (
     <>
       <NavItem>
@@ -27,8 +28,10 @@ export function LoginLinks(): JSX.Element {
       </NavItem>
 
       <NavItem>
-        <LinkWithUserPic />
+        <LinkToVisitor>
+          <Avatar className="user-pic" />
+        </LinkToVisitor>
       </NavItem>
     </>
   );
-}
+};
