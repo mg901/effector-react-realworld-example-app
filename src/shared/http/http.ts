@@ -20,12 +20,14 @@ export const setToken = (token: string): void => {
   instance.defaults.headers.common.Authorization = `Token ${token}`;
 };
 
-export const request = <T = any>(config: types.Options): Promise<T> => {
+export const request = <T = any>(
+  options: types.HttpRequestOptions,
+): Promise<T> => {
   return instance
     .request({
-      url: config.url,
-      method: config.method,
-      data: config?.data,
+      url: options.url,
+      method: options.method,
+      data: options?.data,
     })
     .then((response) => response.data)
     .catch((error) => error.response?.data);
