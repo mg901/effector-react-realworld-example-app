@@ -11,17 +11,12 @@ const FeedByTag = lazy(() => import('./pages/feed-by-tag'));
 
 export const Routes = () => {
   const { path } = useRouteMatch<{ path: string }>();
-  const isAuth = visitor.selectors.useIsAuthorized();
 
   return (
     <Suspense fallback={<Spinner />}>
       <Switch>
         <Route exact path="/home">
-          {isAuth ? (
-            <Redirect to={`${path}${URLS.YOUR_FEED}`} />
-          ) : (
-            <Redirect to={`${path}${URLS.GLOBAL_FEED}`} />
-          )}
+          <DefaultHomePage />
         </Route>
         <Route path={`${path}${URLS.GLOBAL_FEED}`}>
           <GlobalFeed />
@@ -39,3 +34,14 @@ export const Routes = () => {
     </Suspense>
   );
 };
+
+function DefaultHomePage() {
+  const { path } = useRouteMatch<{ path: string }>();
+  const isAuth = visitor.selectors.useIsAuthorized();
+
+  return isAuth ? (
+    <Redirect to={`${path}${URLS.YOUR_FEED}`} />
+  ) : (
+    <Redirect to={`${path}${URLS.GLOBAL_FEED}`} />
+  );
+}

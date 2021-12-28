@@ -6,11 +6,11 @@ import { Error } from './error';
 export const Comments = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
-  return !isAuth ? null : (
+  return isAuth ? (
     <>
       <Error />
       <AddCommentForm />
       <CommentsList />
     </>
-  );
+  ) : null;
 };

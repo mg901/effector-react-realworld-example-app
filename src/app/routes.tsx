@@ -16,16 +16,15 @@ const NoMatch = lazy(() => import('@/pages/no-match'));
 export const Routes = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
+  const login = !isAuth ? <Login /> : <Redirect to={URLS.HOME} />;
+  const registration = !isAuth ? <Registration /> : <Redirect to={URLS.HOME} />;
+
   return (
     <Suspense fallback={<Spinner />}>
       <Switch>
         <Redirect exact from={URLS.ROOT} to={URLS.HOME} />
-        <Route path={URLS.LOGIN}>
-          {!isAuth ? <Login /> : <Redirect to={URLS.HOME} />}
-        </Route>
-        <Route path={URLS.REGISTRATION}>
-          {!isAuth ? <Registration /> : <Redirect to={URLS.HOME} />}
-        </Route>
+        <Route path={URLS.LOGIN}>{login}</Route>
+        <Route path={URLS.REGISTRATION}>{registration}</Route>
         <Route path={URLS.HOME}>
           <Home />
         </Route>
