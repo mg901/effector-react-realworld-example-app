@@ -1,4 +1,4 @@
-import { Button } from 'shared/ui';
+import { Button } from '@/shared/ui';
 import { types } from '../../model';
 import './index.css';
 

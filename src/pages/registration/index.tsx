@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { URLS } from 'shared/library/router';
-import { Page, Row } from 'shared/ui';
+import { URLS } from '@/shared/router';
+import { Page, Row } from '@/shared/ui';
 import { RegistrationForm, Error } from './ui';
 
 const RegistrationPage = () => {

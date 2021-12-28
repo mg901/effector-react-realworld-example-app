@@ -1,5 +1,5 @@
-import * as visitor from 'entities/visitor';
-import { Button, ButtonProps } from 'shared/ui';
+import * as visitor from '@/entities/visitor';
+import { Button, ButtonProps } from '@/shared/ui';
 import { types } from '../../model';
 import './index.css';
 

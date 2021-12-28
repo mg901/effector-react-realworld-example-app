@@ -1,5 +1,5 @@
 import { useRouteMatch, NavLink } from 'react-router-dom';
-import { NavItem } from 'shared/ui';
+import { NavItem } from '@/shared/ui';
 
 type RouteMatch = {
   url: string;

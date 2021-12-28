@@ -1,5 +1,5 @@
-import * as visitor from 'entities/visitor';
-import { Page, Row, Button } from 'shared/ui';
+import * as visitor from '@/entities/visitor';
+import { Page, Row, Button } from '@/shared/ui';
 import { SettingsForm, Error } from './ui';
 
 const SettingsPage = () => {
@@ -12,10 +12,7 @@ const SettingsPage = () => {
           <SettingsForm />
           <hr />
 
-          <Button
-            className="btn-outline-danger"
-            onClick={visitor.loggedOutClicked}
-          >
+          <Button className="btn-outline-danger" onClick={visitor.logout}>
             Or click here to logout.
           </Button>
         </div>

@@ -1,6 +1,6 @@
 import { Store } from 'effector';
 import { useList } from 'effector-react';
-import { Spinner } from 'shared/ui';
+import { Spinner } from '@/shared/ui';
 import * as types from '../model/types';
 import { ArticlePreview } from './article-preview';
 import { ArticlesWrapper } from './articles-wrapper';

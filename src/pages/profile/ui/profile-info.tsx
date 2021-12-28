@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Container, Row } from 'shared/ui';
+import { Container, Row } from '@/shared/ui';
 import { EditMode } from './edit-mode';
 import { FollowUser } from './follow-user';
 import { ProfileBio } from './profile-bio';

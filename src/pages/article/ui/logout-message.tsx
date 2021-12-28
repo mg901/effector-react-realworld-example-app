@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import * as visitor from 'entities/visitor';
+import * as visitor from '@/entities/visitor';
 
 export const LogoutMessage = () => {
   const isAuth = visitor.selectors.useIsAuthorized();

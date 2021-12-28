@@ -1,4 +1,4 @@
-import { ErrorList } from 'shared/ui';
+import { ErrorList } from '@/shared/ui';
 import { selectors } from '../model';
 
 export const Error = () => {

@@ -1,5 +1,5 @@
 import { useGate } from 'effector-react';
-import { TagsWrapper } from 'shared/ui';
+import { TagsWrapper } from '@/shared/ui';
 import * as home from '../../model';
 import { TagList } from '../tag-list';
 import './index.css';

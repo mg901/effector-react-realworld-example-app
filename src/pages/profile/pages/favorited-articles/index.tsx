@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import * as article from 'entities/article';
-import { Pagination } from 'shared/ui';
 import { useQueryParam, withDefault, NumberParam } from 'use-query-params';
+import * as article from '@/entities/article';
+import { Pagination } from '@/shared/ui';
 import * as profile from '../../model';
 import * as model from './model';
 

@@ -1,6 +1,6 @@
 import { useRouteMatch, NavLink } from 'react-router-dom';
-import { URLS, useQuery } from 'shared/library/router';
-import { NavItem } from 'shared/ui';
+import { URLS, useQuery } from '@/shared/router';
+import { NavItem } from '@/shared/ui';
 import { YourFeedLink } from './your-feed-link';
 
 export const Tabs = () => {

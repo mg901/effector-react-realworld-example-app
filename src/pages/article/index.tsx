@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Comments } from 'entities/comment';
-import { Row, Page } from 'shared/ui';
+import { Comments } from '@/entities/comment';
+import { Row, Page } from '@/shared/ui';
 import * as model from './model';
 import { Content } from './ui/content';
 import { Header } from './ui/header';

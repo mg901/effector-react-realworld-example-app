@@ -1,5 +1,5 @@
 import { useGate } from 'effector-react';
-import { ErrorList } from 'shared/ui';
+import { ErrorList } from '@/shared/ui';
 import * as model from '../model';
 
 export const Error = () => {

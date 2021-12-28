@@ -1,6 +1,6 @@
-import * as visitor from 'entities/visitor';
-import { APP_NAME } from 'shared/constants';
-import { Banner, Container } from 'shared/ui';
+import * as visitor from '@/entities/visitor';
+import { APP_NAME } from '@/shared/constants';
+import { Banner, Container } from '@/shared/ui';
 
 export const LogoutBanner = () => {
   const isAuth = visitor.selectors.useIsAuthorized();

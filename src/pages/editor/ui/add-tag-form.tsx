@@ -1,8 +1,8 @@
 import { useRef, useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
-import * as article from 'entities/article';
-import { uniq } from 'shared/library/uniq';
-import { Form, List } from 'shared/ui';
+import * as article from '@/entities/article';
+import { uniq } from '@/shared/library/uniq';
+import { Form, List } from '@/shared/ui';
 import { Tag } from './tag';
 
 export const AddTagForm = () => {

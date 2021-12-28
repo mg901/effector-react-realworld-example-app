@@ -1,5 +1,5 @@
 import { fork, allSettled } from 'effector';
-import * as visitor from 'entities/visitor';
+import * as visitor from '@/entities/visitor';
 import { signInFx, $error } from './store';
 
 describe('pages/login/store', () => {
@@ -28,16 +28,12 @@ describe('pages/login/store', () => {
   });
 
   it('should return an error if login fails', async () => {
-    const expected = {
-      response: {
-        data: { errors: { 'email or password': ['is invalid'] } },
-      },
-    };
+    const expected = { errors: { 'email or password': ['is invalid'] } };
 
     signInFx.use(() => Promise.reject(expected));
 
     const scope = fork();
     await allSettled(signInFx, { scope });
-    expect(scope.getState($error)).toMatchObject(expected.response.data);
+    expect(scope.getState($error)).toMatchObject(expected);
   });
 });

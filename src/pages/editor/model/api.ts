@@ -1,26 +1,37 @@
-import * as article from 'entities/article';
-import * as http from 'shared/http';
+import * as article from '@/entities/article';
+import * as http from '@/shared/http';
 
 export const createArticle = (payload: article.types.Article) => {
   return http
-    .post<{
+    .request<{
       article: article.types.Article;
-    }>('articles', {
-      article: payload,
+    }>({
+      url: 'articles',
+      method: 'post',
+      data: {
+        article: payload,
+      },
     })
-    .then((response) => response.data.article);
+    .then((response) => response.article);
 };
 
 export const getArticle = (slug: string) => {
   return http
-    .get<{ article: article.types.Article }>(`articles/${slug}`)
-    .then((response) => response.data.article);
+    .request<{ article: article.types.Article }>({
+      url: `articles/${slug}`,
+      method: 'get',
+    })
+    .then((response) => response.article);
 };
 
 export const updateArticle = (payload: article.types.Article) => {
   return http
-    .put(`/articles/${payload.slug}`, {
-      article: { ...payload, slug: undefined },
+    .request<{ article: article.types.Article }>({
+      url: `/articles/${payload.slug}`,
+      method: 'put',
+      data: {
+        article: { ...payload, slug: undefined },
+      },
     })
-    .then((response) => response.data.article);
+    .then((response) => response.article);
 };

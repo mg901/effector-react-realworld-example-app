@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { URLS } from 'shared/library/router';
+import { URLS } from '@/shared/router';
 
 type Props = Readonly<{
   title: string;

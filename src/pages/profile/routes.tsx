@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import NotMatch from 'pages/no-match';
-import { Spinner } from 'shared/ui';
+import NoMatch from '@/pages/no-match';
+import { Spinner } from '@/shared/ui';
 
 const MyArticles = lazy(() => import('./pages/my-articles'));
 const FavoritedArticles = lazy(() => import('./pages/favorited-articles'));
@@ -19,7 +19,7 @@ export const Routes = () => {
           <FavoritedArticles />
         </Route>
         <Route path="*">
-          <NotMatch />
+          <NoMatch />
         </Route>
       </Switch>
     </Suspense>
