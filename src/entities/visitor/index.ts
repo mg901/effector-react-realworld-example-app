@@ -1,2 +1,2 @@
 export * from './model';
-export * from './visitor-avatar';
+export * from './avatar';
