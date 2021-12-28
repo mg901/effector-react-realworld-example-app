@@ -2,11 +2,12 @@ import { createEffect, createEvent, restore, forward, guard } from 'effector';
 import { useStore } from 'effector-react';
 import { persist } from 'effector-storage/local';
 import { TOKEN_NAME } from '@/shared/constants';
-import { setToken } from '@/shared/http';
+import * as http from '@/shared/http';
 import * as api from './api';
 
 export const logout = createEvent<React.MouseEvent>();
 export const getVisitorFx = createEffect(api.getVisitor);
+const setTokenFx = createEffect(http.setToken);
 
 export const $visitor = restore(getVisitorFx.doneData, {
   bio: '',
@@ -19,12 +20,28 @@ export const $visitor = restore(getVisitorFx.doneData, {
   username: '',
 }).reset(logout);
 
+export const $username = $visitor.map((visitor) => visitor.username);
+export const $image = $visitor.map((visitor) => visitor.image);
+
 export const $token = $visitor.map((visitor) => visitor.token);
 export const $isAuthorized = $token.map(Boolean);
 
+persist({
+  store: $username,
+  key: 'visitor-username',
+});
+
+persist({
+  store: $image,
+  key: 'visitor-image',
+});
+
 forward({
-  from: guard({ source: $token, filter: Boolean }),
-  to: createEffect(setToken),
+  from: guard({
+    source: $token,
+    filter: Boolean,
+  }),
+  to: setTokenFx,
 });
 
 persist({
@@ -34,5 +51,7 @@ persist({
 
 export const selectors = {
   useIsAuthorized: () => useStore($isAuthorized),
+  useUserName: () => useStore($username),
+  useImage: () => useStore($image),
   useVisitor: () => useStore($visitor),
 };

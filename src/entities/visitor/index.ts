@@ -1,2 +1,2 @@
-export * from './store';
-export * as types from './types';
+export * from './model';
+export * from './visitor-avatar';
