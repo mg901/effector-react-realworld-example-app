@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
-const { SRC, DIST } = require('./constants');
+const { DIST, SRC } = require('./constants');
 
 module.exports = {
   mode: 'production',

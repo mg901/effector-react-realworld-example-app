@@ -8,20 +8,20 @@
   ],
   "scripts": {
     "predeploy": "npm run build",
+    "preview": "npx serve -s build",
     "prepare": "husky install",
+    "commit": "cross-env git-cz",
     "start": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "npm run clean && NODE_ENV=production webpack",
     "clean": "cross-env rimraf build",
-    "commit": "cross-env git-cz",
     "lint:file": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lint": "cross-env eslint . --ext .js,.jsx,.ts,.tsx --fix.",
-    "pretty": "cross-env fixme=fixme prettier --write '**/*.{j,t}{s,sx}'",
-    "pretty:watch": "cross-env fixme=fixme onchange '**/*.{j,t}{s,sx}' -- prettier --write {{changed}}",
+    "pretty": "cross-env prettier --write '**/*.{j,t}{s,sx}'",
+    "pretty:watch": "cross-env onchange '**/*.{j,t}{s,sx}' -- prettier --write {{changed}}",
     "typecheck": "cross-env tsc",
     "typecheck:watch": "yarn typecheck -- --watch",
     "test": "cross-env jest",
-    "test:watch": "cross-env jest --watch",
-    "preview": "npx serve -s build"
+    "test:watch": "cross-env jest --watch"
   },
   "browserslist": {
     "production": [
@@ -37,8 +37,8 @@
   },
   "size-limit": [
     {
-      "path": "build/*.*.js",
-      "limit": "111kb"
+      "path": "build/*.js",
+      "limit": "129kb"
     }
   ],
   "devDependencies": {
