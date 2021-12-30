@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState, useCallback } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import type { FallbackProps } from 'react-error-boundary';
-import { Switch, Redirect, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import { ROUTES, PrivateRoute } from '@/shared/router';
 import { Spinner, Page, Button } from '@/shared/ui';
@@ -27,14 +27,21 @@ export const Routes = () => {
     >
       <Suspense fallback={<Spinner />}>
         <Switch>
-          <Redirect exact from={ROUTES.ROOT} to={ROUTES.HOME} />
           <Route path={ROUTES.LOGIN}>
             <LoginPage />
           </Route>
           <Route path={ROUTES.REGISTRATION}>
             <RegistrationPage />
           </Route>
-          <Route path={ROUTES.HOME}>
+          <Route
+            exact
+            path={[
+              ROUTES.ROOT,
+              ROUTES.GLOBAL_FEED,
+              ROUTES.YOUR_FEED,
+              ROUTES.FEED_BY_TAG,
+            ]}
+          >
             <HomePage />
           </Route>
           <PrivateRoute path={[ROUTES.EDITOR, ROUTES.EDITOR_SLUG]}>
