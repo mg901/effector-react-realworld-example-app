@@ -1,5 +1,5 @@
 import * as visitor from '@/entities/visitor';
-import { APP_NAME } from '@/shared/constants';
+import { APP_NAME } from '@/shared/config';
 import { Banner, Container } from '@/shared/ui';
 
 export const LogoutBanner = () => {
