@@ -5,7 +5,7 @@ import { TOKEN_NAME } from '@/shared/config';
 import * as http from '@/shared/http';
 import * as api from './api';
 
-export const logout = createEvent<React.MouseEvent>();
+export const logout = createEvent();
 export const getVisitorFx = createEffect(api.getVisitor);
 const setTokenFx = createEffect(http.setToken);
 

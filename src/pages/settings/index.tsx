@@ -3,6 +3,10 @@ import { Page, Row, Button } from '@/shared/ui';
 import { SettingsForm, Error } from './ui';
 
 const SettingsPage = () => {
+  const handleClick = () => {
+    visitor.logout();
+  };
+
   return (
     <Page>
       <Row>
@@ -12,7 +16,7 @@ const SettingsPage = () => {
           <SettingsForm />
           <hr />
 
-          <Button className="btn-outline-danger" onClick={visitor.logout}>
+          <Button className="btn-outline-danger" onClick={handleClick}>
             Or click here to logout.
           </Button>
         </div>
