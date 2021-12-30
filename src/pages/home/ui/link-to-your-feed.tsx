@@ -3,16 +3,12 @@ import * as visitor from '@/entities/visitor';
 import { ROUTES } from '@/shared/router';
 import { NavItem } from '@/shared/ui';
 
-type Props = Readonly<{
-  url: string;
-}>;
-
-export const YourFeedLink = ({ url }: Props) => {
+export const LinkToYourFeed = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
   return isAuth ? (
     <NavItem>
-      <NavLink exact className="nav-link" to={`${url}${ROUTES.YOUR_FEED}`}>
+      <NavLink exact className="nav-link" to={ROUTES.YOUR_FEED}>
         Your Feed
       </NavLink>
     </NavItem>
