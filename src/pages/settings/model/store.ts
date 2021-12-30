@@ -37,7 +37,7 @@ forward({
 });
 
 forward({
-  from: visitor.logout,
+  from: visitor.logoutClicked,
   to: navigateToRootFx,
 });
 
