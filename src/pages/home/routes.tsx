@@ -5,9 +5,9 @@ import NoMatchPage from '@/pages/no-match';
 import { ROUTES, PrivateRoute } from '@/shared/router';
 import { Spinner } from '@/shared/ui';
 
-const GlobalFeed = lazy(() => import('./pages/global-feed'));
-const YourFeed = lazy(() => import('./pages/global-feed'));
-const FeedByTag = lazy(() => import('./pages/feed-by-tag'));
+const GlobalFeedPage = lazy(() => import('./pages/global-feed'));
+const YourFeedPage = lazy(() => import('./pages/global-feed'));
+const FeedByTagPage = lazy(() => import('./pages/feed-by-tag'));
 
 export const Routes = () => {
   const { path } = useRouteMatch<{ path: string }>();
@@ -15,17 +15,17 @@ export const Routes = () => {
   return (
     <Suspense fallback={<Spinner />}>
       <Switch>
-        <Route exact path="/home">
-          <DefaultHomePage />
+        <Route exact path={ROUTES.HOME}>
+          <DefaultPage />
         </Route>
         <Route path={`${path}${ROUTES.GLOBAL_FEED}`}>
-          <GlobalFeed />
+          <GlobalFeedPage />
         </Route>
         <PrivateRoute path={`${path}${ROUTES.YOUR_FEED}`}>
-          <YourFeed />
+          <YourFeedPage />
         </PrivateRoute>
         <Route path={`${path}${ROUTES.FEED_BY_TAG}`}>
-          <FeedByTag />
+          <FeedByTagPage />
         </Route>
         <Route path="*">
           <NoMatchPage />
@@ -35,7 +35,7 @@ export const Routes = () => {
   );
 };
 
-function DefaultHomePage() {
+function DefaultPage() {
   const { path } = useRouteMatch<{ path: string }>();
   const isAuth = visitor.selectors.useIsAuthorized();
 

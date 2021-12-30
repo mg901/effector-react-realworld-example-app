@@ -1,10 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import * as visitor from '@/entities/visitor';
 import { ROUTES } from '@/shared/router';
 import { Page, Row } from '@/shared/ui';
 import { RegistrationForm, Error } from './ui';
 
 const RegistrationPage = () => {
-  return (
+  const isAuth = visitor.selectors.useIsAuthorized();
+
+  return isAuth ? (
+    <Redirect to={ROUTES.HOME} />
+  ) : (
     <Page>
       <Row>
         <div className="col-md-6 offset-md-3 col-xs-12">
