@@ -5,7 +5,7 @@ import { TOKEN_NAME } from '@/shared/config';
 import * as http from '@/shared/http';
 import * as api from './api';
 
-export const logout = createEvent();
+export const logoutClicked = createEvent();
 export const getVisitorFx = createEffect(api.getVisitor);
 const setTokenFx = createEffect(http.setToken);
 
@@ -18,7 +18,7 @@ export const $visitor = restore(getVisitorFx.doneData, {
   token: null,
   updatedAt: '',
   username: '',
-}).reset(logout);
+}).reset(logoutClicked);
 
 export const $username = $visitor.map((visitor) => visitor.username);
 export const $image = $visitor.map((visitor) => visitor.image);
