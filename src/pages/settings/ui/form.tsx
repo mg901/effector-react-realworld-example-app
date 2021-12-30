@@ -63,7 +63,7 @@ function useForm() {
     reset(user);
   }, [reset, user]);
 
-  const onSubmit = (data: model.types.FormValues) => {
+  const onSubmit = (data: model.types.FormInputs) => {
     if (!data.password) {
       model.changeUserDataFx({ ...data, password: undefined });
     } else {

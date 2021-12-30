@@ -5,7 +5,7 @@ import { Form } from '@/shared/ui';
 import * as model from '../model';
 import { Footer } from './footer';
 
-export function AddCommentForm(): JSX.Element {
+export function AddCommentForm() {
   const { handleSubmit, register } = useForm();
 
   return (
@@ -23,7 +23,7 @@ export function AddCommentForm(): JSX.Element {
   );
 }
 
-type FormValues = {
+type FormInputs = {
   body: string;
 };
 
@@ -33,7 +33,7 @@ function useForm() {
   };
 
   const { slug } = useParams<{ slug: string }>();
-  const { handleSubmit, register, reset } = useReactHookForm<FormValues>({
+  const { handleSubmit, register, reset } = useReactHookForm<FormInputs>({
     defaultValues,
   });
 
@@ -47,7 +47,7 @@ function useForm() {
 
   return {
     register,
-    handleSubmit: handleSubmit(({ body }: FormValues) => {
+    handleSubmit: handleSubmit(({ body }: FormInputs) => {
       model.addCommentFx({ body, slug });
     }),
   };

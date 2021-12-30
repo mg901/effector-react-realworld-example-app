@@ -1,6 +1,6 @@
 import * as visitor from '@/entities/visitor';
 
-export type FormValues = Pick<
+export type FormInputs = Pick<
   visitor.types.Visitor,
   'image' | 'username' | 'bio' | 'email'
 > & {

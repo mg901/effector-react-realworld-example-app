@@ -6,7 +6,7 @@ import * as api from './api';
 import * as types from './types';
 
 export const changeUserDataFx = createEffect<
-  types.FormValues,
+  types.FormInputs,
   void,
   Record<string, unknown>
 >(api.changeUserData);
