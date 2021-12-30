@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Router, Route } from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
 import * as visitor from '@/entities/visitor';
-import { APP_NAME } from '@/shared/constants';
+import { APP_NAME } from '@/shared/config';
 import { history } from '@/shared/router';
 
 import { Routes } from '../../routes';

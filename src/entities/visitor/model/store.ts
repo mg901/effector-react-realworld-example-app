@@ -1,7 +1,7 @@
 import { createEffect, createEvent, restore, forward, guard } from 'effector';
 import { useStore } from 'effector-react';
 import { persist } from 'effector-storage/local';
-import { TOKEN_NAME } from '@/shared/constants';
+import { TOKEN_NAME } from '@/shared/config';
 import * as http from '@/shared/http';
 import * as api from './api';
 
