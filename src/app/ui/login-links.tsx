@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { Avatar } from '@/entities/visitor';
-import { URLS } from '@/shared/router';
+import { ROUTES } from '@/shared/router';
 import { NavItem } from '@/shared/ui';
 import { LinkToVisitor } from './link-to-visitor';
 
@@ -8,20 +8,20 @@ export const LoginLinks = () => {
   return (
     <>
       <NavItem>
-        <NavLink exact className="nav-link" to={URLS.ROOT}>
+        <NavLink exact className="nav-link" to={ROUTES.ROOT}>
           Home
         </NavLink>
       </NavItem>
 
       <NavItem>
-        <NavLink exact className="nav-link" to={URLS.EDITOR}>
+        <NavLink exact className="nav-link" to={ROUTES.EDITOR}>
           <i className="ion-compose" />
           &nbsp;New Post
         </NavLink>
       </NavItem>
 
       <NavItem>
-        <NavLink exact className="nav-link" to={URLS.SETTINGS}>
+        <NavLink exact className="nav-link" to={ROUTES.SETTINGS}>
           <i className="ion-gear-a" />
           &nbsp;Settings
         </NavLink>

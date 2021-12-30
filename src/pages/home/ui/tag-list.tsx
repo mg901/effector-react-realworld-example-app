@@ -2,7 +2,7 @@
 
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useList } from 'effector-react';
-import { URLS } from '@/shared/router';
+import { ROUTES } from '@/shared/router';
 import { Spinner } from '@/shared/ui';
 import * as home from '../model';
 
@@ -17,7 +17,7 @@ export const TagList = () => {
         fn: (tag) => (
           <Link
             className="tag-default tag-pill"
-            to={`${url}${URLS.FEED_BY_TAG}?tag=${tag}`}
+            to={`${url}${ROUTES.FEED_BY_TAG}?tag=${tag}`}
             type="button"
             onClick={() => home.tagSelected(tag)}
           >

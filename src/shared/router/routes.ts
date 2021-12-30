@@ -1,12 +1,4 @@
-import { createBrowserHistory } from 'history';
-
-export type { Location } from 'history';
-
-export const history = createBrowserHistory({
-  basename: '/effector-react-realworld-example-app',
-});
-
-export enum URLS {
+export enum ROUTES {
   ROOT = '/',
   HOME = '/home',
   YOUR_FEED = '/your-feed',

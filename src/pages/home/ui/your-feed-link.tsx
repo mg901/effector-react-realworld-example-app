@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import * as visitor from '@/entities/visitor';
-import { URLS } from '@/shared/router';
+import { ROUTES } from '@/shared/router';
 import { NavItem } from '@/shared/ui';
 
 type Props = Readonly<{
@@ -12,7 +12,7 @@ export const YourFeedLink = ({ url }: Props) => {
 
   return isAuth ? (
     <NavItem>
-      <NavLink exact className="nav-link" to={`${url}${URLS.YOUR_FEED}`}>
+      <NavLink exact className="nav-link" to={`${url}${ROUTES.YOUR_FEED}`}>
         Your Feed
       </NavLink>
     </NavItem>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { URLS } from '@/shared/router';
+import { ROUTES } from '@/shared/router';
 import { Page, Row } from '@/shared/ui';
 import { RegistrationForm, Error } from './ui';
 
@@ -11,7 +11,7 @@ const RegistrationPage = () => {
           <h1 className="text-xs-center">Sign Up</h1>
 
           <p className="text-xs-center">
-            <Link to={URLS.LOGIN}>Have an account?</Link>
+            <Link to={ROUTES.LOGIN}>Have an account?</Link>
           </p>
           <Error />
           <RegistrationForm />

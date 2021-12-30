@@ -1,6 +1,6 @@
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import * as visitor from '@/entities/visitor';
-import { URLS } from '../router';
+import { ROUTES } from '../routes';
 
 export const PrivateRoute = (props: RouteProps) => {
   const isAuth = visitor.selectors.useIsAuthorized();
@@ -10,7 +10,7 @@ export const PrivateRoute = (props: RouteProps) => {
   ) : (
     <Redirect
       to={{
-        pathname: URLS.LOGIN,
+        pathname: ROUTES.LOGIN,
       }}
     />
   );

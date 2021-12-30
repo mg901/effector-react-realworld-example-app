@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
 import * as visitor from '@/entities/visitor';
-import { URLS, PrivateRoute } from '@/shared/router';
+import { ROUTES, PrivateRoute } from '@/shared/router';
 import { Spinner } from '@/shared/ui';
 
 const Login = lazy(() => import('@/pages/login'));
@@ -16,28 +16,32 @@ const NoMatch = lazy(() => import('@/pages/no-match'));
 export const Routes = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
-  const login = !isAuth ? <Login /> : <Redirect to={URLS.HOME} />;
-  const registration = !isAuth ? <Registration /> : <Redirect to={URLS.HOME} />;
+  const login = !isAuth ? <Login /> : <Redirect to={ROUTES.HOME} />;
+  const registration = !isAuth ? (
+    <Registration />
+  ) : (
+    <Redirect to={ROUTES.HOME} />
+  );
 
   return (
     <Suspense fallback={<Spinner />}>
       <Switch>
-        <Redirect exact from={URLS.ROOT} to={URLS.HOME} />
-        <Route path={URLS.LOGIN}>{login}</Route>
-        <Route path={URLS.REGISTRATION}>{registration}</Route>
-        <Route path={URLS.HOME}>
+        <Redirect exact from={ROUTES.ROOT} to={ROUTES.HOME} />
+        <Route path={ROUTES.LOGIN}>{login}</Route>
+        <Route path={ROUTES.REGISTRATION}>{registration}</Route>
+        <Route path={ROUTES.HOME}>
           <Home />
         </Route>
-        <PrivateRoute path={[URLS.EDITOR, URLS.EDITOR_SLUG]}>
+        <PrivateRoute path={[ROUTES.EDITOR, ROUTES.EDITOR_SLUG]}>
           <Editor />
         </PrivateRoute>
-        <PrivateRoute path={URLS.SETTINGS}>
+        <PrivateRoute path={ROUTES.SETTINGS}>
           <Settings />
         </PrivateRoute>
-        <PrivateRoute path={URLS.PROFILE}>
+        <PrivateRoute path={ROUTES.PROFILE}>
           <Profile />
         </PrivateRoute>
-        <Route path={URLS.ARTICLE_SLUG}>
+        <Route path={ROUTES.ARTICLE_SLUG}>
           <Article />
         </Route>
         <Route path="*">
