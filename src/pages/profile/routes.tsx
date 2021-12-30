@@ -3,8 +3,8 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import NoMatch from '@/pages/no-match';
 import { Spinner } from '@/shared/ui';
 
-const MyArticles = lazy(() => import('./pages/my-articles'));
-const FavoritedArticles = lazy(() => import('./pages/favorited-articles'));
+const MyArticlesPage = lazy(() => import('./pages/my-articles'));
+const FavoritedArticlesPage = lazy(() => import('./pages/favorited-articles'));
 
 export const Routes = () => {
   const { path } = useRouteMatch<{ path: string }>();
@@ -13,10 +13,10 @@ export const Routes = () => {
     <Suspense fallback={<Spinner />}>
       <Switch>
         <Route exact path={path}>
-          <MyArticles />
+          <MyArticlesPage />
         </Route>
         <Route path={`${path}/favorites`}>
-          <FavoritedArticles />
+          <FavoritedArticlesPage />
         </Route>
         <Route path="*">
           <NoMatch />
