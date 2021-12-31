@@ -73,7 +73,7 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   return (
     <Page>
       <p>Something went wrong:</p>
-      <pre>{error.message}</pre>{' '}
+      <pre>{error.message}</pre>
       <Button onClick={handleClick}>Try again</Button>
     </Page>
   );
