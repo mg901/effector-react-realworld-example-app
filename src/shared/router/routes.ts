@@ -9,5 +9,6 @@ export enum ROUTES {
   EDITOR = '/editor',
   EDITOR_SLUG = '/editor/:slug',
   PROFILE = '/@:username',
+  PROFILE_FAVORITES = '/@:username/favorites',
   ARTICLE_SLUG = '/article/:slug',
 }
