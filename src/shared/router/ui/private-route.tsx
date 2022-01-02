@@ -5,19 +5,21 @@ import { ROUTES } from '../routes';
 export const PrivateRoute = ({ children, ...props }: RouteProps) => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
-  <Route
-    {...props}
-    render={({ location }) =>
-      isAuth ? (
-        children
-      ) : (
-        <Redirect
-          to={{
-            pathname: ROUTES.LOGIN,
-            state: { from: location },
-          }}
-        />
-      )
-    }
-  />;
+  return (
+    <Route
+      {...props}
+      render={({ location }) =>
+        isAuth ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: ROUTES.LOGIN,
+              state: { from: location },
+            }}
+          />
+        )
+      }
+    />
+  );
 };
