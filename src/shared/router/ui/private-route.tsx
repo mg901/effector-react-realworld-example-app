@@ -5,13 +5,5 @@ import { ROUTES } from '../routes';
 export const PrivateRoute = (props: RouteProps) => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
-  return isAuth ? (
-    <Route {...props} />
-  ) : (
-    <Redirect
-      to={{
-        pathname: ROUTES.LOGIN,
-      }}
-    />
-  );
+  return isAuth ? <Route {...props} /> : <Redirect to={ROUTES.LOGIN} />;
 };
