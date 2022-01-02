@@ -8,7 +8,7 @@ const LoginPage = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
   return isAuth ? (
-    <Redirect to={ROUTES.HOME} />
+    <Redirect to={ROUTES.ROOT} />
   ) : (
     <Page>
       <Row>
