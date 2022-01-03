@@ -7,7 +7,7 @@ export const EditMode = () => {
   const isVisitor = model.selectors.useIsVisitor();
 
   return isVisitor ? (
-    <Link to={ROUTES.SETTINGS}>
+    <Link to={ROUTES.settings}>
       <Button className="btn-outline-secondary action-btn" size="sm">
         <i className="ion-gear-a" /> Edit Profile Settings
       </Button>

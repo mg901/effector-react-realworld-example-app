@@ -11,10 +11,10 @@ export const Routes = () => {
   return (
     <Suspense fallback={<Spinner />}>
       <Switch>
-        <Route exact path={ROUTES.PROFILE}>
+        <Route exact path={ROUTES.profile.root}>
           <MyArticlesPage />
         </Route>
-        <Route path={ROUTES.PROFILE_FAVORITES}>
+        <Route path={ROUTES.profile.favorites}>
           <FavoritedArticlesPage />
         </Route>
         <Route path="*">

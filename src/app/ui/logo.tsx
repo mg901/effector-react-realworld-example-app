@@ -6,7 +6,7 @@ type Props = Readonly<{
 }>;
 
 export const Logo = ({ title }: Props) => (
-  <Link className="navbar-brand" to={ROUTES.ROOT}>
+  <Link className="navbar-brand" to={ROUTES.root}>
     {title.toLowerCase()}
   </Link>
 );

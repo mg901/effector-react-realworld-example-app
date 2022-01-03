@@ -6,8 +6,8 @@ export const Default = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
   return isAuth ? (
-    <Redirect to={ROUTES.YOUR_FEED} />
+    <Redirect to={ROUTES.yourFeed} />
   ) : (
-    <Redirect to={ROUTES.GLOBAL_FEED} />
+    <Redirect to={ROUTES.globalFeed} />
   );
 };

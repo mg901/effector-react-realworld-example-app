@@ -8,7 +8,7 @@ export const LinkToYourFeed = () => {
 
   return isAuth ? (
     <NavItem>
-      <NavLink exact className="nav-link" to={ROUTES.YOUR_FEED}>
+      <NavLink exact className="nav-link" to={ROUTES.yourFeed}>
         Your Feed
       </NavLink>
     </NavItem>
