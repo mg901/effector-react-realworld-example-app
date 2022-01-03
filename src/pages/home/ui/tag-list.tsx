@@ -19,7 +19,7 @@ export const TagList = () => {
           return (
             <Link
               className="tag-default tag-pill"
-              to={`${ROUTES.FEED_BY_TAG}?tag=${tag}`}
+              to={`${ROUTES.feedByTag}?tag=${tag}`}
               type="button"
               onClick={handleClick}
             >

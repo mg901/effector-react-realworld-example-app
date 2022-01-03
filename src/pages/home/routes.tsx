@@ -14,16 +14,16 @@ export const Routes = () => {
   return (
     <Suspense fallback={<Spinner />}>
       <Switch>
-        <Route exact path={ROUTES.ROOT}>
+        <Route exact path={ROUTES.root}>
           <Default />
         </Route>
-        <Route path={ROUTES.GLOBAL_FEED}>
+        <Route path={ROUTES.globalFeed}>
           <GlobalFeedPage />
         </Route>
-        <PrivateRoute path={ROUTES.YOUR_FEED}>
+        <PrivateRoute path={ROUTES.yourFeed}>
           <YourFeedPage />
         </PrivateRoute>
-        <Route path={ROUTES.FEED_BY_TAG}>
+        <Route path={ROUTES.feedByTag}>
           <FeedByTagPage />
         </Route>
         <Route path="*">

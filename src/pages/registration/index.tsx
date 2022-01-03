@@ -8,7 +8,7 @@ const RegistrationPage = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
   return isAuth ? (
-    <Redirect to={ROUTES.ROOT} />
+    <Redirect to={ROUTES.root} />
   ) : (
     <Page>
       <Row>
@@ -16,7 +16,7 @@ const RegistrationPage = () => {
           <h1 className="text-xs-center">Sign Up</h1>
 
           <p className="text-xs-center">
-            <Link to={ROUTES.LOGIN}>Have an account?</Link>
+            <Link to={ROUTES.login}>Have an account?</Link>
           </p>
           <Error />
           <RegistrationForm />

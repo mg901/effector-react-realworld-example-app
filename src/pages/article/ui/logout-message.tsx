@@ -7,9 +7,9 @@ export const LogoutMessage = () => {
 
   return isAuth ? null : (
     <p>
-      <Link to={ROUTES.LOGIN}>Sign in</Link>
+      <Link to={ROUTES.login}>Sign in</Link>
       &nbsp;or&nbsp;
-      <Link to={ROUTES.REGISTRATION}>sign up</Link>
+      <Link to={ROUTES.registration}>sign up</Link>
       &nbsp;to add comments on this article.
     </p>
   );

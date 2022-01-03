@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Comments } from '@/entities/comment';
-import { Row, Page } from '@/shared/ui';
+import { Row, Page, Spinner } from '@/shared/ui';
 import * as model from './model';
 import { Content } from './ui/content';
 import { Header } from './ui/header';
@@ -17,7 +17,9 @@ const ArticlePage = () => {
     }
   }, [slug]);
 
-  return !loading ? (
+  return loading ? (
+    <Spinner />
+  ) : (
     <div className="article-page">
       <Header />
       <Page>
@@ -32,7 +34,7 @@ const ArticlePage = () => {
         </Row>
       </Page>
     </div>
-  ) : null;
+  );
 };
 
 export default ArticlePage;

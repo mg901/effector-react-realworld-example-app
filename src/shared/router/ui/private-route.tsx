@@ -14,7 +14,7 @@ export const PrivateRoute = ({ children, ...props }: RouteProps) => {
         ) : (
           <Redirect
             to={{
-              pathname: ROUTES.LOGIN,
+              pathname: ROUTES.login,
               state: { from: location },
             }}
           />

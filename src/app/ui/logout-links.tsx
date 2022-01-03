@@ -7,17 +7,17 @@ export const LogoutLinks = () => {
   return (
     <>
       <NavItem>
-        <NavLink exact className="nav-link" to={ROUTES.ROOT}>
+        <NavLink exact className="nav-link" to={ROUTES.root}>
           Home
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink exact className="nav-link" to={ROUTES.LOGIN}>
+        <NavLink exact className="nav-link" to={ROUTES.login}>
           Sign In
         </NavLink>
       </NavItem>
       <NavItem>
-        <NavLink exact className="nav-link" to={ROUTES.REGISTRATION}>
+        <NavLink exact className="nav-link" to={ROUTES.registration}>
           Sign Up
         </NavLink>
       </NavItem>

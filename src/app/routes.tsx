@@ -27,35 +27,35 @@ export const Routes = () => {
     >
       <Suspense fallback={<Spinner />}>
         <Switch>
-          <Route path={ROUTES.LOGIN}>
+          <Route path={ROUTES.login}>
             <LoginPage />
           </Route>
-          <Route path={ROUTES.REGISTRATION}>
+          <Route path={ROUTES.registration}>
             <RegistrationPage />
           </Route>
           <Route
             exact
             path={[
-              ROUTES.ROOT,
-              ROUTES.GLOBAL_FEED,
-              ROUTES.YOUR_FEED,
-              ROUTES.FEED_BY_TAG,
+              ROUTES.root,
+              ROUTES.globalFeed,
+              ROUTES.yourFeed,
+              ROUTES.feedByTag,
             ]}
           >
             <HomePage />
           </Route>
-          <PrivateRoute path={[ROUTES.EDITOR, ROUTES.EDITOR_SLUG]}>
-            <EditorPage />
-          </PrivateRoute>
-          <PrivateRoute path={ROUTES.SETTINGS}>
-            <SettingsPage />
-          </PrivateRoute>
-          <PrivateRoute path={ROUTES.PROFILE}>
+          <Route path={ROUTES.profile.root}>
             <ProfilePage />
-          </PrivateRoute>
-          <Route path={ROUTES.ARTICLE_SLUG}>
+          </Route>
+          <Route path={ROUTES.currentArticle}>
             <ArticlePage />
           </Route>
+          <PrivateRoute path={[ROUTES.editor.root, ROUTES.editor.slug]}>
+            <EditorPage />
+          </PrivateRoute>
+          <PrivateRoute path={ROUTES.settings}>
+            <SettingsPage />
+          </PrivateRoute>
           <Route path="*">
             <NoMatchPage />
           </Route>

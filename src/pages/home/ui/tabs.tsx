@@ -10,7 +10,7 @@ export const Tabs = () => {
     <ul className="feed-toggle nav nav-pills outline-active">
       <LinkToYourFeed />
       <NavItem>
-        <NavLink exact className="nav-link" to={ROUTES.GLOBAL_FEED}>
+        <NavLink exact className="nav-link" to={ROUTES.globalFeed}>
           Global Feed
         </NavLink>
       </NavItem>
@@ -19,7 +19,7 @@ export const Tabs = () => {
           <NavLink
             exact
             className="nav-link"
-            to={`${ROUTES.FEED_BY_TAG}?tag=${tag}`}
+            to={`${ROUTES.feedByTag}?tag=${tag}`}
           >
             <i className="ion-pound" />
             {tag}
