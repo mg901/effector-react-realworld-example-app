@@ -2,14 +2,14 @@ import { createEvent, createEffect, restore, combine, forward } from 'effector';
 import { useStore } from 'effector-react';
 
 import * as visitor from '@/entities/visitor';
-import * as router from '@/shared/router';
+import { history } from '@/shared/history';
 import * as api from './api';
 
 export const articleDeleted = createEvent<string>();
 export const getArticleFx = createEffect(api.getArticle);
 export const deleteArticleFx = createEffect(api.deleteArticle);
 export const navigateToRootFx = createEffect(() => {
-  router.history.push('/');
+  history.push('/');
 });
 
 export const $article = restore(getArticleFx.doneData, {

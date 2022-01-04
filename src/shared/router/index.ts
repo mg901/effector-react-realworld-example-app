@@ -1,5 +1,4 @@
-export * from './model';
-export * from './ui/private-route';
+export * from './private-route';
 export * from 'react-router-dom';
-export * from './hooks';
+export * from './library';
 export * from './config';

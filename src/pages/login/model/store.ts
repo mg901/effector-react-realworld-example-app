@@ -1,7 +1,7 @@
 import { createEffect, restore, forward } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as visitor from '@/entities/visitor';
-import * as router from '@/shared/router';
+import { history } from '@/shared/history';
 import * as api from './api';
 import * as types from './types';
 
@@ -12,7 +12,7 @@ export const signInFx = createEffect<
 >(api.signIn);
 
 export const navigateToRootFx = createEffect(() => {
-  router.history.push('/');
+  history.push('/');
 });
 
 visitor.$visitor.on(signInFx.doneData, (_, payload) => payload);
