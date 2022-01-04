@@ -1,7 +1,7 @@
 import { createEvent, createEffect, restore, forward } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as article from '@/entities/article';
-import * as router from '@/shared/router';
+import { history } from '@/shared/history';
 import * as api from './api';
 
 export const formSubmitted = createEvent();
@@ -18,7 +18,7 @@ export const updateArticleFx = createEffect(api.updateArticle);
 
 export const redirectToArticleIdFx = createEffect(
   ({ slug }: article.types.Article) => {
-    router.history.replace(`/article/${slug}`);
+    history.replace(`/article/${slug}`);
   },
 );
 

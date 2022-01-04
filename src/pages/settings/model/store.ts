@@ -1,7 +1,7 @@
 import { createEffect, restore, forward } from 'effector';
 import { useStore } from 'effector-react';
 import * as visitor from '@/entities/visitor';
-import * as router from '@/shared/router';
+import { history } from '@/shared/history';
 import * as api from './api';
 import * as types from './types';
 
@@ -12,7 +12,7 @@ export const changeUserDataFx = createEffect<
 >(api.changeUserData);
 
 export const navigateToRootFx = createEffect(() => {
-  router.history.push('/');
+  history.push('/');
 });
 
 const reloadPageFx = createEffect(() => {
