@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { useList } from 'effector-react';
 import { List } from '@/shared/ui';
 import * as model from '../model';
 import { Comment } from './comment';
 
-export const CommentsList = () => {
-  const { slug } = useParams<{ slug: string }>();
+type Props = Readonly<{
+  slug: string;
+}>;
 
+export const CommentsList = ({ slug }: Props) => {
   useEffect(() => {
     if (slug) {
       model.getCommentsFx(slug);

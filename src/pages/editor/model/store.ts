@@ -1,7 +1,7 @@
 import { createEvent, createEffect, restore, forward } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as article from '@/entities/article';
-import { history } from '@/shared/history';
+import { history } from '@/shared/router';
 import * as api from './api';
 
 export const formSubmitted = createEvent();

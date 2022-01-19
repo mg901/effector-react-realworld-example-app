@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import NoMatchPage from '@/pages/no-match';
 import { ROUTES, PrivateRoute } from '@/shared/router';
 import { Spinner } from '@/shared/ui';
 import { Default } from './pages/default';
@@ -25,9 +24,6 @@ export const Routes = () => {
         </PrivateRoute>
         <Route path={ROUTES.feedByTag}>
           <FeedByTagPage />
-        </Route>
-        <Route path="*">
-          <NoMatchPage />
         </Route>
       </Switch>
     </Suspense>

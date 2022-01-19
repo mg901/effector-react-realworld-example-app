@@ -1,31 +1,30 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Container, Row } from '@/shared/ui';
+import { lazy, Suspense } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { useGate } from 'effector-react';
+import { ROUTES } from '@/shared/router';
+import { Spinner } from '@/shared/ui';
 import * as model from './model';
-import { Routes } from './routes';
-import { ProfileInfo } from './ui/profile-info';
-import { Tabs } from './ui/tabs';
+import { Layout } from './ui/layout';
+
+const MyArticlesPage = lazy(() => import('./pages/my-articles'));
+const FavoritedArticlesPage = lazy(() => import('./pages/favorited-articles'));
 
 const ProfilePage = () => {
-  const { username } = useParams<{ username: string }>();
-
-  useEffect(() => {
-    if (username) {
-      model.getProfileFx(username);
-    }
-  }, [username]);
+  useGate(model.Gate);
 
   return (
-    <div className="profile-page">
-      <ProfileInfo />
-      <Container>
-        <Row>
-          <Tabs>
-            <Routes />
-          </Tabs>
-        </Row>
-      </Container>
-    </div>
+    <Layout>
+      <Suspense fallback={<Spinner />}>
+        <Switch>
+          <Route exact path={ROUTES.profile.root}>
+            <MyArticlesPage />
+          </Route>
+          <Route path={ROUTES.profile.favorites}>
+            <FavoritedArticlesPage />
+          </Route>
+        </Switch>
+      </Suspense>
+    </Layout>
   );
 };
 

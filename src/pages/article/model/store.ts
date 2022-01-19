@@ -1,8 +1,15 @@
-import { createEvent, createEffect, restore, combine, forward } from 'effector';
-import { useStore } from 'effector-react';
+import {
+  createEvent,
+  createEffect,
+  restore,
+  combine,
+  forward,
+  guard,
+} from 'effector';
+import { useStore, createGate } from 'effector-react';
 
 import * as visitor from '@/entities/visitor';
-import { history } from '@/shared/history';
+import { history, $locationPathname, matchPath, ROUTES } from '@/shared/router';
 import * as api from './api';
 
 export const articleDeleted = createEvent<string>();
@@ -10,6 +17,23 @@ export const getArticleFx = createEffect(api.getArticle);
 export const deleteArticleFx = createEffect(api.deleteArticle);
 export const navigateToRootFx = createEffect(() => {
   history.push('/');
+});
+
+export const Gate = createGate();
+
+export const $slug = $locationPathname.map((pathname) => {
+  const match = matchPath<{ slug: string }>(pathname, {
+    path: ROUTES.currentArticle,
+  });
+
+  return match ? match.params.slug : '';
+});
+
+guard({
+  source: $slug,
+  filter: Boolean,
+  clock: Gate.open,
+  target: getArticleFx,
 });
 
 export const $article = restore(getArticleFx.doneData, {
@@ -47,6 +71,7 @@ forward({
 });
 
 export const selectors = {
+  useSlug: () => useStore($slug),
   useGetArticlePending: () => useStore(getArticleFx.pending),
   useCanModify: () => useStore($canModify),
   useArticle: () => useStore($article),

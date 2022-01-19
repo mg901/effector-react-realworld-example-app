@@ -1,7 +1,7 @@
 import { createEffect, restore, forward } from 'effector';
 import { useStore } from 'effector-react';
 import * as visitor from '@/entities/visitor';
-import { history } from '@/shared/history';
+import { history } from '@/shared/router';
 import * as api from './api';
 import * as types from './types';
 

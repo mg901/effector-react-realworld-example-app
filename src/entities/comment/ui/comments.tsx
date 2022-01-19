@@ -3,14 +3,18 @@ import { AddCommentForm } from './add-comment';
 import { CommentsList } from './comment-list';
 import { Error } from './error';
 
-export const Comments = () => {
+type Props = Readonly<{
+  slug: string;
+}>;
+
+export const Comments = ({ slug }: Props) => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
   return isAuth ? (
     <>
       <Error />
-      <AddCommentForm />
-      <CommentsList />
+      <AddCommentForm slug={slug} />
+      <CommentsList slug={slug} />
     </>
   ) : null;
 };

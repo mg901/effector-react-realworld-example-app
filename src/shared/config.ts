@@ -1,2 +1,2 @@
 export const APP_NAME = 'Conduit';
-export const TOKEN_NAME = 'jwt';
+export const ACCESS_TOKEN = 'access_token';

@@ -8,7 +8,7 @@ const RegistrationPage = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
   return isAuth ? (
-    <Redirect to={ROUTES.root} />
+    <Redirect to={ROUTES.yourFeed} />
   ) : (
     <Page>
       <Row>
