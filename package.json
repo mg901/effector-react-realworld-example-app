@@ -92,7 +92,7 @@
     "jest": "^27.4.7",
     "jest-environment-jsdom": "^27.4.6",
     "lint-staged": "^12.2.0",
-    "mini-css-extract-plugin": "^2.4.7",
+    "mini-css-extract-plugin": "^2.5.2",
     "node-static": "^0.7.11",
     "onchange": "^7.1.0",
     "prettier": "^2.5.1",
