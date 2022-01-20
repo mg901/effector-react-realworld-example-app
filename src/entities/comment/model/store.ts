@@ -14,7 +14,7 @@ export const getCommentsFx = createEffect(api.getComments);
 
 export const addCommentFx = createEffect<
   types.AddCommentPayload,
-  types.Comment,
+  types.CommentType,
   Record<string, unknown>
 >(api.addComment);
 

@@ -30,11 +30,11 @@ type FormInputs = {
   body: string;
 };
 
-const defaultValues = {
-  body: '',
-};
-
 function useForm(slug: string) {
+  const defaultValues = {
+    body: '',
+  };
+
   const { handleSubmit, register, reset } = useReactHookForm<FormInputs>({
     defaultValues,
   });

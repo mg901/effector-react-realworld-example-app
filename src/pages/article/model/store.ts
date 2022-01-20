@@ -7,7 +7,7 @@ import {
   guard,
 } from 'effector';
 import { useStore, createGate } from 'effector-react';
-
+import * as comment from '@/entities/comment';
 import * as visitor from '@/entities/visitor';
 import { history, $locationPathname, matchPath, ROUTES } from '@/shared/router';
 import * as api from './api';
@@ -33,8 +33,10 @@ guard({
   source: $slug,
   filter: Boolean,
   clock: Gate.open,
-  target: getArticleFx,
+  target: [getArticleFx, comment.getCommentsFx],
 });
+
+export const $comments = restore(comment.getCommentsFx.doneData, []);
 
 export const $article = restore(getArticleFx.doneData, {
   title: '',

@@ -1,15 +1,16 @@
+import * as comment from '@/entities/comment';
 import * as visitor from '@/entities/visitor';
 import { Button, ButtonProps } from '@/shared/ui';
-import { types } from '../../model';
+
 import './index.css';
 
 type Props = Readonly<{
   onClick: ButtonProps['onClick'];
-  author: types.CommentType['author'];
+  author: comment.types.CommentType['author'];
 }>;
 
 export const ButtonDelete = ({ author, onClick }: Props) => {
-  const { username } = visitor.selectors.useVisitor();
+  const username = visitor.selectors.useUsername();
   const isAuth = visitor.selectors.useIsAuthorized();
   const isSelf = username === author.username;
 

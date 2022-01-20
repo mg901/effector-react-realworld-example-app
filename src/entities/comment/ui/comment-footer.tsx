@@ -3,7 +3,7 @@ import * as model from '../model';
 import { ButtonDelete } from './button-delete';
 
 export type CommentFooterProps = Pick<
-  model.types.Comment,
+  model.types.CommentType,
   'author' | 'createdAt' | 'id'
 >;
 

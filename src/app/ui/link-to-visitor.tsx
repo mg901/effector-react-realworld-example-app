@@ -6,7 +6,7 @@ type Props = {
 };
 
 export const LinkToVisitor = ({ children }: Props) => {
-  const username = visitor.selectors.useUserName();
+  const username = visitor.selectors.useUsername();
 
   return (
     <NavLink exact className="nav-link" to={`/@${username}`}>

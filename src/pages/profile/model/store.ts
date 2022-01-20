@@ -7,7 +7,7 @@ import {
 } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as visitor from '@/entities/visitor';
-import { $locationPathname, matchPath, ROUTES } from '@/shared/router';
+import { createParams, createRouteMatch, ROUTES } from '@/shared/router';
 import * as api from './api';
 import * as types from './types';
 
@@ -18,21 +18,14 @@ export const subscribeToUserFx = createEffect(api.subscribeToUser);
 export const unsubscribeFromUserFx = createEffect(api.unsubscribeToUser);
 
 export const Gate = createGate();
-const $username = $locationPathname.map((pathname) => {
-  const match = matchPath<{ username: string }>(pathname, {
-    path: ROUTES.profile.root,
-  });
 
-  return match ? match.params.username : '';
-});
+const $username = createParams<{ username: string }>({
+  path: ROUTES.profile.root,
+}).map((params) => params.username);
 
-export const $pageUrl = $locationPathname.map((pathname) => {
-  const match = matchPath<{ username: string }>(pathname, {
-    path: ROUTES.profile.root,
-  });
-
-  return match ? match.url : '';
-});
+export const $pageUrl = createRouteMatch<{ url: string }>({
+  path: ROUTES.profile.root,
+}).map((x) => x?.url);
 
 sample({
   source: $username,
@@ -59,16 +52,14 @@ export const $profileImage = $profile.map((x) => x.image);
 export const $profileUsername = $profile.map((x) => x.username);
 export const $profileFollowing = $profile.map((profile) => profile.following);
 
-const $isOwnProfile = createStore(false);
-
-sample({
-  source: visitor.$username,
-  clock: $profileUsername.updates,
-  fn: (username, profileUsername) => {
-    return username === profileUsername;
-  },
-  target: $isOwnProfile,
-});
+const $isOwnProfile = createStore(false).on(
+  sample({
+    source: [visitor.$username, $profileUsername],
+    clock: $profileUsername.updates,
+  }),
+  (_, [visitorUsername, profileUsername]) =>
+    visitorUsername === profileUsername,
+);
 
 split({
   source: followToggled,

@@ -1,7 +1,7 @@
 import { types } from '../model';
 import { CommentFooterProps, Footer } from './comment-footer';
 
-type Props = Readonly<CommentFooterProps & Pick<types.Comment, 'body'>>;
+type Props = Readonly<CommentFooterProps & Pick<types.CommentType, 'body'>>;
 
 export const Comment = ({ body, ...props }: Props) => {
   return (

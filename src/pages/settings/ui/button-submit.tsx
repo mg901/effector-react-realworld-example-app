@@ -2,7 +2,7 @@ import { Button } from '@/shared/ui';
 import * as model from '../model';
 
 export const ButtonSubmit = () => {
-  const disabled = model.selectors.useOnSubmitPending();
+  const disabled = model.selectors.useChangeUserDataPending();
 
   return (
     <Button

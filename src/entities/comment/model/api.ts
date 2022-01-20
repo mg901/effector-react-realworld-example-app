@@ -3,7 +3,7 @@ import * as types from './types';
 
 export const getComments = (slug: string) => {
   return http
-    .request<{ comments: types.Comment[] }>({
+    .request<{ comments: types.CommentType[] }>({
       url: `articles/${slug}/comments`,
       method: 'get',
     })
@@ -12,7 +12,7 @@ export const getComments = (slug: string) => {
 
 export const addComment = ({ slug, body }: types.AddCommentPayload) => {
   return http
-    .request<{ comment: types.Comment }>({
+    .request<{ comment: types.CommentType }>({
       url: `articles/${slug}/comments`,
       method: 'post',
       data: {

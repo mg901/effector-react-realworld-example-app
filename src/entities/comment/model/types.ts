@@ -1,6 +1,6 @@
 import * as article from '@/entities/article';
 
-export type Comment = Readonly<{
+export type CommentType = Readonly<{
   author: article.types.Author;
   body: string;
   id: string;

@@ -1,7 +1,7 @@
 import { createEffect, restore, forward } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as visitor from '@/entities/visitor';
-import { history } from '@/shared/router';
+import { history, ROUTES } from '@/shared/router';
 import * as api from './api';
 import * as types from './types';
 
@@ -11,21 +11,21 @@ export const signUpFx = createEffect<
   Record<string, unknown>
 >(api.signUp);
 
-export const navigateToRootFx = createEffect(() => {
-  history.push('/');
+export const navigateToYourFeedFx = createEffect(() => {
+  history.push(ROUTES.yourFeed);
 });
 
 visitor.$visitor.on(signUpFx.doneData, (_, payload) => payload);
 
 forward({
   from: signUpFx.done,
-  to: navigateToRootFx,
+  to: navigateToYourFeedFx,
 });
 
 export const Gate = createGate();
 export const $error = restore(signUpFx.failData, {
   errors: {},
-});
+}).reset(Gate.close);
 
 export const $hasError = $error.map(
   (error) => Object.keys(Object(error)).length > 0,
