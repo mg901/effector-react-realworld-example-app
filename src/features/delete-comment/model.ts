@@ -15,7 +15,7 @@ export const deleteComment = ({ slug, id }: DeleteCommentArgs) => {
   });
 };
 
-const deleteCommentFx = createEffect<
+export const deleteCommentFx = createEffect<
   DeleteCommentArgs,
   void,
   Record<string, unknown>

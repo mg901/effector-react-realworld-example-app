@@ -4,12 +4,11 @@ import { ButtonSubmit } from './button-submit';
 
 export const LoginForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    const target = event.currentTarget;
-
     event.preventDefault();
-    model.signInFx({
-      email: target.email.value,
-      password: target.password.value,
+
+    model.formSubmitted({
+      email: event.currentTarget.email.value,
+      password: event.currentTarget.password.value,
     });
   };
 

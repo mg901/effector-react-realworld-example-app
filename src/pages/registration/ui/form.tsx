@@ -4,13 +4,12 @@ import { ButtonSubmit } from './button-submit';
 
 export const RegistrationForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    const target = event.currentTarget;
-
     event.preventDefault();
-    model.signUpFx({
-      username: target.username.value,
-      email: target.email.value,
-      password: target.password.value,
+
+    model.formSubmitted({
+      username: event.currentTarget.username.value,
+      email: event.currentTarget.email.value,
+      password: event.currentTarget.password.value,
     });
   };
 

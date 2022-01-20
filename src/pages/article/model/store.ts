@@ -9,15 +9,15 @@ import {
 import { useStore, createGate } from 'effector-react';
 import * as comment from '@/entities/comment';
 import * as visitor from '@/entities/visitor';
+import { addCommentFx } from '@/features/add-comment';
+import { deleteCommentFx } from '@/features/delete-comment';
 import { history, $locationPathname, matchPath, ROUTES } from '@/shared/router';
+
 import * as api from './api';
 
 export const articleDeleted = createEvent<string>();
 export const getArticleFx = createEffect(api.getArticle);
 export const deleteArticleFx = createEffect(api.deleteArticle);
-export const navigateToRootFx = createEffect(() => {
-  history.push('/');
-});
 
 export const Gate = createGate();
 
@@ -36,7 +36,11 @@ guard({
   target: [getArticleFx, comment.getCommentsFx],
 });
 
-export const $comments = restore(comment.getCommentsFx.doneData, []);
+export const $comments = restore(comment.getCommentsFx.doneData, [])
+  .on(addCommentFx.doneData, (state, payload) => [payload].concat(state))
+  .on(deleteCommentFx.done, (state, { params }) =>
+    state.filter(({ id }) => id !== params.id),
+  );
 
 export const $article = restore(getArticleFx.doneData, {
   title: '',
@@ -67,9 +71,8 @@ forward({
   to: deleteArticleFx,
 });
 
-forward({
-  from: deleteArticleFx.done,
-  to: navigateToRootFx,
+deleteArticleFx.done.watch(() => {
+  history.push(ROUTES.yourFeed);
 });
 
 export const selectors = {

@@ -1,25 +1,26 @@
-import { createEffect, restore, forward } from 'effector';
+import { createEvent, createEffect, restore, forward } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as visitor from '@/entities/visitor';
 import { history, ROUTES } from '@/shared/router';
 import * as api from './api';
 import * as types from './types';
 
+export const formSubmitted = createEvent<types.FormValues>();
 export const signInFx = createEffect<
-  types.SignInPayload,
+  types.FormValues,
   visitor.types.Visitor,
   Record<string, unknown>
 >(api.signIn);
 
-export const navigateToYourFeedFx = createEffect(() => {
-  history.push(ROUTES.yourFeed);
-});
-
 visitor.$visitor.on(signInFx.doneData, (_, payload) => payload);
 
 forward({
-  from: signInFx.done,
-  to: navigateToYourFeedFx,
+  from: formSubmitted,
+  to: signInFx,
+});
+
+signInFx.done.watch(() => {
+  history.push(ROUTES.yourFeed);
 });
 
 export const Gate = createGate();

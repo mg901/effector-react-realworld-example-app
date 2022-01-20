@@ -1,10 +1,4 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  restore,
-  forward,
-} from 'effector';
+import { createEvent, createEffect, createStore, forward } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as api from './api';
 import * as types from './types';
@@ -28,12 +22,6 @@ forward({
   from: commentDeleted,
   to: deleteCommentFx,
 });
-
-export const $comments = restore(getCommentsFx.doneData, [])
-  .on(addCommentFx.doneData, (state, payload) => [payload].concat(state))
-  .on(deleteCommentFx.done, (state, { params }) =>
-    state.filter(({ id }) => id !== params.id),
-  );
 
 export const Gate = createGate();
 export const $error = createStore<Record<string, unknown>>({
