@@ -30,5 +30,7 @@ export const request = <T = void>(
       data: options?.data,
     })
     .then((response) => response.data)
-    .catch((error) => error.response?.data);
+    .catch((error) => {
+      throw error.response?.data;
+    });
 };
