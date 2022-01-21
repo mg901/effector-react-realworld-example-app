@@ -22,7 +22,7 @@ export const Gate = createGate();
 
 export const $slug = $locationPathname.map((pathname) => {
   const match = matchPath<{ slug: string }>(pathname, {
-    path: ROUTES.currentArticle,
+    path: ROUTES.article,
   });
 
   return match ? match.params.slug : '';

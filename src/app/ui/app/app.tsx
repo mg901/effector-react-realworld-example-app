@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState, useCallback } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
 import type { FallbackProps } from 'react-error-boundary';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Router, Route, Switch } from 'react-router-dom';
 import { useGate } from 'effector-react';
 import { QueryParamProvider } from 'use-query-params';
@@ -34,6 +34,58 @@ const ProfilePage = lazy(() => import('@/pages/profile'));
 const ArticlePage = lazy(() => import('@/pages/article'));
 const NoMatchPage = lazy(() => import('@/pages/no-match'));
 
+type RouteType = Readonly<{
+  path: string | string[];
+  exact?: boolean;
+  isPrivate: boolean;
+  component: React.ComponentType;
+}>;
+
+export const routes: RouteType[] = [
+  {
+    path: ROUTES.login,
+    isPrivate: false,
+    component: LoginPage,
+  },
+  {
+    path: ROUTES.registration,
+    isPrivate: false,
+    component: RegistrationPage,
+  },
+  {
+    path: [ROUTES.root, ROUTES.globalFeed, ROUTES.feedByTag],
+    exact: true,
+    isPrivate: false,
+    component: HomePage,
+  },
+  {
+    path: ROUTES.profile.root,
+    isPrivate: false,
+    component: ProfilePage,
+  },
+  {
+    path: ROUTES.article,
+    isPrivate: false,
+    component: ArticlePage,
+  },
+  {
+    path: [ROUTES.editor.root, ROUTES.editor.slug],
+    isPrivate: true,
+    component: EditorPage,
+  },
+  {
+    path: ROUTES.settings,
+    isPrivate: true,
+    component: SettingsPage,
+  },
+  {
+    path: '*',
+    exact: false,
+    isPrivate: false,
+    component: NoMatchPage,
+  },
+];
+
 function Routes() {
   const [state, setState] = useState(false);
   const forceUpdate = useCallback(() => setState((x) => !x), []);
@@ -46,33 +98,25 @@ function Routes() {
     >
       <Suspense fallback={<Spinner />}>
         <Switch>
-          <Route path={ROUTES.login}>
-            <LoginPage />
-          </Route>
-          <Route path={ROUTES.registration}>
-            <RegistrationPage />
-          </Route>
-          <Route
-            exact
-            path={[ROUTES.root, ROUTES.globalFeed, ROUTES.feedByTag]}
-          >
-            <HomePage />
-          </Route>
-          <Route path={ROUTES.profile.root}>
-            <ProfilePage />
-          </Route>
-          <Route path={ROUTES.currentArticle}>
-            <ArticlePage />
-          </Route>
-          <PrivateRoute path={[ROUTES.editor.root, ROUTES.editor.slug]}>
-            <EditorPage />
-          </PrivateRoute>
-          <PrivateRoute path={ROUTES.settings}>
-            <SettingsPage />
-          </PrivateRoute>
-          <Route path="*">
-            <NoMatchPage />
-          </Route>
+          {routes.map((route) =>
+            route.isPrivate ? (
+              <PrivateRoute
+                exact={route.exact}
+                key={route.path.toString()}
+                path={route.path}
+              >
+                <route.component />
+              </PrivateRoute>
+            ) : (
+              <Route
+                exact={route.exact}
+                key={route.path.toString()}
+                path={route.path}
+              >
+                <route.component />
+              </Route>
+            ),
+          )}
         </Switch>
       </Suspense>
     </ErrorBoundary>

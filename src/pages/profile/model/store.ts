@@ -29,7 +29,7 @@ export const $pageUrl = createRouteMatch<{ url: string }>({
 
 sample({
   source: $username,
-  clock: Gate.open,
+  clock: [Gate.open, $username],
   target: getProfileFx,
 });
 
