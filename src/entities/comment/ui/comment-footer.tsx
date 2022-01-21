@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import * as model from '../model';
 import { ButtonDelete } from './button-delete';
 
@@ -8,12 +8,15 @@ export type CommentFooterProps = Pick<
   'author' | 'createdAt' | 'id'
 >;
 
-export const Footer = ({ author, createdAt, id }: CommentFooterProps) => {
-  const { slug } = useParams<{ slug: string }>();
+export const CommentFooter = ({
+  author,
+  createdAt,
+  id,
+}: CommentFooterProps) => {
   const date = useMemo(() => new Date(createdAt).toDateString(), [createdAt]);
 
   const handleDeleteComment = () => {
-    model.commentDeleted({ slug, id });
+    model.commentDeleted(id);
   };
 
   return (

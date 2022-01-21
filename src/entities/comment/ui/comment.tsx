@@ -1,5 +1,5 @@
 import { types } from '../model';
-import { CommentFooterProps, Footer } from './comment-footer';
+import { CommentFooterProps, CommentFooter } from './comment-footer';
 
 type Props = Readonly<CommentFooterProps & Pick<types.CommentType, 'body'>>;
 
@@ -9,7 +9,7 @@ export const Comment = ({ body, ...props }: Props) => {
       <div className="card-block">
         <p className="card-text">{body}</p>
       </div>
-      <Footer {...props} />
+      <CommentFooter {...props} />
     </div>
   );
 };

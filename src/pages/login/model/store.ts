@@ -20,7 +20,7 @@ forward({
 });
 
 signInFx.done.watch(() => {
-  history.push(ROUTES.yourFeed);
+  history.push(ROUTES.root);
 });
 
 export const Gate = createGate();

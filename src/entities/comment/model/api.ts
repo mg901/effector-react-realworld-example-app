@@ -10,7 +10,7 @@ export const getComments = (slug: string) => {
     .then((response) => response.comments);
 };
 
-export const addComment = ({ slug, body }: types.AddCommentPayload) => {
+export const addComment = ({ slug, body }: types.AddCommentArgs) => {
   return http
     .request<{ comment: types.CommentType }>({
       url: `articles/${slug}/comments`,
@@ -22,8 +22,8 @@ export const addComment = ({ slug, body }: types.AddCommentPayload) => {
     .then((response) => response.comment);
 };
 
-export const deleteComment = ({ slug, id }: types.DeleteCommentPayload) => {
-  http.request({
+export const deleteComment = ({ slug, id }: types.DeleteCommentArgs) => {
+  return http.request({
     url: `articles/${slug}/comments/${id}`,
     method: 'delete',
   });

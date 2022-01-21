@@ -1,28 +1,28 @@
 import { lazy, Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { ROUTES, PrivateRoute } from '@/shared/router';
+import * as visitor from '@/entities/visitor';
+import { ROUTES } from '@/shared/router';
 import { Spinner } from '@/shared/ui';
-import { Default } from './pages/default';
 import { Layout } from './ui/layout';
 
 const GlobalFeedPage = lazy(() => import('./pages/global-feed'));
-const YourFeedPage = lazy(() => import('./pages/global-feed'));
+const YourFeedPage = lazy(() => import('./pages/your-feed'));
 const FeedByTagPage = lazy(() => import('./pages/feed-by-tag'));
 
 const HomePage = () => {
+  const isAuth = visitor.selectors.useIsAuthorized();
+
   return (
     <Layout>
       <Suspense fallback={<Spinner />}>
         <Switch>
           <Route exact path={ROUTES.root}>
-            <Default />
+            {isAuth ? <YourFeedPage /> : <GlobalFeedPage />}
           </Route>
+
           <Route path={ROUTES.globalFeed}>
             <GlobalFeedPage />
           </Route>
-          <PrivateRoute path={ROUTES.yourFeed}>
-            <YourFeedPage />
-          </PrivateRoute>
           <Route path={ROUTES.feedByTag}>
             <FeedByTagPage />
           </Route>

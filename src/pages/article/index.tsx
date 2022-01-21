@@ -1,5 +1,5 @@
 import { useGate } from 'effector-react';
-import { AddCommentForm } from '@/features/add-comment';
+import { AddCommentForm } from '@/entities/comment';
 import { Row, Page, Spinner } from '@/shared/ui';
 import * as model from './model';
 import { CommentsList } from './ui/comments-list';

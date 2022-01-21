@@ -1,20 +1,23 @@
 import { NavLink } from 'react-router-dom';
+import * as visitor from '@/entities/visitor';
 import { ROUTES } from '@/shared/router';
 import { NavItem } from '@/shared/ui';
 import * as model from '../model';
-import { LinkToYourFeed } from './link-to-your-feed';
+import { LinkToGlobalFeed } from './link-to-global-feed';
 
 export const Tabs = () => {
   const tag = model.selectors.useTagQuery();
+  const isAuth = visitor.selectors.useIsAuthorized();
 
   return (
     <ul className="feed-toggle nav nav-pills outline-active">
-      <LinkToYourFeed />
+      {/* <LinkToYourFeed /> */}
       <NavItem>
-        <NavLink exact className="nav-link" to={ROUTES.globalFeed}>
-          Global Feed
+        <NavLink exact className="nav-link" to={ROUTES.root}>
+          {isAuth ? 'Your Feed' : 'Global Feed'}
         </NavLink>
       </NavItem>
+      <LinkToGlobalFeed />
       {tag && (
         <NavItem>
           <NavLink

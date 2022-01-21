@@ -5,7 +5,7 @@ import { Router, Route, Switch } from 'react-router-dom';
 import { useGate } from 'effector-react';
 import { QueryParamProvider } from 'use-query-params';
 import { history, ROUTES, PrivateRoute } from '@/shared/router';
-import { Spinner, Page, Button } from '@/shared/ui';
+import { Spinner, Page, Button, Pre } from '@/shared/ui';
 import * as model from '../../model';
 import { Layout } from '../layout';
 
@@ -54,12 +54,7 @@ function Routes() {
           </Route>
           <Route
             exact
-            path={[
-              ROUTES.root,
-              ROUTES.globalFeed,
-              ROUTES.yourFeed,
-              ROUTES.feedByTag,
-            ]}
+            path={[ROUTES.root, ROUTES.globalFeed, ROUTES.feedByTag]}
           >
             <HomePage />
           </Route>
@@ -92,7 +87,7 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   return (
     <Page>
       <p>Something went wrong:</p>
-      <pre>{error.message}</pre>
+      <Pre>{error.message}</Pre>
       <Button onClick={handleClick}>Try again</Button>
     </Page>
   );

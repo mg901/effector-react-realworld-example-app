@@ -11,7 +11,6 @@ export const ROUTES = {
     favorites: `${PROFILE}/favorites`,
   },
   globalFeed: '/global-feed',
-  yourFeed: '/your-feed',
   feedByTag: '/feed-by-tag',
   settings: '/settings',
   editor: {

@@ -8,12 +8,12 @@ export type CommentType = Readonly<{
   updatedAt: string;
 }>;
 
-export type AddCommentPayload = Readonly<{
+export type AddCommentArgs = Readonly<{
   slug: string;
   body: string;
 }>;
 
-export type DeleteCommentPayload = Readonly<{
+export type DeleteCommentArgs = Readonly<{
   slug: string;
   id: string;
 }>;

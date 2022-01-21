@@ -9,9 +9,8 @@ export const Content = () => {
   return (
     <Row className="article-content">
       <div className="col-xs-12">
-        <p>
-          <Markdown>{body}</Markdown>
-        </p>
+        <Markdown>{body}</Markdown>
+
         <Tags />
       </div>
     </Row>

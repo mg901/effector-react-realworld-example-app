@@ -1,6 +1,7 @@
 export * from './form';
 export * from './page';
 export * from './pagination';
+export * from './pre';
 export * from './spinner';
 export * from './banner';
 export * from './button';

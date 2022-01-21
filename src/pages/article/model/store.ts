@@ -1,6 +1,7 @@
 import {
   createEvent,
   createEffect,
+  createStore,
   restore,
   combine,
   forward,
@@ -9,8 +10,6 @@ import {
 import { useStore, createGate } from 'effector-react';
 import * as comment from '@/entities/comment';
 import * as visitor from '@/entities/visitor';
-import { addCommentFx } from '@/features/add-comment';
-import { deleteCommentFx } from '@/features/delete-comment';
 import { history, $locationPathname, matchPath, ROUTES } from '@/shared/router';
 
 import * as api from './api';
@@ -37,10 +36,29 @@ guard({
 });
 
 export const $comments = restore(comment.getCommentsFx.doneData, [])
-  .on(addCommentFx.doneData, (state, payload) => [payload].concat(state))
-  .on(deleteCommentFx.done, (state, { params }) =>
-    state.filter(({ id }) => id !== params.id),
-  );
+  .on(comment.addCommentFx.doneData, (state, payload) =>
+    [payload].concat(state),
+  )
+  .on(comment.deleteCommentFx.done, (state, { params }) => {
+    return state.filter(({ id }) => id !== params.id);
+  });
+
+export const $error = createStore<Record<string, unknown>>({
+  errors: {},
+})
+  .on(
+    [comment.addCommentFx.failData, comment.deleteCommentFx.failData],
+    (_, error) => error,
+  )
+  .reset(Gate.close);
+
+export const $hasError = $error.map(
+  (error) => Object.keys(Object(error)).length > 0,
+);
+
+export const $errors = $error.map((error) =>
+  Object.entries(Object(error?.errors)),
+);
 
 export const $article = restore(getArticleFx.doneData, {
   title: '',
@@ -72,7 +90,7 @@ forward({
 });
 
 deleteArticleFx.done.watch(() => {
-  history.push(ROUTES.yourFeed);
+  history.push(ROUTES.root);
 });
 
 export const selectors = {
@@ -80,4 +98,6 @@ export const selectors = {
   useGetArticlePending: () => useStore(getArticleFx.pending),
   useCanModify: () => useStore($canModify),
   useArticle: () => useStore($article),
+  useHasError: () => useStore($hasError),
+  useErrors: () => useStore($errors),
 };
