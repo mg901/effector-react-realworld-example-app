@@ -20,7 +20,7 @@ export const setToken = (token: string): void => {
   instance.defaults.headers.common.Authorization = `Token ${token}`;
 };
 
-export const request = <T = any>(
+export const request = <T = void>(
   options: types.HttpRequestOptions,
 ): Promise<T> => {
   return instance

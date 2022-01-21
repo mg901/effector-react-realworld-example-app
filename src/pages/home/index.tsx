@@ -1,25 +1,34 @@
-import { Page, Row } from '@/shared/ui';
-import { Routes } from './routes';
-import { LogoutBanner } from './ui/logout-banner';
-import { Sidebar } from './ui/sidebar';
-import { Tabs } from './ui/tabs';
+import { lazy, Suspense } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import * as visitor from '@/entities/visitor';
+import { ROUTES } from '@/shared/router';
+import { Spinner } from '@/shared/ui';
+import { Layout } from './ui/layout';
+
+const GlobalFeedPage = lazy(() => import('./pages/global-feed'));
+const YourFeedPage = lazy(() => import('./pages/your-feed'));
+const FeedByTagPage = lazy(() => import('./pages/feed-by-tag'));
 
 const HomePage = () => {
+  const isAuth = visitor.selectors.useIsAuthorized();
+
   return (
-    <div className="home-page">
-      <LogoutBanner />
-      <Page>
-        <Row>
-          <main className="col-md-9">
-            <Tabs />
-            <Routes />
-          </main>
-          <div className="col-md-3">
-            <Sidebar />
-          </div>
-        </Row>
-      </Page>
-    </div>
+    <Layout>
+      <Suspense fallback={<Spinner />}>
+        <Switch>
+          <Route exact path={ROUTES.root}>
+            {isAuth ? <YourFeedPage /> : <GlobalFeedPage />}
+          </Route>
+
+          <Route path={ROUTES.globalFeed}>
+            <GlobalFeedPage />
+          </Route>
+          <Route path={ROUTES.feedByTag}>
+            <FeedByTagPage />
+          </Route>
+        </Switch>
+      </Suspense>
+    </Layout>
   );
 };
 

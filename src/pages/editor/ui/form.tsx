@@ -69,7 +69,7 @@ function useForm() {
       reset(x);
     });
 
-    return () => unwatch();
+    return unwatch();
   }, [slug, reset]);
 
   return {

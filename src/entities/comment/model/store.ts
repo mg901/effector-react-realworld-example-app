@@ -1,41 +1,41 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  restore,
-  forward,
-} from 'effector';
+import { createEvent, createEffect, createStore, sample } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as api from './api';
 import * as types from './types';
 
-export const commentDeleted = createEvent<types.DeleteCommentPayload>();
+export const Gate = createGate<{ slug: string }>();
+const $slug = Gate.state.map((props) => props.slug);
+
 export const getCommentsFx = createEffect(api.getComments);
 
+export const commentAdded = createEvent<string>();
 export const addCommentFx = createEffect<
-  types.AddCommentPayload,
-  types.Comment,
+  types.AddCommentArgs,
+  types.CommentType,
   Record<string, unknown>
 >(api.addComment);
 
+sample({
+  source: $slug,
+  clock: commentAdded,
+  fn: (slug, body) => ({ slug, body }),
+  target: addCommentFx,
+});
+
+export const commentDeleted = createEvent<string>();
 export const deleteCommentFx = createEffect<
-  types.DeleteCommentPayload,
+  types.DeleteCommentArgs,
   void,
   Record<string, unknown>
 >(api.deleteComment);
 
-forward({
-  from: commentDeleted,
-  to: deleteCommentFx,
+sample({
+  source: $slug,
+  clock: commentDeleted,
+  fn: (slug, id) => ({ slug, id }),
+  target: deleteCommentFx,
 });
 
-export const $comments = restore(getCommentsFx.doneData, [])
-  .on(addCommentFx.doneData, (state, payload) => [payload].concat(state))
-  .on(deleteCommentFx.done, (state, { params }) =>
-    state.filter(({ id }) => id !== params.id),
-  );
-
-export const Gate = createGate();
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
 })

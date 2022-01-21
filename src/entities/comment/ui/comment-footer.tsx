@@ -1,17 +1,22 @@
-import { useParams, Link } from 'react-router-dom';
+import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import * as model from '../model';
 import { ButtonDelete } from './button-delete';
 
 export type CommentFooterProps = Pick<
-  model.types.Comment,
+  model.types.CommentType,
   'author' | 'createdAt' | 'id'
 >;
 
-export const Footer = ({ author, createdAt, id }: CommentFooterProps) => {
-  const { slug } = useParams<{ slug: string }>();
+export const CommentFooter = ({
+  author,
+  createdAt,
+  id,
+}: CommentFooterProps) => {
+  const date = useMemo(() => new Date(createdAt).toDateString(), [createdAt]);
 
   const handleDeleteComment = () => {
-    model.commentDeleted({ slug, id });
+    model.commentDeleted(id);
   };
 
   return (
@@ -27,7 +32,7 @@ export const Footer = ({ author, createdAt, id }: CommentFooterProps) => {
       <Link className="comment-author" to={`/@${author.username}`}>
         {author.username}
       </Link>
-      <span className="date-posted">{new Date(createdAt).toDateString()}</span>
+      <span className="date-posted">{date}</span>
       <ButtonDelete author={author} onClick={handleDeleteComment} />
     </div>
   );

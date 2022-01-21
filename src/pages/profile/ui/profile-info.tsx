@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { Container, Row } from '@/shared/ui';
 import { EditMode } from './edit-mode';
-import { FollowUser } from './follow-user';
+import { FollowUserButton } from './follow-user-button';
 import { ProfileBio } from './profile-bio';
 import { ProfileImage } from './profile-image';
 import { ProfileTitle } from './profile-title';
@@ -16,7 +16,7 @@ export const ProfileInfo = memo(() => {
             <ProfileTitle />
             <ProfileBio />
             <EditMode />
-            <FollowUser />
+            <FollowUserButton />
           </div>
         </Row>
       </Container>

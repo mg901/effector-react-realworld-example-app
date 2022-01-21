@@ -2,11 +2,12 @@ import {
   createEvent,
   createEffect,
   createStore,
-  combine,
   split,
+  sample,
 } from 'effector';
-import { useStore } from 'effector-react';
+import { useStore, createGate } from 'effector-react';
 import * as visitor from '@/entities/visitor';
+import { createParams, createRouteMatch, ROUTES } from '@/shared/router';
 import * as api from './api';
 import * as types from './types';
 
@@ -15,6 +16,22 @@ export const followToggled = createEvent<types.FollowToggledArgs>();
 export const getProfileFx = createEffect(api.getProfile);
 export const subscribeToUserFx = createEffect(api.subscribeToUser);
 export const unsubscribeFromUserFx = createEffect(api.unsubscribeToUser);
+
+export const Gate = createGate();
+
+const $username = createParams<{ username: string }>({
+  path: ROUTES.profile.root,
+}).map((params) => params.username);
+
+export const $pageUrl = createRouteMatch<{ url: string }>({
+  path: ROUTES.profile.root,
+}).map((x) => x?.url);
+
+sample({
+  source: $username,
+  clock: [Gate.open, $username],
+  target: getProfileFx,
+});
 
 export const $profile = createStore({
   bio: '',
@@ -30,10 +47,19 @@ export const $profile = createStore({
   (_, payload) => payload,
 );
 
-export const $bio = $profile.map((x) => x.bio);
-export const $image = $profile.map((x) => x.image);
-export const $username = $profile.map((x) => x.username);
-export const $following = $profile.map((profile) => profile.following);
+export const $profileBio = $profile.map((x) => x.bio);
+export const $profileImage = $profile.map((x) => x.image);
+export const $profileUsername = $profile.map((x) => x.username);
+export const $profileFollowing = $profile.map((profile) => profile.following);
+
+const $isOwnProfile = createStore(false).on(
+  sample({
+    source: [visitor.$username, $profileUsername],
+    clock: $profileUsername.updates,
+  }),
+  (_, [visitorUsername, profileUsername]) =>
+    visitorUsername === profileUsername,
+);
 
 split({
   source: followToggled,
@@ -49,16 +75,11 @@ split({
   },
 });
 
-export const $isVisitor = combine(
-  $profile,
-  visitor.$visitor,
-  (profile, user) => profile.username === user.username,
-);
-
 export const selectors = {
-  useIsVisitor: () => useStore($isVisitor),
-  useFollowing: () => useStore($following),
-  useBio: () => useStore($bio),
-  useUserName: () => useStore($username),
-  useImage: () => useStore($image),
+  useIsOwnProfile: () => useStore($isOwnProfile),
+  usePageUrl: () => useStore($pageUrl),
+  useFollowing: () => useStore($profileFollowing),
+  useProfileBio: () => useStore($profileBio),
+  useProfileUsername: () => useStore($profileUsername),
+  useProfileImage: () => useStore($profileImage),
 };

@@ -1,16 +1,16 @@
 import { Button } from '@/shared/ui';
 import * as model from '../model';
 
-export const FollowUser = () => {
-  const username = model.selectors.useUserName();
+export const FollowUserButton = () => {
+  const username = model.selectors.useProfileUsername();
   const following = model.selectors.useFollowing();
-  const isVisitor = model.selectors.useIsVisitor();
+  const isOwnProfile = model.selectors.useIsOwnProfile();
 
   const handleToggle = () => {
     model.followToggled({ username, following });
   };
 
-  return isVisitor ? null : (
+  return !isOwnProfile && username ? (
     <Button
       className="action-btn btn-secondary"
       size="sm"
@@ -19,5 +19,5 @@ export const FollowUser = () => {
       <i className="ion-plus-round" />
       &nbsp;{following ? 'Unfollow' : 'Follow'} {username}
     </Button>
-  );
+  ) : null;
 };

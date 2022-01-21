@@ -5,13 +5,12 @@ export const ROUTES = {
   root: '/',
   login: '/login',
   registration: '/registration',
-  currentArticle: '/article/:slug',
+  article: '/article/:slug',
   profile: {
     root: PROFILE,
     favorites: `${PROFILE}/favorites`,
   },
   globalFeed: '/global-feed',
-  yourFeed: '/your-feed',
   feedByTag: '/feed-by-tag',
   settings: '/settings',
   editor: {

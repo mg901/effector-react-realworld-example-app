@@ -32,7 +32,7 @@ const MyArticlesPage = ({ pageSize = 5 }: Props) => {
 
 function useFeed(pageSize: number) {
   const [page, setPage] = useQueryParam('page', withDefault(NumberParam, 1));
-  const username = profile.selectors.useUserName();
+  const username = profile.selectors.useProfileUsername();
   const loading = model.selectors.useGetFeedPending();
   const isEmpty = model.selectors.useIsEmptyFeed();
   const totalPages = model.selectors.useTotalPages();

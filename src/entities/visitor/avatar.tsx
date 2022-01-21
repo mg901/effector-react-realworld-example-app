@@ -5,7 +5,7 @@ type Props = Readonly<{
 }>;
 
 export const Avatar = ({ className }: Props) => {
-  const username = model.selectors.useUserName();
+  const username = model.selectors.useUsername();
   const image = model.selectors.useImage();
 
   return <img alt={username} className={className || undefined} src={image} />;

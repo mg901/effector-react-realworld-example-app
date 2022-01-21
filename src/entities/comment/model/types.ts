@@ -1,6 +1,6 @@
 import * as article from '@/entities/article';
 
-export type Comment = Readonly<{
+export type CommentType = Readonly<{
   author: article.types.Author;
   body: string;
   id: string;
@@ -8,12 +8,12 @@ export type Comment = Readonly<{
   updatedAt: string;
 }>;
 
-export type AddCommentPayload = Readonly<{
+export type AddCommentArgs = Readonly<{
   slug: string;
   body: string;
 }>;
 
-export type DeleteCommentPayload = Readonly<{
+export type DeleteCommentArgs = Readonly<{
   slug: string;
   id: string;
 }>;

@@ -5,7 +5,7 @@ import './index.css';
 
 type Props = Readonly<{
   onClick: ButtonProps['onClick'];
-  author: types.Comment['author'];
+  author: types.CommentType['author'];
 }>;
 
 export const ButtonDelete = ({ author, onClick }: Props) => {

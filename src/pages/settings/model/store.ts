@@ -1,7 +1,7 @@
 import { createEffect, restore, forward } from 'effector';
 import { useStore } from 'effector-react';
 import * as visitor from '@/entities/visitor';
-import { history } from '@/shared/history';
+import { history, ROUTES } from '@/shared/router';
 import * as api from './api';
 import * as types from './types';
 
@@ -10,10 +10,6 @@ export const changeUserDataFx = createEffect<
   void,
   Record<string, unknown>
 >(api.changeUserData);
-
-export const navigateToRootFx = createEffect(() => {
-  history.push('/');
-});
 
 const reloadPageFx = createEffect(() => {
   window.location.reload();
@@ -36,9 +32,8 @@ forward({
   to: reloadPageFx,
 });
 
-forward({
-  from: visitor.logoutClicked,
-  to: navigateToRootFx,
+visitor.logoutClicked.watch(() => {
+  history.push(ROUTES.root);
 });
 
 export const $hasError = $error.map(
@@ -50,7 +45,7 @@ export const $errors = $error.map((error) =>
 );
 
 export const selectors = {
-  useOnSubmitPending: () => useStore(changeUserDataFx.pending),
+  useChangeUserDataPending: () => useStore(changeUserDataFx.pending),
   useUser: () => useStore($user),
   useHasError: (): boolean => useStore($hasError),
   useErrors: () => useStore($errors),
