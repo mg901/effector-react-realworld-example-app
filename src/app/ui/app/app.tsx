@@ -3,7 +3,6 @@ import type { FallbackProps } from 'react-error-boundary';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Router, Route, Switch } from 'react-router-dom';
 import { useGate } from 'effector-react';
-import { QueryParamProvider } from 'use-query-params';
 import { history, ROUTES, PrivateRoute } from '@/shared/router';
 import { Spinner, Page, Button, Pre } from '@/shared/ui';
 import * as model from '../../model';
@@ -16,11 +15,9 @@ export const App = () => {
 
   return (
     <Router history={history}>
-      <QueryParamProvider ReactRouterRoute={Route}>
-        <Layout>
-          <Routes />
-        </Layout>
-      </QueryParamProvider>
+      <Layout>
+        <Routes />
+      </Layout>
     </Router>
   );
 };

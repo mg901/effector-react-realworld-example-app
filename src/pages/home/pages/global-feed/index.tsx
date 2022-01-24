@@ -1,45 +1,34 @@
-import { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { useQueryParam, withDefault, NumberParam } from 'use-query-params';
+import { useGate } from 'effector-react';
 import * as article from '@/entities/article';
 import * as visitor from '@/entities/visitor';
 import { ROUTES } from '@/shared/router';
 import { Pagination } from '@/shared/ui';
 import * as model from './model';
 
-type Props = Readonly<{
-  pageSize?: number;
-}>;
-
-const GlobalFeedPage = ({ pageSize = 10 }: Props) => {
+const GlobalFeedPage = () => {
+  useGate(model.Gate);
   const isAuth = visitor.selectors.useIsAuthorized();
-  const [page, setPage] = useQueryParam('page', withDefault(NumberParam, 1));
+  const pageSize = model.selectors.usePageSize();
+  const articles = model.selectors.useArticlesList();
+  const currentPage = model.selectors.useCurrentPage();
   const loading = model.selectors.useGetFeedPending();
-  const isEmpty = model.selectors.useIsEmptyFeed();
   const totalPages = model.selectors.useTotalPages();
-
-  useEffect(() => {
-    model.getFeedFx({ pageSize, page });
-  }, [page, pageSize]);
-
-  const handlePageChange = (x: number) => {
-    setPage(x);
-  };
 
   return (
     <>
       {isAuth ? null : <Redirect from={ROUTES.globalFeed} to="/" />}
       <article.Feed
-        articlesStore={model.$articles}
-        isEmpty={isEmpty}
+        articles={articles}
+        isEmpty={false}
         loading={loading}
-        onFavoriteToggle={model.favoriteArticleToggled}
+        onFavoriteToggle={(_) => _}
       />
       <Pagination
-        current={page}
+        current={currentPage}
         pageSize={pageSize}
         total={totalPages}
-        onPageChange={handlePageChange}
+        onPageChange={(_) => _}
       />
     </>
   );

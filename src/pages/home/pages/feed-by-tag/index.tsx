@@ -1,65 +1,32 @@
-import { useEffect } from 'react';
-import {
-  useQueryParams,
-  withDefault,
-  NumberParam,
-  StringParam,
-} from 'use-query-params';
+import { useGate } from 'effector-react';
 import * as article from '@/entities/article';
 import { Pagination } from '@/shared/ui';
-import * as model from './model/store';
+import * as model from './model';
 
-type Props = Readonly<{
-  pageSize?: number;
-}>;
-
-const FeedByTagPage = ({ pageSize = 10 }: Props) => {
-  const feed = useFeed(pageSize);
+const FeedByTagPage = () => {
+  useGate(model.Gate);
+  const pageSize = model.selectors.usePageSize();
+  const articles = model.selectors.useArticlesList();
+  const currentPage = model.selectors.useCurrentPage();
+  const loading = model.selectors.useGetArticlesLoading();
+  const totalPages = model.selectors.useTotalPages();
 
   return (
     <>
       <article.Feed
-        articlesStore={model.$articles}
-        isEmpty={feed.isEmpty}
-        loading={feed.loading}
-        onFavoriteToggle={model.favoriteArticleToggled}
+        articles={articles}
+        isEmpty={false}
+        loading={loading}
+        onFavoriteToggle={(_) => _}
       />
       <Pagination
-        current={feed.page}
+        current={currentPage}
         pageSize={pageSize}
-        total={feed.totalPages}
-        onPageChange={feed.handlePageChange}
+        total={totalPages}
+        onPageChange={model.pageChanged}
       />
     </>
   );
 };
-
-function useFeed(pageSize: number) {
-  const [{ page, tag }, setQuery] = useQueryParams({
-    page: withDefault(NumberParam, 1),
-    tag: StringParam,
-  });
-  const loading = model.selectors.useGetFeedPending();
-  const isEmpty = model.selectors.useIsEmptyFeed();
-  const totalPages = model.selectors.useTotalPages();
-
-  useEffect(() => {
-    if (tag) {
-      model.getFeedFx({ page, tag, pageSize });
-    }
-  }, [page, tag, pageSize]);
-
-  const handlePageChange = (x: number) => {
-    setQuery({ page: x });
-  };
-
-  return {
-    page,
-    loading,
-    isEmpty,
-    totalPages,
-    handlePageChange,
-  };
-}
 
 export default FeedByTagPage;

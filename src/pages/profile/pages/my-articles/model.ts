@@ -6,21 +6,20 @@ import { limit } from '@/shared/library/limit';
 import { createQueryStore } from '@/shared/router';
 import * as profile from '../../model';
 
-export const { $articlesList, $articles, $totalPages } = article.createFeed();
+export const { feedLoaded, $articlesList, $totalPages } = article.createFeed();
 
 export type GetArticlesFx = {
   username: string;
   page: number;
-  pageSize: number;
 };
 
 export const getArticlesFx = createEffect(
-  ({ username, page, pageSize }: GetArticlesFx) => {
+  ({ username, page }: GetArticlesFx) => {
     const pageIndex = page - 1;
 
     return http.request<article.types.FeedType>({
-      url: `articles?favorited=${encodeURIComponent(username)}&${limit(
-        pageSize,
+      url: `articles?author=${encodeURIComponent(username)}&${limit(
+        5,
         pageIndex,
       )}`,
       method: 'get',
@@ -34,11 +33,10 @@ const $pageQuery = createQueryStore('page').map((x) => (x ? Number(x) : 1));
 
 sample({
   source: {
-    username: profile.$username,
     page: $pageQuery,
-    pageSize: $pageSize,
+    username: profile.$username,
   },
-  clock: [Gate.open, profile.$username.updates, $pageQuery],
+  clock: [Gate.open, $pageQuery, profile.$username.updates],
   target: getArticlesFx,
 });
 

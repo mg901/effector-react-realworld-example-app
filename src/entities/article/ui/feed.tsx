@@ -1,5 +1,3 @@
-import { Store } from 'effector';
-import { useList } from 'effector-react';
 import { Spinner } from '@/shared/ui';
 import * as types from '../model/types';
 import { ArticlePreview } from './article-preview';
@@ -9,21 +7,38 @@ import { EmptyFeed } from './empty-feed';
 type Props = Readonly<{
   loading: boolean;
   isEmpty: boolean;
-  articlesStore: Store<types.FeedType['articles']>;
+  articles: types.FeedType['articles'];
   onFavoriteToggle: (payload: types.SelectedArticle) => void;
 }>;
 
 export const Feed = ({
   loading,
   isEmpty,
-  articlesStore,
+  articles,
   onFavoriteToggle,
 }: Props) => {
   return (
     <>
       <EmptyFeed show={isEmpty} />
       <ArticlesWrapper>
-        {useList(articlesStore, {
+        {articles.map((item) => {
+          return (
+            <li key={item.slug}>
+              <ArticlePreview
+                author={item.author}
+                createdAt={item.createdAt}
+                description={item.description}
+                favorited={item.favorited}
+                favoritesCount={item.favoritesCount}
+                slug={item.slug}
+                tagList={item.tagList}
+                title={item.title}
+                onFavoriteToggle={onFavoriteToggle}
+              />
+            </li>
+          );
+        })}
+        {/* {useList(articlesStore, {
           getKey: (item) => item.slug,
           fn: (item) => (
             <li>
@@ -40,7 +55,7 @@ export const Feed = ({
               />
             </li>
           ),
-        })}
+        })} */}
       </ArticlesWrapper>
       <Spinner show={loading} />
     </>

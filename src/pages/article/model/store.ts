@@ -10,7 +10,7 @@ import {
 import { useStore, createGate } from 'effector-react';
 import * as comment from '@/entities/comment';
 import * as visitor from '@/entities/visitor';
-import { history, $locationPathname, matchPath, ROUTES } from '@/shared/router';
+import { history, createParamsStore, ROUTES } from '@/shared/router';
 
 import * as api from './api';
 
@@ -20,13 +20,9 @@ export const deleteArticleFx = createEffect(api.deleteArticle);
 
 export const Gate = createGate();
 
-export const $slug = $locationPathname.map((pathname) => {
-  const match = matchPath<{ slug: string }>(pathname, {
-    path: ROUTES.article,
-  });
-
-  return match ? match.params.slug : '';
-});
+export const $slug = createParamsStore<{ slug: string }>({
+  path: ROUTES.article,
+}).map((params) => params.slug);
 
 guard({
   source: $slug,

@@ -7,7 +7,11 @@ import {
 } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as visitor from '@/entities/visitor';
-import { createParams, createRouteMatch, ROUTES } from '@/shared/router';
+import {
+  createParamsStore,
+  createRouteMatchStore,
+  ROUTES,
+} from '@/shared/router';
 import * as api from './api';
 import * as types from './types';
 
@@ -19,11 +23,11 @@ export const unsubscribeFromUserFx = createEffect(api.unsubscribeToUser);
 
 export const Gate = createGate();
 
-const $username = createParams<{ username: string }>({
+export const $username = createParamsStore<{ username: string }>({
   path: ROUTES.profile.root,
 }).map((params) => params.username);
 
-export const $pageUrl = createRouteMatch<{ url: string }>({
+export const $pageUrl = createRouteMatchStore<{ url: string }>({
   path: ROUTES.profile.root,
 }).map((x) => x?.url);
 
@@ -33,7 +37,7 @@ sample({
   target: getProfileFx,
 });
 
-export const $profile = createStore({
+export const $editableFields = createStore({
   bio: '',
   following: false,
   image: '',
@@ -47,10 +51,12 @@ export const $profile = createStore({
   (_, payload) => payload,
 );
 
-export const $profileBio = $profile.map((x) => x.bio);
-export const $profileImage = $profile.map((x) => x.image);
-export const $profileUsername = $profile.map((x) => x.username);
-export const $profileFollowing = $profile.map((profile) => profile.following);
+export const $profileBio = $editableFields.map((x) => x.bio);
+export const $profileImage = $editableFields.map((x) => x.image);
+export const $profileUsername = $editableFields.map((x) => x.username);
+export const $profileFollowing = $editableFields.map(
+  (profile) => profile.following,
+);
 
 const $isOwnProfile = createStore(false).on(
   sample({
