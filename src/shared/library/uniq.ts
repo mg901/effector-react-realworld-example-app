@@ -1,1 +1,1 @@
-export const uniq = <T>(x: T[]): T[] => Array.from(new Set(x));
+export const uniq = <T>(value: T[]): T[] => Array.from(new Set(value));

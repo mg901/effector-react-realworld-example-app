@@ -29,7 +29,7 @@ export const $username = createParamsStore<{ username: string }>({
 
 export const $pageUrl = createRouteMatchStore<{ url: string }>({
   path: ROUTES.profile.root,
-}).map((x) => x?.url);
+}).map((match) => match?.url);
 
 sample({
   source: $username,
@@ -51,9 +51,11 @@ export const $editableFields = createStore({
   (_, payload) => payload,
 );
 
-export const $profileBio = $editableFields.map((x) => x.bio);
-export const $profileImage = $editableFields.map((x) => x.image);
-export const $profileUsername = $editableFields.map((x) => x.username);
+export const $profileBio = $editableFields.map((fields) => fields.bio);
+export const $profileImage = $editableFields.map((fields) => fields.image);
+export const $profileUsername = $editableFields.map(
+  (fields) => fields.username,
+);
 export const $profileFollowing = $editableFields.map(
   (profile) => profile.following,
 );

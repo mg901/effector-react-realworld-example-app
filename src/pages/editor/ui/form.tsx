@@ -65,8 +65,8 @@ function useForm() {
       model.getArticleFx(slug);
     }
 
-    const unwatch = model.getArticleFx.doneData.watch((x) => {
-      reset(x);
+    const unwatch = model.getArticleFx.doneData.watch((articles) => {
+      reset(articles);
     });
 
     return unwatch();

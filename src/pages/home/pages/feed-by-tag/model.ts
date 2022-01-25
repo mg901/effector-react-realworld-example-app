@@ -49,7 +49,9 @@ const $pageSize = createStore<number>(10);
 export const { feedLoaded, $articlesList, $articles, $totalPages } =
   article.createFeed();
 
-const $pageQuery = createQueryStore('page').map((x) => (x ? Number(x) : 1));
+const $pageQuery = createQueryStore('page').map((page) =>
+  page ? Number(page) : 1,
+);
 const $tagQuery = createQueryStore('tag');
 
 sample({

@@ -3,7 +3,7 @@ import './index.css';
 
 type Props = Readonly<{
   tag: string;
-  onTagClick: (x: string) => void;
+  onTagClick: (id: string) => void;
   children: React.ReactNode;
 }>;
 

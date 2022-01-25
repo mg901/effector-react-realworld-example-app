@@ -29,7 +29,9 @@ export const getArticlesFx = createEffect(
 
 export const Gate = createGate();
 const $pageSize = createStore<number>(5);
-const $pageQuery = createQueryStore('page').map((x) => (x ? Number(x) : 1));
+const $pageQuery = createQueryStore('page').map((page) =>
+  page ? Number(page) : 1,
+);
 
 sample({
   source: {

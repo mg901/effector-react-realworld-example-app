@@ -38,8 +38,8 @@ export const Gate = createGate();
 export const $tags = restore(getTagsFx.doneData, []);
 export const $pageSize = createStore<number>(10);
 export const $tagQuery = createQueryStore('tag');
-export const $currentPage = createQueryStore('page').map((x) =>
-  x ? Number(x) : 1,
+export const $currentPage = createQueryStore('page').map((page) =>
+  page ? Number(page) : 1,
 );
 
 forward({

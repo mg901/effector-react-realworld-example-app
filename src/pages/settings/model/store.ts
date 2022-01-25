@@ -15,11 +15,11 @@ const reloadPageFx = createEffect(() => {
   window.location.reload();
 });
 
-export const $user = visitor.$visitor.map((x) => ({
-  image: x.image,
-  username: x.username,
-  bio: x.bio,
-  email: x.email,
+export const $user = visitor.$visitor.map((u) => ({
+  image: u.image,
+  username: u.username,
+  bio: u.bio,
+  email: u.email,
   password: '',
 }));
 

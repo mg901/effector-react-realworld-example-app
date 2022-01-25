@@ -85,7 +85,10 @@ export const routes: RouteType[] = [
 
 function Routes() {
   const [state, setState] = useState(false);
-  const forceUpdate = useCallback(() => setState((x) => !x), []);
+  const forceUpdate = useCallback(
+    () => setState((prevState) => !prevState),
+    [],
+  );
 
   return (
     <ErrorBoundary

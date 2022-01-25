@@ -4,7 +4,7 @@ import './index.css';
 
 type Props = ButtonProps &
   Readonly<{
-    onItemClick: (x: number) => void;
+    onItemClick: (data: number) => void;
     active: boolean;
     item: number;
   }>;

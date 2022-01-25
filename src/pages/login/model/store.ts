@@ -28,8 +28,12 @@ export const $error = restore(signInFx.failData, {
   errors: {},
 }).reset(Gate.close);
 
-export const $hasError = $error.map((x) => Object.keys(Object(x)).length > 0);
-export const $errors = $error.map((x) => Object.entries(Object(x?.errors)));
+export const $hasError = $error.map(
+  (error) => Object.keys(Object(error)).length > 0,
+);
+export const $errors = $error.map((error) =>
+  Object.entries(Object(error?.errors)),
+);
 
 export const selectors = {
   useSignInRequestPending: () => useStore(signInFx.pending),

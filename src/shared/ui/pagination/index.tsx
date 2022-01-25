@@ -5,7 +5,7 @@ export type PaginationProps = Readonly<{
   total: number;
   pageSize: number;
   current: number;
-  onPageChange: (x: number) => void;
+  onPageChange: (page: number) => void;
 }>;
 
 export const Pagination = memo((props: PaginationProps) => {
