@@ -21,17 +21,19 @@ export const getArticlesFx = createEffect((page: number) => {
   });
 });
 
-type ChangePageFx = {
+type ChangePageQueryFx = {
   pathname: string;
   page: number;
 };
 
-const changePageFx = createEffect(({ pathname, page }: ChangePageFx) => {
-  history.push({
-    pathname,
-    search: `?page=${page}`,
-  });
-});
+const changePageQueryFx = createEffect(
+  ({ pathname, page }: ChangePageQueryFx) => {
+    history.push({
+      pathname,
+      search: `?page=${page}`,
+    });
+  },
+);
 
 export const { feedLoaded, $articlesList, $articles, $totalPages } =
   article.createFeed();
@@ -59,7 +61,7 @@ sample({
     page: $pageQuery,
   },
   clock: pageChanged,
-  target: changePageFx,
+  target: changePageQueryFx,
 });
 
 export const selectors = {
