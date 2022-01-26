@@ -17,7 +17,7 @@ export const $visitor = restore(getVisitorFx.doneData, {
   token: null,
   updatedAt: '',
   username: '',
-}).reset(logoutClicked, getVisitorFx.fail);
+}).reset(logoutClicked);
 
 export const $username = $visitor.map((visitor) => visitor.username);
 export const $image = $visitor.map((visitor) => visitor.image);
