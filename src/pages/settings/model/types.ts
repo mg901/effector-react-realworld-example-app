@@ -1,8 +1,10 @@
 import * as visitor from '@/entities/visitor';
 
-export type FormInputs = Pick<
+export type FormFieldsWithoutPassword = Pick<
   visitor.types.Visitor,
   'image' | 'username' | 'bio' | 'email'
-> & {
-  password?: string;
+>;
+
+export type FormFieldsWithPassword = FormFieldsWithoutPassword & {
+  password: string;
 };
