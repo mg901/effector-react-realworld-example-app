@@ -8,7 +8,7 @@ const $slug = Gate.state.map((props) => props.slug);
 
 export const getCommentsFx = createEffect(api.getComments);
 
-export const commentAdded = createEvent<string>();
+export const formSubmitted = createEvent<{ body: string }>();
 export const addCommentFx = createEffect<
   types.AddCommentArgs,
   types.CommentType,
@@ -17,8 +17,8 @@ export const addCommentFx = createEffect<
 
 sample({
   source: $slug,
-  clock: commentAdded,
-  fn: (slug, body) => ({ slug, body }),
+  clock: formSubmitted,
+  fn: (slug, fields) => ({ slug, ...fields }),
   target: addCommentFx,
 });
 
@@ -51,7 +51,7 @@ export const $errors = $error.map((error) =>
 );
 
 export const selectors = {
-  useAddCommentFxPending: () => useStore(addCommentFx.pending),
+  useAddCommentFxLoading: () => useStore(addCommentFx.pending),
   useHasError: () => useStore($hasError),
   useErrors: () => useStore($errors),
 };

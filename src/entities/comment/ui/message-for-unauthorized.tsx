@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import * as visitor from '@/entities/visitor';
 import { ROUTES } from '@/shared/router';
 
-export const LogoutMessage = () => {
+export const MessageForUnauthorized = () => {
   const isAuth = visitor.selectors.useIsAuthorized();
 
   return isAuth ? null : (

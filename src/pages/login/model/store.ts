@@ -32,7 +32,7 @@ export const $hasError = $error.map((x) => Object.keys(Object(x)).length > 0);
 export const $errors = $error.map((x) => Object.entries(Object(x?.errors)));
 
 export const selectors = {
-  useSignInRequestPending: () => useStore(signInFx.pending),
+  useSignInRequestLoading: () => useStore(signInFx.pending),
   useHasError: () => useStore($hasError),
   useErrors: () => useStore($errors),
 };

@@ -1,9 +1,10 @@
+import { memo } from 'react';
 import { types } from '../model';
 import { CommentFooterProps, CommentFooter } from './comment-footer';
 
 type Props = Readonly<CommentFooterProps & Pick<types.CommentType, 'body'>>;
 
-export const Comment = ({ body, ...props }: Props) => {
+export const Comment = memo(({ body, ...props }: Props) => {
   return (
     <div className="card">
       <div className="card-block">
@@ -12,4 +13,4 @@ export const Comment = ({ body, ...props }: Props) => {
       <CommentFooter {...props} />
     </div>
   );
-};
+});

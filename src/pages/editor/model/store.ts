@@ -73,7 +73,7 @@ export const $errors = $error.map((error) =>
 );
 
 export const selectors = {
-  useCreateArticlePending: () => useStore(createArticleFx.pending),
+  useCreateArticleLoading: () => useStore(createArticleFx.pending),
   useHasError: () => useStore($hasError),
   useErrors: () => useStore($errors),
 };
