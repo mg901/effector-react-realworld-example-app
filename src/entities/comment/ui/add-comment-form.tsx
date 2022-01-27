@@ -39,7 +39,7 @@ export function AddCommentForm({ slug }: Props) {
   ) : null;
 }
 
-type FormInputs = {
+type FormFields = {
   body: string;
 };
 
@@ -48,7 +48,7 @@ const defaultValues = {
 };
 
 function useForm() {
-  const { handleSubmit, register, reset } = useReactHookForm<FormInputs>({
+  const { handleSubmit, register, reset } = useReactHookForm<FormFields>({
     defaultValues,
   });
 
@@ -60,7 +60,7 @@ function useForm() {
 
   return {
     register,
-    handleSubmit: handleSubmit(({ body }: FormInputs) => {
+    handleSubmit: handleSubmit(({ body }: FormFields) => {
       model.commentAdded(body);
     }),
   };

@@ -1,2 +1,3 @@
-export { limit } from './limit';
-export { uniq } from './uniq';
+export * from './limit';
+export * from './omit';
+export * from './uniq';
