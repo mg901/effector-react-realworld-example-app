@@ -1,6 +1,6 @@
 import { Button } from '@/shared/ui';
 import { types } from '../../model';
-import './index.css';
+import styles from './index.module.css';
 
 type Props = Readonly<
   Pick<types.Article, 'slug' | 'favorited' | 'favoritesCount'> & {
@@ -22,7 +22,7 @@ export const ButtonFavorite = ({
 
   return (
     <Button
-      className="button-favorite btn-outline-primary"
+      className={`${styles.favorite} btn-outline-primary`}
       data-active={favorited}
       size="sm"
       onClick={handleClick}

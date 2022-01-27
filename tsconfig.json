@@ -16,6 +16,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "types": ["node", "jest", "@testing-library/jest-dom"],
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "paths": {
       "@/*": ["./src/*"]
     }

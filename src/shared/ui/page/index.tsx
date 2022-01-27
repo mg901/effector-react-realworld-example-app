@@ -1,12 +1,10 @@
 import { Container } from '../container';
-import './index.css';
+import styles from './index.module.css';
 
 type Props = Readonly<{
   children: React.ReactNode;
 }>;
 
 export const Page = ({ children }: Props) => (
-  <Container className="page">{children}</Container>
+  <Container className={styles.page}>{children}</Container>
 );
-
-Page.displayName = 'Page';
