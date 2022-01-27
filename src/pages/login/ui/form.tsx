@@ -5,10 +5,11 @@ import { ButtonSubmit } from './button-submit';
 export const LoginForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.currentTarget;
 
     model.formSubmitted({
-      email: event.currentTarget.email.value,
-      password: event.currentTarget.password.value,
+      email: form.email.value,
+      password: form.password.value,
     });
   };
 

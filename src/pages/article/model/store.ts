@@ -11,7 +11,6 @@ import { useStore, createGate } from 'effector-react';
 import * as comment from '@/entities/comment';
 import * as visitor from '@/entities/visitor';
 import { history, createParamsStore, ROUTES } from '@/shared/router';
-
 import * as api from './api';
 
 export const articleDeleted = createEvent<string>();
@@ -22,7 +21,7 @@ export const Gate = createGate();
 
 export const $slug = createParamsStore<{ slug: string }>({
   path: ROUTES.article,
-}).map((params) => params.slug);
+}).map((params) => params?.slug ?? '');
 
 guard({
   source: $slug,

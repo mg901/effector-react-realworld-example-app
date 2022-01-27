@@ -1,39 +1,59 @@
-import { createEffect, restore, forward } from 'effector';
+import { createEvent, createEffect, restore, split } from 'effector';
 import { useStore } from 'effector-react';
 import * as visitor from '@/entities/visitor';
+import * as http from '@/shared/http';
+import { omit } from '@/shared/library';
 import { history, ROUTES } from '@/shared/router';
-import * as api from './api';
 import * as types from './types';
 
-export const changeUserDataFx = createEffect<
-  types.FormInputs,
-  void,
-  Record<string, unknown>
->(api.changeUserData);
-
-const reloadPageFx = createEffect(() => {
-  window.location.reload();
-});
-
-export const $user = visitor.$visitor.map((u) => ({
-  image: u.image,
-  username: u.username,
-  bio: u.bio,
-  email: u.email,
+export const $editableFields = visitor.$visitor.map((x) => ({
+  image: x.image,
+  username: x.username,
+  bio: x.bio,
+  email: x.email,
   password: '',
 }));
 
-export const $error = restore(changeUserDataFx.failData, {
-  errors: {},
+export const changeUserDataFx = createEffect<
+  types.FormFieldsWithPassword | types.FormFieldsWithoutPassword,
+  visitor.types.Visitor,
+  Record<string, unknown>
+>((payload) => {
+  return http
+    .request<{ user: visitor.types.Visitor }>({
+      url: 'user',
+      method: 'put',
+      data: {
+        user: payload,
+      },
+    })
+    .then((response) => response.user);
 });
 
-forward({
-  from: changeUserDataFx.done,
-  to: reloadPageFx,
+visitor.$visitor.on(changeUserDataFx.doneData, (_, payload) => payload);
+
+export const formSubmitted = createEvent<types.FormFieldsWithPassword>();
+
+split({
+  source: formSubmitted,
+  match: {
+    hasPassword: (fields) => fields.password.length > 0,
+    isEmptyPassword: (fields) => fields.password.length === 0,
+  },
+  cases: {
+    hasPassword: changeUserDataFx,
+    isEmptyPassword: changeUserDataFx.prepend<types.FormFieldsWithPassword>(
+      (fields) => omit(fields, ['password']),
+    ),
+  },
 });
 
 visitor.logoutClicked.watch(() => {
   history.push(ROUTES.root);
+});
+
+export const $error = restore(changeUserDataFx.failData, {
+  errors: {},
 });
 
 export const $hasError = $error.map(
@@ -45,8 +65,8 @@ export const $errors = $error.map((error) =>
 );
 
 export const selectors = {
-  useChangeUserDataPending: () => useStore(changeUserDataFx.pending),
-  useUser: () => useStore($user),
+  useChangeUserDataLoading: () => useStore(changeUserDataFx.pending),
+  useEditableFields: () => useStore($editableFields),
   useHasError: (): boolean => useStore($hasError),
   useErrors: () => useStore($errors),
 };
