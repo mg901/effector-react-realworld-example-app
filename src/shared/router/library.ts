@@ -2,7 +2,7 @@ import type { RouteProps } from 'react-router-dom';
 import { matchPath } from 'react-router-dom';
 import { $locationPathname, $locationSearch } from './model';
 
-export const createParams = <
+export const createParamsStore = <
   Params extends { [K in keyof Params]?: string } = {},
 >(
   options: Parameters<typeof matchPath>[1],
@@ -17,7 +17,7 @@ type CreaetRouteMatchArgs = {
   path: string | string[] | RouteProps;
 };
 
-export const createRouteMatch = <
+export const createRouteMatchStore = <
   Params extends { [K in keyof Params]?: string } = {},
 >(
   options: CreaetRouteMatchArgs,
@@ -26,5 +26,5 @@ export const createRouteMatch = <
     return matchPath<Params>(pathname, options.path);
   });
 
-export const createQuery = (name: string) =>
+export const createQueryStore = (name: string) =>
   $locationSearch.map((search) => new URLSearchParams(search).get(name));
