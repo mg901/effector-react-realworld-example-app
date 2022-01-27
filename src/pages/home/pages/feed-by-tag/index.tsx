@@ -39,7 +39,7 @@ function useFeed(pageSize: number) {
     page: withDefault(NumberParam, 1),
     tag: StringParam,
   });
-  const loading = model.selectors.useGetFeedPending();
+  const loading = model.selectors.useGetFeedLoading();
   const isEmpty = model.selectors.useIsEmptyFeed();
   const totalPages = model.selectors.useTotalPages();
 
