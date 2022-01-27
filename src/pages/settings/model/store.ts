@@ -48,10 +48,6 @@ split({
   },
 });
 
-changeUserDataFx.done.watch(() => {
-  window.location.reload();
-});
-
 visitor.logoutClicked.watch(() => {
   history.push(ROUTES.root);
 });
