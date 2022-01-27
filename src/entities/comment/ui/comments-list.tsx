@@ -1,21 +1,24 @@
-import { useList } from 'effector-react';
-import { Comment } from '@/entities/comment';
 import { List } from '@/shared/ui';
 import * as model from '../model';
+import { Comment } from './comment';
 
-export const CommentsList = () => {
+type Props = {
+  comments: model.types.CommentType[];
+};
+
+export const CommentsList = ({ comments }: Props) => {
   return (
     <List>
-      {useList(model.$comments, {
-        getKey: (comment) => comment.id,
-        fn: (comment) => (
+      {comments.map((comment) => {
+        return (
           <Comment
             author={comment.author}
             body={comment.body}
             createdAt={comment.createdAt}
             id={comment.id}
+            key={comment.id}
           />
-        ),
+        );
       })}
     </List>
   );

@@ -2,7 +2,7 @@ import { Button } from '@/shared/ui';
 import { selectors } from '../model';
 
 export const ButtonSubmit = () => {
-  const disabled = selectors.useSignUpPending();
+  const disabled = selectors.useSignUpLoading();
 
   return (
     <Button

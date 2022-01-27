@@ -1,16 +1,15 @@
 import { useGate } from 'effector-react';
-import { AddCommentForm } from '@/entities/comment';
+import { Comments } from '@/entities/comment';
 import { Row, Page, Spinner } from '@/shared/ui';
 import * as model from './model';
-import { CommentsList } from './ui/comments-list';
 import { Content } from './ui/content';
 import { Header } from './ui/header';
-import { LogoutMessage } from './ui/logout-message';
 
 const ArticlePage = () => {
   useGate(model.Gate);
   const slug = model.selectors.useSlug();
-  const loading = model.selectors.useGetArticlePending();
+  const comments = model.selectors.useComments();
+  const loading = model.selectors.useGetArticleLoading();
 
   return loading ? (
     <Spinner />
@@ -23,9 +22,7 @@ const ArticlePage = () => {
         <div className="article-actions" />
         <Row>
           <div className="col-xs-12 col-md-8 offset-md-2">
-            <LogoutMessage />
-            <AddCommentForm slug={slug} />
-            <CommentsList />
+            <Comments comments={comments} slug={slug} />
           </div>
         </Row>
       </Page>

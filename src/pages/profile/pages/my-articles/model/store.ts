@@ -17,6 +17,6 @@ export const {
 
 export const selectors = {
   useIsEmptyFeed: () => useStore($isEmptyFeed),
-  useGetFeedPending: () => useStore(getFeedFx.pending),
+  useGetFeedLoading: () => useStore(getFeedFx.pending),
   useTotalPages: () => useStore($totalPages),
 };
