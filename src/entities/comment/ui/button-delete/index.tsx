@@ -1,7 +1,7 @@
 import * as visitor from '@/entities/visitor';
 import { Button, ButtonProps } from '@/shared/ui';
 import { types } from '../../model';
-import './index.css';
+import styles from './index.module.css';
 
 type Props = Readonly<{
   onClick: ButtonProps['onClick'];
@@ -15,7 +15,7 @@ export const ButtonDelete = ({ author, onClick }: Props) => {
 
   if (isAuth && isSelf) {
     return (
-      <Button className="mod-options btn-delete" onClick={onClick}>
+      <Button className={`${styles.delete} mod-options`} onClick={onClick}>
         <i className="ion-trash-a" />
       </Button>
     );

@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { DIST, SRC } = require('./constants');
 
 module.exports = {
@@ -26,7 +27,11 @@ module.exports = {
       },
     },
     minimize: true,
-    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+    minimizer: [
+      new TerserPlugin(),
+      new CssMinimizerPlugin(),
+      new CleanWebpackPlugin(),
+    ],
   },
   plugins: [
     new CopyPlugin({
@@ -51,7 +56,35 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            },
+          },
+          'postcss-loader',
+        ],
+        exclude: /\.module\.css$/,
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[local]-[hash:base64:10]',
+              },
+            },
+          },
+          'postcss-loader',
+        ],
+        include: /\.module\.css$/,
       },
     ],
   },

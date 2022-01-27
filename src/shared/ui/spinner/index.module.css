@@ -4,7 +4,7 @@
   }
 }
 
-.spinner-border {
+.spinner {
   top: 10rem;
   --size: 2.25rem;
   --delay: 0.75s;
@@ -20,7 +20,4 @@
   border-radius: 50%;
   -webkit-animation: spinner-border var(--delay) linear infinite;
   animation: spinner-border var(--delay) linear infinite;
-}
-
-.spinner-small {
 }
