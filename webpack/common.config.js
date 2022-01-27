@@ -4,9 +4,12 @@ const { SRC, FAVICON } = require('./constants');
 
 module.exports = {
   context: SRC,
-  entry: './index.tsx',
+  entry: ['react-hot-loader/patch', './index.tsx'],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    // alias: {
+    //   'react-dom': '@hot-loader/react-dom',
+    // },
   },
   plugins: [
     new HtmlWebpackPlugin({
