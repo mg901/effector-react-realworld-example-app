@@ -44,9 +44,9 @@ export const createArticleFx = createEffect<
   Record<string, unknown>
 >(api.createArticle);
 
-sample({
-  clock: guard(formSubmitted, { filter: $isEmptySlug }),
-  target: createArticleFx,
+forward({
+  from: guard(formSubmitted, { filter: $isEmptySlug }),
+  to: createArticleFx,
 });
 
 export const redirectToArticleIdFx = createEffect(
