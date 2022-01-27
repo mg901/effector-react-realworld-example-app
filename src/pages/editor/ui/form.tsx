@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-import { useForm as useReactHookForm, FormProvider } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useForm, FormProvider } from 'react-hook-form';
 import { useGate } from 'effector-react';
 import * as article from '@/entities/article';
 import { Form } from '@/shared/ui';
@@ -9,46 +8,8 @@ import { AddTagForm } from './add-tag-form';
 import { ButtonSubmit } from './button-submit';
 
 export const EditorForm = () => {
-  const { methods, handleSubmit, register } = useForm();
-
-  return (
-    <>
-      <FormProvider {...methods}>
-        <Form id="editor" onSubmit={handleSubmit}>
-          <Form.Group>
-            <Form.Control
-              placeholder="Article Title"
-              size="lg"
-              {...register('title')}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control
-              placeholder="What's this article about?"
-              {...register('description')}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Control
-              as="textarea"
-              placeholder="Write your article (in markdown)"
-              rows={8}
-              {...register('body')}
-            />
-          </Form.Group>
-        </Form>
-        <AddTagForm />
-      </FormProvider>
-      <ButtonSubmit />
-    </>
-  );
-};
-
-function useForm() {
   useGate(model.Gate);
-  const { slug } = useParams<{ slug: string }>();
-
-  const methods = useReactHookForm<article.types.Article>({
+  const methods = useForm<article.types.Article>({
     defaultValues: {
       slug: '',
       title: '',
@@ -58,29 +19,39 @@ function useForm() {
     },
   });
 
-  const { handleSubmit, register, reset } = methods;
-
   useEffect(() => {
-    if (slug) {
-      model.getArticleFx(slug);
-    }
-
-    const unwatch = model.getArticleFx.doneData.watch((x) => {
-      reset(x);
+    return model.getArticleFx.doneData.watch((values) => {
+      methods.reset(values);
     });
+  }, [methods]);
 
-    return unwatch();
-  }, [slug, reset]);
-
-  return {
-    handleSubmit: handleSubmit((values) => {
-      if (slug) {
-        model.updateArticleFx({ ...values, slug });
-      } else {
-        model.createArticleFx(values);
-      }
-    }),
-    methods,
-    register,
-  };
-}
+  return (
+    <FormProvider {...methods}>
+      <Form id="editor" onSubmit={methods.handleSubmit(model.formSubmitted)}>
+        <Form.Group>
+          <Form.Control
+            placeholder="Article Title"
+            size="lg"
+            {...methods.register('title')}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            placeholder="What's this article about?"
+            {...methods.register('description')}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            as="textarea"
+            placeholder="Write your article (in markdown)"
+            rows={8}
+            {...methods.register('body')}
+          />
+        </Form.Group>
+      </Form>
+      <AddTagForm />
+      <ButtonSubmit />
+    </FormProvider>
+  );
+};

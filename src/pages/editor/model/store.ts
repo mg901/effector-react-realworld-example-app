@@ -1,11 +1,17 @@
-import { createEvent, createEffect, restore, forward } from 'effector';
+import {
+  createEvent,
+  createEffect,
+  restore,
+  forward,
+  guard,
+  sample,
+} from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as article from '@/entities/article';
-import { history } from '@/shared/router';
+import { history, createParamsStore, ROUTES } from '@/shared/router';
 import * as api from './api';
 
-export const formSubmitted = createEvent();
-
+export const formSubmitted = createEvent<article.types.Article>();
 export const tagDeleted = createEvent<string>();
 export const createArticleFx = createEffect<
   article.types.Article,
@@ -28,6 +34,33 @@ forward({
 });
 
 export const Gate = createGate();
+
+export const $slug = createParamsStore<{ slug: string }>({
+  path: ROUTES.editor.slug,
+}).map((params) => params.slug ?? '');
+
+const $hasSlug = $slug.map(Boolean);
+const $isEmptySlug = $slug.map((slug) => slug.length === 0);
+
+guard({
+  source: $slug,
+  filter: Boolean,
+  clock: Gate.open,
+  target: getArticleFx,
+});
+
+sample({
+  source: $slug,
+  clock: guard(formSubmitted, { filter: $hasSlug }),
+  fn: (slug, fields) => ({ ...fields, slug }),
+  target: updateArticleFx,
+});
+
+sample({
+  clock: guard(formSubmitted, { filter: $isEmptySlug }),
+  target: createArticleFx,
+});
+
 export const $error = restore(createArticleFx.failData, {
   errors: {},
 }).reset(Gate.close);

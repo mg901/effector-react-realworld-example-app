@@ -7,7 +7,11 @@ import {
 } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import * as visitor from '@/entities/visitor';
-import { createParams, createRouteMatch, ROUTES } from '@/shared/router';
+import {
+  createParamsStore,
+  createRouteMatchStore,
+  ROUTES,
+} from '@/shared/router';
 import * as api from './api';
 import * as types from './types';
 
@@ -19,11 +23,11 @@ export const unsubscribeFromUserFx = createEffect(api.unsubscribeToUser);
 
 export const Gate = createGate();
 
-const $username = createParams<{ username: string }>({
+const $username = createParamsStore<{ username: string }>({
   path: ROUTES.profile.root,
 }).map((params) => params.username);
 
-export const $pageUrl = createRouteMatch<{ url: string }>({
+export const $pageUrl = createRouteMatchStore<{ url: string }>({
   path: ROUTES.profile.root,
 }).map((x) => x?.url);
 
