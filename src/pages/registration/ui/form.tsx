@@ -5,11 +5,12 @@ import { ButtonSubmit } from './button-submit';
 export const RegistrationForm = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.currentTarget;
 
     model.formSubmitted({
-      username: event.currentTarget.username.value,
-      email: event.currentTarget.email.value,
-      password: event.currentTarget.password.value,
+      username: form.username.value,
+      email: form.email.value,
+      password: form.password.value,
     });
   };
 
@@ -34,7 +35,7 @@ export const RegistrationForm = () => {
       </Form.Group>
       <Form.Group>
         <Form.Control
-          autoComplete="current-password"
+          autoComplete="new-password"
           name="password"
           placeholder="Password"
           size="lg"
