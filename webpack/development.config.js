@@ -31,14 +31,13 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
-
           {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
             },
           },
-          'postcss-loader',
+          // 'postcss-loader',
         ],
         exclude: /\.module\.css$/,
       },
@@ -46,6 +45,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
+          'css-modules-typescript-loader',
           {
             loader: 'css-loader',
             options: {
@@ -55,7 +55,7 @@ module.exports = {
               },
             },
           },
-          'postcss-loader',
+          // 'postcss-loader',
         ],
         include: /\.module\.css$/,
       },
