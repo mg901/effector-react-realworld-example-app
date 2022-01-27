@@ -14,20 +14,25 @@ export const $editableFields = visitor.$visitor.map((x) => ({
   password: '',
 }));
 
-export const formSubmitted = createEvent<types.FormFieldsWithPassword>();
 export const changeUserDataFx = createEffect<
   types.FormFieldsWithPassword | types.FormFieldsWithoutPassword,
-  void,
+  visitor.types.Visitor,
   Record<string, unknown>
 >((payload) => {
-  return http.request({
-    url: 'user',
-    method: 'put',
-    data: {
-      user: payload,
-    },
-  });
+  return http
+    .request<{ user: visitor.types.Visitor }>({
+      url: 'user',
+      method: 'put',
+      data: {
+        user: payload,
+      },
+    })
+    .then((response) => response.user);
 });
+
+visitor.$visitor.on(changeUserDataFx.doneData, (_, payload) => payload);
+
+export const formSubmitted = createEvent<types.FormFieldsWithPassword>();
 
 split({
   source: formSubmitted,
@@ -43,12 +48,12 @@ split({
   },
 });
 
-visitor.logoutClicked.watch(() => {
-  history.push(ROUTES.root);
-});
-
 changeUserDataFx.done.watch(() => {
   window.location.reload();
+});
+
+visitor.logoutClicked.watch(() => {
+  history.push(ROUTES.root);
 });
 
 export const $error = restore(changeUserDataFx.failData, {
