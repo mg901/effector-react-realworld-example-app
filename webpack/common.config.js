@@ -1,11 +1,10 @@
-const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { SRC, FAVICON } = require('./constants');
 
 module.exports = {
   context: SRC,
-  entry: resolve(SRC, 'index.tsx'),
+  entry: './index.tsx',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
@@ -21,8 +20,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts(x)?$/,
         use: ['babel-loader'],
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
