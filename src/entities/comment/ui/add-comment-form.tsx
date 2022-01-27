@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useForm as useReactHookForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useGate } from 'effector-react';
 import * as visitor from '@/entities/visitor';
 import { Avatar } from '@/entities/visitor';
@@ -11,15 +11,34 @@ type Props = Readonly<{
   slug: string;
 }>;
 
+type FormFields = {
+  body: string;
+};
+
+const defaultValues = {
+  body: '',
+};
+
 export function AddCommentForm({ slug }: Props) {
   useGate(model.Gate, { slug });
-  const { handleSubmit, register } = useForm();
   const isAuth = visitor.selectors.useIsAuthorized();
+  const { handleSubmit, register, reset } = useForm<FormFields>({
+    defaultValues,
+  });
+
+  useEffect(() =>
+    model.addCommentFx.done.watch(() => {
+      reset(defaultValues);
+    }),
+  );
 
   return isAuth ? (
     <>
       <Error />
-      <Form className="card comment-form" onSubmit={handleSubmit}>
+      <Form
+        className="card comment-form"
+        onSubmit={handleSubmit(model.formSubmitted)}
+      >
         <div className="card-block">
           <Form.Control
             as="textarea"
@@ -37,31 +56,4 @@ export function AddCommentForm({ slug }: Props) {
       </Form>
     </>
   ) : null;
-}
-
-type FormFields = {
-  body: string;
-};
-
-const defaultValues = {
-  body: '',
-};
-
-function useForm() {
-  const { handleSubmit, register, reset } = useReactHookForm<FormFields>({
-    defaultValues,
-  });
-
-  useEffect(() =>
-    model.addCommentFx.done.watch(() => {
-      reset(defaultValues);
-    }),
-  );
-
-  return {
-    register,
-    handleSubmit: handleSubmit(({ body }: FormFields) => {
-      model.commentAdded(body);
-    }),
-  };
 }

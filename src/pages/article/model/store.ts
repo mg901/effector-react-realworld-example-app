@@ -90,7 +90,8 @@ deleteArticleFx.done.watch(() => {
 
 export const selectors = {
   useSlug: () => useStore($slug),
-  useGetArticlePending: () => useStore(getArticleFx.pending),
+  useComments: () => useStore($comments),
+  useGetArticleLoading: () => useStore(getArticleFx.pending),
   useCanModify: () => useStore($canModify),
   useArticle: () => useStore($article),
   useHasError: () => useStore($hasError),

@@ -37,7 +37,7 @@ export const $errors = $error.map((error) =>
 );
 
 export const selectors = {
-  useSignUpPending: () => useStore(signUpFx.pending),
+  useSignUpLoading: () => useStore(signUpFx.pending),
   useHasError: () => useStore($hasError),
   useErrors: () => useStore($errors),
 };

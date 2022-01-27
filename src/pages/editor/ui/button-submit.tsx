@@ -3,7 +3,7 @@ import { Button } from '@/shared/ui';
 import { selectors } from '../model';
 
 export const ButtonSubmit = memo(() => {
-  const disabled = selectors.useCreateArticlePending();
+  const disabled = selectors.useCreateArticleLoading();
 
   return (
     <Button
