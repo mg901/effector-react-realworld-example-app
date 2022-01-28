@@ -8,8 +8,8 @@ export type FormComponentProps = Readonly<
 >;
 
 const FormComponent = forwardRef<HTMLFormElement, FormComponentProps>(
-  ({ children, ...props }, ref) => (
-    <form ref={ref} {...props} className={styles.form}>
+  ({ children, className = '', ...props }, ref) => (
+    <form ref={ref} {...props} className={`${styles.form} ${className}`}>
       <fieldset>{children}</fieldset>
     </form>
   ),
