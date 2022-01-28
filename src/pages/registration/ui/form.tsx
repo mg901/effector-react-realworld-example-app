@@ -1,8 +1,15 @@
+import { useRef, useEffect } from 'react';
 import { Form } from '@/shared/ui';
 import * as model from '../model';
 import { ButtonSubmit } from './button-submit';
 
 export const RegistrationForm = () => {
+  const inputElem = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputElem?.current?.focus();
+  });
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -20,6 +27,7 @@ export const RegistrationForm = () => {
         <Form.Control
           name="username"
           placeholder="Username"
+          ref={inputElem}
           size="lg"
           type="text"
         />
