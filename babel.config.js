@@ -15,6 +15,7 @@ module.exports = {
       {
         root: ['./src'],
         alias: {
+          'react-dom': '@hot-loader/react-dom',
           '@': './src',
         },
         extensions: ['.js', '.ts', '.jsx', '.tsx'],
@@ -24,6 +25,7 @@ module.exports = {
   env: {
     test: {
       plugins: [
+        'react-hot-loader/babel',
         'effector/babel-plugin',
         [
           '@babel/transform-runtime',

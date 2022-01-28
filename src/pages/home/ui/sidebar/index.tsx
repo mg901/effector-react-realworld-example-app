@@ -2,13 +2,13 @@ import { useGate } from 'effector-react';
 import { TagsWrapper } from '@/shared/ui';
 import * as home from '../../model';
 import { TagList } from '../tag-list';
-import './index.css';
+import styles from './index.module.css';
 
 export const Sidebar = () => {
   useGate(home.Gate);
 
   return (
-    <aside className="sidebar">
+    <aside className={`${styles.sidebar} sidebar`}>
       <p>Popular Tags</p>
       <TagsWrapper>
         <TagList />

@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import './index.css';
+import styles from './index.module.css';
 
 type Props = Readonly<{
   show?: boolean;
@@ -8,7 +8,7 @@ type Props = Readonly<{
 export const Spinner = forwardRef<HTMLDivElement, Props>(
   ({ show = true }, ref) => {
     return show ? (
-      <div className="spinner-border text-success" ref={ref}>
+      <div className={`${styles.spinner} text-success`} ref={ref}>
         <span className="sr-only" />
       </div>
     ) : null;
