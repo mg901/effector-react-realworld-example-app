@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import { Form } from '@/shared/ui';
 import * as model from '../model';
 import { ButtonSubmit } from './button-submit';
@@ -6,9 +6,9 @@ import { ButtonSubmit } from './button-submit';
 export const RegistrationForm = () => {
   const inputElem = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     inputElem?.current?.focus();
-  });
+  }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
