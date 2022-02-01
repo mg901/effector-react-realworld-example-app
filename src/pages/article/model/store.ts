@@ -34,9 +34,9 @@ export const $comments = restore(comment.getCommentsFx.doneData, [])
   .on(comment.addCommentFx.doneData, (state, payload) =>
     [payload].concat(state),
   )
-  .on(comment.deleteCommentFx.done, (state, { params }) => {
-    return state.filter(({ id }) => id !== params.id);
-  });
+  .on(comment.deleteCommentFx.done, (state, { params }) =>
+    state.filter(({ id }) => id !== params.id),
+  );
 
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
@@ -73,7 +73,9 @@ export const $article = restore(getArticleFx.doneData, {
   favoritesCount: 0,
 });
 
-export const $canModify = combine(
+const $articleAuthor = $article.map((article) => article.author);
+
+export const $canModifyArticle = combine(
   $article,
   visitor.$visitor,
   ({ author }, user) => author.username === user.username,
@@ -92,7 +94,8 @@ export const selectors = {
   useSlug: () => useStore($slug),
   useComments: () => useStore($comments),
   useGetArticleLoading: () => useStore(getArticleFx.pending),
-  useCanModify: () => useStore($canModify),
+  useArticleAuthor: () => useStore($articleAuthor),
+  useCanModifyArticle: () => useStore($canModifyArticle),
   useArticle: () => useStore($article),
   useHasError: () => useStore($hasError),
   useErrors: () => useStore($errors),
