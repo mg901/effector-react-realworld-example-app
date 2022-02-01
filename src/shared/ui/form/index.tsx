@@ -1,15 +1,15 @@
 import { forwardRef } from 'react';
 import { FormControl } from '../form-control';
 import { FormGroup } from '../form-group';
-import './index.css';
+import styles from './index.module.css';
 
 export type FormComponentProps = Readonly<
   React.FormHTMLAttributes<HTMLFormElement>
 >;
 
 const FormComponent = forwardRef<HTMLFormElement, FormComponentProps>(
-  ({ className = '', children, ...props }, ref) => (
-    <form ref={ref} {...props} className={`my-form ${className}`}>
+  ({ children, className = '', ...props }, ref) => (
+    <form ref={ref} {...props} className={`${styles.form} ${className}`}>
       <fieldset>{children}</fieldset>
     </form>
   ),

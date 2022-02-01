@@ -22,9 +22,13 @@ const defaultValues = {
 export function AddCommentForm({ slug }: Props) {
   useGate(model.Gate, { slug });
   const isAuth = visitor.selectors.useIsAuthorized();
-  const { handleSubmit, register, reset } = useForm<FormFields>({
+  const { setFocus, handleSubmit, register, reset } = useForm<FormFields>({
     defaultValues,
   });
+
+  useEffect(() => {
+    setFocus('body');
+  }, [setFocus]);
 
   useEffect(() =>
     model.addCommentFx.done.watch(() => {

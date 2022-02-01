@@ -16,7 +16,6 @@ export type ControlProps<
   T extends React.ElementType = typeof FormControlDefaultElement,
 > = PolymorphicPropsWithRef<FormControlOwnProps, T>;
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const FormControl: PolymorphicForwardRefExoticComponent<
   FormControlOwnProps,
   typeof FormControlDefaultElement

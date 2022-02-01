@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState, useCallback } from 'react';
 import type { FallbackProps } from 'react-error-boundary';
 import { ErrorBoundary } from 'react-error-boundary';
+import { hot } from 'react-hot-loader/root';
 import { Router, Route, Switch } from 'react-router-dom';
 import { useGate } from 'effector-react';
 import { history, ROUTES, PrivateRoute } from '@/shared/router';
@@ -10,7 +11,7 @@ import { Layout } from '../layout';
 
 import './app.css';
 
-export const App = () => {
+export const App = hot(() => {
   useGate(model.Gate);
 
   return (
@@ -20,7 +21,7 @@ export const App = () => {
       </Layout>
     </Router>
   );
-};
+});
 
 const LoginPage = lazy(() => import('@/pages/login'));
 const RegistrationPage = lazy(() => import('@/pages/registration'));

@@ -20,6 +20,10 @@ export const EditorForm = () => {
   });
 
   useEffect(() => {
+    methods.setFocus('title');
+  }, [methods]);
+
+  useEffect(() => {
     return model.getArticleFx.doneData.watch((values) => {
       methods.reset(values);
     });

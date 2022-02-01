@@ -1,13 +1,15 @@
-const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const { SRC, FAVICON } = require('./constants');
 
 module.exports = {
   context: SRC,
-  entry: resolve(SRC, 'index.tsx'),
+  entry: ['react-hot-loader/patch', './index.tsx'],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    // alias: {
+    //   'react-dom': '@hot-loader/react-dom',
+    // },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -21,8 +23,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts(x)?$/,
         use: ['babel-loader'],
+        exclude: /node_modules/,
       },
       {
         test: /\.(png|svg|jpg|gif)$/,

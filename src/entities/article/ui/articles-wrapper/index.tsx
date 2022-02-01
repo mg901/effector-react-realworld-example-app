@@ -1,9 +1,9 @@
-import './index.css';
+import styles from './index.module.css';
 
 type Props = Readonly<{
   children: React.ReactNode;
 }>;
 
 export const ArticlesWrapper = ({ children }: Props) => {
-  return <ul className="articles-wrapper list-unstyled">{children}</ul>;
+  return <ul className={`${styles.wrapper} list-unstyled`}>{children}</ul>;
 };
