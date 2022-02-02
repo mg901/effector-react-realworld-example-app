@@ -4507,10 +4507,10 @@ eslint-module-utils@^2.7.2:
     debug "^3.2.7"
     find-up "^2.1.0"
 
-eslint-plugin-effector@^0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-effector/-/eslint-plugin-effector-0.5.2.tgz#54225f3631dbb5f6913956d53621d91bbdce3f2c"
-  integrity sha512-4LntOzMIMPlYMYFHGjkwxKArPpiIQee7z2HKMl6omyn6F85sfTCcW/Em9Mgb330wKqA25PSxwx9YuGSMwN/97A==
+eslint-plugin-effector@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-effector/-/eslint-plugin-effector-0.6.0.tgz#3fc11328f98d8d44c1a15de8a77cd378b504af42"
+  integrity sha512-kzw3kQNwQhVnEZTohtbvWEqptCV/pmdp/8tCcziqzEBRclZzHR7st0eiywhkb58Z8Vsb1IXM5aLz7LBdi/fbOA==
   dependencies:
     prettier "^2.3.2"
 
