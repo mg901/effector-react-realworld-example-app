@@ -7889,10 +7889,10 @@ path-type@^4.0.0:
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-4.0.0.tgz#84ed01c0a7ba380afe09d90a8c180dcd9d03043b"
   integrity sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==
 
-patronum@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/patronum/-/patronum-1.1.0.tgz#6c56f334bfff46042a597cf68deb1540e8134949"
-  integrity sha512-YSbGQUbLxTO8m4FeXEwg/Xq0h3ka9S3+WvTANHGlNqo+2gPpglex32xh2dzC7ZP0likG/gHQNEOZokNV1nS7HA==
+patronum@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/patronum/-/patronum-1.7.0.tgz#dc36853e6dcc8fc87021fa821064a97663d741fa"
+  integrity sha512-7Rl8b47pVxOHr09SPoFgIF5U76PD/B8lXO4QBNJOcxkcF4vODtjIAhCUwE3nlTrVdGAwpdsSgDDL8hW4fSE3qg==
 
 pend@~1.2.0:
   version "1.2.0"
