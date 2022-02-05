@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import * as visitor from '@/entities/visitor';
 import { ROUTES } from '@/shared/router';
 
-export const MessageForUnauthorized = () => {
-  const isAuth = visitor.selectors.useIsAuthorized();
+type Props = Readonly<{
+  isAuth: boolean;
+}>;
 
+export const MessageForUnauthorized = ({ isAuth }: Props) => {
   return isAuth ? null : (
     <p>
       <Link to={ROUTES.login}>Sign in</Link>

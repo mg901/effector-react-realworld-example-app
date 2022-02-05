@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useGate } from 'effector-react';
-import * as visitor from '@/entities/visitor';
 import { Avatar } from '@/entities/visitor';
 import { Form, Button } from '@/shared/ui';
 import * as model from '../model';
@@ -21,12 +20,12 @@ const defaultValues = {
 
 export function AddCommentForm({ slug }: Props) {
   useGate(model.Gate, { slug });
-  const isAuth = visitor.selectors.useIsAuthorized();
+
   const { setFocus, handleSubmit, register, reset } = useForm<FormFields>({
     defaultValues,
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setFocus('body');
   }, [setFocus]);
 
@@ -36,7 +35,7 @@ export function AddCommentForm({ slug }: Props) {
     }),
   );
 
-  return isAuth ? (
+  return (
     <>
       <Error />
       <Form
@@ -59,5 +58,5 @@ export function AddCommentForm({ slug }: Props) {
         </div>
       </Form>
     </>
-  ) : null;
+  );
 }

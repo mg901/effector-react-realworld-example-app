@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useGate } from 'effector-react';
 import * as article from '@/entities/article';
@@ -19,7 +19,7 @@ export const EditorForm = () => {
     },
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     methods.setFocus('title');
   }, [methods]);
 
