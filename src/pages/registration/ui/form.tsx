@@ -7,7 +7,7 @@ export const RegistrationForm = () => {
   const inputElem = useRef<HTMLInputElement>(null);
 
   useLayoutEffect(() => {
-    inputElem?.current?.focus();
+    inputElem.current?.focus();
   }, []);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
