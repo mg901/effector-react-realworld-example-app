@@ -37,9 +37,9 @@ const NoMatchPage = lazy(() => import('@/pages/no-match'));
 
 type RouteType = Readonly<{
   path: string | string[];
-  exact?: boolean;
   isPrivate: boolean;
   component: React.ComponentType;
+  exact?: boolean;
 }>;
 
 export const routes: RouteType[] = [
@@ -65,7 +65,7 @@ export const routes: RouteType[] = [
     component: ProfilePage,
   },
   {
-    path: ROUTES.article,
+    path: ROUTES.currentArticle,
     isPrivate: false,
     component: ArticlePage,
   },
@@ -89,7 +89,7 @@ export const routes: RouteType[] = [
 
 function Routes() {
   const [state, setState] = useState(false);
-  const forceUpdate = useCallback(() => setState((x) => !x), []);
+  const forceUpdate = useCallback(() => setState((prev) => !prev), []);
 
   return (
     <ErrorBoundary

@@ -8,7 +8,7 @@ import * as session from '@/entities/session';
 export const Gate = createGate();
 
 export const $slug = createParamsStore<{ slug: string }>({
-  path: ROUTES.article,
+  path: ROUTES.currentArticle,
 }).map((params) => params?.slug ?? '');
 
 guard({
