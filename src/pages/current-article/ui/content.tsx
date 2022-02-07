@@ -1,10 +1,10 @@
 import Markdown from 'markdown-to-jsx';
 import { Row } from '@/shared/ui';
-import { selectors } from '../model';
+import * as currentArticle from '../model';
 import { Tags } from './tags';
 
 export const Content = () => {
-  const { body } = selectors.useArticle();
+  const { body } = currentArticle.selectors.useCurrentArticle();
 
   return (
     <Row className="article-content">

@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import { Button } from '@/shared/ui';
-import * as model from '../model';
+import * as article from '@/entities/foo';
+import * as currentArticle from '../model';
 
 export const EditMode = () => {
-  const canModify = model.selectors.useCanModifyArticle();
-  const { slug } = model.selectors.useArticle();
+  const canModify = currentArticle.selectors.useCanModifyArticle();
+  const { slug } = currentArticle.selectors.useCurrentArticle();
 
   const handleDeleteArticle = () => {
-    model.articleDeleted(slug);
+    article.deleteFx(slug);
   };
 
   return canModify ? (

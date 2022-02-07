@@ -1,7 +1,7 @@
 import {
   createEvent,
   createEffect,
-  restore,
+  createStore,
   forward,
   guard,
   sample,
@@ -11,8 +11,6 @@ import { useStore, createGate } from 'effector-react';
 import { history, createParamsStore, ROUTES } from '@/shared/router';
 import * as article from '@/entities/foo';
 
-import * as api from './api';
-
 export const Gate = createGate();
 export const $slug = createParamsStore<{ slug: string }>({
   path: ROUTES.editor.slug,
@@ -21,50 +19,42 @@ export const $slug = createParamsStore<{ slug: string }>({
 const $hasSlug = $slug.map(Boolean);
 const $isEmptySlug = $slug.map((slug) => slug.length === 0);
 
-export const getArticleFx = createEffect(api.getArticle);
-
 guard({
   source: $slug,
   filter: Boolean,
   clock: Gate.open,
-  target: getArticleFx,
+  target: article.getFx,
 });
 
 export const submitForm = createEvent<article.types.Article>();
-export const updateArticleFx = createEffect(api.updateArticle);
 
 sample({
   source: $slug,
   clock: guard(submitForm, { filter: $hasSlug }),
   fn: (slug, fields) => ({ ...fields, slug }),
-  target: updateArticleFx,
+  target: article.updateFx,
 });
-
-export const createArticleFx = createEffect<
-  article.types.Article,
-  article.types.Article,
-  Record<string, unknown>
->(api.createArticle);
 
 forward({
   from: guard(submitForm, { filter: $isEmptySlug }),
-  to: createArticleFx,
+  to: article.createFx,
 });
 
-export const redirectToArticleIdFx = createEffect(
-  ({ slug }: article.types.Article) => {
-    history.replace(`/article/${slug}`);
-  },
-);
-
-forward({
-  from: [updateArticleFx.doneData, createArticleFx.doneData],
-  to: redirectToArticleIdFx,
+export const redirectToArticleIdFx = createEffect((slug: string) => {
+  history.replace(`/article/${slug}`);
 });
 
-export const $error = restore(createArticleFx.failData, {
+sample({
+  clock: [article.createFx.doneData, article.updateFx.doneData],
+  fn: (data) => data.article.slug,
+  target: redirectToArticleIdFx,
+});
+
+export const $error = createStore<Record<string, unknown>>({
   errors: {},
-}).reset(Gate.close);
+})
+  .on(article.createFx.failData, (_, payload) => payload)
+  .reset(Gate.close);
 
 export const $hasError = $error.map(
   (error) => Object.keys(Object(error)).length > 0,
@@ -75,7 +65,6 @@ export const $errors = $error.map((error) =>
 );
 
 export const selectors = {
-  useCreateArticleLoading: () => useStore(createArticleFx.pending),
   useHasError: () => useStore($hasError),
   useErrors: () => useStore($errors),
 };

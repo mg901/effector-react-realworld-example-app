@@ -32,7 +32,7 @@ const HomePage = lazy(() => import('@/pages/home'));
 const EditorPage = lazy(() => import('@/pages/editor'));
 const SettingsPage = lazy(() => import('@/pages/settings'));
 const ProfilePage = lazy(() => import('@/pages/profile'));
-const ArticlePage = lazy(() => import('@/pages/article'));
+const ArticlePage = lazy(() => import('@/pages/current-article'));
 const NoMatchPage = lazy(() => import('@/pages/no-match'));
 
 type RouteType = Readonly<{

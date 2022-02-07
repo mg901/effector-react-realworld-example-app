@@ -1,21 +1,9 @@
-import {
-  createEvent,
-  createEffect,
-  createStore,
-  restore,
-  combine,
-  forward,
-  guard,
-} from 'effector';
+import { createStore, combine, guard } from 'effector';
 import { useStore, createGate } from 'effector-react';
 import { history, createParamsStore, ROUTES } from '@/shared/router';
 import * as comment from '@/entities/comment';
+import * as article from '@/entities/foo';
 import * as session from '@/entities/session';
-import * as api from './api';
-
-export const articleDeleted = createEvent<string>();
-export const getArticleFx = createEffect(api.getArticle);
-export const deleteArticleFx = createEffect(api.deleteArticle);
 
 export const Gate = createGate();
 
@@ -27,10 +15,11 @@ guard({
   source: $slug,
   filter: Boolean,
   clock: Gate.open,
-  target: [getArticleFx, comment.getCommentsFx],
+  target: [article.getFx, comment.getCommentsFx],
 });
 
-export const $comments = restore(comment.getCommentsFx.doneData, [])
+export const $comments = createStore<comment.types.CommentType[]>([])
+  .on(comment.getCommentsFx.doneData, (_, payload) => payload)
   .on(comment.addCommentFx.doneData, (state, payload) =>
     [payload].concat(state),
   )
@@ -55,7 +44,7 @@ export const $errors = $error.map((error) =>
   Object.entries(Object(error?.errors)),
 );
 
-export const $article = restore(getArticleFx.doneData, {
+export const $currentArticle = createStore<article.types.Article>({
   title: '',
   slug: '',
   body: '',
@@ -71,32 +60,26 @@ export const $article = restore(getArticleFx.doneData, {
   },
   favorited: false,
   favoritesCount: 0,
-});
+}).on(article.getFx.doneData, (_, payload) => payload);
 
-const $articleAuthor = $article.map((article) => article.author);
+const $author = $currentArticle.map((x) => x.author);
 
 export const $canModifyArticle = combine(
-  $article,
+  $currentArticle,
   session.$visitor,
   ({ author }, user) => author.username === user.username,
 );
 
-forward({
-  from: articleDeleted,
-  to: deleteArticleFx,
-});
-
-deleteArticleFx.done.watch(() => {
+article.deleteFx.done.watch(() => {
   history.push(ROUTES.root);
 });
 
 export const selectors = {
   useSlug: () => useStore($slug),
   useComments: () => useStore($comments),
-  useGetArticleLoading: () => useStore(getArticleFx.pending),
-  useArticleAuthor: () => useStore($articleAuthor),
+  useAuthor: () => useStore($author),
   useCanModifyArticle: () => useStore($canModifyArticle),
-  useArticle: () => useStore($article),
+  useCurrentArticle: () => useStore($currentArticle),
   useHasError: () => useStore($hasError),
   useErrors: () => useStore($errors),
 };

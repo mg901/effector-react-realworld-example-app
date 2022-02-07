@@ -1,6 +1,7 @@
 import { useGate } from 'effector-react';
 import { Row, Page, Spinner } from '@/shared/ui';
 import { Comments } from '@/entities/comment';
+import * as article from '@/entities/foo';
 import * as model from './model';
 import { Content } from './ui/content';
 import { Header } from './ui/header';
@@ -9,7 +10,7 @@ const ArticlePage = () => {
   useGate(model.Gate);
   const slug = model.selectors.useSlug();
   const comments = model.selectors.useComments();
-  const loading = model.selectors.useGetArticleLoading();
+  const loading = article.selectors.useGetArticleLoading();
 
   return loading ? (
     <Spinner />

@@ -1,5 +1,6 @@
 import { fork, allSettled } from 'effector';
-import { createArticleFx, $error } from './store';
+import * as article from '@/entities/foo';
+import { $error } from './store';
 
 describe('pages/editor/store', () => {
   it('should return an error if you submit a form with empty fields', async () => {
@@ -9,10 +10,10 @@ describe('pages/editor/store', () => {
       description: ["can't be blank", 'is too short (minimum is 1 character)'],
     };
 
-    createArticleFx.use(() => Promise.reject(expected));
+    article.createFx.use(() => Promise.reject(expected));
 
     const scope = fork();
-    await allSettled(createArticleFx, { scope });
+    await allSettled(article.createFx, { scope });
     expect(scope.getState($error)).toMatchObject(expected);
   });
 });

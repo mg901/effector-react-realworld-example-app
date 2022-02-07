@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useGate } from 'effector-react';
 import { Form } from '@/shared/ui';
-import * as article from '@/entities/article';
+import * as article from '@/entities/foo';
 import * as model from '../model';
 import { AddTagForm } from './add-tag-form';
 import { ButtonSubmit } from './button-submit';
@@ -24,8 +24,8 @@ export const EditorForm = () => {
   }, [methods]);
 
   useEffect(() => {
-    return model.getArticleFx.doneData.watch((values) => {
-      methods.reset(values);
+    return article.getFx.doneData.watch((data) => {
+      methods.reset(data);
     });
   }, [methods]);
 

@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import { Button } from '@/shared/ui';
-import { selectors } from '../model';
+import * as article from '@/entities/foo';
 
 export const ButtonSubmit = memo(() => {
-  const disabled = selectors.useCreateArticleLoading();
+  const disabled = article.selectors.useCreateArticleLoading();
 
   return (
     <Button

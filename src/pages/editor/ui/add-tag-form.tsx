@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { uniq } from '@/shared/library/uniq';
 import { Form, List } from '@/shared/ui';
-import * as article from '@/entities/article';
+import * as article from '@/entities/foo';
 import { Tag } from './tag';
 
 export const AddTagForm = () => {

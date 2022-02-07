@@ -1,5 +1,5 @@
 import * as http from '@/shared/http';
-import * as article from '@/entities/article';
+import * as article from '@/entities/foo';
 
 export const getTags = () => {
   return http

@@ -1,8 +1,8 @@
 import { TagsWrapper, Tag } from '@/shared/ui';
-import { selectors } from '../model';
+import * as currentArticle from '../model';
 
 export const Tags = () => {
-  const { tagList } = selectors.useArticle();
+  const { tagList } = currentArticle.selectors.useCurrentArticle();
 
   return (
     <TagsWrapper>

@@ -1,16 +1,19 @@
 import { Container, Banner } from '@/shared/ui';
 import * as article from '@/entities/article';
-import { selectors } from '../model';
+import * as currentArticle from '../model';
 import { EditMode } from './edit-mode';
 
 export const Header = () => {
-  const { title, author, createdAt } = selectors.useArticle();
+  const current = currentArticle.selectors.useCurrentArticle();
 
   return (
     <Banner>
       <Container>
-        <h1>{title}</h1>
-        <article.ArticleMeta author={author} createdAt={createdAt}>
+        <h1>{current.title}</h1>
+        <article.ArticleMeta
+          author={current.author}
+          createdAt={current.createdAt}
+        >
           <EditMode />
         </article.ArticleMeta>
       </Container>
