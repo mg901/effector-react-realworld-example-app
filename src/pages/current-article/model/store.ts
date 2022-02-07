@@ -65,7 +65,7 @@ export const $canModifyArticle = combine(
   ({ author }, user) => author.username === user.username,
 );
 
-article.deleteFx.done.watch(() => {
+article.removeFx.done.watch(() => {
   history.push(ROUTES.root);
 });
 

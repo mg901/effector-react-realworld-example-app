@@ -11,11 +11,10 @@ export const createFx = createEffect<
 
 export const getFx = createEffect(api.get);
 export const updateFx = createEffect(api.update);
-export const deleteFx = createEffect(api.remove);
+export const removeFx = createEffect(api.remove);
 
 export const selectors = {
   useCreateArticleLoading: () => useStore(getFx.pending),
   useGetArticleLoading: () => useStore(getFx.pending),
   useUpdateArticleLoading: () => useStore(updateFx.pending),
-  useDeleteArticleLoading: () => useStore(deleteFx.pending),
 };

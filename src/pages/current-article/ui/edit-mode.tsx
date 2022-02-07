@@ -8,7 +8,7 @@ export const EditMode = () => {
   const { slug } = currentArticle.selectors.useCurrentArticle();
 
   const handleDeleteArticle = () => {
-    article.deleteFx(slug);
+    article.removeFx(slug);
   };
 
   return canModify ? (

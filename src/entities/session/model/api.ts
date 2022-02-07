@@ -1,5 +1,4 @@
 import * as http from '@/shared/http';
-import { omit } from '@/shared/library';
 import * as types from './types';
 
 export const signIn = ({ email, password }: types.SignInArgs) =>
@@ -31,7 +30,7 @@ export const changeVisitor = (fields: any) => {
     url: 'user',
     method: 'put',
     data: {
-      user: !fields.password ? omit(fields, ['password']) : fields,
+      user: !fields.password ? { ...fields, password: undefined } : fields,
     },
   });
 };
