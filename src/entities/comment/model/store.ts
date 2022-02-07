@@ -6,40 +6,40 @@ import * as types from './types';
 export const Gate = createGate<{ slug: string }>();
 const $slug = Gate.state.map((props) => props.slug);
 
-export const getCommentsFx = createEffect(api.getComments);
-
-export const submitForm = createEvent<{ body: string }>();
-export const addCommentFx = createEffect<
+export const getCommentsFx = createEffect(api.getCommentList);
+export const addFx = createEffect<
   types.AddCommentArgs,
   types.CommentType,
   Record<string, unknown>
->(api.addComment);
+>(api.add);
+
+export const submitForm = createEvent<{ body: string }>();
 
 sample({
   source: $slug,
   clock: submitForm,
   fn: (slug, fields) => ({ slug, ...fields }),
-  target: addCommentFx,
+  target: addFx,
 });
 
-export const commentDeleted = createEvent<string>();
-export const deleteCommentFx = createEffect<
-  types.DeleteCommentArgs,
+export const removeComment = createEvent<string>();
+export const removeFx = createEffect<
+  types.RemoveCommentArgs,
   void,
   Record<string, unknown>
->(api.deleteComment);
+>(api.remove);
 
 sample({
   source: $slug,
-  clock: commentDeleted,
+  clock: removeComment,
   fn: (slug, id) => ({ slug, id }),
-  target: deleteCommentFx,
+  target: removeFx,
 });
 
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
 })
-  .on([addCommentFx.failData, deleteCommentFx.failData], (_, error) => error)
+  .on([addFx.failData, removeFx.failData], (_, error) => error)
   .reset(Gate.close);
 
 export const $hasError = $error.map(
@@ -51,7 +51,7 @@ export const $errors = $error.map((error) =>
 );
 
 export const selectors = {
-  useAddCommentFxLoading: () => useStore(addCommentFx.pending),
+  useAddCommentFxLoading: () => useStore(addFx.pending),
   useHasError: () => useStore($hasError),
   useErrors: () => useStore($errors),
 };

@@ -16,7 +16,7 @@ export const CommentFooter = ({
   const date = useMemo(() => new Date(createdAt).toDateString(), [createdAt]);
 
   const handleDeleteComment = () => {
-    model.commentDeleted(id);
+    model.removeComment(id);
   };
 
   return (

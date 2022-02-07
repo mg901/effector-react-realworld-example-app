@@ -20,20 +20,15 @@ guard({
 
 export const $comments = createStore<comment.types.CommentType[]>([])
   .on(comment.getCommentsFx.doneData, (_, payload) => payload)
-  .on(comment.addCommentFx.doneData, (state, payload) =>
-    [payload].concat(state),
-  )
-  .on(comment.deleteCommentFx.done, (state, { params }) =>
+  .on(comment.addFx.doneData, (state, payload) => [payload].concat(state))
+  .on(comment.removeFx.done, (state, { params }) =>
     state.filter(({ id }) => id !== params.id),
   );
 
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
 })
-  .on(
-    [comment.addCommentFx.failData, comment.deleteCommentFx.failData],
-    (_, error) => error,
-  )
+  .on([comment.addFx.failData, comment.removeFx.failData], (_, error) => error)
   .reset(Gate.close);
 
 export const $hasError = $error.map(

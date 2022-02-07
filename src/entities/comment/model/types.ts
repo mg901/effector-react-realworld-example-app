@@ -13,7 +13,7 @@ export type AddCommentArgs = Readonly<{
   body: string;
 }>;
 
-export type DeleteCommentArgs = Readonly<{
+export type RemoveCommentArgs = Readonly<{
   slug: string;
   id: string;
 }>;

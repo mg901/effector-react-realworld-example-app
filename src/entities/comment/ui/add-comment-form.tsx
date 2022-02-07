@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useGate } from 'effector-react';
 import { Form, Button } from '@/shared/ui';
@@ -25,12 +25,12 @@ export function AddCommentForm({ slug }: Props) {
     defaultValues,
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setFocus('body');
   }, [setFocus]);
 
   useEffect(() =>
-    model.addCommentFx.done.watch(() => {
+    model.addFx.done.watch(() => {
       reset(defaultValues);
     }),
   );
