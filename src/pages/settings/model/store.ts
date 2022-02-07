@@ -19,7 +19,7 @@ forward({
   to: session.updateVisitorFx,
 });
 
-session.resetSession.watch(() => {
+session.reset.watch(() => {
   history.push(ROUTES.root);
 });
 

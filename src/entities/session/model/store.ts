@@ -11,8 +11,8 @@ import * as http from '@/shared/http';
 import * as api from './api';
 import * as types from './types';
 
-export const setSession = createEvent<types.Visitor>();
-export const resetSession = createEvent();
+export const set = createEvent<types.Visitor>();
+export const reset = createEvent();
 
 export const signInFx = createEffect<
   types.SignInArgs,
@@ -42,12 +42,12 @@ sample({
     updateVisitorFx.doneData,
   ],
   fn: (data) => data.user,
-  target: setSession,
+  target: set,
 });
 
 sample({
   clock: [signInFx.fail, signUpFx.fail, getVisitorFx.fail],
-  target: resetSession,
+  target: reset,
 });
 
 export const $visitor = createStore<types.Visitor>({
@@ -58,8 +58,8 @@ export const $visitor = createStore<types.Visitor>({
   id: null,
   token: null,
 })
-  .on(setSession, (_, payload) => payload)
-  .reset(resetSession);
+  .on(set, (_, payload) => payload)
+  .reset(reset);
 
 export const $username = $visitor.map((x) => x.username);
 export const $image = $visitor.map((x) => x.image);

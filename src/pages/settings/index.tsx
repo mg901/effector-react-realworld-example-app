@@ -4,7 +4,7 @@ import { SettingsForm, Error } from './ui';
 
 const SettingsPage = () => {
   const handleClick = () => {
-    session.resetSession();
+    session.reset();
   };
 
   return (
