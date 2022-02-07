@@ -1,12 +1,12 @@
-import { createEvent, createEffect, restore, split } from 'effector';
-import { useStore } from 'effector-react';
-import * as visitor from '@/entities/visitor';
-import * as http from '@/shared/http';
-import { omit } from '@/shared/library';
+import { createEvent, createStore, forward } from 'effector';
+import { useStore, createGate } from 'effector-react';
 import { history, ROUTES } from '@/shared/router';
-import * as types from './types';
+import * as session from '@/entities/session';
 
-export const $editableFields = visitor.$visitor.map((x) => ({
+export const Gate = createGate();
+export const submitForm = createEvent<session.types.UpdateVisitorFxArgs>();
+
+export const $editableFields = session.$visitor.map((x) => ({
   image: x.image,
   username: x.username,
   bio: x.bio,
@@ -14,47 +14,20 @@ export const $editableFields = visitor.$visitor.map((x) => ({
   password: '',
 }));
 
-export const changeUserDataFx = createEffect<
-  types.FormFieldsWithPassword | types.FormFieldsWithoutPassword,
-  visitor.types.Visitor,
-  Record<string, unknown>
->((payload) => {
-  return http
-    .request<{ user: visitor.types.Visitor }>({
-      url: 'user',
-      method: 'put',
-      data: {
-        user: payload,
-      },
-    })
-    .then((response) => response.user);
+forward({
+  from: submitForm,
+  to: session.updateVisitorFx,
 });
 
-visitor.$visitor.on(changeUserDataFx.doneData, (_, payload) => payload);
-
-export const formSubmitted = createEvent<types.FormFieldsWithPassword>();
-
-split({
-  source: formSubmitted,
-  match: {
-    hasPassword: (fields) => fields.password.length > 0,
-    isEmptyPassword: (fields) => fields.password.length === 0,
-  },
-  cases: {
-    hasPassword: changeUserDataFx,
-    isEmptyPassword: changeUserDataFx.prepend<types.FormFieldsWithPassword>(
-      (fields) => omit(fields, ['password']),
-    ),
-  },
-});
-
-visitor.logoutClicked.watch(() => {
+session.resetSession.watch(() => {
   history.push(ROUTES.root);
 });
 
-export const $error = restore(changeUserDataFx.failData, {
+export const $error = createStore<Record<string, unknown>>({
   errors: {},
-});
+})
+  .on(session.updateVisitorFx.failData, (_, payload) => payload)
+  .reset(Gate.close);
 
 export const $hasError = $error.map(
   (error) => Object.keys(Object(error)).length > 0,
@@ -65,7 +38,7 @@ export const $errors = $error.map((error) =>
 );
 
 export const selectors = {
-  useChangeUserDataLoading: () => useStore(changeUserDataFx.pending),
+  useUpdateVisitorLoading: () => useStore(session.updateVisitorFx.pending),
   useEditableFields: () => useStore($editableFields),
   useHasError: (): boolean => useStore($hasError),
   useErrors: () => useStore($errors),

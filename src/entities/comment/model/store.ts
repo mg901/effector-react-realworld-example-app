@@ -8,7 +8,7 @@ const $slug = Gate.state.map((props) => props.slug);
 
 export const getCommentsFx = createEffect(api.getComments);
 
-export const formSubmitted = createEvent<{ body: string }>();
+export const submitForm = createEvent<{ body: string }>();
 export const addCommentFx = createEffect<
   types.AddCommentArgs,
   types.CommentType,
@@ -17,7 +17,7 @@ export const addCommentFx = createEffect<
 
 sample({
   source: $slug,
-  clock: formSubmitted,
+  clock: submitForm,
   fn: (slug, fields) => ({ slug, ...fields }),
   target: addCommentFx,
 });

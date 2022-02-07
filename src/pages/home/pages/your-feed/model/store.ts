@@ -1,7 +1,7 @@
 import { createEffect } from 'effector';
 import { useStore } from 'effector-react';
-import * as article from '@/entities/article';
 import { history } from '@/shared/router';
+import * as article from '@/entities/article';
 import * as api from './api';
 
 export const getFeedFx = createEffect(api.getFeed);

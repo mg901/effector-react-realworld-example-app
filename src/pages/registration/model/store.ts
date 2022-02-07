@@ -1,32 +1,18 @@
-import { createEvent, createEffect, restore, forward } from 'effector';
+import { createStore } from 'effector';
 import { useStore, createGate } from 'effector-react';
-import * as visitor from '@/entities/visitor';
 import { history, ROUTES } from '@/shared/router';
-import * as api from './api';
-import * as types from './types';
+import * as session from '@/entities/session';
 
-export const formSubmitted = createEvent<types.FormValues>();
-export const signUpFx = createEffect<
-  types.FormValues,
-  visitor.types.Visitor,
-  Record<string, unknown>
->(api.signUp);
-
-visitor.$visitor.on(signUpFx.doneData, (_, payload) => payload);
-
-forward({
-  from: formSubmitted,
-  to: signUpFx,
-});
-
-signUpFx.done.watch(() => {
+session.signUpFx.done.watch(() => {
   history.push(ROUTES.root);
 });
 
 export const Gate = createGate();
-export const $error = restore(signUpFx.failData, {
+export const $error = createStore<Record<string, unknown>>({
   errors: {},
-}).reset(Gate.close);
+})
+  .on(session.signUpFx.failData, (_, payload) => payload)
+  .reset(Gate.close);
 
 export const $hasError = $error.map(
   (error) => Object.keys(Object(error)).length > 0,
@@ -37,7 +23,7 @@ export const $errors = $error.map((error) =>
 );
 
 export const selectors = {
-  useSignUpLoading: () => useStore(signUpFx.pending),
+  useSignUpLoading: () => useStore(session.signUpFx.pending),
   useHasError: () => useStore($hasError),
   useErrors: () => useStore($errors),
 };

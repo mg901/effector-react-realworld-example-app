@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { useGate } from 'effector-react';
-import * as article from '@/entities/article';
 import { Form } from '@/shared/ui';
+import * as article from '@/entities/article';
 import * as model from '../model';
 import { AddTagForm } from './add-tag-form';
 import { ButtonSubmit } from './button-submit';
@@ -31,7 +31,7 @@ export const EditorForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <Form id="editor" onSubmit={methods.handleSubmit(model.formSubmitted)}>
+      <Form id="editor" onSubmit={methods.handleSubmit(model.submitForm)}>
         <Form.Group>
           <Form.Control
             placeholder="Article Title"

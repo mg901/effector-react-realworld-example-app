@@ -1,7 +1,7 @@
-import * as visitor from '@/entities/visitor';
+import * as session from '@/entities/session';
 
 export type FormFieldsWithoutPassword = Pick<
-  visitor.types.Visitor,
+  session.types.Visitor,
   'image' | 'username' | 'bio' | 'email'
 >;
 

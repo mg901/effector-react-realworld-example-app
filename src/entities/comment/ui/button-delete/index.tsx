@@ -1,5 +1,5 @@
-import * as visitor from '@/entities/visitor';
 import { Button, ButtonProps } from '@/shared/ui';
+import * as session from '@/entities/session';
 import { types } from '../../model';
 import styles from './index.module.css';
 
@@ -9,8 +9,8 @@ type Props = Readonly<{
 }>;
 
 export const ButtonDelete = ({ author, onClick }: Props) => {
-  const { username } = visitor.selectors.useVisitor();
-  const isAuth = visitor.selectors.useIsAuthorized();
+  const { username } = session.selectors.useVisitor();
+  const isAuth = session.selectors.useIsAuthorized();
   const isSelf = username === author.username;
 
   if (isAuth && isSelf) {

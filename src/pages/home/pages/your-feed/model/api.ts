@@ -1,6 +1,6 @@
-import * as article from '@/entities/article';
 import * as http from '@/shared/http';
 import { limit } from '@/shared/library/limit';
+import * as article from '@/entities/article';
 
 export type getFeedFxArgs = Readonly<{
   pageSize: number;

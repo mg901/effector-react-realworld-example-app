@@ -15,7 +15,7 @@ export const SettingsForm = () => {
   }, [reset, fields]);
 
   return (
-    <Form onSubmit={handleSubmit(model.formSubmitted)}>
+    <Form onSubmit={handleSubmit(model.submitForm)}>
       <Form.Group>
         <Form.Control
           placeholder="URL of profile picture"

@@ -1,11 +1,11 @@
 import { Link, Redirect } from 'react-router-dom';
-import * as visitor from '@/entities/visitor';
 import { ROUTES } from '@/shared/router';
 import { Page, Row } from '@/shared/ui';
+import * as session from '@/entities/session';
 import { RegistrationForm, Error } from './ui';
 
 const RegistrationPage = () => {
-  const isAuth = visitor.selectors.useIsAuthorized();
+  const isAuth = session.selectors.useIsAuthorized();
 
   return isAuth ? (
     <Redirect to={ROUTES.root} />

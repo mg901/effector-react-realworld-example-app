@@ -8,9 +8,9 @@ import {
   guard,
 } from 'effector';
 import { useStore, createGate } from 'effector-react';
-import * as comment from '@/entities/comment';
-import * as visitor from '@/entities/visitor';
 import { history, createParamsStore, ROUTES } from '@/shared/router';
+import * as comment from '@/entities/comment';
+import * as session from '@/entities/session';
 import * as api from './api';
 
 export const articleDeleted = createEvent<string>();
@@ -77,7 +77,7 @@ const $articleAuthor = $article.map((article) => article.author);
 
 export const $canModifyArticle = combine(
   $article,
-  visitor.$visitor,
+  session.$visitor,
   ({ author }, user) => author.username === user.username,
 );
 

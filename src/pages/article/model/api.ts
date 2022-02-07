@@ -1,5 +1,5 @@
-import * as article from '@/entities/article';
 import * as http from '@/shared/http';
+import * as article from '@/entities/article';
 
 export const getArticle = (slug: string) => {
   return http

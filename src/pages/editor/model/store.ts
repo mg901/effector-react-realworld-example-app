@@ -7,8 +7,10 @@ import {
   sample,
 } from 'effector';
 import { useStore, createGate } from 'effector-react';
-import * as article from '@/entities/article';
+
 import { history, createParamsStore, ROUTES } from '@/shared/router';
+import * as article from '@/entities/foo';
+
 import * as api from './api';
 
 export const Gate = createGate();
@@ -28,12 +30,12 @@ guard({
   target: getArticleFx,
 });
 
-export const formSubmitted = createEvent<article.types.Article>();
+export const submitForm = createEvent<article.types.Article>();
 export const updateArticleFx = createEffect(api.updateArticle);
 
 sample({
   source: $slug,
-  clock: guard(formSubmitted, { filter: $hasSlug }),
+  clock: guard(submitForm, { filter: $hasSlug }),
   fn: (slug, fields) => ({ ...fields, slug }),
   target: updateArticleFx,
 });
@@ -45,7 +47,7 @@ export const createArticleFx = createEffect<
 >(api.createArticle);
 
 forward({
-  from: guard(formSubmitted, { filter: $isEmptySlug }),
+  from: guard(submitForm, { filter: $isEmptySlug }),
   to: createArticleFx,
 });
 

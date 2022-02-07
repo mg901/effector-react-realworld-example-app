@@ -1,6 +1,6 @@
 import { useGate } from 'effector-react';
-import { Comments } from '@/entities/comment';
 import { Row, Page, Spinner } from '@/shared/ui';
+import { Comments } from '@/entities/comment';
 import * as model from './model';
 import { Content } from './ui/content';
 import { Header } from './ui/header';

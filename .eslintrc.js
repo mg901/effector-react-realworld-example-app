@@ -85,7 +85,9 @@ module.exports = {
           '/^effector/',
           '/^patronum/',
           'module',
-          '/^@/',
+          '/^@/shared/',
+          '/^@/entities/',
+          '/^@/pages/',
           ['parent', 'sibling', 'index'],
         ],
         alphabetize: {

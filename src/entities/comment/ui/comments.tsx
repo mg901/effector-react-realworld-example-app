@@ -1,4 +1,4 @@
-import * as visitor from '@/entities/visitor';
+import * as session from '@/entities/session';
 import * as model from '../model';
 import { AddCommentForm } from './add-comment-form';
 import { CommentsList } from './comments-list';
@@ -10,7 +10,7 @@ type Props = Readonly<{
 }>;
 
 export const Comments = ({ slug, comments }: Props) => {
-  const isAuth = visitor.selectors.useIsAuthorized();
+  const isAuth = session.selectors.useIsAuthorized();
 
   return (
     <>

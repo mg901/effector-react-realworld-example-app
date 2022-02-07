@@ -5,8 +5,8 @@ import {
   NumberParam,
   StringParam,
 } from 'use-query-params';
-import * as article from '@/entities/article';
 import { Pagination } from '@/shared/ui';
+import * as article from '@/entities/article';
 import * as model from './model/store';
 
 type Props = Readonly<{

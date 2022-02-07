@@ -1,6 +1,6 @@
 import { useRef, useLayoutEffect } from 'react';
 import { Form } from '@/shared/ui';
-import * as model from '../model';
+import * as session from '@/entities/session';
 import { ButtonSubmit } from './button-submit';
 
 export const LoginForm = () => {
@@ -12,11 +12,11 @@ export const LoginForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = event.currentTarget;
+    const formElem = event.currentTarget;
 
-    model.formSubmitted({
-      email: form.email.value,
-      password: form.password.value,
+    session.signInFx({
+      email: formElem.email.value,
+      password: formElem.password.value,
     });
   };
 

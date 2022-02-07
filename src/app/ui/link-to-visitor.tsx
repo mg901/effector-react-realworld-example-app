@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
-import * as visitor from '@/entities/visitor';
+import * as session from '@/entities/session';
 
 type Props = {
   children: React.ReactNode;
 };
 
 export const LinkToVisitor = ({ children }: Props) => {
-  const username = visitor.selectors.useUsername();
+  const username = session.selectors.useUsername();
 
   return (
     <NavLink exact className="nav-link" to={`/@${username}`}>

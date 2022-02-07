@@ -6,12 +6,12 @@ import {
   sample,
 } from 'effector';
 import { useStore, createGate } from 'effector-react';
-import * as visitor from '@/entities/visitor';
 import {
   createParamsStore,
   createRouteMatchStore,
   ROUTES,
 } from '@/shared/router';
+import * as session from '@/entities/session';
 import * as api from './api';
 import * as types from './types';
 
@@ -58,7 +58,7 @@ export const $profileFollowing = $profile.map((profile) => profile.following);
 
 const $isOwnProfile = createStore(false).on(
   sample({
-    source: [visitor.$username, $profileUsername],
+    source: [session.$username, $profileUsername],
     clock: $profileUsername.updates,
   }),
   (_, [visitorUsername, profileUsername]) =>

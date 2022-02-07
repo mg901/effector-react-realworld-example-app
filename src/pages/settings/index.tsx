@@ -1,10 +1,10 @@
-import * as visitor from '@/entities/visitor';
 import { Page, Row, Button } from '@/shared/ui';
+import * as session from '@/entities/session';
 import { SettingsForm, Error } from './ui';
 
 const SettingsPage = () => {
   const handleClick = () => {
-    visitor.logoutClicked();
+    session.resetSession();
   };
 
   return (

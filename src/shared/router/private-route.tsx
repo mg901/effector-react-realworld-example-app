@@ -1,9 +1,9 @@
 import { Route, Redirect, RouteProps } from 'react-router-dom';
-import * as visitor from '@/entities/visitor';
+import * as session from '@/entities/session';
 import { ROUTES } from './config';
 
 export const PrivateRoute = ({ children, ...props }: RouteProps) => {
-  const isAuth = visitor.selectors.useIsAuthorized();
+  const isAuth = session.selectors.useIsAuthorized();
 
   return (
     <Route

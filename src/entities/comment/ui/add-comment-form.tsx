@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useGate } from 'effector-react';
-import { Avatar } from '@/entities/visitor';
 import { Form, Button } from '@/shared/ui';
+import { Avatar } from '@/entities/session';
 import * as model from '../model';
 import { Error } from './error';
 
@@ -40,7 +40,7 @@ export function AddCommentForm({ slug }: Props) {
       <Error />
       <Form
         className="card comment-form"
-        onSubmit={handleSubmit(model.formSubmitted)}
+        onSubmit={handleSubmit(model.submitForm)}
       >
         <div className="card-block">
           <Form.Control

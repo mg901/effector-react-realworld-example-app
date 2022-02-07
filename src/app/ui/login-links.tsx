@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { Avatar } from '@/entities/visitor';
 import { ROUTES } from '@/shared/router';
 import { NavItem } from '@/shared/ui';
+import { Avatar } from '@/entities/session';
 import { LinkToVisitor } from './link-to-visitor';
 
 export const LoginLinks = () => {
