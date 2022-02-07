@@ -66,9 +66,12 @@ const $isOwnProfile = createStore(false).on(
 );
 
 split({
+  // @ts-ignore
   source: followToggled,
   match: {
+    // @ts-ignore
     canFollowed: (p) => p.following === true,
+    // @ts-ignore
     cantFollowed: (p) => p.following === false,
   },
   cases: {
