@@ -1,11 +1,11 @@
-import * as http from '@/shared/http';
+import { api } from '@/shared/api';
 import * as article from '@/entities/foo';
 
 export const getTags = () => {
-  return http
+  return api
     .request<{ tags: article.types.Article['tagList'] }>({
-      url: 'tags',
-      method: 'get',
+      url: '/tags',
+      method: 'GET',
     })
     .then((response) => response.tags);
 };

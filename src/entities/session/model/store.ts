@@ -1,24 +1,17 @@
 import {
-  createEffect,
+  attach,
   createEvent,
+  createEffect,
   createStore,
-  guard,
   sample,
 } from 'effector';
 import { useStore } from 'effector-react';
 import { persist } from 'effector-storage/local';
-import * as http from '@/shared/http';
 import * as api from './api';
 import * as types from './types';
 
 export const set = createEvent<types.Visitor>();
 export const reset = createEvent();
-
-export const signInFx = createEffect<
-  types.SignInArgs,
-  types.VisitorResponse,
-  Record<string, unknown>
->(api.signIn);
 
 export const signUpFx = createEffect<
   types.SignUpArgs,
@@ -26,29 +19,11 @@ export const signUpFx = createEffect<
   Record<string, unknown>
 >(api.signUp);
 
-export const getVisitorFx = createEffect(api.getVisitor);
-
-export const updateVisitorFx = createEffect<
-  types.UpdateVisitorFxArgs,
+export const signInFx = createEffect<
+  types.SignInArgs,
   types.VisitorResponse,
   Record<string, unknown>
->(api.changeVisitor);
-
-sample({
-  clock: [
-    signInFx.doneData,
-    signUpFx.doneData,
-    getVisitorFx.doneData,
-    updateVisitorFx.doneData,
-  ],
-  fn: (data) => data.user,
-  target: set,
-});
-
-sample({
-  clock: [signInFx.fail, signUpFx.fail, getVisitorFx.fail],
-  target: reset,
-});
+>(api.signIn);
 
 export const $visitor = createStore<types.Visitor>({
   image: '',
@@ -71,10 +46,31 @@ persist({
   key: 'session',
 });
 
-guard({
+export const getVisitorFx = createEffect(api.getVisitor);
+
+export const updateVisitorFx = attach({
   source: $token,
-  filter: Boolean,
-}).watch(http.setToken);
+  effect: createEffect<
+    types.UpdateVisitorFxArgs,
+    types.VisitorResponse,
+    Record<string, unknown>
+  >(api.changeVisitor),
+  mapParams: (params: types.UpdateVisitorFxArgs, token) => ({
+    token,
+    ...params,
+  }),
+});
+
+sample({
+  clock: [
+    signInFx.doneData,
+    signUpFx.doneData,
+    getVisitorFx.doneData,
+    updateVisitorFx.doneData,
+  ],
+  fn: (data) => data.user,
+  target: set,
+});
 
 export const selectors = {
   useIsAuthorized: () => useStore($isAuthorized),

@@ -2,7 +2,7 @@
 //   return http
 //     .request<{ article: article.types.Article }>({
 //       url: `articles/${slug}`,
-//       method: 'get',
+//       method: 'GET',
 //     })
 //     .then((response) => response.article)
 //     .then(({ createdAt, ...rest }) => ({

@@ -15,10 +15,11 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
-    "types": ["node", "jest", "@testing-library/jest-dom"],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "typeRoots": ["node_modules/@types", "./@types"]
   },
   "include": ["src"],
   "exclude": ["./node_modules/*"]

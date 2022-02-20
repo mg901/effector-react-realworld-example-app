@@ -1,0 +1,1 @@
+declare module "*.css" { declare var css: Record<string, string>; export default css}

@@ -1,35 +1,35 @@
-import * as http from '@/shared/http';
+import { api } from '@/shared/api';
 import * as types from './types';
 
 export const signIn = ({ email, password }: types.SignInArgs) =>
-  http.request<types.VisitorResponse>({
-    url: 'users/login',
-    method: 'post',
-    data: {
+  api.request<types.VisitorResponse>({
+    url: '/users/login',
+    method: 'POST',
+    body: {
       user: { email, password },
     },
   });
 
 export const signUp = ({ username, email, password }: types.SignUpArgs) =>
-  http.request<types.VisitorResponse>({
-    url: 'users',
-    method: 'post',
-    data: {
+  api.request<types.VisitorResponse>({
+    url: '/users',
+    method: 'POST',
+    body: {
       user: { username, email, password },
     },
   });
 
 export const getVisitor = () =>
-  http.request<types.VisitorResponse>({
-    url: 'user',
-    method: 'get',
+  api.request<types.VisitorResponse>({
+    url: '/user',
+    method: 'GET',
   });
 
 export const changeVisitor = (fields: any) => {
-  return http.request<types.VisitorResponse>({
-    url: 'user',
-    method: 'put',
-    data: {
+  return api.request<types.VisitorResponse>({
+    url: '/user',
+    method: 'PUT',
+    body: {
       user: !fields.password ? { ...fields, password: undefined } : fields,
     },
   });

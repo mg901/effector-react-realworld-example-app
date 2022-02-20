@@ -1,27 +1,27 @@
-import * as http from '@/shared/http';
+import { api } from '@/shared/api';
 import * as types from './types';
 
 export const getCommentList = (slug: string) =>
-  http
+  api
     .request<{ comments: types.CommentType[] }>({
-      url: `articles/${slug}/comments`,
-      method: 'get',
+      url: `/articles/${slug}/comments`,
+      method: 'GET',
     })
     .then((response) => response.comments);
 
 export const add = ({ slug, body }: types.AddCommentArgs) =>
-  http
+  api
     .request<{ comment: types.CommentType }>({
-      url: `articles/${slug}/comments`,
-      method: 'post',
-      data: {
+      url: `/articles/${slug}/comments`,
+      method: 'POST',
+      body: {
         comment: { body },
       },
     })
     .then((response) => response.comment);
 
 export const remove = ({ slug, id }: types.RemoveCommentArgs) =>
-  http.request({
-    url: `articles/${slug}/comments/${id}`,
-    method: 'delete',
+  api.request({
+    url: `/articles/${slug}/comments/${id}`,
+    method: 'DELETE',
   });

@@ -28,6 +28,6 @@ export type SelectedArticle = Pick<
   'slug' | 'favorited' | 'favoritesCount'
 >;
 
-export type ToggleFavoriteArticleResponse = {
+export type SelectedArticleResponse = {
   article: Article;
 };

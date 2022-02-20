@@ -1,20 +1,20 @@
-import * as http from '@/shared/http';
+import { api } from '@/shared/api';
 import * as types from './types';
 
 export const create = (payload: types.Article) =>
-  http.request<types.ArticleResponse>({
-    url: 'articles',
-    method: 'post',
-    data: {
+  api.request<types.ArticleResponse>({
+    url: '/articles',
+    method: 'POST',
+    body: {
       article: payload,
     },
   });
 
 export const get = (slug: string) =>
-  http
+  api
     .request<types.ArticleResponse>({
-      url: `articles/${slug}`,
-      method: 'get',
+      url: `/articles/${slug}`,
+      method: 'GET',
     })
     .then((response) => response.article)
     .then(({ createdAt, ...rest }) => ({
@@ -23,10 +23,10 @@ export const get = (slug: string) =>
     }));
 
 export const update = (payload: types.Article) =>
-  http.request<types.ArticleResponse>({
-    url: `articles/${payload.slug}`,
-    method: 'put',
-    data: {
+  api.request<types.ArticleResponse>({
+    url: `/articles/${payload.slug}`,
+    method: 'PUT',
+    body: {
       article: {
         ...payload,
         slug: undefined,
@@ -35,19 +35,19 @@ export const update = (payload: types.Article) =>
   });
 
 export const remove = (slug: string) =>
-  http.request({
-    url: `articles/${slug}`,
-    method: 'delete',
+  api.request({
+    url: `/articles/${slug}`,
+    method: 'DELETE',
   });
 
 export const setFavorite = (slug: string) =>
-  http.request<types.ArticleResponse>({
-    url: `articles/${slug}/favorite`,
-    method: 'post',
+  api.request<types.ArticleResponse>({
+    url: `/articles/${slug}/favorite`,
+    method: 'POST',
   });
 
 export const setUnfavorite = (slug: string) =>
-  http.request<types.ArticleResponse>({
-    url: `articles/${slug}/favorite`,
-    method: 'delete',
+  api.request<types.ArticleResponse>({
+    url: `/articles/${slug}/favorite`,
+    method: 'DELETE',
   });
