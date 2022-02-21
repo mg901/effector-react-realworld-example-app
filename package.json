@@ -113,7 +113,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.26.0",
     "clsx": "^1.1.1",
     "effector": "^22.1.2",
     "effector-react": "^22.0.6",
