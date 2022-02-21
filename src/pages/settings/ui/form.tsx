@@ -1,13 +1,17 @@
-import { useEffect } from 'react';
+import { useLayoutEffect, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Form } from '@/shared/ui';
+import { Form, Button } from '@/shared/ui';
+import * as user from '@/entities/user';
 import * as model from '../model';
-import { ButtonSubmit } from './button-submit';
 
 export const SettingsForm = () => {
   const fields = model.selectors.useEditableFields();
-  const { handleSubmit, register, reset } = useForm({
+  const { handleSubmit, register, setFocus, reset } = useForm({
     defaultValues: fields,
+  });
+
+  useLayoutEffect(() => {
+    setFocus('image');
   });
 
   useEffect(() => {
@@ -59,3 +63,18 @@ export const SettingsForm = () => {
     </Form>
   );
 };
+
+function ButtonSubmit() {
+  const disabled = user.selectors.useUpdateUserLoading();
+
+  return (
+    <Button
+      className="btn-primary pull-xs-right"
+      disabled={disabled}
+      size="lg"
+      type="submit"
+    >
+      Update Settings
+    </Button>
+  );
+}

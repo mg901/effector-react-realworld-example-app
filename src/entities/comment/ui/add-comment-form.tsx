@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useGate } from 'effector-react';
 import { Form, Button } from '@/shared/ui';
 import { Avatar } from '@/entities/session';
-import * as model from '../model';
+import * as comments from '../model';
 import { Error } from './error';
 
 type Props = Readonly<{
@@ -19,7 +18,9 @@ const defaultValues = {
 };
 
 export function AddCommentForm({ slug }: Props) {
-  useGate(model.Gate, { slug });
+  useLayoutEffect(() => {
+    comments.store.attachSlug(slug);
+  }, [slug]);
 
   const { setFocus, handleSubmit, register, reset } = useForm<FormFields>({
     defaultValues,
@@ -30,7 +31,7 @@ export function AddCommentForm({ slug }: Props) {
   }, [setFocus]);
 
   useEffect(() =>
-    model.addFx.done.watch(() => {
+    comments.store.addCommentFx.done.watch(() => {
       reset(defaultValues);
     }),
   );
@@ -40,7 +41,7 @@ export function AddCommentForm({ slug }: Props) {
       <Error />
       <Form
         className="card comment-form"
-        onSubmit={handleSubmit(model.submitForm)}
+        onSubmit={handleSubmit(comments.store.submitForm)}
       >
         <div className="card-block">
           <Form.Control

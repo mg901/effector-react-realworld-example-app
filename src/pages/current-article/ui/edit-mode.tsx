@@ -1,14 +1,23 @@
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { ROUTES } from '@/shared/router';
 import { Button } from '@/shared/ui';
 import * as article from '@/entities/foo';
 import * as currentArticle from '../model';
 
 export const EditMode = () => {
+  const history = useHistory();
   const canModify = currentArticle.selectors.useCanModifyArticle();
   const { slug } = currentArticle.selectors.useCurrentArticle();
 
+  useEffect(() => {
+    return article.store.removeArticleFx.done.watch(() => {
+      history.push(ROUTES.root);
+    });
+  }, [history]);
+
   const handleDeleteArticle = () => {
-    article.removeFx(slug);
+    article.store.removeArticleFx(slug);
   };
 
   return canModify ? (

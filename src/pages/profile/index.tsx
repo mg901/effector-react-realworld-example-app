@@ -1,6 +1,5 @@
-import { lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { useGate } from 'effector-react';
+import { lazy, Suspense, useLayoutEffect } from 'react';
+import { Switch, Route, useParams } from 'react-router-dom';
 import { ROUTES } from '@/shared/router';
 import { Spinner } from '@/shared/ui';
 import * as model from './model';
@@ -10,7 +9,7 @@ const MyArticlesPage = lazy(() => import('./pages/my-articles'));
 const FavoritedArticlesPage = lazy(() => import('./pages/favorited-articles'));
 
 const ProfilePage = () => {
-  useGate(model.Gate);
+  useModel();
 
   return (
     <Layout>
@@ -27,5 +26,13 @@ const ProfilePage = () => {
     </Layout>
   );
 };
+
+function useModel() {
+  const { username } = useParams<{ username: string }>();
+
+  useLayoutEffect(() => {
+    model.attachUsername(username);
+  }, [username]);
+}
 
 export default ProfilePage;

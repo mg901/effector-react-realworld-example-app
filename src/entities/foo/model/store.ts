@@ -1,20 +1,22 @@
-import { createEffect } from 'effector';
-import { useStore } from 'effector-react';
+import { createEvent, createEffect, createStore } from 'effector';
 import * as api from './api';
 import * as types from './types';
 
-export const createFx = createEffect<
+export const createArticleFx = createEffect<
   types.Article,
   types.ArticleResponse,
-  Record<string, unknown>
->(api.create);
+  types.ArticleError
+>(api.createArticle);
 
-export const getFx = createEffect(api.get);
-export const updateFx = createEffect(api.update);
-export const removeFx = createEffect(api.remove);
+export const getArticleFx = createEffect(api.getArticle);
+export const updateArticleFx = createEffect(api.updateArticle);
+export const removeArticleFx = createEffect(api.removeArticle);
 
-export const selectors = {
-  useCreateArticleLoading: () => useStore(getFx.pending),
-  useGetArticleLoading: () => useStore(getFx.pending),
-  useUpdateArticleLoading: () => useStore(updateFx.pending),
-};
+export const resetError = createEvent();
+export const $error = createStore<types.FailData | null>(null)
+  .on(createArticleFx.failData, (_, error) => error.data)
+  .reset(resetError);
+
+export const $errorList = $error.map((error) =>
+  Object.entries(Object(error?.errors)),
+);

@@ -1,4 +1,4 @@
-import { api } from '@/shared/api';
+import * as http from '@/shared/http';
 import { limit } from '@/shared/library/limit';
 import * as article from '@/entities/article';
 
@@ -10,8 +10,10 @@ export type getFeedFxArgs = {
 export const getFeed = ({ pageSize, page }: getFeedFxArgs) => {
   const pageIndex = page - 1;
 
-  return api.request<article.types.FeedType>({
-    url: `/articles?${limit(pageSize, pageIndex)}`,
-    method: 'GET',
-  });
+  return http.client
+    .request<article.types.FeedType>({
+      url: `/articles?${limit(pageSize, pageIndex)}`,
+      method: 'GET',
+    })
+    .then((response) => response.data);
 };

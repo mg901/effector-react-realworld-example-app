@@ -1,3 +1,5 @@
+import * as http from '@/shared/http';
+
 export type Author = {
   username: string;
   bio: null | string;
@@ -21,3 +23,9 @@ export interface Article {
 export type ArticleResponse = {
   article: Article;
 };
+
+export type FailData = {
+  errors: Record<string, unknown>;
+};
+
+export type ArticleError = http.types.IHttpClientError<FailData>;

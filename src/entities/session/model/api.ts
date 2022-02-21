@@ -1,36 +1,36 @@
-import { api } from '@/shared/api';
+import * as http from '@/shared/http';
+import * as user from '@/entities/user';
 import * as types from './types';
 
-export const signIn = ({ email, password }: types.SignInArgs) =>
-  api.request<types.VisitorResponse>({
-    url: '/users/login',
-    method: 'POST',
-    body: {
-      user: { email, password },
-    },
-  });
+export const signIn = ({
+  ctrl = new AbortController(),
+  email,
+  password,
+}: types.SignInArgs) =>
+  http.client
+    .request<{ user: user.types.User }>({
+      url: '/users/login',
+      method: 'POST',
+      signal: ctrl.signal,
+      body: {
+        user: { email, password },
+      },
+    })
+    .then((response) => response.data);
 
-export const signUp = ({ username, email, password }: types.SignUpArgs) =>
-  api.request<types.VisitorResponse>({
-    url: '/users',
-    method: 'POST',
-    body: {
-      user: { username, email, password },
-    },
-  });
-
-export const getVisitor = () =>
-  api.request<types.VisitorResponse>({
-    url: '/user',
-    method: 'GET',
-  });
-
-export const changeVisitor = (fields: any) => {
-  return api.request<types.VisitorResponse>({
-    url: '/user',
-    method: 'PUT',
-    body: {
-      user: !fields.password ? { ...fields, password: undefined } : fields,
-    },
-  });
-};
+export const signUp = ({
+  ctrl = new AbortController(),
+  username,
+  email,
+  password,
+}: types.SignUpArgs) =>
+  http.client
+    .request<{ user: user.types.User }>({
+      url: '/users',
+      method: 'POST',
+      signal: ctrl.signal,
+      body: {
+        user: { username, email, password },
+      },
+    })
+    .then((response) => response.data);

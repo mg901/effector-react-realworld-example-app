@@ -1,27 +1,17 @@
+import * as http from '@/shared/http';
+
 export type SignInArgs = {
   email: string;
   password: string;
+  ctrl?: AbortController;
 };
 
 export type SignUpArgs = SignInArgs & {
   username: string;
 };
 
-export interface Visitor {
-  image: string;
-  username: string;
-  bio: string;
-  email: string;
-  token: string | null;
-  id: number | null;
-}
-
-export type VisitorResponse = {
-  user: Visitor;
+export type FailData = {
+  errors: Record<string, unknown>;
 };
 
-export type Token = Visitor['token'];
-
-export type UpdateVisitorFxArgs = Omit<Visitor, 'token' | 'id'> & {
-  password: string;
-};
+export type SessionError = http.HttpClientError<FailData>;

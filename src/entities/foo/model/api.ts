@@ -1,53 +1,63 @@
-import { api } from '@/shared/api';
+import * as http from '@/shared/http';
 import * as types from './types';
 
-export const create = (payload: types.Article) =>
-  api.request<types.ArticleResponse>({
-    url: '/articles',
-    method: 'POST',
-    body: {
-      article: payload,
-    },
-  });
+export const createArticle = (payload: types.Article) =>
+  http.client
+    .request<types.ArticleResponse>({
+      url: '/articles',
+      method: 'POST',
+      body: {
+        article: payload,
+      },
+    })
+    .then((response) => response.data);
 
-export const get = (slug: string) =>
-  api
+export const getArticle = (slug: string) =>
+  http.client
     .request<types.ArticleResponse>({
       url: `/articles/${slug}`,
       method: 'GET',
     })
-    .then((response) => response.article)
+    .then((response) => response.data.article)
     .then(({ createdAt, ...rest }) => ({
       ...rest,
       createdAt: new Date(createdAt).toDateString(),
     }));
 
-export const update = (payload: types.Article) =>
-  api.request<types.ArticleResponse>({
-    url: `/articles/${payload.slug}`,
-    method: 'PUT',
-    body: {
-      article: {
-        ...payload,
-        slug: undefined,
+export const updateArticle = (payload: types.Article) =>
+  http.client
+    .request<types.ArticleResponse>({
+      url: `/articles/${payload.slug}`,
+      method: 'PUT',
+      body: {
+        article: {
+          ...payload,
+          slug: undefined,
+        },
       },
-    },
-  });
+    })
+    .then((response) => response.data);
 
-export const remove = (slug: string) =>
-  api.request({
-    url: `/articles/${slug}`,
-    method: 'DELETE',
-  });
+export const removeArticle = (slug: string) =>
+  http.client
+    .request({
+      url: `/articles/${slug}`,
+      method: 'DELETE',
+    })
+    .then((response) => response.data);
 
-export const setFavorite = (slug: string) =>
-  api.request<types.ArticleResponse>({
-    url: `/articles/${slug}/favorite`,
-    method: 'POST',
-  });
+export const setFavoriteArticle = (slug: string) =>
+  http.client
+    .request<types.ArticleResponse>({
+      url: `/articles/${slug}/favorite`,
+      method: 'POST',
+    })
+    .then((response) => response.data);
 
-export const setUnfavorite = (slug: string) =>
-  api.request<types.ArticleResponse>({
-    url: `/articles/${slug}/favorite`,
-    method: 'DELETE',
-  });
+export const setUnfavoriteArticle = (slug: string) =>
+  http.client
+    .request<types.ArticleResponse>({
+      url: `/articles/${slug}/favorite`,
+      method: 'DELETE',
+    })
+    .then((response) => response.data);

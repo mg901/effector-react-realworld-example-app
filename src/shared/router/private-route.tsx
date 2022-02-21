@@ -1,10 +1,13 @@
 import { Route, Redirect, RouteProps } from 'react-router-dom';
-import * as session from '@/entities/session';
 import { ROUTES } from './config';
 
-export const PrivateRoute = ({ children, ...props }: RouteProps) => {
-  const isAuth = session.selectors.useIsAuthorized();
+type Props = Readonly<
+  RouteProps & {
+    isAuth: boolean;
+  }
+>;
 
+export const PrivateRoute = ({ isAuth, children, ...props }: Props) => {
   return (
     <Route
       {...props}

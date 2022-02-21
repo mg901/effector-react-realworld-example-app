@@ -1,9 +1,8 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 import { NavItem } from '@/shared/ui';
-import * as model from '../model';
 
 export const Tabs = () => {
-  const url = model.selectors.usePageUrl();
+  const { url } = useRouteMatch<{ url: string }>();
 
   return (
     <ul className="nav nav-pills outline-active articles-toggle">

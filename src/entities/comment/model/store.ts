@@ -1,46 +1,48 @@
 import { createEvent, createEffect, createStore, sample } from 'effector';
-import { useStore, createGate } from 'effector-react';
+import { useStore } from 'effector-react';
 import * as api from './api';
 import * as types from './types';
 
-export const Gate = createGate<{ slug: string }>();
-const $slug = Gate.state.map((props) => props.slug);
-
 export const getCommentsFx = createEffect(api.getCommentList);
-export const addFx = createEffect<
+
+export const addCommentFx = createEffect<
   types.AddCommentArgs,
   types.CommentType,
   Record<string, unknown>
 >(api.add);
 
+export const attachSlug = createEvent<string>();
+const $slug = createStore<string>('').on(attachSlug, (_, slug) => slug);
+
 export const submitForm = createEvent<{ body: string }>();
 
 sample({
-  source: $slug,
   clock: submitForm,
+  source: $slug,
   fn: (slug, fields) => ({ slug, ...fields }),
-  target: addFx,
+  target: addCommentFx,
 });
 
 export const removeComment = createEvent<string>();
-export const removeFx = createEffect<
+export const removeCommentFx = createEffect<
   types.RemoveCommentArgs,
   void,
   Record<string, unknown>
 >(api.remove);
 
 sample({
-  source: $slug,
   clock: removeComment,
+  source: $slug,
   fn: (slug, id) => ({ slug, id }),
-  target: removeFx,
+  target: removeCommentFx,
 });
 
+export const resetError = createEvent();
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
 })
-  .on([addFx.failData, removeFx.failData], (_, error) => error)
-  .reset(Gate.close);
+  .on([addCommentFx.failData, removeCommentFx.failData], (_, error) => error)
+  .reset(resetError);
 
 export const $hasError = $error.map(
   (error) => Object.keys(Object(error)).length > 0,
@@ -51,7 +53,7 @@ export const $errors = $error.map((error) =>
 );
 
 export const selectors = {
-  useAddCommentFxLoading: () => useStore(addFx.pending),
+  useAddCommentFxLoading: () => useStore(addCommentFx.pending),
   useHasError: () => useStore($hasError),
   useErrors: () => useStore($errors),
 };

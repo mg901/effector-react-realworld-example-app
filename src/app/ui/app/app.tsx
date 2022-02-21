@@ -1,22 +1,34 @@
-import { lazy, Suspense, useState, useCallback } from 'react';
+import { lazy, Suspense, useState, useCallback, useLayoutEffect } from 'react';
 import type { FallbackProps } from 'react-error-boundary';
 import { ErrorBoundary } from 'react-error-boundary';
 import { hot } from 'react-hot-loader/root';
-import { Router, Route, Switch } from 'react-router-dom';
-import { useGate } from 'effector-react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useHistory,
+} from 'react-router-dom';
 import { QueryParamProvider } from 'use-query-params';
-import { history, ROUTES, PrivateRoute } from '@/shared/router';
+import * as http from '@/shared/http';
+import { ROUTES, PrivateRoute } from '@/shared/router';
 import { Spinner, Page, Button, Pre } from '@/shared/ui';
-import * as model from '../../model';
+import * as session from '@/entities/session';
 import { Layout } from '../layout';
 
 import './app.css';
 
-export const App = hot(() => {
-  useGate(model.Gate);
+http.client.init({
+  baseURL: process.env.API_ROOT ?? 'https://api.realworld.io/api',
+  onError: (error) => {
+    if (error.status === 401) {
+      session.store.resetSession();
+    }
+  },
+});
 
+export const App = hot(() => {
   return (
-    <Router history={history}>
+    <Router basename="/effector-react-realworld-example-app">
       <QueryParamProvider ReactRouterRoute={Route}>
         <Layout>
           <Routes />
@@ -88,8 +100,16 @@ export const routes: RouteType[] = [
 ];
 
 function Routes() {
+  const history = useHistory();
+  const isAuth = session.selectors.useIsAuthorized();
   const [state, setState] = useState(false);
   const forceUpdate = useCallback(() => setState((prev) => !prev), []);
+
+  useLayoutEffect(() => {
+    return session.store.resetSession.watch(() => {
+      history.push(ROUTES.login);
+    });
+  }, [history]);
 
   return (
     <ErrorBoundary
@@ -103,6 +123,7 @@ function Routes() {
             route.isPrivate ? (
               <PrivateRoute
                 exact={route.exact}
+                isAuth={isAuth}
                 key={route.path.toString()}
                 path={route.path}
               >

@@ -1,12 +1,10 @@
-import { createEvent, createStore, forward } from 'effector';
-import { useStore, createGate } from 'effector-react';
-import { history, ROUTES } from '@/shared/router';
+import { createEvent, sample } from 'effector';
 import * as session from '@/entities/session';
+import * as user from '@/entities/user';
 
-export const Gate = createGate();
-export const submitForm = createEvent<session.types.UpdateVisitorFxArgs>();
+export const submitForm = createEvent<user.types.UpdateUserArgs>();
 
-export const $editableFields = session.$visitor.map((x) => ({
+export const $editableFields = session.store.$session.map((x) => ({
   image: x.image,
   username: x.username,
   bio: x.bio,
@@ -14,32 +12,12 @@ export const $editableFields = session.$visitor.map((x) => ({
   password: '',
 }));
 
-forward({
-  from: submitForm,
-  to: session.updateVisitorFx,
+sample({
+  clock: submitForm,
+  target: user.store.updateUserFx,
 });
 
-session.reset.watch(() => {
-  history.push(ROUTES.root);
+sample({
+  clock: user.store.updateUserFx.done,
+  target: user.store.resetError,
 });
-
-export const $error = createStore<Record<string, unknown>>({
-  errors: {},
-})
-  .on(session.updateVisitorFx.failData, (_, payload) => payload)
-  .reset(Gate.close);
-
-export const $hasError = $error.map(
-  (error) => Object.keys(Object(error)).length > 0,
-);
-
-export const $errors = $error.map((error) =>
-  Object.entries(Object(error?.errors)),
-);
-
-export const selectors = {
-  useUpdateVisitorLoading: () => useStore(session.updateVisitorFx.pending),
-  useEditableFields: () => useStore($editableFields),
-  useHasError: (): boolean => useStore($hasError),
-  useErrors: () => useStore($errors),
-};
