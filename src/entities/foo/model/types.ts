@@ -28,4 +28,4 @@ export type FailData = {
   errors: Record<string, unknown>;
 };
 
-export type ArticleError = http.types.IHttpClientError<FailData>;
+export type ArticleError = http.types.HttpClientError<FailData>;

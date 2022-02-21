@@ -5,7 +5,7 @@ import { createAdapter, HttpClientError } from './adapter';
 
 describe('client', () => {
   let mock: MockAdapter;
-  let client: types.IHttpClient;
+  let client: types.HttpClient;
   let BASE_URL: string;
   let ACCESS_TOKEN: string;
 
@@ -36,7 +36,15 @@ describe('client', () => {
 
     mock.onGet('/users').reply(200, data);
 
-    const responseMock = {
+    expect(
+      client.request({
+        url: '/users',
+        method: 'GET',
+        headers: {
+          Authorization: `Token ${ACCESS_TOKEN}`,
+        },
+      }),
+    ).resolves.toEqual({
       data,
       headers: {
         Accept: 'application/json, text/plain, */*',
@@ -46,17 +54,7 @@ describe('client', () => {
       status: 200,
       statusText: '',
       url: `${BASE_URL}/users`,
-    };
-
-    expect(
-      client.request({
-        url: '/users',
-        method: 'GET',
-        headers: {
-          Authorization: `Token ${ACCESS_TOKEN}`,
-        },
-      }),
-    ).resolves.toEqual(responseMock);
+    });
   });
 
   it('should throw an custom error', () => {

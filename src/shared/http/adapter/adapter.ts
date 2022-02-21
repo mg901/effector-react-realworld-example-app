@@ -5,7 +5,7 @@ import * as types from '../types';
 
 export const client = createAdapter(axios);
 
-export function createAdapter(adaptee: Axios): types.IHttpClient {
+export function createAdapter(adaptee: Axios): types.HttpClient {
   return {
     ...withInit(adaptee),
     ...withRequest(adaptee),
@@ -45,7 +45,7 @@ function withRequest(adaptee: Axios) {
           headers: options.headers,
           data: body,
         })
-        .then(prepareResponse)
+        .then(responseAdapter)
         .catch((error) => {
           throw new HttpClientError(error);
         });
@@ -53,9 +53,9 @@ function withRequest(adaptee: Axios) {
   };
 }
 
-function prepareResponse(response: AxiosResponse) {
+function responseAdapter(response: AxiosResponse): types.HttpClientResponse {
   return {
-    headers: response.config.headers as Record<string, string>,
+    headers: response.config.headers,
     ok: response.status >= 200 && response.status <= 299,
     status: response.status,
     statusText: response.statusText ?? '',
