@@ -15,5 +15,5 @@ export const getFeed = ({ pageSize, page }: getFeedFxArgs) => {
       url: `/articles?${limit(pageSize, pageIndex)}`,
       method: 'GET',
     })
-    .then((response) => response.data);
+    .then((response) => response);
 };

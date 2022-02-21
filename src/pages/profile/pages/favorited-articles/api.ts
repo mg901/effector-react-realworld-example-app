@@ -19,5 +19,5 @@ export const getFeed = ({ username, page, pageSize }: getFeedPayload) => {
       )}`,
       method: 'GET',
     })
-    .then((response) => response.data);
+    .then((response) => response);
 };

@@ -7,7 +7,7 @@ export const getCommentList = (slug: string) =>
       url: `/articles/${slug}/comments`,
       method: 'GET',
     })
-    .then((response) => response.data.comments);
+    .then((response) => response.comments);
 
 export const add = ({ slug, body }: types.AddCommentArgs) =>
   http.client
@@ -18,7 +18,7 @@ export const add = ({ slug, body }: types.AddCommentArgs) =>
         comment: { body },
       },
     })
-    .then((response) => response.data.comment);
+    .then((response) => response.comment);
 
 export const remove = ({ slug, id }: types.RemoveCommentArgs) =>
   http.client
@@ -26,4 +26,4 @@ export const remove = ({ slug, id }: types.RemoveCommentArgs) =>
       url: `/articles/${slug}/comments/${id}`,
       method: 'DELETE',
     })
-    .then((response) => response.data);
+    .then((response) => response);

@@ -7,7 +7,7 @@ export const setFavoriteArticle = ({ slug }: types.SelectedArticle) =>
       url: `/articles/${slug}/favorite`,
       method: 'POST',
     })
-    .then((response) => response.data);
+    .then((response) => response);
 
 export const setUnfavoriteArticle = ({ slug }: types.SelectedArticle) =>
   http.client
@@ -15,4 +15,4 @@ export const setUnfavoriteArticle = ({ slug }: types.SelectedArticle) =>
       url: `/articles/${slug}/favorite`,
       method: 'DELETE',
     })
-    .then((response) => response.data);
+    .then((response) => response);

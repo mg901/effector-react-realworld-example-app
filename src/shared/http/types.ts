@@ -15,14 +15,14 @@ export type HttpClientOptions = {
   signal?: AbortSignal;
 };
 
-export type HttpClientResponse<Data = any> = {
-  headers?: ClientHeaders;
-  ok: boolean;
-  status: number;
-  statusText: string;
-  url: string;
-  data: Data;
-};
+// export type HttpClientResponse<Data = any> = {
+//   headers?: ClientHeaders;
+//   ok: boolean;
+//   status: number;
+//   statusText: string;
+//   url: string;
+//   data: Data;
+// };
 
 export type InitOptions = {
   baseURL: string;
@@ -30,5 +30,5 @@ export type InitOptions = {
 };
 export interface HttpClient {
   init: (options: InitOptions) => void;
-  request<R = void>(options: HttpClientOptions): Promise<HttpClientResponse<R>>;
+  request<R = void>(options: HttpClientOptions): Promise<R>;
 }

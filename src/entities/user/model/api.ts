@@ -7,7 +7,7 @@ export const getUser = () =>
       url: '/user',
       method: 'GET',
     })
-    .then((response) => response.data);
+    .then((response) => response);
 
 export const changeUser = (fields: types.UpdateUserArgs) =>
   http.client
@@ -18,4 +18,4 @@ export const changeUser = (fields: types.UpdateUserArgs) =>
         user: !fields.password ? { ...fields, password: undefined } : fields,
       },
     })
-    .then((response) => response.data);
+    .then((response) => response);

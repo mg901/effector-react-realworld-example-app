@@ -16,7 +16,7 @@ export const signIn = ({
         user: { email, password },
       },
     })
-    .then((response) => response.data);
+    .then((response) => response);
 
 export const signUp = ({
   ctrl = new AbortController(),
@@ -33,4 +33,4 @@ export const signUp = ({
         user: { username, email, password },
       },
     })
-    .then((response) => response.data);
+    .then((response) => response);

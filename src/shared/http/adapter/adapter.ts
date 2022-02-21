@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import type { AxiosError, AxiosResponse } from 'axios';
+import type { AxiosError } from 'axios';
 import axios, { Axios } from 'axios';
 import * as types from '../types';
 
@@ -33,9 +33,7 @@ function withInit(adaptee: Axios) {
 
 function withRequest(adaptee: Axios) {
   return {
-    request(
-      options: types.HttpClientOptions,
-    ): Promise<types.HttpClientResponse> {
+    request<T = void>(options: types.HttpClientOptions): Promise<T> {
       const { url, method, body } = options;
 
       return adaptee
@@ -45,22 +43,11 @@ function withRequest(adaptee: Axios) {
           headers: options.headers,
           data: body,
         })
-        .then(responseAdapter)
+        .then((response) => response.data)
         .catch((error) => {
           throw new HttpClientError(error);
         });
     },
-  };
-}
-
-function responseAdapter(response: AxiosResponse): types.HttpClientResponse {
-  return {
-    headers: response.config.headers,
-    ok: response.status >= 200 && response.status <= 299,
-    status: response.status,
-    statusText: response.statusText ?? '',
-    url: `${response.config.baseURL}${response.config.url}`,
-    data: response.data,
   };
 }
 

@@ -44,17 +44,7 @@ describe('client', () => {
           Authorization: `Token ${ACCESS_TOKEN}`,
         },
       }),
-    ).resolves.toEqual({
-      data,
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        Authorization: 'Token 123-456',
-      },
-      ok: true,
-      status: 200,
-      statusText: '',
-      url: `${BASE_URL}/users`,
-    });
+    ).resolves.toEqual(data);
   });
 
   it('should throw an custom error', () => {

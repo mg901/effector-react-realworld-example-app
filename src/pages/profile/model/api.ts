@@ -7,7 +7,7 @@ export const getProfile = (username: string) => {
       url: `/profiles/${username}`,
       method: 'GET',
     })
-    .then((response) => response.data.profile);
+    .then((response) => response.profile);
 };
 
 export const subscribeToUser = (username: string) => {
@@ -16,7 +16,7 @@ export const subscribeToUser = (username: string) => {
       url: `/profiles/${username}/follow`,
       method: 'POST',
     })
-    .then((response) => response.data.profile);
+    .then((response) => response.profile);
 };
 
 export const unsubscribeToUser = (username: string) => {
@@ -25,5 +25,5 @@ export const unsubscribeToUser = (username: string) => {
       url: `/profiles/${username}/follow`,
       method: 'DELETE',
     })
-    .then((response) => response.data.profile);
+    .then((response) => response.profile);
 };

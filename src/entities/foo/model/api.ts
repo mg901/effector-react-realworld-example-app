@@ -10,7 +10,7 @@ export const createArticle = (payload: types.Article) =>
         article: payload,
       },
     })
-    .then((response) => response.data);
+    .then((response) => response);
 
 export const getArticle = (slug: string) =>
   http.client
@@ -18,7 +18,7 @@ export const getArticle = (slug: string) =>
       url: `/articles/${slug}`,
       method: 'GET',
     })
-    .then((response) => response.data.article)
+    .then((response) => response.article)
     .then(({ createdAt, ...rest }) => ({
       ...rest,
       createdAt: new Date(createdAt).toDateString(),
@@ -36,7 +36,7 @@ export const updateArticle = (payload: types.Article) =>
         },
       },
     })
-    .then((response) => response.data);
+    .then((response) => response);
 
 export const removeArticle = (slug: string) =>
   http.client
@@ -44,7 +44,7 @@ export const removeArticle = (slug: string) =>
       url: `/articles/${slug}`,
       method: 'DELETE',
     })
-    .then((response) => response.data);
+    .then((response) => response);
 
 export const setFavoriteArticle = (slug: string) =>
   http.client
@@ -52,7 +52,7 @@ export const setFavoriteArticle = (slug: string) =>
       url: `/articles/${slug}/favorite`,
       method: 'POST',
     })
-    .then((response) => response.data);
+    .then((response) => response);
 
 export const setUnfavoriteArticle = (slug: string) =>
   http.client
@@ -60,4 +60,4 @@ export const setUnfavoriteArticle = (slug: string) =>
       url: `/articles/${slug}/favorite`,
       method: 'DELETE',
     })
-    .then((response) => response.data);
+    .then((response) => response);

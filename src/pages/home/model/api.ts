@@ -7,5 +7,5 @@ export const getTags = () => {
       url: '/tags',
       method: 'GET',
     })
-    .then((response) => response.data.tags);
+    .then((response) => response.tags);
 };
