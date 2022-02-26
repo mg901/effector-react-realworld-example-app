@@ -15,7 +15,7 @@ sample({
   target: [article.store.getArticleFx, comment.store.getCommentsFx],
 });
 
-export const $comments = createStore<comment.types.CommentType[]>([])
+export const $comments = createStore<comment.types.IComment[]>([])
   .on(comment.store.getCommentsFx.doneData, (_, payload) => payload)
   .on(comment.store.addCommentFx.doneData, (state, payload) =>
     [payload].concat(state),

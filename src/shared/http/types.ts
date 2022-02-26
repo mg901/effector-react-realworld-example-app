@@ -1,4 +1,4 @@
-export interface HttpClientError<FailData = any> extends Error {
+export interface IHttpClientError<FailData = any> extends Error {
   readonly status?: number;
   readonly statusText: string;
   readonly data: FailData;
@@ -15,20 +15,11 @@ export type HttpClientOptions = {
   signal?: AbortSignal;
 };
 
-// export type HttpClientResponse<Data = any> = {
-//   headers?: ClientHeaders;
-//   ok: boolean;
-//   status: number;
-//   statusText: string;
-//   url: string;
-//   data: Data;
-// };
-
 export type InitOptions = {
   baseURL: string;
-  onError?: (error: HttpClientError) => void;
+  onError?: (error: IHttpClientError) => void;
 };
-export interface HttpClient {
+export interface IHttpClient {
   init: (options: InitOptions) => void;
   request<R = void>(options: HttpClientOptions): Promise<R>;
 }

@@ -6,7 +6,7 @@ import { MessageForUnauthorized } from './message-for-unauthorized';
 
 type Props = Readonly<{
   slug: string;
-  comments: model.types.CommentType[];
+  comments: model.types.IComment[];
 }>;
 
 export const Comments = ({ slug, comments }: Props) => {

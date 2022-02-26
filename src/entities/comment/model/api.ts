@@ -3,7 +3,7 @@ import * as types from './types';
 
 export const getCommentList = (slug: string) =>
   http.client
-    .request<{ comments: types.CommentType[] }>({
+    .request<{ comments: types.IComment[] }>({
       url: `/articles/${slug}/comments`,
       method: 'GET',
     })
@@ -11,7 +11,7 @@ export const getCommentList = (slug: string) =>
 
 export const add = ({ slug, body }: types.AddCommentArgs) =>
   http.client
-    .request<{ comment: types.CommentType }>({
+    .request<{ comment: types.IComment }>({
       url: `/articles/${slug}/comments`,
       method: 'POST',
       body: {

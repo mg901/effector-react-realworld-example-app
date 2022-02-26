@@ -5,7 +5,7 @@ import { createAdapter, HttpClientError } from './adapter';
 
 describe('client', () => {
   let mock: MockAdapter;
-  let client: types.HttpClient;
+  let client: types.IHttpClient;
   let BASE_URL: string;
   let ACCESS_TOKEN: string;
 

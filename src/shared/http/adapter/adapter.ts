@@ -5,7 +5,7 @@ import * as types from '../types';
 
 export const client = createAdapter(axios);
 
-export function createAdapter(adaptee: Axios): types.HttpClient {
+export function createAdapter(adaptee: Axios): types.IHttpClient {
   return {
     ...withInit(adaptee),
     ...withRequest(adaptee),

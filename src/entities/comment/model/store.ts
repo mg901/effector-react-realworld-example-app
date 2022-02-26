@@ -7,7 +7,7 @@ export const getCommentsFx = createEffect(api.getCommentList);
 
 export const addCommentFx = createEffect<
   types.AddCommentArgs,
-  types.CommentType,
+  types.IComment,
   Record<string, unknown>
 >(api.add);
 

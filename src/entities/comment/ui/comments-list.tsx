@@ -3,7 +3,7 @@ import * as model from '../model';
 import { Comment } from './comment';
 
 type Props = {
-  comments: model.types.CommentType[];
+  comments: model.types.IComment[];
 };
 
 export const CommentsList = ({ comments }: Props) => {

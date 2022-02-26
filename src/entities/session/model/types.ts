@@ -14,4 +14,4 @@ export type FailData = {
   errors: Record<string, unknown>;
 };
 
-export type SessionError = http.HttpClientError<FailData>;
+export type SessionError = http.types.IHttpClientError<FailData>;

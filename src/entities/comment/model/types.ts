@@ -1,12 +1,17 @@
-import * as article from '@/entities/article';
+export type Author = {
+  username: string;
+  bio: null | string;
+  image: string;
+  following: boolean;
+};
 
-export type CommentType = Readonly<{
-  author: article.types.Author;
+export interface IComment {
+  author: Author;
   body: string;
   id: string;
   createdAt: string;
   updatedAt: string;
-}>;
+}
 
 export type AddCommentArgs = Readonly<{
   slug: string;

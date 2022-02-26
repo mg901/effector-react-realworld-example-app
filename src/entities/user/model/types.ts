@@ -21,4 +21,4 @@ export type FailData = {
   errors: Record<string, unknown>;
 };
 
-export type UserError = http.types.HttpClientError<FailData>;
+export type UserError = http.types.IHttpClientError<FailData>;
