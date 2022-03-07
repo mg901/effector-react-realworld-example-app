@@ -92,7 +92,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "jest-environment-jsdom": "^27.5.1",
-    "lint-staged": "^12.3.4",
+    "lint-staged": "^12.3.5",
     "mini-css-extract-plugin": "^2.6.0",
     "node-static": "^0.7.11",
     "onchange": "^7.1.0",
