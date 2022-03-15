@@ -1,21 +1,21 @@
-import { createEffect, createEvent, forward, restore } from 'effector';
-import { useStore, createGate } from 'effector-react';
-import { createQueryStore } from '@/shared/router';
+import { createEffect, createEvent, sample, createStore } from 'effector';
+import { useStore } from 'effector-react';
 import * as api from './api';
 
+export const mount = createEvent();
 export const tagSelected = createEvent<string>();
 export const getTagsFx = createEffect(api.getTags);
 
-export const Gate = createGate();
-export const $tags = restore(getTagsFx.doneData, []);
-export const $tagQuery = createQueryStore('tag');
+export const $tags = createStore<string[]>([]).on(
+  getTagsFx.doneData,
+  (_, payload) => payload,
+);
 
-forward({
-  from: Gate.open,
-  to: getTagsFx,
+sample({
+  clock: mount,
+  target: getTagsFx,
 });
 
 export const selectors = {
-  useTagQuery: () => useStore($tagQuery),
   useLoadTags: () => useStore(getTagsFx.pending),
 };

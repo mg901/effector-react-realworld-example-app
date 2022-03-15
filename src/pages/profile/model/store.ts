@@ -5,37 +5,25 @@ import {
   split,
   sample,
 } from 'effector';
-import { useStore, createGate } from 'effector-react';
-import * as visitor from '@/entities/visitor';
-import {
-  createParamsStore,
-  createRouteMatchStore,
-  ROUTES,
-} from '@/shared/router';
+import { useStore } from 'effector-react';
+import * as session from '@/entities/session';
 import * as api from './api';
 import * as types from './types';
 
-export const followToggled = createEvent<types.FollowToggledArgs>();
-
+export const mount = createEvent();
+export const attachUsername = createEvent<string>();
+const $username = createStore('').on(attachUsername, (_, payload) => payload);
 export const getProfileFx = createEffect(api.getProfile);
-export const subscribeToUserFx = createEffect(api.subscribeToUser);
-export const unsubscribeFromUserFx = createEffect(api.unsubscribeToUser);
-
-export const Gate = createGate();
-
-const $username = createParamsStore<{ username: string }>({
-  path: ROUTES.profile.root,
-}).map((params) => params.username);
-
-export const $pageUrl = createRouteMatchStore<{ url: string }>({
-  path: ROUTES.profile.root,
-}).map((x) => x?.url);
 
 sample({
+  clock: [mount, $username],
   source: $username,
-  clock: [Gate.open, $username],
   target: getProfileFx,
 });
+
+export const followToggled = createEvent<types.FollowToggledArgs>();
+export const subscribeToUserFx = createEffect(api.subscribeToUser);
+export const unsubscribeFromUserFx = createEffect(api.unsubscribeToUser);
 
 export const $profile = createStore({
   bio: '',
@@ -58,17 +46,20 @@ export const $profileFollowing = $profile.map((profile) => profile.following);
 
 const $isOwnProfile = createStore(false).on(
   sample({
-    source: [visitor.$username, $profileUsername],
     clock: $profileUsername.updates,
+    source: [session.store.$username, $profileUsername],
   }),
   (_, [visitorUsername, profileUsername]) =>
     visitorUsername === profileUsername,
 );
 
 split({
+  // @ts-ignore
   source: followToggled,
   match: {
+    // @ts-ignore
     canFollowed: (p) => p.following === true,
+    // @ts-ignore
     cantFollowed: (p) => p.following === false,
   },
   cases: {
@@ -81,7 +72,6 @@ split({
 
 export const selectors = {
   useIsOwnProfile: () => useStore($isOwnProfile),
-  usePageUrl: () => useStore($pageUrl),
   useFollowing: () => useStore($profileFollowing),
   useProfileBio: () => useStore($profileBio),
   useProfileUsername: () => useStore($profileUsername),

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useQueryParam, withDefault, NumberParam } from 'use-query-params';
-import * as article from '@/entities/article';
-import * as visitor from '@/entities/visitor';
 import { ROUTES } from '@/shared/router';
 import { Pagination } from '@/shared/ui';
+import * as article from '@/entities/article';
+import * as session from '@/entities/session';
 import * as model from './model';
 
 type Props = Readonly<{
@@ -12,7 +12,7 @@ type Props = Readonly<{
 }>;
 
 const GlobalFeedPage = ({ pageSize = 10 }: Props) => {
-  const isAuth = visitor.selectors.useIsAuthorized();
+  const isAuth = session.selectors.useIsAuthorized();
   const [page, setPage] = useQueryParam('page', withDefault(NumberParam, 1));
   const loading = model.selectors.useGetFeedLoading();
   const isEmpty = model.selectors.useIsEmptyFeed();

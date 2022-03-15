@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import * as visitor from '@/entities/visitor';
 import { ROUTES } from '@/shared/router';
 import { NavItem } from '@/shared/ui';
+import * as session from '@/entities/session';
 
 export const LinkToGlobalFeed = () => {
-  const isAuth = visitor.selectors.useIsAuthorized();
+  const isAuth = session.selectors.useIsAuthorized();
 
   return isAuth ? (
     <NavItem>

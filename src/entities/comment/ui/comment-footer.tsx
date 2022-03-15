@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import * as model from '../model';
+import * as comments from '../model';
 import { ButtonDelete } from './button-delete';
 
 export type CommentFooterProps = Pick<
-  model.types.CommentType,
+  comments.types.IComment,
   'author' | 'createdAt' | 'id'
 >;
 
@@ -16,7 +16,7 @@ export const CommentFooter = ({
   const date = useMemo(() => new Date(createdAt).toDateString(), [createdAt]);
 
   const handleDeleteComment = () => {
-    model.commentDeleted(id);
+    comments.store.removeComment(id);
   };
 
   return (

@@ -32,7 +32,7 @@ export function createFeed({ effect }: Options) {
 
   const setFavoriteArticleFx = createEffect<
     types.SelectedArticle,
-    types.ToggleFavoriteArticleResponse
+    types.SelectedArticleResponse
   >(api.setFavoriteArticle);
 
   const setUnfavoriteArticleFx = createEffect(api.setUnfavoriteArticle);

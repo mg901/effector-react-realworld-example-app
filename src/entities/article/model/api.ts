@@ -1,16 +1,18 @@
 import * as http from '@/shared/http';
 import * as types from './types';
 
-export const setFavoriteArticle = ({ slug }: types.SelectedArticle) => {
-  return http.request<types.ToggleFavoriteArticleResponse>({
-    url: `articles/${slug}/favorite`,
-    method: 'post',
-  });
-};
+export const setFavoriteArticle = ({ slug }: types.SelectedArticle) =>
+  http.client
+    .request<types.SelectedArticleResponse>({
+      url: `/articles/${slug}/favorite`,
+      method: 'POST',
+    })
+    .then((response) => response);
 
-export const setUnfavoriteArticle = ({ slug }: types.SelectedArticle) => {
-  return http.request<types.ToggleFavoriteArticleResponse>({
-    url: `articles/${slug}/favorite`,
-    method: 'delete',
-  });
-};
+export const setUnfavoriteArticle = ({ slug }: types.SelectedArticle) =>
+  http.client
+    .request<types.SelectedArticleResponse>({
+      url: `/articles/${slug}/favorite`,
+      method: 'DELETE',
+    })
+    .then((response) => response);

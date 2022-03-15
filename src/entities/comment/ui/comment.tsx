@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { types } from '../model';
 import { CommentFooterProps, CommentFooter } from './comment-footer';
 
-type Props = Readonly<CommentFooterProps & Pick<types.CommentType, 'body'>>;
+type Props = Readonly<CommentFooterProps & Pick<types.IComment, 'body'>>;
 
 export const Comment = memo(({ body, ...props }: Props) => {
   return (

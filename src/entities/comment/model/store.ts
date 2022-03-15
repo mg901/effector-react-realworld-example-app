@@ -1,46 +1,48 @@
 import { createEvent, createEffect, createStore, sample } from 'effector';
-import { useStore, createGate } from 'effector-react';
+import { useStore } from 'effector-react';
 import * as api from './api';
 import * as types from './types';
 
-export const Gate = createGate<{ slug: string }>();
-const $slug = Gate.state.map((props) => props.slug);
+export const getCommentsFx = createEffect(api.getCommentList);
 
-export const getCommentsFx = createEffect(api.getComments);
-
-export const formSubmitted = createEvent<{ body: string }>();
 export const addCommentFx = createEffect<
   types.AddCommentArgs,
-  types.CommentType,
+  types.IComment,
   Record<string, unknown>
->(api.addComment);
+>(api.add);
+
+export const attachSlug = createEvent<string>();
+const $slug = createStore<string>('').on(attachSlug, (_, slug) => slug);
+
+export const submitForm = createEvent<{ body: string }>();
 
 sample({
+  clock: submitForm,
   source: $slug,
-  clock: formSubmitted,
   fn: (slug, fields) => ({ slug, ...fields }),
   target: addCommentFx,
 });
 
-export const commentDeleted = createEvent<string>();
-export const deleteCommentFx = createEffect<
-  types.DeleteCommentArgs,
+export const removeComment = createEvent<string>();
+export const removeCommentFx = createEffect<
+  types.RemoveCommentArgs,
   void,
   Record<string, unknown>
->(api.deleteComment);
+>(api.remove);
 
 sample({
+  clock: removeComment,
   source: $slug,
-  clock: commentDeleted,
   fn: (slug, id) => ({ slug, id }),
-  target: deleteCommentFx,
+  target: removeCommentFx,
 });
 
+export const resetError = createEvent();
 export const $error = createStore<Record<string, unknown>>({
   errors: {},
 })
-  .on([addCommentFx.failData, deleteCommentFx.failData], (_, error) => error)
-  .reset(Gate.close);
+  .on([addCommentFx.failData, removeCommentFx.failData], (_, error) => error)
+  .reset(resetError);
 
 export const $hasError = $error.map(
   (error) => Object.keys(Object(error)).length > 0,

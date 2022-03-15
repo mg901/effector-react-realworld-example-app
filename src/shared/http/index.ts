@@ -1,2 +1,2 @@
-export * from './http';
+export * from './adapter/adapter';
 export * as types from './types';

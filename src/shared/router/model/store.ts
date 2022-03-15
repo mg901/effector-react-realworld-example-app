@@ -1,4 +1,4 @@
-import { createEvent, restore } from 'effector';
+import { createEvent, createStore } from 'effector';
 import { createBrowserHistory, Location } from 'history';
 
 export const history = createBrowserHistory({
@@ -6,7 +6,10 @@ export const history = createBrowserHistory({
 });
 
 export const locationUpdated = createEvent<Location>();
-export const $location = restore(locationUpdated, history.location);
+export const $location = createStore<Location>(history.location).on(
+  locationUpdated,
+  (_, location) => location,
+);
 export const $locationPathname = $location.map((location) => location.pathname);
 export const $locationSearch = $location.map((location) => location.search);
 

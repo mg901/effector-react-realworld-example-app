@@ -1,10 +1,11 @@
-import * as visitor from '@/entities/visitor';
 import { Page, Row, Button } from '@/shared/ui';
-import { SettingsForm, Error } from './ui';
+import * as session from '@/entities/session';
+import * as user from '@/entities/user';
+import { SettingsForm } from './ui/form';
 
 const SettingsPage = () => {
   const handleClick = () => {
-    visitor.logoutClicked();
+    session.store.resetSession();
   };
 
   return (
@@ -12,7 +13,7 @@ const SettingsPage = () => {
       <Row>
         <div className="col-md-6 offset-md-3 col-xs-12">
           <h1 className="text-xs-center">Your Settings</h1>
-          <Error />
+          <user.Error />
           <SettingsForm />
           <hr />
 

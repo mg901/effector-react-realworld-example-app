@@ -1,12 +1,9 @@
-import { guard } from 'effector';
-import { createGate } from 'effector-react';
-import * as visitor from '@/entities/visitor';
+// import { guard } from 'effector';
+// import * as session from '@/entities/session';
 
-export const Gate = createGate();
-
-guard({
-  source: visitor.$isAuthorized,
-  filter: Boolean,
-  clock: Gate.open,
-  target: visitor.getVisitorFx,
-});
+// guard({
+//   source: session.$isAuthorized,
+//   filter: Boolean,
+//   clock: Gate.open,
+//   target: session.getVisitorFx,
+// });

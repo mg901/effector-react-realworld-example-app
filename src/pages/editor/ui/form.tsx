@@ -1,14 +1,11 @@
 import { useEffect, useLayoutEffect } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
-import { useGate } from 'effector-react';
-import * as article from '@/entities/article';
-import { Form } from '@/shared/ui';
+import { Form, Button } from '@/shared/ui';
+import * as article from '@/entities/foo';
 import * as model from '../model';
 import { AddTagForm } from './add-tag-form';
-import { ButtonSubmit } from './button-submit';
 
 export const EditorForm = () => {
-  useGate(model.Gate);
   const methods = useForm<article.types.Article>({
     defaultValues: {
       slug: '',
@@ -24,38 +21,56 @@ export const EditorForm = () => {
   }, [methods]);
 
   useEffect(() => {
-    return model.getArticleFx.doneData.watch((values) => {
-      methods.reset(values);
+    return article.store.getArticleFx.doneData.watch((data) => {
+      methods.reset(data);
     });
   }, [methods]);
 
   return (
-    <FormProvider {...methods}>
-      <Form id="editor" onSubmit={methods.handleSubmit(model.formSubmitted)}>
-        <Form.Group>
-          <Form.Control
-            placeholder="Article Title"
-            size="lg"
-            {...methods.register('title')}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Control
-            placeholder="What's this article about?"
-            {...methods.register('description')}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Control
-            as="textarea"
-            placeholder="Write your article (in markdown)"
-            rows={8}
-            {...methods.register('body')}
-          />
-        </Form.Group>
-      </Form>
-      <AddTagForm />
+    <>
+      <FormProvider {...methods}>
+        <Form id="editor" onSubmit={methods.handleSubmit(model.submitForm)}>
+          <Form.Group>
+            <Form.Control
+              placeholder="Article Title"
+              size="lg"
+              {...methods.register('title')}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
+              placeholder="What's this article about?"
+              {...methods.register('description')}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Control
+              as="textarea"
+              placeholder="Write your article (in markdown)"
+              rows={8}
+              {...methods.register('body')}
+            />
+          </Form.Group>
+        </Form>
+        <AddTagForm />
+      </FormProvider>
       <ButtonSubmit />
-    </FormProvider>
+    </>
   );
 };
+
+export function ButtonSubmit() {
+  const disabled = article.selectors.useCreateArticleLoading();
+
+  return (
+    <Button
+      className="btn-primary pull-xs-right"
+      disabled={disabled}
+      form="editor"
+      size="lg"
+      type="submit"
+    >
+      Publish article
+    </Button>
+  );
+}

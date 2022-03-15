@@ -5,7 +5,7 @@ export const ROUTES = {
   root: '/',
   login: '/login',
   registration: '/registration',
-  article: '/article/:slug',
+  currentArticle: '/article/:slug',
   profile: {
     root: PROFILE,
     favorites: `${PROFILE}/favorites`,
